@@ -1,0 +1,31 @@
+CCNA 200-301 v2.0 Study Guide & Lab Manual
+Copyright (c) 2026 Ayush Hamal
+
+This repository is dual-licensed.
+
+1. Study content — Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+   International (CC BY-NC-SA 4.0). Full text: LICENSE-CONTENT
+   https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+   Covers:
+     - CCNA 200-301 v2.0 Study Guide.md
+     - Part 2 — Chapters 24–28.md
+     - README.md, CONTRIBUTING.md and everything in docs/
+     - every figure and image in assets/
+
+   You may share and adapt this material for non-commercial purposes, as long
+   as you give appropriate credit ("CCNA 200-301 v2.0 Study Guide by Ayush
+   Hamal"), link to the license, indicate if changes were made, and share your
+   adaptations under the same license.
+
+2. Code — MIT License. Full text: LICENSE-CODE
+
+   Covers:
+     - everything in tools/ (the figure generator, index and link checker)
+     - everything in .github/ (the CI workflow)
+     - repository configuration files (.editorconfig, .gitattributes, .gitignore)
+
+Trademarks: Cisco, CCNA, Cisco IOS and Packet Tracer are trademarks or
+registered trademarks of Cisco Systems, Inc. This is an independent study
+resource and is not affiliated with or endorsed by Cisco. Neither license grants
+any right to use these trademarks.

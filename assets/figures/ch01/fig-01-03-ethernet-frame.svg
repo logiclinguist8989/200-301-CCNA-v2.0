@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 481" width="1160" height="481" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 1.3 — Ethernet II frame layout, in transmission order</title>
+<desc id="d">Field sizes in bytes (not drawn to scale) — the highlighted payload is the IP packet from Figure 1.1</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="480" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 1.3</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Ethernet II frame layout, in transmission order</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Field sizes in bytes (not drawn to scale) — the highlighted payload is the IP packet from Figure 1.1</text>
+<rect x="40.0" y="160.0" width="150.0" height="64.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="115.0" y="190.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f2540" text-anchor="middle">Preamble + SFD</text>
+<text x="115.0" y="205.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">7 + 1</text>
+<rect x="190.0" y="160.0" width="170.0" height="64.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="275.0" y="190.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#3e2a85" text-anchor="middle">Destination MAC</text>
+<text x="275.0" y="205.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">6</text>
+<rect x="360.0" y="160.0" width="150.0" height="64.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="435.0" y="190.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#3e2a85" text-anchor="middle">Source MAC</text>
+<text x="435.0" y="205.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">6</text>
+<rect x="510.0" y="160.0" width="110.0" height="64.0" rx="4" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.5"/>
+<text x="565.0" y="190.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0b5b63" text-anchor="middle">802.1Q tag</text>
+<text x="565.0" y="205.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">4 (trunks only)</text>
+<rect x="620.0" y="160.0" width="100.0" height="64.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="670.0" y="190.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#7a4708" text-anchor="middle">Type</text>
+<text x="670.0" y="205.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">2</text>
+<rect x="720.0" y="160.0" width="280.0" height="64.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="860.0" y="190.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f3f80" text-anchor="middle">Payload (IP packet)</text>
+<text x="860.0" y="205.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">46 – 1500</text>
+<rect x="1000.0" y="160.0" width="90.0" height="64.0" rx="4" fill="#fde8e8" stroke="#d64040" stroke-width="1.5"/>
+<text x="1045.0" y="190.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#8a1c1c" text-anchor="middle">FCS</text>
+<text x="1045.0" y="205.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">4</text>
+<rect x="510.0" y="160.0" width="110.0" height="64.0" rx="4" fill="none" stroke="#0f9aa8" stroke-width="2" stroke-dasharray="6 4"/>
+<line x1="115.0" y1="230.0" x2="115.0" y2="262.0" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+<text x="115.0" y="282.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Clock sync; not</text>
+<text x="115.0" y="299.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">counted</text>
+<line x1="275.0" y1="230.0" x2="275.0" y2="262.0" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+<text x="275.0" y="282.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Where the frame goes</text>
+<text x="275.0" y="299.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">on this link</text>
+<line x1="435.0" y1="230.0" x2="435.0" y2="262.0" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+<text x="435.0" y="282.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Who sent it on</text>
+<text x="435.0" y="299.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">this link</text>
+<line x1="565.0" y1="230.0" x2="565.0" y2="262.0" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+<text x="565.0" y="282.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">VLAN ID + priority</text>
+<text x="565.0" y="299.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">(Ch. 5)</text>
+<line x1="670.0" y1="230.0" x2="670.0" y2="262.0" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+<text x="670.0" y="282.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">0x0800 IPv4</text>
+<text x="670.0" y="299.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">0x86DD IPv6</text>
+<text x="670.0" y="316.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">0x0806 ARP</text>
+<line x1="860.0" y1="230.0" x2="860.0" y2="262.0" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+<text x="860.0" y="282.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">MTU 1500 bytes</text>
+<line x1="1045.0" y1="230.0" x2="1045.0" y2="262.0" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+<text x="1045.0" y="282.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">CRC check — mismatch</text>
+<text x="1045.0" y="299.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">= dropped</text>
+<path d="M190,148 L190,140 L1090,140 L1090,148" fill="none" stroke="#1d6fd1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="640.0" y="132.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#1d6fd1" text-anchor="middle">Counted in frame size: 64 – 1518 bytes</text>
+<text x="115.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#5b6b7f" text-anchor="middle">Layer 1 only</text>
+<rect x="40.0" y="350.0" width="300.0" height="50.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="190.0" y="373.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#3e2a85" text-anchor="middle">0050.7966.6801</text>
+<text x="190.0" y="388.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">MAC address = 48 bits, 12 hex digits</text>
+<rect x="360.0" y="350.0" width="180.0" height="50.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="450.0" y="373.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#3e2a85" text-anchor="middle">OUI 0050.79</text>
+<text x="450.0" y="388.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">manufacturer (24 bits)</text>
+<rect x="540.0" y="350.0" width="160.0" height="50.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="620.0" y="373.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f2540" text-anchor="middle">66.6801</text>
+<text x="620.0" y="388.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">vendor-assigned (24 bits)</text>
+<rect x="720.0" y="350.0" width="170.0" height="50.0" rx="4" fill="#fde8e8" stroke="#d64040" stroke-width="1.5"/>
+<text x="805.0" y="373.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#8a1c1c" text-anchor="middle">FFFF.FFFF.FFFF</text>
+<text x="805.0" y="388.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">broadcast</text>
+<rect x="890.0" y="350.0" width="200.0" height="50.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="990.0" y="373.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#7a4708" text-anchor="middle">0100.5Exx.xxxx</text>
+<text x="990.0" y="388.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">IPv4 multicast</text>
+<line x1="28" y1="441" x2="1132" y2="441" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="463" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Minimum frame 64 bytes, maximum 1518 bytes (1522 with an 802.1Q tag). Smaller frames are runts; larger are giants.</text>
+<text x="1136" y="471" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

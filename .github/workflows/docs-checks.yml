@@ -1,0 +1,42 @@
+name: Docs checks
+
+# Automatic runs are paused: GitHub is not starting jobs for this account
+# ("account is locked due to a billing issue"). Run it by hand from the
+# Actions tab ("Run workflow"). To turn automatic runs back on, add:
+#   push:
+#     branches: [main]
+#   pull_request:
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  figures-and-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild every figure from code
+        run: python3 tools/figures/build.py
+
+      - name: Re-link figures and refresh the index
+        run: |
+          python3 tools/figures/link_figures.py
+          python3 tools/figures/make_index.py
+
+      - name: Fail if committed figures or index are out of date
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Generated files differ from the committed ones. Run the figure tools locally and commit the result."
+            git diff --stat
+            exit 1
+          fi
+
+      - name: Check local links and images
+        run: python3 tools/check_links.py

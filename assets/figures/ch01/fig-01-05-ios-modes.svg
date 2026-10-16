@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 520" width="1120" height="520" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 1.5 — Every configuration change starts from privileged EXEC (R1#)</title>
+<desc id="d">Each arrow is labelled with the command that moves you one level down</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#94a3b8"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1119" height="519" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1119" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 1.5</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Every configuration change starts from privileged EXEC (R1#)</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Each arrow is labelled with the command that moves you one level down</text>
+<rect x="40.0" y="110.0" width="300.0" height="100.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="56.0" y="138.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="650" fill="#0f2540" text-anchor="start">User EXEC</text>
+<text x="56.0" y="160.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">R1&gt;</text>
+<text x="56.0" y="179.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start">limited show and ping</text>
+<rect x="410.0" y="110.0" width="300.0" height="100.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="2" filter="url(#shadow)"/>
+<text x="426.0" y="138.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="650" fill="#0f2540" text-anchor="start">Privileged EXEC</text>
+<text x="426.0" y="160.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f3f80" text-anchor="start">R1#</text>
+<text x="426.0" y="179.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start">show, copy, reload, debug</text>
+<rect x="780.0" y="110.0" width="300.0" height="100.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="796.0" y="138.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="650" fill="#0f2540" text-anchor="start">Global configuration</text>
+<text x="796.0" y="160.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">R1(config)#</text>
+<text x="796.0" y="179.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start">hostname, enable secret</text>
+<line x1="340.0" y1="160.0" x2="405.0" y2="160.0" stroke="#1d6fd1" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="347.9" y="136.7" width="48.3" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="372.0" y="149.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#1d6fd1" text-anchor="middle">enable</text>
+<line x1="710.0" y1="160.0" x2="775.0" y2="160.0" stroke="#1d6fd1" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="717.9" y="136.7" width="48.3" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="742.0" y="149.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#1d6fd1" text-anchor="middle">conf t</text>
+<line x1="405.0" y1="188.0" x2="345.0" y2="188.0" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4" marker-end="url(#m1)"/>
+<rect x="349.6" y="193.5" width="50.7" height="14.0" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="375.0" y="205.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="500" fill="#5b6b7f" text-anchor="middle">disable</text>
+<line x1="930.0" y1="210.0" x2="930.0" y2="260.0" stroke="#1d6fd1" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="190.0" y1="260.0" x2="930.0" y2="260.0" stroke="#1d6fd1" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="190.0" y1="260.0" x2="190.0" y2="316.0" stroke="#1d6fd1" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="132.3" y="278.6" width="115.4" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="190.0" y="291.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#1d6fd1" text-anchor="middle">interface g0/0/0</text>
+<rect x="40.0" y="320.0" width="300.0" height="100.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="56.0" y="348.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="650" fill="#0f2540" text-anchor="start">Interface configuration</text>
+<text x="56.0" y="370.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">R1(config-if)#</text>
+<text x="56.0" y="389.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start">IP address, speed, duplex</text>
+<line x1="560.0" y1="260.0" x2="560.0" y2="316.0" stroke="#1d6fd1" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="515.7" y="278.6" width="88.5" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="560.0" y="291.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#1d6fd1" text-anchor="middle">line vty 0 4</text>
+<rect x="410.0" y="320.0" width="300.0" height="100.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="426.0" y="348.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="650" fill="#0f2540" text-anchor="start">Line configuration</text>
+<text x="426.0" y="370.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">R1(config-line)#</text>
+<text x="426.0" y="389.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start">console and VTY login rules</text>
+<line x1="930.0" y1="260.0" x2="930.0" y2="316.0" stroke="#1d6fd1" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="882.4" y="278.6" width="95.2" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="930.0" y="291.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#1d6fd1" text-anchor="middle">router ospf 1</text>
+<rect x="780.0" y="320.0" width="300.0" height="100.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="796.0" y="348.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="650" fill="#0f2540" text-anchor="start">Router configuration</text>
+<text x="796.0" y="370.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">R1(config-router)#</text>
+<text x="796.0" y="389.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start">routing protocol settings</text>
+<line x1="28" y1="461" x2="1092" y2="461" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="483" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">exit: one level up  ·  end or Ctrl+Z: straight back to R1#  ·  disable: R1# back to R1&gt;</text>
+<text x="28" y="502" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">conf t is short for configure terminal  ·  do show … runs a show command from any configuration mode</text>
+<text x="1096" y="510" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

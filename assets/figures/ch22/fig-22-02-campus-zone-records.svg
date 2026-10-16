@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 658" width="1160" height="658" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 22.2 — The campus.example records and how they chain</title>
+<desc id="d">Ask for a name on the left; the arrow shows what the record returns</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#7357d1"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+<marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d9861a"/></marker>
+<marker id="m3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#0f9aa8"/></marker>
+<marker id="m4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="657" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 22.2</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">The campus.example records and how they chain</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Ask for a name on the left; the arrow shows what the record returns</text>
+<rect x="40.0" y="110.0" width="330.0" height="52.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56.0" y="142.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">www.campus.example</text>
+<rect x="418.3" y="124.8" width="63.3" height="22.5" rx="11.25" fill="#7357d1" stroke="#7357d1" stroke-width="1.2"/>
+<text x="450.0" y="140.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">CNAME</text>
+<line x1="372.0" y1="136.0" x2="418.0" y2="136.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<line x1="490.0" y1="136.0" x2="568.0" y2="136.0" stroke="#7357d1" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="572.0" y="110.0" width="330.0" height="52.0" rx="8" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="588.0" y="142.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#3e2a85" text-anchor="start">web1.campus.example</text>
+<path d="M904,136 C960,136 960,202 380,184" fill="none" stroke="#7357d1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" marker-end="url(#m0)"/>
+<text x="980.0" y="166.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#7357d1" text-anchor="start">look up again</text>
+<rect x="40.0" y="176.0" width="330.0" height="52.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56.0" y="208.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">web1.campus.example</text>
+<rect x="436.8" y="190.8" width="26.5" height="22.5" rx="11.25" fill="#1f9d63" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="450.0" y="206.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">A</text>
+<line x1="372.0" y1="202.0" x2="418.0" y2="202.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<line x1="490.0" y1="202.0" x2="568.0" y2="202.0" stroke="#1f9d63" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m1)"/>
+<rect x="572.0" y="176.0" width="330.0" height="52.0" rx="8" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="588.0" y="208.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#0f5a37" text-anchor="start">10.10.40.80</text>
+<rect x="40.0" y="242.0" width="330.0" height="52.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56.0" y="274.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">campus.example</text>
+<rect x="420.2" y="256.8" width="59.6" height="22.5" rx="11.25" fill="#d9861a" stroke="#d9861a" stroke-width="1.2"/>
+<text x="450.0" y="272.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">MX 10</text>
+<line x1="372.0" y1="268.0" x2="418.0" y2="268.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<line x1="490.0" y1="268.0" x2="568.0" y2="268.0" stroke="#d9861a" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m2)"/>
+<rect x="572.0" y="242.0" width="330.0" height="52.0" rx="8" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="588.0" y="274.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#7a4708" text-anchor="start">mail.campus.example</text>
+<path d="M904,268 C960,268 960,334 380,316" fill="none" stroke="#d9861a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" marker-end="url(#m2)"/>
+<text x="980.0" y="298.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#d9861a" text-anchor="start">look up again</text>
+<rect x="40.0" y="308.0" width="330.0" height="52.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56.0" y="340.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">mail.campus.example</text>
+<rect x="436.8" y="322.8" width="26.5" height="22.5" rx="11.25" fill="#1f9d63" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="450.0" y="338.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">A</text>
+<line x1="372.0" y1="334.0" x2="418.0" y2="334.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<line x1="490.0" y1="334.0" x2="568.0" y2="334.0" stroke="#1f9d63" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m1)"/>
+<rect x="572.0" y="308.0" width="330.0" height="52.0" rx="8" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="588.0" y="340.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#0f5a37" text-anchor="start">mail server IPv4</text>
+<rect x="40.0" y="374.0" width="330.0" height="52.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56.0" y="406.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">campus.example</text>
+<rect x="432.5" y="388.8" width="35.0" height="22.5" rx="11.25" fill="#0f9aa8" stroke="#0f9aa8" stroke-width="1.2"/>
+<text x="450.0" y="404.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">NS</text>
+<line x1="372.0" y1="400.0" x2="418.0" y2="400.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<line x1="490.0" y1="400.0" x2="568.0" y2="400.0" stroke="#0f9aa8" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m3)"/>
+<rect x="572.0" y="374.0" width="330.0" height="52.0" rx="8" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.5"/>
+<text x="588.0" y="406.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#0b5b63" text-anchor="start">ns1.campus.example</text>
+<path d="M904,400 C960,400 960,466 380,448" fill="none" stroke="#0f9aa8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" marker-end="url(#m3)"/>
+<text x="980.0" y="430.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#0f9aa8" text-anchor="start">look up again</text>
+<rect x="40.0" y="440.0" width="330.0" height="52.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56.0" y="472.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">ns1.campus.example</text>
+<rect x="436.8" y="454.8" width="26.5" height="22.5" rx="11.25" fill="#1f9d63" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="450.0" y="470.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">A</text>
+<line x1="372.0" y1="466.0" x2="418.0" y2="466.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<line x1="490.0" y1="466.0" x2="568.0" y2="466.0" stroke="#1f9d63" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m1)"/>
+<rect x="572.0" y="440.0" width="330.0" height="52.0" rx="8" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="588.0" y="472.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#0f5a37" text-anchor="start">10.10.99.53</text>
+<rect x="40.0" y="506.0" width="330.0" height="52.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56.0" y="538.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">80.40.10.10.in-addr.arpa</text>
+<rect x="428.3" y="520.8" width="43.4" height="22.5" rx="11.25" fill="#1d6fd1" stroke="#1d6fd1" stroke-width="1.2"/>
+<text x="450.0" y="536.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">PTR</text>
+<line x1="372.0" y1="532.0" x2="418.0" y2="532.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<line x1="490.0" y1="532.0" x2="568.0" y2="532.0" stroke="#1d6fd1" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m4)"/>
+<rect x="572.0" y="506.0" width="330.0" height="52.0" rx="8" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="588.0" y="538.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#0f3f80" text-anchor="start">web1.campus.example</text>
+<line x1="28" y1="599" x2="1132" y2="599" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="621" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">CNAME, MX and NS return NAMES, so the client must look those up again; only A, AAAA and PTR end the chain.</text>
+<text x="28" y="640" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">MX must point to a host name with an A/AAAA record — never to an IP address or a CNAME.</text>
+<text x="1136" y="648" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

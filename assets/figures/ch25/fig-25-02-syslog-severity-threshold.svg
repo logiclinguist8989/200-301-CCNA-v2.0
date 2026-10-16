@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 620" width="1160" height="620" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 25.2 — Syslog severity levels and the logging threshold</title>
+<desc id="d">Lower number = more severe — a configured level sends that level AND every more severe one</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#0f2540"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="619" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 25.2</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Syslog severity levels and the logging threshold</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Lower number = more severe — a configured level sends that level AND every more severe one</text>
+<rect x="120.0" y="110.0" width="620.0" height="46.0" rx="8" fill="#7f1d1d" stroke="#7f1d1d" stroke-width="1.5"/>
+<text x="144.0" y="140.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#ffffff" text-anchor="start">0</text>
+<text x="184.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">emergencies</text>
+<text x="360.0" y="140.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#ffffff" text-anchor="start">system unusable</text>
+<rect x="120.0" y="162.0" width="620.0" height="46.0" rx="8" fill="#991b1b" stroke="#991b1b" stroke-width="1.5"/>
+<text x="144.0" y="192.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#ffffff" text-anchor="start">1</text>
+<text x="184.0" y="192.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">alerts</text>
+<text x="360.0" y="192.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#ffffff" text-anchor="start">immediate action needed</text>
+<rect x="120.0" y="214.0" width="620.0" height="46.0" rx="8" fill="#b91c1c" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="144.0" y="244.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#ffffff" text-anchor="start">2</text>
+<text x="184.0" y="244.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">critical</text>
+<text x="360.0" y="244.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#ffffff" text-anchor="start">PSECURE_VIOLATION, BLOCK_BPDUGUARD</text>
+<rect x="120.0" y="266.0" width="620.0" height="46.0" rx="8" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/>
+<text x="144.0" y="296.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#ffffff" text-anchor="start">3</text>
+<text x="184.0" y="296.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">errors</text>
+<text x="360.0" y="296.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#ffffff" text-anchor="start">LINK-3-UPDOWN</text>
+<rect x="120.0" y="318.0" width="620.0" height="46.0" rx="8" fill="#ea580c" stroke="#ea580c" stroke-width="1.5"/>
+<text x="144.0" y="348.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#ffffff" text-anchor="start">4</text>
+<text x="184.0" y="348.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">warnings</text>
+<text x="360.0" y="348.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#ffffff" text-anchor="start">LOGIN_FAILED, NATIVE_VLAN_MISMATCH</text>
+<rect x="120.0" y="370.0" width="620.0" height="46.0" rx="8" fill="#d97706" stroke="#d97706" stroke-width="1.5"/>
+<text x="144.0" y="400.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#ffffff" text-anchor="start">5</text>
+<text x="184.0" y="400.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">notifications</text>
+<text x="360.0" y="400.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#ffffff" text-anchor="start">LINEPROTO-5-UPDOWN, CONFIG_I, ADJCHG</text>
+<rect x="120.0" y="422.0" width="620.0" height="46.0" rx="8" fill="#2563eb" stroke="#2563eb" stroke-width="1.5"/>
+<text x="144.0" y="452.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#ffffff" text-anchor="start">6</text>
+<text x="184.0" y="452.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">informational</text>
+<text x="360.0" y="452.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#ffffff" text-anchor="start">IPACCESSLOGP, ADDRESS_ASSIGN</text>
+<rect x="120.0" y="474.0" width="620.0" height="46.0" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+<text x="144.0" y="504.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#64748b" text-anchor="start">7</text>
+<text x="184.0" y="504.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">debugging</text>
+<text x="360.0" y="504.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">debug output</text>
+<path d="M760,112 L780,112 L780,466 L760,466" fill="none" stroke="#1d6fd1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="800.0" y="280.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="800" fill="#1d6fd1" text-anchor="start">logging trap informational</text>
+<text x="800.0" y="304.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">→ sends levels 0 – 6 to 10.10.99.40</text>
+<text x="800.0" y="506.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#5b6b7f" text-anchor="start">level 7 stays on the device</text>
+<line x1="60.0" y1="120.0" x2="60.0" y2="500.0" stroke="#0f2540" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="48.0" y="300.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#5b6b7f" text-anchor="middle" transform="rotate(-90 48 300)">less severe</text>
+<line x1="28" y1="561" x2="1132" y2="561" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="583" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Mnemonic for the order: “Every Awesome Cisco Engineer Will Need Ice cream Daily” (0 → 7).</text>
+<text x="28" y="602" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Defaults: console and monitor 7 (debugging); syslog server (logging trap) 6 (informational), UDP 514.</text>
+<text x="1136" y="610" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

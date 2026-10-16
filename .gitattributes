@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.md   text diff=markdown
+*.py   text diff=python
+*.svg  text linguist-generated=true
+*.docx binary
+*.png  binary
+docs/FIGURES.md linguist-generated=true

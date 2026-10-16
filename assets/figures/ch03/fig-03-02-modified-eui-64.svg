@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 553" width="1160" height="553" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 3.2 — Modified EUI-64 for MAC 0050.7966.6801</title>
+<desc id="d">Split the MAC, insert FF FE, flip the 7th (U/L) bit of the first byte</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="552" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 3.2</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Modified EUI-64 for MAC 0050.7966.6801</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Split the MAC, insert FF FE, flip the 7th (U/L) bit of the first byte</text>
+<text x="40.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">MAC address</text>
+<rect x="290.0" y="110.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="325.0" y="140.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">00</text>
+<rect x="368.0" y="110.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="403.0" y="140.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">50</text>
+<rect x="446.0" y="110.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="481.0" y="140.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">79</text>
+<rect x="524.0" y="110.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="559.0" y="140.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">66</text>
+<rect x="602.0" y="110.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="637.0" y="140.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">68</text>
+<rect x="680.0" y="110.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="715.0" y="140.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">01</text>
+<text x="40.0" y="220.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start" xml:space="preserve">1  Split in half</text>
+<rect x="290.0" y="190.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="325.0" y="220.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">00</text>
+<rect x="368.0" y="190.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="403.0" y="220.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">50</text>
+<rect x="446.0" y="190.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="481.0" y="220.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">79</text>
+<rect x="524.0" y="190.0" width="70.0" height="48.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="559.0" y="220.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f2540" text-anchor="middle"></text>
+<rect x="602.0" y="190.0" width="70.0" height="48.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="637.0" y="220.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f2540" text-anchor="middle"></text>
+<rect x="680.0" y="190.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="715.0" y="220.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">66</text>
+<rect x="758.0" y="190.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="793.0" y="220.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">68</text>
+<rect x="836.0" y="190.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="871.0" y="220.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">01</text>
+<text x="40.0" y="300.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start" xml:space="preserve">2  Insert FF FE</text>
+<rect x="290.0" y="270.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="325.0" y="300.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">00</text>
+<rect x="368.0" y="270.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="403.0" y="300.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">50</text>
+<rect x="446.0" y="270.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="481.0" y="300.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">79</text>
+<rect x="524.0" y="270.0" width="70.0" height="48.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="559.0" y="300.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#7a4708" text-anchor="middle">FF</text>
+<rect x="602.0" y="270.0" width="70.0" height="48.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="637.0" y="300.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#7a4708" text-anchor="middle">FE</text>
+<rect x="680.0" y="270.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="715.0" y="300.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">66</text>
+<rect x="758.0" y="270.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="793.0" y="300.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">68</text>
+<rect x="836.0" y="270.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="871.0" y="300.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">01</text>
+<text x="40.0" y="380.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start" xml:space="preserve">3  Flip U/L bit</text>
+<rect x="290.0" y="350.0" width="70.0" height="48.0" rx="4" fill="#fde8e8" stroke="#d64040" stroke-width="1.5"/>
+<text x="325.0" y="380.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#8a1c1c" text-anchor="middle">02</text>
+<rect x="368.0" y="350.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="403.0" y="380.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">50</text>
+<rect x="446.0" y="350.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="481.0" y="380.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">79</text>
+<rect x="524.0" y="350.0" width="70.0" height="48.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="559.0" y="380.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#7a4708" text-anchor="middle">FF</text>
+<rect x="602.0" y="350.0" width="70.0" height="48.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="637.0" y="380.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#7a4708" text-anchor="middle">FE</text>
+<rect x="680.0" y="350.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="715.0" y="380.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">66</text>
+<rect x="758.0" y="350.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="793.0" y="380.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">68</text>
+<rect x="836.0" y="350.0" width="70.0" height="48.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="871.0" y="380.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#3e2a85" text-anchor="middle">01</text>
+<rect x="940.0" y="150.0" width="190.0" height="230.0" rx="10" fill="#fde8e8" stroke="#d64040" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="956.0" y="178.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="650" fill="#0f2540" text-anchor="start">First byte</text>
+<text x="956.0" y="200.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f2540" text-anchor="start">00 = 0000 0000</text>
+<text x="956.0" y="219.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start"></text>
+<text x="956.0" y="238.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start">bit 7 (value 2)</text>
+<text x="956.0" y="257.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start">is the U/L bit</text>
+<text x="956.0" y="275.9" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#5b6b7f" text-anchor="start"></text>
+<text x="956.0" y="294.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#d64040" text-anchor="start">02 = 0000 0010</text>
+<text x="602.0" y="448.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18" font-weight="800" fill="#0f5a37" text-anchor="middle" xml:space="preserve">Interface ID  0250:79ff:fe66:6801</text>
+<line x1="28" y1="494" x2="1132" y2="494" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="516" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Result: global 2001:db8:acad:10:250:79ff:fe66:6801 · link-local fe80::250:79ff:fe66:6801</text>
+<text x="28" y="535" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Flip, don&#x27;t set: if the U/L bit is already 1 it becomes 0 (02 → 00).</text>
+<text x="1136" y="543" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

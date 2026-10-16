@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 470" width="1160" height="470" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 20.2 — Wildcard mask matching: 10.10.30.0 0.0.0.255</title>
+<desc id="d">0 = this octet/bit must match · 1 = ignore — the first three octets must equal 10.10.30</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="469" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 20.2</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Wildcard mask matching: 10.10.30.0 0.0.0.255</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">0 = this octet/bit must match · 1 = ignore — the first three octets must equal 10.10.30</text>
+<text x="60.0" y="152.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">Wildcard</text>
+<rect x="300.0" y="120.0" width="130.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="365.0" y="151.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f3f80" text-anchor="middle">0</text>
+<rect x="450.0" y="120.0" width="130.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="515.0" y="151.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f3f80" text-anchor="middle">0</text>
+<rect x="600.0" y="120.0" width="130.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="665.0" y="151.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f3f80" text-anchor="middle">0</text>
+<rect x="750.0" y="120.0" width="130.0" height="50.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="815.0" y="151.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f2540" text-anchor="middle">255</text>
+<text x="60.0" y="224.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">ACL address</text>
+<rect x="300.0" y="192.0" width="130.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="365.0" y="223.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f3f80" text-anchor="middle">10</text>
+<rect x="450.0" y="192.0" width="130.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="515.0" y="223.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f3f80" text-anchor="middle">10</text>
+<rect x="600.0" y="192.0" width="130.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="665.0" y="223.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f3f80" text-anchor="middle">30</text>
+<rect x="750.0" y="192.0" width="130.0" height="50.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="815.0" y="223.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f2540" text-anchor="middle">0</text>
+<text x="60.0" y="296.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">10.10.30.25</text>
+<rect x="300.0" y="264.0" width="130.0" height="50.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="365.0" y="295.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f5a37" text-anchor="middle">10</text>
+<rect x="450.0" y="264.0" width="130.0" height="50.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="515.0" y="295.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f5a37" text-anchor="middle">10</text>
+<rect x="600.0" y="264.0" width="130.0" height="50.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="665.0" y="295.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f5a37" text-anchor="middle">30</text>
+<rect x="750.0" y="264.0" width="130.0" height="50.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="815.0" y="295.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f2540" text-anchor="middle">25</text>
+<rect x="961.2" y="277.5" width="77.5" height="23.0" rx="11.5" fill="#1f9d63" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="1000.0" y="293.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">MATCH ✓</text>
+<text x="60.0" y="368.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">10.10.40.11</text>
+<rect x="300.0" y="336.0" width="130.0" height="50.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="365.0" y="367.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f5a37" text-anchor="middle">10</text>
+<rect x="450.0" y="336.0" width="130.0" height="50.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="515.0" y="367.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f5a37" text-anchor="middle">10</text>
+<rect x="600.0" y="336.0" width="130.0" height="50.0" rx="4" fill="#fde8e8" stroke="#d64040" stroke-width="1.5"/>
+<text x="665.0" y="367.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#8a1c1c" text-anchor="middle">40</text>
+<rect x="750.0" y="336.0" width="130.0" height="50.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="815.0" y="367.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#0f2540" text-anchor="middle">11</text>
+<rect x="949.9" y="349.5" width="100.1" height="23.0" rx="11.5" fill="#d64040" stroke="#d64040" stroke-width="1.2"/>
+<text x="1000.0" y="365.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">NO MATCH ✗</text>
+<text x="525.0" y="106.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#1d6fd1" text-anchor="middle">must match</text>
+<text x="815.0" y="106.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#5b6b7f" text-anchor="middle">ignored</text>
+<line x1="28" y1="430" x2="1132" y2="430" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="452" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Shortcuts: host 10.10.30.25 = 10.10.30.25 0.0.0.0 · any = 0.0.0.0 255.255.255.255 · wildcard = 255.255.255.255 − subnet mask.</text>
+<text x="1136" y="460" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

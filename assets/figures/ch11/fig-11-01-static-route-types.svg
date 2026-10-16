@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 617" width="1160" height="617" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 11.1 — Default, network, host and floating static routes on R1</title>
+<desc id="d">Each blue arrow is one of R1&#x27;s static routes pointing toward its destination — the Lab 11.1 network</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#7357d1"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="616" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 11.1</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Default, network, host and floating static routes on R1</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Each blue arrow is one of R1&#x27;s static routes pointing toward its destination — the Lab 11.1 network</text>
+<line x1="238.0" y1="260.0" x2="522.0" y2="260.0" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+<rect x="451.9" y="250.7" width="48.3" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="476.0" y="263.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">G0/0/0</text>
+<path d="M594,246 C680,180 800,180 886,246" fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M594,274 C680,340 800,340 886,274" fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 6"/>
+<g transform="translate(200.0,260.0) scale(1.0)"><path d="M-44,14 C-60,14 -60,-8 -42,-8 C-44,-26 -18,-32 -8,-18 C-2,-34 26,-34 30,-14 C48,-18 56,4 42,14 Z" transform="translate(2,4)" fill="#0f2540" opacity="0.10"/><path d="M-44,14 C-60,14 -60,-8 -42,-8 C-44,-26 -18,-32 -8,-18 C-2,-34 26,-34 30,-14 C48,-18 56,4 42,14 Z" fill="url(#gCloud)" stroke="#7aa7d6" stroke-width="2"/></g>
+<text x="200.0" y="298.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">ISP</text>
+<text x="200.0" y="314.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Lo0 203.0.113.8 (Internet host)</text>
+<g transform="translate(560.0,260.0) scale(1.0)"><ellipse cx="0" cy="15.0" rx="36" ry="12" fill="#0f2540" opacity="0.12"/><path d="M-34,-13.0 L-34,13.0 A34,12 0 0 0 34,13.0 L34,-13.0 Z" fill="url(#gRouter)"/><ellipse cx="0" cy="-13.0" rx="34" ry="12" fill="url(#gRouterTop)" stroke="#0b5a9c" stroke-width="1"/><line x1="-24.0" y1="-13.0" x2="-16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="-12.0,-13.0 -16.2,-9.6 -16.2,-16.4" fill="#ffffff"/><line x1="24.0" y1="-13.0" x2="16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="12.0,-13.0 16.2,-16.4 16.2,-9.6" fill="#ffffff"/><line x1="-0.0" y1="-14.0" x2="0.0" y2="-18.8" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-23.0 3.4,-18.8 -3.4,-18.8" fill="#ffffff"/><line x1="-0.0" y1="-12.0" x2="0.0" y2="-7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-3.0 -3.4,-7.2 3.4,-7.2" fill="#ffffff"/><line x1="-28" y1="11.0" x2="28" y2="11.0" stroke="#7cc4f2" stroke-width="0.8" opacity="0.4"/></g>
+<text x="560.0" y="302.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">R1 (HQ)</text>
+<text x="560.0" y="318.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Lo10 10.10.10.0/24</text>
+<g transform="translate(920.0,260.0) scale(1.0)"><ellipse cx="0" cy="15.0" rx="36" ry="12" fill="#0f2540" opacity="0.12"/><path d="M-34,-13.0 L-34,13.0 A34,12 0 0 0 34,13.0 L34,-13.0 Z" fill="url(#gRouter)"/><ellipse cx="0" cy="-13.0" rx="34" ry="12" fill="url(#gRouterTop)" stroke="#0b5a9c" stroke-width="1"/><line x1="-24.0" y1="-13.0" x2="-16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="-12.0,-13.0 -16.2,-9.6 -16.2,-16.4" fill="#ffffff"/><line x1="24.0" y1="-13.0" x2="16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="12.0,-13.0 16.2,-16.4 16.2,-9.6" fill="#ffffff"/><line x1="-0.0" y1="-14.0" x2="0.0" y2="-18.8" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-23.0 3.4,-18.8 -3.4,-18.8" fill="#ffffff"/><line x1="-0.0" y1="-12.0" x2="0.0" y2="-7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-3.0 -3.4,-7.2 3.4,-7.2" fill="#ffffff"/><line x1="-28" y1="11.0" x2="28" y2="11.0" stroke="#7cc4f2" stroke-width="0.8" opacity="0.4"/></g>
+<text x="920.0" y="302.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">R2 (Branch)</text>
+<text x="920.0" y="318.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Lo20 10.20.20.0/24</text>
+<rect x="680.1" y="176.7" width="119.8" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="740.0" y="189.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">primary 10.0.12.0/30</text>
+<rect x="681.4" y="324.6" width="117.1" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="740.0" y="337.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">backup 10.0.21.0/30</text>
+<path d="M520,210 C450,170 330,170 260,210" fill="none" stroke="#1d6fd1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#m0)"/>
+<circle cx="390.0" cy="162.0" r="12" fill="#1d6fd1" stroke="#ffffff" stroke-width="2"/>
+<text x="390.0" y="166.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">a</text>
+<path d="M600,200 C680,130 820,130 890,195" fill="none" stroke="#1d6fd1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#m0)"/>
+<circle cx="745.0" cy="122.0" r="12" fill="#1d6fd1" stroke="#ffffff" stroke-width="2"/>
+<text x="745.0" y="126.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">b</text>
+<path d="M600,320 C680,400 820,400 890,325" fill="none" stroke="#1d6fd1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#m0)"/>
+<circle cx="640.0" cy="380.0" r="12" fill="#1d6fd1" stroke="#ffffff" stroke-width="2"/>
+<text x="640.0" y="384.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">c</text>
+<path d="M590,340 C680,440 840,440 905,340" fill="none" stroke="#7357d1" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#m1)"/>
+<circle cx="860.0" cy="420.0" r="12" fill="#7357d1" stroke="#ffffff" stroke-width="2"/>
+<text x="860.0" y="424.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">d</text>
+<circle cx="52.0" cy="490.0" r="12" fill="#1d6fd1" stroke="#ffffff" stroke-width="2"/>
+<text x="52.0" y="494.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">a</text>
+<text x="72.0" y="495.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">Default</text>
+<text x="150.0" y="495.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">ip route 0.0.0.0 0.0.0.0 198.51.100.1</text>
+<circle cx="612.0" cy="490.0" r="12" fill="#1d6fd1" stroke="#ffffff" stroke-width="2"/>
+<text x="612.0" y="494.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">b</text>
+<text x="632.0" y="495.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">Network</text>
+<text x="710.0" y="495.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">ip route 10.20.20.0 255.255.255.0 10.0.12.2</text>
+<circle cx="52.0" cy="524.0" r="12" fill="#1d6fd1" stroke="#ffffff" stroke-width="2"/>
+<text x="52.0" y="528.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">c</text>
+<text x="72.0" y="529.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">Host</text>
+<text x="150.0" y="529.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">ip route 10.20.20.10 255.255.255.255 10.0.21.2</text>
+<circle cx="612.0" cy="524.0" r="12" fill="#7357d1" stroke="#ffffff" stroke-width="2"/>
+<text x="612.0" y="528.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">d</text>
+<text x="632.0" y="529.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="start">Floating</text>
+<text x="710.0" y="529.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">ip route 10.20.20.0 255.255.255.0 10.0.21.2 200</text>
+<line x1="28" y1="577" x2="1132" y2="577" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="599" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Every network route needs a matching route back on the far router — a one-way route is the most common static fault.</text>
+<text x="1136" y="607" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

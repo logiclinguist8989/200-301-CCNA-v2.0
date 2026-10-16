@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600" width="1100" height="600" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 1.1 — Each layer wraps the data in its own header on the way down</title>
+<desc id="d">PC1 sending an HTTPS request to the web server at 203.0.113.80</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1099" height="599" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1099" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 1.1</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Each layer wraps the data in its own header on the way down</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">PC1 sending an HTTPS request to the web server at 203.0.113.80</text>
+<text x="40.0" y="138.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">Application</text>
+<text x="40.0" y="158.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">OSI layers 5–7</text>
+<rect x="610.0" y="118.0" width="200.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="710.0" y="147.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f3f80" text-anchor="middle">Data (HTTPS)</text>
+<rect x="936.7" y="131.5" width="46.7" height="23.0" rx="11.5" fill="#0b3b66" stroke="#0b3b66" stroke-width="1.2"/>
+<text x="960.0" y="147.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Data</text>
+<text x="40.0" y="212.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">Transport</text>
+<text x="40.0" y="232.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">OSI layer 4</text>
+<rect x="490.0" y="192.0" width="120.0" height="50.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="550.0" y="221.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f5a37" text-anchor="middle">TCP hdr</text>
+<rect x="610.0" y="192.0" width="200.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="710.0" y="221.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f3f80" text-anchor="middle">Data</text>
+<rect x="923.3" y="205.5" width="73.4" height="23.0" rx="11.5" fill="#0b3b66" stroke="#0b3b66" stroke-width="1.2"/>
+<text x="960.0" y="221.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Segment</text>
+<text x="40.0" y="286.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">Network / Internet</text>
+<text x="40.0" y="306.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">OSI layer 3</text>
+<rect x="370.0" y="266.0" width="120.0" height="50.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="430.0" y="295.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#7a4708" text-anchor="middle">IP hdr</text>
+<rect x="490.0" y="266.0" width="120.0" height="50.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="550.0" y="295.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f5a37" text-anchor="middle">TCP hdr</text>
+<rect x="610.0" y="266.0" width="200.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="710.0" y="295.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f3f80" text-anchor="middle">Data</text>
+<rect x="929.2" y="279.5" width="61.5" height="23.0" rx="11.5" fill="#0b3b66" stroke="#0b3b66" stroke-width="1.2"/>
+<text x="960.0" y="295.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Packet</text>
+<text x="40.0" y="360.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">Data Link</text>
+<text x="40.0" y="380.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">OSI layer 2</text>
+<rect x="250.0" y="340.0" width="120.0" height="50.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="310.0" y="369.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#3e2a85" text-anchor="middle">Eth hdr</text>
+<rect x="370.0" y="340.0" width="120.0" height="50.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="430.0" y="369.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#7a4708" text-anchor="middle">IP hdr</text>
+<rect x="490.0" y="340.0" width="120.0" height="50.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="550.0" y="369.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f5a37" text-anchor="middle">TCP hdr</text>
+<rect x="610.0" y="340.0" width="200.0" height="50.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="710.0" y="369.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#0f3f80" text-anchor="middle">Data</text>
+<rect x="810.0" y="340.0" width="80.0" height="50.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="850.0" y="369.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#3e2a85" text-anchor="middle">FCS</text>
+<rect x="930.7" y="353.5" width="58.5" height="23.0" rx="11.5" fill="#0b3b66" stroke="#0b3b66" stroke-width="1.2"/>
+<text x="960.0" y="369.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Frame</text>
+<text x="40.0" y="434.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">Physical</text>
+<text x="40.0" y="454.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">OSI layer 1</text>
+<rect x="250.0" y="414.0" width="640.0" height="50.0" rx="4" fill="#0f2540" stroke="#0f2540" stroke-width="1.5"/>
+<text x="570.0" y="445.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#7dd3fc" text-anchor="middle">0 1 1 0 1 0 0 1 1 0 1 0 0 0 1 0 1 1 0 1 0 1 1 0 0 1 0 1 1 1 0 0 1 0 1</text>
+<rect x="938.5" y="427.5" width="43.1" height="23.0" rx="11.5" fill="#0b3b66" stroke="#0b3b66" stroke-width="1.2"/>
+<text x="960.0" y="443.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Bits</text>
+<line x1="1040.0" y1="120.0" x2="1040.0" y2="464.0" stroke="#1d6fd1" stroke-width="2.5" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="1040.0" y="486.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#1d6fd1" text-anchor="middle">send</text>
+<line x1="1070.0" y1="464.0" x2="1070.0" y2="120.0" stroke="#1f9d63" stroke-width="2.5" stroke-linecap="round" marker-end="url(#m1)"/>
+<text x="1070.0" y="112.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#1f9d63" text-anchor="middle">receive</text>
+<line x1="28" y1="541" x2="1072" y2="541" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="563" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">TCP header: source port 50123 → destination port 443 (HTTPS)   ·   IP header: 10.10.10.11 → 203.0.113.80, unchanged end to end (without NAT)</text>
+<text x="28" y="582" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Ethernet header: PC1&#x27;s MAC → R1&#x27;s MAC (the default gateway), rebuilt at every router hop</text>
+<text x="1076" y="590" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

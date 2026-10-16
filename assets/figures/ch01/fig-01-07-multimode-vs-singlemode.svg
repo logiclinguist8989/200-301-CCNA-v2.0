@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 621" width="1160" height="621" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 1.7 — Multimode bounces light along many paths; single-mode carries one</title>
+<desc id="d">Core size, light source and light paths (cross-sections and side views not to scale)</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="620" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 1.7</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Multimode bounces light along many paths; single-mode carries one</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Core size, light source and light paths (cross-sections and side views not to scale)</text>
+<text x="40.0" y="108.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Multimode fiber (MMF)</text>
+<text x="40.0" y="128.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">Orange (OM1/OM2) or aqua (OM3/OM4) jacket · LED / VCSEL · 1000BASE-SX, 10GBASE-SR</text>
+<circle cx="130.0" cy="218.0" r="62" fill="#f59e0b" stroke="#0f2540" stroke-width="1"/>
+<circle cx="130.0" cy="218.0" r="50" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+<circle cx="130.0" cy="218.0" r="24.0" fill="#bae6fd" stroke="#0f2540" stroke-width="1"/>
+<text x="130.0" y="296.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="500" fill="#5b6b7f" text-anchor="middle">cladding 125 µm</text>
+<rect x="260.0" y="168.0" width="590.0" height="100.0" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="260.0" y="196.0" width="590.0" height="44.0" rx="2" fill="#bae6fd" stroke="#64748b" stroke-width="1"/>
+<rect x="210.0" y="200.0" width="44.0" height="36.0" rx="5" fill="url(#gDark)" stroke="none" stroke-width="1.5"/>
+<text x="232.0" y="222.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#fde047" text-anchor="middle">LED</text>
+<line x1="260.0" y1="218.0" x2="850.0" y2="218.0" stroke="#2563eb" stroke-width="2.4" stroke-linecap="round"/>
+<polyline points="260,218 320,236 380,200 440,236 500,200 560,236 620,200 680,236 740,200 800,236" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linejoin="round" opacity="0.9"/>
+<polyline points="260,218 295,236 330,200 365,236 400,200 435,236 470,200 505,236 540,200 575,236 610,200 645,236 680,200 715,236 750,200 785,236 820,200" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linejoin="round" opacity="0.9"/>
+<path d="M880,248 q 30,-90 60,0" fill="#bae6fd" stroke="#2563eb" stroke-width="2"/>
+<text x="910.0" y="270.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">wide, smeared pulse</text>
+<text x="840.0" y="160.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f2540" text-anchor="end">core 50 / 62.5 µm</text>
+<text x="40.0" y="330.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Single-mode fiber (SMF)</text>
+<text x="40.0" y="350.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">Yellow jacket · laser · 1000BASE-LX/LH, 10GBASE-LR (10 km)</text>
+<circle cx="130.0" cy="440.0" r="62" fill="#facc15" stroke="#0f2540" stroke-width="1"/>
+<circle cx="130.0" cy="440.0" r="50" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+<circle cx="130.0" cy="440.0" r="7.0" fill="#fde68a" stroke="#0f2540" stroke-width="1"/>
+<text x="130.0" y="518.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="500" fill="#5b6b7f" text-anchor="middle">cladding 125 µm</text>
+<rect x="260.0" y="390.0" width="590.0" height="100.0" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="260.0" y="435.0" width="590.0" height="10.0" rx="2" fill="#fde68a" stroke="#64748b" stroke-width="1"/>
+<rect x="210.0" y="422.0" width="44.0" height="36.0" rx="5" fill="url(#gDark)" stroke="none" stroke-width="1.5"/>
+<text x="232.0" y="444.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" font-weight="700" fill="#fde047" text-anchor="middle">LASER</text>
+<line x1="260.0" y1="440.0" x2="850.0" y2="440.0" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+<path d="M895,470 q 15,-110 30,0" fill="#fde68a" stroke="#dc2626" stroke-width="2"/>
+<text x="910.0" y="492.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">sharp pulse</text>
+<text x="840.0" y="382.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f2540" text-anchor="end">core ≈ 9 µm</text>
+<rect x="1010.0" y="130.0" width="120.0" height="300.0" rx="10" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="1070.0" y="145.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f2540" text-anchor="middle">LC duplex</text>
+<rect x="1030.0" y="165.0" width="20.0" height="70.0" rx="3" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+<rect x="1036.0" y="150.0" width="8.0" height="18.0" rx="2" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<rect x="1034.0" y="235.0" width="12.0" height="90.0" rx="3" fill="#38bdf8" stroke="#64748b" stroke-width="1.5"/>
+<rect x="1070.0" y="165.0" width="20.0" height="70.0" rx="3" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+<rect x="1076.0" y="150.0" width="8.0" height="18.0" rx="2" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<rect x="1074.0" y="235.0" width="12.0" height="90.0" rx="3" fill="#facc15" stroke="#64748b" stroke-width="1.5"/>
+<text x="1050.0" y="345.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#5b6b7f" text-anchor="middle">Tx</text>
+<text x="1090.0" y="345.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#5b6b7f" text-anchor="middle">Rx</text>
+<text x="1070.0" y="380.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">SFP / SFP+ optic</text>
+<rect x="1030.0" y="390.0" width="80.0" height="18.0" rx="3" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="28" y1="562" x2="1132" y2="562" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="584" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">MMF: several paths of different lengths spread a pulse out (modal dispersion) → hundreds of metres.</text>
+<text x="28" y="603" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">SMF: one path keeps the pulse sharp → kilometres. Each link uses two strands: Tx on one end to Rx on the other.</text>
+<text x="1136" y="611" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

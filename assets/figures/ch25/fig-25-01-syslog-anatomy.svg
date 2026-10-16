@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 504" width="1160" height="504" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 25.1 — Anatomy of an IOS syslog message</title>
+<desc id="d">seq-no: timestamp: %FACILITY-SEVERITY-MNEMONIC: description</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="503" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 25.1</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Anatomy of an IOS syslog message</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">seq-no: timestamp: %FACILITY-SEVERITY-MNEMONIC: description</text>
+<rect x="40.0" y="116.0" width="1080.0" height="84.0" rx="10" fill="#0f172a" stroke="none" stroke-width="1.5"/>
+<text x="60.0" y="150.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="start">000234:</text>
+<line x1="60.0" y1="156.0" x2="120.0" y2="156.0" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+<text x="134.1" y="150.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="start">Oct 15 2026 10:03:05.117 UTC:</text>
+<line x1="134.1" y1="156.0" x2="395.4" y2="156.0" stroke="#0f9aa8" stroke-width="3" stroke-linecap="round"/>
+<text x="409.4" y="150.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="start">%SYS</text>
+<line x1="409.4" y1="156.0" x2="442.0" y2="156.0" stroke="#1d6fd1" stroke-width="3" stroke-linecap="round"/>
+<text x="456.0" y="150.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="start">-5</text>
+<line x1="456.0" y1="156.0" x2="470.3" y2="156.0" stroke="#d9861a" stroke-width="3" stroke-linecap="round"/>
+<text x="484.3" y="150.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="start">-CONFIG_I:</text>
+<line x1="484.3" y1="156.0" x2="571.8" y2="156.0" stroke="#7357d1" stroke-width="3" stroke-linecap="round"/>
+<text x="60.0" y="186.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="start">Configured from console by netadmin on vty0 (10.10.99.21)</text>
+<line x1="60.0" y1="192.0" x2="577.6" y2="192.0" stroke="#1f9d63" stroke-width="3" stroke-linecap="round"/>
+<rect x="40.0" y="236.0" width="350.0" height="76.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="56.0" y="263.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="start">Sequence number</text>
+<text x="56.0" y="284.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">service sequence-numbers</text>
+<text x="56.0" y="301.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f2540" text-anchor="start">000234:</text>
+<rect x="405.0" y="236.0" width="350.0" height="76.0" rx="10" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="421.0" y="263.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="start">Timestamp</text>
+<text x="421.0" y="284.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">service timestamps …</text>
+<text x="421.0" y="301.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0b5b63" text-anchor="start">Oct 15 2026 10:03:05.117 UTC:</text>
+<rect x="770.0" y="236.0" width="350.0" height="76.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="786.0" y="263.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="start">Facility</text>
+<text x="786.0" y="284.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">IOS component</text>
+<text x="786.0" y="301.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f3f80" text-anchor="start">%SYS</text>
+<rect x="40.0" y="328.0" width="350.0" height="76.0" rx="10" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="56.0" y="355.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="start">Severity</text>
+<text x="56.0" y="376.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">0–7 (5 = notifications)</text>
+<text x="56.0" y="393.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#7a4708" text-anchor="start">-5</text>
+<rect x="405.0" y="328.0" width="350.0" height="76.0" rx="10" fill="#efeafd" stroke="#7357d1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="421.0" y="355.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="start">Mnemonic</text>
+<text x="421.0" y="376.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">the event code</text>
+<text x="421.0" y="393.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#3e2a85" text-anchor="start">-CONFIG_I:</text>
+<rect x="770.0" y="328.0" width="350.0" height="76.0" rx="10" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="786.0" y="355.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="start">Description</text>
+<text x="786.0" y="376.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">who, how, from where</text>
+<text x="786.0" y="393.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f5a37" text-anchor="start">Configured from console by neta…</text>
+<line x1="28" y1="445" x2="1132" y2="445" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="467" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">service sequence-numbers adds the seq-no · service timestamps log datetime msec localtime show-timezone sets the timestamp.</text>
+<text x="28" y="486" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">SYS-5-CONFIG_I is what you search for in documentation and filters.</text>
+<text x="1136" y="494" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>
