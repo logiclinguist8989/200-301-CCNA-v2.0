@@ -55,6 +55,13 @@ Style rules for new figures:
 - Keep spelling consistent within a chapter (the guide mixes British and American spelling, e.g. "organisation" and "neighbor"); keep protocol and command terms exactly as Cisco writes them.
 - Each chapter keeps its structure: objectives, explanation, configuration, verification, troubleshooting, lab, questions, answers, figure checklist, progress record.
 
+## Practice questions
+
+CCNA-style questions live in `question-bank/chNN.md`, one file per chapter; the format is described in
+[question-bank/README.md](question-bank/README.md). Each question names its source section, has exactly
+the stated number of correct answers and explains why the other options are wrong. Run
+`python3 tools/question_bank.py` before opening a pull request.
+
 ## License of contributions
 
 By contributing, you agree that your changes to the guides, docs and figures are licensed under

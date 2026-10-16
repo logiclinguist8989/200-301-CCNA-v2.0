@@ -40,3 +40,6 @@ jobs:
 
       - name: Check local links and images
         run: python3 tools/check_links.py
+
+      - name: Validate the CCNA-style question bank
+        run: python3 tools/question_bank.py
