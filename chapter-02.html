@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch active" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head blue">
   <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
   <h1><span class="num">Chapter 2</span>IPv4 addressing and subnetting</h1>
-  <div class="meta"><span>🖼️ 7 figures</span><span>⏱️ ~23 min read</span>
+  <div class="meta"><span>🖼️ 7 figures</span><span>⏱️ ~24 min read</span><a class="qmeta" href="#quiz" data-ch="2" data-total="15">📝 Self-check: 15 questions</a>
   <label class="mark"><input type="checkbox" data-ch="2"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.3 Troubleshoot IPv4 address configuration, assignment, and subnetting (public and private).</strong> Subnetting also underpins 1.7 (DHCP), 3.1–3.3 (routing), 4.3 (NAT) and 4.6 (ACLs), so this is the most reused chapter in the guide.</p>
 <p>The verb is <em>troubleshoot</em>: the exam will show you a host, a mask and a gateway and expect you to spot what is wrong within seconds. Speed comes from understanding first, then practice.</p>
@@ -76,7 +77,7 @@
 <li>Configure and verify IPv4 on Cisco interfaces and on hosts.</li>
 <li>Diagnose wrong masks, wrong gateways, overlapping subnets, duplicate addresses and APIPA addresses.</li>
 </ol>
-<h3 id="22-introduction">2.2 Introduction</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#213-packet-tracer-lab-21--vlsm-addressing-and-ipv4-troubleshooting-beginnerintermediate">Packet Tracer Lab 2.1 — VLSM addressing and IPv4 troubleshooting (Beginner–Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="22-introduction">2.2 Introduction</h3>
 <p>An IPv4 address works like a postal address: one part names the street (the <strong>network</strong>), the other names the house (the <strong>host</strong>). Routers only care about the street. The <strong>subnet mask</strong> or <strong>prefix length</strong> is what tells every device where the street name ends and the house number begins. Almost every IPv4 fault in the exam is a disagreement about that boundary.</p>
 <h3 id="23-binary-and-decimal-conversion">2.3 Binary and decimal conversion</h3>
 <p>An IPv4 address is 32 bits, written as four 8-bit <strong>octets</strong> in decimal. Each bit position in an octet has a fixed <strong>place value</strong>: 128, 64, 32, 16, 8, 4, 2, 1. Add the place values where the bit is 1.</p>
@@ -249,7 +250,7 @@
 </tr>
 </tbody>
 </table></div>
-<p class="callout common-trap"><strong>Common trap</strong> 172.16.0.0/12 runs only to <strong>172.31</strong>.255.255. An address such as 172.32.1.1 is public.</p>
+<p class="callout trap"><strong>Common trap</strong>172.16.0.0/12 runs only to <strong>172.31</strong>.255.255. An address such as 172.32.1.1 is public.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -327,6 +328,8 @@
 <li>Usable: 172.16.32.1 to 172.16.47.254. Host bits = 32 − 20 = 12, so 2^12 − 2 = <strong>4094</strong> hosts.</li>
 </ol>
 <p><strong>And in the 2nd octet:</strong> 10.200.77.9/12 → mask 255.<strong>240</strong>.0.0, block 16 in the 2nd octet, 200 falls in the block starting at 192 → network <strong>10.192.0.0</strong>, broadcast <strong>10.207.255.255</strong>, 2^20 − 2 = <strong>1,048,574</strong> hosts.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong><b>Magic number = 256 − the interesting octet of the mask.</b> Subnets start at multiples of it; the broadcast is the next subnet minus one. Drill it until it is automatic in the <a href="practice.html">subnetting practice game</a>.</p>
+
 <h3 id="27-the-quick-reference-table">2.7 The quick-reference table</h3>
 <p>Write this from memory on your scratch board at the start of the exam. Every row follows from the mask-octet table in 2.3.</p>
 <div class="table-wrap"><table>
@@ -449,7 +452,7 @@
 </tr>
 </tbody>
 </table></div>
-<p><strong>Exam habit:</strong> when a question gives a host address, first find its network and broadcast. Most wrong options are either outside that range or <em>are</em> the network or broadcast address.</p>
+<p class="callout exam-tip"><strong>Exam habit</strong>When a question gives a host address, first find its network and broadcast. Most wrong options are either outside that range or <em>are</em> the network or broadcast address.</p>
 <p><strong>How subnetting affects connectivity.</strong> A host sends directly (via ARP) to any destination it believes is in its own subnet, and sends everything else to its default gateway. If the host's mask is wrong, it makes the wrong choice: it may ARP for a remote host that will never answer, or send a local packet to the router. That single rule explains most addressing faults in 2.11.</p>
 <h3 id="28-subnetting-a-block-by-number-of-subnets-or-number-of-hosts">2.8 Subnetting a block: by number of subnets or number of hosts</h3>
 <p>Subnetting means <strong>borrowing</strong> host bits to create more, smaller networks. Each borrowed bit doubles the number of subnets and roughly halves the hosts in each.</p>
@@ -469,7 +472,7 @@
 <li>Smallest h with 2^h − 2 ≥ 500 is h = 9 (510 hosts).</li>
 <li>Prefix = 32 − 9 = <strong>/23</strong> (255.255.254.0).</li>
 </ol>
-<p class="callout exam-tip"><strong>Exam tip</strong> always subtract 2 for hosts but never for subnets. A question asking for "at least 30 hosts" is satisfied by /27 (30), but "at least 31 hosts" needs /26 (62).</p>
+<p class="callout exam-tip"><strong>Exam tip</strong>Always subtract 2 for hosts but never for subnets. A question asking for "at least 30 hosts" is satisfied by /27 (30), but "at least 31 hosts" needs /26 (62).</p>
 <h3 id="29-vlsm-different-sized-subnets-from-one-block">2.9 VLSM: different-sized subnets from one block</h3>
 <p><strong>Variable Length Subnet Masking (VLSM)</strong> lets each subnet use the prefix that fits its size, instead of making every subnet as big as the largest. Rules:</p>
 <ol>
@@ -576,13 +579,17 @@
 <p><strong>Check:</strong> a /22 is a block of 4 in the third octet, and 8 is a multiple of 4, so the summary is exact. If the networks were 10.10.9.0 to 10.10.12.0, no single /22 would cover them without including extra space.</p>
 <h3 id="211-configuring-and-verifying-ipv4-on-cisco-ios">2.11 Configuring and verifying IPv4 on Cisco IOS</h3>
 <p>A router interface (or a switch SVI, Chapter 5) needs an address and mask, and router interfaces must be enabled.</p>
-<pre><code>R1# configure terminal
-R1(config)# interface gigabitethernet0/0/0
-R1(config-if)# description Staff LAN (VLAN 10)
-R1(config-if)# ip address 172.16.0.1 255.255.255.128
-R1(config-if)# no shutdown
-R1(config-if)# end
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="configure terminal
+interface gigabitethernet0/0/0
+description Staff LAN (VLAN 10)
+ip address 172.16.0.1 255.255.255.128
+no shutdown
+end" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">configure terminal</span>
+<span class="tp">R1(config)#</span> <span class="tc">interface gigabitethernet0/0/0</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">description Staff LAN (VLAN 10)</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip address 172.16.0.1 255.255.255.128</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">no shutdown</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">end</span></code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -632,13 +639,14 @@ R1(config-if)# end
 </tbody>
 </table></div>
 <p><strong>What IOS refuses, and why it helps you:</strong></p>
-<pre><code>R1(config)# interface g0/0/1
-R1(config-if)# ip address 172.16.0.64 255.255.255.192
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="interface g0/0/1
+ip address 172.16.0.64 255.255.255.192
+ip address 172.16.0.100 255.255.255.0" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">interface g0/0/1</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip address 172.16.0.64 255.255.255.192</span>
 Bad mask /26 for address 172.16.0.64
 
-R1(config-if)# ip address 172.16.0.100 255.255.255.0
-% 172.16.0.0 overlaps with GigabitEthernet0/0/0
-</code></pre>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip address 172.16.0.100 255.255.255.0</span>
+% 172.16.0.0 overlaps with GigabitEthernet0/0/0</code></pre></div>
 <p>The first is the subnet's network address, so IOS rejects it as a host address. The second overlaps the /25 already on G0/0/0; a router cannot have two interfaces in overlapping subnets. Exact wording varies slightly by IOS version.</p>
 <p><strong>Address assignment methods.</strong> Hosts get IPv4 settings in one of three ways:</p>
 <div class="table-wrap"><table>
@@ -737,7 +745,7 @@ R1(config-if)# ip address 172.16.0.100 255.255.255.0
 <li>The printer is on another segment, so the ARP is never answered and the ping fails.</li>
 <li>PC2 can still reach PC1 and the gateway, so users report "some things work". The fix is the mask, not the router.</li>
 </ol>
-<p class="callout exam-tip"><strong>Exam tip</strong> when a question shows two hosts that "should" talk, calculate each host's subnet <strong>from its own mask</strong>. If either host believes the other is remote, it will use its gateway; if the gateway is not in its own subnet, it fails.</p>
+<p class="callout exam-tip"><strong>Exam tip</strong>When a question shows two hosts that "should" talk, calculate each host's subnet <strong>from its own mask</strong>. If either host believes the other is remote, it will use its gateway; if the gateway is not in its own subnet, it fails.</p>
 <h3 id="213-packet-tracer-lab-21--vlsm-addressing-and-ipv4-troubleshooting-beginnerintermediate">2.13 Packet Tracer Lab 2.1 — VLSM addressing and IPv4 troubleshooting (Beginner–Intermediate)</h3>
 <p><strong>Objective:</strong> 1.3. <strong>You will:</strong> implement three subnets from the VLSM plan in 2.9, verify connected routes, then diagnose four planted addressing faults.</p>
 <p><strong>Devices:</strong> 1 × ISR4331 (R1), 3 × 2960-24TT (SW1, SW2, SW3), 2 × PC (PC-Staff, PC-Wireless), 1 × Printer (Printer1). All links copper straight-through. PC-Wireless is a wired PC standing in for Wi-Fi clients until Chapter 16.</p>
@@ -808,7 +816,7 @@ R1(config-if)# ip address 172.16.0.100 255.255.255.0
 <li>Verify, then test connectivity, then work through the fault scenarios.</li>
 </ol>
 <p><strong>R1 configuration</strong></p>
-<pre><code>enable
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>enable
 configure terminal
 hostname R1
 interface gigabitethernet0/0/0
@@ -825,17 +833,16 @@ interface gigabitethernet0/0/2
  no shutdown
 end
 copy running-config startup-config
-</code></pre>
+</code></pre></div>
 <p><strong>Verification and expected output</strong></p>
-<pre><code>R1# show ip route connected
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ip route connected" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ip route connected</span>
       172.16.0.0/16 is variably subnetted, 6 subnets, 4 masks
 C        172.16.0.0/25 is directly connected, GigabitEthernet0/0/0
 L        172.16.0.1/32 is directly connected, GigabitEthernet0/0/0
 C        172.16.0.128/26 is directly connected, GigabitEthernet0/0/1
 L        172.16.0.129/32 is directly connected, GigabitEthernet0/0/1
 C        172.16.0.192/27 is directly connected, GigabitEthernet0/0/2
-L        172.16.0.193/32 is directly connected, GigabitEthernet0/0/2
-</code></pre>
+L        172.16.0.193/32 is directly connected, GigabitEthernet0/0/2</code></pre></div>
 <p>Read it as: three <strong>C</strong> (connected) subnets, one per interface, and three <strong>L</strong> (local) /32 routes for R1's own addresses. "Variably subnetted, 4 masks" means /25, /26, /27 and /32 are all in use: VLSM at work.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -875,7 +882,7 @@ L        172.16.0.193/32 is directly connected, GigabitEthernet0/0/2
 <li>On R1 G0/0/1 try <code>ip address 172.16.0.128 255.255.255.192</code>. <em>Expected:</em> IOS rejects it with a "Bad mask" message, because .128 is the subnet's network address. Then try <code>ip address 172.16.0.100 255.255.255.192</code> on G0/0/1. <em>Expected:</em> an "overlaps with GigabitEthernet0/0/0" message, because .100 lies inside the Staff /25. Restore .129/26.</li>
 <li>Set PC-Wireless to 172.16.0.129 (R1's own address). <em>Expected:</em> PC-Wireless shows an address-conflict warning or loses connectivity, and R1 may log <code>%IP-4-DUPADDR</code>. Packet Tracer's reaction to duplicates varies by version, so rely on the ping results and the ARP table (<code>show ip arp</code> on R1). Restore .140.</li>
 </ol>
-<p><strong>Common mistakes:</strong> typing a prefix length (<code>/25</code>) into the router's <code>ip address</code> command; forgetting <code>no shutdown</code> on one of the three router interfaces; setting a host's gateway to an address in another subnet; reusing a router interface address on a PC.</p>
+<p class="callout trap"><strong>Common mistakes</strong>Typing a prefix length (<code>/25</code>) into the router's <code>ip address</code> command; forgetting <code>no shutdown</code> on one of the three router interfaces; setting a host's gateway to an address in another subnet; reusing a router interface address on a PC.</p>
 <p><strong>Questions to answer after the lab</strong></p>
 <ol>
 <li>Why does R1 have an L route for each interface as well as a C route?</li>
@@ -933,46 +940,8 @@ L        172.16.0.193/32 is directly connected, GigabitEthernet0/0/2
 </tbody>
 </table></div>
 <h3 id="215-practice-questions--chapter-2">2.15 Practice questions — Chapter 2</h3>
-<p><strong>1. (Calculation)</strong> For 10.45.130.77/19, give the network address, broadcast address, usable range and number of usable hosts.</p>
-<p><strong>2. (Recall)</strong> How many usable host addresses does a /27 provide?</p>
-<p>A. 32  B. 30  C. 62  D. 14</p>
-<p><strong>3. (Multiple choice)</strong> Which address can be assigned to a host in 172.16.20.0/22?</p>
-<p>A. 172.16.20.0  B. 172.16.23.255  C. 172.16.22.0  D. 172.16.24.1</p>
-<p><strong>4. (Multiple response — choose two)</strong> Which addresses are RFC 1918 private?</p>
-<p>A. 172.31.200.1  B. 172.32.1.1  C. 192.169.1.1  D. 192.168.255.254  E. 100.64.0.1</p>
-<p><strong>5. (Design)</strong> You must split 192.168.40.0/24 into at least 10 equal subnets, with as many hosts per subnet as possible. Which prefix do you use and how many hosts does each subnet get?</p>
-<p><strong>6. (Design)</strong> What is the longest prefix (smallest subnet) that supports 500 hosts?</p>
-<p>A. /22  B. /23  C. /24  D. /25</p>
-<p><strong>7. (Troubleshooting)</strong> A PC is configured as 192.168.1.130, mask 255.255.255.128, gateway 192.168.1.1. It can reach local hosts but nothing on other networks. What is wrong?</p>
-<p><strong>8. (Output interpretation)</strong> G0/0/0 on R1 is 10.10.16.1/21. When you enter <code>ip address 10.10.20.1 255.255.255.0</code> on G0/0/1, IOS returns <code>% 10.10.20.0 overlaps with GigabitEthernet0/0/0</code>. Explain why.</p>
-<p><strong>9. (Troubleshooting)</strong> <code>ipconfig</code> on a Windows laptop shows 169.254.33.7, mask 255.255.0.0, and no default gateway. What does this tell you, and what is the next thing to check?</p>
-<p><strong>10. (VLSM)</strong> Using 192.168.100.0/24, allocate largest first for LANs of 60, 28 and 12 hosts and one point-to-point link. Which subnet does the 12-host LAN receive?</p>
-<p>A. 192.168.100.96/28  B. 192.168.100.64/28  C. 192.168.100.112/28  D. 192.168.100.96/29</p>
-<p><strong>11. (Summarization)</strong> What is the most specific single summary for 172.20.32.0/24 through 172.20.39.0/24?</p>
-<p><strong>12. (Concept)</strong> Which prefix provides two usable addresses on a router-to-router link without wasting any?</p>
-<p>A. /29  B. /30  C. /31  D. /32</p>
-<p><strong>13. (Scenario)</strong> In VLAN 10, PC1 is 10.1.1.10/24 and PC2 is 10.1.1.200 with mask 255.255.255.128. Both use gateway 10.1.1.1. Which statement is true?</p>
-<p>A. Both hosts work normally  B. PC2 cannot reach remote networks because its gateway is outside its subnet  C. PC1 cannot reach the gateway  D. PC2 has a duplicate address</p>
-<p><strong>14. (Conversion)</strong> Convert 11011010 to decimal and 240 to binary.</p>
-<p><strong>15. (Evaluate an AI assistant)</strong> A host configured as 10.20.30.64/26 cannot communicate. A network assistant says: <em>"10.20.30.64 is the network address of its /26 subnet; assign 10.20.30.65 or higher instead."</em> Is the recommendation correct?</p>
-<h3 id="216-answer-key-with-explanations">2.16 Answer key with explanations</h3>
-<ol>
-<li>/19 → mask 255.255.<strong>224</strong>.0, block 32 in the 3rd octet. 130 falls in the block starting at 128 (128–159). Network <strong>10.45.128.0</strong>, broadcast <strong>10.45.159.255</strong>, usable <strong>10.45.128.1 – 10.45.159.254</strong>, hosts 2^13 − 2 = <strong>8,190</strong>.</li>
-<li><strong>B.</strong> 32 addresses minus network and broadcast = 30. A counts the reserved addresses; C is /26; D is /28.</li>
-<li><strong>C.</strong> A /22 is a block of 4 in the 3rd octet: 172.16.20.0 – 172.16.23.255. A is the network address, B the broadcast, D is in the next block. 172.16.22.0 sits in the middle of the range, so it is a valid host.</li>
-<li><strong>A and D.</strong> 172.16.0.0/12 runs to 172.31.255.255, so A is private and B is public. C is just outside 192.168.0.0/16. E is shared CGNAT space (RFC 6598), not RFC 1918.</li>
-<li>Borrow 4 bits (2^4 = 16 ≥ 10) → <strong>/28</strong>, mask 255.255.255.240, <strong>14 hosts</strong> per subnet. Borrowing 3 bits would give only 8 subnets.</li>
-<li><strong>B.</strong> /23 has 9 host bits: 2^9 − 2 = 510. /24 offers only 254.</li>
-<li>The host's subnet is 192.168.1.128/25 (.129–.254), but the gateway 192.168.1.1 is in 192.168.1.0/25. <strong>The gateway is outside the host's subnet</strong>, so the host cannot reach it. Fix: use the router address in .128/25 (for example 192.168.1.129), or re-address the host.</li>
-<li>A /21 is a block of 8 in the 3rd octet: 10.10.16.0 – 10.10.23.255. 10.10.20.0/24 lies inside it, so the two interfaces would be in <strong>overlapping subnets</strong>, which IOS forbids.</li>
-<li>It is an <strong>APIPA</strong> address: the laptop asked for DHCP and got no reply. Check physical/Wi-Fi connectivity, the access VLAN, and the DHCP server or relay (<code>ip helper-address</code>, Chapter 14).</li>
-<li><strong>A.</strong> 60 → /26 at .0; 28 → /27 at .64; 12 → /28 at <strong>.96</strong>; the link → /30 at .112. B overlaps the /27; C is free but not the next aligned block in a largest-first plan; D is too small (6 hosts).</li>
-<li><strong>172.20.32.0/21.</strong> Third octets 32–39 share their first 5 bits (00100xxx), so 16 + 5 = 21. Check: a /21 is a block of 8 in the 3rd octet and 32 is a multiple of 8.</li>
-<li><strong>C.</strong> A /31 has two addresses, both usable on point-to-point links (RFC 3021). /30 also gives 2 usable but wastes 2 addresses; /32 is a single address.</li>
-<li><strong>B.</strong> PC2's /25 subnet is 10.1.1.128/25, so its gateway 10.1.1.1 lies outside it and PC2 cannot reach remote networks. PC2 also treats PC1 (10.1.1.10) as remote, so PC2 → PC1 fails too. PC1 (/24) is configured correctly.</li>
-<li>11011010 = 128 + 64 + 16 + 8 + 2 = <strong>218</strong>. 240 = 128 + 64 + 32 + 16 = <strong>11110000</strong>.</li>
-<li><strong>Yes.</strong> A /26 is a block of 64 in the 4th octet, so 10.20.30.64 is the network address of 10.20.30.64/26 and cannot be used by a host. The usable range is .65 – .126. Before applying it, confirm the new address is free and that the gateway is in the same /26.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="2" data-total="15"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>15 questions · 7 auto-graded, 8 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 15</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Calculation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>For 10.45.130.77/19, give the network address, broadcast address, usable range and number of usable hosts.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>/19 → mask 255.255.<strong>224</strong>.0, block 32 in the 3rd octet. 130 falls in the block starting at 128 (128–159). Network <strong>10.45.128.0</strong>, broadcast <strong>10.45.159.255</strong>, usable <strong>10.45.128.1 – 10.45.159.254</strong>, hosts 2^13 − 2 = <strong>8,190</strong>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="2" data-correct="B"><div class="qhead"><span class="qn">2</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>How many usable host addresses does a /27 provide?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">32</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">30</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">62</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">14</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> 32 addresses minus network and broadcast = 30. A counts the reserved addresses; C is /26; D is /28.</p></div></div><div class="q" data-q="3" data-correct="C"><div class="qhead"><span class="qn">3</span><span class="qkind">Multiple choice</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which address can be assigned to a host in 172.16.20.0/22?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">172.16.20.0</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">172.16.23.255</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">172.16.22.0</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">172.16.24.1</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>C.</strong> A /22 is a block of 4 in the 3rd octet: 172.16.20.0 – 172.16.23.255. A is the network address, B the broadcast, D is in the next block. 172.16.22.0 sits in the middle of the range, so it is a valid host.</p></div></div><div class="q" data-q="4" data-correct="AD"><div class="qhead"><span class="qn">4</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which addresses are RFC 1918 private?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">172.31.200.1</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">172.32.1.1</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">192.169.1.1</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">192.168.255.254</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">100.64.0.1</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and D.</strong> 172.16.0.0/12 runs to 172.31.255.255, so A is private and B is public. C is just outside 192.168.0.0/16. E is shared CGNAT space (RFC 6598), not RFC 1918.</p></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Design</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>You must split 192.168.40.0/24 into at least 10 equal subnets, with as many hosts per subnet as possible. Which prefix do you use and how many hosts does each subnet get?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Borrow 4 bits (2^4 = 16 ≥ 10) → <strong>/28</strong>, mask 255.255.255.240, <strong>14 hosts</strong> per subnet. Borrowing 3 bits would give only 8 subnets.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="6" data-correct="B"><div class="qhead"><span class="qn">6</span><span class="qkind">Design</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>What is the longest prefix (smallest subnet) that supports 500 hosts?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">/22</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">/23</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">/24</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">/25</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> /23 has 9 host bits: 2^9 − 2 = 510. /24 offers only 254.</p></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A PC is configured as 192.168.1.130, mask 255.255.255.128, gateway 192.168.1.1. It can reach local hosts but nothing on other networks. What is wrong?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The host's subnet is 192.168.1.128/25 (.129–.254), but the gateway 192.168.1.1 is in 192.168.1.0/25. <strong>The gateway is outside the host's subnet</strong>, so the host cannot reach it. Fix: use the router address in .128/25 (for example 192.168.1.129), or re-address the host.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>G0/0/0 on R1 is 10.10.16.1/21. When you enter <code>ip address 10.10.20.1 255.255.255.0</code> on G0/0/1, IOS returns <code>% 10.10.20.0 overlaps with GigabitEthernet0/0/0</code>. Explain why.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A /21 is a block of 8 in the 3rd octet: 10.10.16.0 – 10.10.23.255. 10.10.20.0/24 lies inside it, so the two interfaces would be in <strong>overlapping subnets</strong>, which IOS forbids.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>ipconfig</code> on a Windows laptop shows 169.254.33.7, mask 255.255.0.0, and no default gateway. What does this tell you, and what is the next thing to check?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>It is an <strong>APIPA</strong> address: the laptop asked for DHCP and got no reply. Check physical/Wi-Fi connectivity, the access VLAN, and the DHCP server or relay (<code>ip helper-address</code>, Chapter 14).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="10" data-correct="A"><div class="qhead"><span class="qn">10</span><span class="qkind">VLSM</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Using 192.168.100.0/24, allocate largest first for LANs of 60, 28 and 12 hosts and one point-to-point link. Which subnet does the 12-host LAN receive?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">192.168.100.96/28</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">192.168.100.64/28</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">192.168.100.112/28</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">192.168.100.96/29</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A.</strong> 60 → /26 at .0; 28 → /27 at .64; 12 → /28 at <strong>.96</strong>; the link → /30 at .112. B overlaps the /27; C is free but not the next aligned block in a largest-first plan; D is too small (6 hosts).</p></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">Summarization</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What is the most specific single summary for 172.20.32.0/24 through 172.20.39.0/24?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>172.20.32.0/21.</strong> Third octets 32–39 share their first 5 bits (00100xxx), so 16 + 5 = 21. Check: a /21 is a block of 8 in the 3rd octet and 32 is a multiple of 8.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="12" data-correct="C"><div class="qhead"><span class="qn">12</span><span class="qkind">Concept</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which prefix provides two usable addresses on a router-to-router link without wasting any?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">/29</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">/30</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">/31</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">/32</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>C.</strong> A /31 has two addresses, both usable on point-to-point links (RFC 3021). /30 also gives 2 usable but wastes 2 addresses; /32 is a single address.</p></div></div><div class="q" data-q="13" data-correct="B"><div class="qhead"><span class="qn">13</span><span class="qkind">Scenario</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>In VLAN 10, PC1 is 10.1.1.10/24 and PC2 is 10.1.1.200 with mask 255.255.255.128. Both use gateway 10.1.1.1. Which statement is true?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Both hosts work normally</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">PC2 cannot reach remote networks because its gateway is outside its subnet</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">PC1 cannot reach the gateway</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">PC2 has a duplicate address</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> PC2's /25 subnet is 10.1.1.128/25, so its gateway 10.1.1.1 lies outside it and PC2 cannot reach remote networks. PC2 also treats PC1 (10.1.1.10) as remote, so PC2 → PC1 fails too. PC1 (/24) is configured correctly.</p></div></div><div class="q open" data-q="14"><div class="qhead"><span class="qn">14</span><span class="qkind">Conversion</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Convert 11011010 to decimal and 240 to binary.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>11011010 = 128 + 64 + 16 + 8 + 2 = <strong>218</strong>. 240 = 128 + 64 + 32 + 16 = <strong>11110000</strong>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="15"><div class="qhead"><span class="qn">15</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A host configured as 10.20.30.64/26 cannot communicate. A network assistant says: <em>"10.20.30.64 is the network address of its /26 subnet; assign 10.20.30.65 or higher instead."</em> Is the recommendation correct?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Yes.</strong> A /26 is a block of 64 in the 4th octet, so 10.20.30.64 is the network address of 10.20.30.64/26 and cannot be used by a host. The usable range is .65 – .126. Before applying it, confirm the new address is free and that the gateway is in the same /26.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="217-chapter-2-figure-checklist">2.17 Chapter 2 figure checklist</h3>
 <p>All 7 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-2-7">Figure 2.7</a> had one label crossing a link line on first render; it was moved and re-checked.</p>
 <div class="table-wrap"><table>
@@ -1048,7 +1017,6 @@ L        172.16.0.193/32 is directly connected, GigabitEthernet0/0/2
 <a href="#213-packet-tracer-lab-21--vlsm-addressing-and-ipv4-troubleshooting-beginnerintermediate">2.13 Packet Tracer Lab 2.1 — VLSM addressing and IPv4 troubleshooting (Beginner–Intermediate)</a>
 <a href="#214-chapter-2-summary-notes-exam-revision">2.14 Chapter 2 summary notes (exam revision)</a>
 <a href="#215-practice-questions--chapter-2">2.15 Practice questions — Chapter 2</a>
-<a href="#216-answer-key-with-explanations">2.16 Answer key with explanations</a>
 <a href="#217-chapter-2-figure-checklist">2.17 Chapter 2 figure checklist</a>
 <a href="#218-chapter-2-progress-record">2.18 Chapter 2 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

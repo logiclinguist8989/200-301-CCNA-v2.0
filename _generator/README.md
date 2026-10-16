@@ -8,6 +8,19 @@ The site is built from the Markdown guides on `main`: a landing page, a "Start h
 chapter, a chapter sidebar grouped by exam domain, full-text search, dark/light mode, per-chapter
 progress tracking (saved in the reader's browser), and click-to-zoom figures.
 
+Reading extras:
+
+- **Self-check quizzes** — each chapter's practice questions and answer key become an interactive quiz.
+  Multiple-choice questions are graded on click; open questions are "think, then reveal" with self-marking.
+  Scores are saved in the reader's browser.
+- **Callout boxes** — the guide's *Exam tip*, *Common trap*, *Security note*, *Best practice* and *PT note*
+  paragraphs are styled as colour-coded boxes, plus a *Memory trick* per key topic and a *Lab it* pointer to
+  each chapter's lab.
+- **Terminal-style CLI blocks** — code blocks with IOS prompts render as a router console with a
+  "Copy commands" button that strips prompts and output.
+- **Subnetting practice** (`practice.html`) — unlimited random IPv4 questions in three difficulty levels,
+  with streaks and step-by-step solutions.
+
 ## Rebuild after changing `main`
 
 ```bash
@@ -23,8 +36,9 @@ cd ../site && git add -A && git commit -m "site: rebuild from main" && git push
 | File | Purpose |
 | --- | --- |
 | `build_site.py` | Splits the guides into pages and renders them (Python + `markdown`) |
+| `extras.py` | Quizzes, callouts, memory tricks and terminal-style CLI blocks |
 | `static/style.css` | Layout, colours, dark mode, callouts, responsive design |
-| `static/app.js` | Search, theme toggle, progress tracking, figure zoom, "on this page" highlighting |
+| `static/app.js` | Search, theme toggle, progress tracking, figure zoom, "on this page" highlighting, quizzes, copy buttons, subnetting practice |
 | `static/favicon.svg` | Site icon |
 
 Licensed like the rest of the repository: generated pages and figures under CC BY-NC-SA 4.0, the

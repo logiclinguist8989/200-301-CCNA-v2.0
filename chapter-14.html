@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head blue">
   <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
   <h1><span class="num">Chapter 14</span>DHCPv4 client, server and relay</h1>
-  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~18 min read</span>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~19 min read</span><a class="qmeta" href="#quiz" data-ch="14" data-total="14">📝 Self-check: 14 questions</a>
   <label class="mark"><input type="checkbox" data-ch="14"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.7 Troubleshoot DHCPv4 client, server, and relay on IOS devices.</strong> You configure an IOS router as a DHCP server, an IOS Layer 3 switch as a relay agent, and an IOS interface as a DHCP client, then find out why a host did not get the right address.</p>
 <h3 id="141-learning-objectives">14.1 Learning objectives</h3>
@@ -74,7 +75,7 @@
 <li>Verify DHCP with bindings, pool statistics and conflict tables.</li>
 <li>Troubleshoot DHCP methodically from the client to the server and back.</li>
 </ol>
-<h3 id="142-why-dhcp">14.2 Why DHCP</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#149-packet-tracer-lab-141--central-dhcp-server-redundant-relays-and-an-ios-client-intermediateadvanced">Packet Tracer Lab 14.1 — Central DHCP server, redundant relays and an IOS client (Intermediate–Advanced)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="142-why-dhcp">14.2 Why DHCP</h3>
 <p>Typing an address, mask, gateway and DNS server into every PC, phone and laptop is slow and error-prone, and mistakes cause duplicates and wrong gateways (Chapter 2). <strong>DHCP (Dynamic Host Configuration Protocol)</strong> lets a host ask the network for its settings. A <strong>DHCP server</strong> keeps pools of addresses and <strong>leases</strong> them for a set time.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -171,16 +172,23 @@
 </tr>
 </tbody>
 </table></div>
+<p class="callout memory-trick"><strong>Memory trick</strong><b>DORA</b>: Discover, Offer, Request, Acknowledge. Client on UDP 68, server on UDP 67.</p>
+
 <h3 id="144-configuring-an-ios-dhcp-server">14.4 Configuring an IOS DHCP server</h3>
 <p>An IOS router or Layer 3 switch can serve DHCP. All commands below are in <strong>global configuration</strong> mode, except the pool's own options in <strong>DHCP pool configuration</strong> mode (<code>R1(dhcp-config)#</code>).</p>
-<pre><code>R1(config)# ip dhcp excluded-address 10.10.10.1 10.10.10.10      ! never lease gateways, servers, printers
-R1(config)# ip dhcp pool STAFF
-R1(dhcp-config)# network 10.10.10.0 255.255.255.0                ! the pool's subnet and mask (option 1)
-R1(dhcp-config)# default-router 10.10.10.1                       ! option 3: the HSRP virtual IP, not a real one
-R1(dhcp-config)# dns-server 10.10.99.53                          ! option 6 (the DNS server built in Chapter 22)
-R1(dhcp-config)# domain-name campus.example                      ! option 15
-R1(dhcp-config)# lease 2                                         ! 2 days (default 1 day)
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip dhcp excluded-address 10.10.10.1 10.10.10.10
+ip dhcp pool STAFF
+network 10.10.10.0 255.255.255.0
+default-router 10.10.10.1
+dns-server 10.10.99.53
+domain-name campus.example
+lease 2" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip dhcp excluded-address 10.10.10.1 10.10.10.10    </span><span class="tm">  ! never lease gateways, servers, printers</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip dhcp pool STAFF</span>
+<span class="tp">R1(dhcp-config)#</span> <span class="tc">network 10.10.10.0 255.255.255.0              </span><span class="tm">  ! the pool&#x27;s subnet and mask (option 1)</span>
+<span class="tp">R1(dhcp-config)#</span> <span class="tc">default-router 10.10.10.1                     </span><span class="tm">  ! option 3: the HSRP virtual IP, not a real one</span>
+<span class="tp">R1(dhcp-config)#</span> <span class="tc">dns-server 10.10.99.53                        </span><span class="tm">  ! option 6 (the DNS server built in Chapter 22)</span>
+<span class="tp">R1(dhcp-config)#</span> <span class="tc">domain-name campus.example                    </span><span class="tm">  ! option 15</span>
+<span class="tp">R1(dhcp-config)#</span> <span class="tc">lease 2                                       </span><span class="tm">  ! 2 days (default 1 day)</span></code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -245,35 +253,39 @@ R1(dhcp-config)# lease 2                                         ! 2 days (defau
 <li>The server uses <strong>giaddr</strong> to choose the pool: the pool whose <code>network</code> contains 10.10.10.2 is STAFF.</li>
 <li>The server unicasts the Offer back to giaddr; the relay sends it on to the client in VLAN 10. Request and Ack follow the same path.</li>
 </ol>
-<pre><code>DSW1(config)# interface vlan 10
-DSW1(config-if)# ip helper-address 10.0.0.1          ! the DHCP server's address; one line per server
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="interface vlan 10
+ip helper-address 10.0.0.1" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">interface vlan 10</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">ip helper-address 10.0.0.1        </span><span class="tm">  ! the DHCP server&#x27;s address; one line per server</span></code></pre></div>
 <p><strong>Where it goes:</strong> on the <strong>interface that receives the client's broadcast</strong> — the client VLAN's SVI (or router subinterface) — never on the interface toward the server. With HSRP (Chapter 13), configure it on <strong>both</strong> distribution switches; each relays, the server answers both, and the client takes one Offer.</p>
 <p><strong>Requirements:</strong> the server needs a <strong>route back</strong> to every giaddr subnet, and a pool whose network contains each giaddr. <code>ip helper-address</code> also forwards a few other UDP broadcast services by default (such as TFTP, DNS and NetBIOS), which matters only when you use them.</p>
 <h3 id="146-ios-as-a-dhcp-client">14.6 IOS as a DHCP client</h3>
 <p>A router's Internet-facing interface often gets its address from the ISP by DHCP:</p>
-<pre><code>R1(config)# interface gigabitethernet0/0/1
-R1(config-if)# ip address dhcp                      ! interface configuration mode
-R1(config-if)# no shutdown
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="interface gigabitethernet0/0/1
+ip address dhcp
+no shutdown
+show dhcp lease" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">interface gigabitethernet0/0/1</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip address dhcp                    </span><span class="tm">  ! interface configuration mode</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">no shutdown</span>
 
-R1# show dhcp lease
+<span class="tp">R1#</span> <span class="tc">show dhcp lease</span>
 Temp IP addr: 198.51.100.6  for peer on Interface: GigabitEthernet0/0/1
 Temp  sub net mask: 255.255.255.248
    DHCP Lease server: 198.51.100.1, state: 5 Bound
    DHCP transaction id: 1A2B
    Lease: 86400 secs,  Renewal: 43200 secs,  Rebind: 75600 secs
-Temp default-gateway addr: 198.51.100.1
-</code></pre>
+Temp default-gateway addr: 198.51.100.1</code></pre></div>
 <p>The router installs the received gateway as a <strong>default route with AD 254</strong> (<code>S* 0.0.0.0/0 [254/0]</code>), so any static default you configure (AD 1) wins (Chapter 10). Renewal at 43,200 s and rebind at 75,600 s are the 50 % and 87.5 % points of the 86,400 s lease. (Exact <code>show dhcp lease</code> layout varies by release.)</p>
 <h3 id="147-verifying-dhcp">14.7 Verifying DHCP</h3>
-<pre><code>R1# show ip dhcp binding
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ip dhcp binding
+show ip dhcp pool STAFF
+show ip dhcp conflict" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ip dhcp binding</span>
 Bindings from all pools not associated with VRF:
 IP address      Client-ID/              Lease expiration        Type
                 Hardware address
 10.10.10.11     0100.5079.6668.01       Oct 17 2026 09:14 AM    Automatic
 10.10.30.11     0100.d0ff.3a21.9c       Oct 17 2026 09:15 AM    Automatic
 
-R1# show ip dhcp pool STAFF
+<span class="tp">R1#</span> <span class="tc">show ip dhcp pool STAFF</span>
 Pool STAFF :
  Utilization mark (high/low)    : 100 / 0
  Subnet size (first/next)       : 0 / 0
@@ -284,10 +296,9 @@ Pool STAFF :
  Current index        IP address range                    Leased addresses
  10.10.10.12          10.10.10.1       - 10.10.10.254      1
 
-R1# show ip dhcp conflict
+<span class="tp">R1#</span> <span class="tc">show ip dhcp conflict</span>
 IP address        Detection method   Detection time
-10.10.10.3        Ping               Oct 15 2026 10:02 AM
-</code></pre>
+10.10.10.3        Ping               Oct 15 2026 10:02 AM</code></pre></div>
 <p>Read them as: PC1's MAC (shown with a leading <code>01</code> = Ethernet) holds 10.10.10.11; the STAFF pool has leased one of 254 addresses; and 10.10.10.3 answered a ping before it could be offered — it is DSW2's real SVI address, which should have been excluded. (Output layout varies slightly between IOS releases and Packet Tracer.)</p>
 <div class="table-wrap"><table>
 <thead>
@@ -457,7 +468,7 @@ IP address        Detection method   Detection time
 </tbody>
 </table></div>
 <p><strong>R1 — DHCP server</strong></p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 ip dhcp excluded-address 10.10.10.1 10.10.10.10
 ip dhcp excluded-address 10.10.30.1 10.10.30.10
 ip dhcp pool STAFF
@@ -471,21 +482,21 @@ ip dhcp pool WIRELESS
  dns-server 10.10.99.53
  domain-name campus.example
 end
-</code></pre>
+</code></pre></div>
 <p>R1 already has <code>ip route 10.10.0.0 255.255.0.0 10.0.0.2</code> from Lab 5.1 — that is the <strong>route back</strong> to every giaddr.</p>
 <p><strong>DSW1 and DSW2 — relays</strong> (identical on both)</p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 interface vlan 10
  ip helper-address 10.0.0.1
 interface vlan 30
  ip helper-address 10.0.0.1
 end
 copy running-config startup-config
-</code></pre>
+</code></pre></div>
 <p>DSW2 reaches 10.0.0.1 through its default route to DSW1 (Lab 6.1).</p>
 <p><strong>Clients:</strong> set PC1, PC2 (VLAN 30) and PC3 to <strong>DHCP</strong> in Desktop → IP Configuration. Within a few seconds each shows an address from its pool, gateway .1 and DNS 10.10.99.53.</p>
 <p><strong>ISP and R1 — DHCP client</strong></p>
-<pre><code>! ISP
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>! ISP
 enable
 configure terminal
 hostname ISP
@@ -509,7 +520,7 @@ interface gigabitethernet0/0/1
  ip address dhcp
  no shutdown
 end
-</code></pre>
+</code></pre></div>
 <p><strong>Verification and expected results</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -562,7 +573,7 @@ end
 </tr>
 </tbody>
 </table></div>
-<p><strong>PT notes:</strong> <code>show dhcp lease</code> and <code>show ip dhcp server statistics</code> are missing in some Packet Tracer versions; <code>show ip interface brief</code>, <code>show ip route</code> and <code>show ip dhcp binding</code> are enough to finish the lab. Use Simulation mode with a DHCP filter to watch the Discover reach DSW1 as a broadcast and leave as a unicast to 10.0.0.1.</p>
+<p class="callout lab-it"><strong>PT notes</strong><code>show dhcp lease</code> and <code>show ip dhcp server statistics</code> are missing in some Packet Tracer versions; <code>show ip interface brief</code>, <code>show ip route</code> and <code>show ip dhcp binding</code> are enough to finish the lab. Use Simulation mode with a DHCP filter to watch the Discover reach DSW1 as a broadcast and leave as a unicast to 10.0.0.1.</p>
 <p><strong>Experiments</strong></p>
 <ol>
 <li><strong>Relay redundancy:</strong> shut DSW1's <code>interface vlan 10</code>, then on PC1 click DHCP again (or <code>ipconfig /renew</code>). PC1 still gets an address, relayed by DSW2 with giaddr 10.10.10.3.</li>
@@ -659,39 +670,8 @@ end
 </tbody>
 </table></div>
 <h3 id="1412-practice-questions--chapter-14">14.12 Practice questions — Chapter 14</h3>
-<p><strong>1. (Recall)</strong> Put the DHCP messages in order and say which are broadcast from the client: Request, Offer, Discover, Acknowledgment.</p>
-<p><strong>2. (Recall)</strong> Which UDP ports does DHCP use?</p>
-<p>A. 53 and 54  B. 67 and 68  C. 69 and 70  D. 161 and 162</p>
-<p><strong>3. (Concept)</strong> A Windows PC shows 169.254.33.17. What does that tell you?</p>
-<p><strong>4. (Configuration)</strong> Write the commands to create a pool VOICE for 10.10.20.0/24 with gateway 10.10.20.1 and DNS 10.10.99.53, excluding .1 to .10.</p>
-<p><strong>5. (Relay)</strong> The DHCP server is 10.0.0.1. Clients are in VLAN 30 behind a Layer 3 switch. Where exactly do you configure <code>ip helper-address 10.0.0.1</code>?</p>
-<p><strong>6. (Relay)</strong> What value does the relay place in giaddr, and what does the server use it for?</p>
-<p><strong>7. (Troubleshooting)</strong> The relay is correct, the pool exists, but clients in 10.10.30.0/24 get no address. The server's routing table has no route to 10.10.30.0/24. Explain the failure.</p>
-<p><strong>8. (Output interpretation)</strong> <code>show ip dhcp conflict</code> lists 10.10.10.1, .2 and .3. What happened and how do you fix it?</p>
-<p><strong>9. (Timers)</strong> A client has an 8-hour lease. When does it first try to renew, and how?</p>
-<p><strong>10. (IOS client)</strong> R1's G0/0/1 uses <code>ip address dhcp</code>, and you also configure <code>ip route 0.0.0.0 0.0.0.0 203.0.113.9</code>. Which default route is used, and why?</p>
-<p><strong>11. (Multiple response — choose two)</strong> Which settings commonly cause clients to get an address but fail to reach other subnets?</p>
-<p>A. Wrong <code>default-router</code>  B. Missing <code>ip helper-address</code>  C. Gateway set to a router's real IP that has failed  D. Pool exhausted  E. Missing <code>excluded-address</code></p>
-<p><strong>12. (Troubleshooting)</strong> <code>show ip dhcp server statistics</code> shows DHCPDISCOVER counters rising but DHCPOFFER at 0. Where is the problem?</p>
-<p><strong>13. (Security)</strong> Users in VLAN 10 suddenly get addresses in 192.168.0.0/24. What is the likely cause?</p>
-<p><strong>14. (Evaluate an AI assistant)</strong> Clients in VLAN 40 cannot get addresses. A network assistant recommends: <em>"Add <code>ip helper-address 10.0.0.1</code> to R1's G0/0/0 interface facing DSW1."</em> Is that right?</p>
-<h3 id="1413-answer-key-with-explanations">14.13 Answer key with explanations</h3>
-<ol>
-<li><strong>Discover → Offer → Request → Acknowledgment.</strong> Discover and Request are broadcast by the client (the Request is broadcast so every offering server learns the choice).</li>
-<li><strong>B.</strong> 67 is the server, 68 the client. 53 is DNS; 69 TFTP; 161/162 SNMP.</li>
-<li>No DHCP server answered, so Windows assigned itself an <strong>APIPA</strong> address. Work through <a class="figref" href="#fig-14-3">Figure 14.3</a> from the client port toward the server.</li>
-<li><code>ip dhcp excluded-address 10.10.20.1 10.10.20.10</code> → <code>ip dhcp pool VOICE</code> → <code>network 10.10.20.0 255.255.255.0</code> → <code>default-router 10.10.20.1</code> → <code>dns-server 10.10.99.53</code>.</li>
-<li>On <code>interface vlan 30</code> of the Layer 3 switch — the interface that receives the clients' broadcasts (and on the second gateway too, if there is one).</li>
-<li>The relay's own IP address on the client's subnet (for example 10.10.30.2). The server uses it to choose the pool whose network contains it, and sends its replies back to that address.</li>
-<li>The server receives the relayed Discover but cannot send the Offer back to giaddr 10.10.30.x because it has no route to that subnet. Add the route (or fix the routing protocol).</li>
-<li>The server pinged those addresses before offering them and they answered: they belong to the gateway (virtual IP and both real SVI addresses) because they were never excluded. Add <code>ip dhcp excluded-address 10.10.10.1 10.10.10.10</code> and <code>clear ip dhcp conflict *</code>.</li>
-<li>At <strong>T1 = 4 hours</strong> (50 %), by <strong>unicast</strong> to the server that granted the lease. If that fails, it rebinds by broadcast at 7 hours (87.5 %).</li>
-<li>The <strong>static</strong> route (AD 1) beats the DHCP-learned default (AD 254) for the same prefix 0.0.0.0/0.</li>
-<li><strong>A and C.</strong> Both leave the client with a gateway that cannot forward its traffic. B and D stop the client getting an address at all; E causes conflicts.</li>
-<li>Requests reach the server, so relay and routing toward it work; the server has <strong>no pool matching</strong> the request (network/giaddr mismatch) or the pool is exhausted.</li>
-<li>A <strong>rogue DHCP server</strong> — often a home router plugged into a wall port. Find its port from the MAC table and prevent it with DHCP snooping (Chapter 23).</li>
-<li><strong>No.</strong> The helper must be on the interface that receives the client broadcasts: <code>interface vlan 40</code> on DSW1 and DSW2. R1 is the server; it does not relay. Also check that a pool for 10.10.40.0/24 exists — Lab 14.1 has none, because printers use static addresses.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="14" data-total="14"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>14 questions · 2 auto-graded, 12 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 14</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Put the DHCP messages in order and say which are broadcast from the client: Request, Offer, Discover, Acknowledgment.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Discover → Offer → Request → Acknowledgment.</strong> Discover and Request are broadcast by the client (the Request is broadcast so every offering server learns the choice).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="2" data-correct="B"><div class="qhead"><span class="qn">2</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which UDP ports does DHCP use?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">53 and 54</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">67 and 68</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">69 and 70</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">161 and 162</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> 67 is the server, 68 the client. 53 is DNS; 69 TFTP; 161/162 SNMP.</p></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A Windows PC shows 169.254.33.17. What does that tell you?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>No DHCP server answered, so Windows assigned itself an <strong>APIPA</strong> address. Work through <a class="figref" href="#fig-14-3">Figure 14.3</a> from the client port toward the server.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write the commands to create a pool VOICE for 10.10.20.0/24 with gateway 10.10.20.1 and DNS 10.10.99.53, excluding .1 to .10.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ip dhcp excluded-address 10.10.20.1 10.10.20.10</code> → <code>ip dhcp pool VOICE</code> → <code>network 10.10.20.0 255.255.255.0</code> → <code>default-router 10.10.20.1</code> → <code>dns-server 10.10.99.53</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Relay</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>The DHCP server is 10.0.0.1. Clients are in VLAN 30 behind a Layer 3 switch. Where exactly do you configure <code>ip helper-address 10.0.0.1</code>?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>On <code>interface vlan 30</code> of the Layer 3 switch — the interface that receives the clients' broadcasts (and on the second gateway too, if there is one).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Relay</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What value does the relay place in giaddr, and what does the server use it for?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The relay's own IP address on the client's subnet (for example 10.10.30.2). The server uses it to choose the pool whose network contains it, and sends its replies back to that address.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>The relay is correct, the pool exists, but clients in 10.10.30.0/24 get no address. The server's routing table has no route to 10.10.30.0/24. Explain the failure.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The server receives the relayed Discover but cannot send the Offer back to giaddr 10.10.30.x because it has no route to that subnet. Add the route (or fix the routing protocol).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>show ip dhcp conflict</code> lists 10.10.10.1, .2 and .3. What happened and how do you fix it?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The server pinged those addresses before offering them and they answered: they belong to the gateway (virtual IP and both real SVI addresses) because they were never excluded. Add <code>ip dhcp excluded-address 10.10.10.1 10.10.10.10</code> and <code>clear ip dhcp conflict *</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Timers</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A client has an 8-hour lease. When does it first try to renew, and how?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>At <strong>T1 = 4 hours</strong> (50 %), by <strong>unicast</strong> to the server that granted the lease. If that fails, it rebinds by broadcast at 7 hours (87.5 %).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">IOS client</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>R1's G0/0/1 uses <code>ip address dhcp</code>, and you also configure <code>ip route 0.0.0.0 0.0.0.0 203.0.113.9</code>. Which default route is used, and why?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The <strong>static</strong> route (AD 1) beats the DHCP-learned default (AD 254) for the same prefix 0.0.0.0/0.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="11" data-correct="AC"><div class="qhead"><span class="qn">11</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which settings commonly cause clients to get an address but fail to reach other subnets?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Wrong <code>default-router</code></span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Missing <code>ip helper-address</code></span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Gateway set to a router's real IP that has failed</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Pool exhausted</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">Missing <code>excluded-address</code></span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> Both leave the client with a gateway that cannot forward its traffic. B and D stop the client getting an address at all; E causes conflicts.</p></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>show ip dhcp server statistics</code> shows DHCPDISCOVER counters rising but DHCPOFFER at 0. Where is the problem?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Requests reach the server, so relay and routing toward it work; the server has <strong>no pool matching</strong> the request (network/giaddr mismatch) or the pool is exhausted.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Security</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Users in VLAN 10 suddenly get addresses in 192.168.0.0/24. What is the likely cause?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A <strong>rogue DHCP server</strong> — often a home router plugged into a wall port. Find its port from the MAC table and prevent it with DHCP snooping (Chapter 23).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="14"><div class="qhead"><span class="qn">14</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Clients in VLAN 40 cannot get addresses. A network assistant recommends: <em>"Add <code>ip helper-address 10.0.0.1</code> to R1's G0/0/0 interface facing DSW1."</em> Is that right?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> The helper must be on the interface that receives the client broadcasts: <code>interface vlan 40</code> on DSW1 and DSW2. R1 is the server; it does not relay. Also check that a pool for 10.10.40.0/24 exists — Lab 14.1 has none, because printers use static addresses.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="1414-chapter-14-figure-checklist">14.14 Chapter 14 figure checklist</h3>
 <p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. None needed a fix.</p>
 <div class="table-wrap"><table>
@@ -747,7 +727,6 @@ end
 <a href="#1410-lab-142--dhcp-challenge">14.10 Lab 14.2 — DHCP challenge</a>
 <a href="#1411-chapter-14-summary-notes-exam-revision">14.11 Chapter 14 summary notes (exam revision)</a>
 <a href="#1412-practice-questions--chapter-14">14.12 Practice questions — Chapter 14</a>
-<a href="#1413-answer-key-with-explanations">14.13 Answer key with explanations</a>
 <a href="#1414-chapter-14-figure-checklist">14.14 Chapter 14 figure checklist</a>
 <a href="#1415-chapter-14-progress-record">14.15 Chapter 14 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

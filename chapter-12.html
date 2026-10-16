@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head amber">
   <div class="eyebrow">Domain 3 · IP Routing</div>
   <h1><span class="num">Chapter 12</span>Single-area OSPFv2 and OSPFv3</h1>
-  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~17 min read</span>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~18 min read</span><a class="qmeta" href="#quiz" data-ch="12" data-total="14">📝 Self-check: 14 questions</a>
   <label class="mark"><input type="checkbox" data-ch="12"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>3.3 Configure single-area OSPFv2 for IPv4 and OSPFv3 for IPv6</strong> — <strong>3.3.a</strong> neighbor adjacencies (excluding authentication), <strong>3.3.b</strong> point-to-point, <strong>3.3.c</strong> broadcast (DR/BDR selection), <strong>3.3.d</strong> router ID. OSPF is the only dynamic routing protocol named in v2.0, so expect configuration, <code>show</code> output and troubleshooting questions.</p>
 <h3 id="121-learning-objectives">12.1 Learning objectives</h3>
@@ -74,7 +75,7 @@
 <li>Configure OSPFv3 for IPv6.</li>
 <li>Read <code>show ip ospf neighbor</code>, <code>show ip ospf interface</code> and <code>show ip route ospf</code>, and troubleshoot adjacencies that do not form.</li>
 </ol>
-<h3 id="122-introduction-why-a-routing-protocol">12.2 Introduction: why a routing protocol</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#1213-packet-tracer-lab-121--single-area-ospfv2-and-ospfv3-intermediateadvanced">Packet Tracer Lab 12.1 — Single-area OSPFv2 and OSPFv3 (Intermediate–Advanced)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="122-introduction-why-a-routing-protocol">12.2 Introduction: why a routing protocol</h3>
 <p>Static routes do not scale and cannot react to failures beyond the next hop (Chapter 11). A <strong>dynamic routing protocol</strong> lets routers tell each other which networks they can reach and recalculate automatically when something changes. <strong>OSPF (Open Shortest Path First)</strong> is an open-standard <strong>link-state</strong> protocol: every router learns the full map of its area, then each runs the <strong>SPF (Dijkstra)</strong> algorithm to compute the best (lowest-cost) path to every network.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -220,6 +221,8 @@
 <li><strong>MTU</strong> — a mismatch lets them reach ExStart/Exchange but not Full.</li>
 <li>The interface must <strong>not be passive</strong>.</li>
 </ol>
+<p class="callout memory-trick"><strong>Memory trick</strong>OSPF neighbor states in order: <b>D</b>id <b>I</b> <b>2</b> <b>E</b>ver <b>E</b>xpect <b>L</b>oving <b>F</b>riends? — Down, Init, 2-Way, ExStart, Exchange, Loading, Full.</p>
+
 <h3 id="125-router-id-33d">12.5 Router ID (3.3.d)</h3>
 <p>Every OSPF router needs a 32-bit <strong>router ID (RID)</strong>, written like an IPv4 address. It is chosen once, when the OSPF process starts, in this order:</p>
 <ol>
@@ -228,6 +231,8 @@
 <li>Otherwise the <strong>highest IPv4 address on an up physical</strong> interface.</li>
 </ol>
 <p>Changing the RID later requires <code>clear ip ospf process</code> (or a reload) to take effect. OSPFv3 uses the same 32-bit RID; on a router with no IPv4 addresses you <strong>must</strong> configure <code>router-id</code> manually.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>Router ID order of preference: <b>M</b>anual <code>router-id</code> → highest <b>L</b>oopback IP → highest active <b>I</b>nterface IP. Think <b>M-L-I</b>.</p>
+
 <h3 id="126-network-types-broadcast-and-point-to-point-33b-33c">12.6 Network types: broadcast and point-to-point (3.3.b, 3.3.c)</h3>
 <div class="table-wrap"><table>
 <thead>
@@ -269,24 +274,29 @@
 <p>The election happens per segment (per interface), so a router can be DR on one LAN and DROther on another.</p>
 <h3 id="128-ospf-cost-and-the-metric">12.8 OSPF cost and the metric</h3>
 <p><strong>Cost = reference bandwidth ÷ interface bandwidth</strong>, with a default reference of <strong>100 Mb/s</strong>. Costs below 1 are rounded up to 1, so FastEthernet, Gigabit and 10-Gigabit links all cost <strong>1</strong> by default — OSPF cannot tell them apart. Fix it on <strong>every</strong> router with the same value:</p>
-<pre><code>R1(config-router)# auto-cost reference-bandwidth 10000      ! in Mb/s: now 10G = 1, 1G = 10, 100M = 100
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="auto-cost reference-bandwidth 10000" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config-router)#</span> <span class="tc">auto-cost reference-bandwidth 10000    </span><span class="tm">  ! in Mb/s: now 10G = 1, 1G = 10, 100M = 100</span></code></pre></div>
 <p>You can also set a cost directly on an interface: <code>ip ospf cost 20</code>. The route's metric is the sum of the outgoing interface costs along the path, from the router to the destination.</p>
 <h3 id="129-configuring-ospfv2">12.9 Configuring OSPFv2</h3>
 <p><strong>Method 1 — <code>network</code> statements</strong> in router configuration mode. Each statement uses a <strong>wildcard mask</strong> (the inverse of a subnet mask: 0 = must match, 1 = ignore) to select interfaces; matching interfaces join the area.</p>
-<pre><code>R1(config)# router ospf 1                                  ! process ID: local only, need not match
-R1(config-router)# router-id 1.1.1.1
-R1(config-router)# auto-cost reference-bandwidth 10000
-R1(config-router)# network 10.0.123.0 0.0.0.255 area 0     ! the LAN
-R1(config-router)# network 10.0.12.0 0.0.0.3 area 0        ! the /30 point-to-point link
-R1(config-router)# network 10.10.10.0 0.0.0.255 area 0     ! the loopback LAN
-R1(config-router)# passive-interface loopback10            ! advertise it, but send no Hellos
-R1(config-router)# default-information originate always    ! advertise a default route into OSPF
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="router ospf 1
+router-id 1.1.1.1
+auto-cost reference-bandwidth 10000
+network 10.0.123.0 0.0.0.255 area 0
+network 10.0.12.0 0.0.0.3 area 0
+network 10.10.10.0 0.0.0.255 area 0
+passive-interface loopback10
+default-information originate always" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">router ospf 1                                </span><span class="tm">  ! process ID: local only, need not match</span>
+<span class="tp">R1(config-router)#</span> <span class="tc">router-id 1.1.1.1</span>
+<span class="tp">R1(config-router)#</span> <span class="tc">auto-cost reference-bandwidth 10000</span>
+<span class="tp">R1(config-router)#</span> <span class="tc">network 10.0.123.0 0.0.0.255 area 0   </span><span class="tm">  ! the LAN</span>
+<span class="tp">R1(config-router)#</span> <span class="tc">network 10.0.12.0 0.0.0.3 area 0      </span><span class="tm">  ! the /30 point-to-point link</span>
+<span class="tp">R1(config-router)#</span> <span class="tc">network 10.10.10.0 0.0.0.255 area 0   </span><span class="tm">  ! the loopback LAN</span>
+<span class="tp">R1(config-router)#</span> <span class="tc">passive-interface loopback10          </span><span class="tm">  ! advertise it, but send no Hellos</span>
+<span class="tp">R1(config-router)#</span> <span class="tc">default-information originate always  </span><span class="tm">  ! advertise a default route into OSPF</span></code></pre></div>
 <p><strong>Method 2 — per interface</strong> (clearer, and the only method in OSPFv3):</p>
-<pre><code>R1(config)# interface gigabitethernet0/0/0
-R1(config-if)# ip ospf 1 area 0
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="interface gigabitethernet0/0/0
+ip ospf 1 area 0" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">interface gigabitethernet0/0/0</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip ospf 1 area 0</span></code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -356,38 +366,46 @@ R1(config-if)# ip ospf 1 area 0
 <p><strong>Loopbacks and /32.</strong> OSPF advertises a loopback as a /32 host route regardless of its mask. To advertise Lo10 as 10.10.10.0/24 (as if it were a LAN), add <code>ip ospf network point-to-point</code> on the loopback.</p>
 <h3 id="1210-configuring-ospfv3-for-ipv6">12.10 Configuring OSPFv3 for IPv6</h3>
 <p>OSPFv3 works the same way (same states, DR/BDR rules, cost and AD) but is enabled per interface, forms neighbors over <strong>link-local</strong> addresses, and needs IPv6 routing on:</p>
-<pre><code>R1(config)# ipv6 unicast-routing
-R1(config)# ipv6 router ospf 1
-R1(config-rtr)# router-id 1.1.1.1                         ! mandatory if the router has no IPv4 address
-R1(config-rtr)# auto-cost reference-bandwidth 10000
-R1(config-rtr)# passive-interface loopback10
-R1(config-rtr)# exit
-R1(config)# interface gigabitethernet0/0/0
-R1(config-if)# ipv6 ospf 1 area 0
-R1(config-if)# interface gigabitethernet0/0/1
-R1(config-if)# ipv6 ospf 1 area 0
-R1(config-if)# ipv6 ospf network point-to-point
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ipv6 unicast-routing
+ipv6 router ospf 1
+router-id 1.1.1.1
+auto-cost reference-bandwidth 10000
+passive-interface loopback10
+exit
+interface gigabitethernet0/0/0
+ipv6 ospf 1 area 0
+interface gigabitethernet0/0/1
+ipv6 ospf 1 area 0
+ipv6 ospf network point-to-point" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ipv6 unicast-routing</span>
+<span class="tp">R1(config)#</span> <span class="tc">ipv6 router ospf 1</span>
+<span class="tp">R1(config-rtr)#</span> <span class="tc">router-id 1.1.1.1                       </span><span class="tm">  ! mandatory if the router has no IPv4 address</span>
+<span class="tp">R1(config-rtr)#</span> <span class="tc">auto-cost reference-bandwidth 10000</span>
+<span class="tp">R1(config-rtr)#</span> <span class="tc">passive-interface loopback10</span>
+<span class="tp">R1(config-rtr)#</span> <span class="tc">exit</span>
+<span class="tp">R1(config)#</span> <span class="tc">interface gigabitethernet0/0/0</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ipv6 ospf 1 area 0</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">interface gigabitethernet0/0/1</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ipv6 ospf 1 area 0</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ipv6 ospf network point-to-point</span></code></pre></div>
 <p>Newer IOS XE releases also offer the address-family syntax (<code>router ospfv3 1</code>, <code>address-family ipv6 unicast</code>, interface <code>ospfv3 1 ipv6 area 0</code>); both produce the same result. OSPFv2 and OSPFv3 are <strong>separate processes</strong> with separate neighbor tables and separate DR elections.</p>
 <h3 id="1211-verification">12.11 Verification</h3>
-<pre><code>R1# show ip ospf neighbor
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ip ospf neighbor" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ip ospf neighbor</span>
 Neighbor ID     Pri   State           Dead Time   Address         Interface
 2.2.2.2           0   FULL/  -        00:00:36    10.0.12.2       GigabitEthernet0/0/1
 2.2.2.2          50   FULL/BDR        00:00:33    10.0.123.2      GigabitEthernet0/0/0
-3.3.3.3         100   FULL/DR         00:00:39    10.0.123.3      GigabitEthernet0/0/0
-</code></pre>
+3.3.3.3         100   FULL/DR         00:00:39    10.0.123.3      GigabitEthernet0/0/0</code></pre></div>
 <p>Read it as: R1 has <strong>two</strong> adjacencies with R2 (one per link) and one with R3. On the point-to-point link the role is <code>-</code> (no DR) and priority shows 0. On the LAN, R3 is DR and R2 BDR; R1 itself is DROther (shown in the next command).</p>
-<pre><code>R1# show ip ospf interface brief
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ip ospf interface brief
+show ip route ospf" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ip ospf interface brief</span>
 Interface    PID   Area     IP Address/Mask    Cost  State Nbrs F/C
 Lo10         1     0        10.10.10.1/24      1     P2P   0/0
 Gi0/0/1      1     0        10.0.12.1/30       10    P2P   1/1
 Gi0/0/0      1     0        10.0.123.1/24      10    DROTH 2/2
 
-R1# show ip route ospf
+<span class="tp">R1#</span> <span class="tc">show ip route ospf</span>
 O     10.20.20.0/24 [110/11] via 10.0.12.2, 00:05:10, GigabitEthernet0/0/1
                     [110/11] via 10.0.123.2, 00:05:10, GigabitEthernet0/0/0
-O     10.30.30.0/24 [110/11] via 10.0.123.3, 00:05:10, GigabitEthernet0/0/0
-</code></pre>
+O     10.30.30.0/24 [110/11] via 10.0.123.3, 00:05:10, GigabitEthernet0/0/0</code></pre></div>
 <p>The cost of 11 is 10 (1 Gb/s link with reference 10000) + 1 (the remote loopback). R1 has two equal-cost paths to R2's LAN, so both are installed.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -535,7 +553,7 @@ O     10.30.30.0/24 [110/11] via 10.0.123.3, 00:05:10, GigabitEthernet0/0/0
 </tbody>
 </table></div>
 <p><strong>R1</strong></p>
-<pre><code>enable
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>enable
 configure terminal
 hostname R1
 ipv6 unicast-routing
@@ -573,12 +591,12 @@ ipv6 router ospf 1
  passive-interface loopback10
 end
 copy running-config startup-config
-</code></pre>
+</code></pre></div>
 <p><strong>R2</strong> — the same pattern with its own addresses, RID 2.2.2.2, Lo20, <strong>no</strong> <code>default-information originate</code>, and on G0/0/0:</p>
-<pre><code>interface gigabitethernet0/0/0
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>interface gigabitethernet0/0/0
  ip ospf priority 50
  ipv6 ospf priority 50
-</code></pre>
+</code></pre></div>
 <p><strong>R3</strong> — RID 3.3.3.3, only G0/0/0 and Lo30, and <code>ip ospf priority 100</code> / <code>ipv6 ospf priority 100</code> on G0/0/0.</p>
 <p><strong>Because the DR election is not preemptive</strong>, the router that boots first may become DR. After all three are configured, run <code>clear ip ospf process</code> and <code>clear ipv6 ospf process</code> (answer <code>yes</code>) on all three routers so the priorities decide.</p>
 <p><strong>Verification and expected results</strong></p>
@@ -688,39 +706,8 @@ copy running-config startup-config
 </tbody>
 </table></div>
 <h3 id="1216-practice-questions--chapter-12">12.16 Practice questions — Chapter 12</h3>
-<p><strong>1. (RID)</strong> A router has no <code>router-id</code> command, Loopback0 10.255.0.9, Loopback1 10.255.0.4, and G0/0/0 192.168.1.1. What is its RID?</p>
-<p><strong>2. (DR election)</strong> Four routers on a LAN: R1 priority 1 RID 4.4.4.4; R2 priority 1 RID 2.2.2.2; R3 priority 10 RID 1.1.1.1; R4 priority 0 RID 9.9.9.9. All start together. Which is DR and which BDR?</p>
-<p><strong>3. (States)</strong> Two routers are stuck in EXSTART. What is the most likely cause?</p>
-<p>A. Area mismatch  B. MTU mismatch  C. Hello timer mismatch  D. Passive interface</p>
-<p><strong>4. (Output interpretation)</strong> <code>show ip ospf neighbor</code> on a DROther lists another DROther as <code>2WAY/DROTHER</code>. Is anything wrong?</p>
-<p><strong>5. (Configuration)</strong> Write one <code>network</code> statement that enables OSPF area 0 on only the interface with address 172.16.5.1.</p>
-<p><strong>6. (Cost)</strong> With the default reference bandwidth, what is the OSPF cost of a 1 Gb/s interface and of a 10 Gb/s interface? What problem does this cause?</p>
-<p><strong>7. (Multiple response — choose two)</strong> Which must match for two OSPF routers to become neighbors?</p>
-<p>A. Process ID  B. Area ID  C. Hello and dead intervals  D. Router ID  E. Interface description</p>
-<p><strong>8. (Network type)</strong> What changes when you configure <code>ip ospf network point-to-point</code> on both ends of a /30 Ethernet link?</p>
-<p><strong>9. (Passive)</strong> What does <code>passive-interface gigabitethernet0/0/2</code> do to that interface?</p>
-<p><strong>10. (Routing table)</strong> R3 shows <code>O*E2 0.0.0.0/0 [110/1] via 10.0.123.1</code>. What configured it, and on which router?</p>
-<p><strong>11. (OSPFv3)</strong> An IPv6-only router refuses to start OSPFv3. What is missing?</p>
-<p><strong>12. (Troubleshooting)</strong> R2 sees R1 as a neighbor on the LAN but R3 does not, and <code>show ip ospf interface</code> on R3 shows Hello 5, Dead 20. What is wrong?</p>
-<p><strong>13. (Loopbacks)</strong> Other routers see <code>10.10.10.1/32</code> instead of <code>10.10.10.0/24</code> for R1's Loopback10. Why, and how is it fixed?</p>
-<p><strong>14. (Evaluate an AI assistant)</strong> A network assistant reviews <code>show ip ospf neighbor</code> showing two neighbors in <code>2WAY/DROTHER</code> and one <code>FULL/DR</code> and recommends: <em>"Change all OSPF priorities to 1 so every router reaches FULL."</em> Is that right?</p>
-<h3 id="1217-answer-key-with-explanations">12.17 Answer key with explanations</h3>
-<ol>
-<li><strong>10.255.0.9</strong> — the highest loopback address wins over any physical interface, even a numerically larger one.</li>
-<li><strong>DR R3</strong> (highest priority 10). <strong>BDR R1</strong> (priority 1 tie with R2, broken by higher RID 4.4.4.4 over 2.2.2.2). R4 (priority 0) can never be DR or BDR.</li>
-<li><strong>B.</strong> Mismatched MTU stops the DBD exchange. Area or Hello mismatches prevent the neighbor from appearing at all.</li>
-<li><strong>No.</strong> DROthers on a broadcast segment remain 2-WAY with each other and are FULL only with the DR and BDR.</li>
-<li><code>network 172.16.5.1 0.0.0.0 area 0</code>.</li>
-<li>Both are <strong>1</strong> (100 ÷ 1000 and 100 ÷ 10000 round up to 1), so OSPF cannot prefer the faster link. Fix with the same <code>auto-cost reference-bandwidth</code> on all routers.</li>
-<li><strong>B and C.</strong> Process IDs are local; RIDs must be <strong>different</strong>, not the same; descriptions are irrelevant.</li>
-<li>No DR/BDR election takes place, the adjacency forms faster, and <code>show ip ospf neighbor</code> shows <code>FULL/ -</code> instead of DR/BDR roles.</li>
-<li>It stops sending and processing Hellos there (no neighbors can form), but the interface's network is <strong>still advertised</strong> into OSPF.</li>
-<li><code>default-information originate</code> (here with <code>always</code>) on <strong>R1</strong>, the router at 10.0.123.1. It appears as an external type 2 route with metric 1.</li>
-<li>A manual <strong><code>router-id</code></strong> (no IPv4 address exists to choose one from), and <code>ipv6 unicast-routing</code> must be enabled.</li>
-<li><strong>Hello/dead timer mismatch</strong>: R3 uses 5/20 while R1 uses the default 10/40, so R3 never becomes a neighbor of R1 (or of R2, which also uses the defaults). Make the timers identical on every router on the LAN.</li>
-<li>OSPF advertises loopbacks as <strong>/32 host routes</strong> by default. Add <code>ip ospf network point-to-point</code> on Loopback10 so the configured /24 is advertised.</li>
-<li><strong>No.</strong> 2-WAY between DROthers is normal and efficient; forcing everyone to the same priority changes nothing about that (a DR and BDR are still elected) and could move the DR to a weaker router. No change is needed.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="12" data-total="14"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>14 questions · 2 auto-graded, 12 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 14</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">RID</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A router has no <code>router-id</code> command, Loopback0 10.255.0.9, Loopback1 10.255.0.4, and G0/0/0 192.168.1.1. What is its RID?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>10.255.0.9</strong> — the highest loopback address wins over any physical interface, even a numerically larger one.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">DR election</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Four routers on a LAN: R1 priority 1 RID 4.4.4.4; R2 priority 1 RID 2.2.2.2; R3 priority 10 RID 1.1.1.1; R4 priority 0 RID 9.9.9.9. All start together. Which is DR and which BDR?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>DR R3</strong> (highest priority 10). <strong>BDR R1</strong> (priority 1 tie with R2, broken by higher RID 4.4.4.4 over 2.2.2.2). R4 (priority 0) can never be DR or BDR.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="3" data-correct="B"><div class="qhead"><span class="qn">3</span><span class="qkind">States</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Two routers are stuck in EXSTART. What is the most likely cause?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Area mismatch</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">MTU mismatch</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Hello timer mismatch</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Passive interface</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> Mismatched MTU stops the DBD exchange. Area or Hello mismatches prevent the neighbor from appearing at all.</p></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>show ip ospf neighbor</code> on a DROther lists another DROther as <code>2WAY/DROTHER</code>. Is anything wrong?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> DROthers on a broadcast segment remain 2-WAY with each other and are FULL only with the DR and BDR.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write one <code>network</code> statement that enables OSPF area 0 on only the interface with address 172.16.5.1.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>network 172.16.5.1 0.0.0.0 area 0</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Cost</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>With the default reference bandwidth, what is the OSPF cost of a 1 Gb/s interface and of a 10 Gb/s interface? What problem does this cause?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Both are <strong>1</strong> (100 ÷ 1000 and 100 ÷ 10000 round up to 1), so OSPF cannot prefer the faster link. Fix with the same <code>auto-cost reference-bandwidth</code> on all routers.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="7" data-correct="BC"><div class="qhead"><span class="qn">7</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which must match for two OSPF routers to become neighbors?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Process ID</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Area ID</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Hello and dead intervals</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Router ID</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">Interface description</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B and C.</strong> Process IDs are local; RIDs must be <strong>different</strong>, not the same; descriptions are irrelevant.</p></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Network type</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What changes when you configure <code>ip ospf network point-to-point</code> on both ends of a /30 Ethernet link?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>No DR/BDR election takes place, the adjacency forms faster, and <code>show ip ospf neighbor</code> shows <code>FULL/ -</code> instead of DR/BDR roles.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Passive</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What does <code>passive-interface gigabitethernet0/0/2</code> do to that interface?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>It stops sending and processing Hellos there (no neighbors can form), but the interface's network is <strong>still advertised</strong> into OSPF.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Routing table</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>R3 shows <code>O*E2 0.0.0.0/0 [110/1] via 10.0.123.1</code>. What configured it, and on which router?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>default-information originate</code> (here with <code>always</code>) on <strong>R1</strong>, the router at 10.0.123.1. It appears as an external type 2 route with metric 1.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">OSPFv3</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>An IPv6-only router refuses to start OSPFv3. What is missing?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A manual <strong><code>router-id</code></strong> (no IPv4 address exists to choose one from), and <code>ipv6 unicast-routing</code> must be enabled.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>R2 sees R1 as a neighbor on the LAN but R3 does not, and <code>show ip ospf interface</code> on R3 shows Hello 5, Dead 20. What is wrong?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Hello/dead timer mismatch</strong>: R3 uses 5/20 while R1 uses the default 10/40, so R3 never becomes a neighbor of R1 (or of R2, which also uses the defaults). Make the timers identical on every router on the LAN.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Loopbacks</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Other routers see <code>10.10.10.1/32</code> instead of <code>10.10.10.0/24</code> for R1's Loopback10. Why, and how is it fixed?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>OSPF advertises loopbacks as <strong>/32 host routes</strong> by default. Add <code>ip ospf network point-to-point</code> on Loopback10 so the configured /24 is advertised.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="14"><div class="qhead"><span class="qn">14</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A network assistant reviews <code>show ip ospf neighbor</code> showing two neighbors in <code>2WAY/DROTHER</code> and one <code>FULL/DR</code> and recommends: <em>"Change all OSPF priorities to 1 so every router reaches FULL."</em> Is that right?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> 2-WAY between DROthers is normal and efficient; forcing everyone to the same priority changes nothing about that (a DR and BDR are still elected) and could move the DR to a weaker router. No change is needed.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="1218-chapter-12-figure-checklist">12.18 Chapter 12 figure checklist</h3>
 <p>All 3 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-12-2">Figure 12.2</a> (a label on the LAN line) and <a class="figref" href="#fig-12-3">Figure 12.3</a> (an overlapping label, a clipped footnote and an overfull box) were corrected and re-checked.</p>
 <div class="table-wrap"><table>
@@ -773,7 +760,6 @@ copy running-config startup-config
 <a href="#1214-lab-122--ospf-challenge">12.14 Lab 12.2 — OSPF challenge</a>
 <a href="#1215-chapter-12-summary-notes-exam-revision">12.15 Chapter 12 summary notes (exam revision)</a>
 <a href="#1216-practice-questions--chapter-12">12.16 Practice questions — Chapter 12</a>
-<a href="#1217-answer-key-with-explanations">12.17 Answer key with explanations</a>
 <a href="#1218-chapter-12-figure-checklist">12.18 Chapter 12 figure checklist</a>
 <a href="#1219-chapter-12-progress-record">12.19 Chapter 12 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

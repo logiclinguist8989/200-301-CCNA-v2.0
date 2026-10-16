@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head amber">
   <div class="eyebrow">Domain 3 · IP Routing</div>
   <h1><span class="num">Chapter 13</span>First hop redundancy protocols</h1>
-  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~17 min read</span>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~18 min read</span><a class="qmeta" href="#quiz" data-ch="13" data-total="13">📝 Self-check: 13 questions</a>
   <label class="mark"><input type="checkbox" data-ch="13"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>3.4 Interpret the operational status of First Hop Redundancy Protocols (HSRP and VRRP)</strong> — the exam asks you to read and explain HSRP and VRRP status output (13.8). Configuration is included because building a group once makes that output easy to read.</p>
 <h3 id="131-learning-objectives">13.1 Learning objectives</h3>
@@ -73,7 +74,7 @@
 <li>Compare HSRP, VRRP and GLBP.</li>
 <li>Configure and verify HSRP on a pair of Layer 3 switches.</li>
 </ol>
-<h3 id="132-the-problem-one-gateway-per-host">13.2 The problem: one gateway per host</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#1310-packet-tracer-lab-131--hsrp-on-the-distribution-pair-intermediateadvanced">Packet Tracer Lab 13.1 — HSRP on the distribution pair (Intermediate–Advanced)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="132-the-problem-one-gateway-per-host">13.2 The problem: one gateway per host</h3>
 <p>A host has <strong>one</strong> default gateway address. In Lab 5.1 every PC in VLAN 10 uses DSW1's SVI, 10.10.10.1. If DSW1 fails, the hosts keep sending off-subnet traffic to 10.10.10.1 and nothing answers — even though DSW2 could route for them. Changing the gateway on every host is not practical, and hosts do not run routing protocols.</p>
 <p>A <strong>first hop redundancy protocol (FHRP)</strong> makes two or more routers share a <strong>virtual IP address</strong> and a <strong>virtual MAC address</strong>. Hosts use the virtual IP as their gateway. One router actively forwards for it; another stands by and takes over the same addresses if the first fails (<a class="figref" href="#fig-13-1">Figure 13.1</a>).</p>
 <figure class="fig" id="fig-13-1"><button class="zoom" aria-label="Enlarge figure 13.1"><img src="assets/figures/ch13/fig-13-01-fhrp-group.svg" alt="Figure 13.1 — A first hop redundancy group: one virtual gateway shared by an active and a standby router" loading="lazy"></button><figcaption><a class="fignum" href="#fig-13-1">Figure 13.1</a> A first hop redundancy group: one virtual gateway shared by an active and a standby router</figcaption></figure>
@@ -169,21 +170,32 @@
 </table></div>
 <p><strong>HSRP versions.</strong> Version 1 supports groups 0–255 and IPv4 only; version 2 supports groups 0–4095, IPv6 and millisecond timers. The two versions are not compatible, so use the same version on all group members. Matching the group number to the VLAN ID (group 10 on VLAN 10) is a common, readable convention.</p>
 <p><strong>HSRP states:</strong> Initial → Learn → Listen → Speak → Standby or Active. Seeing routers stuck in Speak or both Active usually means they cannot hear each other's Hellos.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong><b>GLBP</b> is the only FHRP with <i>balancing</i> in its name — and the only one that load-balances across routers by default. HSRP and GLBP are Cisco; VRRP is the open standard.</p>
+
 <h3 id="136-configuring-hsrp">13.6 Configuring HSRP</h3>
 <p>Objective 3.4 asks you to <em>interpret HSRP and VRRP statu</em>s, so configuration is not strictly required; configuring HSRP once makes every concept concrete. All commands are in <strong>interface configuration mode</strong> on the SVI (or routed interface) that faces the hosts. Each router keeps its own <strong>real</strong> IP; the virtual IP is the one hosts use.</p>
-<pre><code>DSW1(config)# interface vlan 10
-DSW1(config-if)# ip address 10.10.10.2 255.255.255.0      ! real address; .1 becomes the virtual IP
-DSW1(config-if)# standby version 2
-DSW1(config-if)# standby 10 ip 10.10.10.1                  ! group 10, virtual IP
-DSW1(config-if)# standby 10 priority 110                   ! default 100; higher wins
-DSW1(config-if)# standby 10 preempt                        ! take the role back after recovering
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="interface vlan 10
+ip address 10.10.10.2 255.255.255.0
+standby version 2
+standby 10 ip 10.10.10.1
+standby 10 priority 110
+standby 10 preempt
+interface vlan 10
+ip address 10.10.10.3 255.255.255.0
+standby version 2
+standby 10 ip 10.10.10.1
+standby 10 preempt" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">interface vlan 10</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">ip address 10.10.10.2 255.255.255.0    </span><span class="tm">  ! real address; .1 becomes the virtual IP</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">standby version 2</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">standby 10 ip 10.10.10.1                </span><span class="tm">  ! group 10, virtual IP</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">standby 10 priority 110                 </span><span class="tm">  ! default 100; higher wins</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">standby 10 preempt                      </span><span class="tm">  ! take the role back after recovering</span>
 
-DSW2(config)# interface vlan 10
-DSW2(config-if)# ip address 10.10.10.3 255.255.255.0
-DSW2(config-if)# standby version 2
-DSW2(config-if)# standby 10 ip 10.10.10.1
-DSW2(config-if)# standby 10 preempt                        ! priority stays 100
-</code></pre>
+<span class="tp">DSW2(config)#</span> <span class="tc">interface vlan 10</span>
+<span class="tp">DSW2(config-if)#</span> <span class="tc">ip address 10.10.10.3 255.255.255.0</span>
+<span class="tp">DSW2(config-if)#</span> <span class="tc">standby version 2</span>
+<span class="tp">DSW2(config-if)#</span> <span class="tc">standby 10 ip 10.10.10.1</span>
+<span class="tp">DSW2(config-if)#</span> <span class="tc">standby 10 preempt                      </span><span class="tm">  ! priority stays 100</span></code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -233,30 +245,34 @@ DSW2(config-if)# standby 10 preempt                        ! priority stays 100
 <p><strong>Load sharing across VLANs.</strong> HSRP elects one Active router per group, so make DSW1 Active for VLANs 10 and 30 and DSW2 Active for VLANs 40 and 99. Align each VLAN's HSRP Active router with its <strong>STP root</strong> (Chapter 9) so frames reach the gateway without crossing an extra switch.</p>
 <h3 id="137-configuring-vrrp-for-comparison">13.7 Configuring VRRP (for comparison)</h3>
 <p>VRRP is configured the same way in principle; the syntax depends on the IOS release.</p>
-<pre><code>! Classic IOS (VRRPv2)
-DSW1(config-if)# vrrp 10 ip 10.10.10.1
-DSW1(config-if)# vrrp 10 priority 110                       ! preempt is already on
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="vrrp 10 ip 10.10.10.1
+vrrp 10 priority 110
+fhrp version vrrp v3
+interface vlan 10
+vrrp 10 address-family ipv4
+address 10.10.10.1 primary
+priority 110" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tm">! Classic IOS (VRRPv2)</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">vrrp 10 ip 10.10.10.1</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">vrrp 10 priority 110                     </span><span class="tm">  ! preempt is already on</span>
 
-! IOS XE (VRRPv3)
-DSW1(config)# fhrp version vrrp v3
-DSW1(config)# interface vlan 10
-DSW1(config-if)# vrrp 10 address-family ipv4
-DSW1(config-if-vrrp)# address 10.10.10.1 primary
-DSW1(config-if-vrrp)# priority 110
-</code></pre>
+<span class="tm">! IOS XE (VRRPv3)</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">fhrp version vrrp v3</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">interface vlan 10</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">vrrp 10 address-family ipv4</span>
+<span class="tp">DSW1(config-if-vrrp)#</span> <span class="tc">address 10.10.10.1 primary</span>
+<span class="tp">DSW1(config-if-vrrp)#</span> <span class="tc">priority 110</span></code></pre></div>
 <p>VRRP may use a router's <strong>own</strong> interface address as the virtual IP; that router is the <strong>address owner</strong>, gets priority 255 automatically and is always Master while it is up. <strong>Packet Tracer limitation:</strong> VRRP is not available in most Packet Tracer versions (check with <code>vrrp ?</code> in interface mode). If yours lacks it, practise VRRP on paper using this section and do Lab 13.1 with HSRP.</p>
 <h3 id="138-verifying-hsrp">13.8 Verifying HSRP</h3>
-<pre><code>DSW1# show standby brief
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="show standby brief" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1#</span> <span class="tc">show standby brief</span>
                      P indicates configured to preempt.
                      |
 Interface   Grp  Pri P State   Active          Standby         Virtual IP
 Vl10        10   110 P Active  local           10.10.10.3      10.10.10.1
 Vl30        30   110 P Active  local           10.10.30.3      10.10.30.1
 Vl40        40   100 P Standby 10.10.40.3      local           10.10.40.1
-Vl99        99   100 P Standby 10.10.99.3      local           10.10.99.1
-</code></pre>
+Vl99        99   100 P Standby 10.10.99.3      local           10.10.99.1</code></pre></div>
 <p>Read each line: interface, group, this router's priority, <strong>P</strong> = preempt, this router's state, who is Active and Standby (<code>local</code> = me), and the virtual IP. DSW1 is Active for VLANs 10 and 30 and Standby for 40 and 99, exactly the planned split.</p>
-<pre><code>DSW1# show standby vlan 10
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="show standby vlan 10" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1#</span> <span class="tc">show standby vlan 10</span>
 Vlan10 - Group 10 (version 2)
   State is Active
     2 state changes, last state change 00:04:11
@@ -266,15 +282,13 @@ Vlan10 - Group 10 (version 2)
   Preemption enabled
   Active router is local
   Standby router is 10.10.10.3, priority 100 (expires in 9.296 sec)
-  Priority 110 (configured 110)
-</code></pre>
+  Priority 110 (configured 110)</code></pre></div>
 <p>The virtual MAC <strong>0000.0c9f.f00a</strong> is HSRPv2's prefix plus the group number in hexadecimal (10 = 0x00A). On a PC, <code>arp -a</code> after pinging the gateway shows 10.10.10.1 mapped to that MAC; it does not change after a failover. (Output layout varies slightly by platform.)</p>
 <p><strong>Interpreting VRRP status.</strong> The same reading skills apply to VRRP; only the words differ (Master/Backup instead of Active/Standby). Example from a router running VRRPv3 on IOS XE (column layout varies by release):</p>
-<pre><code>DSW2# show vrrp brief
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW2</span><button class="copy" type="button" data-copy="show vrrp brief" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW2#</span> <span class="tc">show vrrp brief</span>
   Interface   Grp  A-F Pri  Time Own Pre State   Master addr/Group addr
   Vl10         10 IPv4 100     0  N   Y  BACKUP  10.10.10.2(r)/10.10.10.1
-  Vl40         40 IPv4 110     0  N   Y  MASTER  10.10.40.3(r)/10.10.40.1
-</code></pre>
+  Vl40         40 IPv4 110     0  N   Y  MASTER  10.10.40.3(r)/10.10.40.1</code></pre></div>
 <p>Read it as: in group 10 this router (priority 100) is <strong>Backup</strong> and the Master is 10.10.10.2; in group 40 it is <strong>Master</strong>. <strong>Own N</strong> means its own interface address is not the virtual IP (an owner would show Y and priority 255); <strong>Pre Y</strong> means preemption is on, VRRP's default. The virtual IP is the address after the slash.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -439,7 +453,7 @@ Vlan10 - Group 10 (version 2)
 </tbody>
 </table></div>
 <p><strong>DSW1</strong> (changing the SVI address briefly interrupts each VLAN; that is expected)</p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 interface vlan 10
  ip address 10.10.10.2 255.255.255.0
  standby version 2
@@ -464,9 +478,9 @@ interface vlan 99
  standby 99 preempt
 end
 copy running-config startup-config
-</code></pre>
+</code></pre></div>
 <p><strong>DSW2</strong> (it already has <code>ip routing</code>, the VLANs and a default route to DSW1 from Labs 6.1 and 9.1)</p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 interface vlan 10
  ip address 10.10.10.3 255.255.255.0
  standby version 2
@@ -495,8 +509,8 @@ interface vlan 99
  no shutdown
 end
 copy running-config startup-config
-</code></pre>
-<p><strong>PT notes:</strong> HSRP (<code>standby</code> commands) works on the 3650 and ISR4331 in current Packet Tracer. If <code>standby version 2</code> is rejected, leave it out (version 1 behaves the same for this lab, with virtual MAC 0000.0c07.acXX). Wait about 30 seconds after configuring for the elections to settle.</p>
+</code></pre></div>
+<p class="callout lab-it"><strong>PT notes</strong>HSRP (<code>standby</code> commands) works on the 3650 and ISR4331 in current Packet Tracer. If <code>standby version 2</code> is rejected, leave it out (version 1 behaves the same for this lab, with virtual MAC 0000.0c07.acXX). Wait about 30 seconds after configuring for the elections to settle.</p>
 <p><strong>Verification and expected results</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -594,38 +608,8 @@ copy running-config startup-config
 </tbody>
 </table></div>
 <h3 id="1313-practice-questions--chapter-13">13.13 Practice questions — Chapter 13</h3>
-<p><strong>1. (Concept)</strong> What problem does a first hop redundancy protocol solve?</p>
-<p><strong>2. (Recall)</strong> Which FHRP is an open standard?</p>
-<p>A. HSRP  B. GLBP  C. VRRP  D. CDP</p>
-<p><strong>3. (Election)</strong> In HSRP group 10, R1 has priority 100 and real IP 10.10.10.3; R2 has priority 100 and real IP 10.10.10.2. Neither preempts and both start together. Which is Active?</p>
-<p><strong>4. (Preemption)</strong> DSW1 (priority 110) fails, DSW2 (100) becomes Active, then DSW1 recovers. DSW1 has no <code>preempt</code>. Who is Active now?</p>
-<p><strong>5. (Recall)</strong> What is the HSRPv2 virtual MAC for group 30?</p>
-<p>A. 0000.0c07.ac1e  B. 0000.0c9f.f01e  C. 0000.5e00.011e  D. 0000.0c9f.f030</p>
-<p><strong>6. (Output interpretation)</strong> <code>show standby brief</code> on DSW1 shows <code>Vl40  40  100 P Standby 10.10.40.3  local  10.10.40.1</code>. What do the fields tell you?</p>
-<p><strong>7. (Multiple response — choose two)</strong> Which statements about VRRP are true?</p>
-<p>A. Preemption is enabled by default  B. It uses the Active/Standby terminology  C. The virtual IP can be a real interface address  D. It is Cisco proprietary  E. It uses UDP port 1985</p>
-<p><strong>8. (Design)</strong> How can two distribution switches both forward traffic using HSRP?</p>
-<p><strong>9. (Troubleshooting)</strong> Both switches show themselves as Active for VLAN 20. Give two likely causes.</p>
-<p><strong>10. (Concept)</strong> Why does the Standby router send a gratuitous ARP when it becomes Active?</p>
-<p><strong>11. (Tracking)</strong> DSW1 (priority 110, preempt) tracks its uplink with <code>decrement 20</code>; DSW2 has priority 100 and preempt. The uplink fails. What happens?</p>
-<p><strong>12. (Troubleshooting)</strong> After an FHRP failover some PCs still cannot reach other subnets. Their gateway is 10.10.10.2. What is wrong?</p>
-<p><strong>13. (Evaluate an AI assistant)</strong> A network assistant suggests: <em>"Configure the same HSRP group on VLAN 10 with DSW1 using HSRP and DSW2 using VRRP so the network works with both vendors."</em> Is that workable?</p>
-<h3 id="1314-answer-key-with-explanations">13.14 Answer key with explanations</h3>
-<ol>
-<li>A host has a single default gateway. If that router fails, off-subnet traffic stops even though another router could forward it. An FHRP lets several routers share one virtual gateway so a backup takes over transparently.</li>
-<li><strong>C.</strong> HSRP and GLBP are Cisco proprietary; CDP is a discovery protocol.</li>
-<li><strong>R1</strong> — equal priority, so the higher real IP (10.10.10.3) wins.</li>
-<li><strong>DSW2.</strong> Without preempt, DSW1 does not take the role back even though its priority is higher.</li>
-<li><strong>B.</strong> HSRPv2 uses 0000.0c9f.fXXX with the group in hexadecimal: 30 = 0x01E. A is the version 1 format; C is VRRP's format; D writes 30 in decimal.</li>
-<li>VLAN 40, group 40, DSW1's priority 100, preempt configured, DSW1 is <strong>Standby</strong>, the Active router is 10.10.40.3 (DSW2), DSW1 is the Standby itself (<code>local</code>), virtual IP 10.10.40.1.</li>
-<li><strong>A and C.</strong> VRRP uses Master/Backup terms, is an open standard and uses IP protocol 112 (UDP 1985 is HSRP).</li>
-<li>Use <strong>several groups</strong>: DSW1 Active for some VLANs and DSW2 Active for others (Lab 13.1). Within one group only one router forwards.</li>
-<li>The two cannot hear each other's Hellos: VLAN 20 missing on the link between them, different group numbers, different HSRP versions, or an ACL blocking the Hellos.</li>
-<li>So that switches update their MAC address tables: the virtual MAC now lives behind a different port, and the gratuitous ARP teaches them the new location immediately.</li>
-<li>DSW1's priority drops to 90, lower than DSW2's 100. Because DSW2 preempts, DSW2 becomes Active. When the uplink returns, DSW1 goes back to 110 and preempts.</li>
-<li>They point at a router's <strong>real</strong> address (DSW1's 10.10.10.2), not the virtual IP 10.10.10.1, so when that router fails they lose their gateway. Fix the host or DHCP <code>default-router</code> setting.</li>
-<li><strong>No.</strong> HSRP and VRRP are different protocols with different packets, addresses and MACs; they never form one group, so both switches would act as gateway independently. Use VRRP on both for multi-vendor gateways.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="13" data-total="13"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>13 questions · 3 auto-graded, 10 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 13</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What problem does a first hop redundancy protocol solve?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A host has a single default gateway. If that router fails, off-subnet traffic stops even though another router could forward it. An FHRP lets several routers share one virtual gateway so a backup takes over transparently.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="2" data-correct="C"><div class="qhead"><span class="qn">2</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which FHRP is an open standard?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">HSRP</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">GLBP</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">VRRP</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">CDP</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>C.</strong> HSRP and GLBP are Cisco proprietary; CDP is a discovery protocol.</p></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Election</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>In HSRP group 10, R1 has priority 100 and real IP 10.10.10.3; R2 has priority 100 and real IP 10.10.10.2. Neither preempts and both start together. Which is Active?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>R1</strong> — equal priority, so the higher real IP (10.10.10.3) wins.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Preemption</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>DSW1 (priority 110) fails, DSW2 (100) becomes Active, then DSW1 recovers. DSW1 has no <code>preempt</code>. Who is Active now?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>DSW2.</strong> Without preempt, DSW1 does not take the role back even though its priority is higher.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="5" data-correct="B"><div class="qhead"><span class="qn">5</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>What is the HSRPv2 virtual MAC for group 30?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">0000.0c07.ac1e</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">0000.0c9f.f01e</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">0000.5e00.011e</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">0000.0c9f.f030</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> HSRPv2 uses 0000.0c9f.fXXX with the group in hexadecimal: 30 = 0x01E. A is the version 1 format; C is VRRP's format; D writes 30 in decimal.</p></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>show standby brief</code> on DSW1 shows <code>Vl40  40  100 P Standby 10.10.40.3  local  10.10.40.1</code>. What do the fields tell you?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>VLAN 40, group 40, DSW1's priority 100, preempt configured, DSW1 is <strong>Standby</strong>, the Active router is 10.10.40.3 (DSW2), DSW1 is the Standby itself (<code>local</code>), virtual IP 10.10.40.1.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="7" data-correct="AC"><div class="qhead"><span class="qn">7</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which statements about VRRP are true?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Preemption is enabled by default</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">It uses the Active/Standby terminology</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">The virtual IP can be a real interface address</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">It is Cisco proprietary</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">It uses UDP port 1985</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> VRRP uses Master/Backup terms, is an open standard and uses IP protocol 112 (UDP 1985 is HSRP).</p></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Design</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>How can two distribution switches both forward traffic using HSRP?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Use <strong>several groups</strong>: DSW1 Active for some VLANs and DSW2 Active for others (Lab 13.1). Within one group only one router forwards.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Both switches show themselves as Active for VLAN 20. Give two likely causes.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The two cannot hear each other's Hellos: VLAN 20 missing on the link between them, different group numbers, different HSRP versions, or an ACL blocking the Hellos.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Why does the Standby router send a gratuitous ARP when it becomes Active?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>So that switches update their MAC address tables: the virtual MAC now lives behind a different port, and the gratuitous ARP teaches them the new location immediately.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">Tracking</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>DSW1 (priority 110, preempt) tracks its uplink with <code>decrement 20</code>; DSW2 has priority 100 and preempt. The uplink fails. What happens?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>DSW1's priority drops to 90, lower than DSW2's 100. Because DSW2 preempts, DSW2 becomes Active. When the uplink returns, DSW1 goes back to 110 and preempts.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>After an FHRP failover some PCs still cannot reach other subnets. Their gateway is 10.10.10.2. What is wrong?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>They point at a router's <strong>real</strong> address (DSW1's 10.10.10.2), not the virtual IP 10.10.10.1, so when that router fails they lose their gateway. Fix the host or DHCP <code>default-router</code> setting.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A network assistant suggests: <em>"Configure the same HSRP group on VLAN 10 with DSW1 using HSRP and DSW2 using VRRP so the network works with both vendors."</em> Is that workable?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> HSRP and VRRP are different protocols with different packets, addresses and MACs; they never form one group, so both switches would act as gateway independently. Use VRRP on both for multi-vendor gateways.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="1315-chapter-13-figure-checklist">13.15 Chapter 13 figure checklist</h3>
 <p>All 3 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-13-2">Figure 13.2</a> used two fixed white text colours that would not adapt to dark mode; they were replaced with theme colours and re-checked.</p>
 <div class="table-wrap"><table>
@@ -676,7 +660,6 @@ copy running-config startup-config
 <a href="#1311-lab-132--fhrp-challenge">13.11 Lab 13.2 — FHRP challenge</a>
 <a href="#1312-chapter-13-summary-notes-exam-revision">13.12 Chapter 13 summary notes (exam revision)</a>
 <a href="#1313-practice-questions--chapter-13">13.13 Practice questions — Chapter 13</a>
-<a href="#1314-answer-key-with-explanations">13.14 Answer key with explanations</a>
 <a href="#1315-chapter-13-figure-checklist">13.15 Chapter 13 figure checklist</a>
 <a href="#1316-chapter-13-progress-record">13.16 Chapter 13 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

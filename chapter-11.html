@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head amber">
   <div class="eyebrow">Domain 3 · IP Routing</div>
   <h1><span class="num">Chapter 11</span>IPv4 and IPv6 static routing</h1>
-  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~18 min read</span>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~19 min read</span><a class="qmeta" href="#quiz" data-ch="11" data-total="14">📝 Self-check: 14 questions</a>
   <label class="mark"><input type="checkbox" data-ch="11"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>3.2 Troubleshoot IPv4 and IPv6 static routing</strong> — <strong>3.2.a</strong> default route, <strong>3.2.b</strong> network route, <strong>3.2.c</strong> host route, <strong>3.2.d</strong> floating static. The verb is <em>troubleshoot</em>: you must configure all four types and also find what is wrong with someone else's.</p>
 <h3 id="111-learning-objectives">11.1 Learning objectives</h3>
@@ -73,7 +74,7 @@
 <li>Configure IPv6 static routes, including link-local next hops.</li>
 <li>Verify static routes and troubleshoot missing, wrong, one-way and never-failing routes.</li>
 </ol>
-<h3 id="112-when-static-routes-make-sense">11.2 When static routes make sense</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#1111-packet-tracer-lab-111--default-network-host-and-floating-static-routes-dual-stack-intermediate">Packet Tracer Lab 11.1 — Default, network, host and floating static routes, dual stack (Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="112-when-static-routes-make-sense">11.2 When static routes make sense</h3>
 <p>A <strong>static route</strong> is a route you type in by hand. It never changes unless you change it, uses no bandwidth or CPU to maintain, and reveals nothing to neighbors.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -142,8 +143,8 @@
 
 <p><a class="figref" href="#fig-11-1">Figure 11.1</a> places all four route types from the table on one network, which you build in Lab 11.1. Each blue arrow is one of R1's static routes, pointing toward the destination it describes; the legend gives the exact route.</p>
 <h3 id="113-ipv4-static-route-syntax">11.3 IPv4 static route syntax</h3>
-<pre><code>ip route &lt;network&gt; &lt;mask&gt; { &lt;next-hop-ip&gt; | &lt;exit-interface&gt; | &lt;exit-interface&gt; &lt;next-hop-ip&gt; } [&lt;AD&gt;] [name &lt;text&gt;] [permanent]
-</code></pre>
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>ip route &lt;network&gt; &lt;mask&gt; { &lt;next-hop-ip&gt; | &lt;exit-interface&gt; | &lt;exit-interface&gt; &lt;next-hop-ip&gt; } [&lt;AD&gt;] [name &lt;text&gt;] [permanent]
+</code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -202,31 +203,32 @@
 </ol>
 <p><strong>When is a static route installed?</strong> Only when its next hop is reachable (recursion succeeds) or its exit interface is up. If the exit interface goes down, the route is removed (unless <code>permanent</code>). This is what makes a floating static take over (11.5).</p>
 <h3 id="114-default-route-32a">11.4 Default route (3.2.a)</h3>
-<pre><code>R1(config)# ip route 0.0.0.0 0.0.0.0 198.51.100.1          ! HQ edge: everything unknown to the ISP
-R2(config)# ip route 0.0.0.0 0.0.0.0 10.0.12.1             ! branch: everything to HQ
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip route 0.0.0.0 0.0.0.0 198.51.100.1
+ip route 0.0.0.0 0.0.0.0 10.0.12.1" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip route 0.0.0.0 0.0.0.0 198.51.100.1        </span><span class="tm">  ! HQ edge: everything unknown to the ISP</span>
+<span class="tp">R2(config)#</span> <span class="tc">ip route 0.0.0.0 0.0.0.0 10.0.12.1           </span><span class="tm">  ! branch: everything to HQ</span></code></pre></div>
 <p>The route appears as <code>S* 0.0.0.0/0 [1/0] via ...</code> and sets the <strong>gateway of last resort</strong>. A stub site such as R2 often needs <strong>only</strong> a default route: every destination it does not own is "somewhere toward HQ".</p>
 <h3 id="115-network-route-32b">11.5 Network route (3.2.b)</h3>
 <p>A network route reaches one remote subnet, or a <strong>summary</strong> of several:</p>
-<pre><code>R1(config)# ip route 10.20.20.0 255.255.255.0 10.0.12.2    ! branch LAN
-ISP(config)# ip route 10.0.0.0 255.0.0.0 198.51.100.2      ! one summary for all of the company
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip route 10.20.20.0 255.255.255.0 10.0.12.2
+ip route 10.0.0.0 255.0.0.0 198.51.100.2" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip route 10.20.20.0 255.255.255.0 10.0.12.2  </span><span class="tm">  ! branch LAN</span>
+<span class="tp">ISP(config)#</span> <span class="tc">ip route 10.0.0.0 255.0.0.0 198.51.100.2    </span><span class="tm">  ! one summary for all of the company</span></code></pre></div>
 <p>Every network route needs a <strong>matching route back</strong> on the far side. A ping fails if only one direction exists: the echo request arrives but the reply has no route home. That one-way mistake is the most common static-routing fault.</p>
 <h3 id="116-host-route-32c">11.6 Host route (3.2.c)</h3>
 <p>A host route has a /32 mask (IPv4) or /128 (IPv6) and so beats any other route to that address by longest match:</p>
-<pre><code>R1(config)# ip route 10.20.20.10 255.255.255.255 10.0.21.2 ! a branch server
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip route 10.20.20.10 255.255.255.255 10.0.21.2 ! a branch server" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip route 10.20.20.10 255.255.255.255 10.0.21.2 ! a branch server</span></code></pre></div>
 <p>Typical uses: reaching a router's <strong>loopback</strong> for management or as a routing protocol ID, sending one server's traffic over a different path (<a class="figref" href="#fig-11-1">Figure 11.1</a>, route c), or pointing at a single DNS or syslog server. Remember that connected interfaces already create /32 <strong>L</strong> routes for the router's own addresses; host routes you type are <strong>S</strong> routes.</p>
 <h3 id="117-floating-static-route-32d">11.7 Floating static route (3.2.d)</h3>
 <p>A <strong>floating static</strong> is a static route configured with an AD <strong>higher than</strong> the route it backs up. Because the preferred route has a lower AD, the floating route stays out of the routing table — it "floats" above it — until the preferred route disappears (<a class="figref" href="#fig-11-3">Figure 11.3</a>).</p>
 <figure class="fig" id="fig-11-3"><button class="zoom" aria-label="Enlarge figure 11.3"><img src="assets/figures/ch11/fig-11-03-floating-static-failover.svg" alt="Figure 11.3 — Floating static failover on R1: before and after the primary link fails" loading="lazy"></button><figcaption><a class="fignum" href="#fig-11-3">Figure 11.3</a> Floating static failover on R1: before and after the primary link fails</figcaption></figure>
 
 <p>In <a class="figref" href="#fig-11-3">Figure 11.3</a> the blue arrow is the route R1 is actually using. On the left the AD 1 route wins and the AD 200 route exists only in the configuration. On the right the primary interface is down, its route is removed, and the floating route is installed with [200/0].</p>
-<pre><code>R1(config)# ip route 10.20.20.0 255.255.255.0 10.0.12.2          ! primary, AD 1
-R1(config)# ip route 10.20.20.0 255.255.255.0 10.0.21.2 200      ! backup, AD 200
-R2(config)# ip route 0.0.0.0 0.0.0.0 10.0.12.1                   ! primary default
-R2(config)# ip route 0.0.0.0 0.0.0.0 10.0.21.1 200               ! backup default
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip route 10.20.20.0 255.255.255.0 10.0.12.2
+ip route 10.20.20.0 255.255.255.0 10.0.21.2 200
+ip route 0.0.0.0 0.0.0.0 10.0.12.1
+ip route 0.0.0.0 0.0.0.0 10.0.21.1 200" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip route 10.20.20.0 255.255.255.0 10.0.12.2        </span><span class="tm">  ! primary, AD 1</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip route 10.20.20.0 255.255.255.0 10.0.21.2 200    </span><span class="tm">  ! backup, AD 200</span>
+<span class="tp">R2(config)#</span> <span class="tc">ip route 0.0.0.0 0.0.0.0 10.0.12.1                 </span><span class="tm">  ! primary default</span>
+<span class="tp">R2(config)#</span> <span class="tc">ip route 0.0.0.0 0.0.0.0 10.0.21.1 200             </span><span class="tm">  ! backup default</span></code></pre></div>
 <p><strong>Choosing the AD:</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -257,21 +259,29 @@ R2(config)# ip route 0.0.0.0 0.0.0.0 10.0.21.1 200               ! backup defaul
 <p>If the floating route's AD is <strong>equal</strong> to the primary's, both are installed and traffic is load-shared; if it is <strong>lower</strong>, the "backup" becomes the primary. Both are classic exam faults.</p>
 <p><strong>What a floating static can and cannot detect.</strong> It takes over when the preferred route is <strong>removed</strong>: the primary static's exit interface went down (link failure detected locally), or the dynamic protocol withdrew the route. A static route <strong>cannot</strong> detect a failure further away — for example the ISP's router behind a working link — so it keeps sending traffic into a dead path. Detecting remote failures needs tracking (IP SLA) or a routing protocol, which are beyond objective 3.2.</p>
 <p><strong>Viewing a floating route.</strong> It does not appear in <code>show ip route</code> while unused. Check the configuration (<code>show running-config | include ip route</code>) and, after a failure, look for its AD in brackets: <code>S 10.20.20.0/24 [200/0] via 10.0.21.2</code>.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>A floating static route <b>floats above</b> the primary because its AD is set higher (for example 130, above OSPF's 110). It <b>sinks into</b> the routing table only when the primary route disappears.</p>
+
 <h3 id="118-ipv6-static-routes">11.8 IPv6 static routes</h3>
 <p>IPv6 static routes follow the same ideas with three differences: the prefix is written with a slash, IPv6 routing must be enabled, and link-local next hops need an interface.</p>
-<pre><code>ipv6 route &lt;prefix&gt;/&lt;length&gt; { &lt;next-hop&gt; | &lt;exit-interface&gt; | &lt;exit-interface&gt; &lt;next-hop&gt; } [&lt;AD&gt;]
-</code></pre>
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>ipv6 route &lt;prefix&gt;/&lt;length&gt; { &lt;next-hop&gt; | &lt;exit-interface&gt; | &lt;exit-interface&gt; &lt;next-hop&gt; } [&lt;AD&gt;]
+</code></pre></div>
 <p><strong>The four types on R1 and R2 (Lab 11.1 addressing):</strong></p>
-<pre><code>R1(config)# ipv6 unicast-routing                                             ! required for any IPv6 routing
-R1(config)# ipv6 route ::/0 2001:db8:ffff::1                                 ! (a) default to the ISP
-R1(config)# ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f012::2          ! (b) network route, primary
-R1(config)# ipv6 route 2001:db8:acad:20::10/128 2001:db8:acad:f021::2       ! (c) host route
-R1(config)# ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f021::2 200      ! (d) floating static
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ipv6 unicast-routing
+ipv6 route ::/0 2001:db8:ffff::1
+ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f012::2
+ipv6 route 2001:db8:acad:20::10/128 2001:db8:acad:f021::2
+ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f021::2 200
+ipv6 unicast-routing
+ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1
+ipv6 route ::/0 GigabitEthernet0/0/2 FE80::1 200" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ipv6 unicast-routing                                           </span><span class="tm">  ! required for any IPv6 routing</span>
+<span class="tp">R1(config)#</span> <span class="tc">ipv6 route ::/0 2001:db8:ffff::1                               </span><span class="tm">  ! (a) default to the ISP</span>
+<span class="tp">R1(config)#</span> <span class="tc">ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f012::2        </span><span class="tm">  ! (b) network route, primary</span>
+<span class="tp">R1(config)#</span> <span class="tc">ipv6 route 2001:db8:acad:20::10/128 2001:db8:acad:f021::2     </span><span class="tm">  ! (c) host route</span>
+<span class="tp">R1(config)#</span> <span class="tc">ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f021::2 200    </span><span class="tm">  ! (d) floating static</span>
 
-R2(config)# ipv6 unicast-routing
-R2(config)# ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1                     ! default via R1's link-local
-R2(config)# ipv6 route ::/0 GigabitEthernet0/0/2 FE80::1 200                 ! floating default
-</code></pre>
+<span class="tp">R2(config)#</span> <span class="tc">ipv6 unicast-routing</span>
+<span class="tp">R2(config)#</span> <span class="tc">ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1                   </span><span class="tm">  ! default via R1&#x27;s link-local</span>
+<span class="tp">R2(config)#</span> <span class="tc">ipv6 route ::/0 GigabitEthernet0/0/2 FE80::1 200               </span><span class="tm">  ! floating default</span></code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -299,14 +309,13 @@ R2(config)# ipv6 route ::/0 GigabitEthernet0/0/2 FE80::1 200                 ! f
 </tbody>
 </table></div>
 <p>Using the neighbor's link-local address is common because it does not change if global addressing is renumbered; that is why Lab 3.1 set <code>ipv6 address fe80::1 link-local</code> on R1.</p>
-<pre><code>R1# show ipv6 route static
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ipv6 route static" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ipv6 route static</span>
 S   ::/0 [1/0]
      via 2001:DB8:FFFF::1
 S   2001:DB8:ACAD:20::/64 [1/0]
      via 2001:DB8:ACAD:F012::2
 S   2001:DB8:ACAD:20::10/128 [1/0]
-     via 2001:DB8:ACAD:F021::2
-</code></pre>
+     via 2001:DB8:ACAD:F021::2</code></pre></div>
 <p>The floating route is again invisible until the primary route is removed.</p>
 <h3 id="119-verifying-static-routes">11.9 Verifying static routes</h3>
 <div class="table-wrap"><table>
@@ -507,7 +516,7 @@ S   2001:DB8:ACAD:20::10/128 [1/0]
 </tbody>
 </table></div>
 <p><strong>R1</strong></p>
-<pre><code>enable
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>enable
 configure terminal
 hostname R1
 ipv6 unicast-routing
@@ -545,9 +554,9 @@ ip route 10.20.20.0 255.255.255.0 10.0.21.2 200
 ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f021::2 200
 end
 copy running-config startup-config
-</code></pre>
+</code></pre></div>
 <p><strong>R2</strong></p>
-<pre><code>enable
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>enable
 configure terminal
 hostname R2
 ipv6 unicast-routing
@@ -571,12 +580,12 @@ ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1
 ipv6 route ::/0 GigabitEthernet0/0/2 FE80::1 200
 end
 copy running-config startup-config
-</code></pre>
+</code></pre></div>
 <p><strong>ISP</strong> — addresses from the table, plus return routes for the whole company (in real life NAT would hide private addresses; Chapter 21):</p>
-<pre><code>ip route 10.0.0.0 255.0.0.0 198.51.100.2
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>ip route 10.0.0.0 255.0.0.0 198.51.100.2
 ipv6 unicast-routing
 ipv6 route 2001:db8:acad::/48 2001:db8:ffff::2
-</code></pre>
+</code></pre></div>
 <p><strong>Verification and expected results</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -633,7 +642,7 @@ ipv6 route 2001:db8:acad::/48 2001:db8:ffff::2
 </ul>
 <h3 id="1112-lab-112--static-routing-challenge">11.12 Lab 11.2 — Static routing challenge</h3>
 <p>Apply to a copy of Lab 11.1 and diagnose with show commands, pings with <code>source</code>, and traceroute only.</p>
-<pre><code>! R1
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>! R1
 no ip route 10.20.20.0 255.255.255.0 10.0.12.2
 ip route 10.20.20.0 255.255.255.0 10.0.12.3
 ! R2
@@ -643,7 +652,7 @@ ip route 0.0.0.0 0.0.0.0 10.0.21.1
 no ip route 10.0.0.0 255.0.0.0 198.51.100.2
 ! R2
 no ipv6 unicast-routing
-</code></pre>
+</code></pre></div>
 <p><strong>Answer key (hide until done)</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -723,39 +732,8 @@ no ipv6 unicast-routing
 </tbody>
 </table></div>
 <h3 id="1114-practice-questions--chapter-11">11.14 Practice questions — Chapter 11</h3>
-<p><strong>1. (Configuration)</strong> Write the IPv4 default route that sends everything to 203.0.113.1.</p>
-<p><strong>2. (Configuration)</strong> Write a host route to 192.168.5.20 through next hop 10.1.1.2.</p>
-<p><strong>3. (Floating static)</strong> OSPF already provides a route to 10.40.0.0/16. Which AD makes a static route to the same prefix a floating backup?</p>
-<p>A. 1  B. 100  C. 110  D. 115</p>
-<p><strong>4. (Troubleshooting)</strong> <code>ip route 10.30.0.0 255.255.0.0 10.5.5.5</code> is configured, but the route never appears in <code>show ip route</code>. R1 has no route to 10.5.5.0. Why?</p>
-<p><strong>5. (Troubleshooting)</strong> IOS rejects <code>ip route 172.16.10.5 255.255.255.0 10.1.1.2</code> with <code>%Inconsistent address and mask</code>. Why, and what is the correct command?</p>
-<p><strong>6. (Troubleshooting)</strong> From R1, <code>ping 10.20.20.1</code> succeeds, but <code>ping 10.20.20.1 source 10.10.10.1</code> fails. What is the most likely cause?</p>
-<p><strong>7. (Output interpretation)</strong> R1 shows <code>S 10.20.20.0/24 [200/0] via 10.0.21.2</code>. What does this tell you about the network right now?</p>
-<p><strong>8. (Output interpretation)</strong> R2's default route shows two lines: <code>[1/0] via 10.0.12.1</code> and <code>[1/0] via 10.0.21.1</code>. The second link was meant to be a backup. What went wrong?</p>
-<p><strong>9. (IPv6)</strong> Why does IOS reject <code>ipv6 route ::/0 FE80::1</code>, and how do you fix it?</p>
-<p><strong>10. (Longest match)</strong> R1 has <code>S 10.20.20.0/24 via 10.0.12.2</code> and <code>S 10.20.20.1/32 via 10.0.21.2</code>. Which path do packets to 10.20.20.1 take, and to 10.20.20.50?</p>
-<p><strong>11. (Multiple response — choose two)</strong> What are disadvantages of an exit-interface-only static route on an Ethernet link?</p>
-<p>A. It relies on the neighbor answering proxy ARP  B. It requires a recursive lookup  C. The ARP cache fills with remote destinations  D. It cannot be used for a default route  E. It has a higher AD</p>
-<p><strong>12. (Concept)</strong> R1's primary static default points to the ISP's router across a working link. The ISP's upstream connection fails. A floating default via a second ISP does not take over. Why?</p>
-<p><strong>13. (Configuration)</strong> Write the IPv6 default route on R2 that uses R1's link-local address FE80::1 on G0/0/1.</p>
-<p><strong>14. (Evaluate an AI assistant)</strong> A network assistant suggests: <em>"Configure the backup static route with AD 1 so it takes over instantly when the primary fails."</em> Is this good advice?</p>
-<h3 id="1115-answer-key-with-explanations">11.15 Answer key with explanations</h3>
-<ol>
-<li><code>ip route 0.0.0.0 0.0.0.0 203.0.113.1</code>.</li>
-<li><code>ip route 192.168.5.20 255.255.255.255 10.1.1.2</code>.</li>
-<li><strong>D.</strong> Any AD above 110 makes it float behind OSPF. A and B would replace the OSPF route; C equals it.</li>
-<li>The next hop 10.5.5.5 is <strong>not reachable</strong> (no connected or other route to it), so the recursive lookup fails and the route is not installed.</li>
-<li>The "network" 172.16.10.5 has host bits set for a /24 mask. Use the network address: <code>ip route 172.16.10.0 255.255.255.0 10.1.1.2</code>.</li>
-<li>The far end has <strong>no return route</strong> to 10.10.10.0/24. The plain ping used R1's link address, which R2 can reach as a connected network.</li>
-<li>The <strong>floating static is active</strong>: the preferred AD 1 route to 10.20.20.0/24 has been removed (for example the primary link is down), so traffic uses the backup next hop 10.0.21.2.</li>
-<li>The backup was configured <strong>without a higher AD</strong> (both are AD 1), so both are installed and traffic is load-shared. Reconfigure the backup with AD 200.</li>
-<li>A link-local next hop is ambiguous without an interface (every link uses FE80::/10). Use <code>ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1</code>.</li>
-<li>10.20.20.1 matches the <strong>/32</strong> → via 10.0.21.2 (backup link). 10.20.20.50 matches only the <strong>/24</strong> → via 10.0.12.2 (primary).</li>
-<li><strong>A and C.</strong> No recursive lookup is needed (B is false); it can be used for defaults (D); its AD is still 1 (E).</li>
-<li>The primary static route is still installed because its local next hop is still reachable; static routes cannot see failures beyond the next hop. Tracking (IP SLA) or a routing protocol is needed.</li>
-<li><code>ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1</code>.</li>
-<li><strong>No.</strong> With AD 1 the backup equals the primary, so both are used all the time and traffic is split across both links. A backup needs a <strong>higher</strong> AD; it takes over as soon as the primary route is removed.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="11" data-total="14"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>14 questions · 2 auto-graded, 12 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 14</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write the IPv4 default route that sends everything to 203.0.113.1.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ip route 0.0.0.0 0.0.0.0 203.0.113.1</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write a host route to 192.168.5.20 through next hop 10.1.1.2.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ip route 192.168.5.20 255.255.255.255 10.1.1.2</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="3" data-correct="D"><div class="qhead"><span class="qn">3</span><span class="qkind">Floating static</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>OSPF already provides a route to 10.40.0.0/16. Which AD makes a static route to the same prefix a floating backup?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">1</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">100</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">110</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">115</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>D.</strong> Any AD above 110 makes it float behind OSPF. A and B would replace the OSPF route; C equals it.</p></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>ip route 10.30.0.0 255.255.0.0 10.5.5.5</code> is configured, but the route never appears in <code>show ip route</code>. R1 has no route to 10.5.5.0. Why?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The next hop 10.5.5.5 is <strong>not reachable</strong> (no connected or other route to it), so the recursive lookup fails and the route is not installed.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>IOS rejects <code>ip route 172.16.10.5 255.255.255.0 10.1.1.2</code> with <code>%Inconsistent address and mask</code>. Why, and what is the correct command?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The "network" 172.16.10.5 has host bits set for a /24 mask. Use the network address: <code>ip route 172.16.10.0 255.255.255.0 10.1.1.2</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>From R1, <code>ping 10.20.20.1</code> succeeds, but <code>ping 10.20.20.1 source 10.10.10.1</code> fails. What is the most likely cause?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The far end has <strong>no return route</strong> to 10.10.10.0/24. The plain ping used R1's link address, which R2 can reach as a connected network.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>R1 shows <code>S 10.20.20.0/24 [200/0] via 10.0.21.2</code>. What does this tell you about the network right now?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The <strong>floating static is active</strong>: the preferred AD 1 route to 10.20.20.0/24 has been removed (for example the primary link is down), so traffic uses the backup next hop 10.0.21.2.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>R2's default route shows two lines: <code>[1/0] via 10.0.12.1</code> and <code>[1/0] via 10.0.21.1</code>. The second link was meant to be a backup. What went wrong?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The backup was configured <strong>without a higher AD</strong> (both are AD 1), so both are installed and traffic is load-shared. Reconfigure the backup with AD 200.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">IPv6</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Why does IOS reject <code>ipv6 route ::/0 FE80::1</code>, and how do you fix it?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A link-local next hop is ambiguous without an interface (every link uses FE80::/10). Use <code>ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Longest match</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>R1 has <code>S 10.20.20.0/24 via 10.0.12.2</code> and <code>S 10.20.20.1/32 via 10.0.21.2</code>. Which path do packets to 10.20.20.1 take, and to 10.20.20.50?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>10.20.20.1 matches the <strong>/32</strong> → via 10.0.21.2 (backup link). 10.20.20.50 matches only the <strong>/24</strong> → via 10.0.12.2 (primary).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="11" data-correct="AC"><div class="qhead"><span class="qn">11</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>What are disadvantages of an exit-interface-only static route on an Ethernet link?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">It relies on the neighbor answering proxy ARP</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">It requires a recursive lookup</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">The ARP cache fills with remote destinations</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">It cannot be used for a default route</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">It has a higher AD</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> No recursive lookup is needed (B is false); it can be used for defaults (D); its AD is still 1 (E).</p></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>R1's primary static default points to the ISP's router across a working link. The ISP's upstream connection fails. A floating default via a second ISP does not take over. Why?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The primary static route is still installed because its local next hop is still reachable; static routes cannot see failures beyond the next hop. Tracking (IP SLA) or a routing protocol is needed.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write the IPv6 default route on R2 that uses R1's link-local address FE80::1 on G0/0/1.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="14"><div class="qhead"><span class="qn">14</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A network assistant suggests: <em>"Configure the backup static route with AD 1 so it takes over instantly when the primary fails."</em> Is this good advice?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> With AD 1 the backup equals the primary, so both are used all the time and traffic is split across both links. A backup needs a <strong>higher</strong> AD; it takes over as soon as the primary route is removed.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="1116-chapter-11-figure-checklist">11.16 Chapter 11 figure checklist</h3>
 <p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-11-1">Figure 11.1</a> had a label crossing an arrow on first render; it was moved and re-checked.</p>
 <div class="table-wrap"><table>
@@ -812,7 +790,6 @@ no ipv6 unicast-routing
 <a href="#1112-lab-112--static-routing-challenge">11.12 Lab 11.2 — Static routing challenge</a>
 <a href="#1113-chapter-11-summary-notes-exam-revision">11.13 Chapter 11 summary notes (exam revision)</a>
 <a href="#1114-practice-questions--chapter-11">11.14 Practice questions — Chapter 11</a>
-<a href="#1115-answer-key-with-explanations">11.15 Answer key with explanations</a>
 <a href="#1116-chapter-11-figure-checklist">11.16 Chapter 11 figure checklist</a>
 <a href="#1117-chapter-11-progress-record">11.17 Chapter 11 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

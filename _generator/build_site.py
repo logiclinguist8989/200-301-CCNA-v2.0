@@ -18,6 +18,8 @@ from pathlib import Path
 
 import markdown
 
+from extras import add_memory_tricks, callouts, extract_quiz, lab_it, quiz_html, terminals
+
 GUIDE1 = "CCNA 200-301 v2.0 Study Guide.md"
 GUIDE2 = "Part 2 — Chapters 24–28.md"
 REPO_URL = "https://github.com/logiclinguist8989/200-301-CCNA-v2.0"
@@ -99,9 +101,9 @@ def postprocess(h, this_page):
                           lambda m: f'<a class="figref" href="{local(page_of_figure(m.group(1)), this_page)}">{m.group(0)}</a>',
                           parts[i])
     h = "".join(parts)
-    # Callouts for the guide's recurring labels
-    h = re.sub(r"<p><strong>(Exam tip|Security note|Best practice|PT note|Packet Tracer limitation|Common traps?):?</strong>:?",
-               lambda m: f'<p class="callout {slugify(m.group(1))}"><strong>{m.group(1)}</strong>', h)
+    # Callouts for the guide's recurring labels, and terminal-style CLI blocks
+    h = callouts(h)
+    h = terminals(h)
     # Wide tables scroll on small screens
     h = h.replace("<table>", '<div class="table-wrap"><table>').replace("</table>", "</table></div>")
     return h
@@ -138,7 +140,8 @@ def text_sections(h, page, title):
 
 def sidebar(chapters, active):
     rows = [f'<a class="nav-home{" active" if active == "index.html" else ""}" href="index.html">🏠 Home</a>',
-            f'<a class="{"active" if active == "intro.html" else ""}" href="intro.html">📘 Start here · Part 0</a>']
+            f'<a class="{"active" if active == "intro.html" else ""}" href="intro.html">📘 Start here · Part 0</a>',
+            f'<a class="{"active" if active == "practice.html" else ""}" href="practice.html">🎯 Subnetting practice</a>']
     for num, name, weight, chs, col in DOMAINS:
         label = f"Domain {num} · {name}" if num != "R" else name
         rows.append(f'<div class="nav-group {col}"><span>{html.escape(label)}</span>')
@@ -190,7 +193,7 @@ def shell(title, body, chapters, active, toc="", desc="CCNA 200-301 v2.0 study g
 """
 
 
-def chapter_page(n, title, h, chapters):
+def chapter_page(n, title, h, chapters, nq=0):
     num, dname, weight, chs, col = DOMAIN_OF[n]
     prev_l = f'<a class="pn prev" href="chapter-{n - 1:02d}.html"><small>← Chapter {n - 1}</small>{html.escape(chapters[n - 1][0])}</a>' if n > 1 else '<a class="pn prev" href="intro.html"><small>← Start here</small>Part 0</a>'
     next_l = f'<a class="pn next" href="chapter-{n + 1:02d}.html"><small>Chapter {n + 1} →</small>{html.escape(chapters[n + 1][0])}</a>' if n < 28 else '<a class="pn next" href="index.html"><small>Finished →</small>Back to home</a>'
@@ -199,13 +202,13 @@ def chapter_page(n, title, h, chapters):
     head = f"""<div class="chapter-head {col}">
   <div class="eyebrow">{html.escape(label)}</div>
   <h1><span class="num">Chapter {n}</span>{html.escape(title)}</h1>
-  <div class="meta"><span>🖼️ {figs} figure{'s' if figs != 1 else ''}</span><span>⏱️ ~{max(5, round(len(re.sub('<[^>]+>', '', h).split()) / 220))} min read</span>
+  <div class="meta"><span>🖼️ {figs} figure{'s' if figs != 1 else ''}</span><span>⏱️ ~{max(5, round(len(re.sub('<[^>]+>', '', h).split()) / 220))} min read</span>{f'<a class="qmeta" href="#quiz" data-ch="{n}" data-total="{nq}">📝 Self-check: {nq} questions</a>' if nq else ''}
   <label class="mark"><input type="checkbox" data-ch="{n}"> Mark chapter as done</label></div>
 </div>"""
     return head + f'<article class="prose">{h}</article><nav class="prevnext">{prev_l}{next_l}</nav>'
 
 
-def home_page(chapters, figcount):
+def home_page(chapters, figcount, quizcount):
     cards = []
     for num, name, weight, chs, col in DOMAINS:
         label = f"Domain {num}" if num != "R" else "Review"
@@ -223,17 +226,52 @@ def home_page(chapters, figcount):
     <h1>Pass the <span class="hl">CCNA 200-301 v2.0</span> by building one network, chapter by chapter.</h1>
     <p>28 chapters mapped to every v2.0 exam objective, Packet Tracer labs on a single growing campus, practice questions with full answers — and {figcount} hand-built diagrams that show how it really works.</p>
     <div class="cta"><a class="btn primary" href="intro.html">Start studying →</a><a class="btn" href="chapter-01.html">Jump to Chapter 1</a></div>
-    <div class="stats"><div><b>28</b><span>chapters</span></div><div><b>{figcount}</b><span>figures</span></div><div><b>5</b><span>exam domains</span></div><div><b>1</b><span>campus lab</span></div></div>
+    <div class="stats"><div><b>28</b><span>chapters</span></div><div><b>{figcount}</b><span>figures</span></div><div><b>{quizcount}</b><span>quiz questions</span></div><div><b>5</b><span>exam domains</span></div></div>
   </div>
   <figure class="hero-fig"><button class="zoom" aria-label="Enlarge the campus diagram"><img src="assets/figures/ch28/fig-28-01-final-campus-lab.svg" alt="The finished campus lab"></button><figcaption>The campus you will have built by Chapter 28</figcaption></figure>
 </section>
 <section class="progress-card"><div><b>Your progress</b><span class="ptext"></span></div><div class="bar"><i></i></div><p>Tick “Mark chapter as done” at the top of each chapter. Progress is saved in this browser only.</p></section>
+<section class="tools">
+  <a class="tool" href="chapter-01.html#quiz"><span class="ti">📝</span><b>Self-check quizzes</b><span>{quizcount} questions at the end of every chapter. Click an answer, see why, keep your score.</span></a>
+  <a class="tool" href="practice.html"><span class="ti">🎯</span><b>Subnetting practice</b><span>Endless random addresses. Find the network, broadcast and host range — and build a streak.</span></a>
+  <a class="tool" href="chapter-01.html#1a3-the-osi-and-tcpip-models"><span class="ti">🧠</span><b>Exam tips &amp; memory tricks</b><span>Colour-coded boxes for exam tips, common traps, memory tricks and “Lab it” pointers.</span></a>
+  <a class="tool" href="chapter-12.html"><span class="ti">⌨️</span><b>Real CLI feel</b><span>IOS commands shown in a router console, with one-click “Copy commands”.</span></a>
+</section>
 <section class="domains-art"><img src="assets/readme/ccna-domains.svg" alt="The five exam domains and the chapters that cover them"></section>
 {''.join(cards)}
 <section class="about">
   <div><h3>🤖 How this guide was made</h3><p>All content, labs and figures were generated by Claude (Anthropic) from the official Cisco CCNA 200-301 v2.0 exam topics, directed and reviewed by Ayush Hamal. Verify commands against Cisco documentation and run every lab yourself.</p></div>
   <div><h3>📄 License</h3><p>Guide and figures: <a href="{REPO_URL}/blob/main/LICENSE-CONTENT">CC BY-NC-SA 4.0</a> · tools: <a href="{REPO_URL}/blob/main/LICENSE-CODE">MIT</a>. Cisco, CCNA and Packet Tracer are trademarks of Cisco Systems, Inc.; this is an independent resource.</p></div>
   <div><h3>🛠️ Found a mistake?</h3><p>Open an <a href="{REPO_URL}/issues">issue</a> or a pull request on <a href="{REPO_URL}">GitHub</a>.</p></div>
+</section>
+"""
+
+
+def practice_page():
+    return """<div class="chapter-head blue"><div class="eyebrow">Practice tool · Chapter 2 skill</div>
+<h1><span class="num">Practice</span>Subnetting practice</h1>
+<div class="meta"><span>🎯 Unlimited random questions</span><span>⌨️ Press Enter to check, Enter again for the next one</span>
+<a class="qmeta" href="chapter-02.html#26-calculating-network-broadcast-and-host-range">📘 Review the method in 2.6</a></div></div>
+<section class="sn" id="sn">
+  <div class="sn-top">
+    <div class="sn-levels" role="radiogroup" aria-label="Difficulty">
+      <button type="button" data-level="easy" class="on">Easy <small>/24 – /30</small></button>
+      <button type="button" data-level="medium">Medium <small>/16 – /30</small></button>
+      <button type="button" data-level="hard">Hard <small>/8 – /30</small></button>
+    </div>
+    <div class="sn-stats"><div><b class="st-streak">0</b><span>streak 🔥</span></div><div><b class="st-best">0</b><span>best streak</span></div><div><b class="st-total">0</b><span>solved</span></div></div>
+  </div>
+  <div class="sn-q"><small>Find the subnet for this host</small><div class="sn-addr"></div><div class="sn-mask"></div></div>
+  <form class="sn-form" autocomplete="off">
+    <label>Network address<input name="net" inputmode="decimal" placeholder="e.g. 192.168.1.0"></label>
+    <label>Broadcast address<input name="bc" inputmode="decimal" placeholder="e.g. 192.168.1.63"></label>
+    <label>First usable host<input name="first" inputmode="decimal"></label>
+    <label>Last usable host<input name="last" inputmode="decimal"></label>
+    <label>Usable hosts<input name="hosts" inputmode="numeric"></label>
+    <div class="sn-buttons"><button class="btn primary" type="submit">Check</button><button class="btn sn-show" type="button">Show solution</button><button class="btn sn-next" type="button">Next address →</button></div>
+  </form>
+  <div class="sn-result" hidden></div>
+  <p class="callout memory-trick"><strong>Memory trick</strong><b>Magic number = 256 − the interesting octet of the mask.</b> Find the octet where the mask is not 255 or 0, list the multiples of the magic number in that octet, and the host's subnet starts at the multiple just below it. The broadcast is the next subnet minus one.</p>
 </section>
 """
 
@@ -263,18 +301,24 @@ def main(repo, out):
     (out / "intro.html").write_text(shell("Start here", body, chapters, "intro.html", page_toc(toks)), encoding="utf-8")
     search += text_sections(h, "intro.html", "Part 0 · Start here")
     # chapters
-    figcount = 0
+    figcount = quizcount = 0
     for n in range(1, 29):
         title, md = chapters[n]
+        md, quiz = extract_quiz(add_memory_tricks(md, n))
         h, toks = render(md)
         page = f"chapter-{n:02d}.html"
-        h = postprocess(h, page)
+        if quiz:
+            h = h.replace("<div>QUIZ-PLACEHOLDER</div>", '<div id="quiz"></div>' + quiz_html(n, quiz))
+            quizcount += len(quiz["qs"])
+        h = lab_it(postprocess(h, page), n)
         figcount += len(re.findall(r'<figure class="fig"', h))
-        (out / page).write_text(shell(f"Chapter {n} — {title}", chapter_page(n, title, h, chapters), chapters, page,
+        (out / page).write_text(shell(f"Chapter {n} — {title}", chapter_page(n, title, h, chapters, len(quiz["qs"]) if quiz else 0), chapters, page,
                                       page_toc(toks), desc=f"CCNA 200-301 v2.0 — Chapter {n}: {title}"), encoding="utf-8")
         search += text_sections(h, page, f"Chapter {n} · {title}")
-    # home + 404
-    (out / "index.html").write_text(shell("Home", home_page(chapters, figcount), chapters, "index.html"), encoding="utf-8")
+    # home, practice + 404
+    (out / "index.html").write_text(shell("Home", home_page(chapters, figcount, quizcount), chapters, "index.html"), encoding="utf-8")
+    (out / "practice.html").write_text(shell("Subnetting practice", practice_page(), chapters, "practice.html",
+                                             desc="Unlimited IPv4 subnetting practice for the CCNA 200-301 v2.0"), encoding="utf-8")
     (out / "404.html").write_text(shell("Not found", '<div class="chapter-head teal"><h1><span class="num">404</span>Page not found</h1></div>'
                                        '<p class="prose">That page does not exist. <a href="index.html">Go to the home page</a>.</p>', chapters, ""), encoding="utf-8")
     # assets
@@ -283,7 +327,7 @@ def main(repo, out):
     shutil.copytree(here / "static", out / "assets" / "site")
     (out / "assets" / "site" / "search.json").write_text(json.dumps(search, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (out / ".nojekyll").write_text("")
-    print(f"Built {len(chapters) + 3} pages, {figcount} figures, {len(search)} search sections -> {out}")
+    print(f"Built {len(chapters) + 4} pages, {figcount} figures, {quizcount} quiz questions, {len(search)} search sections -> {out}")
 
 
 if __name__ == "__main__":

@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head blue">
   <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
   <h1><span class="num">Chapter 3</span>IPv6 addressing and prefix sizing</h1>
-  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~21 min read</span>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~22 min read</span><a class="qmeta" href="#quiz" data-ch="3" data-total="15">📝 Self-check: 15 questions</a>
   <label class="mark"><input type="checkbox" data-ch="3"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.4 Troubleshoot IPv6 address configuration, assignment, and prefix sizing (unicast and modified EUI-64).</strong> The focus is on unicast addresses; multicast appears only where IPv6 needs it to work (NDP, SLAAC, DAD).</p>
 <p>IPv6 removes IPv4's two hardest skills — odd-sized subnetting and NAT — and replaces them with new ones: reading long hexadecimal addresses, building interface IDs, and understanding how hosts configure themselves.</p>
@@ -75,7 +76,7 @@
 <li>Explain static, SLAAC, stateless DHCPv6 and stateful DHCPv6 assignment, and the NDP messages behind them.</li>
 <li>Configure, verify and troubleshoot IPv6 on Cisco routers and on Windows, macOS and Linux hosts.</li>
 </ol>
-<h3 id="32-introduction-why-ipv6">3.2 Introduction: why IPv6</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#313-packet-tracer-lab-31--dual-stack-ipv6-addressing-and-troubleshooting-intermediate">Packet Tracer Lab 3.1 — Dual-stack IPv6 addressing and troubleshooting (Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="32-introduction-why-ipv6">3.2 Introduction: why IPv6</h3>
 <p>IPv4 has about 4.3 billion addresses, and the regional registries ran out of fresh IPv4 blocks years ago; NAT has stretched the supply. IPv6 uses <strong>128-bit</strong> addresses — about 3.4 × 10^38 — so every LAN gets a /64 with more addresses than the whole IPv4 Internet, and end-to-end addressing returns. Most networks today run <strong>dual stack</strong>: IPv4 and IPv6 side by side on the same interfaces, which is how this guide's labs are built.</p>
 <h3 id="33-address-format-and-the-two-compression-rules">3.3 Address format and the two compression rules</h3>
 <p>An IPv6 address is 128 bits written as <strong>8 hextets</strong> (groups of 4 hexadecimal digits, 16 bits each) separated by colons. Hex digits are 0–9 and a–f; letters are case-insensitive, but lowercase is the recommended way to write them (RFC 5952).</p>
@@ -329,6 +330,8 @@
 </tbody>
 </table></div>
 <p>Example: for 2001:db8:acad:10::1 the solicited-node address is ff02::1:ff00:1.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>Read the first hex digits: <b>2 or 3</b> → global unicast (2000::/3) · <b>FC / FD</b> → unique local · <b>FE80</b> → link-local · <b>FF</b> → multicast.</p>
+
 <h3 id="36-modified-eui-64-building-an-interface-id-from-a-mac-address">3.6 Modified EUI-64: building an interface ID from a MAC address</h3>
 <p>A 48-bit MAC address is too short for a 64-bit interface ID. <strong>Modified EUI-64</strong> stretches it in three steps (<a class="figref" href="#fig-3-2">Figure 3.2</a>). Worked example: PC1's MAC <code>0050.7966.6801</code>, subnet 2001:db8:acad:10::/64.</p>
 <ol>
@@ -343,6 +346,8 @@
 <p><strong>Flipping, not setting.</strong> If the 7th bit is already 1 it becomes 0. MAC <code>0200.5e11.2233</code>: first byte <code>02</code> = <code>00000010</code> → <code>00000000</code> = <code>00</code>, giving interface ID <code>0000:5eff:fe11:2233</code>. On fe80::/64 that gives <code>fe80::5eff:fe11:2233</code>; on 2001:db8:acad:10::/64 it gives <code>2001:db8:acad:10:0:5eff:fe11:2233</code>.</p>
 <p><strong>Quick hex trick for step 3:</strong> the 7th bit is worth 2 in the first byte, so add 2 if that bit is 0 (00→02, 0c→0e, a8→aa) or subtract 2 if it is 1 (02→00, 0e→0c). Only the second hex digit of the first byte ever changes.</p>
 <p><strong>Who uses EUI-64?</strong> Cisco IOS uses it automatically for link-local addresses, and for global addresses when you add the <code>eui-64</code> keyword. Modern Windows, macOS and Linux hosts usually generate <strong>random or stable-privacy</strong> interface IDs instead, so you cannot predict a PC's address from its MAC. The exam still expects you to calculate EUI-64 by hand.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>EUI-64 in three moves: <b>Split, Stuff, Flip</b> — split the MAC in half, stuff <code>FFFE</code> in the middle, flip the 7th bit of the first byte.</p>
+
 <h3 id="37-neighbor-discovery-protocol-ndp-the-engine-behind-ipv6">3.7 Neighbor Discovery Protocol (NDP): the engine behind IPv6</h3>
 <p>IPv6 has no ARP and no broadcast. <strong>NDP</strong>, carried in ICMPv6, does those jobs and more with five messages:</p>
 <div class="table-wrap"><table>
@@ -437,7 +442,7 @@
 </tr>
 </tbody>
 </table></div>
-<p class="callout exam-tip"><strong>Exam tip</strong> the default gateway in IPv6 always comes from the <strong>Router Advertisement</strong>, never from DHCPv6. If routers stop sending RAs, hosts lose their gateway even with a working DHCPv6 server. Hosts normally use the router's <strong>link-local</strong> address (for example <code>fe80::1</code>) as their gateway.</p>
+<p class="callout exam-tip"><strong>Exam tip</strong>The default gateway in IPv6 always comes from the <strong>Router Advertisement</strong>, never from DHCPv6. If routers stop sending RAs, hosts lose their gateway even with a working DHCPv6 server. Hosts normally use the router's <strong>link-local</strong> address (for example <code>fe80::1</code>) as their gateway.</p>
 <h3 id="39-slaac-step-by-step">3.9 SLAAC step by step</h3>
 <p><a class="figref" href="#fig-3-3">Figure 3.3</a> shows PC1 joining the Staff VLAN with SLAAC.</p>
 <ol>
@@ -453,16 +458,23 @@
 <p>Read <a class="figref" href="#fig-3-3">Figure 3.3</a> top to bottom; time runs downward and arrows show which device sends each NDP message. Steps 1 and 4 happen inside PC1 without any message to R1. The address built in step 4 is the EUI-64 result from <a class="figref" href="#fig-3-2">Figure 3.2</a>; a Windows PC would use a random interface ID instead.</p>
 <p><strong>Why SLAAC needs /64:</strong> the host must add a 64-bit interface ID. If the RA advertises a /80 or /96 prefix, SLAAC hosts do not configure a global address.</p>
 <h3 id="310-configuring-ipv6-on-cisco-ios">3.10 Configuring IPv6 on Cisco IOS</h3>
-<pre><code>R1(config)# ipv6 unicast-routing                          ! enables IPv6 routing AND sending RAs
-R1(config)# interface gigabitethernet0/0/0
-R1(config-if)# ipv6 address 2001:db8:acad:10::1/64        ! static global unicast
-R1(config-if)# ipv6 address fe80::1 link-local             ! easy-to-read gateway address
-R1(config-if)# no shutdown
-R1(config-if)# exit
-R1(config)# interface gigabitethernet0/0/1
-R1(config-if)# ipv6 address 2001:db8:acad:30::/64 eui-64  ! interface ID built from the MAC
-R1(config-if)# no shutdown
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ipv6 unicast-routing
+interface gigabitethernet0/0/0
+ipv6 address 2001:db8:acad:10::1/64
+ipv6 address fe80::1 link-local
+no shutdown
+exit
+interface gigabitethernet0/0/1
+ipv6 address 2001:db8:acad:30::/64 eui-64
+no shutdown" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ipv6 unicast-routing                        </span><span class="tm">  ! enables IPv6 routing AND sending RAs</span>
+<span class="tp">R1(config)#</span> <span class="tc">interface gigabitethernet0/0/0</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ipv6 address 2001:db8:acad:10::1/64      </span><span class="tm">  ! static global unicast</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ipv6 address fe80::1 link-local           </span><span class="tm">  ! easy-to-read gateway address</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">no shutdown</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">exit</span>
+<span class="tp">R1(config)#</span> <span class="tc">interface gigabitethernet0/0/1</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ipv6 address 2001:db8:acad:30::/64 eui-64</span><span class="tm">  ! interface ID built from the MAC</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">no shutdown</span></code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -519,7 +531,7 @@ R1(config-if)# no shutdown
 </table></div>
 <p>An interface may hold several global IPv6 addresses at once; adding a second <code>ipv6 address</code> does <strong>not</strong> replace the first, unlike IPv4.</p>
 <h3 id="311-verifying-ipv6">3.11 Verifying IPv6</h3>
-<pre><code>R1# show ipv6 interface brief
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ipv6 interface brief" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ipv6 interface brief</span>
 GigabitEthernet0/0/0   [up/up]
     FE80::1
     2001:DB8:ACAD:10::1
@@ -527,10 +539,9 @@ GigabitEthernet0/0/1   [up/up]
     FE80::2D0:97FF:FE12:3401
     2001:DB8:ACAD:30:2D0:97FF:FE12:3401
 GigabitEthernet0/0/2   [administratively down/down]
-    unassigned
-</code></pre>
+    unassigned</code></pre></div>
 <p>Each interface lists its link-local address first, then its global addresses. G0/0/1 shows EUI-64 values for both. IOS prints hex in capitals; both cases are the same address.</p>
-<pre><code>R1# show ipv6 interface gigabitethernet0/0/0
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ipv6 interface gigabitethernet0/0/0" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ipv6 interface gigabitethernet0/0/0</span>
 GigabitEthernet0/0/0 is up, line protocol is up
   IPv6 is enabled, link-local address is FE80::1
   Global unicast address(es):
@@ -540,8 +551,7 @@ GigabitEthernet0/0/0 is up, line protocol is up
     FF02::2                     &lt;- present only because ipv6 unicast-routing is on
     FF02::1:FF00:1              &lt;- solicited-node for ::1 (and for fe80::1)
   ...
-  Hosts use stateless autoconfig for addresses.
-</code></pre>
+  Hosts use stateless autoconfig for addresses.</code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -745,7 +755,7 @@ GigabitEthernet0/0/0 is up, line protocol is up
 <li>Verify and test, then work through the faults one at a time.</li>
 </ol>
 <p><strong>R1 additions</strong></p>
-<pre><code>enable
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>enable
 configure terminal
 ipv6 unicast-routing
 interface gigabitethernet0/0/0
@@ -759,7 +769,7 @@ interface gigabitethernet0/0/2
  ipv6 address fe80::1 link-local
 end
 copy running-config startup-config
-</code></pre>
+</code></pre></div>
 <p><strong>Verification and expected results</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -809,7 +819,7 @@ copy running-config startup-config
 <li><strong>Gateway on the wrong subnet.</strong> Set Printer1's IPv6 gateway to 2001:db8:acad:10::1. <em>Expected:</em> the printer reaches its own subnet but nothing remote, because that address is not on the printer's link. Restore fe80::1.</li>
 <li><strong>Duplicate address.</strong> Set PC-Wireless to Static 2001:db8:acad:30::1/64 (R1's address). <em>Expected:</em> DAD detects the conflict; R1 may log <code>%IPV6_ND-4-DUPLICATE</code> and the PC's address is unusable. Packet Tracer's DAD support varies, so confirm with failed pings and <code>show ipv6 neighbors</code>. Return the PC to Automatic.</li>
 </ol>
-<p><strong>Common mistakes:</strong> forgetting <code>ipv6 unicast-routing</code>; typing the IPv4 mask style; using <code>/64</code> for the link-local command (it takes no prefix length); leaving the old address in place when changing prefix length (IPv6 interfaces keep multiple addresses).</p>
+<p class="callout trap"><strong>Common mistakes</strong>Forgetting <code>ipv6 unicast-routing</code>; typing the IPv4 mask style; using <code>/64</code> for the link-local command (it takes no prefix length); leaving the old address in place when changing prefix length (IPv6 interfaces keep multiple addresses).</p>
 <p><strong>Questions to answer after the lab</strong></p>
 <ol>
 <li>Why can all three R1 interfaces use the same link-local address fe80::1?</li>
@@ -872,52 +882,14 @@ copy running-config startup-config
 </tbody>
 </table></div>
 <h3 id="315-practice-questions--chapter-3">3.15 Practice questions — Chapter 3</h3>
-<p><strong>1. (Compression)</strong> Write 2001:0db8:0000:0000:0000:ff00:0042:8329 in its shortest valid form.</p>
-<p><strong>2. (Expansion)</strong> Write 2001:db8:a::12 in full.</p>
-<p><strong>3. (EUI-64)</strong> A host's MAC is 00-1A-2B-3C-4D-5E and the prefix is 2001:db8:acad:1::/64. What is its EUI-64 global address?</p>
-<p><strong>4. (EUI-64, multiple choice)</strong> A router interface with MAC 0200.5e11.2233 builds its link-local address with EUI-64. Which address results?</p>
-<p>A. fe80::200:5eff:fe11:2233  B. fe80::5eff:fe11:2233  C. fe80::5eff:feff:2233  D. fe80::200:5e11:2233</p>
-<p><strong>5. (Prefix sizing)</strong> How many /64 subnets fit in a /48? In a /56?</p>
-<p><strong>6. (Address types)</strong> What type of address is fd12:3456:789a:1::10?</p>
-<p>A. Global unicast  B. Link-local  C. Unique local  D. Multicast</p>
-<p><strong>7. (Troubleshooting)</strong> All PCs in a new IPv6 VLAN show only fe80:: addresses and no default gateway. R1's interface has 2001:db8:acad:20::1/64 and is up/up. What is the most likely cause?</p>
-<p>A. The PCs need a DHCPv4 server  B. <code>ipv6 unicast-routing</code> is missing on R1  C. The link-local address is wrong  D. The switch port is in the wrong duplex</p>
-<p><strong>8. (Multiple response — choose two)</strong> Which are valid IPv6 addresses?</p>
-<p>A. 2001:db8::1::5  B. 2001:db8:0:0:1::5  C. fe80::g1  D. ::ffff:1  E. 2001:db8:acad:12345::1</p>
-<p><strong>9. (Troubleshooting)</strong> An administrator configures <code>ipv6 address 2001:db8:acad:50::1/80</code> on a LAN interface. Routers send RAs, but hosts never build a global address. Why?</p>
-<p><strong>10. (Output interpretation)</strong></p>
-<pre><code>R2# show ipv6 interface brief
+<div id="quiz"></div><section class="quiz" data-ch="3" data-total="15"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>15 questions · 5 auto-graded, 10 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 15</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Compression</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write 2001:0db8:0000:0000:0000:ff00:0042:8329 in its shortest valid form.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>2001:db8::ff00:42:8329.</strong> Leading zeros dropped (0db8 → db8, 0042 → 42); the three zero hextets become <code>::</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Expansion</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write 2001:db8:a::12 in full.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>2001:0db8:000a:0000:0000:0000:0000:0012.</strong> Four hextets are shown, so <code>::</code> stands for four zero hextets.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">EUI-64</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A host's MAC is 00-1A-2B-3C-4D-5E and the prefix is 2001:db8:acad:1::/64. What is its EUI-64 global address?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>001A2B | 3C4D5E → insert FFFE → 001a:2bff:fe3c:4d5e → flip the 7th bit of 00 → 02 → interface ID 021a:2bff:fe3c:4d5e → <strong>2001:db8:acad:1:21a:2bff:fe3c:4d5e</strong>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="4" data-correct="B"><div class="qhead"><span class="qn">4</span><span class="qkind">EUI-64, multiple choice</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>A router interface with MAC 0200.5e11.2233 builds its link-local address with EUI-64. Which address results?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">fe80::200:5eff:fe11:2233</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">fe80::5eff:fe11:2233</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">fe80::5eff:feff:2233</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">fe80::200:5e11:2233</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> 02 = 00000010; flipping the 7th bit gives 00000000 = 00, so the interface ID is 0000:5eff:fe11:2233 → fe80::5eff:fe11:2233. A forgot to flip; C inserted FFFE in the wrong place; D skipped FFFE.</p></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Prefix sizing</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>How many /64 subnets fit in a /48? In a /56?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A /48 has 16 subnet bits before /64: 2^16 = <strong>65,536</strong>. A /56 has 8: 2^8 = <strong>256</strong>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="6" data-correct="C"><div class="qhead"><span class="qn">6</span><span class="qkind">Address types</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>What type of address is fd12:3456:789a:1::10?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Global unicast</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Link-local</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Unique local</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Multicast</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>C.</strong> fd00::/8 is the used half of the unique local range fc00::/7.</p></div></div><div class="q" data-q="7" data-correct="B"><div class="qhead"><span class="qn">7</span><span class="qkind">Troubleshooting</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>All PCs in a new IPv6 VLAN show only fe80:: addresses and no default gateway. R1's interface has 2001:db8:acad:20::1/64 and is up/up. What is the most likely cause?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">The PCs need a DHCPv4 server</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot"><code>ipv6 unicast-routing</code> is missing on R1</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">The link-local address is wrong</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">The switch port is in the wrong duplex</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> Without <code>ipv6 unicast-routing</code> R1 sends no RAs, so SLAAC hosts get neither a prefix nor a gateway; they keep only their link-local addresses. DHCPv4 (A) is unrelated; a duplex problem (D) would not produce this pattern.</p></div></div><div class="q" data-q="8" data-correct="BD"><div class="qhead"><span class="qn">8</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which are valid IPv6 addresses?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">2001:db8::1::5</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">2001:db8:0:0:1::5</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">fe80::g1</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">::ffff:1</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">2001:db8:acad:12345::1</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B and D.</strong> B expands to 2001:db8:0:0:1:0:0:5 (eight hextets). D is valid: ::ffff:1 is six zero hextets followed by ffff and 1. A uses <code>::</code> twice; C contains <code>g</code>; E has five digits in a hextet.</p></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>An administrator configures <code>ipv6 address 2001:db8:acad:50::1/80</code> on a LAN interface. Routers send RAs, but hosts never build a global address. Why?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>SLAAC requires a <strong>/64</strong> prefix so the host can add a 64-bit interface ID. A /80 leaves only 48 bits, so hosts ignore the prefix for autoconfiguration. Use /64.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R2</span><button class="copy" type="button" data-copy="show ipv6 interface brief" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R2#</span> <span class="tc">show ipv6 interface brief</span>
 GigabitEthernet0/0/0   [up/up]
     FE80::1
     2001:DB8:ACAD:60::1
 GigabitEthernet0/0/1   [up/up]
-    FE80::2D0:97FF:FE44:5501
-</code></pre>
-<p>Hosts on G0/0/1 have no global addresses. What is missing?</p>
-<p><strong>11. (Recall)</strong> Which multicast group does a Cisco router join only after <code>ipv6 unicast-routing</code> is entered?</p>
-<p>A. ff02::1  B. ff02::2  C. ff02::5  D. ff02::1:ff00:1</p>
-<p><strong>12. (Calculation)</strong> A host tests the tentative address 2001:db8:acad:10::abcd:1234 with DAD. To which solicited-node multicast address does it send the NS?</p>
-<p><strong>13. (Concept)</strong> A router sends RAs with the M flag set to 1. Where do hosts get (a) their address and (b) their default gateway?</p>
-<p><strong>14. (Host output)</strong> Windows shows <code>Default Gateway . . . : fe80::1%12</code>. What does <code>%12</code> mean?</p>
-<p><strong>15. (Evaluate an AI assistant)</strong> A network assistant recommends: <em>"Use 2001:db8:acad:10::/120 on the Staff VLAN instead of /64 to avoid wasting addresses."</em> Is this good advice?</p>
-<h3 id="316-answer-key-with-explanations">3.16 Answer key with explanations</h3>
-<ol>
-<li><strong>2001:db8::ff00:42:8329.</strong> Leading zeros dropped (0db8 → db8, 0042 → 42); the three zero hextets become <code>::</code>.</li>
-<li><strong>2001:0db8:000a:0000:0000:0000:0000:0012.</strong> Four hextets are shown, so <code>::</code> stands for four zero hextets.</li>
-<li>001A2B | 3C4D5E → insert FFFE → 001a:2bff:fe3c:4d5e → flip the 7th bit of 00 → 02 → interface ID 021a:2bff:fe3c:4d5e → <strong>2001:db8:acad:1:21a:2bff:fe3c:4d5e</strong>.</li>
-<li><strong>B.</strong> 02 = 00000010; flipping the 7th bit gives 00000000 = 00, so the interface ID is 0000:5eff:fe11:2233 → fe80::5eff:fe11:2233. A forgot to flip; C inserted FFFE in the wrong place; D skipped FFFE.</li>
-<li>A /48 has 16 subnet bits before /64: 2^16 = <strong>65,536</strong>. A /56 has 8: 2^8 = <strong>256</strong>.</li>
-<li><strong>C.</strong> fd00::/8 is the used half of the unique local range fc00::/7.</li>
-<li><strong>B.</strong> Without <code>ipv6 unicast-routing</code> R1 sends no RAs, so SLAAC hosts get neither a prefix nor a gateway; they keep only their link-local addresses. DHCPv4 (A) is unrelated; a duplex problem (D) would not produce this pattern.</li>
-<li><strong>B and D.</strong> B expands to 2001:db8:0:0:1:0:0:5 (eight hextets). D is valid: ::ffff:1 is six zero hextets followed by ffff and 1. A uses <code>::</code> twice; C contains <code>g</code>; E has five digits in a hextet.</li>
-<li>SLAAC requires a <strong>/64</strong> prefix so the host can add a 64-bit interface ID. A /80 leaves only 48 bits, so hosts ignore the prefix for autoconfiguration. Use /64.</li>
-<li>G0/0/1 has only an automatic (EUI-64) link-local address — it was configured with <code>ipv6 enable</code> or nothing more. It needs a <strong>global address</strong>, for example <code>ipv6 address 2001:db8:acad:61::1/64</code>, so its RAs carry a prefix.</li>
-<li><strong>B.</strong> ff02::2 is all-routers; IOS joins it when it acts as an IPv6 router. ff02::1 is joined by every IPv6 interface; ff02::5 is OSPFv3; D is a solicited-node group.</li>
-<li>Take the last 24 bits (<strong>cd:1234</strong>) and append them to ff02::1:ff00:0/104 → <strong>ff02::1:ffcd:1234</strong>.</li>
-<li>(a) From a <strong>stateful DHCPv6 server</strong>. (b) From the <strong>Router Advertisement</strong> — DHCPv6 never supplies a gateway.</li>
-<li>It is the <strong>zone (scope) index</strong>: the interface number the link-local address belongs to. Every link uses fe80::/64, so the host must say which interface to use.</li>
-<li><strong>No.</strong> LANs should use /64: SLAAC and EUI-64 need a 64-bit interface ID, and IPv6 has no address shortage to save. Longer prefixes are appropriate only on point-to-point links (/127) or loopbacks (/128).</li>
-</ol>
+    FE80::2D0:97FF:FE44:5501</code></pre></div>
+<p>Hosts on G0/0/1 have no global addresses. What is missing?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>G0/0/1 has only an automatic (EUI-64) link-local address — it was configured with <code>ipv6 enable</code> or nothing more. It needs a <strong>global address</strong>, for example <code>ipv6 address 2001:db8:acad:61::1/64</code>, so its RAs carry a prefix.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="11" data-correct="B"><div class="qhead"><span class="qn">11</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which multicast group does a Cisco router join only after <code>ipv6 unicast-routing</code> is entered?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">ff02::1</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">ff02::2</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">ff02::5</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">ff02::1:ff00:1</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> ff02::2 is all-routers; IOS joins it when it acts as an IPv6 router. ff02::1 is joined by every IPv6 interface; ff02::5 is OSPFv3; D is a solicited-node group.</p></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Calculation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A host tests the tentative address 2001:db8:acad:10::abcd:1234 with DAD. To which solicited-node multicast address does it send the NS?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Take the last 24 bits (<strong>cd:1234</strong>) and append them to ff02::1:ff00:0/104 → <strong>ff02::1:ffcd:1234</strong>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A router sends RAs with the M flag set to 1. Where do hosts get (a) their address and (b) their default gateway?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>(a) From a <strong>stateful DHCPv6 server</strong>. (b) From the <strong>Router Advertisement</strong> — DHCPv6 never supplies a gateway.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="14"><div class="qhead"><span class="qn">14</span><span class="qkind">Host output</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Windows shows <code>Default Gateway . . . : fe80::1%12</code>. What does <code>%12</code> mean?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>It is the <strong>zone (scope) index</strong>: the interface number the link-local address belongs to. Every link uses fe80::/64, so the host must say which interface to use.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="15"><div class="qhead"><span class="qn">15</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A network assistant recommends: <em>"Use 2001:db8:acad:10::/120 on the Staff VLAN instead of /64 to avoid wasting addresses."</em> Is this good advice?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> LANs should use /64: SLAAC and EUI-64 need a 64-bit interface ID, and IPv6 has no address shortage to save. Longer prefixes are appropriate only on point-to-point links (/127) or loopbacks (/128).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="317-chapter-3-figure-checklist">3.17 Chapter 3 figure checklist</h3>
 <p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering.</p>
 <div class="table-wrap"><table>
@@ -976,7 +948,6 @@ GigabitEthernet0/0/1   [up/up]
 <a href="#313-packet-tracer-lab-31--dual-stack-ipv6-addressing-and-troubleshooting-intermediate">3.13 Packet Tracer Lab 3.1 — Dual-stack IPv6 addressing and troubleshooting (Intermediate)</a>
 <a href="#314-chapter-3-summary-notes-exam-revision">3.14 Chapter 3 summary notes (exam revision)</a>
 <a href="#315-practice-questions--chapter-3">3.15 Practice questions — Chapter 3</a>
-<a href="#316-answer-key-with-explanations">3.16 Answer key with explanations</a>
 <a href="#317-chapter-3-figure-checklist">3.17 Chapter 3 figure checklist</a>
 <a href="#318-chapter-3-progress-record">3.18 Chapter 3 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head purple">
   <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
   <h1><span class="num">Chapter 19</span>Managing configurations and images with SCP and SFTP</h1>
-  <div class="meta"><span>🖼️ 2 figures</span><span>⏱️ ~13 min read</span>
+  <div class="meta"><span>🖼️ 2 figures</span><span>⏱️ ~13 min read</span><a class="qmeta" href="#quiz" data-ch="19" data-total="12">📝 Self-check: 12 questions</a>
   <label class="mark"><input type="checkbox" data-ch="19"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.2 Manage device configuration and software files using secure file transfer operations with SFTP/SCP.</strong> You back up and restore configurations, copy software images, check them and boot from them — over encrypted, authenticated transfers.</p>
 <h3 id="191-learning-objectives">19.1 Learning objectives</h3>
@@ -74,7 +75,7 @@
 <li>Upgrade a software image: check space, transfer, verify the hash, set the boot variable, reload.</li>
 <li>Troubleshoot failed transfers.</li>
 </ol>
-<h3 id="192-files-on-an-ios-device">19.2 Files on an IOS device</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#198-lab-191--file-management-from-packet-tracer-to-real-scp-and-sftp-intermediate">Lab 19.1 — File management, from Packet Tracer to real SCP and SFTP (Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="192-files-on-an-ios-device">19.2 Files on an IOS device</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -106,11 +107,12 @@
 </tr>
 </tbody>
 </table></div>
-<pre><code>DSW1# show file systems           ! every file system, size and free space
-DSW1# dir flash:                  ! files, sizes, and bytes free at the bottom
-DSW1# show version | include System image
-System image file is &quot;flash:packages.conf&quot;
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="show file systems
+dir flash:
+show version | include System image" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1#</span> <span class="tc">show file systems         </span><span class="tm">  ! every file system, size and free space</span>
+<span class="tp">DSW1#</span> <span class="tc">dir flash:                </span><span class="tm">  ! files, sizes, and bytes free at the bottom</span>
+<span class="tp">DSW1#</span> <span class="tc">show version | include System image</span>
+System image file is &quot;flash:packages.conf&quot;</code></pre></div>
 <p>The <strong>copy</strong> command always reads <strong>source, then destination</strong>: <code>copy &lt;from&gt; &lt;to&gt;</code>. <code>copy running-config startup-config</code> saves; <code>copy startup-config running-config</code> <strong>merges</strong> the saved file into the running configuration (it does not erase lines that exist only in the running configuration).</p>
 <p>On Catalyst 9000 and other IOS XE platforms the switch usually runs in <strong>install mode</strong>: it boots <code>packages.conf</code>, which points to package files expanded from the <code>.bin</code> image. Older devices run in <strong>bundle mode</strong> and boot the <code>.bin</code> directly. Both appear in <code>show version</code>.</p>
 <h3 id="193-why-not-tftp-or-ftp">19.3 Why not TFTP or FTP?</h3>
@@ -156,6 +158,8 @@ System image file is &quot;flash:packages.conf&quot;
 </tbody>
 </table></div>
 <p>SCP and SFTP both run inside SSH, so they reuse everything from Chapter 18: RSA keys, SSH version 2, local or AAA users.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong><b>T</b>FTP is <b>T</b>rivial: no login, no encryption (UDP 69). For anything that matters, use SCP or SFTP over SSH (TCP 22).</p>
+
 <h3 id="194-scp-and-sftp-who-starts-the-transfer">19.4 SCP and SFTP: who starts the transfer?</h3>
 <p>There are two directions to think about (<a class="figref" href="#fig-19-1">Figure 19.1</a>):</p>
 <ul>
@@ -166,30 +170,35 @@ System image file is &quot;flash:packages.conf&quot;
 
 <p><a class="figref" href="#fig-19-1">Figure 19.1</a> compares the two directions. The arrow shows which side opens the SSH connection; the grey panels hold the commands typed on that side.</p>
 <p><strong>IOS as an SCP server.</strong> SCP needs SSH (Chapter 18), and IOS must be able to check the user's privilege, so AAA <strong>exec authorization</strong> is required:</p>
-<pre><code>DSW1(config)# username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026
-DSW1(config)# aaa new-model
-DSW1(config)# aaa authentication login default local          ! or group &lt;AAA servers&gt; local
-DSW1(config)# aaa authorization exec default local            ! required for SCP
-DSW1(config)# ip scp server enable
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026
+aaa new-model
+aaa authentication login default local
+aaa authorization exec default local
+ip scp server enable" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa new-model</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa authentication login default local        </span><span class="tm">  ! or group &lt;AAA servers&gt; local</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa authorization exec default local          </span><span class="tm">  ! required for SCP</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">ip scp server enable</span></code></pre></div>
 <p>From a Linux, macOS or Windows 10/11 PC with OpenSSH:</p>
-<pre><code>$ scp -O cat9k_iosxe.17.12.04.SPA.bin netadmin@10.10.99.2:flash:/cat9k_iosxe.17.12.04.SPA.bin   # push an image
-$ scp -O netadmin@10.10.99.2:flash:/DSW1-2026-10-15.cfg .                                        # pull a saved file
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="scp -O cat9k_iosxe.17.12.04.SPA.bin netadmin@10.10.99.2:flash:/cat9k_iosxe.17.12.04.SPA.bin   # push an image
+scp -O netadmin@10.10.99.2:flash:/DSW1-2026-10-15.cfg .                                        # pull a saved file" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">$</span> <span class="tc">scp -O cat9k_iosxe.17.12.04.SPA.bin netadmin@10.10.99.2:flash:/cat9k_iosxe.17.12.04.SPA.bin   # push an image</span>
+<span class="tp">$</span> <span class="tc">scp -O netadmin@10.10.99.2:flash:/DSW1-2026-10-15.cfg .                                        # pull a saved file</span></code></pre></div>
 <p>The <code>-O</code> option matters: OpenSSH 9.0 and later use the SFTP protocol inside <code>scp</code> by default, which the IOS XE SCP server does not accept; <code>-O</code> selects the original SCP protocol. To pull the running configuration, save it to flash first (<code>copy running-config flash:DSW1-2026-10-15.cfg</code>).</p>
 <p><strong>IOS as an SCP or SFTP client.</strong> Credentials can go in the URL or be prompted for. Set the source address the server sees with <code>ip ssh source-interface</code>:</p>
-<pre><code>DSW1(config)# ip ssh source-interface Vlan99
-DSW1# copy running-config scp://netadmin@10.10.99.30/backups/DSW1-2026-10-15.cfg
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="ip ssh source-interface Vlan99
+copy running-config scp://netadmin@10.10.99.30/backups/DSW1-2026-10-15.cfg
+copy running-config sftp://netadmin@10.10.99.30//backups/DSW1-2026-10-15.cfg
+copy scp://netadmin@10.10.99.30/images/cat9k_iosxe.17.12.04.SPA.bin flash:" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">ip ssh source-interface Vlan99</span>
+<span class="tp">DSW1#</span> <span class="tc">copy running-config scp://netadmin@10.10.99.30/backups/DSW1-2026-10-15.cfg</span>
 Address or name of remote host [10.10.99.30]?
 Destination username [netadmin]?
 Destination filename [backups/DSW1-2026-10-15.cfg]?
 Password:
-!
+<span class="tm">!</span>
 5124 bytes copied in 1.204 secs (4256 bytes/sec)
 
-DSW1# copy running-config sftp://netadmin@10.10.99.30//backups/DSW1-2026-10-15.cfg
-DSW1# copy scp://netadmin@10.10.99.30/images/cat9k_iosxe.17.12.04.SPA.bin flash:
-</code></pre>
+<span class="tp">DSW1#</span> <span class="tc">copy running-config sftp://netadmin@10.10.99.30//backups/DSW1-2026-10-15.cfg</span>
+<span class="tp">DSW1#</span> <span class="tc">copy scp://netadmin@10.10.99.30/images/cat9k_iosxe.17.12.04.SPA.bin flash:</span></code></pre></div>
 <p>Note the URL forms: <code>scp://user@host/path</code>, and <code>sftp://user@host//path</code> (the double slash marks an absolute path in Cisco's SFTP examples). Exact prompts vary by release. A password typed into a URL (<code>user:password@host</code>) is visible on screen and in history — let IOS prompt for it instead.</p>
 <p>Sources: <a href="https://www.cisco.com/en/US/docs/ios-xml/ios/sec_usr_ssh/configuration/15-1s/sec-secure-copy.html">Cisco IOS Secure Copy configuration</a>; <a href="https://www.cisco.com/c/en/us/td/docs/Sanity_test/INC9625337/b_1710_sec_9300_cg1/m9_1710_sec_sftp_cg.html">Configuring SSH File Transfer Protocol, Catalyst 9300, IOS XE 17.10</a>.</p>
 <h3 id="195-backing-up-and-restoring-configurations">19.5 Backing up and restoring configurations</h3>
@@ -340,17 +349,21 @@ DSW1# copy scp://netadmin@10.10.99.30/images/cat9k_iosxe.17.12.04.SPA.bin flash:
 <li>Add a Server-PT <strong>FILES</strong> at 10.10.99.30/24, gateway 10.10.99.1, cabled to <strong>SW2 Fa0/5</strong> (access VLAN 99). On it, check that <strong>TFTP</strong> and <strong>FTP</strong> are on (Services), and add an FTP user <code>netadmin</code> / <code>Ftp-2026</code> with write permission.</li>
 <li>On DSW1, back up by TFTP and by FTP:</li>
 </ol>
-<pre><code>DSW1# copy running-config tftp:
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="copy running-config tftp:
+configure terminal
+ip ftp username netadmin
+ip ftp password Ftp-2026
+end
+copy running-config ftp:" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1#</span> <span class="tc">copy running-config tftp:</span>
 Address or name of remote host []? 10.10.99.30
 Destination filename [DSW1-confg]? DSW1-2026-10-15-tftp.cfg
-DSW1# configure terminal
-DSW1(config)# ip ftp username netadmin
-DSW1(config)# ip ftp password Ftp-2026
-DSW1(config)# end
-DSW1# copy running-config ftp:
+<span class="tp">DSW1#</span> <span class="tc">configure terminal</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">ip ftp username netadmin</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">ip ftp password Ftp-2026</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">end</span>
+<span class="tp">DSW1#</span> <span class="tc">copy running-config ftp:</span>
 Address or name of remote host []? 10.10.99.30
-Destination filename [DSW1-confg]? DSW1-2026-10-15-ftp.cfg
-</code></pre>
+Destination filename [DSW1-confg]? DSW1-2026-10-15-ftp.cfg</code></pre></div>
 <ol start="3">
 <li><strong>See why FTP is unsafe:</strong> repeat the FTP copy in Simulation mode, filter on FTP and open the packets: the username and password appear readable. TFTP needed no password at all.</li>
 <li><strong>Merge, not replace:</strong> on DSW1 add <code>interface loopback 99</code> → <code>ip address 10.255.99.1 255.255.255.255</code>, then <code>copy tftp: running-config</code> from your backup. The loopback <strong>is still there</strong> — the copy merged. Remove it by hand with <code>no interface loopback 99</code>.</li>
@@ -361,10 +374,10 @@ Destination filename [DSW1-confg]? DSW1-2026-10-15-ftp.cfg
 <ol>
 <li>In your <strong>Linux VM</strong> (Lab 4.1) install an SSH server (<code>sudo apt install openssh-server</code> on Ubuntu), create <code>~/backups</code>, and from your host computer:</li>
 </ol>
-<pre><code>scp notes.txt student@&lt;vm-ip&gt;:~/backups/          # copy to the VM
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>scp notes.txt student@&lt;vm-ip&gt;:~/backups/          # copy to the VM
 sftp student@&lt;vm-ip&gt;                              # interactive: ls, put, get, bye
 sha512sum notes.txt                               # compare hashes on both sides
-</code></pre>
+</code></pre></div>
 <ol start="2">
 <li><strong>With a real IOS device</strong> — a lab switch or router, or an IOS virtual node in <strong>Cisco Modeling Labs Free</strong> (check Cisco's site for the current free tier) — configure SSH and the SCP server (19.4), then from your computer <code>scp -O</code> a file to <code>flash:</code>, and from the device <code>copy running-config scp://student@&lt;vm-ip&gt;/backups/R1.cfg</code> and the same with <code>sftp://</code>. Verify with <code>dir flash:</code> and <code>verify /sha512</code>.</li>
 </ol>
@@ -423,35 +436,8 @@ sha512sum notes.txt                               # compare hashes on both sides
 </tbody>
 </table></div>
 <h3 id="1910-practice-questions--chapter-19">19.10 Practice questions — Chapter 19</h3>
-<p><strong>1. (Recall)</strong> Which file transfer protocols encrypt both credentials and data? (Choose two.)</p>
-<p>A. TFTP  B. FTP  C. SCP  D. SFTP  E. HTTP</p>
-<p><strong>2. (Recall)</strong> Which port do SCP and SFTP use?</p>
-<p><strong>3. (Configuration)</strong> List the commands, beyond SSH and a user account, needed to make an IOS router an SCP server.</p>
-<p><strong>4. (Configuration)</strong> Write the command that backs up the running configuration of R1 to 10.10.99.30, folder backups, file R1.cfg, user netadmin, using SCP.</p>
-<p><strong>5. (Concept)</strong> A restored backup still contains a wrong static route you added after the backup was taken. Why, and how do you avoid it?</p>
-<p><strong>6. (Upgrade)</strong> Put in order: reload; <code>verify /sha512</code>; <code>dir flash:</code>; <code>boot system flash:new.bin</code>; copy the image; <code>copy running-config startup-config</code>.</p>
-<p><strong>7. (Troubleshooting)</strong> <code>scp image.bin admin@10.10.99.2:flash:/image.bin</code> from a new Linux laptop fails immediately with a protocol error, though SSH logins work. What should the user change?</p>
-<p><strong>8. (Troubleshooting)</strong> An SCP copy to the switch says "Permission denied"; the user's SSH login works and lands at <code>&gt;</code>. What is wrong?</p>
-<p><strong>9. (Concept)</strong> Why should you check <code>show boot</code> before reloading after an upgrade?</p>
-<p><strong>10. (Multiple response — choose two)</strong> Which statements about the IOS XE file transfer features are true?</p>
-<p>A. IOS XE can act as an SFTP server  B. IOS XE can act as an SFTP client  C. SCP on IOS needs exec authorization  D. TFTP requires a username  E. FTP encrypts the password</p>
-<p><strong>11. (Output interpretation)</strong> <code>verify /sha512 flash:cat9k_iosxe.17.12.04.SPA.bin</code> prints a hash that differs from the one on Cisco's download page. What do you do?</p>
-<p><strong>12. (Evaluate an AI assistant)</strong> A network assistant suggests: <em>"To save time, use TFTP for nightly configuration backups across the WAN; it is lightweight."</em> Is that good advice?</p>
-<h3 id="1911-answer-key-with-explanations">19.11 Answer key with explanations</h3>
-<ol>
-<li><strong>C and D.</strong> TFTP has no authentication or encryption; FTP and HTTP send credentials in clear text.</li>
-<li><strong>TCP 22</strong>, inside SSH.</li>
-<li><code>aaa new-model</code>, an authentication list (for example <code>aaa authentication login default local</code>), <code>aaa authorization exec default local</code>, and <code>ip scp server enable</code>.</li>
-<li><code>copy running-config scp://netadmin@10.10.99.30/backups/R1.cfg</code> (enter the password when prompted).</li>
-<li>Copying a file into the running configuration <strong>merges</strong> it, so lines not in the file remain. Use <code>configure replace &lt;file&gt;</code> to return exactly to the saved state.</li>
-<li><code>dir flash:</code> → copy the image → <code>verify /sha512</code> → <code>boot system flash:new.bin</code> → <code>copy running-config startup-config</code> → reload.</li>
-<li>Use <code>scp -O</code>: newer OpenSSH uses SFTP inside <code>scp</code>, which the IOS SCP server does not accept.</li>
-<li>The user has privilege 1 (or exec authorization is missing). SCP needs <code>aaa authorization exec</code> and a privilege 15 user.</li>
-<li>To be sure the device will boot the intended, present and verified image; a wrong boot variable leaves it in ROMMON.</li>
-<li><strong>B and C.</strong> IOS XE is an SFTP client only; TFTP has no username; FTP sends the password in clear text.</li>
-<li>Do <strong>not</strong> use it: delete the file, download it again from Cisco, copy it again and re-verify. A mismatch means corruption or tampering.</li>
-<li><strong>No.</strong> TFTP has no authentication or encryption, so the configurations (with password hashes, keys and topology) cross the WAN readable and the server accepts writes from anyone. Use SCP or SFTP.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="19" data-total="12"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>12 questions · 2 auto-graded, 10 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 12</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q" data-q="1" data-correct="CD"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which file transfer protocols encrypt both credentials and data? (Choose two.)</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">TFTP</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">FTP</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">SCP</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">SFTP</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">HTTP</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>C and D.</strong> TFTP has no authentication or encryption; FTP and HTTP send credentials in clear text.</p></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Which port do SCP and SFTP use?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>TCP 22</strong>, inside SSH.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>List the commands, beyond SSH and a user account, needed to make an IOS router an SCP server.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>aaa new-model</code>, an authentication list (for example <code>aaa authentication login default local</code>), <code>aaa authorization exec default local</code>, and <code>ip scp server enable</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write the command that backs up the running configuration of R1 to 10.10.99.30, folder backups, file R1.cfg, user netadmin, using SCP.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>copy running-config scp://netadmin@10.10.99.30/backups/R1.cfg</code> (enter the password when prompted).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A restored backup still contains a wrong static route you added after the backup was taken. Why, and how do you avoid it?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Copying a file into the running configuration <strong>merges</strong> it, so lines not in the file remain. Use <code>configure replace &lt;file&gt;</code> to return exactly to the saved state.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Upgrade</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Put in order: reload; <code>verify /sha512</code>; <code>dir flash:</code>; <code>boot system flash:new.bin</code>; copy the image; <code>copy running-config startup-config</code>.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>dir flash:</code> → copy the image → <code>verify /sha512</code> → <code>boot system flash:new.bin</code> → <code>copy running-config startup-config</code> → reload.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>scp image.bin admin@10.10.99.2:flash:/image.bin</code> from a new Linux laptop fails immediately with a protocol error, though SSH logins work. What should the user change?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Use <code>scp -O</code>: newer OpenSSH uses SFTP inside <code>scp</code>, which the IOS SCP server does not accept.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>An SCP copy to the switch says "Permission denied"; the user's SSH login works and lands at <code>&gt;</code>. What is wrong?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The user has privilege 1 (or exec authorization is missing). SCP needs <code>aaa authorization exec</code> and a privilege 15 user.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Why should you check <code>show boot</code> before reloading after an upgrade?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>To be sure the device will boot the intended, present and verified image; a wrong boot variable leaves it in ROMMON.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="10" data-correct="BC"><div class="qhead"><span class="qn">10</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which statements about the IOS XE file transfer features are true?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">IOS XE can act as an SFTP server</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">IOS XE can act as an SFTP client</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">SCP on IOS needs exec authorization</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">TFTP requires a username</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">FTP encrypts the password</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B and C.</strong> IOS XE is an SFTP client only; TFTP has no username; FTP sends the password in clear text.</p></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>verify /sha512 flash:cat9k_iosxe.17.12.04.SPA.bin</code> prints a hash that differs from the one on Cisco's download page. What do you do?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Do <strong>not</strong> use it: delete the file, download it again from Cisco, copy it again and re-verify. A mismatch means corruption or tampering.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A network assistant suggests: <em>"To save time, use TFTP for nightly configuration backups across the WAN; it is lightweight."</em> Is that good advice?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> TFTP has no authentication or encryption, so the configurations (with password hashes, keys and topology) cross the WAN readable and the server accepts writes from anyone. Use SCP or SFTP.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="1912-chapter-19-figure-checklist">19.12 Chapter 19 figure checklist</h3>
 <p>Both figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-19-2">Figure 19.2</a>'s first render started the "hash differs" path at the wrong box; it was corrected and re-checked.</p>
 <div class="table-wrap"><table>
@@ -492,7 +478,6 @@ sha512sum notes.txt                               # compare hashes on both sides
 <a href="#198-lab-191--file-management-from-packet-tracer-to-real-scp-and-sftp-intermediate">19.8 Lab 19.1 — File management, from Packet Tracer to real SCP and SFTP (Intermediate)</a>
 <a href="#199-chapter-19-summary-notes-exam-revision">19.9 Chapter 19 summary notes (exam revision)</a>
 <a href="#1910-practice-questions--chapter-19">19.10 Practice questions — Chapter 19</a>
-<a href="#1911-answer-key-with-explanations">19.11 Answer key with explanations</a>
 <a href="#1912-chapter-19-figure-checklist">19.12 Chapter 19 figure checklist</a>
 <a href="#1913-chapter-19-progress-record">19.13 Chapter 19 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head purple">
   <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
   <h1><span class="num">Chapter 24</span>IPsec site-to-site and remote-access VPNs</h1>
-  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~14 min read</span>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~15 min read</span><a class="qmeta" href="#quiz" data-ch="24" data-total="12">📝 Self-check: 12 questions</a>
   <label class="mark"><input type="checkbox" data-ch="24"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.5 Describe IPsec remote access and site-to-site VPNs (protocols and transport modes).</strong> The verb is <em>describe</em>: you must explain the VPN types, the IPsec protocols and the two modes, and recognise them in outputs. The optional lab lets you see a tunnel come up.</p>
 <h3 id="241-learning-objectives">24.1 Learning objectives</h3>
@@ -73,7 +74,7 @@
 <li>Describe how IKE builds security associations and what <code>show crypto</code> output means.</li>
 <li>Recognise common reasons a tunnel does not come up, including NAT interaction.</li>
 </ol>
-<h3 id="242-what-a-vpn-provides-and-the-two-types">24.2 What a VPN provides, and the two types</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#249-lab-241--site-to-site-ipsec-in-packet-tracer-optional-intermediate">Lab 24.1 — Site-to-site IPsec in Packet Tracer (optional, Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="242-what-a-vpn-provides-and-the-two-types">24.2 What a VPN provides, and the two types</h3>
 <p>A <strong>virtual private network</strong> carries private traffic across a network you do not trust (usually the internet) and adds four protections:</p>
 <div class="table-wrap"><table>
 <thead>
@@ -211,6 +212,8 @@
 </tbody>
 </table></div>
 <p>In practice almost every VPN uses <strong>ESP</strong>, because it encrypts and works through NAT.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong><b>AH</b> only <b>A</b>uthenticates; <b>ESP</b> <b>E</b>ncrypts <i>and</i> authenticates. ESP is IP protocol 50, AH is 51.</p>
+
 <h3 id="244-tunnel-mode-and-transport-mode">24.4 Tunnel mode and transport mode</h3>
 <p>The <strong>mode</strong> decides what IPsec wraps (<a class="figref" href="#fig-24-2">Figure 24.2</a>):</p>
 <ul>
@@ -299,24 +302,28 @@
 <ul>
 <li><strong>NAT exemption on the gateway.</strong> On an IOS router, outbound packets are <strong>translated before they are encrypted</strong>. If the PAT rule from Chapter 21 also matches traffic towards the remote site, the source becomes the public address, no longer matches the crypto ACL, and leaves <strong>unencrypted</strong> (and is dropped by the ISP). Exclude VPN traffic from NAT with an extended NAT ACL:</li>
 </ul>
-<pre><code>R1(config)# ip access-list extended NAT-INSIDE-EXT
-R1(config-ext-nacl)# 10 deny ip 10.10.0.0 0.0.255.255 172.16.2.0 0.0.0.255
-R1(config-ext-nacl)# 20 permit ip 10.10.0.0 0.0.255.255 any
-R1(config-ext-nacl)# exit
-R1(config)# ip nat inside source list NAT-INSIDE-EXT interface GigabitEthernet0/0/1 overload
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip access-list extended NAT-INSIDE-EXT
+10 deny ip 10.10.0.0 0.0.255.255 172.16.2.0 0.0.0.255
+20 permit ip 10.10.0.0 0.0.255.255 any
+exit
+ip nat inside source list NAT-INSIDE-EXT interface GigabitEthernet0/0/1 overload" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip access-list extended NAT-INSIDE-EXT</span>
+<span class="tp">R1(config-ext-nacl)#</span> <span class="tc">10 deny ip 10.10.0.0 0.0.255.255 172.16.2.0 0.0.0.255</span>
+<span class="tp">R1(config-ext-nacl)#</span> <span class="tc">20 permit ip 10.10.0.0 0.0.255.255 any</span>
+<span class="tp">R1(config-ext-nacl)#</span> <span class="tc">exit</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip nat inside source list NAT-INSIDE-EXT interface GigabitEthernet0/0/1 overload</span></code></pre></div>
 <p>(Shown for illustration with the campus addresses; Lab 24.1 uses a separate topology without NAT.) The <code>deny</code> line means "do not translate" — the packet is still forwarded, now matching the crypto ACL.</p>
 <ul>
 <li><strong>NAT between the peers</strong> (for example a home router in front of a remote-access client) breaks AH and plain ESP; <strong>NAT-T</strong> detects it and wraps ESP in <strong>UDP 4500</strong>.</li>
 <li><strong>Firewalls and ACLs</strong> in the path must permit <strong>UDP 500</strong>, <strong>UDP 4500</strong> and <strong>ESP (IP protocol 50)</strong> between the peers (plus TCP/UDP 443 for TLS remote access).</li>
 </ul>
 <h3 id="248-verification-output-and-troubleshooting">24.8 Verification output and troubleshooting</h3>
-<pre><code>HQ# show crypto isakmp sa
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>HQ</span><button class="copy" type="button" data-copy="show crypto isakmp sa
+show crypto ipsec sa" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">HQ#</span> <span class="tc">show crypto isakmp sa</span>
 IPv4 Crypto ISAKMP SA
 dst             src             state          conn-id status
 203.0.113.6     203.0.113.1     QM_IDLE           1001 ACTIVE
 
-HQ# show crypto ipsec sa
+<span class="tp">HQ#</span> <span class="tc">show crypto ipsec sa</span>
 interface: GigabitEthernet0/1
     Crypto map tag: VPN-MAP, local addr 203.0.113.1
    local  ident (addr/mask/prot/port): (172.16.1.0/255.255.255.0/0/0)
@@ -329,8 +336,7 @@ interface: GigabitEthernet0/1
         transform: esp-aes 256 esp-sha-hmac ,
         in use settings ={Tunnel, }
      outbound esp sas:
-      spi: 0x5E6F7A8B(1584364171)
-</code></pre>
+      spi: 0x5E6F7A8B(1584364171)</code></pre></div>
 <p><strong>Reading it:</strong></p>
 <ul>
 <li><strong>QM_IDLE / ACTIVE</strong> (IKEv1) = phase 1 is complete and the IKE SA is ready. On IKEv2, <code>show crypto ikev2 sa</code> shows <strong>READY</strong>. <code>MM_NO_STATE</code> that never progresses means phase 1 is failing (no reply, or proposals/keys do not match).</li>
@@ -386,33 +392,48 @@ interface: GigabitEthernet0/1
 <p>In <a class="figref" href="#fig-24-3">Figure 24.3</a> the two shaded routers are the VPN gateways. The ISP router in the middle has no route to either 172.16 network, so PC-HQ can reach PC-BR only through the tunnel drawn above.</p>
 <p><strong>Step 1 — Build and address the topology</strong> as in <a class="figref" href="#fig-24-3">Figure 24.3</a>. On HQ: <code>ip route 0.0.0.0 0.0.0.0 203.0.113.2</code>; on BR: <code>ip route 0.0.0.0 0.0.0.0 203.0.113.5</code>. From PC-HQ, <code>ping 172.16.2.10</code> <strong>fails</strong> (the ISP drops it), but HQ can ping 203.0.113.6.</p>
 <p><strong>Step 2 — Enable the security licence</strong> on HQ and BR (needed in Packet Tracer for crypto commands):</p>
-<pre><code>HQ(config)# license boot module c2900 technology-package securityk9
-HQ(config)# end
-HQ# copy running-config startup-config
-HQ# reload
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>HQ</span><button class="copy" type="button" data-copy="license boot module c2900 technology-package securityk9
+end
+copy running-config startup-config
+reload" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">HQ(config)#</span> <span class="tc">license boot module c2900 technology-package securityk9</span>
+<span class="tp">HQ(config)#</span> <span class="tc">end</span>
+<span class="tp">HQ#</span> <span class="tc">copy running-config startup-config</span>
+<span class="tp">HQ#</span> <span class="tc">reload</span></code></pre></div>
 <p>After the reload, <code>show version</code> lists <em>securityk9</em> as enabled.</p>
 <p><strong>Step 3 — IKE phase 1 policy and key</strong> (HQ shown; on BR use peer address 203.0.113.1):</p>
-<pre><code>HQ(config)# crypto isakmp policy 10
-HQ(config-isakmp)# encryption aes 256
-HQ(config-isakmp)# hash sha
-HQ(config-isakmp)# authentication pre-share
-HQ(config-isakmp)# group 5
-HQ(config-isakmp)# lifetime 86400
-HQ(config-isakmp)# exit
-HQ(config)# crypto isakmp key Vpn-Lab-2026 address 203.0.113.6
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>HQ</span><button class="copy" type="button" data-copy="crypto isakmp policy 10
+encryption aes 256
+hash sha
+authentication pre-share
+group 5
+lifetime 86400
+exit
+crypto isakmp key Vpn-Lab-2026 address 203.0.113.6" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">HQ(config)#</span> <span class="tc">crypto isakmp policy 10</span>
+<span class="tp">HQ(config-isakmp)#</span> <span class="tc">encryption aes 256</span>
+<span class="tp">HQ(config-isakmp)#</span> <span class="tc">hash sha</span>
+<span class="tp">HQ(config-isakmp)#</span> <span class="tc">authentication pre-share</span>
+<span class="tp">HQ(config-isakmp)#</span> <span class="tc">group 5</span>
+<span class="tp">HQ(config-isakmp)#</span> <span class="tc">lifetime 86400</span>
+<span class="tp">HQ(config-isakmp)#</span> <span class="tc">exit</span>
+<span class="tp">HQ(config)#</span> <span class="tc">crypto isakmp key Vpn-Lab-2026 address 203.0.113.6</span></code></pre></div>
 <p><strong>Step 4 — Phase 2: transform set, crypto ACL and crypto map:</strong></p>
-<pre><code>HQ(config)# crypto ipsec transform-set TS esp-aes 256 esp-sha-hmac
-HQ(config)# access-list 110 permit ip 172.16.1.0 0.0.0.255 172.16.2.0 0.0.0.255
-HQ(config)# crypto map VPN-MAP 10 ipsec-isakmp
-HQ(config-crypto-map)# set peer 203.0.113.6
-HQ(config-crypto-map)# set transform-set TS
-HQ(config-crypto-map)# match address 110
-HQ(config-crypto-map)# exit
-HQ(config)# interface GigabitEthernet0/1
-HQ(config-if)# crypto map VPN-MAP
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>HQ</span><button class="copy" type="button" data-copy="crypto ipsec transform-set TS esp-aes 256 esp-sha-hmac
+access-list 110 permit ip 172.16.1.0 0.0.0.255 172.16.2.0 0.0.0.255
+crypto map VPN-MAP 10 ipsec-isakmp
+set peer 203.0.113.6
+set transform-set TS
+match address 110
+exit
+interface GigabitEthernet0/1
+crypto map VPN-MAP" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">HQ(config)#</span> <span class="tc">crypto ipsec transform-set TS esp-aes 256 esp-sha-hmac</span>
+<span class="tp">HQ(config)#</span> <span class="tc">access-list 110 permit ip 172.16.1.0 0.0.0.255 172.16.2.0 0.0.0.255</span>
+<span class="tp">HQ(config)#</span> <span class="tc">crypto map VPN-MAP 10 ipsec-isakmp</span>
+<span class="tp">HQ(config-crypto-map)#</span> <span class="tc">set peer 203.0.113.6</span>
+<span class="tp">HQ(config-crypto-map)#</span> <span class="tc">set transform-set TS</span>
+<span class="tp">HQ(config-crypto-map)#</span> <span class="tc">match address 110</span>
+<span class="tp">HQ(config-crypto-map)#</span> <span class="tc">exit</span>
+<span class="tp">HQ(config)#</span> <span class="tc">interface GigabitEthernet0/1</span>
+<span class="tp">HQ(config-if)#</span> <span class="tc">crypto map VPN-MAP</span></code></pre></div>
 <p>On BR, mirror everything: peer <strong>203.0.113.1</strong>, and <code>access-list 110 permit ip 172.16.2.0 0.0.0.255 172.16.1.0 0.0.0.255</code>.</p>
 <p><strong>Step 5 — Bring the tunnel up.</strong> From PC-HQ, <code>ping 172.16.2.10</code>. The first one or two replies may time out while IKE builds the SAs; then pings succeed. The ISP still has no route to 172.16.0.0 — the packets cross it inside ESP with the gateways' public addresses (tunnel mode).</p>
 <p><strong>Step 6 — Verify and look inside.</strong> On HQ: <code>show crypto isakmp sa</code> (QM_IDLE), <code>show crypto ipsec sa</code> (encaps/decaps rising, two SPIs, <em>Tunnel</em>). In Simulation mode, follow a ping: between HQ and BR the outer header shows 203.0.113.1 → 203.0.113.6 and protocol ESP; the original 172.16 header is not visible.</p>
@@ -513,34 +534,8 @@ HQ(config-if)# crypto map VPN-MAP
 </tbody>
 </table></div>
 <h3 id="2412-practice-questions--chapter-24">24.12 Practice questions — Chapter 24</h3>
-<p><strong>1. (Recall)</strong> Which IP protocol numbers do ESP and AH use, and which UDP ports does IKE use?</p>
-<p><strong>2. (Concept)</strong> List the four security services a VPN provides.</p>
-<p><strong>3. (Comparison)</strong> Give two differences between site-to-site and remote-access VPNs.</p>
-<p><strong>4. (Modes)</strong> Which mode adds a new IP header, and why is it needed when two offices with private addresses connect over the internet?</p>
-<p><strong>5. (Modes)</strong> In which situation is transport mode the usual choice?</p>
-<p><strong>6. (Concept)</strong> Why is AH rarely used on networks with NAT?</p>
-<p><strong>7. (Output interpretation)</strong> <code>show crypto isakmp sa</code> shows <code>QM_IDLE ACTIVE</code>, but <code>show crypto ipsec sa</code> shows <code>#pkts encaps: 0</code> and <code>#pkts decaps: 0</code>. Give two possible causes.</p>
-<p><strong>8. (Output interpretation)</strong> <code>#pkts encaps: 120, #pkts decaps: 0</code>. What does that tell you?</p>
-<p><strong>9. (Troubleshooting)</strong> After a VPN was added to a router that already runs PAT for the LAN, traffic to the branch is not encrypted. Why, and what is the fix?</p>
-<p><strong>10. (Concept)</strong> What is the difference between full-tunnel and split-tunnel remote access?</p>
-<p><strong>11. (Multiple response — choose two)</strong> Which statements about IKEv2 are true?</p>
-<p>A. It builds the first child SA during the initial exchange  B. It uses TCP 500  C. It supports EAP for user authentication  D. It cannot traverse NAT  E. It replaces ESP</p>
-<p><strong>12. (Evaluate an AI assistant)</strong> An AI assistant says: <em>"For your branch VPN, use AH in tunnel mode so the data is encrypted and passes through the ISP's NAT."</em> Evaluate.</p>
-<h3 id="2413-answer-key-with-explanations">24.13 Answer key with explanations</h3>
-<ol>
-<li><strong>ESP = IP protocol 50, AH = IP protocol 51; IKE = UDP 500</strong>, and <strong>UDP 4500</strong> with NAT traversal.</li>
-<li><strong>Confidentiality, integrity, authentication, anti-replay.</strong></li>
-<li>Site-to-site connects <strong>networks</strong> through gateways and is transparent to hosts; remote access connects <strong>one device</strong> running client software. Site-to-site is permanent; remote access is on demand and authenticates the <strong>user</strong> (AAA/MFA). Remote access may use TLS instead of IPsec.</li>
-<li><strong>Tunnel mode.</strong> The private addresses cannot be routed on the internet, so the original packet is encrypted inside a new header with the gateways' public addresses.</li>
-<li>When the IPsec peers are the communicating hosts themselves, or for <strong>GRE over IPsec</strong> (GRE already supplies the outer header).</li>
-<li>AH's integrity check covers the <strong>outer IP header</strong>; NAT changes that header, so the check fails. AH also does not encrypt.</li>
-<li>Traffic does not match the <strong>crypto ACL</strong> (wrong ACL, wrong source), it is <strong>translated by NAT</strong> before encryption, or it is <strong>routed</strong> out another interface. (A transform-set mismatch would also leave no IPsec SA.)</li>
-<li>This side encrypts and sends, but <strong>nothing comes back</strong> through the tunnel: the peer is not returning traffic (its routing, ACLs, or a non-mirrored crypto ACL).</li>
-<li>NAT runs <strong>before</strong> encryption, so the source becomes the public address and no longer matches the crypto ACL. Add a <strong>NAT exemption</strong> (<code>deny</code> the VPN traffic in an extended NAT ACL).</li>
-<li><strong>Full tunnel:</strong> all traffic goes through the headend. <strong>Split tunnel:</strong> only corporate destinations use the tunnel; internet traffic goes directly.</li>
-<li><strong>A and C.</strong> IKEv2 uses UDP 500/4500, has NAT traversal built in, and negotiates SAs for ESP rather than replacing it.</li>
-<li><strong>Wrong twice.</strong> AH does <strong>not encrypt</strong>, and it <strong>fails through NAT</strong> because it authenticates the outer header. Use <strong>ESP</strong> (tunnel mode), with NAT-T if a NAT device is in the path.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="24" data-total="12"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>12 questions · 1 auto-graded, 11 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 12</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Which IP protocol numbers do ESP and AH use, and which UDP ports does IKE use?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>ESP = IP protocol 50, AH = IP protocol 51; IKE = UDP 500</strong>, and <strong>UDP 4500</strong> with NAT traversal.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>List the four security services a VPN provides.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Confidentiality, integrity, authentication, anti-replay.</strong></p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Comparison</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Give two differences between site-to-site and remote-access VPNs.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Site-to-site connects <strong>networks</strong> through gateways and is transparent to hosts; remote access connects <strong>one device</strong> running client software. Site-to-site is permanent; remote access is on demand and authenticates the <strong>user</strong> (AAA/MFA). Remote access may use TLS instead of IPsec.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Modes</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Which mode adds a new IP header, and why is it needed when two offices with private addresses connect over the internet?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Tunnel mode.</strong> The private addresses cannot be routed on the internet, so the original packet is encrypted inside a new header with the gateways' public addresses.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Modes</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>In which situation is transport mode the usual choice?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>When the IPsec peers are the communicating hosts themselves, or for <strong>GRE over IPsec</strong> (GRE already supplies the outer header).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Why is AH rarely used on networks with NAT?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>AH's integrity check covers the <strong>outer IP header</strong>; NAT changes that header, so the check fails. AH also does not encrypt.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>show crypto isakmp sa</code> shows <code>QM_IDLE ACTIVE</code>, but <code>show crypto ipsec sa</code> shows <code>#pkts encaps: 0</code> and <code>#pkts decaps: 0</code>. Give two possible causes.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Traffic does not match the <strong>crypto ACL</strong> (wrong ACL, wrong source), it is <strong>translated by NAT</strong> before encryption, or it is <strong>routed</strong> out another interface. (A transform-set mismatch would also leave no IPsec SA.)</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>#pkts encaps: 120, #pkts decaps: 0</code>. What does that tell you?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>This side encrypts and sends, but <strong>nothing comes back</strong> through the tunnel: the peer is not returning traffic (its routing, ACLs, or a non-mirrored crypto ACL).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>After a VPN was added to a router that already runs PAT for the LAN, traffic to the branch is not encrypted. Why, and what is the fix?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>NAT runs <strong>before</strong> encryption, so the source becomes the public address and no longer matches the crypto ACL. Add a <strong>NAT exemption</strong> (<code>deny</code> the VPN traffic in an extended NAT ACL).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What is the difference between full-tunnel and split-tunnel remote access?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Full tunnel:</strong> all traffic goes through the headend. <strong>Split tunnel:</strong> only corporate destinations use the tunnel; internet traffic goes directly.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="11" data-correct="AC"><div class="qhead"><span class="qn">11</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which statements about IKEv2 are true?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">It builds the first child SA during the initial exchange</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">It uses TCP 500</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">It supports EAP for user authentication</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">It cannot traverse NAT</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">It replaces ESP</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> IKEv2 uses UDP 500/4500, has NAT traversal built in, and negotiates SAs for ESP rather than replacing it.</p></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>An AI assistant says: <em>"For your branch VPN, use AH in tunnel mode so the data is encrypted and passes through the ISP's NAT."</em> Evaluate.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Wrong twice.</strong> AH does <strong>not encrypt</strong>, and it <strong>fails through NAT</strong> because it authenticates the outer header. Use <strong>ESP</strong> (tunnel mode), with NAT-T if a NAT device is in the path.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="2414-chapter-24-figure-checklist">24.14 Chapter 24 figure checklist</h3>
 <p>All three figures were rendered, embedded beside the text they explain, and checked visually after rendering. The text describing <a class="figref" href="#fig-24-2">Figure 24.2</a>'s new-header colour was corrected to match the render.</p>
 <div class="table-wrap"><table>
@@ -589,7 +584,6 @@ HQ(config-if)# crypto map VPN-MAP
 <a href="#2410-lab-242--why-wont-the-tunnel-come-up-advanced">24.10 Lab 24.2 — Why won&#x27;t the tunnel come up? (Advanced)</a>
 <a href="#2411-chapter-24-summary-notes-exam-revision">24.11 Chapter 24 summary notes (exam revision)</a>
 <a href="#2412-practice-questions--chapter-24">24.12 Practice questions — Chapter 24</a>
-<a href="#2413-answer-key-with-explanations">24.13 Answer key with explanations</a>
 <a href="#2414-chapter-24-figure-checklist">24.14 Chapter 24 figure checklist</a>
 <a href="#2415-chapter-24-progress-record">24.15 Chapter 24 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

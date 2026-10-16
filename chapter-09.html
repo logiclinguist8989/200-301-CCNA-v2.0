@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head green">
   <div class="eyebrow">Domain 2 · Switching &amp; Network Access</div>
   <h1><span class="num">Chapter 9</span>Rapid PVST+ and STP protection</h1>
-  <div class="meta"><span>🖼️ 5 figures</span><span>⏱️ ~23 min read</span>
+  <div class="meta"><span>🖼️ 5 figures</span><span>⏱️ ~24 min read</span><a class="qmeta" href="#quiz" data-ch="9" data-total="15">📝 Self-check: 15 questions</a>
   <label class="mark"><input type="checkbox" data-ch="9"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>2.5 Configure operations of the Rapid Per VLAN Spanning Tree Protocol (Rapid PVST+)</strong>: <strong>2.5.a</strong> root port, root bridge (primary/secondary) and other port names; <strong>2.5.b</strong> port states and roles; <strong>2.5.c</strong> PortFast; <strong>2.5.d</strong> root guard, loop guard and BPDU guard. In v1.1 this was "interpret"; v2.0 says <strong>configure</strong>.</p>
 <h3 id="91-learning-objectives">9.1 Learning objectives</h3>
@@ -74,7 +75,7 @@
 <li>Configure PortFast, BPDU guard, root guard and loop guard on the right ports.</li>
 <li>Read <code>show spanning-tree</code> output and troubleshoot STP problems.</li>
 </ol>
-<h3 id="92-why-loops-are-deadly">9.2 Why loops are deadly</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#914-packet-tracer-lab-91--rapid-pvst-on-a-looped-campus-intermediateadvanced">Packet Tracer Lab 9.1 — Rapid PVST+ on a looped campus (Intermediate–Advanced)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="92-why-loops-are-deadly">9.2 Why loops are deadly</h3>
 <p>Redundant links between switches are good: if one fails, another carries traffic. But Ethernet frames have <strong>no TTL field</strong>, so a frame caught in a Layer 2 loop circulates forever (<a class="figref" href="#fig-9-1">Figure 9.1</a>). Three things happen within seconds:</p>
 <figure class="fig" id="fig-9-1"><button class="zoom" aria-label="Enlarge figure 9.1"><img src="assets/figures/ch09/fig-09-01-layer2-loop.svg" alt="Figure 9.1 — A Layer 2 loop without STP: one broadcast becomes an endless storm" loading="lazy"></button><figcaption><a class="fignum" href="#fig-9-1">Figure 9.1</a> A Layer 2 loop without STP: one broadcast becomes an endless storm</figcaption></figure>
 
@@ -218,7 +219,9 @@
 <li><strong>Break ties in this order:</strong> lowest root path cost → lowest <strong>sender bridge ID</strong> → lowest sender port priority → lowest sender port number. SW-B's BID is lower than SW-C's, so <strong>SW-B Gi0/2 is designated</strong>. SW-C Gi0/2 is neither root nor designated, so it becomes an <strong>alternate</strong> port and <strong>discards</strong> — the loop is broken.</li>
 </ol>
 <p><strong>Exam method:</strong> find the root first; then on each non-root switch find its cheapest path to the root (root port); then on each link the end closer to the root is designated; every port left over is alternate (or backup) and blocks.</p>
-<p class="callout common-traps"><strong>Common traps</strong> the root bridge is chosen by <strong>BID, not by speed or position</strong>, so an old access switch can become root by accident if nobody sets priorities. Cost is added for the ports a BPDU <strong>enters</strong>, not exits.</p>
+<p class="callout trap"><strong>Common traps</strong>The root bridge is chosen by <strong>BID, not by speed or position</strong>, so an old access switch can become root by accident if nobody sets priorities. Cost is added for the ports a BPDU <strong>enters</strong>, not exits.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>Every STP tie-break is <b>lowest wins</b>: bridge ID → root path cost → sender bridge ID → sender port ID. Elect the <b>root bridge</b>, then a <b>root port</b> per switch, then a <b>designated port</b> per link — everything left blocks.</p>
+
 <h3 id="97-rstp-port-roles-25a">9.7 RSTP port roles (2.5.a)</h3>
 <div class="table-wrap"><table>
 <thead>
@@ -316,25 +319,28 @@
 </ol>
 <p><strong>Link types</strong> decide whether the handshake can be used: <strong>point-to-point</strong> (full-duplex links between switches, the normal case), <strong>shared</strong> (half duplex, old hubs — falls back to slower timers) and <strong>edge</strong> (PortFast ports). <code>show spanning-tree</code> prints them in the Type column (<code>P2p</code>, <code>Shr</code>, <code>P2p Edge</code>).</p>
 <p><strong>Timers (defaults):</strong> hello 2 s, max age 20 s, forward delay 15 s. RSTP rarely relies on max age and forward delay; you should not need to change any of them for the exam.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>RSTP has only three states — <b>D</b>iscarding, <b>L</b>earning, <b>F</b>orwarding. Discarding absorbs the old blocking, listening and disabled states.</p>
+
 <h3 id="99-configuring-rapid-pvst">9.9 Configuring Rapid PVST+</h3>
 <p><strong>Step 1 — run Rapid PVST+ on every switch.</strong> Some platforms default to PVST+ (802.1D); mixing works but loses the rapid behaviour on those links.</p>
-<pre><code>DSW1(config)# spanning-tree mode rapid-pvst
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="spanning-tree mode rapid-pvst" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">spanning-tree mode rapid-pvst</span></code></pre></div>
 <p><strong>Step 2 — choose the root bridges deliberately (2.5.a).</strong> Put the root on a distribution switch, never leave it to chance:</p>
-<pre><code>DSW1(config)# spanning-tree vlan 10,30 root primary       ! DSW1 = root for VLANs 10 and 30
-DSW1(config)# spanning-tree vlan 40,99 root secondary     ! backup root for 40 and 99
-DSW2(config)# spanning-tree vlan 40,99 root primary
-DSW2(config)# spanning-tree vlan 10,30 root secondary
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="spanning-tree vlan 10,30 root primary
+spanning-tree vlan 40,99 root secondary
+spanning-tree vlan 40,99 root primary
+spanning-tree vlan 10,30 root secondary" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">spanning-tree vlan 10,30 root primary     </span><span class="tm">  ! DSW1 = root for VLANs 10 and 30</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">spanning-tree vlan 40,99 root secondary   </span><span class="tm">  ! backup root for 40 and 99</span>
+<span class="tp">DSW2(config)#</span> <span class="tc">spanning-tree vlan 40,99 root primary</span>
+<span class="tp">DSW2(config)#</span> <span class="tc">spanning-tree vlan 10,30 root secondary</span></code></pre></div>
 <p><code>root primary</code> is a <strong>macro</strong>: it sets the priority to 24576, or lower if needed to beat the current root. <code>root secondary</code> sets 28672, so the switch takes over only if the primary fails. Both are one-time calculations written into the configuration as <code>spanning-tree vlan X priority N</code>.</p>
 <p>You can also set the value directly (multiples of 4096):</p>
-<pre><code>DSW1(config)# spanning-tree vlan 10 priority 4096
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="spanning-tree vlan 10 priority 4096" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">spanning-tree vlan 10 priority 4096</span></code></pre></div>
 <p><strong>Step 3 (optional) — influence the path with cost or port priority</strong> on an interface:</p>
-<pre><code>SW1(config)# interface fastethernet0/24
-SW1(config-if)# spanning-tree vlan 40 cost 2                ! make this path cheaper for VLAN 40
-SW1(config-if)# spanning-tree vlan 40 port-priority 64      ! 0-240 in steps of 16; default 128; lower wins
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="interface fastethernet0/24
+spanning-tree vlan 40 cost 2
+spanning-tree vlan 40 port-priority 64" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">interface fastethernet0/24</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">spanning-tree vlan 40 cost 2              </span><span class="tm">  ! make this path cheaper for VLAN 40</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">spanning-tree vlan 40 port-priority 64    </span><span class="tm">  ! 0-240 in steps of 16; default 128; lower wins</span></code></pre></div>
 <p>Remember: <strong>cost</strong> changes the decision on the switch where you configure it (its root port); <strong>port priority</strong> affects the <em>neighbor's</em> choice, because the neighbor compares the sender's port ID.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -380,11 +386,13 @@ SW1(config-if)# spanning-tree vlan 40 port-priority 64      ! 0-240 in steps of 
 <p><strong>Per-VLAN load sharing.</strong> With DSW1 root for VLANs 10 and 30 and DSW2 root for 40 and 99, each VLAN builds its own tree, so different VLANs block different links and both distribution switches carry traffic. Align the STP root with the VLAN's default gateway (the SVI or FHRP active router, Chapter 13) so traffic does not take an extra hop.</p>
 <h3 id="910-portfast-25c">9.10 PortFast (2.5.c)</h3>
 <p>Without PortFast, a newly connected access port must negotiate or wait before forwarding; a PC may time out on DHCP. <strong>PortFast</strong> marks a port as an <strong>edge port</strong> that moves straight to forwarding, because an end host cannot create a loop.</p>
-<pre><code>SW1(config)# interface fastethernet0/1
-SW1(config-if)# spanning-tree portfast                 ! one access port
-SW1(config)# spanning-tree portfast default            ! global: all access (non-trunk) ports
-SW1(config-if)# spanning-tree portfast trunk           ! a trunk to a server/hypervisor (Chapter 7)
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="interface fastethernet0/1
+spanning-tree portfast
+spanning-tree portfast default
+spanning-tree portfast trunk" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">interface fastethernet0/1</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">spanning-tree portfast               </span><span class="tm">  ! one access port</span>
+<span class="tp">SW1(config)#</span> <span class="tc">spanning-tree portfast default          </span><span class="tm">  ! global: all access (non-trunk) ports</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">spanning-tree portfast trunk         </span><span class="tm">  ! a trunk to a server/hypervisor (Chapter 7)</span></code></pre></div>
 <p>Newer IOS releases use <code>spanning-tree portfast edge</code>, <code>spanning-tree portfast edge default</code> and <code>spanning-tree portfast edge trunk</code>. IOS prints a warning when you enable PortFast, reminding you to use it only on host ports. A PortFast port still sends BPDUs; if it <em>receives</em> one it loses edge status and runs normal STP. <strong>Never enable PortFast on a link to another switch.</strong></p>
 <h3 id="911-bpdu-guard-root-guard-and-loop-guard-25d">9.11 BPDU guard, root guard and loop guard (2.5.d)</h3>
 <p>These three features protect the tree from mistakes and attacks. <a class="figref" href="#fig-9-4">Figure 9.4</a> shows where each belongs.</p>
@@ -392,21 +400,21 @@ SW1(config-if)# spanning-tree portfast trunk           ! a trunk to a server/hyp
 
 <p>In <a class="figref" href="#fig-9-4">Figure 9.4</a> each coloured dot marks the port end where a feature is configured, and the text beside each row names it. Root guard sits on the distribution side of the access links, loop guard on the access side of the same links, and PortFast with BPDU guard on every host port.</p>
 <p><strong>BPDU guard</strong> — for edge ports. If any BPDU arrives (someone plugged in a switch), the port is <strong>err-disabled</strong> immediately.</p>
-<pre><code>SW1(config-if)# spanning-tree bpduguard enable                 ! per port
-SW1(config)# spanning-tree portfast bpduguard default          ! global: all PortFast ports
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="spanning-tree bpduguard enable
+spanning-tree portfast bpduguard default" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config-if)#</span> <span class="tc">spanning-tree bpduguard enable               </span><span class="tm">  ! per port</span>
+<span class="tp">SW1(config)#</span> <span class="tc">spanning-tree portfast bpduguard default        </span><span class="tm">  ! global: all PortFast ports</span>
 %SPANTREE-2-BLOCK_BPDUGUARD: Received BPDU on port Fa0/1 with BPDU Guard enabled. Disabling port.
-%PM-4-ERR_DISABLE: bpduguard error detected on Fa0/1, putting Fa0/1 in err-disable state
-</code></pre>
+%PM-4-ERR_DISABLE: bpduguard error detected on Fa0/1, putting Fa0/1 in err-disable state</code></pre></div>
 <p>Recover by removing the cause and then <code>shutdown</code> / <code>no shutdown</code>, or automatically with <code>errdisable recovery cause bpduguard</code> and <code>errdisable recovery interval 300</code> (seconds).</p>
 <p><strong>Root guard</strong> — for designated ports that should never lead toward the root, typically distribution-switch downlinks to access switches. If a <strong>superior BPDU</strong> (one claiming a better root) arrives, the port is placed in <strong>root-inconsistent</strong> state (discarding). It recovers <strong>automatically</strong> when the superior BPDUs stop.</p>
-<pre><code>DSW1(config)# interface port-channel 1
-DSW1(config-if)# spanning-tree guard root
-%SPANTREE-2-ROOTGUARD_BLOCK: Root guard blocking port Port-channel1 on VLAN0010.
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="interface port-channel 1
+spanning-tree guard root" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">interface port-channel 1</span>
+<span class="tp">DSW1(config-if)#</span> <span class="tc">spanning-tree guard root</span>
+%SPANTREE-2-ROOTGUARD_BLOCK: Root guard blocking port Port-channel1 on VLAN0010.</code></pre></div>
 <p><strong>Loop guard</strong> — for root and alternate ports (the uplinks of access switches). If BPDUs <strong>stop arriving</strong> on such a port — for example because one fibre strand failed and the link is now unidirectional — normal STP would wrongly turn it into a forwarding designated port and create a loop. Loop guard instead puts it in <strong>loop-inconsistent</strong> state (discarding) until BPDUs return.</p>
-<pre><code>SW1(config)# spanning-tree loopguard default        ! global: all point-to-point ports
-SW1(config-if)# spanning-tree guard loop            ! or per port
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="spanning-tree loopguard default
+spanning-tree guard loop" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">spanning-tree loopguard default      </span><span class="tm">  ! global: all point-to-point ports</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">spanning-tree guard loop          </span><span class="tm">  ! or per port</span></code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -452,7 +460,7 @@ SW1(config-if)# spanning-tree guard loop            ! or per port
 <p><code>show spanning-tree inconsistentports</code> lists ports blocked by root guard or loop guard; <code>show interfaces status err-disabled</code> lists ports shut by BPDU guard.</p>
 <h3 id="912-reading-show-spanning-tree">9.12 Reading <code>show spanning-tree</code></h3>
 <p>On SW1 in the Lab 9.1 topology (VLAN 10, DSW1 is root). Port numbers and MAC addresses are examples.</p>
-<pre><code>SW1# show spanning-tree vlan 10
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="show spanning-tree vlan 10" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1#</span> <span class="tc">show spanning-tree vlan 10</span>
 
 VLAN0010
   Spanning tree enabled protocol rstp
@@ -472,8 +480,7 @@ Interface           Role Sts Cost      Prio.Nbr Type
 Fa0/1               Desg FWD 19        128.1    P2p Edge
 Fa0/2               Desg FWD 19        128.2    P2p Edge
 Fa0/24              Desg FWD 19        128.24   P2p
-Po1                 Root FWD 3         128.65   P2p
-</code></pre>
+Po1                 Root FWD 3         128.65   P2p</code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -655,7 +662,7 @@ Po1                 Root FWD 3         128.65   P2p
 
 <p><a class="figref" href="#fig-9-5">Figure 9.5</a> combines the Lab 6.1 campus with the three new links from the table above. Line styles show each link's cost; the labels give every port's role in VLAN 10. Try to derive them yourself before reading them off the figure.</p>
 <p><strong>DSW1 additions</strong></p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 spanning-tree mode rapid-pvst
 spanning-tree vlan 10,30 root primary
 spanning-tree vlan 40,99 root secondary
@@ -667,9 +674,9 @@ interface gigabitethernet1/0/23
 interface range port-channel 1 - 2
  spanning-tree guard root
 end
-</code></pre>
+</code></pre></div>
 <p><strong>DSW2 additions</strong> (VLANs first; DSW2 has no SVIs in this lab)</p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 vlan 10
  name STAFF
 vlan 30
@@ -689,9 +696,9 @@ interface range gigabitethernet1/0/5 - 6 , gigabitethernet1/0/23
  switchport trunk native vlan 999
  switchport trunk allowed vlan 10,30,40,99
 end
-</code></pre>
+</code></pre></div>
 <p><strong>SW1 and SW2 additions</strong></p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 spanning-tree mode rapid-pvst
 spanning-tree portfast default
 spanning-tree portfast bpduguard default
@@ -703,7 +710,7 @@ interface fastethernet0/24
  switchport trunk allowed vlan 10,30,40,99
  no shutdown
 end
-</code></pre>
+</code></pre></div>
 <p>If IOS rejects <code>switchport mode trunk</code> on the 3650, add <code>switchport trunk encapsulation dot1q</code> first. <strong>PT note:</strong> Packet Tracer supports Rapid PVST+, PortFast, BPDU guard and root guard; loop guard commands are accepted on recent versions but a unidirectional link cannot be simulated, so treat loop guard as configuration practice.</p>
 <p><strong>Why no root guard on DSW2's downlinks here?</strong> Root guard forces a port to stay designated. In VLANs 10 and 30, DSW2 Gi1/0/5 and Gi1/0/6 correctly hear a <em>better</em> path to the root (DSW1) from the access switches, so root guard would show them as <strong>root-inconsistent</strong> instead of alternate, and would stop DSW2 using them as a backup path. Many production designs accept that trade-off and protect every downlink, as <a class="figref" href="#fig-9-4">Figure 9.4</a> shows; this lab leaves them unprotected so the predicted roles stay simple, and Lab 9.2 shows the risk.</p>
 <p><strong>Predict first, then verify.</strong> Work out the roles yourself using 9.6 before running the commands.</p>
@@ -815,43 +822,8 @@ end
 </tbody>
 </table></div>
 <h3 id="917-practice-questions--chapter-9">9.17 Practice questions — Chapter 9</h3>
-<p><strong>1. (Election)</strong> In VLAN 1, SW-X has priority 32769 and MAC 0000.1111.2222; SW-Y has priority 28673 and MAC 00ff.ffff.ffff. Which is root, and why?</p>
-<p><strong>2. (Recall)</strong> With default settings, what bridge priority does <code>show spanning-tree vlan 20</code> display?</p>
-<p>A. 32768  B. 32788  C. 32748  D. 20</p>
-<p><strong>3. (Configuration)</strong> Which is a valid command?</p>
-<p>A. <code>spanning-tree vlan 10 priority 1000</code>  B. <code>spanning-tree vlan 10 priority 8192</code>  C. <code>spanning-tree vlan 10 priority 65536</code>  D. <code>spanning-tree priority 8192 vlan 10</code></p>
-<p><strong>4. (Output interpretation)</strong> Under Root ID, <code>show spanning-tree vlan 30</code> prints "This bridge is the root". What else must be true of this switch's ports in VLAN 30?</p>
-<p><strong>5. (Recall)</strong> What priority does <code>spanning-tree vlan 10 root primary</code> set if the current root uses the default priority?</p>
-<p><strong>6. (Concept)</strong> Which port roles forward traffic in a stable RSTP network? (Choose two.)</p>
-<p>A. Root  B. Alternate  C. Designated  D. Backup  E. Disabled</p>
-<p><strong>7. (Recall)</strong> How many port states does RSTP define, and what are they?</p>
-<p><strong>8. (Calculation)</strong> A switch can reach the root over a 100 Mb/s link directly, or over two 1 Gb/s links through another switch. Using short costs, which path wins?</p>
-<p><strong>9. (Election)</strong> SW2 has two 1 Gb/s links to the root bridge SW1: SW2 Gi0/1 connects to SW1 Gi0/2, and SW2 Gi0/2 connects to SW1 Gi0/1. Port priorities are default. Which SW2 port becomes the root port?</p>
-<p><strong>10. (Concept)</strong> What happens when a port with BPDU guard receives a BPDU, and what happens when a port with root guard receives a superior BPDU?</p>
-<p><strong>11. (Design)</strong> A technician enables <code>spanning-tree portfast trunk</code> on the trunk between two access switches to speed up convergence. Is this acceptable?</p>
-<p><strong>12. (Concept)</strong> What problem does loop guard solve?</p>
-<p><strong>13. (Log interpretation)</strong> <code>%PM-4-ERR_DISABLE: bpduguard error detected on Gi1/0/7, putting Gi1/0/7 in err-disable state</code>. What happened and how do you restore the port?</p>
-<p><strong>14. (Multiple response — choose two)</strong> Where should root guard normally be configured?</p>
-<p>A. Access-switch host ports  B. Distribution-switch ports facing access switches  C. The access switch's root port  D. Ports where an unauthorized root bridge could appear below the distribution layer  E. The root bridge's loopback interface</p>
-<p><strong>15. (Evaluate an AI assistant)</strong> A user plugged a small unmanaged-looking switch into their desk port and it went err-disabled. A network assistant recommends: <em>"Run <code>no spanning-tree portfast bpduguard default</code> so this does not happen again."</em> Is this good advice?</p>
-<h3 id="918-answer-key-with-explanations">9.18 Answer key with explanations</h3>
-<ol>
-<li><strong>SW-Y.</strong> Priority is compared first and 28673 &lt; 32769; the MAC address only breaks ties when priorities are equal.</li>
-<li><strong>B.</strong> 32768 + VLAN 20 = 32788 (the extended system ID).</li>
-<li><strong>B.</strong> Priorities must be multiples of 4096 between 0 and 61440. 1000 is not a multiple; 65536 is too large; D has the wrong syntax.</li>
-<li>It has <strong>no root port</strong>; every one of its ports in VLAN 30 that is up is a <strong>designated</strong> (forwarding) port.</li>
-<li><strong>24576</strong> (it sets 24576, or lower if needed to beat the existing root). With a default root at 32768 + VLAN, 24576 wins.</li>
-<li><strong>A and C.</strong> Alternate and backup ports discard; disabled ports do not participate.</li>
-<li><strong>Three:</strong> discarding, learning, forwarding.</li>
-<li>Direct 100 Mb/s costs <strong>19</strong>; two 1 Gb/s links cost 4 + 4 = <strong>8</strong>. The path through the other switch wins (lower total cost).</li>
-<li>Costs and sender BID are equal (both links go to SW1), and port priority is 128 on both, so the <strong>lowest sender port number</strong> decides: the link to SW1 <strong>Gi0/1</strong>, which is SW2's <strong>Gi0/2</strong>. The neighbor's port ID matters, not your own.</li>
-<li><strong>BPDU guard:</strong> the port is <strong>err-disabled</strong> immediately and stays down until bounced or recovered. <strong>Root guard:</strong> the port goes <strong>root-inconsistent</strong> (discarding) and recovers automatically when the superior BPDUs stop.</li>
-<li><strong>No.</strong> PortFast tells STP the port cannot form a loop; between two switches it can. Use PortFast only toward hosts (and host trunks such as hypervisors).</li>
-<li>If BPDUs stop arriving on a root or alternate port (for example on a unidirectional link), normal STP would make that port designated and forwarding, creating a loop. Loop guard puts it in <strong>loop-inconsistent</strong> (blocked) state instead until BPDUs return.</li>
-<li>A <strong>BPDU arrived on Gi1/0/7</strong>, which has BPDU guard (usually because a switch was plugged in), so the port was err-disabled. Remove the device, then <code>shutdown</code> and <code>no shutdown</code> (or let <code>errdisable recovery cause bpduguard</code> restore it).</li>
-<li><strong>B and D.</strong> Root guard protects the root position at the distribution layer by blocking superior BPDUs coming from below. It is not used on host ports (BPDU guard is) or on root ports.</li>
-<li><strong>No.</strong> That removes protection from every PortFast port and allows a user's switch to join the STP domain, risking loops and a rogue root. The correct response is to remove the switch (or provide a properly configured one), then recover the port.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="9" data-total="15"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>15 questions · 4 auto-graded, 11 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 15</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Election</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>In VLAN 1, SW-X has priority 32769 and MAC 0000.1111.2222; SW-Y has priority 28673 and MAC 00ff.ffff.ffff. Which is root, and why?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>SW-Y.</strong> Priority is compared first and 28673 &lt; 32769; the MAC address only breaks ties when priorities are equal.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="2" data-correct="B"><div class="qhead"><span class="qn">2</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>With default settings, what bridge priority does <code>show spanning-tree vlan 20</code> display?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">32768</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">32788</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">32748</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">20</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> 32768 + VLAN 20 = 32788 (the extended system ID).</p></div></div><div class="q" data-q="3" data-correct="B"><div class="qhead"><span class="qn">3</span><span class="qkind">Configuration</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which is a valid command?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot"><code>spanning-tree vlan 10 priority 1000</code></span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot"><code>spanning-tree vlan 10 priority 8192</code></span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot"><code>spanning-tree vlan 10 priority 65536</code></span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot"><code>spanning-tree priority 8192 vlan 10</code></span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> Priorities must be multiples of 4096 between 0 and 61440. 1000 is not a multiple; 65536 is too large; D has the wrong syntax.</p></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Under Root ID, <code>show spanning-tree vlan 30</code> prints "This bridge is the root". What else must be true of this switch's ports in VLAN 30?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>It has <strong>no root port</strong>; every one of its ports in VLAN 30 that is up is a <strong>designated</strong> (forwarding) port.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What priority does <code>spanning-tree vlan 10 root primary</code> set if the current root uses the default priority?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>24576</strong> (it sets 24576, or lower if needed to beat the existing root). With a default root at 32768 + VLAN, 24576 wins.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="6" data-correct="AC"><div class="qhead"><span class="qn">6</span><span class="qkind">Concept</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which port roles forward traffic in a stable RSTP network? (Choose two.)</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Root</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Alternate</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Designated</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Backup</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">Disabled</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> Alternate and backup ports discard; disabled ports do not participate.</p></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>How many port states does RSTP define, and what are they?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Three:</strong> discarding, learning, forwarding.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Calculation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A switch can reach the root over a 100 Mb/s link directly, or over two 1 Gb/s links through another switch. Using short costs, which path wins?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Direct 100 Mb/s costs <strong>19</strong>; two 1 Gb/s links cost 4 + 4 = <strong>8</strong>. The path through the other switch wins (lower total cost).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Election</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>SW2 has two 1 Gb/s links to the root bridge SW1: SW2 Gi0/1 connects to SW1 Gi0/2, and SW2 Gi0/2 connects to SW1 Gi0/1. Port priorities are default. Which SW2 port becomes the root port?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Costs and sender BID are equal (both links go to SW1), and port priority is 128 on both, so the <strong>lowest sender port number</strong> decides: the link to SW1 <strong>Gi0/1</strong>, which is SW2's <strong>Gi0/2</strong>. The neighbor's port ID matters, not your own.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What happens when a port with BPDU guard receives a BPDU, and what happens when a port with root guard receives a superior BPDU?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>BPDU guard:</strong> the port is <strong>err-disabled</strong> immediately and stays down until bounced or recovered. <strong>Root guard:</strong> the port goes <strong>root-inconsistent</strong> (discarding) and recovers automatically when the superior BPDUs stop.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">Design</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A technician enables <code>spanning-tree portfast trunk</code> on the trunk between two access switches to speed up convergence. Is this acceptable?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> PortFast tells STP the port cannot form a loop; between two switches it can. Use PortFast only toward hosts (and host trunks such as hypervisors).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What problem does loop guard solve?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>If BPDUs stop arriving on a root or alternate port (for example on a unidirectional link), normal STP would make that port designated and forwarding, creating a loop. Loop guard puts it in <strong>loop-inconsistent</strong> (blocked) state instead until BPDUs return.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Log interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>%PM-4-ERR_DISABLE: bpduguard error detected on Gi1/0/7, putting Gi1/0/7 in err-disable state</code>. What happened and how do you restore the port?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A <strong>BPDU arrived on Gi1/0/7</strong>, which has BPDU guard (usually because a switch was plugged in), so the port was err-disabled. Remove the device, then <code>shutdown</code> and <code>no shutdown</code> (or let <code>errdisable recovery cause bpduguard</code> restore it).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="14" data-correct="BD"><div class="qhead"><span class="qn">14</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Where should root guard normally be configured?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Access-switch host ports</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Distribution-switch ports facing access switches</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">The access switch's root port</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Ports where an unauthorized root bridge could appear below the distribution layer</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">The root bridge's loopback interface</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B and D.</strong> Root guard protects the root position at the distribution layer by blocking superior BPDUs coming from below. It is not used on host ports (BPDU guard is) or on root ports.</p></div></div><div class="q open" data-q="15"><div class="qhead"><span class="qn">15</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A user plugged a small unmanaged-looking switch into their desk port and it went err-disabled. A network assistant recommends: <em>"Run <code>no spanning-tree portfast bpduguard default</code> so this does not happen again."</em> Is this good advice?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> That removes protection from every PortFast port and allows a user's switch to join the STP domain, risking loops and a rogue root. The correct response is to remove the switch (or provide a properly configured one), then recover the port.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="919-chapter-9-figure-checklist">9.19 Chapter 9 figure checklist</h3>
 <p>All 5 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-9-1">Figure 9.1</a> (a label overflowing its box) and <a class="figref" href="#fig-9-5">Figure 9.5</a> (a label crossing a link) were corrected and re-checked.</p>
 <div class="table-wrap"><table>
@@ -918,7 +890,6 @@ end
 <a href="#915-lab-92--stp-challenge">9.15 Lab 9.2 — STP challenge</a>
 <a href="#916-chapter-9-summary-notes-exam-revision">9.16 Chapter 9 summary notes (exam revision)</a>
 <a href="#917-practice-questions--chapter-9">9.17 Practice questions — Chapter 9</a>
-<a href="#918-answer-key-with-explanations">9.18 Answer key with explanations</a>
 <a href="#919-chapter-9-figure-checklist">9.19 Chapter 9 figure checklist</a>
 <a href="#920-chapter-9-progress-record">9.20 Chapter 9 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head purple">
   <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
   <h1><span class="num">Chapter 18</span>Secure device access: local users, SSH and AAA</h1>
-  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~15 min read</span>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~16 min read</span><a class="qmeta" href="#quiz" data-ch="18" data-total="13">📝 Self-check: 13 questions</a>
   <label class="mark"><input type="checkbox" data-ch="18"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.1 Configure network devices with local usernames and as an AAA client (TACACS+ and RADIUS) for management.</strong> This chapter is about who may log in to a router or switch to manage it, how they prove it, and how that is recorded. Network access for users (802.1X, Chapter 16) uses the same AAA ideas.</p>
 <h3 id="181-learning-objectives">18.1 Learning objectives</h3>
@@ -74,18 +75,25 @@
 <li>Explain the difference between a server <em>rejecting</em> a login and a server being <em>unreachable</em>.</li>
 <li>Verify and troubleshoot AAA logins.</li>
 </ol>
-<h3 id="182-local-usernames-privilege-and-password-storage">18.2 Local usernames, privilege and password storage</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#189-packet-tracer-lab-181--ssh-with-tacacs-and-radius-and-local-fallback-intermediateadvanced">Packet Tracer Lab 18.1 — SSH with TACACS+ and RADIUS, and local fallback (Intermediate–Advanced)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="182-local-usernames-privilege-and-password-storage">18.2 Local usernames, privilege and password storage</h3>
 <p>A single shared line password (<code>password cisco</code> under <code>line vty</code>) cannot tell administrators apart and cannot be revoked for one person. <strong>Local usernames</strong> fix that on a small network.</p>
-<pre><code>R1(config)# enable algorithm-type scrypt secret Str0ng-Enable-2026      ! type 9 hash
-R1(config)# username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026
-R1(config)# username helpdesk privilege 1 algorithm-type scrypt secret H3lp-Desk-2026
-R1(config)# security passwords min-length 10
-R1(config)# login block-for 120 attempts 3 within 60       ! slow down password guessing
-R1(config)# service password-encryption                     ! hides any remaining type 0 passwords as type 7
-R1(config)# line console 0
-R1(config-line)# login local
-R1(config-line)# exec-timeout 10 0
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="enable algorithm-type scrypt secret Str0ng-Enable-2026
+username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026
+username helpdesk privilege 1 algorithm-type scrypt secret H3lp-Desk-2026
+security passwords min-length 10
+login block-for 120 attempts 3 within 60
+service password-encryption
+line console 0
+login local
+exec-timeout 10 0" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">enable algorithm-type scrypt secret Str0ng-Enable-2026    </span><span class="tm">  ! type 9 hash</span>
+<span class="tp">R1(config)#</span> <span class="tc">username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026</span>
+<span class="tp">R1(config)#</span> <span class="tc">username helpdesk privilege 1 algorithm-type scrypt secret H3lp-Desk-2026</span>
+<span class="tp">R1(config)#</span> <span class="tc">security passwords min-length 10</span>
+<span class="tp">R1(config)#</span> <span class="tc">login block-for 120 attempts 3 within 60     </span><span class="tm">  ! slow down password guessing</span>
+<span class="tp">R1(config)#</span> <span class="tc">service password-encryption                   </span><span class="tm">  ! hides any remaining type 0 passwords as type 7</span>
+<span class="tp">R1(config)#</span> <span class="tc">line console 0</span>
+<span class="tp">R1(config-line)#</span> <span class="tc">login local</span>
+<span class="tp">R1(config-line)#</span> <span class="tc">exec-timeout 10 0</span></code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -125,17 +133,25 @@ R1(config-line)# exec-timeout 10 0
 <p><strong>Privilege levels:</strong> <strong>1</strong> = user EXEC (<code>&gt;</code>, show commands only), <strong>15</strong> = privileged EXEC (<code>#</code>, everything); levels 2–14 can be customised. A user with <code>privilege 15</code> lands directly in privileged EXEC; a level 1 user must type <code>enable</code> and know the enable secret.</p>
 <h3 id="183-ssh-for-remote-management">18.3 SSH for remote management</h3>
 <p>Telnet sends everything, including passwords, in clear text. <strong>SSH</strong> encrypts the session. Configure SSH version 2 and allow only SSH on the VTY lines:</p>
-<pre><code>R1(config)# hostname R1
-R1(config)# ip domain-name campus.example                  ! needed for the RSA key name
-R1(config)# crypto key generate rsa modulus 2048           ! RSA key pair for SSH
-R1(config)# ip ssh version 2
-R1(config)# ip ssh time-out 60
-R1(config)# ip ssh authentication-retries 3
-R1(config)# line vty 0 15
-R1(config-line)# login local
-R1(config-line)# transport input ssh                       ! no Telnet
-R1(config-line)# exec-timeout 10 0
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="hostname R1
+ip domain-name campus.example
+crypto key generate rsa modulus 2048
+ip ssh version 2
+ip ssh time-out 60
+ip ssh authentication-retries 3
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 10 0" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">hostname R1</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip domain-name campus.example                </span><span class="tm">  ! needed for the RSA key name</span>
+<span class="tp">R1(config)#</span> <span class="tc">crypto key generate rsa modulus 2048         </span><span class="tm">  ! RSA key pair for SSH</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip ssh version 2</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip ssh time-out 60</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip ssh authentication-retries 3</span>
+<span class="tp">R1(config)#</span> <span class="tc">line vty 0 15</span>
+<span class="tp">R1(config-line)#</span> <span class="tc">login local</span>
+<span class="tp">R1(config-line)#</span> <span class="tc">transport input ssh                     </span><span class="tm">  ! no Telnet</span>
+<span class="tp">R1(config-line)#</span> <span class="tc">exec-timeout 10 0</span></code></pre></div>
 <p>Verify with <code>show ip ssh</code> (version, timeouts) and <code>show ssh</code> (active sessions); connect from a PC with <code>ssh -l netadmin 10.10.99.2</code> (Windows, Linux, macOS and Packet Tracer). Restrict which subnets may reach the VTY lines with an ACL and <code>access-class</code> (Chapter 20).</p>
 <p>Local accounts do not scale: with 50 switches, a password change means 50 logins, and there is no central record of who did what. That is what AAA solves.</p>
 <h3 id="184-aaa-authentication-authorization-accounting">18.4 AAA: authentication, authorization, accounting</h3>
@@ -214,44 +230,71 @@ R1(config-line)# exec-timeout 10 0
 </table></div>
 <p><strong>Rule of thumb for the exam:</strong> TACACS+ for administrators managing devices; RADIUS for users joining the network. Both are on the syllabus as AAA clients for <strong>management</strong>, and both work for it.</p>
 <p><strong>How the server sets the privilege level.</strong> After a successful login, the server's authorization reply can carry a privilege level (for TACACS+ <code>priv-lvl=15</code>; for RADIUS a Cisco attribute such as <code>shell:priv-lvl=15</code>). The device uses it only if <strong>exec authorization</strong> is configured (18.6); otherwise users arrive at privilege 1.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong><b>TACACS+</b>: TCP 49, encrypts the whole body, keeps the three A's separate — ideal for device administration. <b>RADIUS</b>: UDP 1812/1813, encrypts only the password, combines authentication and authorization — ideal for network access.</p>
+
 <h3 id="186-configuring-ios-as-an-aaa-client">18.6 Configuring IOS as an AAA client</h3>
 <p><strong>Step 0 — protect yourself from lock-out.</strong> <code>aaa new-model</code> immediately changes how logins work. Before entering it, create a local privilege 15 user, keep a console session open, and save the configuration only after testing.</p>
 <p><strong>TACACS+ (current IOS XE syntax)</strong></p>
-<pre><code>DSW1(config)# username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026   ! local fallback account
-DSW1(config)# aaa new-model
-DSW1(config)# tacacs server ISE-TAC
-DSW1(config-server-tacacs)# address ipv4 10.10.99.20
-DSW1(config-server-tacacs)# key T4cacs-Sh4red-Key
-DSW1(config-server-tacacs)# exit
-DSW1(config)# aaa group server tacacs+ ADMIN-TAC
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026
+aaa new-model
+tacacs server ISE-TAC
+address ipv4 10.10.99.20
+key T4cacs-Sh4red-Key
+exit
+aaa group server tacacs+ ADMIN-TAC
+aaa authentication login VTY-AUTH group ADMIN-TAC local
+aaa authorization exec VTY-AUTH group ADMIN-TAC local if-authenticated
+aaa accounting exec default start-stop group ADMIN-TAC
+aaa accounting commands 15 default start-stop group ADMIN-TAC
+aaa authentication login CONSOLE local
+line vty 0 15
+login authentication VTY-AUTH
+authorization exec VTY-AUTH
+transport input ssh
+line console 0
+login authentication CONSOLE" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1(config)#</span> <span class="tc">username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026 </span><span class="tm">  ! local fallback account</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa new-model</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">tacacs server ISE-TAC</span>
+<span class="tp">DSW1(config-server-tacacs)#</span> <span class="tc">address ipv4 10.10.99.20</span>
+<span class="tp">DSW1(config-server-tacacs)#</span> <span class="tc">key T4cacs-Sh4red-Key</span>
+<span class="tp">DSW1(config-server-tacacs)#</span> <span class="tc">exit</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa group server tacacs+ ADMIN-TAC</span>
 DSW1(config-sg-tacacs+)# server name ISE-TAC
 DSW1(config-sg-tacacs+)# ip tacacs source-interface Vlan99      ! requests always come from 10.10.99.2
 DSW1(config-sg-tacacs+)# exit
-DSW1(config)# aaa authentication login VTY-AUTH group ADMIN-TAC local
-DSW1(config)# aaa authorization exec VTY-AUTH group ADMIN-TAC local if-authenticated
-DSW1(config)# aaa accounting exec default start-stop group ADMIN-TAC
-DSW1(config)# aaa accounting commands 15 default start-stop group ADMIN-TAC
-DSW1(config)# aaa authentication login CONSOLE local               ! console never depends on the network
-DSW1(config)# line vty 0 15
-DSW1(config-line)# login authentication VTY-AUTH
-DSW1(config-line)# authorization exec VTY-AUTH
-DSW1(config-line)# transport input ssh
-DSW1(config-line)# line console 0
-DSW1(config-line)# login authentication CONSOLE
-</code></pre>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa authentication login VTY-AUTH group ADMIN-TAC local</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa authorization exec VTY-AUTH group ADMIN-TAC local if-authenticated</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa accounting exec default start-stop group ADMIN-TAC</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa accounting commands 15 default start-stop group ADMIN-TAC</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">aaa authentication login CONSOLE local             </span><span class="tm">  ! console never depends on the network</span>
+<span class="tp">DSW1(config)#</span> <span class="tc">line vty 0 15</span>
+<span class="tp">DSW1(config-line)#</span> <span class="tc">login authentication VTY-AUTH</span>
+<span class="tp">DSW1(config-line)#</span> <span class="tc">authorization exec VTY-AUTH</span>
+<span class="tp">DSW1(config-line)#</span> <span class="tc">transport input ssh</span>
+<span class="tp">DSW1(config-line)#</span> <span class="tc">line console 0</span>
+<span class="tp">DSW1(config-line)#</span> <span class="tc">login authentication CONSOLE</span></code></pre></div>
 <p><strong>RADIUS (current IOS XE syntax)</strong></p>
-<pre><code>SW1(config)# aaa new-model
-SW1(config)# radius server ISE-RAD
-SW1(config-radius-server)# address ipv4 10.10.99.20 auth-port 1812 acct-port 1813
-SW1(config-radius-server)# key R4dius-Sh4red-Key
-SW1(config-radius-server)# exit
-SW1(config)# aaa group server radius ADMIN-RAD
-SW1(config-sg-radius)# server name ISE-RAD
-SW1(config-sg-radius)# exit
-SW1(config)# aaa authentication login default group ADMIN-RAD local
-SW1(config)# aaa authorization exec default group ADMIN-RAD local if-authenticated
-SW1(config)# aaa accounting exec default start-stop group ADMIN-RAD
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="aaa new-model
+radius server ISE-RAD
+address ipv4 10.10.99.20 auth-port 1812 acct-port 1813
+key R4dius-Sh4red-Key
+exit
+aaa group server radius ADMIN-RAD
+server name ISE-RAD
+exit
+aaa authentication login default group ADMIN-RAD local
+aaa authorization exec default group ADMIN-RAD local if-authenticated
+aaa accounting exec default start-stop group ADMIN-RAD" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">aaa new-model</span>
+<span class="tp">SW1(config)#</span> <span class="tc">radius server ISE-RAD</span>
+<span class="tp">SW1(config-radius-server)#</span> <span class="tc">address ipv4 10.10.99.20 auth-port 1812 acct-port 1813</span>
+<span class="tp">SW1(config-radius-server)#</span> <span class="tc">key R4dius-Sh4red-Key</span>
+<span class="tp">SW1(config-radius-server)#</span> <span class="tc">exit</span>
+<span class="tp">SW1(config)#</span> <span class="tc">aaa group server radius ADMIN-RAD</span>
+<span class="tp">SW1(config-sg-radius)#</span> <span class="tc">server name ISE-RAD</span>
+<span class="tp">SW1(config-sg-radius)#</span> <span class="tc">exit</span>
+<span class="tp">SW1(config)#</span> <span class="tc">aaa authentication login default group ADMIN-RAD local</span>
+<span class="tp">SW1(config)#</span> <span class="tc">aaa authorization exec default group ADMIN-RAD local if-authenticated</span>
+<span class="tp">SW1(config)#</span> <span class="tc">aaa accounting exec default start-stop group ADMIN-RAD</span></code></pre></div>
 <p>The list named <strong><code>default</code></strong> applies to every line that has no named list; a <strong>named list</strong> (VTY-AUTH) applies only where you reference it. <strong>Older syntax</strong>, still accepted by many releases and used by Packet Tracer: <code>tacacs-server host 10.10.99.20 key T4cacs-Sh4red-Key</code> and <code>radius-server host 10.10.99.20 key R4dius-Sh4red-Key</code>, with <code>group tacacs+</code> / <code>group radius</code> in the method lists.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -433,7 +476,7 @@ SW1(config)# aaa accounting exec default start-stop group ADMIN-RAD
 </table></div>
 <p><strong>AAA-1:</strong> Desktop → IP Configuration (static address above); Services → <strong>AAA</strong> → On; add the two clients (Client Name, Client IP, Secret, Server Type) and user <em>alice</em>.</p>
 <p><strong>DSW1 — TACACS+ client</strong> (Packet Tracer uses the older server syntax; <code>algorithm-type scrypt</code> may be unavailable, so plain <code>secret</code> is used)</p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 enable secret En4ble-2026
 username netadmin privilege 15 secret N3t-Admin-2026
 ip domain-name campus.example
@@ -450,9 +493,9 @@ line vty 0 15
 line console 0
  login authentication CONSOLE
 end
-</code></pre>
+</code></pre></div>
 <p><strong>SW1 — RADIUS client</strong></p>
-<pre><code>configure terminal
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>configure terminal
 enable secret En4ble-2026
 username netadmin privilege 15 secret N3t-Admin-2026
 ip domain-name campus.example
@@ -464,9 +507,9 @@ aaa authentication login default group radius local
 line vty 0 15
  transport input ssh
 end
-</code></pre>
+</code></pre></div>
 <p>(SW1's VTY lines use the <code>default</code> list automatically; so does its console — acceptable here because of the local fallback, but in production give the console its own local list as on DSW1.) Test every login <strong>before</strong> <code>copy running-config startup-config</code>.</p>
-<p class="callout pt-note"><strong>PT note</strong> Packet Tracer's AAA server cannot send a privilege level, so server users arrive at <code>&gt;</code> and use <code>enable</code> with the enable secret. Real servers (ISE) return privilege 15 with exec authorization (18.6).</p>
+<p class="callout lab-it"><strong>PT note</strong>Packet Tracer's AAA server cannot send a privilege level, so server users arrive at <code>&gt;</code> and use <code>enable</code> with the enable secret. Real servers (ISE) return privilege 15 with exec authorization (18.6).</p>
 <p><strong>Tests and expected results</strong> (from PC1's Command Prompt)</p>
 <div class="table-wrap"><table>
 <thead>
@@ -573,37 +616,8 @@ end
 </tbody>
 </table></div>
 <h3 id="1811-practice-questions--chapter-18">18.11 Practice questions — Chapter 18</h3>
-<p><strong>1. (Recall)</strong> Which protocol and port does TACACS+ use?</p>
-<p>A. UDP 49  B. TCP 49  C. UDP 1812  D. TCP 1812</p>
-<p><strong>2. (Compare)</strong> Give two differences between TACACS+ and RADIUS.</p>
-<p><strong>3. (Configuration)</strong> Write the minimum commands to allow only SSH version 2 on VTY lines 0–15 with local logins, given hostname R1 and domain campus.example.</p>
-<p><strong>4. (Concept)</strong> <code>aaa authentication login default group tacacs+ local</code> is configured. The TACACS+ server rejects user <em>bob</em>, who also exists locally. Does bob get in?</p>
-<p><strong>5. (Concept)</strong> In the same configuration, the TACACS+ server is powered off. Can <em>netadmin</em> (local only) log in?</p>
-<p><strong>6. (Password types)</strong> A configuration line reads <code>username ops password 7 0822455D0A16</code>. What does this tell you about its security?</p>
-<p><strong>7. (Troubleshooting)</strong> All server logins fail; the server log shows the requests arriving from 10.0.0.2 but the device is registered on the server as 10.10.99.2. What is the fix?</p>
-<p><strong>8. (Troubleshooting)</strong> Administrators authenticate through RADIUS but land at the <code>&gt;</code> prompt. What is missing?</p>
-<p><strong>9. (Multiple response — choose two)</strong> Which are true of RADIUS?</p>
-<p>A. Uses UDP  B. Encrypts the entire payload  C. Commonly used for 802.1X  D. Provides per-command authorization  E. Cisco proprietary</p>
-<p><strong>10. (Design)</strong> Why should the console line use a separate method list with only <code>local</code>?</p>
-<p><strong>11. (Accounting)</strong> Which command records every privileged-level command an administrator types?</p>
-<p><strong>12. (Recall)</strong> What does <code>login block-for 120 attempts 3 within 60</code> do?</p>
-<p><strong>13. (Evaluate an AI assistant)</strong> A network assistant proposes: <em>"To be safe, configure <code>aaa authentication login default local group tacacs+</code> so you can always log in locally."</em> What is wrong with this?</p>
-<h3 id="1812-answer-key-with-explanations">18.12 Answer key with explanations</h3>
-<ol>
-<li><strong>B.</strong> TACACS+ uses TCP 49. UDP 1812 is RADIUS authentication.</li>
-<li>Any two: TCP vs UDP; whole payload encrypted vs password only; separate vs combined authentication/authorization; per-command authorization (TACACS+ only); Cisco-originated vs open standard; typical use device admin vs network access.</li>
-<li><code>ip domain-name campus.example</code> → <code>crypto key generate rsa modulus 2048</code> → <code>ip ssh version 2</code> → <code>username …</code> → <code>line vty 0 15</code> → <code>login local</code> → <code>transport input ssh</code>.</li>
-<li><strong>No.</strong> A reject is a FAIL; the local method is used only on ERROR (no answer).</li>
-<li><strong>Yes</strong> (after the timeout). The server gives no answer, an ERROR, so IOS moves to the local database.</li>
-<li>It is a <strong>type 7</strong> password: reversible, offering almost no protection. Replace it with <code>username ops algorithm-type scrypt secret …</code>.</li>
-<li>Either register 10.0.0.2 as the client on the server, or (better) fix the source with <code>ip tacacs source-interface Vlan99</code> / <code>ip radius source-interface Vlan99</code> so requests come from 10.10.99.2.</li>
-<li><code>aaa authorization exec …</code> on the device (and a privilege-15 shell profile on the server).</li>
-<li><strong>A and C.</strong> RADIUS encrypts only the password, has no per-command authorization, and is an open standard.</li>
-<li>So that console access never depends on the network or a server: it is the way back in when AAA or routing is broken.</li>
-<li><code>aaa accounting commands 15 default start-stop group &lt;tacacs-group&gt;</code> (command accounting is a TACACS+ feature).</li>
-<li>After 3 failed logins within 60 seconds, all logins are blocked for 120 seconds (quiet mode), slowing password-guessing attacks.</li>
-<li>With <code>local</code> first, IOS checks local accounts and only asks TACACS+ if the local database gives no answer — so centralised control and per-user revocation are lost, and stale local passwords stay valid. Put the server group first and <code>local</code> last as a fallback.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="18" data-total="13"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>13 questions · 2 auto-graded, 11 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 13</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q" data-q="1" data-correct="B"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which protocol and port does TACACS+ use?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">UDP 49</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">TCP 49</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">UDP 1812</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">TCP 1812</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> TACACS+ uses TCP 49. UDP 1812 is RADIUS authentication.</p></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Compare</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Give two differences between TACACS+ and RADIUS.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Any two: TCP vs UDP; whole payload encrypted vs password only; separate vs combined authentication/authorization; per-command authorization (TACACS+ only); Cisco-originated vs open standard; typical use device admin vs network access.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write the minimum commands to allow only SSH version 2 on VTY lines 0–15 with local logins, given hostname R1 and domain campus.example.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ip domain-name campus.example</code> → <code>crypto key generate rsa modulus 2048</code> → <code>ip ssh version 2</code> → <code>username …</code> → <code>line vty 0 15</code> → <code>login local</code> → <code>transport input ssh</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>aaa authentication login default group tacacs+ local</code> is configured. The TACACS+ server rejects user <em>bob</em>, who also exists locally. Does bob get in?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> A reject is a FAIL; the local method is used only on ERROR (no answer).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>In the same configuration, the TACACS+ server is powered off. Can <em>netadmin</em> (local only) log in?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Yes</strong> (after the timeout). The server gives no answer, an ERROR, so IOS moves to the local database.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Password types</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A configuration line reads <code>username ops password 7 0822455D0A16</code>. What does this tell you about its security?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>It is a <strong>type 7</strong> password: reversible, offering almost no protection. Replace it with <code>username ops algorithm-type scrypt secret …</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>All server logins fail; the server log shows the requests arriving from 10.0.0.2 but the device is registered on the server as 10.10.99.2. What is the fix?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Either register 10.0.0.2 as the client on the server, or (better) fix the source with <code>ip tacacs source-interface Vlan99</code> / <code>ip radius source-interface Vlan99</code> so requests come from 10.10.99.2.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Administrators authenticate through RADIUS but land at the <code>&gt;</code> prompt. What is missing?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>aaa authorization exec …</code> on the device (and a privilege-15 shell profile on the server).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="9" data-correct="AC"><div class="qhead"><span class="qn">9</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which are true of RADIUS?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Uses UDP</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Encrypts the entire payload</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Commonly used for 802.1X</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Provides per-command authorization</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">Cisco proprietary</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> RADIUS encrypts only the password, has no per-command authorization, and is an open standard.</p></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Design</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Why should the console line use a separate method list with only <code>local</code>?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>So that console access never depends on the network or a server: it is the way back in when AAA or routing is broken.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">Accounting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Which command records every privileged-level command an administrator types?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>aaa accounting commands 15 default start-stop group &lt;tacacs-group&gt;</code> (command accounting is a TACACS+ feature).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What does <code>login block-for 120 attempts 3 within 60</code> do?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>After 3 failed logins within 60 seconds, all logins are blocked for 120 seconds (quiet mode), slowing password-guessing attacks.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A network assistant proposes: <em>"To be safe, configure <code>aaa authentication login default local group tacacs+</code> so you can always log in locally."</em> What is wrong with this?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>With <code>local</code> first, IOS checks local accounts and only asks TACACS+ if the local database gives no answer — so centralised control and per-user revocation are lost, and stale local passwords stay valid. Put the server group first and <code>local</code> last as a fallback.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="1813-chapter-18-figure-checklist">18.13 Chapter 18 figure checklist</h3>
 <p>All 3 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-18-2">Figure 18.2</a>'s first render sent the reject arrow into the ERROR box; it was rerouted to FAIL and re-checked.</p>
 <div class="table-wrap"><table>
@@ -652,7 +666,6 @@ end
 <a href="#189-packet-tracer-lab-181--ssh-with-tacacs-and-radius-and-local-fallback-intermediateadvanced">18.9 Packet Tracer Lab 18.1 — SSH with TACACS+ and RADIUS, and local fallback (Intermediate–Advanced)</a>
 <a href="#1810-chapter-18-summary-notes-exam-revision">18.10 Chapter 18 summary notes (exam revision)</a>
 <a href="#1811-practice-questions--chapter-18">18.11 Practice questions — Chapter 18</a>
-<a href="#1812-answer-key-with-explanations">18.12 Answer key with explanations</a>
 <a href="#1813-chapter-18-figure-checklist">18.13 Chapter 18 figure checklist</a>
 <a href="#1814-chapter-18-progress-record">18.14 Chapter 18 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

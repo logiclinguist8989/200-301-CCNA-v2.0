@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head green">
   <div class="eyebrow">Domain 2 · Switching &amp; Network Access</div>
   <h1><span class="num">Chapter 15</span>The troubleshooting toolkit</h1>
-  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~20 min read</span>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~21 min read</span><a class="qmeta" href="#quiz" data-ch="15" data-total="14">📝 Self-check: 14 questions</a>
   <label class="mark"><input type="checkbox" data-ch="15"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>2.4 Troubleshoot basic Layer 2/Layer 3 connectivity and device operations using show commands (including show logs), ping, extended ping, trace route, and packet capture output.</strong> This chapter gathers the tools you have used one at a time since Chapter 1 into one method, and adds extended ping, traceroute in depth and reading packet captures.</p>
 <h3 id="151-learning-objectives">15.1 Learning objectives</h3>
@@ -75,7 +76,7 @@
 <li>Read packet capture output for ARP, ICMP, TCP and DHCP.</li>
 <li>Work a realistic trouble ticket from symptom to fix.</li>
 </ol>
-<h3 id="152-a-troubleshooting-method">15.2 A troubleshooting method</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#1510-packet-tracer-lab-151--four-trouble-tickets-advanced">Packet Tracer Lab 15.1 — Four trouble tickets (Advanced)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="152-a-troubleshooting-method">15.2 A troubleshooting method</h3>
 <p>Random changes create new faults and hide the original one. Use the same steps every time:</p>
 <ol>
 <li><strong>Define the problem precisely.</strong> Who is affected, what fails (all traffic, one application, one destination), since when, what changed.</li>
@@ -200,15 +201,14 @@
 </tbody>
 </table></div>
 <p><strong>Filter long output</strong> with a pipe, available on every show command: <code>| include &lt;text&gt;</code>, <code>| exclude &lt;text&gt;</code>, <code>| begin &lt;text&gt;</code>, <code>| section &lt;text&gt;</code>. Example: <code>show running-config | section interface Vlan10</code>, or <code>show logging | include LINEPROTO</code>.</p>
-<pre><code>DSW1# show version | include uptime|Last reload|Version
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="show version | include uptime|Last reload|Version" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1#</span> <span class="tc">show version | include uptime|Last reload|Version</span>
 Cisco IOS XE Software, Version 16.03.02
 DSW1 uptime is 2 weeks, 3 days, 4 hours, 12 minutes
-Last reload reason: power-on
-</code></pre>
+Last reload reason: power-on</code></pre></div>
 <p>An uptime of a few minutes on a device nobody restarted, or a reload reason such as a crash, is a clue in itself. (Version strings vary by platform.)</p>
 <h3 id="154-reading-logs-with-show-logging">15.4 Reading logs with <code>show logging</code></h3>
 <p>IOS records events — interfaces going up or down, neighbors forming, errors — as <strong>log messages</strong>. On the console you see them as they happen; remotely (SSH) you see them only after <code>terminal monitor</code>; and <code>show logging</code> lists those kept in the <strong>logging buffer</strong> in RAM.</p>
-<pre><code>DSW1# show logging
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="show logging" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1#</span> <span class="tc">show logging</span>
 Syslog logging: enabled (0 messages dropped, 0 flushes, 0 overruns)
     Console logging: level debugging, 212 messages logged
     Buffer logging:  level informational, 188 messages logged
@@ -216,8 +216,7 @@ Log Buffer (16384 bytes):
 *Oct 15 10:02:13.457: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/2, changed state to down
 *Oct 15 10:02:14.461: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to down
 *Oct 15 10:02:14.470: %EC-5-UNBUNDLE: Interface Gi1/0/2 left the port-channel Port-channel2
-*Oct 15 10:05:40.112: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.10.99.50)
-</code></pre>
+*Oct 15 10:05:40.112: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.10.99.50)</code></pre></div>
 <p>Every message has the same structure (Chapter 25 covers syslog servers and severities in full):</p>
 <div class="table-wrap"><table>
 <thead>
@@ -320,12 +319,11 @@ Log Buffer (16384 bytes):
 <p><strong>Useful logging settings</strong> (global configuration): <code>service timestamps log datetime msec</code> (real dates in messages), <code>logging buffered 16384 informational</code> (bigger buffer), and on the console line <code>logging synchronous</code> (messages no longer interrupt your typing).</p>
 <h3 id="155-ping">15.5 Ping</h3>
 <p><code>ping</code> sends <strong>ICMP Echo Request</strong> (type 8) messages and waits for <strong>Echo Reply</strong> (type 0). A reply proves the whole path works <strong>in both directions</strong> at Layer 3.</p>
-<pre><code>DSW1# ping 10.10.40.11
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="ping 10.10.40.11" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1#</span> <span class="tc">ping 10.10.40.11</span>
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 10.10.40.11, timeout is 2 seconds:
 .!!!!
-Success rate is 80 percent (4/5), round-trip min/avg/max = 1/1/2 ms
-</code></pre>
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/1/2 ms</code></pre></div>
 <p>The first <code>.</code> is normal: the router was waiting for an <strong>ARP</strong> reply before it could send the first packet.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -377,7 +375,7 @@ Success rate is 80 percent (4/5), round-trip min/avg/max = 1/1/2 ms
 <h3 id="156-extended-ping">15.6 Extended ping</h3>
 <p>A plain ping from a router uses the <strong>exit interface's address</strong> as the source. That hides return-path problems: the far end may know how to reach the link subnet but not your LANs (Chapter 11). <strong>Extended ping</strong> lets you choose the source, size, count and other options.</p>
 <p><strong>Interactive form</strong> (privileged EXEC, type <code>ping</code> with no address):</p>
-<pre><code>DSW2# ping
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW2</span><button class="copy" type="button" data-copy="ping" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW2#</span> <span class="tc">ping</span>
 Protocol [ip]:
 Target IP address: 10.10.40.11
 Repeat count [5]: 20
@@ -394,9 +392,8 @@ Sweep range of sizes [n]:
 Sending 20, 1500-byte ICMP Echos to 10.10.40.11, timeout is 2 seconds:
 Packet sent with a source address of 10.10.10.3
 Packet sent with the DF bit set
-!!!!!!!!!!!!!!!!!!!!
-Success rate is 100 percent (20/20), round-trip min/avg/max = 1/2/4 ms
-</code></pre>
+<span class="tm">!!!!!!!!!!!!!!!!!!!!</span>
+Success rate is 100 percent (20/20), round-trip min/avg/max = 1/2/4 ms</code></pre></div>
 <p><strong>One-line form</strong> (same result): <code>ping 10.10.40.11 source vlan 10 repeat 20 size 1500 df-bit</code>.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -462,15 +459,14 @@ Success rate is 100 percent (20/20), round-trip min/avg/max = 1/2/4 ms
 </tr>
 </tbody>
 </table></div>
-<pre><code>C:\&gt; tracert 192.0.2.8
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="tracert 192.0.2.8" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">C:\&gt;</span> <span class="tc">tracert 192.0.2.8</span>
 Tracing route to 192.0.2.8 over a maximum of 30 hops
   1     1 ms    &lt;1 ms    &lt;1 ms  10.10.10.2
   2     1 ms     1 ms     1 ms  10.0.0.1
   3     2 ms     1 ms     1 ms  192.0.2.8
-Trace complete.
-</code></pre>
+Trace complete.</code></pre></div>
 <p>Note hop 1: the <strong>real</strong> address of DSW1 (10.10.10.2), not the HSRP virtual IP — the Active router answers from its own interface address.</p>
-<pre><code>DSW1# traceroute 10.20.20.1
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>DSW1</span><button class="copy" type="button" data-copy="traceroute 10.20.20.1" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">DSW1#</span> <span class="tc">traceroute 10.20.20.1</span>
 Type escape sequence to abort.
 Tracing the route to 10.20.20.1
   1 10.0.0.1 1 msec 1 msec 0 msec
@@ -478,8 +474,7 @@ Tracing the route to 10.20.20.1
   3 198.51.100.2 2 msec 1 msec 1 msec
   4 198.51.100.1 2 msec 2 msec 1 msec
   5 198.51.100.2 2 msec 2 msec 2 msec
-  ...
-</code></pre>
+  ...</code></pre></div>
 <p>The same two addresses alternating is a <strong>routing loop</strong>: R1 sends 10.20.20.0/24 to the ISP by its default route, and the ISP sends it back by its 10.0.0.0/8 route. Neither has a specific route, so the packet bounces until TTL expires.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -550,7 +545,7 @@ Tracing the route to 10.20.20.1
 </tr>
 </tbody>
 </table></div>
-<pre><code>No. Time      Source          Destination     Protocol Info
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>No. Time      Source          Destination     Protocol Info
 1   0.000000  0050.7966.6801  Broadcast       ARP      Who has 10.10.10.1? Tell 10.10.10.11
 2   0.000412  0000.0c9f.f00a  0050.7966.6801  ARP      10.10.10.1 is at 0000.0c9f.f00a
 3   0.000530  10.10.10.11     192.0.2.8       ICMP     Echo (ping) request id=0x0001, seq=1, ttl=128
@@ -560,7 +555,7 @@ Tracing the route to 10.20.20.1
 7   9.800000  10.10.10.11     10.10.40.11     TCP      49813 → 631 [SYN] Seq=0
 8   9.801100  10.10.40.11     10.10.10.11     TCP      631 → 49813 [SYN, ACK] Seq=0 Ack=1
 9   9.801300  10.10.10.11     10.10.40.11     TCP      49813 → 631 [ACK] Seq=1 Ack=1
-</code></pre>
+</code></pre></div>
 <p>(Wireshark shows MAC addresses with vendor names such as <code>Cisco_9f:f0:0a</code>; the layout here is simplified.)</p>
 <figure class="fig" id="fig-15-3"><button class="zoom" aria-label="Enlarge figure 15.3"><img src="assets/figures/ch15/fig-15-03-reading-a-capture.svg" alt="Figure 15.3 — Reading the capture above: four conversations and what each proves" loading="lazy"></button><figcaption><a class="fignum" href="#fig-15-3">Figure 15.3</a> Reading the capture above: four conversations and what each proves</figcaption></figure>
 
@@ -677,7 +672,7 @@ Tracing the route to 10.20.20.1
 <h3 id="1510-packet-tracer-lab-151--four-trouble-tickets-advanced">15.10 Packet Tracer Lab 15.1 — Four trouble tickets (Advanced)</h3>
 <p><strong>Objective:</strong> 2.4. <strong>Start from:</strong> your Lab 14.1 file (<a class="figref" href="chapter-14.html#fig-14-4">Figure 14.4</a>). <strong>Host ports</strong> (from earlier labs): PC1 SW1 Fa0/1, PC2 SW1 Fa0/2, PC3 SW2 Fa0/1, Printer1 SW2 Fa0/2.</p>
 <p>Ask a classmate to apply the faults below without telling you which ticket each belongs to, or apply them yourself, close the file, and come back the next day. Then work each ticket with the method in 15.2 and record: symptom, the commands you ran, the evidence, the cause, the fix and the verification.</p>
-<pre><code>! Fault set for Lab 15.1 (instructor or classmate only)
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>! Fault set for Lab 15.1 (instructor or classmate only)
 ! SW2
 interface fastethernet0/1
  switchport access vlan 30
@@ -686,7 +681,7 @@ interface fastethernet0/1
 no ip route 10.10.0.0 255.255.0.0 10.0.0.2
 ip route 10.10.0.0 255.255.255.0 10.0.0.2
 ! SW1: no shutdown Fa0/3, then cable a spare 2960 switch to it
-</code></pre>
+</code></pre></div>
 <p><strong>The tickets, as users report them</strong></p>
 <ol>
 <li><em>"PC3 has a strange address and cannot reach the file server in VLAN 10."</em></li>
@@ -792,39 +787,8 @@ ip route 10.10.0.0 255.255.255.0 10.0.0.2
 </tbody>
 </table></div>
 <h3 id="1513-practice-questions--chapter-15">15.13 Practice questions — Chapter 15</h3>
-<p><strong>1. (Ping symbols)</strong> A ping from a router prints <code>UUUUU</code>. What does that mean?</p>
-<p><strong>2. (Ping symbols)</strong> Which symbol shows a packet too large to forward with DF set?</p>
-<p>A. <code>!</code>  B. <code>.</code>  C. <code>M</code>  D. <code>&amp;</code></p>
-<p><strong>3. (Extended ping)</strong> Why use <code>ping 10.10.40.11 source vlan 10</code> on DSW2 instead of a plain ping?</p>
-<p><strong>4. (Traceroute)</strong> Explain how traceroute learns the address of hop 2.</p>
-<p><strong>5. (Traceroute output)</strong> A traceroute shows hops 1 and 2, then <code>* * *</code> until the limit. Give two possible causes.</p>
-<p><strong>6. (Traceroute output)</strong> A traceroute alternates between 198.51.100.1 and 198.51.100.2. What is happening?</p>
-<p><strong>7. (Logs)</strong> Interpret <code>%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to down</code> — facility, severity and meaning.</p>
-<p><strong>8. (Logs)</strong> You are connected by SSH and see no log messages while you shut an interface. Why, and how do you fix it?</p>
-<p><strong>9. (Capture)</strong> A capture shows <code>10.10.10.11 → 10.10.40.11 TCP [SYN]</code> three times, one second apart, with no reply. What does this suggest?</p>
-<p><strong>10. (Capture)</strong> The same SYN is answered by <code>[RST, ACK]</code>. What does that tell you?</p>
-<p><strong>11. (Device health)</strong> Which command shows how long a switch has been running and why it last restarted?</p>
-<p><strong>12. (Multiple response — choose two)</strong> Which approaches suit a problem where one web application fails but email and file sharing work?</p>
-<p>A. Top-down  B. Bottom-up starting at the cable  C. Compare with a working client  D. Replace the switch  E. Reload the router</p>
-<p><strong>13. (Filtering output)</strong> Write a command that shows only the running-configuration section for interface Vlan10.</p>
-<p><strong>14. (Evaluate an AI assistant)</strong> A user cannot reach a server. A network assistant reports: <em>"Ping from the core router to the server succeeds, so the network is fine and the problem must be the server."</em> What is missing from that conclusion?</p>
-<h3 id="1514-answer-key-with-explanations">15.14 Answer key with explanations</h3>
-<ol>
-<li>Each probe was answered by an <strong>ICMP Destination Unreachable</strong>: a router on the path has no route to the destination (or an ACL rejects it).</li>
-<li><strong>C.</strong> <code>M</code> = could not fragment. <code>!</code> success, <code>.</code> timeout, <code>&amp;</code> TTL exceeded.</li>
-<li>A plain ping uses DSW2's VLAN 40 address, which the printer can answer as a neighbor. Sourcing from VLAN 10 tests whether the printer can return traffic to <strong>another subnet</strong> — which depends on its default gateway (and on the routes back).</li>
-<li>It sends probes with <strong>TTL 2</strong>. Hop 1 decrements to 1 and forwards; hop 2 decrements to 0, drops the probe and returns ICMP <strong>Time Exceeded</strong> from its own address.</li>
-<li>The next router has no route onward; a firewall or ACL drops the probes or the ICMP replies; the next router cannot route its replies back to the source. (Also: devices configured not to send Time Exceeded.)</li>
-<li>A <strong>routing loop</strong>: each router points to the other for that destination, and the probe bounces until TTL expires.</li>
-<li>Facility <strong>LINEPROTO</strong>, severity <strong>5</strong> (notification). Layer 2 line protocol on Gi1/0/2 went down — check the cable, the far end, or keepalive problems.</li>
-<li>Log messages go to the console by default; a VTY session needs <code>terminal monitor</code> (privileged EXEC).</li>
-<li>The SYN gets no answer: it is <strong>filtered</strong> (ACL or firewall) or lost on the way, or the server's reply has <strong>no route back</strong>. The host may also be down.</li>
-<li>The network delivered the SYN and the host replied: the host is <strong>reachable but nothing is listening</strong> on that port (service stopped, wrong port).</li>
-<li><code>show version</code> (uptime and last reload reason).</li>
-<li><strong>A and C.</strong> Lower layers clearly work for other applications, so start at the application; comparing with a working client isolates client-specific settings. D and E are random changes.</li>
-<li><code>show running-config | section interface Vlan10</code>.</li>
-<li>The ping came from the <strong>router's own address</strong>, not from the user's subnet, so it proves neither the user's path nor the <strong>return route</strong> to the user's subnet, nor that the application port is reachable. Test from (or sourced from) the user's subnet, then check the port with a capture or a TCP test.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="15" data-total="14"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>14 questions · 2 auto-graded, 12 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 14</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Ping symbols</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A ping from a router prints <code>UUUUU</code>. What does that mean?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Each probe was answered by an <strong>ICMP Destination Unreachable</strong>: a router on the path has no route to the destination (or an ACL rejects it).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="2" data-correct="C"><div class="qhead"><span class="qn">2</span><span class="qkind">Ping symbols</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which symbol shows a packet too large to forward with DF set?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot"><code>!</code></span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot"><code>.</code></span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot"><code>M</code></span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot"><code>&amp;</code></span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>C.</strong> <code>M</code> = could not fragment. <code>!</code> success, <code>.</code> timeout, <code>&amp;</code> TTL exceeded.</p></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Extended ping</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Why use <code>ping 10.10.40.11 source vlan 10</code> on DSW2 instead of a plain ping?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A plain ping uses DSW2's VLAN 40 address, which the printer can answer as a neighbor. Sourcing from VLAN 10 tests whether the printer can return traffic to <strong>another subnet</strong> — which depends on its default gateway (and on the routes back).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Traceroute</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Explain how traceroute learns the address of hop 2.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>It sends probes with <strong>TTL 2</strong>. Hop 1 decrements to 1 and forwards; hop 2 decrements to 0, drops the probe and returns ICMP <strong>Time Exceeded</strong> from its own address.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Traceroute output</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A traceroute shows hops 1 and 2, then <code>* * *</code> until the limit. Give two possible causes.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The next router has no route onward; a firewall or ACL drops the probes or the ICMP replies; the next router cannot route its replies back to the source. (Also: devices configured not to send Time Exceeded.)</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Traceroute output</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A traceroute alternates between 198.51.100.1 and 198.51.100.2. What is happening?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A <strong>routing loop</strong>: each router points to the other for that destination, and the probe bounces until TTL expires.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Logs</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Interpret <code>%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to down</code> — facility, severity and meaning.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Facility <strong>LINEPROTO</strong>, severity <strong>5</strong> (notification). Layer 2 line protocol on Gi1/0/2 went down — check the cable, the far end, or keepalive problems.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Logs</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>You are connected by SSH and see no log messages while you shut an interface. Why, and how do you fix it?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Log messages go to the console by default; a VTY session needs <code>terminal monitor</code> (privileged EXEC).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Capture</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A capture shows <code>10.10.10.11 → 10.10.40.11 TCP [SYN]</code> three times, one second apart, with no reply. What does this suggest?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The SYN gets no answer: it is <strong>filtered</strong> (ACL or firewall) or lost on the way, or the server's reply has <strong>no route back</strong>. The host may also be down.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Capture</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>The same SYN is answered by <code>[RST, ACK]</code>. What does that tell you?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The network delivered the SYN and the host replied: the host is <strong>reachable but nothing is listening</strong> on that port (service stopped, wrong port).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">Device health</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Which command shows how long a switch has been running and why it last restarted?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>show version</code> (uptime and last reload reason).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="12" data-correct="AC"><div class="qhead"><span class="qn">12</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which approaches suit a problem where one web application fails but email and file sharing work?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Top-down</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Bottom-up starting at the cable</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Compare with a working client</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Replace the switch</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">Reload the router</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> Lower layers clearly work for other applications, so start at the application; comparing with a working client isolates client-specific settings. D and E are random changes.</p></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Filtering output</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write a command that shows only the running-configuration section for interface Vlan10.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>show running-config | section interface Vlan10</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="14"><div class="qhead"><span class="qn">14</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A user cannot reach a server. A network assistant reports: <em>"Ping from the core router to the server succeeds, so the network is fine and the problem must be the server."</em> What is missing from that conclusion?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The ping came from the <strong>router's own address</strong>, not from the user's subnet, so it proves neither the user's path nor the <strong>return route</strong> to the user's subnet, nor that the application port is reachable. Test from (or sourced from) the user's subnet, then check the port with a capture or a TCP test.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="1515-chapter-15-figure-checklist">15.15 Chapter 15 figure checklist</h3>
 <p>All 3 figures were rendered, embedded beside the text they explain, and checked visually after rendering. None needed a drawing fix; one caption was corrected to match a figure's colour.</p>
 <div class="table-wrap"><table>
@@ -875,7 +839,6 @@ ip route 10.10.0.0 255.255.255.0 10.0.0.2
 <a href="#1511-lab-152--tool-drills-intermediate">15.11 Lab 15.2 — Tool drills (Intermediate)</a>
 <a href="#1512-chapter-15-summary-notes-exam-revision">15.12 Chapter 15 summary notes (exam revision)</a>
 <a href="#1513-practice-questions--chapter-15">15.13 Practice questions — Chapter 15</a>
-<a href="#1514-answer-key-with-explanations">15.14 Answer key with explanations</a>
 <a href="#1515-chapter-15-figure-checklist">15.15 Chapter 15 figure checklist</a>
 <a href="#1516-chapter-15-progress-record">15.16 Chapter 15 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

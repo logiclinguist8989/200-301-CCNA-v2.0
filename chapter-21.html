@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head purple">
   <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
   <h1><span class="num">Chapter 21</span>NAT and PAT on IOS XE routers</h1>
-  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~16 min read</span>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~17 min read</span><a class="qmeta" href="#quiz" data-ch="21" data-total="12">📝 Self-check: 12 questions</a>
   <label class="mark"><input type="checkbox" data-ch="21"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.3 Configure NAT/PAT on IOS XE routers.</strong> Almost every network that reaches the internet with IPv4 uses NAT, usually PAT on the edge router. In this chapter R1 starts translating the campus addresses, so the ISP no longer needs a route to our private networks.</p>
 <h3 id="211-learning-objectives">21.1 Learning objectives</h3>
@@ -73,7 +74,7 @@
 <li>Read <code>show ip nat translations</code> and <code>show ip nat statistics</code>.</li>
 <li>Troubleshoot NAT: wrong inside/outside marking, ACL mismatch, pool exhaustion, missing routes.</li>
 </ol>
-<h3 id="212-why-nat-and-the-address-terms">21.2 Why NAT, and the address terms</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#218-lab-211--dynamic-nat-pat-and-static-nat-on-r1-intermediate">Lab 21.1 — Dynamic NAT, PAT and static NAT on R1 (Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="212-why-nat-and-the-address-terms">21.2 Why NAT, and the address terms</h3>
 <p>IPv4 public addresses ran out years ago. Organisations number their networks with <strong>private addresses</strong> (RFC 1918), which internet routers do not route:</p>
 <div class="table-wrap"><table>
 <thead>
@@ -137,6 +138,8 @@
 <figure class="fig" id="fig-21-1"><button class="zoom" aria-label="Enlarge figure 21.1"><img src="assets/figures/ch21/fig-21-01-nat-address-terms.svg" alt="Figure 21.1 — NAT address terms: inside/outside, local/global" loading="lazy"></button><figcaption><a class="fignum" href="#fig-21-1">Figure 21.1</a> NAT address terms: inside/outside, local/global</figcaption></figure>
 
 <p>In <a class="figref" href="#fig-21-1">Figure 21.1</a> the packet keeps its destination; only the source changes from the inside local to the inside global address. Outside local and outside global differ only if you also translate outside addresses, which CCNA does not require you to configure.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong><b>Inside / outside</b> tells you <i>where the host is</i>; <b>local / global</b> tells you <i>where the address is seen</i>. Inside local = your PC's private address; inside global = the public address the internet sees for it.</p>
+
 <h3 id="213-static-nat-dynamic-nat-and-pat">21.3 Static NAT, dynamic NAT and PAT</h3>
 <div class="table-wrap"><table>
 <thead>
@@ -182,34 +185,37 @@
 </ol>
 <p>The older NAT Virtual Interface method (<code>ip nat enable</code>) exists on classic IOS but not on IOS XE, so do not use it there.</p>
 <p><strong>Step 1 — interfaces (always):</strong></p>
-<pre><code>R1(config)# interface GigabitEthernet0/0/0
-R1(config-if)# description To DSW1 (campus)
-R1(config-if)# ip nat inside
-R1(config-if)# interface GigabitEthernet0/0/1
-R1(config-if)# description To ISP
-R1(config-if)# ip nat outside
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="interface GigabitEthernet0/0/0
+description To DSW1 (campus)
+ip nat inside
+interface GigabitEthernet0/0/1
+description To ISP
+ip nat outside" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">interface GigabitEthernet0/0/0</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">description To DSW1 (campus)</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip nat inside</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">interface GigabitEthernet0/0/1</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">description To ISP</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip nat outside</span></code></pre></div>
 <p><strong>Static NAT</strong> — one-to-one, permanent, works in both directions (outside hosts can start connections to the inside global address):</p>
-<pre><code>R1(config)# ip nat inside source static 10.10.40.80 198.51.100.3
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip nat inside source static 10.10.40.80 198.51.100.3" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip nat inside source static 10.10.40.80 198.51.100.3</span></code></pre></div>
 <p>The order is always <strong>inside local first, inside global second</strong>.</p>
 <p><strong>Static port forwarding</strong> — publish one service on a shared address, here TCP 80 on WEB1 reached on R1's outside address:</p>
-<pre><code>R1(config)# ip nat inside source static tcp 10.10.40.80 80 interface GigabitEthernet0/0/1 80
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip nat inside source static tcp 10.10.40.80 80 interface GigabitEthernet0/0/1 80" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip nat inside source static tcp 10.10.40.80 80 interface GigabitEthernet0/0/1 80</span></code></pre></div>
 <p><strong>Dynamic NAT with a pool</strong> — inside hosts permitted by the ACL borrow a free pool address, one each:</p>
-<pre><code>R1(config)# ip access-list standard NAT-INSIDE
-R1(config-std-nacl)# 10 permit 10.10.0.0 0.0.255.255
-R1(config-std-nacl)# exit
-R1(config)# ip nat pool PUBLIC 198.51.100.5 198.51.100.6 netmask 255.255.255.248
-R1(config)# ip nat inside source list NAT-INSIDE pool PUBLIC
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip access-list standard NAT-INSIDE
+10 permit 10.10.0.0 0.0.255.255
+exit
+ip nat pool PUBLIC 198.51.100.5 198.51.100.6 netmask 255.255.255.248
+ip nat inside source list NAT-INSIDE pool PUBLIC" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip access-list standard NAT-INSIDE</span>
+<span class="tp">R1(config-std-nacl)#</span> <span class="tc">10 permit 10.10.0.0 0.0.255.255</span>
+<span class="tp">R1(config-std-nacl)#</span> <span class="tc">exit</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip nat pool PUBLIC 198.51.100.5 198.51.100.6 netmask 255.255.255.248</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip nat inside source list NAT-INSIDE pool PUBLIC</span></code></pre></div>
 <p>With two addresses in the pool, only two inside hosts can be translated at a time; the third is dropped until an entry times out or is cleared.</p>
 <p><strong>PAT (overload)</strong> — the normal choice. Either share the outside interface's address:</p>
-<pre><code>R1(config)# ip nat inside source list NAT-INSIDE interface GigabitEthernet0/0/1 overload
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip nat inside source list NAT-INSIDE interface GigabitEthernet0/0/1 overload" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip nat inside source list NAT-INSIDE interface GigabitEthernet0/0/1 overload</span></code></pre></div>
 <p>…or share the addresses of a pool:</p>
-<pre><code>R1(config)# ip nat inside source list NAT-INSIDE pool PUBLIC overload
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip nat inside source list NAT-INSIDE pool PUBLIC overload" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip nat inside source list NAT-INSIDE pool PUBLIC overload</span></code></pre></div>
 <p>The interface form keeps working when the ISP changes the outside address by DHCP, as on our R1.</p>
 <p><strong>The NAT ACL:</strong> it only selects <strong>which packets are translated</strong>; it does not filter traffic. Write it as narrowly as your inside networks (here 10.10.0.0/16). Avoid <code>permit any</code>: it would also translate traffic the router should not translate, such as packets between inside networks or the router's own traffic.</p>
 <h3 id="215-where-the-global-addresses-come-from">21.5 Where the global addresses come from</h3>
@@ -242,21 +248,20 @@ R1(config)# ip nat inside source list NAT-INSIDE pool PUBLIC
 </table></div>
 <p>The rule to remember: <strong>an ACL on the outside interface sees public addresses; an ACL on the inside interface sees private addresses.</strong> This is why an inbound ACL on G0/0/1 that should allow web traffic to WEB1 must name <strong>198.51.100.3</strong>, not 10.10.40.80.</p>
 <h3 id="217-verification-and-troubleshooting">21.7 Verification and troubleshooting</h3>
-<pre><code>R1# show ip nat translations
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ip nat translations" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ip nat translations</span>
 Pro  Inside global         Inside local          Outside local         Outside global
 icmp 198.51.100.2:7        10.10.10.11:7         192.0.2.8:7           192.0.2.8:7
 icmp 198.51.100.2:1024     10.10.10.12:7         192.0.2.8:7           192.0.2.8:1024
 tcp  198.51.100.2:51000    10.10.30.11:51000     192.0.2.8:443         192.0.2.8:443
 ---  198.51.100.3          10.10.40.80           ---                   ---
-Total number of translations: 4
-</code></pre>
+Total number of translations: 4</code></pre></div>
 <p><strong>Reading it:</strong></p>
 <ul>
 <li><strong><code>---</code> in the protocol column with no ports</strong> = a <strong>static</strong> (or simple dynamic) entry. It stays in the table all the time; WEB1 is mapped to 198.51.100.3.</li>
 <li><strong>Entries with ports</strong> = <strong>extended</strong> (PAT) entries, one per session. All share 198.51.100.2; the second ICMP session was given identifier <strong>1024</strong> because 7 was already used on that address.</li>
 <li>Columns read <strong>left to right from the outside in</strong>: inside global, then inside local, then outside local and outside global.</li>
 </ul>
-<pre><code>R1# show ip nat statistics
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="show ip nat statistics" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">show ip nat statistics</span>
 Total active translations: 4 (1 static, 3 dynamic; 3 extended)
 Outside interfaces:
   GigabitEthernet0/0/1
@@ -266,8 +271,7 @@ Hits: 118  Misses: 6
 Expired translations: 2
 Dynamic mappings:
 -- Inside Source
-[Id: 1] access-list NAT-INSIDE interface GigabitEthernet0/0/1 refcount 3
-</code></pre>
+[Id: 1] access-list NAT-INSIDE interface GigabitEthernet0/0/1 refcount 3</code></pre></div>
 <p><strong>Reading it:</strong> check the <strong>inside and outside interface lists</strong> first — a swapped or missing <code>ip nat inside/outside</code> shows here. <strong>Misses</strong> count packets that needed a new entry; a rising miss count with no new translations means entries cannot be created (for example an exhausted pool). The <strong>dynamic mappings</strong> line shows which ACL, pool or interface is used.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -360,38 +364,52 @@ Dynamic mappings:
 
 <p><a class="figref" href="#fig-21-3">Figure 21.3</a> shows the starting point and the plan: the dashed box is the inside network, and the ISP (red line) will no longer know how to reach it. Parts A, B and C in the band at the bottom are done in order.</p>
 <p><strong>Step 1 — Make the ISP behave like the real internet.</strong> Until now the ISP had a route to our private addresses, which real ISPs never do. On the ISP router:</p>
-<pre><code>ISP(config)# no ip route 10.0.0.0 255.0.0.0 198.51.100.2
-ISP(config)# ip dhcp excluded-address 198.51.100.3 198.51.100.6
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>ISP</span><button class="copy" type="button" data-copy="no ip route 10.0.0.0 255.0.0.0 198.51.100.2
+ip dhcp excluded-address 198.51.100.3 198.51.100.6" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">ISP(config)#</span> <span class="tc">no ip route 10.0.0.0 255.0.0.0 198.51.100.2</span>
+<span class="tp">ISP(config)#</span> <span class="tc">ip dhcp excluded-address 198.51.100.3 198.51.100.6</span></code></pre></div>
 <p>From PC1, <code>ping 192.0.2.8</code> now <strong>fails</strong>. Use <code>tracert 192.0.2.8</code> and Simulation mode: the echo request reaches the ISP with source 10.10.10.x, and the ISP has no route back.</p>
 <p><strong>Step 2 — Part A: dynamic NAT with a one-address pool (VLAN 10 only).</strong></p>
-<pre><code>R1(config)# interface GigabitEthernet0/0/0
-R1(config-if)# ip nat inside
-R1(config-if)# interface GigabitEthernet0/0/1
-R1(config-if)# ip nat outside
-R1(config-if)# exit
-R1(config)# ip access-list standard NAT-INSIDE
-R1(config-std-nacl)# 10 permit 10.10.10.0 0.0.0.255
-R1(config-std-nacl)# exit
-R1(config)# ip nat pool ONE-ADDR 198.51.100.5 198.51.100.5 netmask 255.255.255.248
-R1(config)# ip nat inside source list NAT-INSIDE pool ONE-ADDR
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="interface GigabitEthernet0/0/0
+ip nat inside
+interface GigabitEthernet0/0/1
+ip nat outside
+exit
+ip access-list standard NAT-INSIDE
+10 permit 10.10.10.0 0.0.0.255
+exit
+ip nat pool ONE-ADDR 198.51.100.5 198.51.100.5 netmask 255.255.255.248
+ip nat inside source list NAT-INSIDE pool ONE-ADDR" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">interface GigabitEthernet0/0/0</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip nat inside</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">interface GigabitEthernet0/0/1</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">ip nat outside</span>
+<span class="tp">R1(config-if)#</span> <span class="tc">exit</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip access-list standard NAT-INSIDE</span>
+<span class="tp">R1(config-std-nacl)#</span> <span class="tc">10 permit 10.10.10.0 0.0.0.255</span>
+<span class="tp">R1(config-std-nacl)#</span> <span class="tc">exit</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip nat pool ONE-ADDR 198.51.100.5 198.51.100.5 netmask 255.255.255.248</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip nat inside source list NAT-INSIDE pool ONE-ADDR</span></code></pre></div>
 <p>Ping 192.0.2.8 from PC1: it works. <code>show ip nat translations</code> shows PC1 mapped to 198.51.100.5. Now ping from <strong>PC3</strong>: it fails, because the only pool address is taken. <code>show ip nat statistics</code> shows the misses rising. Run <code>clear ip nat translation *</code> and ping from PC3 first — now PC3 works and PC1 fails.</p>
 <p><strong>Step 3 — Part B: replace it with PAT for the whole campus.</strong></p>
-<pre><code>R1# clear ip nat translation *
-R1# configure terminal
-R1(config)# no ip nat inside source list NAT-INSIDE pool ONE-ADDR
-R1(config)# no ip nat pool ONE-ADDR
-R1(config)# ip access-list standard NAT-INSIDE
-R1(config-std-nacl)# no 10
-R1(config-std-nacl)# 10 permit 10.10.0.0 0.0.255.255
-R1(config-std-nacl)# exit
-R1(config)# ip nat inside source list NAT-INSIDE interface GigabitEthernet0/0/1 overload
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="clear ip nat translation *
+configure terminal
+no ip nat inside source list NAT-INSIDE pool ONE-ADDR
+no ip nat pool ONE-ADDR
+ip access-list standard NAT-INSIDE
+no 10
+10 permit 10.10.0.0 0.0.255.255
+exit
+ip nat inside source list NAT-INSIDE interface GigabitEthernet0/0/1 overload" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1#</span> <span class="tc">clear ip nat translation *</span>
+<span class="tp">R1#</span> <span class="tc">configure terminal</span>
+<span class="tp">R1(config)#</span> <span class="tc">no ip nat inside source list NAT-INSIDE pool ONE-ADDR</span>
+<span class="tp">R1(config)#</span> <span class="tc">no ip nat pool ONE-ADDR</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip access-list standard NAT-INSIDE</span>
+<span class="tp">R1(config-std-nacl)#</span> <span class="tc">no 10</span>
+<span class="tp">R1(config-std-nacl)#</span> <span class="tc">10 permit 10.10.0.0 0.0.255.255</span>
+<span class="tp">R1(config-std-nacl)#</span> <span class="tc">exit</span>
+<span class="tp">R1(config)#</span> <span class="tc">ip nat inside source list NAT-INSIDE interface GigabitEthernet0/0/1 overload</span></code></pre></div>
 <p>If IOS answers <code>%Dynamic mapping in use, cannot remove</code>, an entry was created again between the commands: clear the translations and repeat. Ping 192.0.2.8 from PC1, PC2 and PC3 within a minute of each other (ICMP entries stay in the table for about a minute) and run <code>show ip nat translations</code>: all three use <strong>198.51.100.2</strong>, told apart by the ICMP identifier.</p>
 <p><strong>Step 4 — Part C: static NAT for a web server.</strong> Add a Server-PT <strong>WEB1</strong> to <strong>SW2 Fa0/6</strong> (<code>switchport mode access</code>, <code>switchport access vlan 40</code>), IP 10.10.40.80/24, gateway 10.10.40.1, HTTP service on. On R1:</p>
-<pre><code>R1(config)# ip nat inside source static 10.10.40.80 198.51.100.3
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>R1</span><button class="copy" type="button" data-copy="ip nat inside source static 10.10.40.80 198.51.100.3" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">R1(config)#</span> <span class="tc">ip nat inside source static 10.10.40.80 198.51.100.3</span></code></pre></div>
 <p>From the <strong>ISP</strong> router, <code>ping 198.51.100.3</code> — it reaches WEB1, although the ISP still has no route to 10.0.0.0/8. <code>show ip nat translations</code> now shows a permanent <code>---</code> line for WEB1 plus the ICMP entries. From WEB1's command prompt, <code>ping 192.0.2.8</code> also works and leaves as 198.51.100.3 (the static entry takes priority over PAT).</p>
 <p><strong>Step 5 — Watch it happen.</strong> In Simulation mode, filter ICMP and follow one ping from PC2: open the packet on both sides of R1 and compare the source address in the inbound and outbound PDU details.</p>
 <p><strong>Step 6 — Verify</strong> with <code>show ip nat statistics</code> and <code>show access-lists NAT-INSIDE</code> and explain every line.</p>
@@ -493,39 +511,12 @@ R1(config)# ip nat inside source list NAT-INSIDE interface GigabitEthernet0/0/1 
 </tbody>
 </table></div>
 <h3 id="2111-practice-questions--chapter-21">21.11 Practice questions — Chapter 21</h3>
-<p><strong>1. (Recall)</strong> List the three RFC 1918 private ranges with their prefix lengths.</p>
-<p><strong>2. (Terms)</strong> PC1 (10.10.10.11) browses to 192.0.2.8 through R1, which uses 198.51.100.2. Name the inside local, inside global and outside global addresses.</p>
-<p><strong>3. (Configuration)</strong> Write the commands to translate WEB2 (10.10.40.81) permanently to 198.51.100.4.</p>
-<p><strong>4. (Configuration)</strong> Write the commands that let 10.10.0.0/16 share R1's G0/0/1 address, including the ACL and interface marking.</p>
-<p><strong>5. (Configuration)</strong> Publish only TCP 443 on WEB1 (10.10.40.80) through R1's G0/0/1 address, port 443.</p>
-<p><strong>6. (Output interpretation)</strong></p>
-<pre><code>Pro  Inside global       Inside local        Outside local       Outside global
+<div id="quiz"></div><section class="quiz" data-ch="21" data-total="12"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>12 questions · 1 auto-graded, 11 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 12</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>List the three RFC 1918 private ranges with their prefix lengths.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16.</strong></p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Terms</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>PC1 (10.10.10.11) browses to 192.0.2.8 through R1, which uses 198.51.100.2. Name the inside local, inside global and outside global addresses.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Inside local <strong>10.10.10.11</strong>; inside global <strong>198.51.100.2</strong>; outside global <strong>192.0.2.8</strong> (also the outside local address, since outside addresses are not translated).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write the commands to translate WEB2 (10.10.40.81) permanently to 198.51.100.4.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ip nat inside source static 10.10.40.81 198.51.100.4</code>, with <code>ip nat inside</code> and <code>ip nat outside</code> on the correct interfaces.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write the commands that let 10.10.0.0/16 share R1's G0/0/1 address, including the ACL and interface marking.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>interface g0/0/0</code> → <code>ip nat inside</code>; <code>interface g0/0/1</code> → <code>ip nat outside</code>; <code>ip access-list standard NAT-INSIDE</code> → <code>permit 10.10.0.0 0.0.255.255</code>; <code>ip nat inside source list NAT-INSIDE interface g0/0/1 overload</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Publish only TCP 443 on WEB1 (10.10.40.80) through R1's G0/0/1 address, port 443.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ip nat inside source static tcp 10.10.40.80 443 interface GigabitEthernet0/0/1 443</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>Pro  Inside global       Inside local        Outside local       Outside global
 tcp  198.51.100.2:1025   10.10.30.11:50112   192.0.2.8:443       192.0.2.8:443
 ---  198.51.100.3        10.10.40.80         ---                 ---
-</code></pre>
-<p>Which line is static? Which host is using PAT, and why does its global port differ from its local port?</p>
-<p><strong>7. (Output interpretation)</strong> <code>show ip nat statistics</code> shows <em>Outside interfaces: GigabitEthernet0/0/0</em> and <em>Inside interfaces: GigabitEthernet0/0/1</em>. What is wrong, given that G0/0/1 faces the ISP?</p>
-<p><strong>8. (Troubleshooting)</strong> With <code>ip nat inside source list NAT-INSIDE pool PUBLIC</code> and a pool of 198.51.100.5–198.51.100.6, the third user cannot reach the internet. Give two ways to fix it.</p>
-<p><strong>9. (Troubleshooting)</strong> Hosts in VLAN 30 cannot reach the internet; VLAN 10 can. Translations exist only for 10.10.10.x. What do you check first?</p>
-<p><strong>10. (Concept)</strong> An inbound ACL on R1 G0/0/1 must permit web traffic from the internet to WEB1 (static NAT 10.10.40.80 ↔ 198.51.100.3). Which destination address must the ACE use?</p>
-<p><strong>11. (Multiple response — choose two)</strong> Which statements about PAT are true?</p>
-<p>A. Each inside host needs its own public address  B. Sessions are distinguished by port numbers  C. It is configured with the <code>overload</code> keyword  D. It only works with a pool  E. It translates the destination address of outgoing packets</p>
-<p><strong>12. (Evaluate an AI assistant)</strong> An AI assistant suggests: <em>"To fix slow NAT, use <code>access-list 1 permit any</code> as the NAT ACL so you never miss a subnet."</em> Is this good advice?</p>
-<h3 id="2112-answer-key-with-explanations">21.12 Answer key with explanations</h3>
-<ol>
-<li><strong>10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16.</strong></li>
-<li>Inside local <strong>10.10.10.11</strong>; inside global <strong>198.51.100.2</strong>; outside global <strong>192.0.2.8</strong> (also the outside local address, since outside addresses are not translated).</li>
-<li><code>ip nat inside source static 10.10.40.81 198.51.100.4</code>, with <code>ip nat inside</code> and <code>ip nat outside</code> on the correct interfaces.</li>
-<li><code>interface g0/0/0</code> → <code>ip nat inside</code>; <code>interface g0/0/1</code> → <code>ip nat outside</code>; <code>ip access-list standard NAT-INSIDE</code> → <code>permit 10.10.0.0 0.0.255.255</code>; <code>ip nat inside source list NAT-INSIDE interface g0/0/1 overload</code>.</li>
-<li><code>ip nat inside source static tcp 10.10.40.80 443 interface GigabitEthernet0/0/1 443</code>.</li>
-<li>The <strong><code>---</code></strong> line (WEB1) is static. 10.10.30.11 uses PAT; its port was changed to <strong>1025</strong> because 50112 was not available (or already in use) on 198.51.100.2 — R1 keeps the original port when it can and picks another free one otherwise.</li>
-<li>The marking is <strong>swapped</strong>: G0/0/0 must be <code>ip nat inside</code> and G0/0/1 <code>ip nat outside</code>. Nothing is translated as needed.</li>
-<li>Add <strong><code>overload</code></strong> to the rule (PAT on the pool), or enlarge the pool; with PAT on the interface address no pool is needed at all.</li>
-<li>The <strong>NAT ACL</strong> (<code>show access-lists NAT-INSIDE</code>): it probably permits only 10.10.10.0/24. Then confirm the VLAN 30 traffic reaches R1 at all (routing, ACLs from Chapter 20).</li>
-<li><strong>198.51.100.3</strong> (inside global). An inbound ACL on the outside interface is processed <strong>before</strong> NAT translates the destination.</li>
-<li><strong>B and C.</strong> PAT shares one (or a few) addresses using ports and is enabled with <code>overload</code>; it can use the interface address or a pool, and it translates the source of outgoing packets.</li>
-<li><strong>No.</strong> NAT speed is not affected by a narrow ACL, and <code>permit any</code> makes the router translate traffic it should not (for example traffic between inside networks or from the router itself), which causes hard-to-find faults. List the inside networks precisely.</li>
-</ol>
+</code></pre></div>
+<p>Which line is static? Which host is using PAT, and why does its global port differ from its local port?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The <strong><code>---</code></strong> line (WEB1) is static. 10.10.30.11 uses PAT; its port was changed to <strong>1025</strong> because 50112 was not available (or already in use) on 198.51.100.2 — R1 keeps the original port when it can and picks another free one otherwise.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>show ip nat statistics</code> shows <em>Outside interfaces: GigabitEthernet0/0/0</em> and <em>Inside interfaces: GigabitEthernet0/0/1</em>. What is wrong, given that G0/0/1 faces the ISP?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The marking is <strong>swapped</strong>: G0/0/0 must be <code>ip nat inside</code> and G0/0/1 <code>ip nat outside</code>. Nothing is translated as needed.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>With <code>ip nat inside source list NAT-INSIDE pool PUBLIC</code> and a pool of 198.51.100.5–198.51.100.6, the third user cannot reach the internet. Give two ways to fix it.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Add <strong><code>overload</code></strong> to the rule (PAT on the pool), or enlarge the pool; with PAT on the interface address no pool is needed at all.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Hosts in VLAN 30 cannot reach the internet; VLAN 10 can. Translations exist only for 10.10.10.x. What do you check first?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The <strong>NAT ACL</strong> (<code>show access-lists NAT-INSIDE</code>): it probably permits only 10.10.10.0/24. Then confirm the VLAN 30 traffic reaches R1 at all (routing, ACLs from Chapter 20).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>An inbound ACL on R1 G0/0/1 must permit web traffic from the internet to WEB1 (static NAT 10.10.40.80 ↔ 198.51.100.3). Which destination address must the ACE use?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>198.51.100.3</strong> (inside global). An inbound ACL on the outside interface is processed <strong>before</strong> NAT translates the destination.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="11" data-correct="BC"><div class="qhead"><span class="qn">11</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which statements about PAT are true?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Each inside host needs its own public address</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Sessions are distinguished by port numbers</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">It is configured with the <code>overload</code> keyword</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">It only works with a pool</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">It translates the destination address of outgoing packets</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B and C.</strong> PAT shares one (or a few) addresses using ports and is enabled with <code>overload</code>; it can use the interface address or a pool, and it translates the source of outgoing packets.</p></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>An AI assistant suggests: <em>"To fix slow NAT, use <code>access-list 1 permit any</code> as the NAT ACL so you never miss a subnet."</em> Is this good advice?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> NAT speed is not affected by a narrow ACL, and <code>permit any</code> makes the router translate traffic it should not (for example traffic between inside networks or from the router itself), which causes hard-to-find faults. List the inside networks precisely.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="2113-chapter-21-figure-checklist">21.13 Chapter 21 figure checklist</h3>
 <p>All three figures were rendered, embedded beside the text they explain, and checked visually after rendering.</p>
 <div class="table-wrap"><table>
@@ -574,7 +565,6 @@ tcp  198.51.100.2:1025   10.10.30.11:50112   192.0.2.8:443       192.0.2.8:443
 <a href="#219-lab-212--troubleshooting-challenge-advanced">21.9 Lab 21.2 — Troubleshooting challenge (Advanced)</a>
 <a href="#2110-chapter-21-summary-notes-exam-revision">21.10 Chapter 21 summary notes (exam revision)</a>
 <a href="#2111-practice-questions--chapter-21">21.11 Practice questions — Chapter 21</a>
-<a href="#2112-answer-key-with-explanations">21.12 Answer key with explanations</a>
 <a href="#2113-chapter-21-figure-checklist">21.13 Chapter 21 figure checklist</a>
 <a href="#2114-chapter-21-progress-record">21.14 Chapter 21 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

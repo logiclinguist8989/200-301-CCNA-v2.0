@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head red">
   <div class="eyebrow">Domain 5 · AI, Operations &amp; Management</div>
   <h1><span class="num">Chapter 26</span>Network management approaches and Ansible</h1>
-  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~14 min read</span>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~15 min read</span><a class="qmeta" href="#quiz" data-ch="26" data-total="12">📝 Self-check: 12 questions</a>
   <label class="mark"><input type="checkbox" data-ch="26"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objectives covered:</strong> <strong>5.3 Describe network management approaches (device-based, cloud-based, controller-based, automation-based, and infrastructure as code)</strong> and <strong>5.5 Use configuration management mechanisms such as Ansible to execute commands.</strong> The first is about choosing <em>how</em> a network is run; the second is hands-on: you will run commands on several devices with one Ansible playbook.</p>
 <h3 id="261-learning-objectives">26.1 Learning objectives</h3>
@@ -73,7 +74,7 @@
 <li>Explain Ansible's building blocks: control node, inventory, playbook, play, task, module.</li>
 <li>Write and run Ansible ad-hoc commands and playbooks that execute show and configuration commands on IOS devices, and read the results.</li>
 </ol>
-<h3 id="262-five-ways-to-manage-a-network">26.2 Five ways to manage a network</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#266-lab-261--run-commands-on-several-devices-with-ansible-intermediate">Lab 26.1 — Run commands on several devices with Ansible (Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="262-five-ways-to-manage-a-network">26.2 Five ways to manage a network</h3>
 <p>The question that separates the approaches is: <strong>where does the source of truth live, and how does a change reach the devices?</strong> (<a class="figref" href="#fig-26-1">Figure 26.1</a>)</p>
 <figure class="fig" id="fig-26-1"><button class="zoom" aria-label="Enlarge figure 26.1"><img src="assets/figures/ch26/fig-26-01-five-management-approaches.svg" alt="Figure 26.1 — Five network management approaches" loading="lazy"></button><figcaption><a class="fignum" href="#fig-26-1">Figure 26.1</a> Five network management approaches</figcaption></figure>
 
@@ -166,14 +167,14 @@
 </tbody>
 </table></div>
 <p>Responses carry a status code (200 OK, 201 Created, 400 bad request, 401 not authenticated, 403 forbidden, 404 not found, 500 server error) and usually a <strong>JSON</strong> body:</p>
-<pre><code class="language-json">{
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code class="language-json">{
   &quot;hostname&quot;: &quot;DSW1&quot;,
   &quot;managementIp&quot;: &quot;10.10.99.2&quot;,
   &quot;role&quot;: &quot;DISTRIBUTION&quot;,
   &quot;reachable&quot;: true,
   &quot;vlans&quot;: [10, 30, 40, 99]
 }
-</code></pre>
+</code></pre></div>
 <p>JSON is built from <strong>objects</strong> <code>{ }</code> holding <code>"key": value</code> pairs, <strong>arrays</strong> <code>[ ]</code>, strings in double quotes, numbers, <code>true</code>/<code>false</code> and <code>null</code>. YAML (Ansible) expresses the same structures with indentation instead of braces.</p>
 <h3 id="264-automation-based-management-and-infrastructure-as-code">26.4 Automation-based management and infrastructure as code</h3>
 <p><strong>Automation-based</strong> management means scripts and tools make the changes instead of a person typing them on each device: Python with libraries such as Netmiko (SSH) or ncclient (NETCONF), or a configuration management tool such as <strong>Ansible</strong>.</p>
@@ -274,14 +275,14 @@
 </table></div>
 <p><strong>Connection for IOS:</strong> <code>ansible_connection: ansible.netcommon.network_cli</code> (Ansible logs in over SSH and types commands like a person), <code>ansible_network_os: cisco.ios.ios</code>, and <code>ansible_become: yes</code> with <code>ansible_become_method: enable</code> when the user needs <code>enable</code>.</p>
 <p><strong>Two ways to run commands:</strong></p>
-<pre><code># ad-hoc: one module, one time, from the shell
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code># ad-hoc: one module, one time, from the shell
 ansible campus -i inventory.ini -m cisco.ios.ios_command -a &quot;commands='show clock'&quot;
 
 # playbook: repeatable, version-controlled
 ansible-playbook -i inventory.ini show.yml
-</code></pre>
+</code></pre></div>
 <p><strong>A playbook that executes show commands:</strong></p>
-<pre><code class="language-yaml">---
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code class="language-yaml">---
 - name: Collect version and interface status
   hosts: campus
   gather_facts: false
@@ -296,9 +297,9 @@ ansible-playbook -i inventory.ini show.yml
     - name: Display the results
       ansible.builtin.debug:
         var: output.stdout_lines
-</code></pre>
+</code></pre></div>
 <p><strong>A playbook that configures (idempotent):</strong></p>
-<pre><code class="language-yaml">---
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code class="language-yaml">---
 - name: Standard logging settings
   hosts: campus
   gather_facts: false
@@ -310,7 +311,7 @@ ansible-playbook -i inventory.ini show.yml
           - logging host 10.10.99.40
           - logging trap informational
         save_when: modified
-</code></pre>
+</code></pre></div>
 <ul>
 <li>YAML uses <strong>indentation with spaces</strong> (never tabs) to show structure; lists start with <code>-</code>.</li>
 <li><code>register</code> stores a task's result in a variable; <code>debug</code> prints it.</li>
@@ -318,42 +319,50 @@ ansible-playbook -i inventory.ini show.yml
 <li><code>save_when: modified</code> saves to startup-config only if something changed.</li>
 </ul>
 <p><strong>Reading the output:</strong></p>
-<pre><code>TASK [Run show commands] ******************************************************
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>TASK [Run show commands] ******************************************************
 ok: [lab-r1]
 ok: [lab-sw1]
 
 PLAY RECAP ********************************************************************
 lab-r1   : ok=2  changed=0  unreachable=0  failed=0  skipped=0  rescued=0  ignored=0
 lab-sw1  : ok=2  changed=0  unreachable=0  failed=0  skipped=0  rescued=0  ignored=0
-</code></pre>
+</code></pre></div>
 <p><strong>ok</strong> = task succeeded without changing anything; <strong>changed</strong> = configuration was modified; <strong>unreachable</strong> = Ansible could not connect (network, SSH, credentials); <strong>failed</strong> = the task ran but returned an error. Show commands never report <em>changed</em>.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>Ansible in three words: <b>agentless, push, YAML</b> — it connects over SSH, pushes the change, and the playbook is YAML.</p>
+
 <h3 id="266-lab-261--run-commands-on-several-devices-with-ansible-intermediate">26.6 Lab 26.1 — Run commands on several devices with Ansible (Intermediate)</h3>
 <p><strong>Objective:</strong> 5.5. <strong>Packet Tracer limitation:</strong> Packet Tracer cannot be managed by Ansible (its devices are not reachable from your computer over SSH). Use your <strong>Linux VM</strong> from Lab 4.1 as the control node and real or virtual IOS devices as targets: two nodes in <strong>Cisco Modeling Labs Free</strong> (IOL or IOSv router and switch, connected to the VM through an external connector), lab hardware, or an IOS XE device from <strong>Cisco DevNet Sandbox</strong> (check its current address and credentials on the sandbox page). The playbooks work the same way on the campus devices of this guide.</p>
 <p>The examples use <strong>lab-r1</strong> at 192.168.100.11 and <strong>lab-sw1</strong> at 192.168.100.12 — replace them with your devices' management addresses.</p>
 <p><strong>Step 1 — Prepare the devices.</strong> Each needs SSH and a privilege-15 user (Chapter 18):</p>
-<pre><code>lab-r1(config)# hostname lab-r1
-lab-r1(config)# ip domain name lab.example
-lab-r1(config)# crypto key generate rsa modulus 2048
-lab-r1(config)# ip ssh version 2
-lab-r1(config)# username ansible privilege 15 secret Ans1ble-Lab-2026
-lab-r1(config)# line vty 0 4
-lab-r1(config-line)# login local
-lab-r1(config-line)# transport input ssh
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>lab-r1</span><button class="copy" type="button" data-copy="hostname lab-r1
+ip domain name lab.example
+crypto key generate rsa modulus 2048
+ip ssh version 2
+username ansible privilege 15 secret Ans1ble-Lab-2026
+line vty 0 4
+login local
+transport input ssh" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">lab-r1(config)#</span> <span class="tc">hostname lab-r1</span>
+<span class="tp">lab-r1(config)#</span> <span class="tc">ip domain name lab.example</span>
+<span class="tp">lab-r1(config)#</span> <span class="tc">crypto key generate rsa modulus 2048</span>
+<span class="tp">lab-r1(config)#</span> <span class="tc">ip ssh version 2</span>
+<span class="tp">lab-r1(config)#</span> <span class="tc">username ansible privilege 15 secret Ans1ble-Lab-2026</span>
+<span class="tp">lab-r1(config)#</span> <span class="tc">line vty 0 4</span>
+<span class="tp">lab-r1(config-line)#</span> <span class="tc">login local</span>
+<span class="tp">lab-r1(config-line)#</span> <span class="tc">transport input ssh</span></code></pre></div>
 <p>From the VM, <code>ssh ansible@192.168.100.11</code> must work before you continue.</p>
 <p><strong>Step 2 — Install Ansible on the VM:</strong></p>
-<pre><code>sudo apt update &amp;&amp; sudo apt install -y python3-pip python3-venv git
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>sudo apt update &amp;&amp; sudo apt install -y python3-pip python3-venv git
 python3 -m venv ~/ansible-venv &amp;&amp; source ~/ansible-venv/bin/activate
 pip install ansible ansible-pylibssh
 ansible --version
 ansible-galaxy collection list | grep -E &quot;cisco.ios|ansible.netcommon&quot;
-</code></pre>
+</code></pre></div>
 <p>The <code>ansible</code> package includes the <code>cisco.ios</code> and <code>ansible.netcommon</code> collections; if they are missing, run <code>ansible-galaxy collection install cisco.ios</code>.</p>
 <p><strong>Step 3 — Project folder, inventory and settings:</strong></p>
-<pre><code>mkdir ~/netauto &amp;&amp; cd ~/netauto &amp;&amp; git init
-</code></pre>
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>mkdir ~/netauto &amp;&amp; cd ~/netauto &amp;&amp; git init
+</code></pre></div>
 <p><code>inventory.ini</code>:</p>
-<pre><code class="language-ini">[routers]
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code class="language-ini">[routers]
 lab-r1 ansible_host=192.168.100.11
 
 [switches]
@@ -367,24 +376,24 @@ switches
 ansible_connection=ansible.netcommon.network_cli
 ansible_network_os=cisco.ios.ios
 ansible_user=ansible
-</code></pre>
+</code></pre></div>
 <p><code>ansible.cfg</code> (lab only — in production keep host-key checking on):</p>
-<pre><code class="language-ini">[defaults]
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code class="language-ini">[defaults]
 inventory = inventory.ini
 host_key_checking = False
-</code></pre>
+</code></pre></div>
 <p>Check the inventory with <code>ansible-inventory --graph</code>.</p>
 <p><strong>Step 4 — Ad-hoc commands.</strong> <code>-k</code> asks for the SSH password:</p>
-<pre><code>ansible campus -k -m cisco.ios.ios_command -a &quot;commands='show clock'&quot;
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>ansible campus -k -m cisco.ios.ios_command -a &quot;commands='show clock'&quot;
 ansible switches -k -m cisco.ios.ios_command -a &quot;commands='show vlan brief'&quot;
-</code></pre>
+</code></pre></div>
 <p>Each device answers with <code>SUCCESS</code> and its output in JSON.</p>
 <p><strong>Step 5 — Show playbook.</strong> Save the show-command playbook from 26.5 as <code>show.yml</code> and run <code>ansible-playbook show.yml -k</code>. Read the PLAY RECAP: <code>ok=2 changed=0</code> for both devices.</p>
 <p><strong>Step 6 — Configuration playbook, dry run first.</strong> Save the logging playbook from 26.5 as <code>logging.yml</code> (change the logging host to an address in your lab), then:</p>
-<pre><code>ansible-playbook logging.yml -k --check --diff
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>ansible-playbook logging.yml -k --check --diff
 ansible-playbook logging.yml -k
 ansible-playbook logging.yml -k
-</code></pre>
+</code></pre></div>
 <p>The dry run shows the lines that <em>would</em> be added; the first real run reports <strong>changed=1</strong> per device; the second reports <strong>changed=0</strong> — idempotence. Confirm on a device with <code>show running-config | include logging</code>.</p>
 <p><strong>Step 7 — Infrastructure-as-code habit.</strong> Commit the files (<code>git add . &amp;&amp; git commit -m "Inventory, show and logging playbooks"</code>). Create a branch, add <code>logging trap warnings</code> to the playbook, run <code>--check --diff</code>, commit, then merge into the main branch and run it. Use <code>git log</code> and <code>git diff HEAD~1</code> to see the history of the network change.</p>
 <p><strong>Step 8 (optional) — Protect the password.</strong> Create <code>group_vars/campus/vault.yml</code> with <code>ansible-vault create</code>, put <code>ansible_password: Ans1ble-Lab-2026</code> inside, and run playbooks with <code>--ask-vault-pass</code> instead of <code>-k</code>.</p>
@@ -493,42 +502,13 @@ ansible-playbook logging.yml -k
 </tbody>
 </table></div>
 <h3 id="269-practice-questions--chapter-26">26.9 Practice questions — Chapter 26</h3>
-<p><strong>1. (Recall)</strong> Name the five management approaches in objective 5.3.</p>
-<p><strong>2. (Concept)</strong> For each approach, where does the source of truth live?</p>
-<p><strong>3. (Concept)</strong> What is the difference between a controller's northbound and southbound interfaces? Give a protocol for each.</p>
-<p><strong>4. (Scenario)</strong> A retailer with 300 small stores and a two-person IT team wants switches and access points managed without hosting any servers. Which approach fits best, and what does it depend on?</p>
-<p><strong>5. (Concept)</strong> List the steps a change follows in an infrastructure-as-code workflow.</p>
-<p><strong>6. (Recall)</strong> Match: inventory, playbook, task, module — "the code that does the work", "list of devices and groups", "YAML file of plays", "one action in a play".</p>
-<p><strong>7. (Configuration)</strong> Write an Ansible task that runs <code>show ip ospf neighbor</code> on IOS devices and stores the result in <code>ospf</code>.</p>
-<p><strong>8. (Output interpretation)</strong> A recap shows <code>lab-sw1 : ok=1 changed=0 unreachable=0 failed=1</code>. What happened?</p>
-<p><strong>9. (Output interpretation)</strong> A configuration playbook reports <code>changed=1</code> on the first run and <code>changed=0</code> on the second. Is that a problem?</p>
-<p><strong>10. (Troubleshooting)</strong> <code>ansible-playbook</code> stops immediately with "Syntax Error while loading YAML". Which devices were changed?</p>
-<p><strong>11. (Multiple response — choose two)</strong> Which statements about Ansible are true?</p>
-<p>A. It uses SSH to manage IOS devices  B. It requires an agent on each device  C. Playbooks are written in YAML  D. <code>ios_command</code> is idempotent configuration management  E. It can only run on Windows</p>
-<p><strong>12. (Evaluate an AI assistant)</strong> An AI assistant writes a playbook for you that uses <code>cisco.ios.ios_command</code> with <code>commands: ["configure terminal", "interface g0/1", "shutdown"]</code> and suggests running it on all 200 switches straight away. Evaluate.</p>
-<h3 id="2610-answer-key-with-explanations">26.10 Answer key with explanations</h3>
-<ol>
-<li><strong>Device-based, cloud-based, controller-based, automation-based, infrastructure as code.</strong></li>
-<li>Device-based: <strong>each device's running configuration</strong>; cloud-based: <strong>the vendor's cloud service</strong>; controller-based: <strong>the controller</strong>; automation-based: <strong>scripts/playbooks and their variables</strong>; IaC: <strong>the version-controlled repository</strong>.</li>
-<li><strong>Northbound</strong> faces applications and operators (REST API with JSON over HTTPS). <strong>Southbound</strong> faces devices (NETCONF, RESTCONF, SSH CLI, SNMP, CAPWAP for APs).</li>
-<li><strong>Cloud-based</strong> management (for example Meraki): nothing to host, central dashboard for all sites. It depends on each site's <strong>internet connection</strong> to the cloud, and on a subscription.</li>
-<li>Branch and edit → pull request and peer review → automated checks (lint, <code>--check --diff</code>) → merge → pipeline deploys and verifies → rollback by reverting the commit if needed.</li>
-<li>Inventory = list of devices and groups; playbook = YAML file of plays; task = one action in a play; module = the code that does the work.
-7.</li>
-</ol>
-<pre><code class="language-yaml">- name: OSPF neighbours
+<div id="quiz"></div><section class="quiz" data-ch="26" data-total="12"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>12 questions · 1 auto-graded, 11 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 12</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Name the five management approaches in objective 5.3.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Device-based, cloud-based, controller-based, automation-based, infrastructure as code.</strong></p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>For each approach, where does the source of truth live?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Device-based: <strong>each device's running configuration</strong>; cloud-based: <strong>the vendor's cloud service</strong>; controller-based: <strong>the controller</strong>; automation-based: <strong>scripts/playbooks and their variables</strong>; IaC: <strong>the version-controlled repository</strong>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What is the difference between a controller's northbound and southbound interfaces? Give a protocol for each.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Northbound</strong> faces applications and operators (REST API with JSON over HTTPS). <strong>Southbound</strong> faces devices (NETCONF, RESTCONF, SSH CLI, SNMP, CAPWAP for APs).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Scenario</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A retailer with 300 small stores and a two-person IT team wants switches and access points managed without hosting any servers. Which approach fits best, and what does it depend on?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Cloud-based</strong> management (for example Meraki): nothing to host, central dashboard for all sites. It depends on each site's <strong>internet connection</strong> to the cloud, and on a subscription.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>List the steps a change follows in an infrastructure-as-code workflow.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Branch and edit → pull request and peer review → automated checks (lint, <code>--check --diff</code>) → merge → pipeline deploys and verifies → rollback by reverting the commit if needed.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Match: inventory, playbook, task, module — "the code that does the work", "list of devices and groups", "YAML file of plays", "one action in a play".</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Inventory = list of devices and groups; playbook = YAML file of plays; task = one action in a play; module = the code that does the work.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write an Ansible task that runs <code>show ip ospf neighbor</code> on IOS devices and stores the result in <code>ospf</code>.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code class="language-yaml">- name: OSPF neighbours
   cisco.ios.ios_command:
     commands:
       - show ip ospf neighbor
   register: ospf
-</code></pre>
-<ol start="8">
-<li>Ansible <strong>connected</strong> (not unreachable), one task succeeded and <strong>one task failed</strong> on that device — read the task's error message (for example invalid command or privilege).</li>
-<li><strong>No — that is idempotence working</strong>: the first run made the device match the playbook; the second found nothing to change.</li>
-<li><strong>None.</strong> YAML is parsed before any task runs; fix the indentation (<code>--syntax-check</code>).</li>
-<li><strong>A and C.</strong></li>
-<li><strong>Poor and risky.</strong> <code>ios_command</code> is meant for show/exec commands, not configuration mode; use <code>cisco.ios.ios_config</code> (with <code>parents: interface GigabitEthernet0/1</code> and <code>lines: shutdown</code>). Never run an untested change on all 200 switches: run <code>--check --diff</code>, test on one lab device, limit the first run (<code>--limit</code>), and review the change — shutting an uplink on every switch could cut off the whole campus and Ansible's own access.</li>
-</ol>
+</code></pre></div><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A recap shows <code>lab-sw1 : ok=1 changed=0 unreachable=0 failed=1</code>. What happened?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Ansible <strong>connected</strong> (not unreachable), one task succeeded and <strong>one task failed</strong> on that device — read the task's error message (for example invalid command or privilege).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A configuration playbook reports <code>changed=1</code> on the first run and <code>changed=0</code> on the second. Is that a problem?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No — that is idempotence working</strong>: the first run made the device match the playbook; the second found nothing to change.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>ansible-playbook</code> stops immediately with "Syntax Error while loading YAML". Which devices were changed?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>None.</strong> YAML is parsed before any task runs; fix the indentation (<code>--syntax-check</code>).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="11" data-correct="AC"><div class="qhead"><span class="qn">11</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which statements about Ansible are true?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">It uses SSH to manage IOS devices</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">It requires an agent on each device</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Playbooks are written in YAML</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot"><code>ios_command</code> is idempotent configuration management</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">It can only run on Windows</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong></p></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>An AI assistant writes a playbook for you that uses <code>cisco.ios.ios_command</code> with <code>commands: ["configure terminal", "interface g0/1", "shutdown"]</code> and suggests running it on all 200 switches straight away. Evaluate.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Poor and risky.</strong> <code>ios_command</code> is meant for show/exec commands, not configuration mode; use <code>cisco.ios.ios_config</code> (with <code>parents: interface GigabitEthernet0/1</code> and <code>lines: shutdown</code>). Never run an untested change on all 200 switches: run <code>--check --diff</code>, test on one lab device, limit the first run (<code>--limit</code>), and review the change — shutting an uplink on every switch could cut off the whole campus and Ansible's own access.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="2611-chapter-26-figure-checklist">26.11 Chapter 26 figure checklist</h3>
 <p>All three figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-26-2">Figure 26.2</a>'s southbound label was clipped and an arrow pointed at no device in the first render; <a class="figref" href="#fig-26-3">Figure 26.3</a> had stray connector lines. Both were corrected and re-checked.</p>
 <div class="table-wrap"><table>
@@ -574,7 +554,6 @@ ansible-playbook logging.yml -k
 <a href="#267-lab-262--reading-ansible-errors-advanced">26.7 Lab 26.2 — Reading Ansible errors (Advanced)</a>
 <a href="#268-chapter-26-summary-notes-exam-revision">26.8 Chapter 26 summary notes (exam revision)</a>
 <a href="#269-practice-questions--chapter-26">26.9 Practice questions — Chapter 26</a>
-<a href="#2610-answer-key-with-explanations">26.10 Answer key with explanations</a>
 <a href="#2611-chapter-26-figure-checklist">26.11 Chapter 26 figure checklist</a>
 <a href="#2612-chapter-26-progress-record">26.12 Chapter 26 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head blue">
   <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
   <h1><span class="num">Chapter 4</span>Hypervisors, virtual machines and containers</h1>
-  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~18 min read</span>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~19 min read</span><a class="qmeta" href="#quiz" data-ch="4" data-total="13">📝 Self-check: 13 questions</a>
   <label class="mark"><input type="checkbox" data-ch="4"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.2 Describe the role and function of hypervisors, virtual machines, and containers.</strong> The verb is <em>describe</em>: you will not configure a hypervisor in the exam, but you must explain how these technologies work and how they connect to the network. That connection matters for objective 2.2.d (switch ports for virtualized hosts) in Chapter 7.</p>
 <h3 id="41-learning-objectives">4.1 Learning objectives</h3>
@@ -74,7 +75,7 @@
 <li>Describe virtual network appliances (NFV) such as virtual routers and firewalls.</li>
 <li>Recognise network problems caused by virtualization and say what to check.</li>
 </ol>
-<h3 id="42-introduction">4.2 Introduction</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#410-hands-on-lab-41--vms-and-containers-on-your-own-laptop-beginner">Hands-on Lab 4.1 — VMs and containers on your own laptop (Beginner)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="42-introduction">4.2 Introduction</h3>
 <p>A college lab server in Kathmandu might run a web server, a database, a DHCP server and a monitoring tool. Twenty years ago each would need its own physical machine, mostly sitting idle. <strong>Virtualization</strong> lets one physical server run many isolated workloads at once, each believing it has its own computer. The result is fewer servers, less power, faster deployment and easier recovery.</p>
 <p>For a network engineer, virtualization changes one thing above all: <strong>one switch port may now carry traffic for dozens of machines in several VLANs.</strong></p>
 <h3 id="43-key-terms">4.3 Key terms</h3>
@@ -171,7 +172,9 @@
 </tr>
 </tbody>
 </table></div>
-<p class="callout exam-tip"><strong>Exam tip</strong> "bare-metal" always means Type 1; "runs on top of Windows/macOS" always means Type 2.</p>
+<p class="callout exam-tip"><strong>Exam tip</strong>"bare-metal" always means Type 1; "runs on top of Windows/macOS" always means Type 2.</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>Type <b>1</b> sits <b>1st</b> on the metal (bare-metal). Type <b>2</b> is the <b>2nd</b> layer up — it runs on top of a host OS.</p>
+
 <h3 id="45-how-vms-connect-to-the-network">4.5 How VMs connect to the network</h3>
 <p>A VM has no physical cable. Its traffic travels through three pieces of software and then a physical NIC (<a class="figref" href="#fig-4-2">Figure 4.2</a>):</p>
 <ol>
@@ -217,15 +220,14 @@
 </tr>
 </tbody>
 </table></div>
-<pre><code>SW1# show mac address-table interface port-channel1
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="show mac address-table interface port-channel1" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1#</span> <span class="tc">show mac address-table interface port-channel1</span>
           Mac Address Table
 -------------------------------------------
 Vlan    Mac Address       Type        Ports
 ----    -----------       --------    -----
   10    0050.56a1.0b01    DYNAMIC     Po1      &lt;- VM-Web
   10    0050.56a1.0b02    DYNAMIC     Po1      &lt;- VM-DB
-  99    0050.56a1.0b03    DYNAMIC     Po1      &lt;- VM-Mgmt
-</code></pre>
+  99    0050.56a1.0b03    DYNAMIC     Po1      &lt;- VM-Mgmt</code></pre></div>
 <p>Three VMs in two VLANs, all learned on one logical port: exactly the picture in <a class="figref" href="#fig-4-2">Figure 4.2</a>.</p>
 <h3 id="46-containers">4.6 Containers</h3>
 <p>A <strong>container</strong> packages one application with exactly the libraries it needs and runs it as an isolated process on a shared OS kernel. The Linux kernel features <strong>namespaces</strong> (each container sees its own processes, network interfaces and file system) and <strong>cgroups</strong> (limits on CPU and memory) provide the isolation.</p>
@@ -335,14 +337,19 @@ Vlan    Mac Address       Type        Ports
 <li><strong>The vSwitch and the physical switch must agree</strong> on VLAN IDs, the native VLAN, and how uplinks are bundled.</li>
 </ol>
 <p><strong>A preview of the switch configuration (taught fully in Chapters 5–7):</strong></p>
-<pre><code>SW1(config)# interface range gigabitethernet1/0/1 - 2
-SW1(config-if-range)# description ESXi-01 vmnic0-1
-SW1(config-if-range)# switchport mode trunk
-SW1(config-if-range)# switchport trunk allowed vlan 10,99
-SW1(config-if-range)# switchport nonegotiate
-SW1(config-if-range)# spanning-tree portfast trunk
-SW1(config-if-range)# channel-group 1 mode active      ! only if the host side uses LACP
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="interface range gigabitethernet1/0/1 - 2
+description ESXi-01 vmnic0-1
+switchport mode trunk
+switchport trunk allowed vlan 10,99
+switchport nonegotiate
+spanning-tree portfast trunk
+channel-group 1 mode active" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">interface range gigabitethernet1/0/1 - 2</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">description ESXi-01 vmnic0-1</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">switchport mode trunk</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">switchport trunk allowed vlan 10,99</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">switchport nonegotiate</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">spanning-tree portfast trunk</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">channel-group 1 mode active    </span><span class="tm">  ! only if the host side uses LACP</span></code></pre></div>
 <p>Notes: newer IOS releases write the PortFast command as <code>spanning-tree portfast edge trunk</code>. Bundle the ports with LACP <strong>only</strong> when the hypervisor's teaming is set to LACP (for example a VMware distributed switch with a LAG); many teaming modes expect two independent trunk ports instead.</p>
 <p><strong>Troubleshooting virtualized hosts</strong></p>
 <div class="table-wrap"><table>
@@ -413,12 +420,13 @@ SW1(config-if-range)# channel-group 1 mode active      ! only if the host side u
 <li>Log in and run <code>ip link show</code>. The interface (usually <code>enp0s3</code>) has a MAC starting <strong>08:00:27</strong> — the VirtualBox OUI from 4.5.</li>
 </ol>
 <p><strong>Part B — NAT mode (the default)</strong></p>
-<pre><code>$ ip -4 addr show enp0s3
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="ip -4 addr show enp0s3
+ip route
+ping -c 2 1.1.1.1          # works if your laptop has Internet" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">$</span> <span class="tc">ip -4 addr show enp0s3</span>
     inet 10.0.2.15/24 ... dynamic enp0s3
-$ ip route
+<span class="tp">$</span> <span class="tc">ip route</span>
 default via 10.0.2.2 dev enp0s3 ...
-$ ping -c 2 1.1.1.1          # works if your laptop has Internet
-</code></pre>
+<span class="tp">$</span> <span class="tc">ping -c 2 1.1.1.1          # works if your laptop has Internet</span></code></pre></div>
 <p>From the laptop, try <code>ping 10.0.2.15</code>: it fails. The VM is hidden behind VirtualBox's NAT, just like a home PC behind a router.</p>
 <p><strong>Part C — Bridged mode</strong></p>
 <ol>
@@ -434,15 +442,18 @@ $ ping -c 2 1.1.1.1          # works if your laptop has Internet
 <li>The laptop can ping it, but the VM has no Internet. Add a second adapter in NAT mode if it needs updates.</li>
 </ol>
 <p><strong>Part E — Containers inside the VM</strong> (use Bridged mode so you can browse to it)</p>
-<pre><code>$ sudo apt update &amp;&amp; sudo apt install -y docker.io
-$ sudo docker run -d --name web -p 8080:80 nginx
-$ ip -4 addr show docker0
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="sudo apt update &amp;&amp; sudo apt install -y docker.io
+sudo docker run -d --name web -p 8080:80 nginx
+ip -4 addr show docker0
+sudo docker inspect -f &#x27;{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#x27; web
+sudo docker port web" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">$</span> <span class="tc">sudo apt update &amp;&amp; sudo apt install -y docker.io</span>
+<span class="tp">$</span> <span class="tc">sudo docker run -d --name web -p 8080:80 nginx</span>
+<span class="tp">$</span> <span class="tc">ip -4 addr show docker0</span>
     inet 172.17.0.1/16 ... docker0
-$ sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
+<span class="tp">$</span> <span class="tc">sudo docker inspect -f &#x27;{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#x27; web</span>
 172.17.0.2
-$ sudo docker port web
-80/tcp -&gt; 0.0.0.0:8080
-</code></pre>
+<span class="tp">$</span> <span class="tc">sudo docker port web</span>
+80/tcp -&gt; 0.0.0.0:8080</code></pre></div>
 <p>Now open <code>http://&lt;VM address&gt;:8080</code> in your laptop's browser: the nginx welcome page appears. You have just reproduced <a class="figref" href="#fig-4-3">Figure 4.3</a> — a container on the docker0 bridge, reachable only through the published port. Your VM is the Docker host.</p>
 <p><strong>Troubleshooting</strong></p>
 <div class="table-wrap"><table>
@@ -528,41 +539,8 @@ $ sudo docker port web
 </tbody>
 </table></div>
 <h3 id="412-practice-questions--chapter-4">4.12 Practice questions — Chapter 4</h3>
-<p><strong>1. (Recall)</strong> Which hypervisor is Type 1?</p>
-<p>A. Oracle VirtualBox  B. VMware Workstation  C. VMware ESXi  D. Parallels Desktop</p>
-<p><strong>2. (Concept)</strong> What does every virtual machine have that a container does not?</p>
-<p>A. An IP address  B. Its own guest operating system kernel  C. A MAC address  D. An application</p>
-<p><strong>3. (Multiple response — choose two)</strong> Which are advantages of containers compared with VMs?</p>
-<p>A. Faster start-up  B. Stronger isolation  C. Smaller size  D. Can run a different OS kernel from the host  E. Need no network</p>
-<p><strong>4. (Concept)</strong> What is the role of a virtual switch inside a hypervisor?</p>
-<p><strong>5. (Configuration)</strong> An ESXi host runs VMs in VLANs 10 and 20 through one uplink to SW1 Gi1/0/5. Which switch-port configuration fits?</p>
-<p>A. <code>switchport mode access</code> and <code>switchport access vlan 10</code>  B. <code>switchport mode trunk</code> and <code>switchport trunk allowed vlan 10,20</code>  C. <code>no switchport</code> with an IP address  D. <code>switchport mode access</code> with <code>switchport voice vlan 20</code></p>
-<p><strong>6. (Output interpretation)</strong> <code>show mac address-table interface gi1/0/5</code> lists eight MAC addresses beginning 0050.56, in VLANs 10 and 20. What is most likely connected to Gi1/0/5?</p>
-<p><strong>7. (Troubleshooting)</strong> After a new port group for VLAN 30 is created on an ESXi host, its VMs cannot reach their gateway. VMs in VLANs 10 and 20 work. <code>show interfaces trunk</code> on the switch shows <code>Vlans allowed on trunk: 10,20</code>. What is the fix?</p>
-<p><strong>8. (Troubleshooting)</strong> A VM works on host ESX-A but loses its network every time it is live-migrated to ESX-B. What should you compare first?</p>
-<p><strong>9. (Troubleshooting)</strong> The switch logs <code>%SW_MATM-4-MACFLAP_NOTIF</code> for VM MAC addresses moving between Gi1/0/1 and Gi1/0/2, which connect to the same host. What is the likely cause?</p>
-<p><strong>10. (Container networking)</strong> A Docker container runs nginx on port 80 and was started with <code>-p 8080:80</code> on a host at 192.168.1.50. Which URL does a laptop on the LAN use?</p>
-<p>A. http://172.17.0.2  B. http://172.17.0.2:8080  C. http://192.168.1.50:8080  D. http://192.168.1.50:80</p>
-<p><strong>11. (Lab-based)</strong> A VirtualBox VM shows address 10.0.2.15 and your laptop cannot ping it. Which adapter mode is it using, and which mode would make it reachable from your home LAN?</p>
-<p><strong>12. (NFV)</strong> Which is an example of network functions virtualization?</p>
-<p>A. A Catalyst 9300 switch  B. A Catalyst 8000V router running as a VM in the cloud  C. A Cat6a patch cable  D. A PoE-powered access point</p>
-<p><strong>13. (Evaluate an AI assistant)</strong> A network assistant reviewing a ticket says: <em>"VM-Web in VLAN 10 cannot reach its gateway. Change the ESXi uplink port to <code>switchport mode access</code> and <code>switchport access vlan 10</code>."</em> The same host also runs VM-Mgmt in VLAN 99. Is the advice correct?</p>
-<h3 id="413-answer-key-with-explanations">4.13 Answer key with explanations</h3>
-<ol>
-<li><strong>C.</strong> ESXi runs directly on server hardware. VirtualBox, Workstation and Parallels are Type 2 and run on a host OS.</li>
-<li><strong>B.</strong> Each VM boots its own guest OS kernel; containers share the host's kernel. Both have IP and MAC addresses (A, C) and run applications (D).</li>
-<li><strong>A and C.</strong> No guest OS means containers start quickly and are small. Isolation is weaker than VMs (B), they must use the host's kernel type (D), and they do need networking (E).</li>
-<li>It is a software Layer 2 switch that connects VMs to each other and to the host's physical NICs, places each VM's vNIC in a VLAN (port group), and tags frames with 802.1Q on trunk uplinks.</li>
-<li><strong>B.</strong> VMs in two VLANs share one uplink, so it must be an 802.1Q trunk allowing both. A would carry only VLAN 10; C makes it a routed port; D is for IP phones.</li>
-<li>A <strong>VMware ESXi host</strong>: 00:50:56 is the VMware OUI, and many MACs in several VLANs on one port is the signature of virtual machines behind a trunk.</li>
-<li>Add VLAN 30 to the trunk: <code>switchport trunk allowed vlan add 30</code> (and create VLAN 30 on the switch if it does not exist). Using <code>add</code> keeps 10 and 20; typing <code>allowed vlan 30</code> alone would remove them.</li>
-<li>Compare the <strong>trunk configuration on both hosts' switch ports</strong>, especially the allowed VLAN list. ESX-B's uplinks probably do not carry the VM's VLAN.</li>
-<li>The host's <strong>NIC teaming does not match the switch configuration</strong> — for example the host load-balances across two links while the switch treats them as independent ports (or the reverse). Make both sides agree: an LACP bundle on both, or independent links on both.</li>
-<li><strong>C.</strong> Outside devices reach the container through the host's own address and the published host port 8080. 172.17.0.2 is private to the host's bridge.</li>
-<li>It is in <strong>NAT</strong> mode (10.0.2.15 is VirtualBox's default NAT address), so the LAN cannot start connections to it. <strong>Bridged</strong> mode gives it an address on your home LAN.</li>
-<li><strong>B.</strong> A router running as software on a general-purpose server or cloud is NFV. The others are physical hardware.</li>
-<li><strong>No.</strong> An access port in VLAN 10 would fix VM-Web but cut off VM-Mgmt in VLAN 99. The correct check is whether VLAN 10 is allowed and active on the existing trunk (<code>show interfaces trunk</code>), and whether the VM's port group uses VLAN 10. Always test an assistant's suggestion against everything else using that port.</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="4" data-total="13"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>13 questions · 6 auto-graded, 7 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 13</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q" data-q="1" data-correct="C"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which hypervisor is Type 1?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Oracle VirtualBox</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">VMware Workstation</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">VMware ESXi</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Parallels Desktop</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>C.</strong> ESXi runs directly on server hardware. VirtualBox, Workstation and Parallels are Type 2 and run on a host OS.</p></div></div><div class="q" data-q="2" data-correct="B"><div class="qhead"><span class="qn">2</span><span class="qkind">Concept</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>What does every virtual machine have that a container does not?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">An IP address</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Its own guest operating system kernel</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">A MAC address</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">An application</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> Each VM boots its own guest OS kernel; containers share the host's kernel. Both have IP and MAC addresses (A, C) and run applications (D).</p></div></div><div class="q" data-q="3" data-correct="AC"><div class="qhead"><span class="qn">3</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which are advantages of containers compared with VMs?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">Faster start-up</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Stronger isolation</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">Smaller size</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">Can run a different OS kernel from the host</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">Need no network</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> No guest OS means containers start quickly and are small. Isolation is weaker than VMs (B), they must use the host's kernel type (D), and they do need networking (E).</p></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What is the role of a virtual switch inside a hypervisor?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>It is a software Layer 2 switch that connects VMs to each other and to the host's physical NICs, places each VM's vNIC in a VLAN (port group), and tags frames with 802.1Q on trunk uplinks.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="5" data-correct="B"><div class="qhead"><span class="qn">5</span><span class="qkind">Configuration</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>An ESXi host runs VMs in VLANs 10 and 20 through one uplink to SW1 Gi1/0/5. Which switch-port configuration fits?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot"><code>switchport mode access</code> and <code>switchport access vlan 10</code></span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot"><code>switchport mode trunk</code> and <code>switchport trunk allowed vlan 10,20</code></span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot"><code>no switchport</code> with an IP address</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot"><code>switchport mode access</code> with <code>switchport voice vlan 20</code></span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> VMs in two VLANs share one uplink, so it must be an 802.1Q trunk allowing both. A would carry only VLAN 10; C makes it a routed port; D is for IP phones.</p></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>show mac address-table interface gi1/0/5</code> lists eight MAC addresses beginning 0050.56, in VLANs 10 and 20. What is most likely connected to Gi1/0/5?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A <strong>VMware ESXi host</strong>: 00:50:56 is the VMware OUI, and many MACs in several VLANs on one port is the signature of virtual machines behind a trunk.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>After a new port group for VLAN 30 is created on an ESXi host, its VMs cannot reach their gateway. VMs in VLANs 10 and 20 work. <code>show interfaces trunk</code> on the switch shows <code>Vlans allowed on trunk: 10,20</code>. What is the fix?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Add VLAN 30 to the trunk: <code>switchport trunk allowed vlan add 30</code> (and create VLAN 30 on the switch if it does not exist). Using <code>add</code> keeps 10 and 20; typing <code>allowed vlan 30</code> alone would remove them.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A VM works on host ESX-A but loses its network every time it is live-migrated to ESX-B. What should you compare first?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Compare the <strong>trunk configuration on both hosts' switch ports</strong>, especially the allowed VLAN list. ESX-B's uplinks probably do not carry the VM's VLAN.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>The switch logs <code>%SW_MATM-4-MACFLAP_NOTIF</code> for VM MAC addresses moving between Gi1/0/1 and Gi1/0/2, which connect to the same host. What is the likely cause?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The host's <strong>NIC teaming does not match the switch configuration</strong> — for example the host load-balances across two links while the switch treats them as independent ports (or the reverse). Make both sides agree: an LACP bundle on both, or independent links on both.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="10" data-correct="C"><div class="qhead"><span class="qn">10</span><span class="qkind">Container networking</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>A Docker container runs nginx on port 80 and was started with <code>-p 8080:80</code> on a host at 192.168.1.50. Which URL does a laptop on the LAN use?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">http://172.17.0.2</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">http://172.17.0.2:8080</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">http://192.168.1.50:8080</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">http://192.168.1.50:80</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>C.</strong> Outside devices reach the container through the host's own address and the published host port 8080. 172.17.0.2 is private to the host's bridge.</p></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">Lab-based</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A VirtualBox VM shows address 10.0.2.15 and your laptop cannot ping it. Which adapter mode is it using, and which mode would make it reachable from your home LAN?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>It is in <strong>NAT</strong> mode (10.0.2.15 is VirtualBox's default NAT address), so the LAN cannot start connections to it. <strong>Bridged</strong> mode gives it an address on your home LAN.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="12" data-correct="B"><div class="qhead"><span class="qn">12</span><span class="qkind">NFV</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which is an example of network functions virtualization?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">A Catalyst 9300 switch</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">A Catalyst 8000V router running as a VM in the cloud</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">A Cat6a patch cable</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">A PoE-powered access point</span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> A router running as software on a general-purpose server or cloud is NFV. The others are physical hardware.</p></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A network assistant reviewing a ticket says: <em>"VM-Web in VLAN 10 cannot reach its gateway. Change the ESXi uplink port to <code>switchport mode access</code> and <code>switchport access vlan 10</code>."</em> The same host also runs VM-Mgmt in VLAN 99. Is the advice correct?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> An access port in VLAN 10 would fix VM-Web but cut off VM-Mgmt in VLAN 99. The correct check is whether VLAN 10 is allowed and active on the existing trunk (<code>show interfaces trunk</code>), and whether the VM's port group uses VLAN 10. Always test an assistant's suggestion against everything else using that port.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="414-chapter-4-figure-checklist">4.14 Chapter 4 figure checklist</h3>
 <p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-4-4">Figure 4.4</a> had one path crossing box labels on first render; it was rerouted and re-checked.</p>
 <div class="table-wrap"><table>
@@ -617,7 +595,6 @@ $ sudo docker port web
 <a href="#410-hands-on-lab-41--vms-and-containers-on-your-own-laptop-beginner">4.10 Hands-on Lab 4.1 — VMs and containers on your own laptop (Beginner)</a>
 <a href="#411-chapter-4-summary-notes-exam-revision">4.11 Chapter 4 summary notes (exam revision)</a>
 <a href="#412-practice-questions--chapter-4">4.12 Practice questions — Chapter 4</a>
-<a href="#413-answer-key-with-explanations">4.13 Answer key with explanations</a>
 <a href="#414-chapter-4-figure-checklist">4.14 Chapter 4 figure checklist</a>
 <a href="#415-chapter-4-progress-record">4.15 Chapter 4 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

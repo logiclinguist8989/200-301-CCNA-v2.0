@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head blue">
   <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
   <h1><span class="num">Chapter 17</span>Client connectivity on Windows, macOS and Linux</h1>
-  <div class="meta"><span>🖼️ 2 figures</span><span>⏱️ ~15 min read</span>
+  <div class="meta"><span>🖼️ 2 figures</span><span>⏱️ ~16 min read</span><a class="qmeta" href="#quiz" data-ch="17" data-total="13">📝 Self-check: 13 questions</a>
   <label class="mark"><input type="checkbox" data-ch="17"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.6 Troubleshoot wired and wireless client connectivity (IP configuration, network reachability, and wireless security parameters on Windows, MacOS, and Linux).</strong> Earlier chapters fixed the network side; this chapter starts from the user's computer, because many "network" tickets are solved there.</p>
 <h3 id="171-learning-objectives">17.1 Learning objectives</h3>
@@ -73,7 +74,7 @@
 <li>Read a Wi-Fi client's SSID, BSSID, channel, signal and security settings on each operating system.</li>
 <li>Match client wireless security settings to the WLAN and fix mismatches.</li>
 </ol>
-<h3 id="172-a-client-side-method">17.2 A client-side method</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#178-lab-171--client-troubleshooting-on-real-systems-and-in-packet-tracer-beginnerintermediate">Lab 17.1 — Client troubleshooting on real systems and in Packet Tracer (Beginner–Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="172-a-client-side-method">17.2 A client-side method</h3>
 <p>Work outward from the client, one question at a time (<a class="figref" href="#fig-17-1">Figure 17.1</a>):</p>
 <figure class="fig" id="fig-17-1"><button class="zoom" aria-label="Enlarge figure 17.1"><img src="assets/figures/ch17/fig-17-01-client-check-ladder.svg" alt="Figure 17.1 — Client connectivity checks in order, with the usual cause when each one fails" loading="lazy"></button><figcaption><a class="fignum" href="#fig-17-1">Figure 17.1</a> Client connectivity checks in order, with the usual cause when each one fails</figcaption></figure>
 
@@ -170,7 +171,7 @@
 <p><strong>Interface names</strong> differ: Windows uses names like <em>Ethernet</em> and <em>Wi-Fi</em>; macOS uses <code>en0</code> (often Wi-Fi on laptops) and <code>en1</code>; Linux uses names like <code>eth0</code>, <code>enp3s0</code> and <code>wlan0</code>/<code>wlp2s0</code>. Use the name your system shows. On macOS the old <code>airport</code> command-line tool has been removed in recent releases; use <code>wdutil</code> or the Option-click menu.</p>
 <h3 id="174-reading-a-clients-ip-configuration">17.4 Reading a client's IP configuration</h3>
 <p>The same healthy laptop in VLAN 30 (Lab 14.1 addressing), as each operating system shows it:</p>
-<pre><code>C:\&gt; ipconfig /all
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="ipconfig /all" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">C:\&gt;</span> <span class="tc">ipconfig /all</span>
 Wireless LAN adapter Wi-Fi:
    Connection-specific DNS Suffix  . : campus.example
    Physical Address. . . . . . . . . : 3C-A9-F4-12-34-56
@@ -182,24 +183,23 @@ Wireless LAN adapter Wi-Fi:
    Lease Expires . . . . . . . . . . : Friday, 16 October 2026 10:14:02
    Default Gateway . . . . . . . . . : 10.10.30.1
    DHCP Server . . . . . . . . . . . : 10.0.0.1
-   DNS Servers . . . . . . . . . . . : 10.10.99.53
-</code></pre>
-<pre><code>$ ip -4 address show wlp2s0                        # Linux
+   DNS Servers . . . . . . . . . . . : 10.10.99.53</code></pre></div>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="ip -4 address show wlp2s0                        # Linux
+ip route" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">$</span> <span class="tc">ip -4 address show wlp2s0                        # Linux</span>
 3: wlp2s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 state UP
     inet 10.10.30.26/24 brd 10.10.30.255 scope global dynamic wlp2s0
        valid_lft 86012sec preferred_lft 86012sec
-$ ip route
+<span class="tp">$</span> <span class="tc">ip route</span>
 default via 10.10.30.1 dev wlp2s0 proto dhcp metric 600
-10.10.30.0/24 dev wlp2s0 proto kernel scope link src 10.10.30.26
-</code></pre>
-<pre><code>$ ifconfig en0                                     # macOS
+10.10.30.0/24 dev wlp2s0 proto kernel scope link src 10.10.30.26</code></pre></div>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="ifconfig en0                                     # macOS
+netstat -rn | grep default" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">$</span> <span class="tc">ifconfig en0                                     # macOS</span>
 en0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
     ether 8c:85:90:ab:cd:ef
     inet 10.10.30.27 netmask 0xffffff00 broadcast 10.10.30.255
     status: active
-$ netstat -rn | grep default
-default            10.10.30.1         UGScg           en0
-</code></pre>
+<span class="tp">$</span> <span class="tc">netstat -rn | grep default</span>
+default            10.10.30.1         UGScg           en0</code></pre></div>
 <p>Three things to notice: Linux shows the mask as a <strong>prefix</strong> (/24), macOS as <strong>hexadecimal</strong> (0xffffff00 = 255.255.255.0), Windows as dotted decimal. <code>dynamic</code> (Linux) and <code>DHCP Enabled: Yes</code> (Windows) mean the address came from DHCP. (Exact layout varies with the OS version.)</p>
 <p><strong>Broken configurations and what they mean:</strong></p>
 <div class="table-wrap"><table>
@@ -316,7 +316,7 @@ default            10.10.30.1         UGScg           en0
 </tbody>
 </table></div>
 <p><strong>Reading Wi-Fi status on each OS:</strong></p>
-<pre><code>C:\&gt; netsh wlan show interfaces                   (Windows)
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="netsh wlan show interfaces                   (Windows)" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">C:\&gt;</span> <span class="tc">netsh wlan show interfaces                   (Windows)</span>
     State                  : connected
     SSID                   : Staff-WiFi
     BSSID                  : 70:7d:b9:aa:bb:01
@@ -327,26 +327,24 @@ default            10.10.30.1         UGScg           en0
     Channel                : 36
     Receive rate (Mbps)    : 573.5
     Signal                 : 88%
-    Profile                : Staff-WiFi
-</code></pre>
-<pre><code>$ nmcli -f IN-USE,BSSID,SSID,CHAN,SIGNAL,SECURITY device wifi list     (Linux)
+    Profile                : Staff-WiFi</code></pre></div>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="nmcli -f IN-USE,BSSID,SSID,CHAN,SIGNAL,SECURITY device wifi list     (Linux)
+iw dev wlp2s0 link" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">$</span> <span class="tc">nmcli -f IN-USE,BSSID,SSID,CHAN,SIGNAL,SECURITY device wifi list     (Linux)</span>
 IN-USE  BSSID              SSID        CHAN  SIGNAL  SECURITY
 *       70:7D:B9:AA:BB:01  Staff-WiFi  36    82      WPA2 802.1X
         70:7D:B9:AA:BB:11  Staff-WiFi  1     64      WPA2 802.1X
         A4:2B:B0:11:22:33  Guest       6     71      --
-$ iw dev wlp2s0 link
+<span class="tp">$</span> <span class="tc">iw dev wlp2s0 link</span>
 Connected to 70:7d:b9:aa:bb:01 (on wlp2s0)
         SSID: Staff-WiFi
         freq: 5180
-        signal: -56 dBm
-</code></pre>
-<pre><code>$ sudo wdutil info                                  (macOS, excerpt)
+        signal: -56 dBm</code></pre></div>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" type="button" data-copy="sudo wdutil info                                  (macOS, excerpt)" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">$</span> <span class="tc">sudo wdutil info                                  (macOS, excerpt)</span>
     SSID     : Staff-WiFi
     RSSI     : -56 dBm
     Noise    : -92 dBm
     Channel  : 5g36/80
-    Security : WPA2 Enterprise
-</code></pre>
+    Security : WPA2 Enterprise</code></pre></div>
 <p>What these tell you: which <strong>SSID</strong> and <strong>AP radio (BSSID)</strong> the client chose, the <strong>band and channel</strong>, signal strength (Windows shows a <strong>percentage</strong>, Linux and macOS <strong>dBm</strong>), the <strong>security type and cipher</strong> actually negotiated, and the data rate. macOS also gives the noise floor, so you can work out SNR directly: −56 − (−92) = 36 dB. Field names and layout differ between OS versions; macOS may hide the SSID unless the terminal has location permission.</p>
 <p><strong>Two modern client behaviours that surprise people:</strong></p>
 <ul>
@@ -596,37 +594,8 @@ Connected to 70:7d:b9:aa:bb:01 (on wlp2s0)
 </tbody>
 </table></div>
 <h3 id="1710-practice-questions--chapter-17">17.10 Practice questions — Chapter 17</h3>
-<p><strong>1. (Recall)</strong> Which command shows the DNS servers on a Windows client?</p>
-<p>A. <code>ipconfig</code>  B. <code>ipconfig /all</code>  C. <code>route print</code>  D. <code>arp -a</code></p>
-<p><strong>2. (Recall)</strong> Which Linux command shows the default gateway?</p>
-<p><strong>3. (Output interpretation)</strong> macOS shows <code>inet 10.10.30.27 netmask 0xfffffe00</code>. What is the prefix length?</p>
-<p><strong>4. (Output interpretation)</strong> A Windows client shows IPv4 10.10.30.25, mask 255.255.255.0, gateway 10.10.3.1. What will fail and why?</p>
-<p><strong>5. (Diagnosis)</strong> A user can ping 192.0.2.8 but <code>ping www.campus.example</code> says the host could not be found. Where is the problem?</p>
-<p><strong>6. (Diagnosis)</strong> A Linux laptop has only an <code>fe80::</code> IPv6 address on Wi-Fi while Windows laptops on the same SSID have 2001:db8:acad:30:: addresses. What do you check first on the Linux laptop?</p>
-<p><strong>7. (Wireless)</strong> <code>netsh wlan show interfaces</code> reports <code>Authentication : WPA2-Personal</code>, but the corporate SSID uses WPA2-Enterprise and the user cannot connect. What is wrong?</p>
-<p><strong>8. (Wireless)</strong> A macOS client shows RSSI −74 dBm and noise −88 dBm. Calculate SNR and judge the connection.</p>
-<p><strong>9. (Multiple response — choose two)</strong> Which commands renew a DHCP lease?</p>
-<p>A. <code>ipconfig /renew</code> (Windows)  B. <code>ip route flush</code> (Linux)  C. <code>sudo ipconfig set en0 DHCP</code> (macOS)  D. <code>arp -d *</code>  E. <code>netsh wlan show interfaces</code></p>
-<p><strong>10. (Concept)</strong> Why might a DHCP reservation for a phone's MAC address stop working after the phone joins the network again?</p>
-<p><strong>11. (Diagnosis)</strong> A laptop works at home but not on campus Ethernet. <code>ipconfig</code> shows 192.168.1.40/24, gateway 192.168.1.1. What happened?</p>
-<p><strong>12. (Ladder)</strong> Ping to 127.0.0.1 and to the PC's own address succeed; ping to the gateway fails. Which layers do you check next?</p>
-<p><strong>13. (Evaluate an AI assistant)</strong> A user's laptop shows 169.254.10.7. A digital assistant suggests: <em>"Set a static IP of 169.254.10.1 as the default gateway on the laptop."</em> Is that sensible?</p>
-<h3 id="1711-answer-key-with-explanations">17.11 Answer key with explanations</h3>
-<ol>
-<li><strong>B.</strong> Plain <code>ipconfig</code> omits DNS servers and DHCP details; <code>route print</code> shows routes; <code>arp -a</code> shows the ARP cache.</li>
-<li><code>ip route show</code> (look for the <code>default via</code> line).</li>
-<li>0xfffffe00 = 255.255.254.0 = <strong>/23</strong> (fe = 11111110).</li>
-<li>Everything off the local subnet fails: the gateway 10.10.3.1 is <strong>not in 10.10.30.0/24</strong>, so the client cannot reach it. Local hosts still work.</li>
-<li><strong>DNS</strong>: IP reachability works, name resolution does not. Check the DNS server setting and <code>nslookup</code>.</li>
-<li>Whether it receives <strong>Router Advertisements</strong> / has SLAAC enabled for that connection (NetworkManager's IPv6 method), since the network clearly provides global addresses to others.</li>
-<li>The saved profile uses the wrong <strong>security type</strong> (Personal instead of Enterprise). Forget the network and reconnect with 802.1X credentials.</li>
-<li>SNR = −74 − (−88) = <strong>14 dB</strong> — too low for reliable service; expect slow, dropping connections. Move closer to an AP, reduce interference or add coverage.</li>
-<li><strong>A and C.</strong> B changes routes, D clears the ARP cache, E only displays Wi-Fi status.</li>
-<li>The phone may use a <strong>private (random) MAC</strong> for that network, so the MAC no longer matches the reservation.</li>
-<li>The adapter keeps a <strong>static</strong> configuration from home. Set it back to obtain an address automatically (DHCP).</li>
-<li>The local link: cable or Wi-Fi association, VLAN on the switch port, the mask and gateway settings, then ARP (<code>arp -a</code>).</li>
-<li><strong>No.</strong> 169.254.x.x means DHCP failed; inventing a gateway in the APIPA range cannot route anywhere. Find out why DHCP failed (link, VLAN, relay, pool — Chapter 14).</li>
-</ol>
+<div id="quiz"></div><section class="quiz" data-ch="17" data-total="13"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>13 questions · 2 auto-graded, 11 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 13</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q" data-q="1" data-correct="B"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which command shows the DNS servers on a Windows client?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot"><code>ipconfig</code></span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot"><code>ipconfig /all</code></span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot"><code>route print</code></span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot"><code>arp -a</code></span></button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B.</strong> Plain <code>ipconfig</code> omits DNS servers and DHCP details; <code>route print</code> shows routes; <code>arp -a</code> shows the ARP cache.</p></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Which Linux command shows the default gateway?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ip route show</code> (look for the <code>default via</code> line).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>macOS shows <code>inet 10.10.30.27 netmask 0xfffffe00</code>. What is the prefix length?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>0xfffffe00 = 255.255.254.0 = <strong>/23</strong> (fe = 11111110).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A Windows client shows IPv4 10.10.30.25, mask 255.255.255.0, gateway 10.10.3.1. What will fail and why?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Everything off the local subnet fails: the gateway 10.10.3.1 is <strong>not in 10.10.30.0/24</strong>, so the client cannot reach it. Local hosts still work.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Diagnosis</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A user can ping 192.0.2.8 but <code>ping www.campus.example</code> says the host could not be found. Where is the problem?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>DNS</strong>: IP reachability works, name resolution does not. Check the DNS server setting and <code>nslookup</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Diagnosis</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A Linux laptop has only an <code>fe80::</code> IPv6 address on Wi-Fi while Windows laptops on the same SSID have 2001:db8:acad:30:: addresses. What do you check first on the Linux laptop?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Whether it receives <strong>Router Advertisements</strong> / has SLAAC enabled for that connection (NetworkManager's IPv6 method), since the network clearly provides global addresses to others.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Wireless</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p><code>netsh wlan show interfaces</code> reports <code>Authentication : WPA2-Personal</code>, but the corporate SSID uses WPA2-Enterprise and the user cannot connect. What is wrong?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The saved profile uses the wrong <strong>security type</strong> (Personal instead of Enterprise). Forget the network and reconnect with 802.1X credentials.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Wireless</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A macOS client shows RSSI −74 dBm and noise −88 dBm. Calculate SNR and judge the connection.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>SNR = −74 − (−88) = <strong>14 dB</strong> — too low for reliable service; expect slow, dropping connections. Move closer to an AP, reduce interference or add coverage.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="9" data-correct="AC"><div class="qhead"><span class="qn">9</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which commands renew a DHCP lease?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot"><code>ipconfig /renew</code> (Windows)</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot"><code>ip route flush</code> (Linux)</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot"><code>sudo ipconfig set en0 DHCP</code> (macOS)</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot"><code>arp -d *</code></span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot"><code>netsh wlan show interfaces</code></span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>A and C.</strong> B changes routes, D clears the ARP cache, E only displays Wi-Fi status.</p></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Why might a DHCP reservation for a phone's MAC address stop working after the phone joins the network again?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The phone may use a <strong>private (random) MAC</strong> for that network, so the MAC no longer matches the reservation.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="11"><div class="qhead"><span class="qn">11</span><span class="qkind">Diagnosis</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A laptop works at home but not on campus Ethernet. <code>ipconfig</code> shows 192.168.1.40/24, gateway 192.168.1.1. What happened?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The adapter keeps a <strong>static</strong> configuration from home. Set it back to obtain an address automatically (DHCP).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Ladder</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Ping to 127.0.0.1 and to the PC's own address succeed; ping to the gateway fails. Which layers do you check next?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>The local link: cable or Wi-Fi association, VLAN on the switch port, the mask and gateway settings, then ARP (<code>arp -a</code>).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="13"><div class="qhead"><span class="qn">13</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>A user's laptop shows 169.254.10.7. A digital assistant suggests: <em>"Set a static IP of 169.254.10.1 as the default gateway on the laptop."</em> Is that sensible?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> 169.254.x.x means DHCP failed; inventing a gateway in the APIPA range cannot route anywhere. Find out why DHCP failed (link, VLAN, relay, pool — Chapter 14).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="1712-chapter-17-figure-checklist">17.12 Chapter 17 figure checklist</h3>
 <p>Both figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-17-2">Figure 17.2</a> had its divider running through the footnote; it was shortened and re-published.</p>
 <div class="table-wrap"><table>
@@ -667,7 +636,6 @@ Connected to 70:7d:b9:aa:bb:01 (on wlp2s0)
 <a href="#178-lab-171--client-troubleshooting-on-real-systems-and-in-packet-tracer-beginnerintermediate">17.8 Lab 17.1 — Client troubleshooting on real systems and in Packet Tracer (Beginner–Intermediate)</a>
 <a href="#179-chapter-17-summary-notes-exam-revision">17.9 Chapter 17 summary notes (exam revision)</a>
 <a href="#1710-practice-questions--chapter-17">17.10 Practice questions — Chapter 17</a>
-<a href="#1711-answer-key-with-explanations">17.11 Answer key with explanations</a>
 <a href="#1712-chapter-17-figure-checklist">17.12 Chapter 17 figure checklist</a>
 <a href="#1713-chapter-17-progress-record">17.13 Chapter 17 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>

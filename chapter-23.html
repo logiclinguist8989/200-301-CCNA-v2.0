@@ -18,6 +18,7 @@
 </header>
 <aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
 <a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
 <div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
 <a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
 <a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
@@ -61,7 +62,7 @@
 <main class="content"><div class="chapter-head purple">
   <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
   <h1><span class="num">Chapter 23</span>Layer 2 security features</h1>
-  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~18 min read</span>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~19 min read</span><a class="qmeta" href="#quiz" data-ch="23" data-total="12">📝 Self-check: 12 questions</a>
   <label class="mark"><input type="checkbox" data-ch="23"> Mark chapter as done</label></div>
 </div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.7 Configure Layer 2 security features: a. DHCP snooping, b. Dynamic ARP inspection, c. Storm control, d. RA guard, e. Port security.</strong> These features run on the <strong>access switches</strong>, where users plug in, and stop attacks that routers and ACLs never see.</p>
 <h3 id="231-learning-objectives">23.1 Learning objectives</h3>
@@ -74,7 +75,7 @@
 <li>Configure port security with sticky MAC addresses and choose a violation mode.</li>
 <li>Recover err-disabled ports and troubleshoot each feature.</li>
 </ol>
-<h3 id="232-attacks-at-the-access-layer">23.2 Attacks at the access layer</h3>
+<p class="callout lab-it"><strong>Lab it</strong>This chapter is hands-on. Once the theory clicks, jump to <a href="#239-lab-231--securing-the-access-layer-intermediate">Lab 23.1 — Securing the access layer (Intermediate)</a> and build it yourself — reading about a network is good, breaking and fixing one is better.</p><h3 id="232-attacks-at-the-access-layer">23.2 Attacks at the access layer</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -127,37 +128,54 @@
 <figure class="fig" id="fig-23-1"><button class="zoom" aria-label="Enlarge figure 23.1"><img src="assets/figures/ch23/fig-23-01-dhcp-snooping.svg" alt="Figure 23.1 — DHCP snooping: trusted and untrusted ports, binding table" loading="lazy"></button><figcaption><a class="fignum" href="#fig-23-1">Figure 23.1</a> DHCP snooping: trusted and untrusted ports, binding table</figcaption></figure>
 
 <p>In <a class="figref" href="#fig-23-1">Figure 23.1</a> the green uplink is trusted, so R1's replies reach PC1, while the rogue server's OFFER on an untrusted access port is dropped. The bottom band is the binding table that DAI uses next.</p>
-<pre><code>SW1(config)# ip dhcp snooping
-SW1(config)# ip dhcp snooping vlan 10,30
-SW1(config)# no ip dhcp snooping information option
-SW1(config)# interface range GigabitEthernet0/1 - 2
-SW1(config-if-range)# description Uplinks to DSW1/DSW2 (use the port-channel if bundled)
-SW1(config-if-range)# ip dhcp snooping trust
-SW1(config-if-range)# interface range FastEthernet0/1 - 24
-SW1(config-if-range)# ip dhcp snooping limit rate 15
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="ip dhcp snooping
+ip dhcp snooping vlan 10,30
+no ip dhcp snooping information option
+interface range GigabitEthernet0/1 - 2
+description Uplinks to DSW1/DSW2 (use the port-channel if bundled)
+ip dhcp snooping trust
+interface range FastEthernet0/1 - 24
+ip dhcp snooping limit rate 15" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">ip dhcp snooping</span>
+<span class="tp">SW1(config)#</span> <span class="tc">ip dhcp snooping vlan 10,30</span>
+<span class="tp">SW1(config)#</span> <span class="tc">no ip dhcp snooping information option</span>
+<span class="tp">SW1(config)#</span> <span class="tc">interface range GigabitEthernet0/1 - 2</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">description Uplinks to DSW1/DSW2 (use the port-channel if bundled)</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">ip dhcp snooping trust</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">interface range FastEthernet0/1 - 24</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">ip dhcp snooping limit rate 15</span></code></pre></div>
 <ul>
 <li>Snooping does nothing until it is enabled <strong>globally and per VLAN</strong>.</li>
 <li><strong><code>no ip dhcp snooping information option</code>:</strong> by default a snooping switch inserts <strong>option 82</strong> (relay information) into client requests while leaving the relay address (giaddr) empty. A Cisco relay or server that receives such a packet on an interface not set to trust relay information drops it, and clients get no address. When the snooping switch is not itself the relay — as here, where DSW1/DSW2 relay to R1 — disable the insertion (or configure the relay to trust it).</li>
 <li>If the uplinks are an EtherChannel, configure <code>ip dhcp snooping trust</code> on the <strong>port-channel</strong> interface.</li>
 </ul>
+<p class="callout memory-trick"><strong>Memory trick</strong><b>Trust the path to the real DHCP server</b> — uplinks toward it are trusted, every user port stays untrusted.</p>
+
 <h3 id="234-dynamic-arp-inspection-dai">23.4 Dynamic ARP inspection (DAI)</h3>
 <p>DAI checks every ARP message that arrives on an <strong>untrusted</strong> port: the sender's IP and MAC must match a DHCP snooping binding for that port and VLAN, or an <strong>ARP ACL</strong>. Mismatches are dropped and logged (<a class="figref" href="#fig-23-2">Figure 23.2</a>).</p>
 <figure class="fig" id="fig-23-2"><button class="zoom" aria-label="Enlarge figure 23.2"><img src="assets/figures/ch23/fig-23-02-dai-decisions.svg" alt="Figure 23.2 — Dynamic ARP inspection decisions" loading="lazy"></button><figcaption><a class="fignum" href="#fig-23-2">Figure 23.2</a> Dynamic ARP inspection decisions</figcaption></figure>
 
 <p>In <a class="figref" href="#fig-23-2">Figure 23.2</a> the first row matches its binding; the second claims the gateway's address from a port bound to another IP, so it is dropped; the third has no binding because it is statically addressed and is allowed only by an ARP ACL.</p>
-<pre><code>SW2(config)# ip arp inspection vlan 10,40
-SW2(config)# ip arp inspection validate src-mac dst-mac ip
-SW2(config)# arp access-list STATIC-HOSTS
-SW2(config-arp-nacl)# permit ip host 10.10.40.11 mac host 00D0.BA11.4011
-SW2(config-arp-nacl)# permit ip host 10.10.40.80 mac host 0001.6340.0080
-SW2(config-arp-nacl)# exit
-SW2(config)# ip arp inspection filter STATIC-HOSTS vlan 40
-SW2(config)# interface range GigabitEthernet0/1 - 2
-SW2(config-if-range)# ip arp inspection trust
-SW2(config-if-range)# interface range FastEthernet0/1 - 24
-SW2(config-if-range)# ip arp inspection limit rate 15
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW2</span><button class="copy" type="button" data-copy="ip arp inspection vlan 10,40
+ip arp inspection validate src-mac dst-mac ip
+arp access-list STATIC-HOSTS
+permit ip host 10.10.40.11 mac host 00D0.BA11.4011
+permit ip host 10.10.40.80 mac host 0001.6340.0080
+exit
+ip arp inspection filter STATIC-HOSTS vlan 40
+interface range GigabitEthernet0/1 - 2
+ip arp inspection trust
+interface range FastEthernet0/1 - 24
+ip arp inspection limit rate 15" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW2(config)#</span> <span class="tc">ip arp inspection vlan 10,40</span>
+<span class="tp">SW2(config)#</span> <span class="tc">ip arp inspection validate src-mac dst-mac ip</span>
+<span class="tp">SW2(config)#</span> <span class="tc">arp access-list STATIC-HOSTS</span>
+<span class="tp">SW2(config-arp-nacl)#</span> <span class="tc">permit ip host 10.10.40.11 mac host 00D0.BA11.4011</span>
+<span class="tp">SW2(config-arp-nacl)#</span> <span class="tc">permit ip host 10.10.40.80 mac host 0001.6340.0080</span>
+<span class="tp">SW2(config-arp-nacl)#</span> <span class="tc">exit</span>
+<span class="tp">SW2(config)#</span> <span class="tc">ip arp inspection filter STATIC-HOSTS vlan 40</span>
+<span class="tp">SW2(config)#</span> <span class="tc">interface range GigabitEthernet0/1 - 2</span>
+<span class="tp">SW2(config-if-range)#</span> <span class="tc">ip arp inspection trust</span>
+<span class="tp">SW2(config-if-range)#</span> <span class="tc">interface range FastEthernet0/1 - 24</span>
+<span class="tp">SW2(config-if-range)#</span> <span class="tc">ip arp inspection limit rate 15</span></code></pre></div>
 <ul>
 <li>DAI <strong>depends on DHCP snooping</strong> for its bindings: enable snooping first and let clients renew.</li>
 <li><strong>Statically addressed hosts</strong> (printers, servers) have no binding — permit them with an ARP ACL, or their ARP is dropped and they go silent. (The MAC addresses above are examples; read the real ones from each device.)</li>
@@ -166,35 +184,44 @@ SW2(config-if-range)# ip arp inspection limit rate 15
 </ul>
 <h3 id="235-storm-control">23.5 Storm control</h3>
 <p>Storm control measures broadcast, multicast or unknown-unicast traffic arriving on a port, <strong>per second</strong>, and acts when it rises above a threshold — a safety net for loops and faulty NICs.</p>
-<pre><code>SW1(config)# interface range FastEthernet0/1 - 24
-SW1(config-if-range)# storm-control broadcast level 1.00 0.50
-SW1(config-if-range)# storm-control multicast level 2.00
-SW1(config-if-range)# storm-control action trap
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="interface range FastEthernet0/1 - 24
+storm-control broadcast level 1.00 0.50
+storm-control multicast level 2.00
+storm-control action trap" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">interface range FastEthernet0/1 - 24</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">storm-control broadcast level 1.00 0.50</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">storm-control multicast level 2.00</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">storm-control action trap</span></code></pre></div>
 <ul>
 <li><strong><code>level 1.00 0.50</code></strong> = act when broadcasts exceed <strong>1 %</strong> of the port's bandwidth; resume when they fall below <strong>0.5 %</strong> (the falling threshold is optional). Thresholds can also be set in packets per second (<code>level pps 500</code>) or bits per second (<code>level bps 10m</code>).</li>
 <li><strong>Default action:</strong> the switch <strong>drops</strong> the excess traffic of that type until it falls below the threshold. <code>storm-control action shutdown</code> err-disables the port instead; <code>action trap</code> sends an SNMP trap (and a log message) as well.</li>
 <li>Choose thresholds above normal traffic: too low and normal ARP and DHCP broadcasts are dropped.</li>
 </ul>
-<pre><code>SW1# show storm-control FastEthernet0/1 broadcast
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="show storm-control FastEthernet0/1 broadcast" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1#</span> <span class="tc">show storm-control FastEthernet0/1 broadcast</span>
 Interface  Filter State   Upper        Lower        Current
 ---------  -------------  -----------  -----------  ----------
-Fa0/1      Forwarding       1.00%        0.50%         0.02%
-</code></pre>
+Fa0/1      Forwarding       1.00%        0.50%         0.02%</code></pre></div>
 <p><em>Forwarding</em> = below the threshold; <em>Blocking</em> = storm detected and excess dropped; <em>Shutdown</em> = port err-disabled.</p>
 <h3 id="236-ra-guard">23.6 RA guard</h3>
 <p>IPv6 hosts learn their default gateway (and often their prefix, through SLAAC) from <strong>Router Advertisements</strong>. Any device can send RAs, so a misconfigured PC or an attacker can become the IPv6 gateway for the whole VLAN. <strong>RA guard</strong> drops RAs (and ICMPv6 redirects) arriving on ports where no router should be.</p>
-<pre><code>SW1(config)# ipv6 nd raguard policy HOST-PORTS
-SW1(config-nd-raguard)# device-role host
-SW1(config-nd-raguard)# exit
-SW1(config)# ipv6 nd raguard policy UPLINKS
-SW1(config-nd-raguard)# device-role router
-SW1(config-nd-raguard)# exit
-SW1(config)# interface range FastEthernet0/1 - 24
-SW1(config-if-range)# ipv6 nd raguard attach-policy HOST-PORTS
-SW1(config-if-range)# interface range GigabitEthernet0/1 - 2
-SW1(config-if-range)# ipv6 nd raguard attach-policy UPLINKS
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="ipv6 nd raguard policy HOST-PORTS
+device-role host
+exit
+ipv6 nd raguard policy UPLINKS
+device-role router
+exit
+interface range FastEthernet0/1 - 24
+ipv6 nd raguard attach-policy HOST-PORTS
+interface range GigabitEthernet0/1 - 2
+ipv6 nd raguard attach-policy UPLINKS" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">ipv6 nd raguard policy HOST-PORTS</span>
+<span class="tp">SW1(config-nd-raguard)#</span> <span class="tc">device-role host</span>
+<span class="tp">SW1(config-nd-raguard)#</span> <span class="tc">exit</span>
+<span class="tp">SW1(config)#</span> <span class="tc">ipv6 nd raguard policy UPLINKS</span>
+<span class="tp">SW1(config-nd-raguard)#</span> <span class="tc">device-role router</span>
+<span class="tp">SW1(config-nd-raguard)#</span> <span class="tc">exit</span>
+<span class="tp">SW1(config)#</span> <span class="tc">interface range FastEthernet0/1 - 24</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">ipv6 nd raguard attach-policy HOST-PORTS</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">interface range GigabitEthernet0/1 - 2</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">ipv6 nd raguard attach-policy UPLINKS</span></code></pre></div>
 <ul>
 <li><strong>device-role host</strong> (the default if you attach a policy without a role) blocks all RAs entering that port; <strong>device-role router</strong> allows them.</li>
 <li>RA guard protects even networks that "do not use IPv6": hosts have IPv6 enabled by default, so a rogue RA can still give them an IPv6 gateway and DNS server.</li>
@@ -203,13 +230,17 @@ SW1(config-if-range)# ipv6 nd raguard attach-policy UPLINKS
 </ul>
 <h3 id="237-port-security">23.7 Port security</h3>
 <p>Port security limits <strong>which and how many MAC addresses</strong> may send frames into an access port.</p>
-<pre><code>SW1(config)# interface FastEthernet0/1
-SW1(config-if)# switchport mode access
-SW1(config-if)# switchport port-security
-SW1(config-if)# switchport port-security maximum 2
-SW1(config-if)# switchport port-security mac-address sticky
-SW1(config-if)# switchport port-security violation restrict
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="interface FastEthernet0/1
+switchport mode access
+switchport port-security
+switchport port-security maximum 2
+switchport port-security mac-address sticky
+switchport port-security violation restrict" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">interface FastEthernet0/1</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">switchport mode access</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">switchport port-security</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">switchport port-security maximum 2</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">switchport port-security mac-address sticky</span>
+<span class="tp">SW1(config-if)#</span> <span class="tc">switchport port-security violation restrict</span></code></pre></div>
 <ul>
 <li>The port must be a <strong>static access</strong> (or trunk) port; on a dynamic (DTP) port the command is rejected.</li>
 <li><strong>Defaults</strong> once enabled: maximum <strong>1</strong> address, violation mode <strong>shutdown</strong>, no sticky learning, no aging.</li>
@@ -251,15 +282,18 @@ SW1(config-if)# switchport port-security violation restrict
 </tbody>
 </table></div>
 <p><strong>Recovering an err-disabled port:</strong> remove the cause, then <code>shutdown</code> and <code>no shutdown</code> on the interface. To recover automatically: <code>errdisable recovery cause psecure-violation</code> and <code>errdisable recovery interval 300</code> (seconds). The same mechanism applies to DHCP snooping (<code>dhcp-rate-limit</code>), DAI (<code>arp-inspection</code>), storm control and BPDU guard (Chapter 9).</p>
+<p class="callout memory-trick"><strong>Memory trick</strong>Port-security violation modes get stricter in alphabetical order: <b>P</b>rotect (drop silently) → <b>R</b>estrict (drop, log and count) → <b>S</b>hutdown (err-disable — the default).</p>
+
 <h3 id="238-verification-and-troubleshooting">23.8 Verification and troubleshooting</h3>
-<pre><code>SW1# show ip dhcp snooping binding
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="show ip dhcp snooping binding
+show port-security interface FastEthernet0/1" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1#</span> <span class="tc">show ip dhcp snooping binding</span>
 MacAddress          IpAddress     Lease(sec)  Type           VLAN  Interface
 ------------------  ------------  ----------  -------------  ----  ---------------
 00:60:2F:11:00:01   10.10.10.11   86211       dhcp-snooping  10    FastEthernet0/1
 00:0A:41:22:30:02   10.10.30.11   85904       dhcp-snooping  30    FastEthernet0/2
 Total number of bindings: 2
 
-SW1# show port-security interface FastEthernet0/1
+<span class="tp">SW1#</span> <span class="tc">show port-security interface FastEthernet0/1</span>
 Port Security              : Enabled
 Port Status                : Secure-up
 Violation Mode             : Restrict
@@ -267,8 +301,7 @@ Maximum MAC Addresses      : 2
 Total MAC Addresses        : 1
 Sticky MAC Addresses       : 1
 Last Source Address:Vlan   : 0060.2F11.0001:10
-Security Violation Count   : 0
-</code></pre>
+Security Violation Count   : 0</code></pre></div>
 <p><strong>Reading it:</strong> each binding ties a MAC and IP to one port and VLAN — a host with no binding will fail DAI checks. In the port-security output, <strong>Port Status</strong> shows <em>Secure-up</em> (working) or <em>Secure-shutdown</em> (err-disabled), and the <strong>violation count</strong> shows whether unknown devices have tried to send.</p>
 <div class="table-wrap"><table>
 <thead>
@@ -321,11 +354,11 @@ Security Violation Count   : 0
 </tbody>
 </table></div>
 <p><strong>Log messages you should recognise:</strong></p>
-<pre><code>%DHCP_SNOOPING-5-DHCP_SNOOPING_UNTRUSTED_PORT: DHCP_SNOOPING drop message on untrusted port, message type: DHCPOFFER, MAC sa: 0001.9644.1010
+<div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>%DHCP_SNOOPING-5-DHCP_SNOOPING_UNTRUSTED_PORT: DHCP_SNOOPING drop message on untrusted port, message type: DHCPOFFER, MAC sa: 0001.9644.1010
 %SW_DAI-4-DHCP_SNOOPING_DENY: 1 Invalid ARPs (Res) on Fa0/12, vlan 10.([0090.21aa.0012/10.10.10.1/0060.2f11.0001/10.10.10.11/...])
 %PORT_SECURITY-2-PSECURE_VIOLATION: Security violation occurred, caused by MAC address 0090.21aa.0012 on port FastEthernet0/1.
 %PM-4-ERR_DISABLE: psecure-violation error detected on Fa0/1, putting Fa0/1 in err-disable state
-</code></pre>
+</code></pre></div>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -394,46 +427,64 @@ Security Violation Count   : 0
 <p><a class="figref" href="#fig-23-3">Figure 23.3</a> is the target state. Green lines and the green band are the trusted uplinks; everything in the grey band applies to every access port; the red line on SW1 is the rogue server you add for testing.</p>
 <p><strong>Step 1 — Watch a rogue DHCP server win.</strong> Add a Server-PT <strong>ROGUE</strong> to <strong>SW1 Fa0/10</strong> (<code>switchport mode access</code>, <code>switchport access vlan 10</code>): IP 10.10.10.200/24. In <em>Services → DHCP</em>, turn the service on with a pool: default gateway 10.10.10.200, DNS 10.10.10.200, start 10.10.10.100, mask 255.255.255.0. On PC1 run <code>ipconfig /release</code> and <code>ipconfig /renew</code> until it gets a 10.10.10.10x address with gateway <strong>10.10.10.200</strong> (the rogue usually answers first because it is closer). That PC would now send all its traffic to the attacker.</p>
 <p><strong>Step 2 — DHCP snooping on SW1 and SW2.</strong> Find the uplinks with <code>show etherchannel summary</code> and <code>show interfaces trunk</code>, then:</p>
-<pre><code>SW1(config)# ip dhcp snooping
-SW1(config)# ip dhcp snooping vlan 10,30,40
-SW1(config)# no ip dhcp snooping information option
-SW1(config)# interface range GigabitEthernet0/1 - 2
-SW1(config-if-range)# ip dhcp snooping trust
-SW1(config-if-range)# interface range FastEthernet0/1 - 24
-SW1(config-if-range)# ip dhcp snooping limit rate 15
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="ip dhcp snooping
+ip dhcp snooping vlan 10,30,40
+no ip dhcp snooping information option
+interface range GigabitEthernet0/1 - 2
+ip dhcp snooping trust
+interface range FastEthernet0/1 - 24
+ip dhcp snooping limit rate 15" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">ip dhcp snooping</span>
+<span class="tp">SW1(config)#</span> <span class="tc">ip dhcp snooping vlan 10,30,40</span>
+<span class="tp">SW1(config)#</span> <span class="tc">no ip dhcp snooping information option</span>
+<span class="tp">SW1(config)#</span> <span class="tc">interface range GigabitEthernet0/1 - 2</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">ip dhcp snooping trust</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">interface range FastEthernet0/1 - 24</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">ip dhcp snooping limit rate 15</span></code></pre></div>
 <p>(Use your port-channel interface instead of Gi0/1–2 if the uplinks are bundled.) Repeat on SW2. Renew PC1, PC2 and PC3: PC1 now gets a lease from R1 with gateway <strong>10.10.10.1</strong>. Check <code>show ip dhcp snooping binding</code> on both switches.</p>
 <p><strong>Step 3 — Dynamic ARP inspection.</strong> On SW1 and SW2:</p>
-<pre><code>SW1(config)# ip arp inspection vlan 10,30,40
-SW1(config)# interface range GigabitEthernet0/1 - 2
-SW1(config-if-range)# ip arp inspection trust
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="ip arp inspection vlan 10,30,40
+interface range GigabitEthernet0/1 - 2
+ip arp inspection trust" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">ip arp inspection vlan 10,30,40</span>
+<span class="tp">SW1(config)#</span> <span class="tc">interface range GigabitEthernet0/1 - 2</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">ip arp inspection trust</span></code></pre></div>
 <p>From PC3, <code>ping 10.10.40.11</code>: it now <strong>fails</strong>, because Printer1's ARP has no binding. Find the MAC addresses of Printer1 and WEB1 (<code>show mac address-table interface fa0/2</code> and <code>fa0/6</code> on SW2) and permit them:</p>
-<pre><code>SW2(config)# arp access-list STATIC-HOSTS
-SW2(config-arp-nacl)# permit ip host 10.10.40.11 mac host &lt;Printer1-MAC&gt;
-SW2(config-arp-nacl)# permit ip host 10.10.40.80 mac host &lt;WEB1-MAC&gt;
-SW2(config-arp-nacl)# exit
-SW2(config)# ip arp inspection filter STATIC-HOSTS vlan 40
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW2</span><button class="copy" type="button" data-copy="arp access-list STATIC-HOSTS
+permit ip host 10.10.40.11 mac host &lt;Printer1-MAC&gt;
+permit ip host 10.10.40.80 mac host &lt;WEB1-MAC&gt;
+exit
+ip arp inspection filter STATIC-HOSTS vlan 40" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW2(config)#</span> <span class="tc">arp access-list STATIC-HOSTS</span>
+<span class="tp">SW2(config-arp-nacl)#</span> <span class="tc">permit ip host 10.10.40.11 mac host &lt;Printer1-MAC&gt;</span>
+<span class="tp">SW2(config-arp-nacl)#</span> <span class="tc">permit ip host 10.10.40.80 mac host &lt;WEB1-MAC&gt;</span>
+<span class="tp">SW2(config-arp-nacl)#</span> <span class="tc">exit</span>
+<span class="tp">SW2(config)#</span> <span class="tc">ip arp inspection filter STATIC-HOSTS vlan 40</span></code></pre></div>
 <p>Ping again: it works. From ROGUE, <code>ping 10.10.10.1</code> fails — its ARP is dropped (no binding). Read <code>show ip arp inspection statistics</code>.</p>
 <p><strong>Step 4 — Port security.</strong> On both switches:</p>
-<pre><code>SW1(config)# interface range FastEthernet0/1 - 24
-SW1(config-if-range)# switchport port-security
-SW1(config-if-range)# switchport port-security maximum 2
-SW1(config-if-range)# switchport port-security mac-address sticky
-SW1(config-if-range)# switchport port-security violation restrict
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="interface range FastEthernet0/1 - 24
+switchport port-security
+switchport port-security maximum 2
+switchport port-security mac-address sticky
+switchport port-security violation restrict" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">interface range FastEthernet0/1 - 24</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">switchport port-security</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">switchport port-security maximum 2</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">switchport port-security mac-address sticky</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">switchport port-security violation restrict</span></code></pre></div>
 <p>Generate traffic from every host, then <code>show port-security address</code>. <strong>Test a violation:</strong> on SW1 Fa0/1 set <code>switchport port-security maximum 1</code> and <code>switchport port-security violation shutdown</code>. Disconnect PC1, connect a new PC to Fa0/1 and ping: the port goes <strong>err-disabled</strong>. Check <code>show interfaces status err-disabled</code> and <code>show port-security interface fa0/1</code>, reconnect PC1, then recover with <code>shutdown</code> / <code>no shutdown</code>. Save the configuration so the sticky addresses survive a reload.</p>
 <p><strong>Step 5 — Storm control and RA guard</strong> (on SW1 access ports; see the support note above):</p>
-<pre><code>SW1(config)# interface range FastEthernet0/1 - 24
-SW1(config-if-range)# storm-control broadcast level 1.00
-SW1(config-if-range)# exit
-SW1(config)# ipv6 nd raguard policy HOST-PORTS
-SW1(config-nd-raguard)# device-role host
-SW1(config-nd-raguard)# exit
-SW1(config)# interface range FastEthernet0/1 - 24
-SW1(config-if-range)# ipv6 nd raguard attach-policy HOST-PORTS
-</code></pre>
+<div class="term"><div class="term-bar"><i></i><i></i><i></i><span>SW1</span><button class="copy" type="button" data-copy="interface range FastEthernet0/1 - 24
+storm-control broadcast level 1.00
+exit
+ipv6 nd raguard policy HOST-PORTS
+device-role host
+exit
+interface range FastEthernet0/1 - 24
+ipv6 nd raguard attach-policy HOST-PORTS" title="Copy the commands only (prompts and output removed)">Copy commands</button></div><pre><code><span class="tp">SW1(config)#</span> <span class="tc">interface range FastEthernet0/1 - 24</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">storm-control broadcast level 1.00</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">exit</span>
+<span class="tp">SW1(config)#</span> <span class="tc">ipv6 nd raguard policy HOST-PORTS</span>
+<span class="tp">SW1(config-nd-raguard)#</span> <span class="tc">device-role host</span>
+<span class="tp">SW1(config-nd-raguard)#</span> <span class="tc">exit</span>
+<span class="tp">SW1(config)#</span> <span class="tc">interface range FastEthernet0/1 - 24</span>
+<span class="tp">SW1(config-if-range)#</span> <span class="tc">ipv6 nd raguard attach-policy HOST-PORTS</span></code></pre></div>
 <p>Verify with <code>show storm-control broadcast</code> and <code>show ipv6 nd raguard policy HOST-PORTS</code>.</p>
 <p><strong>Step 6 — Remove the attacker.</strong> Delete ROGUE, <code>shutdown</code> Fa0/10, and save. Run the Lab 22.1 tests again (DNS, web, printer) to prove nothing legitimate broke.</p>
 <p><strong>Questions after the lab</strong></p>
@@ -532,42 +583,15 @@ SW1(config-if-range)# ipv6 nd raguard attach-policy HOST-PORTS
 </tbody>
 </table></div>
 <h3 id="2312-practice-questions--chapter-23">23.12 Practice questions — Chapter 23</h3>
-<p><strong>1. (Recall)</strong> Which DHCP messages does DHCP snooping drop on an untrusted port?</p>
-<p><strong>2. (Concept)</strong> Which feature stops an attacker from claiming the default gateway's IP address with its own MAC, and what information does it use?</p>
-<p><strong>3. (Configuration)</strong> Write the commands to enable DHCP snooping for VLANs 10 and 30 on SW1 and trust Port-channel 1.</p>
-<p><strong>4. (Configuration)</strong> Configure Fa0/7 so that at most one MAC address is learned and written into the configuration, and a violation drops traffic and logs it without disabling the port.</p>
-<p><strong>5. (Comparison)</strong> For each violation mode — protect, restrict, shutdown — state whether it drops the frames, sends a log message, increments the violation counter and err-disables the port.</p>
-<p><strong>6. (Output interpretation)</strong></p>
-<pre><code>Port Security              : Enabled
+<div id="quiz"></div><section class="quiz" data-ch="23" data-total="12"><div class="quiz-top"><div class="quiz-title"><span class="qicon">📝</span><div><b>Self-check quiz</b><small>12 questions · 1 auto-graded, 11 to reveal and self-mark · your score is saved in this browser</small></div></div><div class="quiz-score"><span class="qs-num">0 / 12</span><div class="bar"><i></i></div><span class="qs-sub">not started</span></div><button class="btn small qreset" type="button">Reset</button></div><div class="q open" data-q="1"><div class="qhead"><span class="qn">1</span><span class="qkind">Recall</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Which DHCP messages does DHCP snooping drop on an untrusted port?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Server messages: <strong>DHCPOFFER, DHCPACK, DHCPNAK</strong> (and DHCPLEASEQUERY replies). Client messages are allowed.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="2"><div class="qhead"><span class="qn">2</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Which feature stops an attacker from claiming the default gateway's IP address with its own MAC, and what information does it use?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Dynamic ARP inspection</strong>; it compares the ARP sender IP/MAC with the <strong>DHCP snooping binding table</strong> (or an ARP ACL) for that port and VLAN.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="3"><div class="qhead"><span class="qn">3</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Write the commands to enable DHCP snooping for VLANs 10 and 30 on SW1 and trust Port-channel 1.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>ip dhcp snooping</code>, <code>ip dhcp snooping vlan 10,30</code>, <code>interface port-channel 1</code> → <code>ip dhcp snooping trust</code> (plus <code>no ip dhcp snooping information option</code> if the relay is another device).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="4"><div class="qhead"><span class="qn">4</span><span class="qkind">Configuration</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>Configure Fa0/7 so that at most one MAC address is learned and written into the configuration, and a violation drops traffic and logs it without disabling the port.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><code>interface fa0/7</code> → <code>switchport mode access</code>, <code>switchport port-security</code>, <code>switchport port-security maximum 1</code>, <code>switchport port-security mac-address sticky</code>, <code>switchport port-security violation restrict</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="5"><div class="qhead"><span class="qn">5</span><span class="qkind">Comparison</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>For each violation mode — protect, restrict, shutdown — state whether it drops the frames, sends a log message, increments the violation counter and err-disables the port.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>Protect:</strong> drops, no log, no count, stays up. <strong>Restrict:</strong> drops, logs, counts, stays up. <strong>Shutdown:</strong> drops, logs, counts, err-disables the port.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="6"><div class="qhead"><span class="qn">6</span><span class="qkind">Output interpretation</span><span class="qtag">think, then reveal</span></div><div class="qstem"><div class="codebox"><button class="copy" type="button" aria-label="Copy">Copy</button><pre><code>Port Security              : Enabled
 Port Status                : Secure-shutdown
 Violation Mode             : Shutdown
 Maximum MAC Addresses      : 1
 Total MAC Addresses        : 1
 Security Violation Count   : 1
-</code></pre>
-<p>What happened and how do you restore the port?</p>
-<p><strong>7. (Troubleshooting)</strong> After DHCP snooping was enabled on an access switch, no client in any VLAN receives an address. The relay is on the distribution switch. Give two likely causes.</p>
-<p><strong>8. (Troubleshooting)</strong> After DAI was enabled, every PC still works but a network printer with a static address stopped responding. Why, and how do you fix it?</p>
-<p><strong>9. (Concept)</strong> What does <code>storm-control broadcast level 1.00 0.50</code> do, and what happens by default when the threshold is exceeded?</p>
-<p><strong>10. (Concept)</strong> On which ports should an RA guard policy with <code>device-role host</code> be attached, and what does it block?</p>
-<p><strong>11. (Multiple response — choose two)</strong> Which statements about port security are true?</p>
-<p>A. It can be enabled on a dynamic auto port  B. Sticky addresses appear in the running configuration  C. The default maximum is 1  D. The default violation mode is restrict  E. It requires DHCP snooping</p>
-<p><strong>12. (Evaluate an AI assistant)</strong> An AI assistant suggests: <em>"To make DHCP snooping work, configure <code>ip dhcp snooping trust</code> on all access ports."</em> Is that right?</p>
-<h3 id="2313-answer-key-with-explanations">23.13 Answer key with explanations</h3>
-<ol>
-<li>Server messages: <strong>DHCPOFFER, DHCPACK, DHCPNAK</strong> (and DHCPLEASEQUERY replies). Client messages are allowed.</li>
-<li><strong>Dynamic ARP inspection</strong>; it compares the ARP sender IP/MAC with the <strong>DHCP snooping binding table</strong> (or an ARP ACL) for that port and VLAN.</li>
-<li><code>ip dhcp snooping</code>, <code>ip dhcp snooping vlan 10,30</code>, <code>interface port-channel 1</code> → <code>ip dhcp snooping trust</code> (plus <code>no ip dhcp snooping information option</code> if the relay is another device).</li>
-<li><code>interface fa0/7</code> → <code>switchport mode access</code>, <code>switchport port-security</code>, <code>switchport port-security maximum 1</code>, <code>switchport port-security mac-address sticky</code>, <code>switchport port-security violation restrict</code>.</li>
-<li><strong>Protect:</strong> drops, no log, no count, stays up. <strong>Restrict:</strong> drops, logs, counts, stays up. <strong>Shutdown:</strong> drops, logs, counts, err-disables the port.</li>
-<li>A second MAC address appeared; in shutdown mode the port was <strong>err-disabled</strong>. Remove the unauthorised device (or change the policy), then <code>shutdown</code> and <code>no shutdown</code> on the interface (or use errdisable recovery).</li>
-<li>(a) The <strong>uplinks are not trusted</strong>, so OFFERs are dropped; (b) the switch inserts <strong>option 82</strong> with an empty giaddr and the relay drops it — fix with <code>no ip dhcp snooping information option</code> or trust on the relay.</li>
-<li>Static hosts have <strong>no snooping binding</strong>, so DAI drops their ARP. Create an <code>arp access-list</code> permitting its IP/MAC and apply <code>ip arp inspection filter &lt;name&gt; vlan &lt;id&gt;</code>.</li>
-<li>When broadcast traffic exceeds <strong>1 %</strong> of the port bandwidth, the excess broadcasts are <strong>dropped</strong> until it falls below <strong>0.5 %</strong>. (Shutdown or trap only if configured.)</li>
-<li>On <strong>access ports</strong> where hosts connect; it blocks IPv6 <strong>Router Advertisements</strong> (and redirects) arriving on them. Uplinks towards real routers get a router-role policy or none.</li>
-<li><strong>B and C.</strong> Port security needs a static access (or trunk) port; the default violation mode is shutdown; it does not depend on DHCP snooping.</li>
-<li><strong>No.</strong> Trusting access ports would let a rogue server on any of them hand out leases — the exact attack snooping prevents. Trust only the uplinks towards the legitimate server or relay.</li>
-</ol>
+</code></pre></div>
+<p>What happened and how do you restore the port?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>A second MAC address appeared; in shutdown mode the port was <strong>err-disabled</strong>. Remove the unauthorised device (or change the policy), then <code>shutdown</code> and <code>no shutdown</code> on the interface (or use errdisable recovery).</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="7"><div class="qhead"><span class="qn">7</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>After DHCP snooping was enabled on an access switch, no client in any VLAN receives an address. The relay is on the distribution switch. Give two likely causes.</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>(a) The <strong>uplinks are not trusted</strong>, so OFFERs are dropped; (b) the switch inserts <strong>option 82</strong> with an empty giaddr and the relay drops it — fix with <code>no ip dhcp snooping information option</code> or trust on the relay.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="8"><div class="qhead"><span class="qn">8</span><span class="qkind">Troubleshooting</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>After DAI was enabled, every PC still works but a network printer with a static address stopped responding. Why, and how do you fix it?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>Static hosts have <strong>no snooping binding</strong>, so DAI drops their ARP. Create an <code>arp access-list</code> permitting its IP/MAC and apply <code>ip arp inspection filter &lt;name&gt; vlan &lt;id&gt;</code>.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="9"><div class="qhead"><span class="qn">9</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>What does <code>storm-control broadcast level 1.00 0.50</code> do, and what happens by default when the threshold is exceeded?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>When broadcast traffic exceeds <strong>1 %</strong> of the port bandwidth, the excess broadcasts are <strong>dropped</strong> until it falls below <strong>0.5 %</strong>. (Shutdown or trap only if configured.)</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q open" data-q="10"><div class="qhead"><span class="qn">10</span><span class="qkind">Concept</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>On which ports should an RA guard policy with <code>device-role host</code> be attached, and what does it block?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p>On <strong>access ports</strong> where hosts connect; it blocks IPv6 <strong>Router Advertisements</strong> (and redirects) arriving on them. Uplinks towards real routers get a router-role policy or none.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="q" data-q="11" data-correct="BC"><div class="qhead"><span class="qn">11</span><span class="qkind">Multiple response — choose two</span><span class="qtag">auto-graded</span></div><div class="qstem"><p>Which statements about port security are true?</p></div><div class="opts"><button class="opt" type="button" data-l="A"><span class="ol">A</span><span class="ot">It can be enabled on a dynamic auto port</span></button><button class="opt" type="button" data-l="B"><span class="ol">B</span><span class="ot">Sticky addresses appear in the running configuration</span></button><button class="opt" type="button" data-l="C"><span class="ol">C</span><span class="ot">The default maximum is 1</span></button><button class="opt" type="button" data-l="D"><span class="ol">D</span><span class="ot">The default violation mode is restrict</span></button><button class="opt" type="button" data-l="E"><span class="ol">E</span><span class="ot">It requires DHCP snooping</span></button></div><div class="qact"><span class="qhint">Choose 2</span><button class="btn small qcheck" type="button" disabled>Check answer</button></div><div class="qans" hidden><div class="qverdict"></div><p><strong>B and C.</strong> Port security needs a static access (or trunk) port; the default violation mode is shutdown; it does not depend on DHCP snooping.</p></div></div><div class="q open" data-q="12"><div class="qhead"><span class="qn">12</span><span class="qkind">Evaluate an AI assistant</span><span class="qtag">think, then reveal</span></div><div class="qstem"><p>An AI assistant suggests: <em>"To make DHCP snooping work, configure <code>ip dhcp snooping trust</code> on all access ports."</em> Is that right?</p></div><div class="qact"><button class="btn small qreveal" type="button">Show answer</button><span class="qhint">Answer it in your head (or on paper) first.</span></div><div class="qans" hidden><div class="qverdict"></div><p><strong>No.</strong> Trusting access ports would let a rogue server on any of them hand out leases — the exact attack snooping prevents. Trust only the uplinks towards the legitimate server or relay.</p><div class="selfmark"><span>Did you get it?</span><button class="btn small ok" type="button" data-m="1">✓ Got it</button><button class="btn small no" type="button" data-m="0">✗ Not yet</button></div></div></div><div class="quiz-done" hidden></div></section>
+
 <h3 id="2314-chapter-23-figure-checklist">23.14 Chapter 23 figure checklist</h3>
 <p>All three figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-23-1">Figure 23.1</a>'s first render had the DISCOVER arrow pointing the wrong way; it was corrected and re-checked.</p>
 <div class="table-wrap"><table>
@@ -618,7 +642,6 @@ Security Violation Count   : 1
 <a href="#2310-lab-232--troubleshooting-challenge-advanced">23.10 Lab 23.2 — Troubleshooting challenge (Advanced)</a>
 <a href="#2311-chapter-23-summary-notes-exam-revision">23.11 Chapter 23 summary notes (exam revision)</a>
 <a href="#2312-practice-questions--chapter-23">23.12 Practice questions — Chapter 23</a>
-<a href="#2313-answer-key-with-explanations">23.13 Answer key with explanations</a>
 <a href="#2314-chapter-23-figure-checklist">23.14 Chapter 23 figure checklist</a>
 <a href="#2315-chapter-23-progress-record">23.15 Chapter 23 progress record</a></aside>
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
