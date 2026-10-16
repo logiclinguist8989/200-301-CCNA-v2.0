@@ -25,7 +25,8 @@ Reading extras:
 - **Mistakes notebook** (`mistakes.html`) — every question missed in a quiz or exam is saved, with a retry
   card and a personal note per question.
 - **Exam mode** (`exam.html`) — timed, mixed-chapter exams from the question bank, scored by exam domain,
-  with resume and history.
+  with resume and history, and an optional "Real exam — no going back" mode that locks each
+  question once you move on.
 
 All study data (progress, scores, review dates, mistakes, exam history) is kept in the reader's browser
 (`localStorage`); nothing is sent anywhere.

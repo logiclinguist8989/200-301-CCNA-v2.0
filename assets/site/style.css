@@ -388,3 +388,8 @@ a.dash-card { transition: transform .15s, border-color .15s; } a.dash-card:hover
 .ex-form label, .mk-tools label { min-width: 0; }
 .ex-form select { width: 100%; min-width: 0; text-overflow: ellipsis; }
 .mk-foot textarea, .ex-text { font-weight: 400; }
+.ex-lock { font-size: 13px; font-weight: 700; color: var(--purple); background: var(--purple-bg); padding: 6px 10px; border-radius: 8px; white-space: nowrap; }
+.ex-lockhint { color: var(--muted); font-size: 13.5px; align-self: center; }
+.ex-grid.locked button { cursor: default; }
+.ex-grid button.past { background: var(--surface-2); color: var(--faint); text-decoration: line-through; }
+.ex-grid button.past.ans { background: var(--blue-bg); color: var(--blue); }

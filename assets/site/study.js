@@ -180,12 +180,13 @@
         : p < want ? `Only ${p} questions match, so the exam will have ${p}.` : `${p} questions match.`;
       $('.ex-go button', exRoot).disabled = p === 0;
     }
-    form.addEventListener('change', paintNote);
+    try { const nav = localStorage.getItem('ccna-exam-nav'); if (nav) form.elements.nav.value = nav; } catch (e) {}
+    form.addEventListener('change', () => { try { localStorage.setItem('ccna-exam-nav', form.elements.nav.value); } catch (e) {} paintNote(); });
 
     function history() {
       const h = store.get(EK, []).slice(-8).reverse();
-      $('.ex-history', exRoot).innerHTML = h.length ? `<h3>Your recent exams</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Score</th><th>Questions</th><th>Time</th><th>Weakest domain</th></tr></thead><tbody>${
-        h.map(x => `<tr><td>${fmtDate(x.date)}</td><td><b class="${x.pct >= 85 ? 'good' : x.pct >= 60 ? 'mid' : 'low'}">${x.pct} %</b></td><td>${x.total}</td><td>${Math.round(x.secs / 60)} min</td><td>${esc(x.weak || '—')}</td></tr>`).join('')}</tbody></table></div>` : '';
+      $('.ex-history', exRoot).innerHTML = h.length ? `<h3>Your recent exams</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Mode</th><th>Score</th><th>Questions</th><th>Time</th><th>Weakest domain</th></tr></thead><tbody>${
+        h.map(x => `<tr><td>${fmtDate(x.date)}</td><td>${x.strict ? '🔒 Real exam' : 'Free'}</td><td><b class="${x.pct >= 85 ? 'good' : x.pct >= 60 ? 'mid' : 'low'}">${x.pct} %</b></td><td>${x.total}</td><td>${Math.round(x.secs / 60)} min</td><td>${esc(x.weak || '—')}</td></tr>`).join('')}</tbody></table></div>` : '';
     }
     function resumeBox() {
       const a = store.get(AK, null), box = $('.ex-resume', exRoot);
@@ -207,7 +208,7 @@
       const f = new FormData(form), p = pool();
       for (let i = p.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [p[i], p[j]] = [p[j], p[i]]; }
       const ids = p.slice(0, +f.get('count')).map(q => q.id);
-      S = { ids, i: 0, picks: {}, flags: [], self: {}, start: Date.now(), limit: ids.length * +f.get('timer'), finished: false };
+      S = { ids, i: 0, picks: {}, flags: [], self: {}, start: Date.now(), limit: ids.length * +f.get('timer'), finished: false, strict: f.get('nav') === 'strict' };
       save(); start();
     });
 
@@ -227,13 +228,14 @@
       const answered = S.ids.filter(id => S.picks[id]).length;
       run.innerHTML = `<div class="ex-bar"><b>Question ${S.i + 1} of ${N}</b><div class="bar"><i style="width:${answered / N * 100}%"></i></div>
         <span class="ex-count">${answered} answered</span>${S.limit ? `<span class="ex-timer">⏱️ ${clock(left(S))}</span>` : ''}
-        <button class="btn small ex-flag${S.flags.includes(q.id) ? ' on' : ''}" type="button">⚑ ${S.flags.includes(q.id) ? 'Flagged' : 'Flag'}</button></div>
+        ${S.strict ? '<span class="ex-lock" title="Real exam mode: answered questions are locked">🔒 No going back</span>'
+          : `<button class="btn small ex-flag${S.flags.includes(q.id) ? ' on' : ''}" type="button">⚑ ${S.flags.includes(q.id) ? 'Flagged' : 'Flag'}</button>`}</div>
         <div class="q ex-q">${head({ ...q, n: S.i + 1 }, `<span class="qtag">${q.o ? (need > 1 ? 'choose ' + need : 'choose 1') : 'written'}</span>`)}${ctx(q)}<div class="qstem">${q.s}</div>
         ${q.o ? `<div class="opts">${q.o.map(([l, t]) => `<button class="opt${pick.includes(l) ? ' picked' : ''}" type="button" data-l="${l}"><span class="ol">${l}</span><span class="ot">${t}</span></button>`).join('')}</div>`
               : `<textarea class="ex-text" rows="4" placeholder="Type your answer (optional) — after submitting you will compare it with the model answer and mark it yourself.">${esc(pick)}</textarea>`}</div>
-        <div class="ex-nav"><button class="btn ex-prev" type="button"${S.i ? '' : ' disabled'}>← Previous</button>
+        <div class="ex-nav">${S.strict ? '<span class="ex-lockhint">Once you click Next, this question is locked.</span>' : `<button class="btn ex-prev" type="button"${S.i ? '' : ' disabled'}>← Previous</button>`}
         ${S.i < N - 1 ? '<button class="btn primary ex-next" type="button">Next →</button>' : '<button class="btn primary ex-submit" type="button">Review &amp; submit</button>'}</div>
-        <div class="ex-grid">${S.ids.map((id, k) => `<button type="button" data-k="${k}" class="${k === S.i ? 'cur ' : ''}${S.picks[id] ? 'ans ' : ''}${S.flags.includes(id) ? 'flag' : ''}">${k + 1}</button>`).join('')}</div>
+        <div class="ex-grid${S.strict ? ' locked' : ''}">${S.ids.map((id, k) => `<button type="button" data-k="${k}"${S.strict ? ' disabled' : ''} class="${k === S.i ? 'cur ' : ''}${S.picks[id] ? 'ans ' : ''}${S.strict && k < S.i ? 'past ' : ''}${S.flags.includes(id) ? 'flag' : ''}">${k + 1}</button>`).join('')}</div>
         <div class="ex-end"><button class="btn small ex-submit2" type="button">Submit exam now</button></div>`;
       const go = k => { S.i = k; save(); paintRun(); };
       $$('.opt', run).forEach(o => o.addEventListener('click', () => {
@@ -243,11 +245,17 @@
         S.picks[q.id] = p.split('').sort().join(''); save(); paintRun();
       }));
       const ta = $('.ex-text', run); ta && ta.addEventListener('input', () => { S.picks[q.id] = ta.value.trim() ? ta.value : ''; save(); });
-      $('.ex-flag', run).onclick = () => { S.flags = S.flags.includes(q.id) ? S.flags.filter(x => x !== q.id) : S.flags.concat(q.id); save(); paintRun(); };
-      $('.ex-prev', run).onclick = () => go(S.i - 1);
-      const nx = $('.ex-next', run); nx && (nx.onclick = () => go(S.i + 1));
-      $$('.ex-grid button', run).forEach(b => b.onclick = () => go(+b.dataset.k));
+      const fl = $('.ex-flag', run); fl && (fl.onclick = () => { S.flags = S.flags.includes(q.id) ? S.flags.filter(x => x !== q.id) : S.flags.concat(q.id); save(); paintRun(); });
+      const pv = $('.ex-prev', run); pv && (pv.onclick = () => go(S.i - 1));
+      const unansweredOk = () => !S.strict || S.picks[q.id] || !q.o || confirm('You have not answered this question. In real-exam mode you cannot come back to it. Move on anyway?');
+      const nx = $('.ex-next', run); nx && (nx.onclick = () => { if (unansweredOk()) go(S.i + 1); });
+      if (!S.strict) $$('.ex-grid button', run).forEach(b => b.onclick = () => go(+b.dataset.k));
       const confirmSubmit = () => {
+        if (S.strict) {
+          const rest = N - S.i - 1;
+          if (rest > 0 ? confirm(`Submit now? The ${rest} question${rest > 1 ? 's' : ''} you have not reached will count as unanswered.`) : unansweredOk()) submit();
+          return;
+        }
         const open = S.ids.filter(id => !S.picks[id] && byId[id].o).length, flagged = S.flags.length;
         const msg = [open && `${open} multiple-choice question${open > 1 ? 's are' : ' is'} unanswered`, flagged && `${flagged} flagged`].filter(Boolean).join(' and ');
         if (!msg || confirm(`${msg}. Submit anyway?`)) submit();
@@ -284,7 +292,7 @@
       }).join('');
       res.innerHTML = `<div class="ex-score ${sc.pending ? '' : pct >= 85 ? 'good' : pct >= 60 ? 'mid' : 'low'}">
           <div><small>Your score</small><b>${sc.right} / ${N}</b><span>${sc.pending ? `${sc.pending} written answer${sc.pending > 1 ? 's' : ''} still to mark below` : pct + ' %' + (pct >= 85 ? ' — exam-ready pace 🏆' : pct >= 60 ? ' — getting there 💪' : ' — review the weak domains 📚')}</span></div>
-          <div class="ex-meta">⏱️ ${Math.floor(S.secs / 60)} min ${S.secs % 60} s<br>📒 Wrong answers were added to your <a href="mistakes.html">mistakes notebook</a></div></div>
+          <div class="ex-meta">${S.strict ? '🔒 Real-exam mode (no going back)<br>' : ''}⏱️ ${Math.floor(S.secs / 60)} min ${S.secs % 60} s<br>📒 Wrong answers were added to your <a href="mistakes.html">mistakes notebook</a></div></div>
         <h3>By exam domain</h3><div class="ex-doms">${domRows}</div>
         <div class="ex-again"><button class="btn primary ex-new" type="button">New exam</button><a class="btn" href="mistakes.html">Open mistakes notebook</a></div>
         <h3>Question review</h3><div class="ex-review"></div>`;
@@ -312,7 +320,14 @@
         }
         rv.appendChild(el);
       });
-      $('.ex-new', res).onclick = () => { store.del(AK); S = null; show('setup'); history(); resumeBox(); paintNote(); };
+      $('.ex-new', res).onclick = () => {
+        if (!S.saved) {        // unmarked written answers count as "not yet" so the exam still goes into your history
+          const pend = S.ids.filter(id => !byId[id].o && S.self[id] === undefined);
+          if (pend.length && !confirm(`${pend.length} written answer${pend.length > 1 ? 's are' : ' is'} not marked yet — they will count as wrong. Start a new exam anyway?`)) return;
+          pend.forEach(id => { S.self[id] = false; CCNA.addMistake(id); });
+          finalize();
+        }
+        store.del(AK); S = null; show('setup'); history(); resumeBox(); paintNote(); };
       finalize();
     }
 
@@ -321,7 +336,7 @@
       if (sc.pending || S.saved) return;
       const weakest = Object.entries(sc.dom).filter(([, v]) => v.t).sort((a, b) => a[1].r / a[1].t - b[1].r / b[1].t)[0];
       const h = store.get(EK, []);
-      h.push({ date: Date.now(), total: S.ids.length, right: sc.right, pct: Math.round(sc.right / S.ids.length * 100), secs: S.secs,
+      h.push({ date: Date.now(), total: S.ids.length, strict: !!S.strict, right: sc.right, pct: Math.round(sc.right / S.ids.length * 100), secs: S.secs,
         weak: weakest ? (weakest[0] === 'R' ? DOMAINS.R : `Domain ${weakest[0]} · ${DOMAINS[weakest[0]]}`) : '' });
       store.set(EK, h.slice(-30)); S.saved = true; save();
     }
