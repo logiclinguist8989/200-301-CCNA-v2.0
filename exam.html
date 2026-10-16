@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exam mode · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="Timed mixed-chapter CCNA 200-301 v2.0 practice exam">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<a class="" href="practice.html">🎯 Subnetting practice</a>
+<a class="active" href="exam.html">⏱️ Exam mode</a>
+<a class="" href="mistakes.html">📒 Mistakes notebook <span class="mcount"></span></a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head purple"><div class="eyebrow">Practice tool · all domains</div>
+<h1><span class="num">Exam mode</span>Timed practice exam</h1>
+<div class="meta"><span>🧮 392 questions in the bank · 79 multiple choice</span><span>📒 Missed questions go to your <a href="mistakes.html">mistakes notebook</a></span></div></div>
+<section class="exam prose" id="exam">
+  <div class="ex-setup">
+    <div class="ex-resume" hidden></div>
+    <form class="ex-form">
+      <label>Questions<select name="count"><option>10</option><option selected>20</option><option>40</option><option>60</option></select></label>
+      <label>Chapters<select name="scope"><option value="all">All chapters</option><option value="done">Chapters I marked as done</option><option value="1">Domain 1 · Network Infrastructure &amp; Connectivity</option><option value="2">Domain 2 · Switching &amp; Network Access</option><option value="3">Domain 3 · IP Routing</option><option value="4">Domain 4 · Network Services &amp; Security</option><option value="5">Domain 5 · AI, Operations &amp; Management</option></select></label>
+      <label>Question types<select name="types"><option value="mixed">Mixed — multiple choice + written</option><option value="mc">Multiple choice only</option></select></label>
+      <label>Timer<select name="timer"><option value="70">On — about 70 s per question (real-exam pace)</option><option value="100">Relaxed — 100 s per question</option><option value="0">Off</option></select></label>
+      <div class="ex-go"><button class="btn primary" type="submit">Start exam →</button><span class="ex-note"></span></div>
+    </form>
+    <p class="callout exam-tip"><strong>How it works</strong>Questions come from every chapter's self-check bank in random order. There is no feedback until you submit — like the real exam. Written questions are typed (or answered in your head), then you mark them yourself against the model answer. Your result is broken down by exam domain.</p>
+    <div class="ex-history"></div>
+  </div>
+  <div class="ex-run" hidden></div>
+  <div class="ex-results" hidden></div>
+</section>
+</main>
+
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+<script src="assets/site/study.js"></script>
+</body></html>

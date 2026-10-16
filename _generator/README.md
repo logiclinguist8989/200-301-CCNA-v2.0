@@ -20,6 +20,15 @@ Reading extras:
   "Copy commands" button that strips prompts and output.
 - **Subnetting practice** (`practice.html`) — unlimited random IPv4 questions in three difficulty levels,
   with streaks and step-by-step solutions.
+- **Review schedule** — a finished chapter quiz comes back on the home page after 1 day, 1 week and 1 month
+  (back to 1 day if the score is below 85 %).
+- **Mistakes notebook** (`mistakes.html`) — every question missed in a quiz or exam is saved, with a retry
+  card and a personal note per question.
+- **Exam mode** (`exam.html`) — timed, mixed-chapter exams from the question bank, scored by exam domain,
+  with resume and history.
+
+All study data (progress, scores, review dates, mistakes, exam history) is kept in the reader's browser
+(`localStorage`); nothing is sent anywhere.
 
 ## Rebuild after changing `main`
 
@@ -39,6 +48,7 @@ cd ../site && git add -A && git commit -m "site: rebuild from main" && git push
 | `extras.py` | Quizzes, callouts, memory tricks and terminal-style CLI blocks |
 | `static/style.css` | Layout, colours, dark mode, callouts, responsive design |
 | `static/app.js` | Search, theme toggle, progress tracking, figure zoom, "on this page" highlighting, quizzes, copy buttons, subnetting practice |
+| `static/study.js` | Review schedule, mistakes notebook and exam mode (reads `assets/site/questions.json`) |
 | `static/favicon.svg` | Site icon |
 
 Licensed like the rest of the repository: generated pages and figures under CC BY-NC-SA 4.0, the

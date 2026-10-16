@@ -89,7 +89,14 @@
   }
   document.querySelectorAll('.quiz').forEach(quiz => {
     const ch = quiz.dataset.ch, total = +quiz.dataset.total;
-    const save = (q, rec) => { const st = store.get(quizKey(ch), {}); st[q] = rec; store.set(quizKey(ch), st); };
+    const save = (q, rec) => {
+      const st = store.get(quizKey(ch), {}); const before = Object.keys(st).length;
+      st[q] = rec; store.set(quizKey(ch), st);
+      if (!rec.ok && window.CCNA) CCNA.addMistake(`${ch}-${q}`);
+      const vals = Object.values(st);
+      if (before < total && vals.length === total && window.CCNA)        // just finished the whole quiz
+        CCNA.quizDone(+ch, Math.round(vals.filter(v => v.ok).length / total * 100));
+    };
     function paintScore() {
       const s = quizStats(ch, total);
       quiz.querySelector('.qs-num').textContent = `${s.right} / ${total}`;
@@ -160,6 +167,11 @@
       });
       paintScore();
     });
+    // ?retake=1 (from the review list) starts the quiz fresh
+    if (/[?&]retake=1/.test(location.search)) {
+      store.set(quizKey(ch), {});
+      history.replaceState(null, '', location.pathname + location.hash);
+    }
     // restore saved answers
     const st = store.get(quizKey(ch), {});
     quiz.querySelectorAll('.q').forEach(q => {

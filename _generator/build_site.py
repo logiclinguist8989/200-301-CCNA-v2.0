@@ -18,7 +18,7 @@ from pathlib import Path
 
 import markdown
 
-from extras import add_memory_tricks, callouts, extract_quiz, lab_it, quiz_html, terminals
+from extras import add_memory_tricks, callouts, extract_quiz, lab_it, quiz_html, quiz_json, terminals
 
 GUIDE1 = "CCNA 200-301 v2.0 Study Guide.md"
 GUIDE2 = "Part 2 — Chapters 24–28.md"
@@ -141,7 +141,9 @@ def text_sections(h, page, title):
 def sidebar(chapters, active):
     rows = [f'<a class="nav-home{" active" if active == "index.html" else ""}" href="index.html">🏠 Home</a>',
             f'<a class="{"active" if active == "intro.html" else ""}" href="intro.html">📘 Start here · Part 0</a>',
-            f'<a class="{"active" if active == "practice.html" else ""}" href="practice.html">🎯 Subnetting practice</a>']
+            f'<a class="{"active" if active == "practice.html" else ""}" href="practice.html">🎯 Subnetting practice</a>',
+            f'<a class="{"active" if active == "exam.html" else ""}" href="exam.html">⏱️ Exam mode</a>',
+            f'<a class="{"active" if active == "mistakes.html" else ""}" href="mistakes.html">📒 Mistakes notebook <span class="mcount"></span></a>']
     for num, name, weight, chs, col in DOMAINS:
         label = f"Domain {num} · {name}" if num != "R" else name
         rows.append(f'<div class="nav-group {col}"><span>{html.escape(label)}</span>')
@@ -189,6 +191,7 @@ def shell(title, body, chapters, active, toc="", desc="CCNA 200-301 v2.0 study g
 {f'<aside class="toc"><div class="toc-title">On this page</div>{toc}</aside>' if toc else ''}
 <div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
 <script src="assets/site/app.js"></script>
+<script src="assets/site/study.js"></script>
 </body></html>
 """
 
@@ -229,6 +232,11 @@ def home_page(chapters, figcount, quizcount):
     <div class="stats"><div><b>28</b><span>chapters</span></div><div><b>{figcount}</b><span>figures</span></div><div><b>{quizcount}</b><span>quiz questions</span></div><div><b>5</b><span>exam domains</span></div></div>
   </div>
   <figure class="hero-fig"><button class="zoom" aria-label="Enlarge the campus diagram"><img src="assets/figures/ch28/fig-28-01-final-campus-lab.svg" alt="The finished campus lab"></button><figcaption>The campus you will have built by Chapter 28</figcaption></figure>
+</section>
+<section class="dash" id="dash">
+  <div class="dash-card review"><div class="dash-head"><span>🔁</span><div><b>Review due</b><small>Quizzes come back after 1 day, 1 week and 1 month</small></div></div><div class="dash-body rv-body"></div></div>
+  <a class="dash-card" href="mistakes.html"><div class="dash-head"><span>📒</span><div><b>Mistakes notebook</b><small>Every question you miss is saved here</small></div></div><div class="dash-big"><b class="mk-num">0</b><span>questions to revisit</span></div></a>
+  <a class="dash-card" href="exam.html"><div class="dash-head"><span>⏱️</span><div><b>Exam mode</b><small>Timed, mixed chapters, scored by domain</small></div></div><div class="dash-big"><b class="ex-num">–</b><span class="ex-sub">no exams yet</span></div></a>
 </section>
 <section class="progress-card"><div><b>Your progress</b><span class="ptext"></span></div><div class="bar"><i></i></div><p>Tick “Mark chapter as done” at the top of each chapter. Progress is saved in this browser only.</p></section>
 <section class="tools">
@@ -276,6 +284,42 @@ def practice_page():
 """
 
 
+def exam_page(total, graded):
+    doms = "".join(f'<option value="{d[0]}">Domain {d[0]} · {html.escape(d[1])}</option>' for d in DOMAINS if d[0] != "R")
+    return f"""<div class="chapter-head purple"><div class="eyebrow">Practice tool · all domains</div>
+<h1><span class="num">Exam mode</span>Timed practice exam</h1>
+<div class="meta"><span>🧮 {total} questions in the bank · {graded} multiple choice</span><span>📒 Missed questions go to your <a href="mistakes.html">mistakes notebook</a></span></div></div>
+<section class="exam prose" id="exam">
+  <div class="ex-setup">
+    <div class="ex-resume" hidden></div>
+    <form class="ex-form">
+      <label>Questions<select name="count"><option>10</option><option selected>20</option><option>40</option><option>60</option></select></label>
+      <label>Chapters<select name="scope"><option value="all">All chapters</option><option value="done">Chapters I marked as done</option>{doms}</select></label>
+      <label>Question types<select name="types"><option value="mixed">Mixed — multiple choice + written</option><option value="mc">Multiple choice only</option></select></label>
+      <label>Timer<select name="timer"><option value="70">On — about 70 s per question (real-exam pace)</option><option value="100">Relaxed — 100 s per question</option><option value="0">Off</option></select></label>
+      <div class="ex-go"><button class="btn primary" type="submit">Start exam →</button><span class="ex-note"></span></div>
+    </form>
+    <p class="callout exam-tip"><strong>How it works</strong>Questions come from every chapter's self-check bank in random order. There is no feedback until you submit — like the real exam. Written questions are typed (or answered in your head), then you mark them yourself against the model answer. Your result is broken down by exam domain.</p>
+    <div class="ex-history"></div>
+  </div>
+  <div class="ex-run" hidden></div>
+  <div class="ex-results" hidden></div>
+</section>
+"""
+
+
+def mistakes_page():
+    return """<div class="chapter-head red"><div class="eyebrow">Your study tools</div>
+<h1><span class="num">Notebook</span>Mistakes notebook</h1>
+<div class="meta"><span>📒 Every question you miss in a quiz or exam lands here automatically</span><span>💾 Saved in this browser only</span></div></div>
+<section class="mistakes prose" id="mistakes">
+  <p class="callout memory-trick"><strong>How to use it</strong>Once a week, work through this page. Retry each question, then write one line: <b>what I thought → what is true → why I mixed it up</b>. Remove a question only when you get it right <i>and</i> can explain why.</p>
+  <div class="mk-tools"><label>Show<select class="mk-filter"><option value="all">All chapters</option></select></label><span class="mk-summary"></span><button class="btn small mk-print" type="button">🖨️ Print</button></div>
+  <div class="mk-list"></div>
+</section>
+"""
+
+
 # --------------------------------------------------------------------------- main
 
 def main(repo, out):
@@ -302,6 +346,7 @@ def main(repo, out):
     search += text_sections(h, "intro.html", "Part 0 · Start here")
     # chapters
     figcount = quizcount = 0
+    bank = []
     for n in range(1, 29):
         title, md = chapters[n]
         md, quiz = extract_quiz(add_memory_tricks(md, n))
@@ -310,6 +355,7 @@ def main(repo, out):
         if quiz:
             h = h.replace("<div>QUIZ-PLACEHOLDER</div>", '<div id="quiz"></div>' + quiz_html(n, quiz))
             quizcount += len(quiz["qs"])
+            bank.extend(quiz_json(n, quiz, DOMAIN_OF[n][0]))
         h = lab_it(postprocess(h, page), n)
         figcount += len(re.findall(r'<figure class="fig"', h))
         (out / page).write_text(shell(f"Chapter {n} — {title}", chapter_page(n, title, h, chapters, len(quiz["qs"]) if quiz else 0), chapters, page,
@@ -317,6 +363,10 @@ def main(repo, out):
         search += text_sections(h, page, f"Chapter {n} · {title}")
     # home, practice + 404
     (out / "index.html").write_text(shell("Home", home_page(chapters, figcount, quizcount), chapters, "index.html"), encoding="utf-8")
+    (out / "exam.html").write_text(shell("Exam mode", exam_page(len(bank), sum(1 for q in bank if "o" in q)), chapters, "exam.html",
+                                         desc="Timed mixed-chapter CCNA 200-301 v2.0 practice exam"), encoding="utf-8")
+    (out / "mistakes.html").write_text(shell("Mistakes notebook", mistakes_page(), chapters, "mistakes.html",
+                                             desc="Your CCNA mistakes notebook"), encoding="utf-8")
     (out / "practice.html").write_text(shell("Subnetting practice", practice_page(), chapters, "practice.html",
                                              desc="Unlimited IPv4 subnetting practice for the CCNA 200-301 v2.0"), encoding="utf-8")
     (out / "404.html").write_text(shell("Not found", '<div class="chapter-head teal"><h1><span class="num">404</span>Page not found</h1></div>'
@@ -325,9 +375,10 @@ def main(repo, out):
     shutil.copytree(repo / "assets" / "figures", out / "assets" / "figures")
     shutil.copytree(repo / "assets" / "readme", out / "assets" / "readme")
     shutil.copytree(here / "static", out / "assets" / "site")
+    (out / "assets" / "site" / "questions.json").write_text(json.dumps(bank, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (out / "assets" / "site" / "search.json").write_text(json.dumps(search, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (out / ".nojekyll").write_text("")
-    print(f"Built {len(chapters) + 4} pages, {figcount} figures, {quizcount} quiz questions, {len(search)} search sections -> {out}")
+    print(f"Built {len(chapters) + 6} pages, {figcount} figures, {quizcount} quiz questions, {len(search)} search sections -> {out}")
 
 
 if __name__ == "__main__":

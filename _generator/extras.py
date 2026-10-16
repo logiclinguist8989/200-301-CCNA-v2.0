@@ -254,3 +254,22 @@ def quiz_html(n, quiz):
             f'<button class="btn small qreset" type="button">Reset</button></div>'
             f'{pre}{"".join(rows)}'
             f'<div class="quiz-done" hidden></div></section>')
+
+
+def quiz_json(n, quiz, domain):
+    """Question bank entries for the exam mode and the mistakes notebook."""
+    ctx_html, ctx_range = "", None
+    m = re.match(r"Questions? (\d+)\s*[–-]\s*(\d+)", quiz["pre"] or "")
+    if m:
+        ctx_html, ctx_range = _md(quiz["pre"]), (int(m.group(1)), int(m.group(2)))
+    out = []
+    for q in quiz["qs"]:
+        item = {"id": f"{n}-{q['n']}", "ch": n, "n": q["n"], "d": domain, "k": q["kind"] or "Question",
+                "s": _md(q["stem"]), "a": _md(q["answer"])}
+        if q["opts"]:
+            item["o"] = [[l, _md(t, inline=True)] for l, t in q["opts"]]
+            item["c"] = "".join(q["correct"])
+        if ctx_range and ctx_range[0] <= q["n"] <= ctx_range[1]:
+            item["x"] = ctx_html
+        out.append(item)
+    return out
