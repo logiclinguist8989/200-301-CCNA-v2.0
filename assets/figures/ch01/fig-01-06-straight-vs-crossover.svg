@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 605" width="1160" height="605" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 1.6 — Transmit must always land on receive</title>
+<desc id="d">Straight-through vs crossover pin mapping for 10/100 Ethernet (MDI vs MDI-X)</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="604" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 1.6</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Transmit must always land on receive</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Straight-through vs crossover pin mapping for 10/100 Ethernet (MDI vs MDI-X)</text>
+<text x="40.0" y="112.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Straight-through: unlike devices</text>
+<text x="40.0" y="132.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">PC ↔ switch, router ↔ switch, AP ↔ switch</text>
+<rect x="40.0" y="150.0" width="170.0" height="220.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="125.0" y="177.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="middle">PC (MDI)</text>
+<rect x="370.0" y="150.0" width="170.0" height="220.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="455.0" y="177.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="middle">Switch (MDI-X)</text>
+<text x="64.0" y="215.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">1  Tx+</text>
+<text x="394.0" y="215.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">1  Rx+</text>
+<text x="64.0" y="257.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">2  Tx−</text>
+<text x="394.0" y="257.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">2  Rx−</text>
+<text x="64.0" y="299.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">3  Rx+</text>
+<text x="394.0" y="299.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">3  Tx+</text>
+<text x="64.0" y="341.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">6  Rx−</text>
+<text x="394.0" y="341.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">6  Tx−</text>
+<line x1="212.0" y1="210.0" x2="366.0" y2="210.0" stroke="#1d6fd1" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="212.0" y1="252.0" x2="366.0" y2="252.0" stroke="#1d6fd1" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="366.0" y1="294.0" x2="212.0" y2="294.0" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m1)"/>
+<line x1="366.0" y1="336.0" x2="212.0" y2="336.0" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m1)"/>
+<rect x="65.0" y="400.0" width="120.0" height="70.0" rx="6" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="95.0" y="386.0" width="60.0" height="16.0" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="77.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="79.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#f97316" stroke="none" stroke-width="0"/>
+<text x="81.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">1</text>
+<rect x="89.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#f97316" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="93.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">2</text>
+<rect x="102.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="104.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#16a34a" stroke="none" stroke-width="0"/>
+<text x="106.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">3</text>
+<rect x="114.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#2563eb" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="118.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">4</text>
+<rect x="127.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="129.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#2563eb" stroke="none" stroke-width="0"/>
+<text x="131.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">5</text>
+<rect x="139.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#16a34a" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="143.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">6</text>
+<rect x="152.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="154.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#92400e" stroke="none" stroke-width="0"/>
+<text x="156.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">7</text>
+<rect x="164.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#92400e" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="168.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">8</text>
+<text x="125.0" y="502.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">T568B</text>
+<rect x="395.0" y="400.0" width="120.0" height="70.0" rx="6" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="425.0" y="386.0" width="60.0" height="16.0" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="407.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="409.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#f97316" stroke="none" stroke-width="0"/>
+<text x="411.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">1</text>
+<rect x="419.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#f97316" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="423.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">2</text>
+<rect x="432.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="434.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#16a34a" stroke="none" stroke-width="0"/>
+<text x="436.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">3</text>
+<rect x="444.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#2563eb" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="448.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">4</text>
+<rect x="457.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="459.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#2563eb" stroke="none" stroke-width="0"/>
+<text x="461.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">5</text>
+<rect x="469.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#16a34a" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="473.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">6</text>
+<rect x="482.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="484.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#92400e" stroke="none" stroke-width="0"/>
+<text x="486.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">7</text>
+<rect x="494.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#92400e" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="498.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">8</text>
+<text x="455.0" y="502.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">T568B</text>
+<text x="290.0" y="440.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#1d6fd1" text-anchor="middle">B ↔ B</text>
+<text x="620.0" y="112.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Crossover: like devices</text>
+<text x="620.0" y="132.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">switch ↔ switch, PC ↔ PC, router ↔ router</text>
+<rect x="620.0" y="150.0" width="170.0" height="220.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="705.0" y="177.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="middle">Switch (MDI-X)</text>
+<rect x="950.0" y="150.0" width="170.0" height="220.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="1035.0" y="177.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="middle">Switch (MDI-X)</text>
+<text x="644.0" y="215.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">1  Rx+</text>
+<text x="974.0" y="215.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">1  Rx+</text>
+<text x="644.0" y="257.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">2  Rx−</text>
+<text x="974.0" y="257.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">2  Rx−</text>
+<text x="644.0" y="299.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">3  Tx+</text>
+<text x="974.0" y="299.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">3  Tx+</text>
+<text x="644.0" y="341.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">6  Tx−</text>
+<text x="974.0" y="341.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">6  Tx−</text>
+<line x1="792.0" y1="294.0" x2="946.0" y2="210.0" stroke="#1d6fd1" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="792.0" y1="336.0" x2="946.0" y2="252.0" stroke="#1d6fd1" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="946.0" y1="294.0" x2="792.0" y2="210.0" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m1)"/>
+<line x1="946.0" y1="336.0" x2="792.0" y2="252.0" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m1)"/>
+<rect x="645.0" y="400.0" width="120.0" height="70.0" rx="6" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="675.0" y="386.0" width="60.0" height="16.0" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="657.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="659.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#f97316" stroke="none" stroke-width="0"/>
+<text x="661.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">1</text>
+<rect x="669.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#f97316" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="673.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">2</text>
+<rect x="682.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="684.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#16a34a" stroke="none" stroke-width="0"/>
+<text x="686.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">3</text>
+<rect x="694.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#2563eb" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="698.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">4</text>
+<rect x="707.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="709.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#2563eb" stroke="none" stroke-width="0"/>
+<text x="711.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">5</text>
+<rect x="719.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#16a34a" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="723.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">6</text>
+<rect x="732.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="734.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#92400e" stroke="none" stroke-width="0"/>
+<text x="736.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">7</text>
+<rect x="744.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#92400e" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="748.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">8</text>
+<text x="705.0" y="502.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">T568B</text>
+<rect x="975.0" y="400.0" width="120.0" height="70.0" rx="6" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="1005.0" y="386.0" width="60.0" height="16.0" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="987.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="989.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#16a34a" stroke="none" stroke-width="0"/>
+<text x="991.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">1</text>
+<rect x="999.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#16a34a" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="1003.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">2</text>
+<rect x="1012.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="1014.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#f97316" stroke="none" stroke-width="0"/>
+<text x="1016.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">3</text>
+<rect x="1024.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#2563eb" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="1028.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">4</text>
+<rect x="1037.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="1039.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#2563eb" stroke="none" stroke-width="0"/>
+<text x="1041.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">5</text>
+<rect x="1049.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#f97316" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="1053.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">6</text>
+<rect x="1062.0" y="410.0" width="8.0" height="50.0" rx="1" fill="#fff" stroke="#94a3b8" stroke-width="0.6"/>
+<rect x="1064.5" y="410.0" width="3.0" height="50.0" rx="0" fill="#92400e" stroke="none" stroke-width="0"/>
+<text x="1066.0" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">7</text>
+<rect x="1074.5" y="410.0" width="8.0" height="50.0" rx="1" fill="#92400e" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="1078.5" y="482.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#5b6b7f" text-anchor="middle">8</text>
+<text x="1035.0" y="502.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">T568A</text>
+<text x="870.0" y="440.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#d64040" text-anchor="middle">B ↔ A</text>
+<line x1="28" y1="546" x2="1132" y2="546" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="568" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Arrows run from transmit (Tx) to receive (Rx). 10/100 Mb/s Ethernet uses pins 1, 2, 3 and 6.</text>
+<text x="28" y="587" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">1000BASE-T uses all four pairs in both directions; auto-MDIX lets a port swap its own pairs.</text>
+<text x="1136" y="595" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

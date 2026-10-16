@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 641" width="1160" height="641" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 15.1 — Divide and conquer: one question and its commands per layer</title>
+<desc id="d">Start at the Network layer with ping — success → look higher, failure → look lower</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d64040"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="640" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 15.1</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Divide and conquer: one question and its commands per layer</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Start at the Network layer with ping — success → look higher, failure → look lower</text>
+<rect x="40.0" y="110.0" width="1030.0" height="82.0" rx="10" fill="#f6f8fb" stroke="#8796a8" stroke-width="1.2"/>
+<text x="60.0" y="142.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">Application · L5–7</text>
+<text x="60.0" y="166.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">Does the service answer?</text>
+<text x="380.0" y="156.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#0f2540" text-anchor="start">nslookup · curl / browser · telnet &lt;ip&gt; &lt;port&gt; · show logging</text>
+<rect x="40.0" y="202.0" width="1030.0" height="82.0" rx="10" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.2"/>
+<text x="60.0" y="234.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0b5b63" text-anchor="start">Transport · L4</text>
+<text x="60.0" y="258.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">Is the port open, or filtered?</text>
+<text x="380.0" y="248.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#0f2540" text-anchor="start">show access-lists · show ip nat translations · capture: SYN → RST?</text>
+<rect x="40.0" y="294.0" width="1030.0" height="82.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="2.5"/>
+<text x="60.0" y="326.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#0f3f80" text-anchor="start">Network · L3</text>
+<text x="60.0" y="350.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">Can I reach the IP, both ways?</text>
+<text x="380.0" y="340.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#0f2540" text-anchor="start">ping [source] · traceroute · show ip route · show ip int brief · show arp</text>
+<rect x="964.8" y="299.5" width="70.5" height="21.0" rx="10.5" fill="#1d6fd1" stroke="#1d6fd1" stroke-width="1.2"/>
+<text x="1000.0" y="314.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">start here</text>
+<rect x="40.0" y="386.0" width="1030.0" height="82.0" rx="10" fill="#efeafd" stroke="#7357d1" stroke-width="1.2"/>
+<text x="60.0" y="418.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#3e2a85" text-anchor="start">Data link · L2</text>
+<text x="60.0" y="442.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">Right VLAN, trunk, MAC, STP state?</text>
+<text x="380.0" y="432.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#0f2540" text-anchor="start">show vlan brief · show interfaces trunk · show mac address-table · show spanning-tree · show cdp neighbors</text>
+<rect x="40.0" y="478.0" width="1030.0" height="82.0" rx="10" fill="#fdf1df" stroke="#d9861a" stroke-width="1.2"/>
+<text x="60.0" y="510.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#7a4708" text-anchor="start">Physical · L1</text>
+<text x="60.0" y="534.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">Is the link up and clean?</text>
+<text x="380.0" y="524.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="500" fill="#0f2540" text-anchor="start">show interfaces status · show interfaces (CRC, errors) · show inventory / transceiver</text>
+<path d="M1078,330 C1130,280 1130,200 1078,160" fill="none" stroke="#1f9d63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#m0)"/>
+<text x="1128.0" y="245.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="700" fill="#1f9d63" text-anchor="start" transform="rotate(-90 1128 245)">ping OK</text>
+<path d="M1078,370 C1130,430 1130,520 1078,560" fill="none" stroke="#d64040" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#m1)"/>
+<text x="1128.0" y="470.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="700" fill="#d64040" text-anchor="start" transform="rotate(-90 1128 470)">ping fails</text>
+<line x1="28" y1="601" x2="1132" y2="601" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="623" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Always test both directions: ping … source &lt;interface&gt; proves the return route as well as the forward one.</text>
+<text x="1136" y="631" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

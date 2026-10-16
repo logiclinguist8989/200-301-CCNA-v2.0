@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 17 — Client connectivity on Windows, macOS and Linux · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 17: Client connectivity on Windows, macOS and Linux">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head blue">
+  <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
+  <h1><span class="num">Chapter 17</span>Client connectivity on Windows, macOS and Linux</h1>
+  <div class="meta"><span>🖼️ 2 figures</span><span>⏱️ ~15 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="17"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.6 Troubleshoot wired and wireless client connectivity (IP configuration, network reachability, and wireless security parameters on Windows, MacOS, and Linux).</strong> Earlier chapters fixed the network side; this chapter starts from the user's computer, because many "network" tickets are solved there.</p>
+<h3 id="171-learning-objectives">17.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Check a client's link, IP address, mask, gateway and DNS on Windows, macOS and Linux.</li>
+<li>Recognise broken configurations from command output: APIPA, wrong mask, wrong gateway, missing DNS, duplicate address, IPv6 without a global address.</li>
+<li>Test reachability in a logical order and say what each failure means.</li>
+<li>Read a Wi-Fi client's SSID, BSSID, channel, signal and security settings on each operating system.</li>
+<li>Match client wireless security settings to the WLAN and fix mismatches.</li>
+</ol>
+<h3 id="172-a-client-side-method">17.2 A client-side method</h3>
+<p>Work outward from the client, one question at a time (<a class="figref" href="#fig-17-1">Figure 17.1</a>):</p>
+<figure class="fig" id="fig-17-1"><button class="zoom" aria-label="Enlarge figure 17.1"><img src="assets/figures/ch17/fig-17-01-client-check-ladder.svg" alt="Figure 17.1 — Client connectivity checks in order, with the usual cause when each one fails" loading="lazy"></button><figcaption><a class="fignum" href="#fig-17-1">Figure 17.1</a> Client connectivity checks in order, with the usual cause when each one fails</figcaption></figure>
+
+<p>Read <a class="figref" href="#fig-17-1">Figure 17.1</a> left to right. The highlighted last step is where most users start complaining ("the website is down"), but you start at the first box.</p>
+<ol>
+<li><strong>Link</strong> — is the cable connected or the Wi-Fi associated to the right SSID?</li>
+<li><strong>Address</strong> — does the client have a valid address and mask for this network (not 169.254.x.x)?</li>
+<li><strong>Gateway</strong> — is a default gateway set, in the same subnet, and does it answer?</li>
+<li><strong>Remote IP</strong> — can it reach an address beyond the gateway?</li>
+<li><strong>Names</strong> — is a DNS server set, and do names resolve (Chapter 22)?</li>
+<li><strong>Application</strong> — does the service itself answer (port, proxy, firewall on the client)?</li>
+</ol>
+<p>Stop at the first "no" — everything after it depends on it.</p>
+<h3 id="173-commands-on-each-operating-system">17.3 Commands on each operating system</h3>
+<p>All commands below run in a terminal: <strong>Command Prompt or PowerShell</strong> on Windows, <strong>Terminal</strong> on macOS and Linux. Commands that change settings need administrator rights (Run as administrator, or <code>sudo</code>). Linux distributions differ; the commands shown use the standard <code>iproute2</code> tools and NetworkManager (<code>nmcli</code>), present on Ubuntu and most desktops.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Windows</th>
+<th>macOS</th>
+<th>Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addresses, mask, gateway</td>
+<td><code>ipconfig</code>, <code>ipconfig /all</code></td>
+<td><code>ifconfig en0</code>, <code>networksetup -getinfo "Wi-Fi"</code></td>
+<td><code>ip address show</code> (<code>ip a</code>)</td>
+</tr>
+<tr>
+<td>Routing table / default gateway</td>
+<td><code>route print</code></td>
+<td><code>netstat -rn</code></td>
+<td><code>ip route show</code></td>
+</tr>
+<tr>
+<td>DNS servers</td>
+<td><code>ipconfig /all</code></td>
+<td><code>scutil --dns</code></td>
+<td><code>resolvectl status</code> (or <code>cat /etc/resolv.conf</code>)</td>
+</tr>
+<tr>
+<td>Release / renew DHCP</td>
+<td><code>ipconfig /release</code>, <code>ipconfig /renew</code></td>
+<td><code>sudo ipconfig set en0 DHCP</code> (or Renew DHCP Lease in Settings)</td>
+<td><code>sudo dhclient -r</code> then <code>sudo dhclient</code>, or <code>nmcli connection down &lt;name&gt;</code> / <code>up &lt;name&gt;</code></td>
+</tr>
+<tr>
+<td>ARP / neighbor cache</td>
+<td><code>arp -a</code></td>
+<td><code>arp -a</code></td>
+<td><code>ip neigh</code></td>
+</tr>
+<tr>
+<td>Ping (4 packets)</td>
+<td><code>ping 10.10.10.1</code> (4 by default)</td>
+<td><code>ping -c 4 10.10.10.1</code> (continuous without <code>-c</code>)</td>
+<td><code>ping -c 4 10.10.10.1</code></td>
+</tr>
+<tr>
+<td>Trace the path</td>
+<td><code>tracert</code> (ICMP)</td>
+<td><code>traceroute</code> (UDP)</td>
+<td><code>traceroute</code> or <code>tracepath</code></td>
+</tr>
+<tr>
+<td>Name lookup</td>
+<td><code>nslookup host</code></td>
+<td><code>nslookup host</code>, <code>dig host</code></td>
+<td><code>dig host</code>, <code>nslookup host</code></td>
+</tr>
+<tr>
+<td>Flush DNS cache</td>
+<td><code>ipconfig /flushdns</code></td>
+<td><code>sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder</code></td>
+<td><code>resolvectl flush-caches</code></td>
+</tr>
+<tr>
+<td>Link speed / state</td>
+<td><code>Get-NetAdapter</code> (PowerShell)</td>
+<td><code>ifconfig en0</code> (media, status lines)</td>
+<td><code>ethtool eth0</code>, <code>ip link</code></td>
+</tr>
+<tr>
+<td>Wi-Fi status</td>
+<td><code>netsh wlan show interfaces</code></td>
+<td>Option-click the Wi-Fi icon, or <code>sudo wdutil info</code></td>
+<td><code>nmcli device wifi list</code>, <code>iw dev wlan0 link</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Interface names</strong> differ: Windows uses names like <em>Ethernet</em> and <em>Wi-Fi</em>; macOS uses <code>en0</code> (often Wi-Fi on laptops) and <code>en1</code>; Linux uses names like <code>eth0</code>, <code>enp3s0</code> and <code>wlan0</code>/<code>wlp2s0</code>. Use the name your system shows. On macOS the old <code>airport</code> command-line tool has been removed in recent releases; use <code>wdutil</code> or the Option-click menu.</p>
+<h3 id="174-reading-a-clients-ip-configuration">17.4 Reading a client's IP configuration</h3>
+<p>The same healthy laptop in VLAN 30 (Lab 14.1 addressing), as each operating system shows it:</p>
+<pre><code>C:\&gt; ipconfig /all
+Wireless LAN adapter Wi-Fi:
+   Connection-specific DNS Suffix  . : campus.example
+   Physical Address. . . . . . . . . : 3C-A9-F4-12-34-56
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::1c2b:3d4e:5f60:7a8b%12(Preferred)
+   IPv4 Address. . . . . . . . . . . : 10.10.30.25(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained. . . . . . . . . . : Thursday, 15 October 2026 10:14:02
+   Lease Expires . . . . . . . . . . : Friday, 16 October 2026 10:14:02
+   Default Gateway . . . . . . . . . : 10.10.30.1
+   DHCP Server . . . . . . . . . . . : 10.0.0.1
+   DNS Servers . . . . . . . . . . . : 10.10.99.53
+</code></pre>
+<pre><code>$ ip -4 address show wlp2s0                        # Linux
+3: wlp2s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 state UP
+    inet 10.10.30.26/24 brd 10.10.30.255 scope global dynamic wlp2s0
+       valid_lft 86012sec preferred_lft 86012sec
+$ ip route
+default via 10.10.30.1 dev wlp2s0 proto dhcp metric 600
+10.10.30.0/24 dev wlp2s0 proto kernel scope link src 10.10.30.26
+</code></pre>
+<pre><code>$ ifconfig en0                                     # macOS
+en0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+    ether 8c:85:90:ab:cd:ef
+    inet 10.10.30.27 netmask 0xffffff00 broadcast 10.10.30.255
+    status: active
+$ netstat -rn | grep default
+default            10.10.30.1         UGScg           en0
+</code></pre>
+<p>Three things to notice: Linux shows the mask as a <strong>prefix</strong> (/24), macOS as <strong>hexadecimal</strong> (0xffffff00 = 255.255.255.0), Windows as dotted decimal. <code>dynamic</code> (Linux) and <code>DHCP Enabled: Yes</code> (Windows) mean the address came from DHCP. (Exact layout varies with the OS version.)</p>
+<p><strong>Broken configurations and what they mean:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>You see</th>
+<th>Meaning</th>
+<th>Next step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>169.254.x.x / 255.255.0.0, no gateway</td>
+<td>No DHCP server answered (APIPA)</td>
+<td>Chapter 14 flowchart; check link and VLAN first</td>
+</tr>
+<tr>
+<td>Address correct, mask 255.255.0.0 instead of /24</td>
+<td>Client thinks other subnets are local and ARPs for them instead of using the gateway (<a class="figref" href="#fig-17-2">Figure 17.2</a>); it works only if the router answers with proxy ARP, which hides the fault</td>
+<td>Fix the mask (static entry or DHCP pool)</td>
+</tr>
+<tr>
+<td>Gateway 10.10.31.1 with address 10.10.30.25/24</td>
+<td>Gateway outside the client's subnet: unreachable</td>
+<td>Correct the gateway</td>
+</tr>
+<tr>
+<td><code>(Duplicate)</code> after the address (Windows), or a log about a conflict</td>
+<td>Another device uses the same address</td>
+<td>Find it via ARP and MAC tables; fix static addresses or DHCP exclusions</td>
+</tr>
+<tr>
+<td>No DNS servers, or a public one inside a private network</td>
+<td>Names fail although pings by IP work</td>
+<td>Fix DHCP <code>dns-server</code> or the static setting</td>
+</tr>
+<tr>
+<td>Only an <code>fe80::</code> IPv6 address</td>
+<td>No Router Advertisements: no global IPv6 address (Chapter 3)</td>
+<td>Check <code>ipv6 unicast-routing</code> and the gateway interface</td>
+</tr>
+<tr>
+<td>192.168.1.x on a campus laptop</td>
+<td>A static address left over from home</td>
+<td>Switch the adapter back to DHCP</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="fig" id="fig-17-2"><button class="zoom" aria-label="Enlarge figure 17.2"><img src="assets/figures/ch17/fig-17-02-mask-decides-delivery.svg" alt="Figure 17.2 — How a client's mask decides between its gateway and direct delivery" loading="lazy"></button><figcaption><a class="fignum" href="#fig-17-2">Figure 17.2</a> How a client's mask decides between its gateway and direct delivery</figcaption></figure>
+
+<p><a class="figref" href="#fig-17-2">Figure 17.2</a> follows the same packet with two masks. With /24 (left) the client correctly uses its gateway; with /16 (right) it wrongly expects the printer on its own segment. The green and red boxes are the outcomes.</p>
+<h3 id="175-the-reachability-ladder">17.5 The reachability ladder</h3>
+<p>Test in this order, one rung at a time:</p>
+<ol>
+<li><code>ping 127.0.0.1</code> (or <code>ping ::1</code>) — the TCP/IP stack works. A failure means a damaged OS network stack, rare.</li>
+<li><code>ping &lt;own address&gt;</code> — the adapter has that address.</li>
+<li><code>ping &lt;default gateway&gt;</code> — Layer 1–3 to the first hop: link, VLAN, mask, ARP. Failure: back to the link, VLAN or Wi-Fi association.</li>
+<li><code>ping &lt;remote IP&gt;</code>, for example 192.0.2.8 — routing beyond the gateway <strong>and back</strong>. Failure with step 3 working: a routing, ACL or NAT problem past the gateway (Chapter 15).</li>
+<li><code>ping &lt;name&gt;</code>, for example <code>ping www.campus.example</code> — DNS. A failure here while step 4 works points to DNS (Chapter 22).</li>
+<li>Test the application: open the page, <code>curl</code>, or <code>Test-NetConnection server -Port 443</code> (PowerShell).</li>
+</ol>
+<p><strong>Firewalls can lie.</strong> Windows Defender Firewall blocks incoming ICMP by default on public networks, so a PC that does not answer ping may still be fine. Test reachability from the PC outward, or use an application-level test.</p>
+<h3 id="176-wireless-client-status-and-security-parameters">17.6 Wireless client status and security parameters</h3>
+<p>A Wi-Fi client connects only when <strong>every</strong> security setting matches the WLAN (Chapter 16):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Must match</th>
+<th>Typical mistake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSID</td>
+<td>Exact name (case-sensitive)</td>
+<td>Joining <em>staff-wifi</em> or a look-alike rogue SSID</td>
+</tr>
+<tr>
+<td>Security type</td>
+<td>WPA2/WPA3, Personal or Enterprise</td>
+<td>Old profile set to WPA2-Personal after the WLAN moved to Enterprise</td>
+</tr>
+<tr>
+<td>Cipher</td>
+<td>AES (CCMP); GCMP for WPA3 192-bit</td>
+<td>Client forced to TKIP</td>
+</tr>
+<tr>
+<td>Passphrase (Personal)</td>
+<td>Exact</td>
+<td>Typo, or an old saved password after a change</td>
+</tr>
+<tr>
+<td>EAP method and credentials (Enterprise)</td>
+<td>PEAP or EAP-TLS, correct username/password or certificate</td>
+<td>Expired certificate; wrong domain in the username</td>
+</tr>
+<tr>
+<td>Server certificate trust (Enterprise)</td>
+<td>Client trusts the RADIUS server's certificate</td>
+<td>User clicks through warnings — or the client refuses an untrusted server</td>
+</tr>
+<tr>
+<td>Capabilities</td>
+<td>Band and standard the client supports</td>
+<td>Old laptop cannot see a 6 GHz-only or WPA3-only SSID</td>
+</tr>
+<tr>
+<td>Protected management frames</td>
+<td>Required for WPA3</td>
+<td>Old driver without PMF</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Reading Wi-Fi status on each OS:</strong></p>
+<pre><code>C:\&gt; netsh wlan show interfaces                   (Windows)
+    State                  : connected
+    SSID                   : Staff-WiFi
+    BSSID                  : 70:7d:b9:aa:bb:01
+    Radio type             : 802.11ax
+    Authentication         : WPA2-Enterprise
+    Cipher                 : CCMP
+    Band                   : 5 GHz
+    Channel                : 36
+    Receive rate (Mbps)    : 573.5
+    Signal                 : 88%
+    Profile                : Staff-WiFi
+</code></pre>
+<pre><code>$ nmcli -f IN-USE,BSSID,SSID,CHAN,SIGNAL,SECURITY device wifi list     (Linux)
+IN-USE  BSSID              SSID        CHAN  SIGNAL  SECURITY
+*       70:7D:B9:AA:BB:01  Staff-WiFi  36    82      WPA2 802.1X
+        70:7D:B9:AA:BB:11  Staff-WiFi  1     64      WPA2 802.1X
+        A4:2B:B0:11:22:33  Guest       6     71      --
+$ iw dev wlp2s0 link
+Connected to 70:7d:b9:aa:bb:01 (on wlp2s0)
+        SSID: Staff-WiFi
+        freq: 5180
+        signal: -56 dBm
+</code></pre>
+<pre><code>$ sudo wdutil info                                  (macOS, excerpt)
+    SSID     : Staff-WiFi
+    RSSI     : -56 dBm
+    Noise    : -92 dBm
+    Channel  : 5g36/80
+    Security : WPA2 Enterprise
+</code></pre>
+<p>What these tell you: which <strong>SSID</strong> and <strong>AP radio (BSSID)</strong> the client chose, the <strong>band and channel</strong>, signal strength (Windows shows a <strong>percentage</strong>, Linux and macOS <strong>dBm</strong>), the <strong>security type and cipher</strong> actually negotiated, and the data rate. macOS also gives the noise floor, so you can work out SNR directly: −56 − (−92) = 36 dB. Field names and layout differ between OS versions; macOS may hide the SSID unless the terminal has location permission.</p>
+<p><strong>Two modern client behaviours that surprise people:</strong></p>
+<ul>
+<li><strong>Private (random) MAC addresses.</strong> Windows, macOS, iOS and Android can use a different random MAC per network. A DHCP reservation or MAC-based rule written for the hardware MAC then fails. Check the address the client actually uses (<code>ipconfig /all</code>, <code>ip link</code>) or turn the feature off for that network.</li>
+<li><strong>Captive portals.</strong> Guest networks often intercept web traffic until the user accepts terms. The client has an address and DNS, but everything else seems blocked until the portal page is completed.</li>
+</ul>
+<h3 id="177-troubleshooting-client-connectivity">17.7 Troubleshooting client connectivity</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Check / fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wi-Fi "can't connect to this network"</td>
+<td>Wrong passphrase or security type, old saved profile</td>
+<td>Forget the network, reconnect; compare security settings</td>
+</tr>
+<tr>
+<td>Enterprise Wi-Fi fails for one user</td>
+<td>Wrong credentials, expired certificate, untrusted server certificate</td>
+<td>RADIUS logs (Chapter 18); client certificate store</td>
+</tr>
+<tr>
+<td>Connected but 169.254.x.x</td>
+<td>DHCP not reaching the client (VLAN, relay, pool)</td>
+<td>Chapter 14; <code>ipconfig /renew</code></td>
+</tr>
+<tr>
+<td>Connected, valid address, nothing off-subnet</td>
+<td>Wrong or missing gateway, wrong mask</td>
+<td><code>ipconfig /all</code> / <code>ip route</code>; <a class="figref" href="#fig-17-2">Figure 17.2</a></td>
+</tr>
+<tr>
+<td>Pings by IP work, names fail</td>
+<td>No or wrong DNS server</td>
+<td><code>nslookup</code>; DNS settings (Chapter 22)</td>
+</tr>
+<tr>
+<td>Slow or dropping Wi-Fi</td>
+<td>Low SNR, interference, far from the AP, sticky client on a distant BSSID</td>
+<td>Signal/noise readings; channel plan (Chapter 16)</td>
+</tr>
+<tr>
+<td>Works on Wi-Fi, not on cable (or reverse)</td>
+<td>Different VLAN per access method; static IP on one adapter</td>
+<td>Compare both adapters' settings</td>
+</tr>
+<tr>
+<td>Works at home, not on campus</td>
+<td>Static address, DNS or proxy left configured</td>
+<td>Switch back to DHCP/automatic</td>
+</tr>
+<tr>
+<td>One device blocked, others fine</td>
+<td>MAC-based filter or reservation vs private MAC</td>
+<td>Use the device's current MAC</td>
+</tr>
+<tr>
+<td>Remote PC "down" but users work</td>
+<td>Host firewall blocks ICMP</td>
+<td>Test with an application port, or allow ICMP</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="178-lab-171--client-troubleshooting-on-real-systems-and-in-packet-tracer-beginnerintermediate">17.8 Lab 17.1 — Client troubleshooting on real systems and in Packet Tracer (Beginner–Intermediate)</h3>
+<p><strong>Objective:</strong> 1.6. Packet Tracer PCs offer only a few Windows-style commands, so this lab uses <strong>your own computer</strong> and the <strong>Linux VM from Lab 4.1</strong> for the operating-system part, and Packet Tracer for fault-finding.</p>
+<p><strong>Part A — Read your own systems.</strong> On your Windows (or macOS) computer and your Linux VM, fill in this table using the commands from 17.3 and 17.6:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Your Windows / macOS computer</th>
+<th>Linux VM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interface name</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IPv4 address and mask (in the OS's own format)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Default gateway</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DNS servers</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Address from DHCP? Lease expiry</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IPv6 addresses (link-local and global)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Wi-Fi SSID, BSSID, channel, band (if on Wi-Fi)</td>
+<td></td>
+<td>n/a in a VM</td>
+</tr>
+<tr>
+<td>Signal (% or dBm) and security type</td>
+<td></td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Ladder results 1–5 (17.5)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Then release and renew the address on each system and note what changes. In the Linux VM, compare <code>ip route</code> before and after switching the VirtualBox adapter from NAT to Bridged (Chapter 4, <a class="figref" href="chapter-04.html#fig-4-4">Figure 4.4</a>).</p>
+<p><strong>Part B — Packet Tracer break-fix.</strong> On a copy of your Lab 14.1 file, change the PCs' IP settings (Desktop → IP Configuration) as below, then diagnose each from the PC's Command Prompt only (<code>ipconfig /all</code>, <code>ping</code>, <code>tracert</code>, <code>arp -a</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>PC</th>
+<th>Change</th>
+<th>Your diagnosis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC1</td>
+<td>Static 10.10.10.50, mask <strong>255.255.0.0</strong>, gateway 10.10.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>PC2</td>
+<td>Static 10.10.30.50/24, gateway <strong>10.10.31.1</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>PC3</td>
+<td>Static <strong>192.168.1.50/24</strong>, gateway 192.168.1.1 ("from home")</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Part C — Wireless parameters.</strong> In your Lab 16.1 file, on L2 type the SSID as <code>staff-wifi</code> (lower case) and connect; then correct the SSID but choose <strong>WPA-PSK</strong> instead of WPA2-PSK. Record what each mistake looks like from the laptop.</p>
+<p><strong>Answer key (hide until done)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>What you see</th>
+<th>Explanation</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC1 /16</td>
+<td>Pings to PC3 (same VLAN) work; pings to 10.10.40.11 may <strong>still work</strong>; <code>arp -a</code> shows an entry for 10.10.40.11 with the <strong>gateway's MAC</strong></td>
+<td>Proxy ARP on the SVIs answered for the printer, hiding the wrong mask</td>
+<td>Mask 255.255.255.0; optionally test with <code>no ip proxy-arp</code> on the VLAN 10 SVIs, if your version accepts it</td>
+</tr>
+<tr>
+<td>PC2 gateway</td>
+<td>Pings inside VLAN 30 work, everything else fails</td>
+<td>Gateway outside the subnet</td>
+<td>Gateway 10.10.30.1</td>
+</tr>
+<tr>
+<td>PC3 home settings</td>
+<td>Nothing works, not even the gateway</td>
+<td>Wrong subnet entirely</td>
+<td>Back to DHCP</td>
+</tr>
+<tr>
+<td>L2 lower-case SSID</td>
+<td>No association</td>
+<td>SSIDs are case-sensitive</td>
+<td><code>Staff-WiFi</code></td>
+</tr>
+<tr>
+<td>L2 WPA-PSK</td>
+<td>No association</td>
+<td>Security type must match (WPA2)</td>
+<td>WPA2-PSK, AES</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Part A table completed for two operating systems</li>
+<li>[ ] Ladder (17.5) run on your own computer, results explained</li>
+<li>[ ] All three Packet Tracer faults diagnosed from the PC alone</li>
+<li>[ ] Both wireless mistakes reproduced</li>
+<li>[ ] PCs returned to DHCP</li>
+</ul>
+<h3 id="179-chapter-17-summary-notes-exam-revision">17.9 Chapter 17 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Order:</strong> link → address → gateway → remote IP → names → application. Stop at the first failure.</li>
+<li><strong>IP settings:</strong> Windows <code>ipconfig /all</code>; macOS <code>ifconfig en0</code>, <code>networksetup -getinfo</code>; Linux <code>ip address</code>, <code>ip route</code>, <code>resolvectl status</code>. Masks appear as dotted decimal (Windows), <strong>hex</strong> (macOS 0xffffff00) or <strong>prefix</strong> (Linux /24).</li>
+<li><strong>Renew:</strong> Windows <code>ipconfig /release</code> + <code>/renew</code>; macOS <code>sudo ipconfig set en0 DHCP</code>; Linux <code>dhclient</code> or <code>nmcli connection down/up</code>.</li>
+<li><strong>Paths:</strong> <code>tracert</code> (Windows, ICMP), <code>traceroute</code> (macOS/Linux, UDP). macOS/Linux <code>ping</code> is continuous unless <code>-c</code>.</li>
+<li><strong>Wi-Fi status:</strong> <code>netsh wlan show interfaces</code> (signal in %), <code>nmcli device wifi list</code> / <code>iw dev &lt;if&gt; link</code> (dBm), macOS Option-click or <code>sudo wdutil info</code> (RSSI and noise).</li>
+<li><strong>Match:</strong> SSID (case-sensitive), security type, cipher, passphrase or EAP credentials, server certificate trust, band/PMF capability.</li>
+<li><strong>Signs:</strong> 169.254 = no DHCP; gateway outside subnet = no off-subnet access; IPv6 only fe80:: = no RAs; private MAC breaks MAC-based rules; captive portal blocks until accepted.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"If I can ping the gateway, DNS must work"</td>
+<td>DNS is a separate check (step 5)</td>
+</tr>
+<tr>
+<td>"0xffffff00 is a strange IP address"</td>
+<td>It is macOS's hex form of the mask 255.255.255.0</td>
+</tr>
+<tr>
+<td>"No reply to ping means the PC is off"</td>
+<td>Host firewalls often drop ICMP</td>
+</tr>
+<tr>
+<td>"The Wi-Fi password is right, so security matches"</td>
+<td>The security type and cipher must match too</td>
+</tr>
+<tr>
+<td>"A wrong mask always breaks connectivity"</td>
+<td>Proxy ARP can hide it until someone disables proxy ARP</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1710-practice-questions--chapter-17">17.10 Practice questions — Chapter 17</h3>
+<p><strong>1. (Recall)</strong> Which command shows the DNS servers on a Windows client?</p>
+<p>A. <code>ipconfig</code>  B. <code>ipconfig /all</code>  C. <code>route print</code>  D. <code>arp -a</code></p>
+<p><strong>2. (Recall)</strong> Which Linux command shows the default gateway?</p>
+<p><strong>3. (Output interpretation)</strong> macOS shows <code>inet 10.10.30.27 netmask 0xfffffe00</code>. What is the prefix length?</p>
+<p><strong>4. (Output interpretation)</strong> A Windows client shows IPv4 10.10.30.25, mask 255.255.255.0, gateway 10.10.3.1. What will fail and why?</p>
+<p><strong>5. (Diagnosis)</strong> A user can ping 192.0.2.8 but <code>ping www.campus.example</code> says the host could not be found. Where is the problem?</p>
+<p><strong>6. (Diagnosis)</strong> A Linux laptop has only an <code>fe80::</code> IPv6 address on Wi-Fi while Windows laptops on the same SSID have 2001:db8:acad:30:: addresses. What do you check first on the Linux laptop?</p>
+<p><strong>7. (Wireless)</strong> <code>netsh wlan show interfaces</code> reports <code>Authentication : WPA2-Personal</code>, but the corporate SSID uses WPA2-Enterprise and the user cannot connect. What is wrong?</p>
+<p><strong>8. (Wireless)</strong> A macOS client shows RSSI −74 dBm and noise −88 dBm. Calculate SNR and judge the connection.</p>
+<p><strong>9. (Multiple response — choose two)</strong> Which commands renew a DHCP lease?</p>
+<p>A. <code>ipconfig /renew</code> (Windows)  B. <code>ip route flush</code> (Linux)  C. <code>sudo ipconfig set en0 DHCP</code> (macOS)  D. <code>arp -d *</code>  E. <code>netsh wlan show interfaces</code></p>
+<p><strong>10. (Concept)</strong> Why might a DHCP reservation for a phone's MAC address stop working after the phone joins the network again?</p>
+<p><strong>11. (Diagnosis)</strong> A laptop works at home but not on campus Ethernet. <code>ipconfig</code> shows 192.168.1.40/24, gateway 192.168.1.1. What happened?</p>
+<p><strong>12. (Ladder)</strong> Ping to 127.0.0.1 and to the PC's own address succeed; ping to the gateway fails. Which layers do you check next?</p>
+<p><strong>13. (Evaluate an AI assistant)</strong> A user's laptop shows 169.254.10.7. A digital assistant suggests: <em>"Set a static IP of 169.254.10.1 as the default gateway on the laptop."</em> Is that sensible?</p>
+<h3 id="1711-answer-key-with-explanations">17.11 Answer key with explanations</h3>
+<ol>
+<li><strong>B.</strong> Plain <code>ipconfig</code> omits DNS servers and DHCP details; <code>route print</code> shows routes; <code>arp -a</code> shows the ARP cache.</li>
+<li><code>ip route show</code> (look for the <code>default via</code> line).</li>
+<li>0xfffffe00 = 255.255.254.0 = <strong>/23</strong> (fe = 11111110).</li>
+<li>Everything off the local subnet fails: the gateway 10.10.3.1 is <strong>not in 10.10.30.0/24</strong>, so the client cannot reach it. Local hosts still work.</li>
+<li><strong>DNS</strong>: IP reachability works, name resolution does not. Check the DNS server setting and <code>nslookup</code>.</li>
+<li>Whether it receives <strong>Router Advertisements</strong> / has SLAAC enabled for that connection (NetworkManager's IPv6 method), since the network clearly provides global addresses to others.</li>
+<li>The saved profile uses the wrong <strong>security type</strong> (Personal instead of Enterprise). Forget the network and reconnect with 802.1X credentials.</li>
+<li>SNR = −74 − (−88) = <strong>14 dB</strong> — too low for reliable service; expect slow, dropping connections. Move closer to an AP, reduce interference or add coverage.</li>
+<li><strong>A and C.</strong> B changes routes, D clears the ARP cache, E only displays Wi-Fi status.</li>
+<li>The phone may use a <strong>private (random) MAC</strong> for that network, so the MAC no longer matches the reservation.</li>
+<li>The adapter keeps a <strong>static</strong> configuration from home. Set it back to obtain an address automatically (DHCP).</li>
+<li>The local link: cable or Wi-Fi association, VLAN on the switch port, the mask and gateway settings, then ARP (<code>arp -a</code>).</li>
+<li><strong>No.</strong> 169.254.x.x means DHCP failed; inventing a gateway in the APIPA range cannot route anywhere. Find out why DHCP failed (link, VLAN, relay, pool — Chapter 14).</li>
+</ol>
+<h3 id="1712-chapter-17-figure-checklist">17.12 Chapter 17 figure checklist</h3>
+<p>Both figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-17-2">Figure 17.2</a> had its divider running through the footnote; it was shortened and re-published.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>17.1</td>
+<td>Client checks in order, with usual causes</td>
+<td>17.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>17.2</td>
+<td>How the mask decides gateway or direct delivery</td>
+<td>17.4</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as annotated command output instead of drawings:</strong> <code>ipconfig /all</code>, <code>ip address</code>/<code>ip route</code>, <code>ifconfig</code>, <code>netsh wlan show interfaces</code>, <code>nmcli</code>, <code>iw</code> and <code>wdutil</code>. Lab 17.1 reuses <a class="figref" href="chapter-14.html#fig-14-4">Figures 14.4</a> and 16.4.</p>
+<h3 id="1713-chapter-17-progress-record">17.13 Chapter 17 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>1.6</strong> — wired and wireless client connectivity on Windows, macOS and Linux. <strong>Domain 1 (Network Infrastructure and Connectivity) is now complete:</strong> 1.1–1.7.</p>
+<p><strong>Next:</strong> Chapter 18 — <strong>4.1 Configure network devices with local usernames and as an AAA client (TACACS+ and RADIUS) for management</strong>, the start of Domain 4.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-16.html"><small>← Chapter 16</small>Wireless principles</a><a class="pn next" href="chapter-18.html"><small>Chapter 18 →</small>Secure device access: local users, SSH and AAA</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#171-learning-objectives">17.1 Learning objectives</a>
+<a href="#172-a-client-side-method">17.2 A client-side method</a>
+<a href="#173-commands-on-each-operating-system">17.3 Commands on each operating system</a>
+<a href="#174-reading-a-clients-ip-configuration">17.4 Reading a client&#x27;s IP configuration</a>
+<a href="#175-the-reachability-ladder">17.5 The reachability ladder</a>
+<a href="#176-wireless-client-status-and-security-parameters">17.6 Wireless client status and security parameters</a>
+<a href="#177-troubleshooting-client-connectivity">17.7 Troubleshooting client connectivity</a>
+<a href="#178-lab-171--client-troubleshooting-on-real-systems-and-in-packet-tracer-beginnerintermediate">17.8 Lab 17.1 — Client troubleshooting on real systems and in Packet Tracer (Beginner–Intermediate)</a>
+<a href="#179-chapter-17-summary-notes-exam-revision">17.9 Chapter 17 summary notes (exam revision)</a>
+<a href="#1710-practice-questions--chapter-17">17.10 Practice questions — Chapter 17</a>
+<a href="#1711-answer-key-with-explanations">17.11 Answer key with explanations</a>
+<a href="#1712-chapter-17-figure-checklist">17.12 Chapter 17 figure checklist</a>
+<a href="#1713-chapter-17-progress-record">17.13 Chapter 17 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

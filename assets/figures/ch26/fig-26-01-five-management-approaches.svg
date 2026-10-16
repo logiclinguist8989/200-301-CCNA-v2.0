@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 637" width="1160" height="637" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 26.1 — Five network management approaches</title>
+<desc id="d">Each step down moves the source of truth further from the individual device</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="636" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 26.1</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Five network management approaches</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Each step down moves the source of truth further from the individual device</text>
+<rect x="40.0" y="108.0" width="1080.0" height="80.0" rx="12" fill="#f6f8fb" stroke="#8796a8" stroke-width="1.6"/>
+<rect x="62.0" y="126.0" width="56.0" height="44.0" rx="6" fill="#0f172a" stroke="none" stroke-width="1.5"/>
+<text x="70.0" y="154.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="700" fill="#86efac" text-anchor="start">&gt;_</text>
+<text x="140.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Device-based</text>
+<text x="140.0" y="164.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">CLI / GUI on each device</text>
+<text x="1100.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="end">source of truth</text>
+<text x="1100.0" y="164.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="end">each running-config</text>
+<rect x="80.0" y="200.0" width="1040.0" height="80.0" rx="12" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.6"/>
+<g transform="translate(130.0,240.0) scale(0.55)"><path d="M-44,14 C-60,14 -60,-8 -42,-8 C-44,-26 -18,-32 -8,-18 C-2,-34 26,-34 30,-14 C48,-18 56,4 42,14 Z" transform="translate(2,4)" fill="#0f2540" opacity="0.10"/><path d="M-44,14 C-60,14 -60,-8 -42,-8 C-44,-26 -18,-32 -8,-18 C-2,-34 26,-34 30,-14 C48,-18 56,4 42,14 Z" fill="url(#gCloud)" stroke="#7aa7d6" stroke-width="2"/></g>
+<text x="180.0" y="232.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Cloud-based</text>
+<text x="180.0" y="256.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">vendor dashboard (e.g. Meraki); devices call home</text>
+<text x="1100.0" y="232.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="end">source of truth</text>
+<text x="1100.0" y="256.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0b5b63" text-anchor="end">vendor cloud service</text>
+<rect x="120.0" y="292.0" width="1000.0" height="80.0" rx="12" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.6"/>
+<g transform="translate(170.0,332.0) scale(0.55)"><ellipse cx="0" cy="30" rx="34" ry="5" fill="#0f2540" opacity="0.10"/><rect x="-34" y="-28" width="68" height="54" rx="6" fill="url(#gDark)"/><rect x="-28" y="-22" width="56" height="30" rx="2" fill="url(#gScreen)"/><polyline points="-24,2 -14,-6 -6,-2 4,-14 14,-8 24,-16" fill="none" stroke="#fff" stroke-width="2"/><rect x="-28" y="13" width="18" height="8" rx="1.5" fill="#049fd9"/><rect x="-6" y="13" width="18" height="8" rx="1.5" fill="#1f9d63"/><rect x="16" y="13" width="12" height="8" rx="1.5" fill="#d9861a"/></g>
+<text x="220.0" y="324.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Controller-based</text>
+<text x="220.0" y="348.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">on-prem controller (Catalyst Center, WLC, SD-WAN)</text>
+<text x="1100.0" y="324.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="end">source of truth</text>
+<text x="1100.0" y="348.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f3f80" text-anchor="end">the controller&#x27;s database</text>
+<rect x="160.0" y="384.0" width="960.0" height="80.0" rx="12" fill="#efeafd" stroke="#7357d1" stroke-width="1.6"/>
+<g transform="translate(210.0,424.0) scale(0.55)"><ellipse cx="0" cy="30" rx="28" ry="4" fill="#0f2540" opacity="0.10"/><line x1="0" y1="-30" x2="0" y2="-22" stroke="#7357d1" stroke-width="2.5"/><circle cx="0" cy="-32" r="3.5" fill="#7357d1"/><rect x="-26" y="-22" width="52" height="40" rx="10" fill="#7357d1"/><rect x="-19" y="-14" width="38" height="20" rx="6" fill="#efeafd"/><circle cx="-8" cy="-4" r="4" fill="#3e2a85"/><circle cx="8" cy="-4" r="4" fill="#3e2a85"/><rect x="-10" y="10" width="20" height="3" rx="1.5" fill="#efeafd"/><rect x="-32" y="-6" width="6" height="14" rx="2" fill="#5b45b0"/><rect x="26" y="-6" width="6" height="14" rx="2" fill="#5b45b0"/></g>
+<text x="260.0" y="416.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Automation-based</text>
+<text x="260.0" y="440.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">scripts / Ansible push the same change everywhere</text>
+<text x="1100.0" y="416.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="end">source of truth</text>
+<text x="1100.0" y="440.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#3e2a85" text-anchor="end">scripts + variables</text>
+<rect x="200.0" y="476.0" width="920.0" height="80.0" rx="12" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.6"/>
+<g transform="translate(250.0,516.0) scale(0.55)"><path d="M-18,-26 L8,-26 L20,-14 L20,26 L-18,26 Z" fill="#ffffff" stroke="#64748b" stroke-width="2"/><path d="M8,-26 L8,-14 L20,-14" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/><line x1="-10" y1="-4" x2="12" y2="-4" stroke="#94a3b8" stroke-width="2"/><line x1="-10" y1="4" x2="12" y2="4" stroke="#94a3b8" stroke-width="2"/><line x1="-10" y1="12" x2="6" y2="12" stroke="#94a3b8" stroke-width="2"/></g>
+<text x="300.0" y="508.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#0f2540" text-anchor="start">Infrastructure as code</text>
+<text x="300.0" y="532.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">files in Git → review → pipeline deploys</text>
+<text x="1100.0" y="508.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="end">source of truth</text>
+<text x="1100.0" y="532.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f5a37" text-anchor="end">the Git repository</text>
+<line x1="24.0" y1="120.0" x2="24.0" y2="560.0" stroke="#1d6fd1" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="28" y1="597" x2="1132" y2="597" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="619" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">The approaches combine: a controller for the campus, Ansible playbooks in Git for routers, the CLI for troubleshooting.</text>
+<text x="1136" y="627" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

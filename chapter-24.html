@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 24 — IPsec site-to-site and remote-access VPNs · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 24: IPsec site-to-site and remote-access VPNs">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head purple">
+  <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
+  <h1><span class="num">Chapter 24</span>IPsec site-to-site and remote-access VPNs</h1>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~14 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="24"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.5 Describe IPsec remote access and site-to-site VPNs (protocols and transport modes).</strong> The verb is <em>describe</em>: you must explain the VPN types, the IPsec protocols and the two modes, and recognise them in outputs. The optional lab lets you see a tunnel come up.</p>
+<h3 id="241-learning-objectives">24.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Explain what a VPN provides and compare site-to-site with remote-access VPNs.</li>
+<li>Name the IPsec protocols — IKE, ESP, AH — with their protocol and port numbers, and the algorithms each uses.</li>
+<li>Compare tunnel mode and transport mode and say where each is used.</li>
+<li>Describe how IKE builds security associations and what <code>show crypto</code> output means.</li>
+<li>Recognise common reasons a tunnel does not come up, including NAT interaction.</li>
+</ol>
+<h3 id="242-what-a-vpn-provides-and-the-two-types">24.2 What a VPN provides, and the two types</h3>
+<p>A <strong>virtual private network</strong> carries private traffic across a network you do not trust (usually the internet) and adds four protections:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Meaning</th>
+<th>How IPsec provides it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Confidentiality</strong></td>
+<td>Nobody on the path can read the data</td>
+<td>Encryption (AES)</td>
+</tr>
+<tr>
+<td><strong>Integrity</strong></td>
+<td>Nobody can change it unnoticed</td>
+<td>Keyed hash / HMAC (SHA-2), or AES-GCM</td>
+</tr>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>You are talking to the real peer</td>
+<td>Pre-shared keys or certificates, during IKE</td>
+</tr>
+<tr>
+<td><strong>Anti-replay</strong></td>
+<td>Captured packets cannot be resent</td>
+<td>Sequence numbers in ESP/AH</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="fig" id="fig-24-1"><button class="zoom" aria-label="Enlarge figure 24.1"><img src="assets/figures/ch24/fig-24-01-site-to-site-vs-remote-access.svg" alt="Figure 24.1 — Site-to-site and remote-access VPNs" loading="lazy"></button><figcaption><a class="fignum" href="#fig-24-1">Figure 24.1</a> Site-to-site and remote-access VPNs</figcaption></figure>
+
+<p><a class="figref" href="#fig-24-1">Figure 24.1</a> contrasts the two types. In a <strong>site-to-site</strong> VPN the two gateways build the tunnel and every host behind them uses it transparently. In a <strong>remote-access</strong> VPN the tunnel runs from software on one user's device to a VPN headend.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Site-to-site</th>
+<th>Remote access</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connects</td>
+<td>Two networks (HQ ↔ branch, campus ↔ cloud)</td>
+<td>One device ↔ a network</td>
+</tr>
+<tr>
+<td>Endpoints</td>
+<td>Routers or firewalls</td>
+<td>Client software ↔ headend (firewall, router, VPN concentrator)</td>
+</tr>
+<tr>
+<td>Who authenticates</td>
+<td>The gateways (PSK or certificates)</td>
+<td>The gateway <strong>and the user</strong> (username/password via AAA, certificates, MFA)</td>
+</tr>
+<tr>
+<td>Protocols</td>
+<td>IPsec (IKEv1/IKEv2 + ESP), often with GRE or VTI</td>
+<td>IPsec with IKEv2, or <strong>TLS/DTLS</strong> (SSL VPN, for example Cisco Secure Client)</td>
+</tr>
+<tr>
+<td>Typical mode</td>
+<td>Tunnel mode</td>
+<td>Tunnel mode</td>
+</tr>
+<tr>
+<td>When</td>
+<td>Permanent</td>
+<td>On demand</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Full tunnel vs split tunnel (remote access):</strong> with a full tunnel, <em>all</em> of the user's traffic goes through the headend (central security inspection, more load); with split tunnelling, only corporate destinations use the tunnel and internet traffic goes directly.</p>
+<h3 id="243-the-ipsec-protocols">24.3 The IPsec protocols</h3>
+<p>IPsec is a <strong>framework</strong>: a set of protocols that negotiate and apply protection.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Role</th>
+<th>Identified by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IKE</strong> (Internet Key Exchange, v1 or v2)</td>
+<td>Authenticates the peers, agrees on algorithms, creates keys (Diffie-Hellman), builds the SAs</td>
+<td><strong>UDP 500</strong>; <strong>UDP 4500</strong> when a NAT device is in the path (NAT traversal)</td>
+</tr>
+<tr>
+<td><strong>ESP</strong> (Encapsulating Security Payload)</td>
+<td>Encryption <strong>and</strong> integrity/authentication of the data</td>
+<td><strong>IP protocol 50</strong> (inside UDP 4500 with NAT-T)</td>
+</tr>
+<tr>
+<td><strong>AH</strong> (Authentication Header)</td>
+<td>Integrity/authentication only, <strong>no encryption</strong>; protects the outer IP header too, so it <strong>breaks with NAT</strong></td>
+<td><strong>IP protocol 51</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Common choices (strong)</th>
+<th>Older choices you may still see</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Encryption</td>
+<td>AES-128/256, AES-GCM</td>
+<td>3DES, DES (weak — avoid)</td>
+</tr>
+<tr>
+<td>Integrity</td>
+<td>SHA-256, SHA-384 (or built into AES-GCM)</td>
+<td>MD5, SHA-1 (weak)</td>
+</tr>
+<tr>
+<td>Key exchange</td>
+<td>Diffie-Hellman groups 14, 19, 20, 21</td>
+<td>Groups 1, 2, 5 (weak)</td>
+</tr>
+<tr>
+<td>Peer authentication</td>
+<td>Certificates (RSA/ECDSA), pre-shared keys</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>In practice almost every VPN uses <strong>ESP</strong>, because it encrypts and works through NAT.</p>
+<h3 id="244-tunnel-mode-and-transport-mode">24.4 Tunnel mode and transport mode</h3>
+<p>The <strong>mode</strong> decides what IPsec wraps (<a class="figref" href="#fig-24-2">Figure 24.2</a>):</p>
+<ul>
+<li><strong>Tunnel mode</strong> encrypts the <strong>entire original packet</strong> and adds a <strong>new IP header</strong> with the gateways' addresses. Used for site-to-site and remote access, because the hosts' own (often private) addresses must be hidden and carried across the internet. It is the default on Cisco routers.</li>
+<li><strong>Transport mode</strong> keeps the <strong>original IP header</strong> and protects only the payload. It is used when the two IPsec endpoints <em>are</em> the communicating hosts — host-to-host traffic, or <strong>GRE over IPsec</strong>, where GRE already adds the outer header.</li>
+</ul>
+<figure class="fig" id="fig-24-2"><button class="zoom" aria-label="Enlarge figure 24.2"><img src="assets/figures/ch24/fig-24-02-esp-transport-vs-tunnel.svg" alt="Figure 24.2 — ESP transport mode and tunnel mode packet layouts" loading="lazy"></button><figcaption><a class="fignum" href="#fig-24-2">Figure 24.2</a> ESP transport mode and tunnel mode packet layouts</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-24-2">Figure 24.2</a> the shaded blue segments are encrypted. In tunnel mode the original header is among them and the orange new header in front carries the public addresses; in transport mode the original header stays readable at the front.</p>
+<h3 id="245-ike-and-security-associations">24.5 IKE and security associations</h3>
+<p>Before any data is protected, the peers use <strong>IKE</strong> to agree on how. The result is a set of <strong>security associations (SAs)</strong> — agreements on algorithms, keys and lifetimes, each identified by a <strong>Security Parameter Index (SPI)</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>IKEv1</th>
+<th>IKEv2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Step 1</td>
+<td><strong>Phase 1</strong> (main mode, 6 messages; or aggressive mode, 3) authenticates the peers and builds the <strong>IKE (ISAKMP) SA</strong></td>
+<td><strong>IKE_SA_INIT</strong> and <strong>IKE_AUTH</strong> (4 messages in total) build the IKE SA <strong>and</strong> the first IPsec (child) SA</td>
+</tr>
+<tr>
+<td>Step 2</td>
+<td><strong>Phase 2</strong> (quick mode) builds the <strong>IPsec SAs</strong></td>
+<td><strong>CREATE_CHILD_SA</strong> adds or rekeys child SAs</td>
+</tr>
+<tr>
+<td>Remote-access user login</td>
+<td>Extra extensions (XAUTH)</td>
+<td>Built in (EAP), so it is preferred for remote access</td>
+</tr>
+<tr>
+<td>NAT traversal</td>
+<td>Added later</td>
+<td>Built in</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The IKE SA protects IKE's own messages. <strong>IPsec SAs are one-way</strong>, so each tunnel has at least one inbound and one outbound SA (two SPIs).</li>
+<li>SAs expire after a lifetime (time or data volume) and are <strong>rekeyed</strong> automatically.</li>
+<li><strong>Which traffic enters the tunnel:</strong> in a <strong>policy-based</strong> VPN a <strong>crypto ACL</strong> ("interesting traffic") selects it and a <strong>crypto map</strong> on the outside interface applies the policy; the ACLs on the two peers must <strong>mirror</strong> each other. In a <strong>route-based</strong> VPN a <strong>virtual tunnel interface (VTI)</strong> is created and anything <strong>routed</strong> into it is protected — easier to scale and able to carry routing protocols.</li>
+</ul>
+<h3 id="246-site-to-site-designs-you-should-recognise">24.6 Site-to-site designs you should recognise</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Design</th>
+<th>Idea</th>
+<th>Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crypto map (policy-based)</td>
+<td>Crypto ACL + crypto map on the physical interface</td>
+<td>Tunnel</td>
+</tr>
+<tr>
+<td><strong>VTI</strong> (<code>tunnel mode ipsec ipv4</code>)</td>
+<td>A tunnel interface; routes decide what is encrypted</td>
+<td>Tunnel</td>
+</tr>
+<tr>
+<td><strong>GRE over IPsec</strong></td>
+<td>GRE carries multicast and routing protocols (OSPF); IPsec protects the GRE packets</td>
+<td>Usually <strong>transport</strong> (GRE already adds the outer header)</td>
+</tr>
+<tr>
+<td><strong>DMVPN</strong></td>
+<td>Hub-and-spoke with dynamic spoke-to-spoke tunnels (mGRE + NHRP + IPsec)</td>
+<td>Transport or tunnel</td>
+</tr>
+<tr>
+<td>Cloud VPN gateway</td>
+<td>Site-to-site IPsec to a cloud provider's virtual network</td>
+<td>Tunnel</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="247-vpns-nat-and-firewalls">24.7 VPNs, NAT and firewalls</h3>
+<ul>
+<li><strong>NAT exemption on the gateway.</strong> On an IOS router, outbound packets are <strong>translated before they are encrypted</strong>. If the PAT rule from Chapter 21 also matches traffic towards the remote site, the source becomes the public address, no longer matches the crypto ACL, and leaves <strong>unencrypted</strong> (and is dropped by the ISP). Exclude VPN traffic from NAT with an extended NAT ACL:</li>
+</ul>
+<pre><code>R1(config)# ip access-list extended NAT-INSIDE-EXT
+R1(config-ext-nacl)# 10 deny ip 10.10.0.0 0.0.255.255 172.16.2.0 0.0.0.255
+R1(config-ext-nacl)# 20 permit ip 10.10.0.0 0.0.255.255 any
+R1(config-ext-nacl)# exit
+R1(config)# ip nat inside source list NAT-INSIDE-EXT interface GigabitEthernet0/0/1 overload
+</code></pre>
+<p>(Shown for illustration with the campus addresses; Lab 24.1 uses a separate topology without NAT.) The <code>deny</code> line means "do not translate" — the packet is still forwarded, now matching the crypto ACL.</p>
+<ul>
+<li><strong>NAT between the peers</strong> (for example a home router in front of a remote-access client) breaks AH and plain ESP; <strong>NAT-T</strong> detects it and wraps ESP in <strong>UDP 4500</strong>.</li>
+<li><strong>Firewalls and ACLs</strong> in the path must permit <strong>UDP 500</strong>, <strong>UDP 4500</strong> and <strong>ESP (IP protocol 50)</strong> between the peers (plus TCP/UDP 443 for TLS remote access).</li>
+</ul>
+<h3 id="248-verification-output-and-troubleshooting">24.8 Verification output and troubleshooting</h3>
+<pre><code>HQ# show crypto isakmp sa
+IPv4 Crypto ISAKMP SA
+dst             src             state          conn-id status
+203.0.113.6     203.0.113.1     QM_IDLE           1001 ACTIVE
+
+HQ# show crypto ipsec sa
+interface: GigabitEthernet0/1
+    Crypto map tag: VPN-MAP, local addr 203.0.113.1
+   local  ident (addr/mask/prot/port): (172.16.1.0/255.255.255.0/0/0)
+   remote ident (addr/mask/prot/port): (172.16.2.0/255.255.255.0/0/0)
+   current_peer 203.0.113.6 port 500
+    #pkts encaps: 9, #pkts encrypt: 9, #pkts digest: 9
+    #pkts decaps: 9, #pkts decrypt: 9, #pkts verify: 9
+     inbound esp sas:
+      spi: 0x1A2B3C4D(439041101)
+        transform: esp-aes 256 esp-sha-hmac ,
+        in use settings ={Tunnel, }
+     outbound esp sas:
+      spi: 0x5E6F7A8B(1584364171)
+</code></pre>
+<p><strong>Reading it:</strong></p>
+<ul>
+<li><strong>QM_IDLE / ACTIVE</strong> (IKEv1) = phase 1 is complete and the IKE SA is ready. On IKEv2, <code>show crypto ikev2 sa</code> shows <strong>READY</strong>. <code>MM_NO_STATE</code> that never progresses means phase 1 is failing (no reply, or proposals/keys do not match).</li>
+<li><strong>local/remote ident</strong> = the traffic selectors from the crypto ACL — they must mirror the peer's.</li>
+<li><strong>#pkts encaps/decaps</strong> = packets encrypted and decrypted. Encaps rising with decaps at 0: our side sends, the peer does not return traffic (its ACL, route or policy). Both at 0: traffic is not matching the crypto ACL at all (or is translated by NAT first).</li>
+<li><strong>in use settings ={Tunnel, }</strong> confirms tunnel mode; inbound and outbound show <strong>different SPIs</strong> because SAs are one-way.</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Check / fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No IKE SA at all</td>
+<td>Peer unreachable, UDP 500/4500 blocked, crypto map not applied</td>
+<td><code>ping</code> the peer's public address; ACLs on the path; <code>show crypto map</code></td>
+</tr>
+<tr>
+<td>Phase 1 stuck (MM_NO_STATE)</td>
+<td>ISAKMP policy mismatch (encryption, hash, DH group, auth) or wrong pre-shared key/peer address</td>
+<td>Compare <code>show crypto isakmp policy</code>; re-enter the key on both sides</td>
+</tr>
+<tr>
+<td>Phase 1 up, no IPsec SA</td>
+<td>Transform-set mismatch, crypto ACLs not mirrored</td>
+<td><code>show crypto ipsec transform-set</code>; mirror the ACLs</td>
+</tr>
+<tr>
+<td>SA up, encaps rise, decaps 0</td>
+<td>Remote side cannot route back or drops the traffic</td>
+<td>Check the peer's routes and ACL</td>
+</tr>
+<tr>
+<td>Encaps stay 0</td>
+<td>Traffic not matching the crypto ACL; NAT translating it first; routed out another interface</td>
+<td>Crypto ACL; NAT exemption; routing to the outside interface</td>
+</tr>
+<tr>
+<td>Works, then fails through a home router</td>
+<td>ESP blocked by NAT</td>
+<td>NAT-T (UDP 4500) on both peers</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="249-lab-241--site-to-site-ipsec-in-packet-tracer-optional-intermediate">24.9 Lab 24.1 — Site-to-site IPsec in Packet Tracer (optional, Intermediate)</h3>
+<p><strong>Objective:</strong> 4.5 (seeing the protocols and modes at work). <strong>Topology:</strong> a <strong>new</strong> Packet Tracer file with three 2911 routers and two PCs (<a class="figref" href="#fig-24-3">Figure 24.3</a>). <strong>Packet Tracer limitation:</strong> Packet Tracer supports IKEv1 with crypto maps and older algorithm choices (SHA-1, DH group 5). The lab shows how a tunnel forms; on real equipment you would use IKEv2, SHA-256 or AES-GCM and DH group 19 or higher.</p>
+<figure class="fig" id="fig-24-3"><button class="zoom" aria-label="Enlarge figure 24.3"><img src="assets/figures/ch24/fig-24-03-lab-24-1-topology.svg" alt="Figure 24.3 — Lab 24.1 site-to-site VPN topology" loading="lazy"></button><figcaption><a class="fignum" href="#fig-24-3">Figure 24.3</a> Lab 24.1 site-to-site VPN topology</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-24-3">Figure 24.3</a> the two shaded routers are the VPN gateways. The ISP router in the middle has no route to either 172.16 network, so PC-HQ can reach PC-BR only through the tunnel drawn above.</p>
+<p><strong>Step 1 — Build and address the topology</strong> as in <a class="figref" href="#fig-24-3">Figure 24.3</a>. On HQ: <code>ip route 0.0.0.0 0.0.0.0 203.0.113.2</code>; on BR: <code>ip route 0.0.0.0 0.0.0.0 203.0.113.5</code>. From PC-HQ, <code>ping 172.16.2.10</code> <strong>fails</strong> (the ISP drops it), but HQ can ping 203.0.113.6.</p>
+<p><strong>Step 2 — Enable the security licence</strong> on HQ and BR (needed in Packet Tracer for crypto commands):</p>
+<pre><code>HQ(config)# license boot module c2900 technology-package securityk9
+HQ(config)# end
+HQ# copy running-config startup-config
+HQ# reload
+</code></pre>
+<p>After the reload, <code>show version</code> lists <em>securityk9</em> as enabled.</p>
+<p><strong>Step 3 — IKE phase 1 policy and key</strong> (HQ shown; on BR use peer address 203.0.113.1):</p>
+<pre><code>HQ(config)# crypto isakmp policy 10
+HQ(config-isakmp)# encryption aes 256
+HQ(config-isakmp)# hash sha
+HQ(config-isakmp)# authentication pre-share
+HQ(config-isakmp)# group 5
+HQ(config-isakmp)# lifetime 86400
+HQ(config-isakmp)# exit
+HQ(config)# crypto isakmp key Vpn-Lab-2026 address 203.0.113.6
+</code></pre>
+<p><strong>Step 4 — Phase 2: transform set, crypto ACL and crypto map:</strong></p>
+<pre><code>HQ(config)# crypto ipsec transform-set TS esp-aes 256 esp-sha-hmac
+HQ(config)# access-list 110 permit ip 172.16.1.0 0.0.0.255 172.16.2.0 0.0.0.255
+HQ(config)# crypto map VPN-MAP 10 ipsec-isakmp
+HQ(config-crypto-map)# set peer 203.0.113.6
+HQ(config-crypto-map)# set transform-set TS
+HQ(config-crypto-map)# match address 110
+HQ(config-crypto-map)# exit
+HQ(config)# interface GigabitEthernet0/1
+HQ(config-if)# crypto map VPN-MAP
+</code></pre>
+<p>On BR, mirror everything: peer <strong>203.0.113.1</strong>, and <code>access-list 110 permit ip 172.16.2.0 0.0.0.255 172.16.1.0 0.0.0.255</code>.</p>
+<p><strong>Step 5 — Bring the tunnel up.</strong> From PC-HQ, <code>ping 172.16.2.10</code>. The first one or two replies may time out while IKE builds the SAs; then pings succeed. The ISP still has no route to 172.16.0.0 — the packets cross it inside ESP with the gateways' public addresses (tunnel mode).</p>
+<p><strong>Step 6 — Verify and look inside.</strong> On HQ: <code>show crypto isakmp sa</code> (QM_IDLE), <code>show crypto ipsec sa</code> (encaps/decaps rising, two SPIs, <em>Tunnel</em>). In Simulation mode, follow a ping: between HQ and BR the outer header shows 203.0.113.1 → 203.0.113.6 and protocol ESP; the original 172.16 header is not visible.</p>
+<p><strong>Questions after the lab</strong></p>
+<ol>
+<li>Why did the ping fail in Step 1 and succeed in Step 5, although the ISP's routing table never changed?</li>
+<li>Which mode did the tunnel use, and which line of <code>show crypto ipsec sa</code> proves it?</li>
+<li>Why must access-list 110 on BR be the mirror of HQ's?</li>
+<li>Which protocols and ports would a firewall between HQ and the ISP need to permit?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Topology built; ping fails before the VPN</li>
+<li>[ ] securityk9 enabled on both gateways</li>
+<li>[ ] Phase 1 and phase 2 configured and mirrored</li>
+<li>[ ] QM_IDLE seen; encaps and decaps rising</li>
+<li>[ ] ESP observed in Simulation mode</li>
+<li>[ ] Saved as <strong>Lab24-1.pkt</strong></li>
+</ul>
+<h3 id="2410-lab-242--why-wont-the-tunnel-come-up-advanced">24.10 Lab 24.2 — Why won't the tunnel come up? (Advanced)</h3>
+<p><strong>Start from:</strong> your finished Lab 24.1 file. Introduce one fault at a time, clear the SAs on both routers (<code>clear crypto isakmp</code> and <code>clear crypto sa</code>), ping from PC-HQ, and diagnose with <code>show crypto isakmp sa</code> and <code>show crypto ipsec sa</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Fault to introduce</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>On BR, <code>crypto isakmp key Vpn-Lab-2025 address 203.0.113.1</code> (replace the key)</td>
+</tr>
+<tr>
+<td>B</td>
+<td>On BR, change <code>crypto ipsec transform-set TS</code> to <code>esp-3des esp-sha-hmac</code></td>
+</tr>
+<tr>
+<td>C</td>
+<td>On BR, change access-list 110 to <code>permit ip 172.16.2.0 0.0.0.255 172.16.3.0 0.0.0.255</code></td>
+</tr>
+<tr>
+<td>D</td>
+<td>On HQ, <code>interface g0/1</code> → <code>no crypto map VPN-MAP</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Solutions</strong></p>
+<ul>
+<li><strong>A — key mismatch.</strong> Phase 1 never completes: no QM_IDLE (the state stays at MM_NO_STATE or no SA appears). Make the keys identical.</li>
+<li><strong>B — transform-set mismatch.</strong> Phase 1 is up (QM_IDLE) but no IPsec SA forms; encaps stay 0. Use the same transform set on both peers.</li>
+<li><strong>C — crypto ACLs not mirrored.</strong> Phase 1 up, phase 2 rejected because the proxy identities do not match. Correct BR's ACL to 172.16.2.0 → 172.16.1.0.</li>
+<li><strong>D — crypto map not applied.</strong> No IKE negotiation starts; packets leave HQ unencrypted with 172.16 addresses and the ISP drops them. Re-apply the crypto map on the outside interface.</li>
+</ul>
+<h3 id="2411-chapter-24-summary-notes-exam-revision">24.11 Chapter 24 summary notes (exam revision)</h3>
+<ul>
+<li><strong>VPN services:</strong> confidentiality, integrity, authentication, anti-replay.</li>
+<li><strong>Site-to-site:</strong> gateway ↔ gateway, transparent to hosts, permanent. <strong>Remote access:</strong> client software ↔ headend, user authentication (AAA, MFA), IPsec IKEv2 or TLS/DTLS; full vs split tunnel.</li>
+<li><strong>IKE:</strong> UDP 500 (UDP 4500 with NAT-T); IKEv1 phase 1 (IKE SA) + phase 2 (IPsec SAs); IKEv2 IKE_SA_INIT + IKE_AUTH + CREATE_CHILD_SA. SAs are one-way, identified by SPI.</li>
+<li><strong>ESP:</strong> IP protocol 50, encryption + integrity. <strong>AH:</strong> IP protocol 51, integrity only, breaks with NAT.</li>
+<li><strong>Tunnel mode:</strong> new outer IP header, whole packet protected (site-to-site, remote access). <strong>Transport mode:</strong> original header kept (host-to-host, GRE over IPsec).</li>
+<li><strong>Policy-based</strong> (crypto ACL + crypto map, ACLs mirrored) vs <strong>route-based</strong> (VTI).</li>
+<li><strong>Verify:</strong> <code>show crypto isakmp sa</code> (QM_IDLE), <code>show crypto ikev2 sa</code> (READY), <code>show crypto ipsec sa</code> (encaps/decaps, SPIs, mode). NAT exemption for VPN traffic.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"AH encrypts the payload"</td>
+<td>AH only authenticates; ESP encrypts</td>
+</tr>
+<tr>
+<td>"Transport mode is used between two sites"</td>
+<td>Site-to-site normally uses tunnel mode; transport mode is host-to-host or GRE over IPsec</td>
+</tr>
+<tr>
+<td>"One SA covers both directions"</td>
+<td>IPsec SAs are unidirectional (IKE SA is bidirectional)</td>
+</tr>
+<tr>
+<td>"IPsec uses TCP 443"</td>
+<td>IKE uses UDP 500/4500; ESP is IP protocol 50. TLS VPNs use 443</td>
+</tr>
+<tr>
+<td>"Remote-access VPN users need no authentication beyond the device"</td>
+<td>Users authenticate, usually through AAA (RADIUS) and MFA</td>
+</tr>
+<tr>
+<td>"NAT on the gateway does not affect the VPN"</td>
+<td>Translated traffic no longer matches the crypto ACL; exempt it</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2412-practice-questions--chapter-24">24.12 Practice questions — Chapter 24</h3>
+<p><strong>1. (Recall)</strong> Which IP protocol numbers do ESP and AH use, and which UDP ports does IKE use?</p>
+<p><strong>2. (Concept)</strong> List the four security services a VPN provides.</p>
+<p><strong>3. (Comparison)</strong> Give two differences between site-to-site and remote-access VPNs.</p>
+<p><strong>4. (Modes)</strong> Which mode adds a new IP header, and why is it needed when two offices with private addresses connect over the internet?</p>
+<p><strong>5. (Modes)</strong> In which situation is transport mode the usual choice?</p>
+<p><strong>6. (Concept)</strong> Why is AH rarely used on networks with NAT?</p>
+<p><strong>7. (Output interpretation)</strong> <code>show crypto isakmp sa</code> shows <code>QM_IDLE ACTIVE</code>, but <code>show crypto ipsec sa</code> shows <code>#pkts encaps: 0</code> and <code>#pkts decaps: 0</code>. Give two possible causes.</p>
+<p><strong>8. (Output interpretation)</strong> <code>#pkts encaps: 120, #pkts decaps: 0</code>. What does that tell you?</p>
+<p><strong>9. (Troubleshooting)</strong> After a VPN was added to a router that already runs PAT for the LAN, traffic to the branch is not encrypted. Why, and what is the fix?</p>
+<p><strong>10. (Concept)</strong> What is the difference between full-tunnel and split-tunnel remote access?</p>
+<p><strong>11. (Multiple response — choose two)</strong> Which statements about IKEv2 are true?</p>
+<p>A. It builds the first child SA during the initial exchange  B. It uses TCP 500  C. It supports EAP for user authentication  D. It cannot traverse NAT  E. It replaces ESP</p>
+<p><strong>12. (Evaluate an AI assistant)</strong> An AI assistant says: <em>"For your branch VPN, use AH in tunnel mode so the data is encrypted and passes through the ISP's NAT."</em> Evaluate.</p>
+<h3 id="2413-answer-key-with-explanations">24.13 Answer key with explanations</h3>
+<ol>
+<li><strong>ESP = IP protocol 50, AH = IP protocol 51; IKE = UDP 500</strong>, and <strong>UDP 4500</strong> with NAT traversal.</li>
+<li><strong>Confidentiality, integrity, authentication, anti-replay.</strong></li>
+<li>Site-to-site connects <strong>networks</strong> through gateways and is transparent to hosts; remote access connects <strong>one device</strong> running client software. Site-to-site is permanent; remote access is on demand and authenticates the <strong>user</strong> (AAA/MFA). Remote access may use TLS instead of IPsec.</li>
+<li><strong>Tunnel mode.</strong> The private addresses cannot be routed on the internet, so the original packet is encrypted inside a new header with the gateways' public addresses.</li>
+<li>When the IPsec peers are the communicating hosts themselves, or for <strong>GRE over IPsec</strong> (GRE already supplies the outer header).</li>
+<li>AH's integrity check covers the <strong>outer IP header</strong>; NAT changes that header, so the check fails. AH also does not encrypt.</li>
+<li>Traffic does not match the <strong>crypto ACL</strong> (wrong ACL, wrong source), it is <strong>translated by NAT</strong> before encryption, or it is <strong>routed</strong> out another interface. (A transform-set mismatch would also leave no IPsec SA.)</li>
+<li>This side encrypts and sends, but <strong>nothing comes back</strong> through the tunnel: the peer is not returning traffic (its routing, ACLs, or a non-mirrored crypto ACL).</li>
+<li>NAT runs <strong>before</strong> encryption, so the source becomes the public address and no longer matches the crypto ACL. Add a <strong>NAT exemption</strong> (<code>deny</code> the VPN traffic in an extended NAT ACL).</li>
+<li><strong>Full tunnel:</strong> all traffic goes through the headend. <strong>Split tunnel:</strong> only corporate destinations use the tunnel; internet traffic goes directly.</li>
+<li><strong>A and C.</strong> IKEv2 uses UDP 500/4500, has NAT traversal built in, and negotiates SAs for ESP rather than replacing it.</li>
+<li><strong>Wrong twice.</strong> AH does <strong>not encrypt</strong>, and it <strong>fails through NAT</strong> because it authenticates the outer header. Use <strong>ESP</strong> (tunnel mode), with NAT-T if a NAT device is in the path.</li>
+</ol>
+<h3 id="2414-chapter-24-figure-checklist">24.14 Chapter 24 figure checklist</h3>
+<p>All three figures were rendered, embedded beside the text they explain, and checked visually after rendering. The text describing <a class="figref" href="#fig-24-2">Figure 24.2</a>'s new-header colour was corrected to match the render.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>24.1</td>
+<td>Site-to-site and remote-access VPNs</td>
+<td>24.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>24.2</td>
+<td>ESP transport and tunnel mode layouts</td>
+<td>24.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>24.3</td>
+<td>Lab 24.1 topology</td>
+<td>24.9</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as tables and command output:</strong> VPN services, VPN types, IPsec protocols and algorithms, IKE versions, site-to-site designs, NAT exemption, <code>show crypto</code> output and troubleshooting.</p>
+<h3 id="2415-chapter-24-progress-record">24.15 Chapter 24 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>4.5</strong> — IPsec remote-access and site-to-site VPNs, protocols (IKE, ESP, AH) and modes (tunnel, transport).</p>
+<p><strong>Next:</strong> Chapter 25 — <strong>5.6 Interpret syslog message content, severity levels, and facilities</strong> and <strong>5.4 Describe the function of SNMP in network operations</strong>.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-23.html"><small>← Chapter 23</small>Layer 2 security features</a><a class="pn next" href="chapter-25.html"><small>Chapter 25 →</small>Syslog and SNMP</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#241-learning-objectives">24.1 Learning objectives</a>
+<a href="#242-what-a-vpn-provides-and-the-two-types">24.2 What a VPN provides, and the two types</a>
+<a href="#243-the-ipsec-protocols">24.3 The IPsec protocols</a>
+<a href="#244-tunnel-mode-and-transport-mode">24.4 Tunnel mode and transport mode</a>
+<a href="#245-ike-and-security-associations">24.5 IKE and security associations</a>
+<a href="#246-site-to-site-designs-you-should-recognise">24.6 Site-to-site designs you should recognise</a>
+<a href="#247-vpns-nat-and-firewalls">24.7 VPNs, NAT and firewalls</a>
+<a href="#248-verification-output-and-troubleshooting">24.8 Verification output and troubleshooting</a>
+<a href="#249-lab-241--site-to-site-ipsec-in-packet-tracer-optional-intermediate">24.9 Lab 24.1 — Site-to-site IPsec in Packet Tracer (optional, Intermediate)</a>
+<a href="#2410-lab-242--why-wont-the-tunnel-come-up-advanced">24.10 Lab 24.2 — Why won&#x27;t the tunnel come up? (Advanced)</a>
+<a href="#2411-chapter-24-summary-notes-exam-revision">24.11 Chapter 24 summary notes (exam revision)</a>
+<a href="#2412-practice-questions--chapter-24">24.12 Practice questions — Chapter 24</a>
+<a href="#2413-answer-key-with-explanations">24.13 Answer key with explanations</a>
+<a href="#2414-chapter-24-figure-checklist">24.14 Chapter 24 figure checklist</a>
+<a href="#2415-chapter-24-progress-record">24.15 Chapter 24 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

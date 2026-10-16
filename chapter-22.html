@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 22 — Diagnosing DNS records · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 22: Diagnosing DNS records">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head purple">
+  <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
+  <h1><span class="num">Chapter 22</span>Diagnosing DNS records</h1>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~17 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="22"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.4 Diagnose issues with DNS records (A, AAAA, CNAME, MX, NS, and PTR) to support host, web application, and mail server access by name.</strong> The objective is about <strong>diagnosis</strong>: reading DNS answers, spotting the wrong or missing record, and knowing which record each service depends on.</p>
+<h3 id="221-learning-objectives">22.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Describe how a name is resolved: stub resolver, recursive resolver, root, TLD and authoritative servers, caching and TTL.</li>
+<li>State what A, AAAA, CNAME, MX, NS and PTR records contain and the rules each must follow.</li>
+<li>Query records with <code>nslookup</code>, <code>dig</code> and PowerShell, and read the response codes.</li>
+<li>Diagnose name problems for hosts, web applications and mail servers, and tell DNS faults from network faults.</li>
+<li>Configure name resolution on IOS devices.</li>
+</ol>
+<h3 id="222-how-a-name-is-resolved">22.2 How a name is resolved</h3>
+<p>DNS maps names to data. The <strong>client (stub resolver)</strong> asks one configured DNS server, its <strong>recursive resolver</strong>. The resolver either answers from its <strong>cache</strong> or walks the DNS tree: a <strong>root</strong> server refers it to the servers of the top-level domain, those refer it to the <strong>authoritative</strong> servers for the domain, and the authoritative server returns the record (<a class="figref" href="#fig-22-1">Figure 22.1</a>).</p>
+<figure class="fig" id="fig-22-1"><button class="zoom" aria-label="Enlarge figure 22.1"><img src="assets/figures/ch22/fig-22-01-recursive-dns-resolution.svg" alt="Figure 22.1 — Recursive DNS resolution and caching" loading="lazy"></button><figcaption><a class="fignum" href="#fig-22-1">Figure 22.1</a> Recursive DNS resolution and caching</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-22-1">Figure 22.1</a> the shaded resolver does all the walking; PC1 sends one query and gets one answer. Every record carries a <strong>TTL</strong> (time to live, in seconds), so cached answers expire on their own — which is also why a corrected record can take time to "arrive".</p>
+<p>DNS uses <strong>UDP 53</strong> for normal queries and <strong>TCP 53</strong> for large answers and zone transfers. Encrypted variants exist (DNS over TLS on TCP 853, DNS over HTTPS on 443).</p>
+<h3 id="223-the-six-record-types">22.3 The six record types</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Holds</th>
+<th>Question it answers</th>
+<th>Rules and common faults</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>IPv4 address</td>
+<td>"What is the IPv4 address of web1?"</td>
+<td>Wrong or old address; missing record</td>
+</tr>
+<tr>
+<td><strong>AAAA</strong></td>
+<td>IPv6 address</td>
+<td>"What is the IPv6 address of web1?"</td>
+<td>Clients prefer IPv6: a wrong AAAA (or broken IPv6 path) causes slow or failed access although the A record is fine</td>
+</tr>
+<tr>
+<td><strong>CNAME</strong></td>
+<td>Another name (alias → canonical name)</td>
+<td>"What is www really called?"</td>
+<td>The target must exist and resolve; a CNAME cannot share its name with other records, so it cannot be used at the zone apex (campus.example itself)</td>
+</tr>
+<tr>
+<td><strong>MX</strong></td>
+<td>Preference + mail server <strong>name</strong></td>
+<td>"Which server receives mail for campus.example?"</td>
+<td>Lower preference = tried first; must point to a host name with an A/AAAA record, not to an IP address or a CNAME</td>
+</tr>
+<tr>
+<td><strong>NS</strong></td>
+<td>Name of an authoritative server</td>
+<td>"Which servers are authoritative for this zone?"</td>
+<td>Delegation to a server that does not hold the zone ("lame delegation") → SERVFAIL; NS names inside the zone need glue A records at the parent</td>
+</tr>
+<tr>
+<td><strong>PTR</strong></td>
+<td>A name, for an address</td>
+<td>"What name belongs to 10.10.40.80?"</td>
+<td>Lives in the reverse zone: 10.10.40.80 → <strong>80.40.10.10.in-addr.arpa</strong>; IPv6 uses reversed nibbles under <strong>ip6.arpa</strong>. Missing PTR → mail rejected, slow SSH logins, logs show only addresses</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two more you will see in outputs: <strong>SOA</strong> (start of authority: primary server, contact, serial number, timers) and <strong>TXT</strong> (free text, used for mail policies such as SPF).</p>
+<p><a class="figref" href="#fig-22-2">Figure 22.2</a> shows the example zone used in this chapter's lab. Names in the first column are what a user or service asks for; arrows show what each record returns.</p>
+<figure class="fig" id="fig-22-2"><button class="zoom" aria-label="Enlarge figure 22.2"><img src="assets/figures/ch22/fig-22-02-campus-zone-records.svg" alt="Figure 22.2 — The campus.example records and how they chain" loading="lazy"></button><figcaption><a class="fignum" href="#fig-22-2">Figure 22.2</a> The campus.example records and how they chain</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-22-2">Figure 22.2</a> three records (CNAME, MX, NS) return <strong>names</strong>, so the client must make a second lookup for that name's A record; only A, AAAA and PTR end the chain.</p>
+<h3 id="224-query-tools-and-how-to-read-them">22.4 Query tools and how to read them</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Platform</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nslookup</code></td>
+<td>Windows, macOS, Linux, Packet Tracer</td>
+<td><code>nslookup www.campus.example</code> · <code>nslookup -type=mx campus.example</code> · <code>nslookup 10.10.40.80</code> (PTR) · <code>nslookup www.campus.example 10.10.99.53</code> (ask a specific server)</td>
+</tr>
+<tr>
+<td><code>dig</code></td>
+<td>macOS, Linux</td>
+<td><code>dig www.campus.example A</code> · <code>dig campus.example MX +short</code> · <code>dig -x 10.10.40.80</code> · <code>dig @10.10.99.53 campus.example NS</code></td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td>macOS, Linux</td>
+<td><code>host -t aaaa web1.campus.example</code></td>
+</tr>
+<tr>
+<td><code>Resolve-DnsName</code></td>
+<td>Windows PowerShell</td>
+<td><code>Resolve-DnsName campus.example -Type MX -Server 10.10.99.53</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>nslookup output (Windows):</strong></p>
+<pre><code>C:\&gt; nslookup www.campus.example
+Server:  ns1.campus.example
+Address:  10.10.99.53
+
+Name:    web1.campus.example
+Address:  10.10.40.80
+Aliases:  www.campus.example
+</code></pre>
+<ul>
+<li><strong>Server / Address</strong> = the DNS server that answered. If it shows <strong><code>Server: UnKnown</code></strong>, that server has no <strong>PTR</strong> record for its own address — harmless for the lookup, but a sign the reverse zone is incomplete.</li>
+<li><strong>Aliases</strong> shows that <code>www</code> is a CNAME for <code>web1</code>.</li>
+<li><strong><code>Non-authoritative answer:</code></strong> above the result means the answer came from a resolver (often from its cache), not from the zone's own server.</li>
+</ul>
+<p><strong>dig output (macOS/Linux):</strong></p>
+<pre><code>$ dig www.campus.example A
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 4120
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; ANSWER SECTION:
+www.campus.example.    3600  IN  CNAME  web1.campus.example.
+web1.campus.example.   3600  IN  A      10.10.40.80
+
+;; SERVER: 10.10.99.53#53(10.10.99.53)
+
+$ dig campus.example MX +short
+10 mail.campus.example.
+
+$ dig -x 10.10.40.80 +short
+web1.campus.example.
+</code></pre>
+<p>Read <strong>status</strong> first, then the <strong>ANSWER</strong> section: each line is <em>name, TTL, class, type, data</em>. The flag <strong>aa</strong> means the answer is authoritative.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Response</th>
+<th>Meaning</th>
+<th>Typical cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NOERROR</strong> with answers</td>
+<td>Name and record exist</td>
+<td>— (check the data is right)</td>
+</tr>
+<tr>
+<td><strong>NOERROR</strong>, empty answer ("NODATA")</td>
+<td>Name exists, but not that record type</td>
+<td>Asked for AAAA where only an A exists; missing MX</td>
+</tr>
+<tr>
+<td><strong>NXDOMAIN</strong></td>
+<td>Name does not exist at all</td>
+<td>Typo, record never created, wrong domain suffix</td>
+</tr>
+<tr>
+<td><strong>SERVFAIL</strong></td>
+<td>Resolver could not get a valid answer</td>
+<td>Broken delegation, authoritative server down, DNSSEC failure</td>
+</tr>
+<tr>
+<td><strong>REFUSED</strong></td>
+<td>Server will not answer you</td>
+<td>Resolver does not allow recursion for your subnet</td>
+</tr>
+<tr>
+<td>No response / timed out</td>
+<td>No DNS server reached</td>
+<td>Wrong server address, routing, UDP 53 blocked by an ACL</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="225-the-client-side-caches-and-the-hosts-file">22.5 The client side: caches and the hosts file</h3>
+<p>Operating systems resolve names in this order: <strong>hosts file → local cache → configured DNS server</strong>. <code>nslookup</code> and <code>dig</code> skip the hosts file and the OS cache and go straight to the server, so <strong><code>ping web1</code> and <code>nslookup web1</code> can give different addresses</strong> — a classic clue that a hosts-file entry or a cached answer is the problem.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Windows</th>
+<th>macOS</th>
+<th>Linux (systemd-resolved)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Show configured DNS servers</td>
+<td><code>ipconfig /all</code></td>
+<td><code>scutil --dns</code></td>
+<td><code>resolvectl status</code></td>
+</tr>
+<tr>
+<td>Show cache</td>
+<td><code>ipconfig /displaydns</code></td>
+<td>—</td>
+<td><code>resolvectl statistics</code></td>
+</tr>
+<tr>
+<td>Clear cache</td>
+<td><code>ipconfig /flushdns</code></td>
+<td><code>sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder</code></td>
+<td><code>resolvectl flush-caches</code></td>
+</tr>
+<tr>
+<td>Hosts file</td>
+<td><code>C:\Windows\System32\drivers\etc\hosts</code></td>
+<td><code>/etc/hosts</code></td>
+<td><code>/etc/hosts</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="226-dns-on-ios-devices">22.6 DNS on IOS devices</h3>
+<pre><code>R1(config)# ip domain name campus.example
+R1(config)# ip name-server 10.10.99.53
+R1(config)# ip domain lookup
+R1(config)# ip host printer1 10.10.40.11
+R1(config)# end
+R1# ping web1
+Translating &quot;web1&quot;...domain server (10.10.99.53) [OK]
+R1# show hosts
+</code></pre>
+<ul>
+<li><code>ip domain name</code> is appended to short names (web1 → web1.campus.example) and is also needed for SSH keys (Chapter 18).</li>
+<li><code>ip name-server</code> sets up to six DNS servers. <code>ip domain lookup</code> is on by default.</li>
+<li><code>ip host</code> creates a static name on the device only, like a hosts file.</li>
+<li><code>no ip domain lookup</code> stops IOS from treating a mistyped command as a host name ("Translating …" delay), but then names no longer resolve on that device. In labs it is common; in production, prefer a working name server.</li>
+<li>On routers handing out addresses, the DHCP pool's <code>dns-server</code> line (Chapter 14) gives clients their DNS server; a wrong value there breaks name resolution for a whole subnet.</li>
+</ul>
+<h3 id="227-diagnosing-host-web-and-mail-access-by-name">22.7 Diagnosing host, web and mail access by name</h3>
+<p>Always separate <strong>DNS</strong> from <strong>reachability</strong> first: if the service works by IP address but not by name, it is a name problem; if it fails by address too, DNS is not the cause (<a class="figref" href="#fig-22-3">Figure 22.3</a>).</p>
+<figure class="fig" id="fig-22-3"><button class="zoom" aria-label="Enlarge figure 22.3"><img src="assets/figures/ch22/fig-22-03-dns-diagnosis-flow.svg" alt="Figure 22.3 — DNS diagnosis flow" loading="lazy"></button><figcaption><a class="fignum" href="#fig-22-3">Figure 22.3</a> DNS diagnosis flow</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-22-3">Figure 22.3</a> the first question removes most false DNS suspicions. The result of a direct query then points to the kind of fault on the right.</p>
+<p><strong>Host access</strong> (ping, SSH, file shares by name) depends on <strong>A</strong> and <strong>AAAA</strong> records, the client's DNS server setting, and the domain suffix. Watch for: a record with an old address after a server moved; a missing record for a new device; a short name failing because the client has no domain suffix (<code>ipconfig /all</code> shows <em>Primary DNS Suffix</em> and <em>DNS Suffix Search List</em>); and a <strong>wrong AAAA</strong>: dual-stack clients try IPv6 first, so a wrong or unreachable IPv6 address makes access slow or fail even though the A record is correct.</p>
+<p><strong>Web applications</strong> usually sit behind a <strong>CNAME</strong> (www → web1, or to a load balancer or cloud service). Watch for: a CNAME whose target does not exist (the query shows the alias, then NXDOMAIN or an empty answer); a CNAME added at the zone apex, which DNS forbids; a recently changed record still cached until its TTL expires; and the browser warning about a certificate even though DNS is correct — the certificate must contain the name the user typed, so that is a TLS issue, not a DNS one.</p>
+<p><strong>Mail</strong> depends on several records. A sending server looks up the recipient domain's <strong>MX</strong> records, tries the lowest preference first, then needs an <strong>A/AAAA</strong> record for that MX host name. Receiving servers often check that the sender's address has a <strong>PTR</strong> record whose name resolves back to the same address. Watch for: no MX (senders then fall back to the domain's own A record, which may not be a mail server); an MX that points to an IP address or to a CNAME; an MX host with no A record; missing or mismatched PTR for the mail server's public address, causing rejected or spam-filtered mail.</p>
+<p><strong>Delegation (NS) and consistency:</strong> if two authoritative servers give different answers, compare them directly (<code>dig @ns1.campus.example web1.campus.example</code> and the same with <code>@ns2</code>). A secondary that was not updated (its SOA serial number is older) serves stale data. NS records that point to a server not holding the zone produce <strong>SERVFAIL</strong> for everyone using that delegation.</p>
+<p><strong>PTR (reverse) problems</strong> rarely stop access outright, but cause slow SSH or FTP logins (servers wait for a reverse lookup), logs and <code>traceroute</code> output with only numbers, and mail rejections.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Test</th>
+<th>Record or setting</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name fails, IP works, "timed out"</td>
+<td><code>nslookup &lt;name&gt;</code>; <code>ipconfig /all</code></td>
+<td>Client DNS server (DHCP <code>dns-server</code>), UDP 53 path</td>
+<td>Correct the DHCP option; permit UDP 53 in ACLs</td>
+</tr>
+<tr>
+<td>NXDOMAIN for a new server</td>
+<td><code>nslookup &lt;fqdn&gt; &lt;dns-server&gt;</code></td>
+<td>Missing A/AAAA</td>
+<td>Create the record</td>
+</tr>
+<tr>
+<td>Old address returned after a move</td>
+<td><code>dig &lt;name&gt;</code> (look at the TTL)</td>
+<td>Stale A, cached answer</td>
+<td>Update the record; flush client cache; wait for TTL</td>
+</tr>
+<tr>
+<td>Slow or failing access on dual-stack PCs</td>
+<td><code>nslookup -type=aaaa &lt;name&gt;</code></td>
+<td>Wrong AAAA or broken IPv6 path</td>
+<td>Fix the AAAA or the IPv6 routing</td>
+</tr>
+<tr>
+<td>www works, shop.campus.example fails</td>
+<td><code>dig shop.campus.example</code></td>
+<td>CNAME to a missing target</td>
+<td>Point the CNAME at an existing name</td>
+</tr>
+<tr>
+<td>Mail to the domain bounces</td>
+<td><code>nslookup -type=mx &lt;domain&gt;</code></td>
+<td>Missing MX, MX → IP/CNAME, MX host without A</td>
+<td>Correct MX and add the A record</td>
+</tr>
+<tr>
+<td>Our mail rejected by others</td>
+<td><code>nslookup &lt;public IP&gt;</code></td>
+<td>Missing/mismatched PTR</td>
+<td>Ask the address owner (ISP) for a matching PTR</td>
+</tr>
+<tr>
+<td>Different answers from different servers</td>
+<td><code>dig @server1</code> vs <code>dig @server2</code></td>
+<td>Secondary not updated, SOA serial</td>
+<td>Increase the serial; check zone transfers</td>
+</tr>
+<tr>
+<td><code>ping</code> and <code>nslookup</code> disagree</td>
+<td>Compare both; open the hosts file</td>
+<td>Hosts file entry or OS cache</td>
+<td>Remove the entry; flush the cache</td>
+</tr>
+<tr>
+<td><code>Server: UnKnown</code> in nslookup</td>
+<td><code>nslookup &lt;dns-server IP&gt;</code></td>
+<td>Missing PTR for the DNS server</td>
+<td>Add the PTR (cosmetic)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="228-lab-221--a-campus-dns-server-then-real-world-records-intermediate">22.8 Lab 22.1 — A campus DNS server, then real-world records (Intermediate)</h3>
+<p><strong>Objective:</strong> 4.4. <strong>Start from:</strong> your Lab 21.1 file. <strong>Packet Tracer limitation:</strong> the DNS server's <em>Type</em> list offers A, CNAME, NS and SOA records (recent versions also AAAA) but not MX or PTR, so Part A practises A and CNAME in the campus and Part B practises every record type with real tools on your own computer.</p>
+<p><strong>Part A — Packet Tracer</strong></p>
+<ol>
+<li>Add a Server-PT <strong>DNS1</strong>: 10.10.99.53/24, gateway 10.10.99.1, connected to <strong>SW1 Fa0/6</strong> (<code>switchport mode access</code>, <code>switchport access vlan 99</code>). In <em>Services → DNS</em>, turn DNS <strong>On</strong> and add:</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>web1.campus.example</td>
+<td>A Record</td>
+<td>10.10.40.80</td>
+</tr>
+<tr>
+<td>www.campus.example</td>
+<td>CNAME</td>
+<td>web1.campus.example</td>
+</tr>
+<tr>
+<td>printer1.campus.example</td>
+<td>A Record</td>
+<td>10.10.40.11</td>
+</tr>
+<tr>
+<td>files.campus.example</td>
+<td>A Record</td>
+<td>10.10.99.30</td>
+</tr>
+<tr>
+<td>ns1.campus.example</td>
+<td>A Record</td>
+<td>10.10.99.53</td>
+</tr>
+</tbody>
+</table></div>
+<ol start="2">
+<li>Give clients the DNS server through DHCP on R1:</li>
+</ol>
+<pre><code>R1(config)# ip dhcp pool STAFF
+R1(dhcp-config)# dns-server 10.10.99.53
+R1(dhcp-config)# domain-name campus.example
+R1(dhcp-config)# ip dhcp pool WIRELESS
+R1(dhcp-config)# dns-server 10.10.99.53
+R1(dhcp-config)# domain-name campus.example
+</code></pre>
+<p>On PC1, PC2 and PC3: <code>ipconfig /release</code>, <code>ipconfig /renew</code>, then <code>ipconfig /all</code> — the DNS server must show 10.10.99.53.</p>
+<ol start="3">
+<li><strong>Test from PC1:</strong> <code>nslookup www.campus.example</code> (note the alias and the address), <code>ping printer1.campus.example</code>, and in the Web Browser open <code>http://www.campus.example</code> — WEB1's page loads.</li>
+<li><strong>Test from PC2 (VLAN 30):</strong> <code>nslookup www.campus.example</code> works, because Lab 20.1 added WIRELESS-IN line 15 for UDP 53 to 10.10.99.53. The browser to <code>http://www.campus.example</code> <strong>fails</strong>. This is the "correct answer" branch of <a class="figref" href="#fig-22-3">Figure 22.3</a>: DNS is fine and line 40 of WIRELESS-IN blocks VLAN 40, exactly as the policy says. Confirm with <code>show access-lists WIRELESS-IN</code> on the Active switch.</li>
+<li><strong>IOS as a DNS client</strong> — on R1:</li>
+</ol>
+<pre><code>R1(config)# ip domain name campus.example
+R1(config)# ip name-server 10.10.99.53
+R1(config)# ip domain lookup
+R1(config)# end
+R1# ping web1
+R1# show hosts
+</code></pre>
+<p>The short name <code>web1</code> resolves because IOS appends the domain name.</p>
+<ol start="6">
+<li><strong>Look inside a query:</strong> in Simulation mode, filter <strong>DNS</strong>, run <code>nslookup files.campus.example</code> on PC1 and open the query and the response: UDP, destination port 53, query name, answer with the address.</li>
+</ol>
+<p><strong>Part B — every record type with real tools</strong> (on your own Windows, macOS or Linux computer, connected to the internet):</p>
+<pre><code>nslookup -type=a www.cisco.com
+nslookup -type=aaaa www.cisco.com
+nslookup -type=mx cisco.com
+nslookup -type=ns cisco.com
+nslookup 8.8.8.8
+nslookup no-such-name.cisco.com
+</code></pre>
+<p>With <code>dig</code> (macOS/Linux) repeat with <code>dig cisco.com MX</code>, <code>dig -x 1.1.1.1 +short</code>, and <code>dig www.cisco.com +trace</code>, which shows the walk from the root down to the authoritative server (<a class="figref" href="#fig-22-1">Figure 22.1</a>). On Windows, the PowerShell equivalent is <code>Resolve-DnsName cisco.com -Type MX</code>.</p>
+<p>Record in a table, for each query: the response code, the record type returned, the TTL, and whether a CNAME appeared. Then run <code>ipconfig /displaydns</code> (Windows) or <code>resolvectl statistics</code> (Linux), flush the cache, and repeat one query to see the TTL start again from its full value.</p>
+<p><strong>Questions after the lab</strong></p>
+<ol>
+<li>In Part A step 4, which test proves that the problem is not DNS?</li>
+<li>Which record type would you add so that <code>nslookup 10.10.40.80</code> returns web1? In which zone does it live?</li>
+<li>In Part B, which queries returned names instead of addresses, and what extra lookup does a client then make?</li>
+<li>What response code did the non-existent name produce, and how is it different from NOERROR with no answer?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] DNS1 built with A and CNAME records</li>
+<li>[ ] DHCP hands out 10.10.99.53 and campus.example to both pools</li>
+<li>[ ] PC1 browses to www.campus.example by name</li>
+<li>[ ] PC2's failure explained as ACL policy, not DNS</li>
+<li>[ ] R1 resolves short names with <code>ip domain name</code> and <code>ip name-server</code></li>
+<li>[ ] A, AAAA, MX, NS and PTR queried with real tools and the answers recorded</li>
+<li>[ ] Saved as <strong>Lab22-1.pkt</strong></li>
+</ul>
+<h3 id="229-lab-222--name-resolution-tickets-advanced">22.9 Lab 22.2 — Name-resolution tickets (Advanced)</h3>
+<p><strong>Start from:</strong> your finished Lab 22.1 file. Introduce one fault at a time, then work the ticket using <a class="figref" href="#fig-22-3">Figure 22.3</a>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Ticket text</th>
+<th>Fault to introduce</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>"The intranet is down for everyone."</td>
+<td>On DNS1, change web1's A record to 10.10.40.88</td>
+</tr>
+<tr>
+<td>B</td>
+<td>"www stopped working, but web1 works."</td>
+<td>On DNS1, change the www CNAME target to web01.campus.example</td>
+</tr>
+<tr>
+<td>C</td>
+<td>"Staff PCs can't open anything by name after a restart."</td>
+<td>On R1, <code>ip dhcp pool STAFF</code> → <code>dns-server 10.10.99.54</code>; renew PC1</td>
+</tr>
+<tr>
+<td>D</td>
+<td>"Only wireless users can't resolve names."</td>
+<td>Remove line 15 from WIRELESS-IN on the switch that is HSRP Active for VLAN 30</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Solutions</strong></p>
+<ul>
+<li><strong>A — wrong A record.</strong> <code>ping 10.10.40.80</code> works, so it is not routing; <code>nslookup www.campus.example</code> returns <strong>10.10.40.88</strong>. Fix the A record. (On a real network, also flush client caches or wait out the TTL.)</li>
+<li><strong>B — CNAME to a missing name.</strong> <code>nslookup web1.campus.example</code> works; <code>nslookup www.campus.example</code> fails because the alias points to a name with no record. Point the CNAME back to web1.campus.example.</li>
+<li><strong>C — wrong DNS server from DHCP.</strong> <code>ipconfig /all</code> on PC1 shows DNS server <strong>10.10.99.54</strong>; <code>nslookup</code> times out. Fix the pool and renew. VLAN 30 still works, which shows the fault is specific to the STAFF pool.</li>
+<li><strong>D — UDP 53 blocked by the ACL.</strong> PC2's <code>nslookup</code> times out while PC1's works; <code>show access-lists WIRELESS-IN</code> shows no line 15 and rising matches on line 20 (VLAN 30 to VLAN 99 denied). Re-add <code>15 permit udp 10.10.30.0 0.0.0.255 host 10.10.99.53 eq domain</code> on <strong>both</strong> switches.</li>
+</ul>
+<h3 id="2210-chapter-22-summary-notes-exam-revision">22.10 Chapter 22 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Resolution:</strong> client (stub) → recursive resolver → root → TLD → authoritative; answers are cached for their <strong>TTL</strong>. UDP 53 (TCP 53 for large answers and zone transfers).</li>
+<li><strong>A</strong> = IPv4, <strong>AAAA</strong> = IPv6, <strong>CNAME</strong> = alias → canonical name (not at the apex, no other records beside it), <strong>MX</strong> = preference + mail host name (lowest first; never an IP or CNAME), <strong>NS</strong> = authoritative servers (delegation), <strong>PTR</strong> = address → name in in-addr.arpa (reversed octets) or ip6.arpa (reversed nibbles).</li>
+<li><strong>Tools:</strong> <code>nslookup [-type=x] name [server]</code>, <code>dig name type [@server] [+short] [-x addr] [+trace]</code>, <code>Resolve-DnsName</code>.</li>
+<li><strong>Codes:</strong> NOERROR (with or without answers), NXDOMAIN (name missing), SERVFAIL (resolution failed), REFUSED; timeout = no server reached.</li>
+<li><strong>Method:</strong> works by IP? → query the name → read the code and data → fix the record, the client's DNS setting, the cache, or the UDP 53 path.</li>
+<li><strong>Client side:</strong> hosts file → OS cache → DNS server; <code>nslookup</code>/<code>dig</code> skip the first two. <code>ipconfig /flushdns</code>, <code>resolvectl flush-caches</code>.</li>
+<li><strong>IOS:</strong> <code>ip domain name</code>, <code>ip name-server</code>, <code>ip domain lookup</code>, <code>ip host</code>, <code>show hosts</code>; DHCP pool <code>dns-server</code>.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"If the site fails, it must be DNS"</td>
+<td>Test by IP address first</td>
+</tr>
+<tr>
+<td>"An MX record holds the mail server's IP address"</td>
+<td>It holds a host name; that name's A/AAAA gives the address</td>
+</tr>
+<tr>
+<td>"A changed record works immediately everywhere"</td>
+<td>Cached answers live until their TTL expires</td>
+</tr>
+<tr>
+<td>"nslookup proves what ping will use"</td>
+<td>nslookup ignores the hosts file and the OS cache</td>
+</tr>
+<tr>
+<td>"NXDOMAIN means the DNS server is down"</td>
+<td>The server answered: the name does not exist</td>
+</tr>
+<tr>
+<td>"PTR records are needed for the internet to work"</td>
+<td>They are optional for access, but mail, logging and some logins depend on them</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2211-practice-questions--chapter-22">22.11 Practice questions — Chapter 22</h3>
+<p><strong>1. (Recall)</strong> Which record type maps web1.campus.example to 2001:db8:10:40::80?</p>
+<p><strong>2. (Calculation)</strong> Write the PTR record name for 192.0.2.25.</p>
+<p><strong>3. (Concept)</strong> campus.example has <code>MX 10 mail1.campus.example</code> and <code>MX 20 mail2.campus.example</code>. Which server do senders try first, and when do they use the other?</p>
+<p><strong>4. (Output interpretation)</strong> nslookup prints <code>Server: UnKnown</code> followed by <code>Address: 10.10.99.53</code> and then a correct answer. Is name resolution broken?</p>
+<p><strong>5. (Output interpretation)</strong> <code>dig shop.campus.example</code> returns <code>status: NXDOMAIN</code>. What does that tell you, and what does it rule out?</p>
+<p><strong>6. (Output interpretation)</strong> <code>dig web1.campus.example AAAA</code> returns <code>status: NOERROR</code> with <code>ANSWER: 0</code>. What does that mean?</p>
+<p><strong>7. (Troubleshooting)</strong> A user can reach 10.10.40.80 by address but <code>nslookup www.campus.example</code> says the request timed out. List two likely causes and a command to check each.</p>
+<p><strong>8. (Troubleshooting)</strong> web1 moved to a new address and the A record was updated an hour ago. Some users still reach the old server. Why, and what can you do?</p>
+<p><strong>9. (Troubleshooting)</strong> The MX record for campus.example is <code>MX 10 10.10.40.25</code>. Mail from outside bounces. What is wrong?</p>
+<p><strong>10. (Concept)</strong> Can you create <code>campus.example CNAME web1.campus.example</code> so the bare domain opens the web server? Why or why not?</p>
+<p><strong>11. (Multiple response — choose three)</strong> Which record types return a host <strong>name</strong> as their data?</p>
+<p>A. A  B. AAAA  C. CNAME  D. MX  E. PTR</p>
+<p><strong>12. (Configuration)</strong> Write the IOS commands that let R1 resolve <code>web1</code> using the DNS server 10.10.99.53 and the domain campus.example.</p>
+<p><strong>13. (Evaluate an AI assistant)</strong> For the ticket "the intranet does not open", an AI assistant replies: <em>"It is a DNS problem. Restart the DNS server and flush its cache."</em> Evaluate the advice.</p>
+<h3 id="2212-answer-key-with-explanations">22.12 Answer key with explanations</h3>
+<ol>
+<li><strong>AAAA.</strong></li>
+<li><strong>25.2.0.192.in-addr.arpa</strong> — reverse the octets and append in-addr.arpa.</li>
+<li><strong>mail1</strong> (preference 10 is lower, so preferred). Senders use mail2 when mail1 does not respond.</li>
+<li><strong>No.</strong> The answer is correct; <code>UnKnown</code> only means the DNS server's own address has no PTR record.</li>
+<li>The server answered that the <strong>name does not exist</strong> — a missing record or a typo. It rules out "DNS server unreachable", because a server replied.</li>
+<li>The name <strong>exists</strong> but has <strong>no AAAA record</strong> (NODATA). Clients will use the A record; nothing is wrong unless IPv6 access was intended.</li>
+<li>(a) The client has the wrong or no DNS server — <code>ipconfig /all</code>; (b) UDP 53 to the server is blocked or not routed — <code>show access-lists</code> on the gateway, <code>ping 10.10.99.53</code>. Also possible: the DNS service is stopped.</li>
+<li>Clients and resolvers <strong>cached</strong> the old answer until its <strong>TTL</strong> expires. Flush client caches (<code>ipconfig /flushdns</code>) and resolver caches; next time lower the TTL before a planned change.</li>
+<li>An MX record must contain a <strong>host name</strong>, not an IP address. Use <code>MX 10 mail.campus.example</code> and give mail.campus.example an A record.</li>
+<li><strong>No.</strong> The zone apex already holds SOA and NS records, and a CNAME cannot share its name with other records. Use an A (and AAAA) record at the apex instead.</li>
+<li><strong>C, D and E.</strong> CNAME returns the canonical name, MX a mail host name, PTR a host name; A and AAAA return addresses.</li>
+<li><code>ip domain name campus.example</code>, <code>ip name-server 10.10.99.53</code>, and <code>ip domain lookup</code> (on by default).</li>
+<li><strong>Poor advice.</strong> It jumps to a conclusion and suggests a disruptive action. First test by IP address; then <code>nslookup</code> the name and read the response code and data (<a class="figref" href="#fig-22-3">Figure 22.3</a>). Restart the server only if the evidence points to it.</li>
+</ol>
+<h3 id="2213-chapter-22-figure-checklist">22.13 Chapter 22 figure checklist</h3>
+<p>All three figures were rendered, embedded beside the text they explain, and checked visually after rendering.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22.1</td>
+<td>Recursive DNS resolution and caching</td>
+<td>22.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>22.2</td>
+<td>Example zone records and how they chain</td>
+<td>22.3</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>22.3</td>
+<td>DNS diagnosis flow</td>
+<td>22.7</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as tables and command output:</strong> record types, tools, response codes, client caches, IOS commands and the troubleshooting table.</p>
+<h3 id="2214-chapter-22-progress-record">22.14 Chapter 22 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>4.4</strong> — diagnosing A, AAAA, CNAME, MX, NS and PTR records for host, web application and mail access.</p>
+<p><strong>Lab state after this chapter:</strong> DNS1 (10.10.99.53, SW1 Fa0/6) serves campus.example; R1's DHCP pools hand out the DNS server and domain; R1 resolves names.</p>
+<p><strong>Next:</strong> Chapter 23 — <strong>4.7 Configure Layer 2 security features</strong> (DHCP snooping, dynamic ARP inspection, storm control, RA guard, port security).</p></article><nav class="prevnext"><a class="pn prev" href="chapter-21.html"><small>← Chapter 21</small>NAT and PAT on IOS XE routers</a><a class="pn next" href="chapter-23.html"><small>Chapter 23 →</small>Layer 2 security features</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#221-learning-objectives">22.1 Learning objectives</a>
+<a href="#222-how-a-name-is-resolved">22.2 How a name is resolved</a>
+<a href="#223-the-six-record-types">22.3 The six record types</a>
+<a href="#224-query-tools-and-how-to-read-them">22.4 Query tools and how to read them</a>
+<a href="#225-the-client-side-caches-and-the-hosts-file">22.5 The client side: caches and the hosts file</a>
+<a href="#226-dns-on-ios-devices">22.6 DNS on IOS devices</a>
+<a href="#227-diagnosing-host-web-and-mail-access-by-name">22.7 Diagnosing host, web and mail access by name</a>
+<a href="#228-lab-221--a-campus-dns-server-then-real-world-records-intermediate">22.8 Lab 22.1 — A campus DNS server, then real-world records (Intermediate)</a>
+<a href="#229-lab-222--name-resolution-tickets-advanced">22.9 Lab 22.2 — Name-resolution tickets (Advanced)</a>
+<a href="#2210-chapter-22-summary-notes-exam-revision">22.10 Chapter 22 summary notes (exam revision)</a>
+<a href="#2211-practice-questions--chapter-22">22.11 Practice questions — Chapter 22</a>
+<a href="#2212-answer-key-with-explanations">22.12 Answer key with explanations</a>
+<a href="#2213-chapter-22-figure-checklist">22.13 Chapter 22 figure checklist</a>
+<a href="#2214-chapter-22-progress-record">22.14 Chapter 22 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

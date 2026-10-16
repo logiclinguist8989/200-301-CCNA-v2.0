@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 16 — Wireless principles · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 16: Wireless principles">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head blue">
+  <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
+  <h1><span class="num">Chapter 16</span>Wireless principles</h1>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~16 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="16"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.5 Describe wireless principles</strong> — <strong>1.5.a</strong> band and channel selection, <strong>1.5.b</strong> RF characteristics, <strong>1.5.c</strong> security protocols, <strong>1.5.d</strong> cause of interference. This is a <em>describe</em> objective: you must explain these ideas and apply them to scenarios, not configure radios from the CLI. Chapter 7 covered the switch ports that APs and controllers plug into.</p>
+<h3 id="161-learning-objectives">16.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Explain how an 802.11 WLAN is organised (AP, SSID, BSSID, BSS, ESS) and compare the 802.11 standards.</li>
+<li>Choose bands, channels and channel widths for a set of access points.</li>
+<li>Explain RF terms — dBm, RSSI, SNR, attenuation, reflection, multipath — and use them to judge signal quality.</li>
+<li>Compare WEP, WPA, WPA2 and WPA3, Personal and Enterprise modes, and 802.1X.</li>
+<li>Identify common causes of wireless interference and their symptoms.</li>
+<li>Build a secured WLAN with a sensible channel plan in Packet Tracer.</li>
+</ol>
+<h3 id="162-80211-basics">16.2 802.11 basics</h3>
+<p>A <strong>wireless LAN (WLAN)</strong> carries Ethernet-like frames over radio. The <strong>access point (AP)</strong> is the bridge between the radio and the wired network.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SSID</strong></td>
+<td>The network name users see (up to 32 characters), for example <em>Staff-WiFi</em></td>
+</tr>
+<tr>
+<td><strong>BSS</strong> (basic service set)</td>
+<td>One AP radio and the clients associated to it</td>
+</tr>
+<tr>
+<td><strong>BSSID</strong></td>
+<td>The MAC address of that AP radio — identifies the BSS</td>
+</tr>
+<tr>
+<td><strong>ESS</strong> (extended service set)</td>
+<td>Several APs advertising the same SSID on the same network, so clients <strong>roam</strong> between them</td>
+</tr>
+<tr>
+<td><strong>IBSS</strong> (ad hoc)</td>
+<td>Clients talking directly with no AP</td>
+</tr>
+<tr>
+<td><strong>Association</strong></td>
+<td>A client joining a BSS (after authentication)</td>
+</tr>
+<tr>
+<td><strong>Beacon</strong></td>
+<td>Frame an AP broadcasts about 10 times a second to advertise its SSIDs and capabilities</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Wi-Fi is half duplex and shared.</strong> Only one station can transmit on a channel at a time, so 802.11 uses <strong>CSMA/CA</strong> (collision <em>avoidance</em>): listen before sending, wait a random back-off, and expect an acknowledgment for every unicast frame. More clients and more APs on the same channel mean more waiting.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Wi-Fi name</th>
+<th>Bands</th>
+<th>Maximum data rate (theoretical)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>802.11b</td>
+<td>—</td>
+<td>2.4 GHz</td>
+<td>11 Mb/s</td>
+</tr>
+<tr>
+<td>802.11a</td>
+<td>—</td>
+<td>5 GHz</td>
+<td>54 Mb/s</td>
+</tr>
+<tr>
+<td>802.11g</td>
+<td>—</td>
+<td>2.4 GHz</td>
+<td>54 Mb/s</td>
+</tr>
+<tr>
+<td>802.11n</td>
+<td>Wi-Fi 4</td>
+<td>2.4 and 5 GHz</td>
+<td>600 Mb/s</td>
+</tr>
+<tr>
+<td>802.11ac</td>
+<td>Wi-Fi 5</td>
+<td>5 GHz</td>
+<td>about 6.9 Gb/s</td>
+</tr>
+<tr>
+<td>802.11ax</td>
+<td>Wi-Fi 6 / 6E (6E adds 6 GHz)</td>
+<td>2.4, 5 and 6 GHz</td>
+<td>about 9.6 Gb/s</td>
+</tr>
+<tr>
+<td>802.11be</td>
+<td>Wi-Fi 7</td>
+<td>2.4, 5 and 6 GHz</td>
+<td>about 46 Gb/s</td>
+</tr>
+</tbody>
+</table></div>
+<p>Real throughput is far lower — often less than half — because of the shared medium, protocol overhead and distance. Faster standards rely on wider channels, more <strong>spatial streams</strong> (MIMO: several antennas sending different data at once) and denser modulation, which need a strong, clean signal.</p>
+<h3 id="163-bands-and-channels-15a">16.3 Bands and channels (1.5.a)</h3>
+<p>A <strong>band</strong> is a range of frequencies; a <strong>channel</strong> is a slice of a band that one BSS uses. Which channels you may use, and at what power, is set by each country's regulator — always check local rules (in Nepal, the Nepal Telecommunications Authority).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>2.4 GHz</th>
+<th>5 GHz</th>
+<th>6 GHz (Wi-Fi 6E / 7)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Channels</td>
+<td>1–13 in most countries (1–11 in the USA), 5 MHz apart, each about 20–22 MHz wide</td>
+<td>About 25 non-overlapping 20 MHz channels (36–165), grouped into U-NII bands</td>
+<td>Up to 59 non-overlapping 20 MHz channels where the full band is allowed</td>
+</tr>
+<tr>
+<td><strong>Non-overlapping</strong></td>
+<td>Only <strong>1, 6 and 11</strong></td>
+<td>All of them at 20 MHz</td>
+<td>All of them</td>
+</tr>
+<tr>
+<td>Range / penetration</td>
+<td>Longest, best through walls</td>
+<td>Shorter</td>
+<td>Shortest</td>
+</tr>
+<tr>
+<td>Interference</td>
+<td>Crowded: neighbours, Bluetooth, microwave ovens</td>
+<td>Much less; some channels need <strong>DFS</strong> (avoid radar)</td>
+<td>Very little; only new devices; <strong>WPA3 required</strong></td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Coverage, old and IoT devices</td>
+<td>Most enterprise traffic</td>
+<td>High-density, high-speed areas</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Why 1, 6 and 11?</strong> A 2.4 GHz channel is about 22 MHz wide but channels are only 5 MHz apart, so neighbouring channel numbers overlap (<a class="figref" href="#fig-16-1">Figure 16.1</a>). Channels five apart do not overlap, which leaves three usable channels in most of the world.</p>
+<figure class="fig" id="fig-16-1"><button class="zoom" aria-label="Enlarge figure 16.1"><img src="assets/figures/ch16/fig-16-01-24ghz-channel-overlap.svg" alt="Figure 16.1 — 2.4 GHz channels 1–13 and why only 1, 6 and 11 avoid overlap" loading="lazy"></button><figcaption><a class="fignum" href="#fig-16-1">Figure 16.1</a> 2.4 GHz channels 1–13 and why only 1, 6 and 11 avoid overlap</figcaption></figure>
+
+<p><a class="figref" href="#fig-16-1">Figure 16.1</a> draws every 2.4 GHz channel to scale on one frequency axis. The three highlighted arcs never touch each other, while each grey arc overlaps one or two of them.</p>
+<p><strong>Channel width.</strong> 802.11n and later can <strong>bond</strong> adjacent 20 MHz channels into 40, 80, 160 (and on Wi-Fi 7, 320) MHz channels. Wider channels carry more data but leave fewer separate channels for neighbouring APs. In 2.4 GHz use 20 MHz only; in busy 5 GHz offices 20 or 40 MHz is common; 6 GHz has room for 80 MHz and wider.</p>
+<p><strong>Choosing channels for several APs (<a class="figref" href="#fig-16-2">Figure 16.2</a>):</strong></p>
+<ol>
+<li>Neighbouring APs use <strong>different, non-overlapping</strong> channels; reuse a channel only for APs far enough apart not to hear each other strongly.</li>
+<li>On 2.4 GHz, alternate 1, 6, 11 in a honeycomb pattern.</li>
+<li>Set <strong>transmit power</strong> so cells overlap by roughly 15–20 % for roaming — not more; louder is not better.</li>
+<li>Prefer 5 GHz (and 6 GHz) for clients; consider turning off some 2.4 GHz radios in dense areas.</li>
+<li>In a controller-based WLAN, <strong>Radio Resource Management (RRM)</strong> on the WLC chooses channels and power automatically and adapts to interference.</li>
+</ol>
+<figure class="fig" id="fig-16-2"><button class="zoom" aria-label="Enlarge figure 16.2"><img src="assets/figures/ch16/fig-16-02-channel-reuse-plan.svg" alt="Figure 16.2 — A 2.4 GHz channel reuse plan with channels 1, 6 and 11" loading="lazy"></button><figcaption><a class="fignum" href="#fig-16-2">Figure 16.2</a> A 2.4 GHz channel reuse plan with channels 1, 6 and 11</figcaption></figure>
+
+<p><a class="figref" href="#fig-16-2">Figure 16.2</a> is the honeycomb from step 2: each colour is one channel, and wherever two cells overlap they carry different channels, so neighbours never take turns on the same frequency.</p>
+<p>Two failures of channel planning are tested often: <strong>co-channel interference</strong> (APs on the <em>same</em> channel hear each other and must take turns — capacity drops, but nothing is corrupted) and <strong>adjacent-channel interference</strong> (APs on <em>overlapping</em> channels such as 1 and 3 corrupt each other's frames — worse).</p>
+<h3 id="164-rf-characteristics-15b">16.4 RF characteristics (1.5.b)</h3>
+<p>Radio frequency (RF) signals are electromagnetic waves.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frequency</strong></td>
+<td>Cycles per second, in hertz (Hz). Wi-Fi uses 2.4, 5 and 6 GHz</td>
+</tr>
+<tr>
+<td><strong>Wavelength</strong></td>
+<td>Length of one cycle: about 12.5 cm at 2.4 GHz, 6 cm at 5 GHz. Shorter waves lose strength faster and pass through obstacles less well</td>
+</tr>
+<tr>
+<td><strong>Amplitude</strong></td>
+<td>Signal strength</td>
+</tr>
+<tr>
+<td><strong>Modulation</strong></td>
+<td>How data is encoded on the wave; denser modulation (more bits per symbol) needs a cleaner signal</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Power and decibels.</strong> Wireless power is tiny and spans a huge range, so it is expressed in <strong>dBm</strong> — decibels relative to 1 milliwatt.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 dBm = 1 mW</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>+3 dB doubles</strong> the power, −3 dB halves it</td>
+<td>20 dBm = 100 mW, 17 dBm = 50 mW</td>
+</tr>
+<tr>
+<td><strong>+10 dB is ten times</strong> the power, −10 dB a tenth</td>
+<td>10 dBm = 10 mW, −10 dBm = 0.1 mW</td>
+</tr>
+<tr>
+<td>Received Wi-Fi signals are negative dBm</td>
+<td>−65 dBm is <strong>stronger</strong> than −80 dBm</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Signal quality measures:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Meaning</th>
+<th>Typical guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RSSI</strong> (received signal strength)</td>
+<td>How strong the AP's signal is at the client, in dBm</td>
+<td>−67 dBm or better for voice and video; −70 dBm adequate for data; −80 dBm poor</td>
+</tr>
+<tr>
+<td><strong>Noise floor</strong></td>
+<td>Background RF energy on the channel</td>
+<td>Often about −90 to −95 dBm</td>
+</tr>
+<tr>
+<td><strong>SNR</strong> (signal-to-noise ratio)</td>
+<td>Signal minus noise, in dB</td>
+<td>25 dB or more good; below 15 dB unreliable</td>
+</tr>
+</tbody>
+</table></div>
+<p>Example: RSSI −65 dBm with a noise floor of −92 dBm gives <strong>SNR = 27 dB</strong> — good. The same RSSI next to a microwave oven raising the noise to −75 dBm gives only 10 dB, and the connection struggles even though the "bars" look full.</p>
+<p><strong>How signals behave on the way:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>What happens</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free-space path loss</td>
+<td>Signal weakens with distance (faster at higher frequency)</td>
+<td>5 GHz cells are smaller than 2.4 GHz cells</td>
+</tr>
+<tr>
+<td><strong>Absorption</strong></td>
+<td>Material soaks up energy</td>
+<td>Water, people, concrete walls</td>
+</tr>
+<tr>
+<td><strong>Reflection</strong></td>
+<td>Signal bounces off smooth surfaces</td>
+<td>Metal cabinets, glass, lift shafts</td>
+</tr>
+<tr>
+<td>Refraction</td>
+<td>Signal bends passing between materials</td>
+<td>Air layers, glass</td>
+</tr>
+<tr>
+<td>Scattering</td>
+<td>Signal spreads in many directions</td>
+<td>Rough surfaces, foliage, dust</td>
+</tr>
+<tr>
+<td>Diffraction</td>
+<td>Signal bends around an obstacle, leaving an RF shadow behind it</td>
+<td>Corners, pillars</td>
+</tr>
+<tr>
+<td><strong>Multipath</strong></td>
+<td>Copies arrive by different paths at slightly different times</td>
+<td>Reflections indoors; MIMO turns it into an advantage, older radios suffer</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Antennas and EIRP.</strong> An <strong>omnidirectional</strong> antenna radiates in all horizontal directions (ceiling APs); a <strong>directional</strong> antenna (patch, Yagi, dish) focuses energy one way for corridors, warehouses or point-to-point bridges. Antenna <strong>gain</strong> is in <strong>dBi</strong>. The power that actually leaves the antenna is <strong>EIRP = transmitter power + antenna gain − cable loss</strong>: for example 17 dBm + 6 dBi − 2 dB = 21 dBm. Regulators limit EIRP, not just transmitter power.</p>
+<h3 id="165-wireless-security-protocols-15c">16.5 Wireless security protocols (1.5.c)</h3>
+<p>Radio reaches the car park and the next building, so a WLAN must <strong>authenticate</strong> who joins and <strong>encrypt</strong> what they send.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Year</th>
+<th>Encryption</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open</td>
+<td>—</td>
+<td>None</td>
+<td>Guest only, with a captive portal; data visible to anyone</td>
+</tr>
+<tr>
+<td><strong>WEP</strong></td>
+<td>1999</td>
+<td>RC4, static key</td>
+<td><strong>Broken</strong> — cracked in minutes; never use</td>
+</tr>
+<tr>
+<td><strong>WPA</strong></td>
+<td>2003</td>
+<td><strong>TKIP</strong> (RC4-based)</td>
+<td>Interim fix; deprecated</td>
+</tr>
+<tr>
+<td><strong>WPA2</strong></td>
+<td>2004</td>
+<td><strong>AES-CCMP</strong></td>
+<td>Still widely used; secure with a strong passphrase</td>
+</tr>
+<tr>
+<td><strong>WPA3</strong></td>
+<td>2018</td>
+<td>AES-CCMP or <strong>GCMP-256</strong> (192-bit Enterprise mode)</td>
+<td>Current; <strong>SAE</strong> replaces PSK; <strong>PMF</strong> (protected management frames) mandatory; required on 6 GHz</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Personal versus Enterprise:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Personal</th>
+<th>Enterprise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Credentials</td>
+<td>One shared passphrase for everyone (WPA2-<strong>PSK</strong>, WPA3-<strong>SAE</strong>)</td>
+<td>Each user or device has its own credentials</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Done by the AP itself</td>
+<td><strong>802.1X / EAP</strong> with a <strong>RADIUS</strong> server (for example Cisco ISE)</td>
+</tr>
+<tr>
+<td>When someone leaves</td>
+<td>Change the passphrase on every device</td>
+<td>Disable one account</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Home, small office, IoT</td>
+<td>Organisations</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>WPA3-Personal (SAE)</strong> fixes WPA2-PSK's weakness: with PSK, an attacker who captures the four-way handshake can try passwords offline; SAE ("Dragonfly") forces every guess to be an online exchange and gives <strong>forward secrecy</strong>. <strong>OWE (Enhanced Open)</strong> encrypts open guest networks without a password.</p>
+<p><strong>802.1X roles</strong> (<a class="figref" href="#fig-16-3">Figure 16.3</a>): the <strong>supplicant</strong> (client software), the <strong>authenticator</strong> (the AP, or the WLC in a controller-based network) and the <strong>authentication server</strong> (RADIUS). Common EAP methods: <strong>EAP-TLS</strong> (certificates on both sides — strongest), <strong>PEAP</strong> (server certificate plus the user's password inside a TLS tunnel), and Cisco's <strong>EAP-FAST</strong>. The same RADIUS server can also place the user in a VLAN, which links to AAA in Chapter 18.</p>
+<figure class="fig" id="fig-16-3"><button class="zoom" aria-label="Enlarge figure 16.3"><img src="assets/figures/ch16/fig-16-03-8021x-flow.svg" alt="Figure 16.3 — WPA2/WPA3-Enterprise: 802.1X authentication between supplicant, authenticator and RADIUS server" loading="lazy"></button><figcaption><a class="fignum" href="#fig-16-3">Figure 16.3</a> WPA2/WPA3-Enterprise: 802.1X authentication between supplicant, authenticator and RADIUS server</figcaption></figure>
+
+<p><a class="figref" href="#fig-16-3">Figure 16.3</a> runs downward in time. The green Access-Accept is the decision point; only after it and the four-way handshake does the thick blue line of encrypted user traffic start.</p>
+<p><strong>Not security:</strong> hiding the SSID (it still appears in client probes) and MAC filtering (MAC addresses are easily copied) only add inconvenience.</p>
+<h3 id="166-causes-of-interference-15d">16.6 Causes of interference (1.5.d)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Effect</th>
+<th>Remedy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Co-channel interference (CCI)</strong> — nearby APs on the same channel</td>
+<td>APs and clients take turns; capacity drops</td>
+<td>Better channel plan, lower power, fewer 2.4 GHz radios</td>
+</tr>
+<tr>
+<td><strong>Adjacent-channel interference (ACI)</strong> — overlapping channels (for example 1 and 3)</td>
+<td>Corrupted frames, retries</td>
+<td>Only 1, 6, 11 in 2.4 GHz; avoid overlapping bonded channels</td>
+</tr>
+<tr>
+<td><strong>Non-Wi-Fi devices</strong> in 2.4 GHz: microwave ovens (about 2.45 GHz), Bluetooth, cordless phones, baby monitors, wireless cameras</td>
+<td>Noise floor rises, SNR falls</td>
+<td>Move to 5/6 GHz; move or replace the device</td>
+</tr>
+<tr>
+<td><strong>Radar</strong> on 5 GHz DFS channels</td>
+<td>AP must leave the channel at once; clients briefly disconnected</td>
+<td>Avoid DFS channels near airports or weather radar</td>
+</tr>
+<tr>
+<td><strong>Physical obstacles</strong> — metal, concrete, water, lift shafts</td>
+<td>Absorption, reflection, dead spots</td>
+<td>Survey and place APs accordingly</td>
+</tr>
+<tr>
+<td><strong>Too much transmit power</strong></td>
+<td>Large overlapping cells, more CCI, "sticky" clients</td>
+<td>Lower power, more APs</td>
+</tr>
+<tr>
+<td><strong>Too many SSIDs</strong></td>
+<td>Each SSID sends beacons; airtime wasted</td>
+<td>Keep to about three or four SSIDs</td>
+</tr>
+<tr>
+<td><strong>Rogue or neighbour APs</strong></td>
+<td>Extra CCI; possible security risk</td>
+<td>Rogue detection on the WLC</td>
+</tr>
+<tr>
+<td><strong>Hidden node</strong> — two clients cannot hear each other but both reach the AP</td>
+<td>Collisions at the AP</td>
+<td>Better AP placement; RTS/CTS</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Symptoms</strong> users report: slow Wi-Fi despite "full bars" (good RSSI, poor SNR), frequent drops, low data rates and high retry counts. <strong>Tools:</strong> the client's RSSI and SNR readings, WLC dashboards and RRM reports, a <strong>spectrum analyzer</strong> to see non-Wi-Fi sources (Cisco CleanAir does this in the AP), and a site survey.</p>
+<h3 id="167-packet-tracer-lab-161--a-secure-two-ap-wlan-with-a-channel-plan-beginnerintermediate">16.7 Packet Tracer Lab 16.1 — A secure two-AP WLAN with a channel plan (Beginner–Intermediate)</h3>
+<p><strong>Objectives:</strong> 1.5.a, 1.5.c (1.5.b and 1.5.d as observation and discussion). <strong>New file.</strong> <strong>You will:</strong> build an ESS of two APs with one SSID on non-overlapping channels, secure it with WPA2-Personal (AES), connect laptops by DHCP, and test what happens with wrong security settings.</p>
+<p><strong>Packet Tracer limits:</strong> Packet Tracer shows association and a simple signal indicator, but it does <strong>not</strong> model RF interference, SNR or channel overlap realistically. Channel planning here is configuration practice; 16.3 and 16.6 explain the real-world effects.</p>
+<figure class="fig" id="fig-16-4"><button class="zoom" aria-label="Enlarge figure 16.4"><img src="assets/figures/ch16/fig-16-04-lab-16-1-topology.svg" alt="Figure 16.4 — Lab 16.1 topology: an ESS of two APs on channels 1 and 6" loading="lazy"></button><figcaption><a class="fignum" href="#fig-16-4">Figure 16.4</a> Lab 16.1 topology: an ESS of two APs on channels 1 and 6</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-16-4">Figure 16.4</a> the wired part is at the top and the two radio cells below; where the cells overlap, a laptop can roam between APs without changing SSID or address.</p>
+<p><strong>Devices:</strong> 1 × ISR4331 (R-W), 1 × 2960 (SW-W), 2 × AccessPoint-PT (AP-A, AP-B), 2 × Laptop-PT (L1, L2).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Connection</th>
+<th>Settings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R-W</td>
+<td>G0/0/0 → SW-W Fa0/24</td>
+<td>192.168.30.1/24, DHCP pool WLAN</td>
+</tr>
+<tr>
+<td>AP-A</td>
+<td>Port 0 → SW-W Fa0/1</td>
+<td>SSID Staff-WiFi, channel 1, WPA2-PSK, AES</td>
+</tr>
+<tr>
+<td>AP-B</td>
+<td>Port 0 → SW-W Fa0/2</td>
+<td>SSID Staff-WiFi, channel 6, WPA2-PSK, AES</td>
+</tr>
+<tr>
+<td>L1, L2</td>
+<td>Wireless</td>
+<td>WPC300N wireless card, DHCP</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Step 1 — router and DHCP</strong></p>
+<pre><code>enable
+configure terminal
+hostname R-W
+interface gigabitethernet0/0/0
+ ip address 192.168.30.1 255.255.255.0
+ no shutdown
+exit
+ip dhcp excluded-address 192.168.30.1 192.168.30.10
+ip dhcp pool WLAN
+ network 192.168.30.0 255.255.255.0
+ default-router 192.168.30.1
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>Step 2 — access points</strong> (Config tab → Port 1, the wireless port)</p>
+<ol>
+<li>AP-A: SSID <strong>Staff-WiFi</strong>, Channel <strong>1</strong>, Authentication <strong>WPA2-PSK</strong>, pass phrase <code>Lab16-Strong-Passphrase</code>, Encryption <strong>AES</strong>.</li>
+<li>AP-B: identical, but Channel <strong>6</strong>. Same SSID and security on both APs makes them one ESS, so laptops can roam.</li>
+</ol>
+<p><strong>Step 3 — laptops.</strong> Power off each laptop (Physical tab), remove the wired NIC module, insert <strong>WPC300N</strong>, power on. Then Desktop → PC Wireless → Connect: choose Staff-WiFi, enter the passphrase. (Alternatively Config → Wireless0: SSID, WPA2-PSK, key, DHCP.)</p>
+<p><strong>Verification and expected results</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>How</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Association</td>
+<td>Dashed line from each laptop to an AP</td>
+<td>Each laptop associated to the nearest AP</td>
+</tr>
+<tr>
+<td>Address</td>
+<td>Laptop <code>ipconfig</code></td>
+<td>192.168.30.11+, gateway .1</td>
+</tr>
+<tr>
+<td>Reachability</td>
+<td>Laptop <code>ping 192.168.30.1</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td>Leases</td>
+<td>R-W <code>show ip dhcp binding</code></td>
+<td>Two wireless clients</td>
+</tr>
+<tr>
+<td>Roaming</td>
+<td>Drag L1 from near AP-A to near AP-B</td>
+<td>Association line moves to AP-B; ping resumes</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Experiments</strong></p>
+<ol>
+<li><strong>Wrong passphrase:</strong> reconnect L2 with one wrong character. It never associates, and gets no address.</li>
+<li><strong>Security mismatch:</strong> set L2 to WPA2-PSK with <strong>TKIP</strong> instead of AES. Association fails: both sides must agree on the cipher.</li>
+<li><strong>Personal versus Enterprise (optional; depends on your version):</strong> if AP-A offers <strong>WPA2</strong> (Enterprise), add a Server-PT at 192.168.30.5 with the <strong>AAA</strong> service as a RADIUS server, enter the AP as a client with a shared secret, create user <em>alice</em>, and point AP-A at 192.168.30.5. Connect L1 as alice. If the option is missing, use <a class="figref" href="#fig-16-3">Figure 16.3</a> instead.</li>
+<li><strong>Channel discussion:</strong> change AP-B to channel 2. Packet Tracer still works — explain from <a class="figref" href="#fig-16-1">Figure 16.1</a> why a real network would now suffer adjacent-channel interference, and set it back to 6.</li>
+</ol>
+<p><strong>Questions after the lab</strong></p>
+<ol>
+<li>Why do both APs use the same SSID but different channels?</li>
+<li>Which channel would a third AP in between them use?</li>
+<li>Why is WPA2-PSK with a short passphrase weaker than WPA3-SAE with the same passphrase?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Two APs, one SSID, channels 1 and 6, WPA2-PSK AES</li>
+<li>[ ] Both laptops associated, addressed by DHCP and pinging the gateway</li>
+<li>[ ] Roaming observed</li>
+<li>[ ] Wrong passphrase and cipher mismatch reproduced</li>
+<li>[ ] Questions answered (third AP: channel 11)</li>
+</ul>
+<h3 id="168-chapter-16-summary-notes-exam-revision">16.8 Chapter 16 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Terms:</strong> SSID (name), BSS (one AP radio + clients), BSSID (AP radio MAC), ESS (many APs, one SSID, roaming), IBSS (ad hoc). Wi-Fi is half duplex, <strong>CSMA/CA</strong>.</li>
+<li><strong>Standards:</strong> 11b/g 2.4 GHz; 11a 5 GHz; 11n Wi-Fi 4; 11ac Wi-Fi 5 (5 GHz); 11ax Wi-Fi 6/6E (6E adds 6 GHz); 11be Wi-Fi 7.</li>
+<li><strong>2.4 GHz:</strong> longest range, crowded, only <strong>1, 6, 11</strong> non-overlapping. <strong>5 GHz:</strong> many non-overlapping channels, DFS on some. <strong>6 GHz:</strong> most channels, WPA3 required, new devices only.</li>
+<li><strong>Channel plan:</strong> neighbours on different non-overlapping channels; 20 MHz in 2.4 GHz; moderate power; RRM automates it on a WLC. CCI = same channel (sharing); ACI = overlapping channels (corruption).</li>
+<li><strong>RF:</strong> 0 dBm = 1 mW; +3 dB ×2; +10 dB ×10; RSSI −67 dBm for voice; <strong>SNR = signal − noise</strong>, ≥ 25 dB good. Absorption, reflection, refraction, scattering, diffraction, multipath. EIRP = Tx + gain − loss.</li>
+<li><strong>Security:</strong> WEP broken; WPA = TKIP (deprecated); <strong>WPA2 = AES-CCMP</strong>; <strong>WPA3 = SAE, PMF</strong>, GCMP-256 in 192-bit Enterprise. Personal = shared key; Enterprise = <strong>802.1X/EAP + RADIUS</strong> (supplicant, authenticator, authentication server).</li>
+<li><strong>Interference:</strong> CCI, ACI, microwaves, Bluetooth, cordless phones, radar (DFS), obstacles, too much power, too many SSIDs.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"−80 dBm is stronger than −60 dBm"</td>
+<td>Closer to zero is stronger: −60 dBm is 100 times stronger</td>
+</tr>
+<tr>
+<td>"Full bars means good Wi-Fi"</td>
+<td>Bars show RSSI; poor SNR or congestion still makes it slow</td>
+</tr>
+<tr>
+<td>"Hidden SSIDs are secure"</td>
+<td>The SSID still appears in client probes; use WPA2/WPA3</td>
+</tr>
+<tr>
+<td>"More transmit power is always better"</td>
+<td>It enlarges cells, increases interference and mismatches clients</td>
+</tr>
+<tr>
+<td>"Channels 1, 2 and 3 give three separate channels"</td>
+<td>They overlap heavily; use 1, 6, 11</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="169-practice-questions--chapter-16">16.9 Practice questions — Chapter 16</h3>
+<p><strong>1. (Recall)</strong> Which three 2.4 GHz channels do not overlap?</p>
+<p>A. 1, 5, 9  B. 1, 6, 11  C. 2, 7, 12  D. 1, 2, 3</p>
+<p><strong>2. (Concept)</strong> What is the difference between an SSID and a BSSID?</p>
+<p><strong>3. (Calculation)</strong> An AP transmits at 20 dBm. How many milliwatts is that? What is 23 dBm?</p>
+<p><strong>4. (Calculation)</strong> A client measures RSSI −68 dBm and a noise floor of −90 dBm. What is the SNR, and is it adequate?</p>
+<p><strong>5. (Design)</strong> Three APs line a corridor and each cell overlaps the next. Assign 2.4 GHz channels.</p>
+<p><strong>6. (Interference)</strong> Users near the canteen report Wi-Fi drops every lunchtime on 2.4 GHz only. What is the likely cause and remedy?</p>
+<p><strong>7. (Security)</strong> Which protocol uses AES-CCMP and is the minimum acceptable for a new WLAN?</p>
+<p>A. WEP  B. WPA (TKIP)  C. WPA2  D. Open with MAC filtering</p>
+<p><strong>8. (Security)</strong> What advantage does WPA3-SAE have over WPA2-PSK?</p>
+<p><strong>9. (Multiple response — choose two)</strong> Which are roles in 802.1X?</p>
+<p>A. Supplicant  B. Authenticator  C. Root bridge  D. Relay agent  E. Designated router</p>
+<p><strong>10. (Concept)</strong> Why do 5 GHz cells cover less area than 2.4 GHz cells at the same power?</p>
+<p><strong>11. (Concept)</strong> What is DFS, and which band uses it?</p>
+<p><strong>12. (Interference)</strong> Two neighbouring APs both use channel 6. Name this type of interference and its effect.</p>
+<p><strong>13. (Evaluate an AI assistant)</strong> A network assistant suggests: <em>"Users complain Wi-Fi is slow, so raise every AP to maximum transmit power and use 40 MHz channels on 2.4 GHz."</em> Is that good advice?</p>
+<h3 id="1610-answer-key-with-explanations">16.10 Answer key with explanations</h3>
+<ol>
+<li><strong>B.</strong> Channels 5 MHz apart overlap; channels 1, 6 and 11 are 25 MHz apart.</li>
+<li>The <strong>SSID</strong> is the network name, shared by every AP in an ESS. The <strong>BSSID</strong> is the MAC address of one AP radio, unique to each BSS.</li>
+<li>20 dBm = <strong>100 mW</strong> (+10 dB ×10 twice from 1 mW). 23 dBm = <strong>200 mW</strong> (+3 dB doubles).</li>
+<li>SNR = −68 − (−90) = <strong>22 dB</strong> — usable for data but below the 25 dB often wanted for voice and video.</li>
+<li><strong>1, 6, 11</strong> in turn (or 1, 6, 1 if only two channels were needed); neighbours must differ.</li>
+<li>A <strong>microwave oven</strong> (about 2.45 GHz) raising the noise floor. Move users to 5 GHz, or move or shield the AP; a spectrum analyzer confirms it.</li>
+<li><strong>C.</strong> WEP is broken, WPA/TKIP is deprecated, and MAC filtering is not encryption.</li>
+<li>SAE resists <strong>offline dictionary attacks</strong> (each password guess needs a live exchange) and provides <strong>forward secrecy</strong>; WPA3 also requires protected management frames.</li>
+<li><strong>A and B</strong> (the third is the authentication server). Root bridge, relay agent and DR belong to STP, DHCP and OSPF.</li>
+<li>Higher frequency signals lose strength faster with distance (path loss) and are absorbed more by walls.</li>
+<li><strong>Dynamic Frequency Selection</strong>: on some <strong>5 GHz</strong> channels APs must check for radar and leave the channel if radar appears.</li>
+<li><strong>Co-channel interference</strong>: they must share airtime and take turns, so capacity drops (frames are not corrupted).</li>
+<li><strong>No.</strong> Maximum power enlarges cells and increases co-channel interference, and 40 MHz in 2.4 GHz leaves only one usable non-overlapping channel. Investigate SNR, channel plan and client load; use 5/6 GHz for capacity.</li>
+</ol>
+<h3 id="1611-chapter-16-figure-checklist">16.11 Chapter 16 figure checklist</h3>
+<p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-16-1">Figure 16.1</a> had channel numbers crossing arcs; <a class="figref" href="#fig-16-2">Figure 16.2</a> first gave two touching cells the same channel (a real error, corrected) and clipped its footnote; <a class="figref" href="#fig-16-3">Figure 16.3</a>'s handshake line lacked arrowheads; <a class="figref" href="#fig-16-4">Figure 16.4</a> needed wider boxes and truly overlapping cells. All were fixed and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16.1</td>
+<td>2.4 GHz channel overlap</td>
+<td>16.3</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>16.2</td>
+<td>Channel reuse plan with 1, 6, 11</td>
+<td>16.3</td>
+<td>Rendered, embedded, checked after two fixes</td>
+</tr>
+<tr>
+<td>16.3</td>
+<td>802.1X authentication flow</td>
+<td>16.5</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>16.4</td>
+<td>Lab 16.1 topology</td>
+<td>16.7</td>
+<td>Rendered, embedded, checked after fixes</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as tables instead of drawings:</strong> standards, bands, dBm rules, RSSI/SNR guidance, signal behaviours, security protocols and interference causes.</p>
+<h3 id="1612-chapter-16-progress-record">16.12 Chapter 16 progress record</h3>
+<p><strong>Objectives completed:</strong> <strong>1.5</strong> and <strong>1.5.a–d</strong> — bands and channels, RF characteristics, security protocols and causes of interference.</p>
+<p><strong>Related objectives that reuse this chapter:</strong> 2.2.b AP switch ports (Chapter 7), 1.6 wireless client troubleshooting (Chapter 17), 4.1 RADIUS (Chapter 18).</p>
+<p><strong>Next:</strong> Chapter 17 — <strong>1.6 Troubleshoot wired and wireless client connectivity</strong> (IP configuration, reachability and wireless security parameters on Windows, macOS and Linux).</p></article><nav class="prevnext"><a class="pn prev" href="chapter-15.html"><small>← Chapter 15</small>The troubleshooting toolkit</a><a class="pn next" href="chapter-17.html"><small>Chapter 17 →</small>Client connectivity on Windows, macOS and Linux</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#161-learning-objectives">16.1 Learning objectives</a>
+<a href="#162-80211-basics">16.2 802.11 basics</a>
+<a href="#163-bands-and-channels-15a">16.3 Bands and channels (1.5.a)</a>
+<a href="#164-rf-characteristics-15b">16.4 RF characteristics (1.5.b)</a>
+<a href="#165-wireless-security-protocols-15c">16.5 Wireless security protocols (1.5.c)</a>
+<a href="#166-causes-of-interference-15d">16.6 Causes of interference (1.5.d)</a>
+<a href="#167-packet-tracer-lab-161--a-secure-two-ap-wlan-with-a-channel-plan-beginnerintermediate">16.7 Packet Tracer Lab 16.1 — A secure two-AP WLAN with a channel plan (Beginner–Intermediate)</a>
+<a href="#168-chapter-16-summary-notes-exam-revision">16.8 Chapter 16 summary notes (exam revision)</a>
+<a href="#169-practice-questions--chapter-16">16.9 Practice questions — Chapter 16</a>
+<a href="#1610-answer-key-with-explanations">16.10 Answer key with explanations</a>
+<a href="#1611-chapter-16-figure-checklist">16.11 Chapter 16 figure checklist</a>
+<a href="#1612-chapter-16-progress-record">16.12 Chapter 16 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

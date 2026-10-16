@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 571" width="1160" height="571" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 1.2 — IP addresses stay the same end to end; MAC addresses change at each router</title>
+<desc id="d">PC1 opens https://203.0.113.80 — the frame is rebuilt when R1 forwards the packet</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#7357d1"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="570" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 1.2</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">IP addresses stay the same end to end; MAC addresses change at each router</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">PC1 opens https://203.0.113.80 — the frame is rebuilt when R1 forwards the packet</text>
+<line x1="142.0" y1="190.0" x2="338.0" y2="190.0" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+<rect x="173.9" y="180.7" width="28.1" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="188.0" y="193.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">Fa0</text>
+<rect x="271.2" y="180.7" width="41.5" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="292.0" y="193.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">Fa0/1</text>
+<line x1="424.0" y1="190.0" x2="612.0" y2="190.0" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+<rect x="449.2" y="180.7" width="41.5" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="470.0" y="193.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">Gi0/2</text>
+<rect x="541.9" y="180.7" width="48.3" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="566.0" y="193.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">G0/0/0</text>
+<line x1="688.0" y1="190.0" x2="814.0" y2="190.0" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+<rect x="699.1" y="180.7" width="48.3" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="723.3" y="193.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">G0/0/1</text>
+<line x1="926.0" y1="190.0" x2="1030.0" y2="190.0" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+<g transform="translate(110.0,190.0) scale(1.0)"><ellipse cx="0" cy="33" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-30" y="-28" width="60" height="42" rx="4" fill="url(#gDark)"/><rect x="-26" y="-24" width="52" height="33" rx="2" fill="url(#gScreen)"/><path d="M-26,-24 L6,-24 L-26,4 Z" fill="#ffffff" opacity="0.12"/><rect x="-5" y="14" width="10" height="9" fill="#475569"/><rect x="-17" y="22" width="34" height="5" rx="2" fill="url(#gDark)"/><rect x="-26" y="28" width="52" height="5" rx="1.5" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.6"/></g>
+<text x="110.0" y="240.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">PC1</text>
+<text x="110.0" y="256.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">10.10.10.11</text>
+<g transform="translate(380.0,190.0) scale(1.0)"><ellipse cx="2" cy="18.5" rx="41.0" ry="6" fill="#0f2540" opacity="0.12"/><polygon points="-39.5,-6.5 -30.5,-15.5 39.5,-15.5 30.5,-6.5" fill="url(#gTop)" stroke="#0b4f8a" stroke-width="0.8"/><polygon points="30.5,-6.5 39.5,-15.5 39.5,6.5 30.5,15.5" fill="url(#gSide)"/><rect x="-39.5" y="-6.5" width="70" height="22" fill="url(#gFront)"/><line x1="-20.0" y1="-14.5" x2="-8.2" y2="-14.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="-4.0,-14.5 -8.2,-11.1 -8.2,-17.9" fill="#ffffff"/><line x1="4.0" y1="-14.5" x2="15.8" y2="-14.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="20.0,-14.5 15.8,-11.1 15.8,-17.9" fill="#ffffff"/><line x1="-4.0" y1="-7.5" x2="-15.8" y2="-7.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="-20.0,-7.5 -15.8,-10.9 -15.8,-4.1" fill="#ffffff"/><line x1="20.0" y1="-7.5" x2="8.2" y2="-7.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="4.0,-7.5 8.2,-10.9 8.2,-4.1" fill="#ffffff"/><rect x="-31.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-24.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-17.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-10.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-3.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="3.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="10.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="17.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/></g>
+<text x="380.0" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">SW1</text>
+<text x="380.0" y="244.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Layer 2 switch</text>
+<circle cx="650.0" cy="190.0" r="46.0" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="2" stroke-dasharray="5 4" opacity="0.95"/>
+<g transform="translate(650.0,190.0) scale(1.0)"><ellipse cx="0" cy="15.0" rx="36" ry="12" fill="#0f2540" opacity="0.12"/><path d="M-34,-13.0 L-34,13.0 A34,12 0 0 0 34,13.0 L34,-13.0 Z" fill="url(#gRouter)"/><ellipse cx="0" cy="-13.0" rx="34" ry="12" fill="url(#gRouterTop)" stroke="#0b5a9c" stroke-width="1"/><line x1="-24.0" y1="-13.0" x2="-16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="-12.0,-13.0 -16.2,-9.6 -16.2,-16.4" fill="#ffffff"/><line x1="24.0" y1="-13.0" x2="16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="12.0,-13.0 16.2,-16.4 16.2,-9.6" fill="#ffffff"/><line x1="-0.0" y1="-14.0" x2="0.0" y2="-18.8" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-23.0 3.4,-18.8 -3.4,-18.8" fill="#ffffff"/><line x1="-0.0" y1="-12.0" x2="0.0" y2="-7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-3.0 -3.4,-7.2 3.4,-7.2" fill="#ffffff"/><line x1="-28" y1="11.0" x2="28" y2="11.0" stroke="#7cc4f2" stroke-width="0.8" opacity="0.4"/></g>
+<text x="650.0" y="246.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">R1</text>
+<text x="650.0" y="262.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Default gateway</text>
+<g transform="translate(870.0,190.0) scale(1.0)"><path d="M-44,14 C-60,14 -60,-8 -42,-8 C-44,-26 -18,-32 -8,-18 C-2,-34 26,-34 30,-14 C48,-18 56,4 42,14 Z" transform="translate(2,4)" fill="#0f2540" opacity="0.10"/><path d="M-44,14 C-60,14 -60,-8 -42,-8 C-44,-26 -18,-32 -8,-18 C-2,-34 26,-34 30,-14 C48,-18 56,4 42,14 Z" fill="url(#gCloud)" stroke="#7aa7d6" stroke-width="2"/></g>
+<text x="870.0" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">ISP</text>
+<text x="870.0" y="244.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Internet</text>
+<g transform="translate(1060.0,190.0) scale(1.0)"><ellipse cx="0" cy="35" rx="26" ry="4" fill="#0f2540" opacity="0.12"/><polygon points="-20,-30 -10,-37 28,-37 18,-30" fill="#5d6f86"/><polygon points="18,-30 28,-37 28,27 18,34" fill="#1e293b"/><rect x="-20" y="-30" width="38" height="64" rx="2" fill="url(#gDark)"/><rect x="-15" y="-24" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="-20.5" r="1.6" fill="#4ade80"/><rect x="-15" y="-13" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="-9.5" r="1.6" fill="#4ade80"/><rect x="-15" y="-2" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="1.5" r="1.6" fill="#4ade80"/><rect x="-15" y="9" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="12.5" r="1.6" fill="#4ade80"/><rect x="-15" y="22" width="28" height="6" rx="1" fill="#049fd9" opacity="0.85"/></g>
+<text x="1060.0" y="242.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">Web server</text>
+<text x="1060.0" y="258.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">203.0.113.80</text>
+<line x1="150.0" y1="128.0" x2="610.0" y2="128.0" stroke="#1d6fd1" stroke-width="2.5" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="380.0" y="118.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="650" fill="#1d6fd1" text-anchor="middle">Frame A — links 1 and 2 (SW1 does not change it)</text>
+<line x1="690.0" y1="128.0" x2="1020.0" y2="128.0" stroke="#7357d1" stroke-width="2.5" stroke-linecap="round" marker-end="url(#m1)"/>
+<text x="855.0" y="118.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="650" fill="#7357d1" text-anchor="middle">Frame B — rebuilt by R1</text>
+<text x="40.0" y="320.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="start">Frame A on PC1 → SW1 → R1</text>
+<rect x="40.0" y="330.0" width="170.0" height="54.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="125.0" y="355.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#3e2a85" text-anchor="middle">Dst MAC</text>
+<text x="125.0" y="369.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">R1 G0/0/0</text>
+<rect x="210.0" y="330.0" width="150.0" height="54.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="285.0" y="355.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#3e2a85" text-anchor="middle">Src MAC</text>
+<text x="285.0" y="369.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">PC1</text>
+<rect x="360.0" y="330.0" width="230.0" height="54.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="475.0" y="355.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#7a4708" text-anchor="middle">IP 10.10.10.11 → 203.0.113.80</text>
+<text x="475.0" y="369.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">unchanged</text>
+<rect x="590.0" y="330.0" width="70.0" height="54.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="625.0" y="361.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#0f3f80" text-anchor="middle">Data</text>
+<rect x="660.0" y="330.0" width="50.0" height="54.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="685.0" y="361.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#3e2a85" text-anchor="middle">FCS</text>
+<text x="40.0" y="420.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="start">Frame B after R1 (toward the ISP)</text>
+<rect x="40.0" y="430.0" width="170.0" height="54.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="125.0" y="455.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#3e2a85" text-anchor="middle">Dst MAC</text>
+<text x="125.0" y="469.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">next-hop router</text>
+<rect x="210.0" y="430.0" width="150.0" height="54.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="285.0" y="455.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#3e2a85" text-anchor="middle">Src MAC</text>
+<text x="285.0" y="469.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">R1 G0/0/1</text>
+<rect x="360.0" y="430.0" width="230.0" height="54.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="475.0" y="455.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#7a4708" text-anchor="middle">IP 10.10.10.11 → 203.0.113.80</text>
+<text x="475.0" y="469.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">unchanged</text>
+<rect x="590.0" y="430.0" width="70.0" height="54.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="625.0" y="461.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#0f3f80" text-anchor="middle">Data</text>
+<rect x="660.0" y="430.0" width="50.0" height="54.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="685.0" y="461.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#3e2a85" text-anchor="middle">FCS</text>
+<rect x="760.0" y="320.0" width="360.0" height="170.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.2"/>
+<rect x="760.0" y="320.0" width="5.0" height="170.0" rx="2" fill="#1d6fd1" stroke="none" stroke-width="0"/>
+<text x="778.0" y="342.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f3f80" text-anchor="start">What changes, what stays</text>
+<text x="778.0" y="362.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#0f3f80" text-anchor="start">• SW1 reads only the destination MAC and</text>
+<text x="778.0" y="382.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#0f3f80" text-anchor="start" xml:space="preserve">  forwards the frame untouched.</text>
+<text x="778.0" y="401.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#0f3f80" text-anchor="start">• R1 strips the old Ethernet header, routes</text>
+<text x="778.0" y="421.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#0f3f80" text-anchor="start" xml:space="preserve">  on the IP destination and writes a new one.</text>
+<text x="778.0" y="440.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#0f3f80" text-anchor="start">• Source and destination IP never change.</text>
+<line x1="28" y1="531" x2="1132" y2="531" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="553" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">With NAT on R1 (Chapter 21), the source IP would also be translated at the Internet edge.</text>
+<text x="1136" y="561" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" width="1160" height="560" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 7.2 — One switch port, two VLANs: the IP phone and the PC behind it</title>
+<desc id="d">Voice frames are tagged VLAN 20; data frames stay untagged in VLAN 10; the port is still an access port</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#0f9aa8"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="559" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 7.2</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">One switch port, two VLANs: the IP phone and the PC behind it</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Voice frames are tagged VLAN 20; data frames stay untagged in VLAN 10; the port is still an access port</text>
+<line x1="246.0" y1="220.0" x2="560.0" y2="220.0" stroke="#1d6fd1" stroke-width="6" stroke-linecap="round"/>
+<rect x="270.7" y="210.7" width="258.7" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="400.0" y="223.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#1d6fd1" text-anchor="middle">Gi1/0/2 — tagged voice + untagged data + PoE</text>
+<line x1="640.0" y1="220.0" x2="946.0" y2="220.0" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+<rect x="658.5" y="210.7" width="55.0" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="686.0" y="223.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">PC port</text>
+<rect x="885.9" y="210.7" width="28.1" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="900.0" y="223.3" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">NIC</text>
+<rect x="738.0" y="210.7" width="109.9" height="15.4" rx="3" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="793.0" y="223.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle">untagged data only</text>
+<g transform="translate(200.0,220.0) scale(1.1)"><ellipse cx="2" cy="18.5" rx="41.0" ry="6" fill="#0f2540" opacity="0.12"/><polygon points="-39.5,-6.5 -30.5,-15.5 39.5,-15.5 30.5,-6.5" fill="url(#gTop)" stroke="#0b4f8a" stroke-width="0.8"/><polygon points="30.5,-6.5 39.5,-15.5 39.5,6.5 30.5,15.5" fill="url(#gSide)"/><rect x="-39.5" y="-6.5" width="70" height="22" fill="url(#gFront)"/><line x1="-20.0" y1="-14.5" x2="-8.2" y2="-14.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="-4.0,-14.5 -8.2,-11.1 -8.2,-17.9" fill="#ffffff"/><line x1="4.0" y1="-14.5" x2="15.8" y2="-14.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="20.0,-14.5 15.8,-11.1 15.8,-17.9" fill="#ffffff"/><line x1="-4.0" y1="-7.5" x2="-15.8" y2="-7.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="-20.0,-7.5 -15.8,-10.9 -15.8,-4.1" fill="#ffffff"/><line x1="20.0" y1="-7.5" x2="8.2" y2="-7.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="4.0,-7.5 8.2,-10.9 8.2,-4.1" fill="#ffffff"/><rect x="-31.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-24.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-17.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-10.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-3.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="3.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="10.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="17.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/></g>
+<text x="200.0" y="260.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">SW4</text>
+<text x="200.0" y="277.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Catalyst 3650 PoE</text>
+<g transform="translate(600.0,220.0) scale(1.1)"><ellipse cx="0" cy="22" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><path d="M-28,18 L-22,-18 L24,-18 L30,18 Z" fill="url(#gDark)"/><rect x="-30" y="-24" width="13" height="40" rx="5" fill="#334155" stroke="#1e293b" stroke-width="1"/><rect x="-12" y="-13" width="24" height="12" rx="1.5" fill="url(#gScreen)"/><rect x="-9" y="2" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="-2" y="2" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="5" y="2" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="-9" y="7" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="-2" y="7" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="5" y="7" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="-9" y="12" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="-2" y="12" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="5" y="12" width="5" height="3" rx="0.8" fill="#cbd5e1"/><rect x="16" y="-12" width="6" height="22" rx="1.5" fill="#475569"/></g>
+<text x="600.0" y="260.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">IP phone</text>
+<text x="600.0" y="277.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">voice VLAN 20 · 10.10.20.x</text>
+<g transform="translate(980.0,220.0) scale(1.0)"><ellipse cx="0" cy="33" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-30" y="-28" width="60" height="42" rx="4" fill="url(#gDark)"/><rect x="-26" y="-24" width="52" height="33" rx="2" fill="url(#gScreen)"/><path d="M-26,-24 L6,-24 L-26,4 Z" fill="#ffffff" opacity="0.12"/><rect x="-5" y="14" width="10" height="9" fill="#475569"/><rect x="-17" y="22" width="34" height="5" rx="2" fill="url(#gDark)"/><rect x="-26" y="28" width="52" height="5" rx="1.5" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.6"/></g>
+<text x="980.0" y="270.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">PC-B</text>
+<text x="980.0" y="286.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">data VLAN 10 · 10.10.10.x</text>
+<path d="M220,180 C320,100 480,100 580,180" fill="none" stroke="#0f9aa8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#m0)"/>
+<rect x="261.9" y="107.0" width="276.2" height="22.0" rx="11.0" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.2"/>
+<text x="400.0" y="122.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0b5b63" text-anchor="middle">CDP / LLDP-MED: “your voice VLAN is 20”</text>
+<text x="400.0" y="316.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#d9861a" text-anchor="middle">PoE powers the phone</text>
+<text x="60.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="start">Voice frame (switch ↔ phone)</text>
+<rect x="60.0" y="386.0" width="50.0" height="40.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="85.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#3e2a85" text-anchor="middle">DA</text>
+<rect x="110.0" y="386.0" width="50.0" height="40.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="135.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#3e2a85" text-anchor="middle">SA</text>
+<rect x="160.0" y="386.0" width="180.0" height="40.0" rx="4" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.5"/>
+<text x="250.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0b5b63" text-anchor="middle">802.1Q VID 20 · PCP 5</text>
+<rect x="340.0" y="386.0" width="54.0" height="40.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="367.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#7a4708" text-anchor="middle">Type</text>
+<rect x="394.0" y="386.0" width="90.0" height="40.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="439.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f3f80" text-anchor="middle">Payload</text>
+<rect x="484.0" y="386.0" width="46.0" height="40.0" rx="4" fill="#fde8e8" stroke="#d64040" stroke-width="1.5"/>
+<text x="507.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#8a1c1c" text-anchor="middle">FCS</text>
+<text x="620.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="start">Data frame (switch ↔ phone ↔ PC)</text>
+<rect x="620.0" y="386.0" width="50.0" height="40.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="645.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#3e2a85" text-anchor="middle">DA</text>
+<rect x="670.0" y="386.0" width="50.0" height="40.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="695.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#3e2a85" text-anchor="middle">SA</text>
+<rect x="720.0" y="386.0" width="54.0" height="40.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="747.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#7a4708" text-anchor="middle">Type</text>
+<rect x="774.0" y="386.0" width="90.0" height="40.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="819.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f3f80" text-anchor="middle">Payload</text>
+<rect x="864.0" y="386.0" width="46.0" height="40.0" rx="4" fill="#fde8e8" stroke="#d64040" stroke-width="1.5"/>
+<text x="887.0" y="410.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#8a1c1c" text-anchor="middle">FCS</text>
+<line x1="28" y1="501" x2="1132" y2="501" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="523" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">switchport mode access · switchport access vlan 10 · switchport voice vlan 20 · power inline auto</text>
+<text x="28" y="542" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">The port does not appear in show interfaces trunk, even though voice frames are tagged.</text>
+<text x="1136" y="550" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 816" width="1100" height="816" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 1.9 — Interface troubleshooting: status first, then counters, on both ends</title>
+<desc id="d">Work down the left column; the first “yes” tells you what to fix</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#94a3b8"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1099" height="815" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1099" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 1.9</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Interface troubleshooting: status first, then counters, on both ends</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Work down the left column; the first “yes” tells you what to fix</text>
+<rect x="60.0" y="106.0" width="380.0" height="64.0" rx="10" fill="#0b3b66" stroke="#0b3b66" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="76.0" y="132.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#ffffff" text-anchor="start">show ip interface brief / show interfaces status</text>
+<text x="76.0" y="153.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#ffffff" text-anchor="start">Check BOTH ends of the link</text>
+<line x1="250.0" y1="170.0" x2="250.0" y2="200.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<polygon points="250.0,200.0 415.0,246 250.0,292.0 85.0,246" fill="#fdf1df" stroke="#d9861a" stroke-width="1.8" filter="url(#shadow)"/>
+<text x="250.0" y="250.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#7a4708" text-anchor="middle">administratively down?</text>
+<line x1="415.0" y1="246.0" x2="524.0" y2="246.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="472.5" y="236.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#d9861a" text-anchor="middle">yes</text>
+<rect x="530.0" y="214.0" width="530.0" height="64.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="546.0" y="248.9" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">no shutdown</text>
+<text x="262.0" y="310.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#5b6b7f" text-anchor="start">no</text>
+<line x1="250.0" y1="292.0" x2="250.0" y2="316.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<polygon points="250.0,316.0 415.0,362 250.0,408.0 85.0,362" fill="#fdf1df" stroke="#d9861a" stroke-width="1.8" filter="url(#shadow)"/>
+<text x="250.0" y="366.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#7a4708" text-anchor="middle">err-disabled?</text>
+<line x1="415.0" y1="362.0" x2="524.0" y2="362.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="472.5" y="352.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#d9861a" text-anchor="middle">yes</text>
+<rect x="530.0" y="330.0" width="530.0" height="64.0" rx="10" fill="#fde8e8" stroke="#d64040" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="546.0" y="364.9" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">show logging → fix the cause → shutdown, then no shutdown</text>
+<text x="262.0" y="426.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#5b6b7f" text-anchor="start">no</text>
+<line x1="250.0" y1="408.0" x2="250.0" y2="432.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<polygon points="250.0,432.0 415.0,478 250.0,524.0 85.0,478" fill="#fdf1df" stroke="#d9861a" stroke-width="1.8" filter="url(#shadow)"/>
+<text x="250.0" y="482.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#7a4708" text-anchor="middle">down/down or notconnect?</text>
+<line x1="415.0" y1="478.0" x2="524.0" y2="478.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="472.5" y="468.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#d9861a" text-anchor="middle">yes</text>
+<rect x="530.0" y="446.0" width="530.0" height="64.0" rx="10" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="546.0" y="471.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">Cable seated? Right type? Length? Far end on? Optics match? Fiber Tx/Rx</text>
+<text x="546.0" y="490.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">swapped? Rx dBm too low?</text>
+<text x="262.0" y="542.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#5b6b7f" text-anchor="start">no</text>
+<line x1="250.0" y1="524.0" x2="250.0" y2="548.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<polygon points="250.0,548.0 415.0,594 250.0,640.0 85.0,594" fill="#fdf1df" stroke="#d9861a" stroke-width="1.8" filter="url(#shadow)"/>
+<text x="250.0" y="598.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#7a4708" text-anchor="middle">up/up but slow or dropping?</text>
+<line x1="415.0" y1="594.0" x2="524.0" y2="594.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="472.5" y="584.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#d9861a" text-anchor="middle">yes</text>
+<rect x="530.0" y="562.0" width="530.0" height="64.0" rx="10" fill="#efeafd" stroke="#7357d1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="546.0" y="587.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">Compare speed and duplex on both ends; clear counters; watch CRC,</text>
+<text x="546.0" y="606.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#0f2540" text-anchor="start">runts, late collisions</text>
+<text x="262.0" y="658.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#5b6b7f" text-anchor="start">no</text>
+<line x1="250.0" y1="640.0" x2="250.0" y2="650.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="60.0" y="652.0" width="380.0" height="64.0" rx="10" fill="#e4f6ec" stroke="#1f9d63" stroke-width="2" filter="url(#shadow)"/>
+<text x="76.0" y="678.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="start">Counters clean but still failing?</text>
+<text x="76.0" y="699.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">The fault is above Layer 1: VLAN, trunk, IP, gateway</text>
+<line x1="28" y1="757" x2="1072" y2="757" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="779" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Only when every check says “no” do you move up to the Layer 2 and Layer 3 checks in later chapters.</text>
+<text x="28" y="798" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Then document the fix and add an interface description.</text>
+<text x="1076" y="806" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

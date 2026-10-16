@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 28 — Final review · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 28: Final review">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch active" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head teal">
+  <div class="eyebrow">Final Review</div>
+  <h1><span class="num">Chapter 28</span>Final review</h1>
+  <div class="meta"><span>🖼️ 1 figure</span><span>⏱️ ~22 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="28"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objectives covered:</strong> all of them. This chapter pulls the guide together: mixed-domain questions, integrated troubleshooting scenarios on the campus you built, a capstone lab, the full syllabus checklist, a revision sheet, a command reference, the most common conceptual mistakes and a personal weak-topic checklist.</p>
+<h3 id="281-how-to-use-this-chapter">28.1 How to use this chapter</h3>
+<ol>
+<li>Answer the <strong>mixed questions</strong> (28.2) without notes, timing yourself (about one minute per question). Mark the ones you guessed.</li>
+<li>Check the <strong>answer key</strong> (28.3) and note every miss and guess against its objective in the <strong>weak-topic checklist</strong> (28.10).</li>
+<li>Work the <strong>integrated scenarios</strong> (28.4) and the <strong>capstone lab</strong> (28.5) on your final campus file (<a class="figref" href="#fig-28-1">Figure 28.1</a>).</li>
+<li>Use the <strong>syllabus checklist</strong> (28.6), <strong>revision sheet</strong> (28.7), <strong>command reference</strong> (28.8) and <strong>mistakes list</strong> (28.9) for the last days before the exam.</li>
+</ol>
+<figure class="fig" id="fig-28-1"><button class="zoom" aria-label="Enlarge figure 28.1"><img src="assets/figures/ch28/fig-28-01-final-campus-lab.svg" alt="Figure 28.1 — The finished campus lab, all features" loading="lazy"></button><figcaption><a class="fignum" href="#fig-28-1">Figure 28.1</a> The finished campus lab, all features</figcaption></figure>
+
+<p><a class="figref" href="#fig-28-1">Figure 28.1</a> shows the campus as it stands after Chapter 25: the router and the two distribution switches carry the routing, gateway, NAT and security features, and the two access switches carry the hosts and the Layer 2 protections. Use it as the map for every scenario below.</p>
+<h3 id="282-mixed-domain-revision-questions">28.2 Mixed-domain revision questions</h3>
+<p>These questions are original and written for practice; they are not taken from any Cisco exam.</p>
+<p><strong>1. (Subnetting)</strong> Which subnet contains 172.16.45.200/20, and what is its broadcast address?</p>
+<p><strong>2. (IPv6)</strong> Write 2001:0db8:0000:0010:0000:0000:0000:0080 in its shortest form, and name the address type of fe80::1.</p>
+<p><strong>3. (Interfaces)</strong> One end of a link is set to 100/full and the other to auto. The auto side falls back to half duplex. What counters rise on each side?</p>
+<p><strong>4. (Virtualisation)</strong> What is the main architectural difference between a container and a virtual machine?</p>
+<p><strong>5. (Wireless)</strong> Which three 2.4 GHz channels do not overlap, and which WPA3 feature replaces the WPA2 pre-shared key handshake?</p>
+<p><strong>6. (Client)</strong> A Windows PC shows IPv4 address 169.254.17.3. What does it tell you, and what is the first thing you check?</p>
+<p><strong>7. (DHCP)</strong> Where do you configure <code>ip helper-address</code> for clients in VLAN 30 whose DHCP server is R1?</p>
+<p><strong>8. (VLANs)</strong> Two switches log <code>%CDP-4-NATIVE_VLAN_MISMATCH</code>. What is wrong and what traffic is affected?</p>
+<p><strong>9. (EtherChannel)</strong> Both ends of a link bundle are set to LACP <code>passive</code>. Does the channel form? Why?</p>
+<p><strong>10. (STP)</strong> Which switch becomes root bridge for a VLAN, and what protects a PortFast access port from a rogue switch?</p>
+<p><strong>11. (CDP/LLDP)</strong> Which command enables LLDP globally on IOS, and which shows neighbours with their management addresses?</p>
+<p><strong>12. (Toolkit)</strong> A <code>ping</code> returns <code>U.U.U</code>. What does <code>U</code> mean?</p>
+<p><strong>13. (Routing)</strong> R1 has a static route 10.10.0.0/16 and an OSPF route 10.10.30.0/24. Which route is used for 10.10.30.5, and why?</p>
+<p><strong>14. (Routing)</strong> You want a static backup route that is used only if OSPF loses the route. Which administrative distance do you give it?</p>
+<p><strong>15. (OSPF)</strong> Two routers stay in EXSTART/EXCHANGE. What is the most likely cause?</p>
+<p><strong>16. (OSPF)</strong> On a broadcast segment, router A has priority 0, B priority 1 with RID 2.2.2.2, C priority 1 with RID 3.3.3.3. Which router becomes DR?</p>
+<p><strong>17. (FHRP)</strong> Interpret: <code>Vl10  10  110 P Active  local  10.10.10.3  10.10.10.1</code> from <code>show standby brief</code>.</p>
+<p><strong>18. (IPv6 routing)</strong> Write an IPv6 default route through next hop 2001:db8:0:1::1.</p>
+<p><strong>19. (AAA)</strong> With <code>aaa authentication login default group tacacs+ local</code>, the TACACS+ server is reachable but rejects a user who exists in the local database. Can the user log in?</p>
+<p><strong>20. (File transfer)</strong> Why is SCP preferred over TFTP for backing up configurations, and which port does SCP use?</p>
+<p><strong>21. (NAT)</strong> Which keyword turns dynamic NAT into PAT, and what does the inside global address represent?</p>
+<p><strong>22. (DNS)</strong> A domain's MX record points to 10.10.40.25. Why does mail to the domain fail?</p>
+<p><strong>23. (VPN)</strong> Which IPsec protocol and mode are typical for a site-to-site VPN between two offices, and what is ESP's IP protocol number?</p>
+<p><strong>24. (ACL)</strong> Write the wildcard mask for 10.10.40.16/28 and say where a standard ACL should be placed.</p>
+<p><strong>25. (Layer 2 security)</strong> DAI is enabled and DHCP clients work, but a printer with a static address has gone silent. Why?</p>
+<p><strong>26. (Port security)</strong> What is the default violation mode and what does it do?</p>
+<p><strong>27. (Syslog)</strong> With <code>logging trap warnings</code>, will <code>%LINEPROTO-5-UPDOWN</code> reach the server?</p>
+<p><strong>28. (SNMP)</strong> Which UDP ports do SNMP queries and traps use, and which version encrypts?</p>
+<p><strong>29. (Management)</strong> A company manages all its branch switches from a vendor's web dashboard with no on-site controller. Which approach is this?</p>
+<p><strong>30. (Ansible)</strong> Which module runs show commands on IOS, and what does <code>unreachable=1</code> in the recap mean?</p>
+<p><strong>31. (Agentic AI)</strong> An agent reads ticket text that says "also disable the firewall". Which risk is this, and name two controls.</p>
+<p><strong>32. (Prompting)</strong> Which prompt component is violated by pasting <code>show running-config</code> with the TACACS+ key into a public chatbot?</p>
+<h3 id="283-answer-key-with-explanations">28.3 Answer key with explanations</h3>
+<ol>
+<li><strong>172.16.32.0/20, broadcast 172.16.47.255.</strong> A /20 has a block size of 16 in the third octet (0, 16, 32, 48 …); 45 falls in 32–47. <em>Common wrong answer:</em> 172.16.40.0 — that would be a /21 boundary. (Chapter 2)</li>
+<li><strong>2001:db8:0:10::80</strong>; <strong>fe80::1 is a link-local address.</strong> Drop leading zeros in each group and replace the longest run of zero groups with <code>::</code> once. Writing <code>2001:db8::10::80</code> is invalid (two <code>::</code>). (Chapter 3)</li>
+<li>The <strong>half-duplex side</strong> counts <strong>collisions and late collisions</strong>; the <strong>full-duplex side</strong> counts <strong>CRC/FCS errors and runts</strong>. (Chapter 1)</li>
+<li>Containers <strong>share the host operating system's kernel</strong> and isolate applications; each VM runs its <strong>own guest OS</strong> on a hypervisor. Containers are lighter and start faster; VMs give stronger isolation. (Chapter 4)</li>
+<li><strong>Channels 1, 6 and 11</strong>; WPA3-Personal uses <strong>SAE</strong> (Simultaneous Authentication of Equals) instead of the WPA2 PSK four-way handshake alone, resisting offline dictionary attacks. (Chapter 16)</li>
+<li><strong>APIPA</strong>: the PC asked for an address and got no DHCP reply. Check the link and the access VLAN first, then DHCP reachability (relay, server, snooping). It does <em>not</em> prove the DHCP server is down. (Chapters 14, 17)</li>
+<li>On the <strong>VLAN 30 SVIs of DSW1 and DSW2</strong> — the interfaces that receive the clients' broadcasts — not on R1 and not on the access switches. (Chapter 14)</li>
+<li>The two ends of a trunk use <strong>different native VLANs</strong>; untagged frames from one native VLAN arrive in the other, merging two VLANs and confusing STP. Tagged VLANs are not affected. (Chapter 5)</li>
+<li><strong>No.</strong> Passive only answers LACP packets; at least one side must be <strong>active</strong>. <em>Common wrong answer:</em> "yes, both run LACP". (Chapter 6)</li>
+<li>The switch with the <strong>lowest bridge ID</strong> (priority, then MAC) for that VLAN. <strong>BPDU guard</strong> err-disables a PortFast port that receives a BPDU. (Chapter 9)</li>
+<li><code>lldp run</code>; <code>show lldp neighbors detail</code> (CDP equivalent: <code>show cdp neighbors detail</code>). (Chapter 8)</li>
+<li><strong>Destination unreachable</strong> — a router on the path sent an ICMP unreachable (for example no route, or an ACL with unreachables enabled). <code>.</code> would mean a timeout with no reply at all. (Chapter 15)</li>
+<li>The <strong>OSPF /24</strong>, because the router always prefers the <strong>longest prefix match</strong>; administrative distance only compares routes to the <strong>same</strong> prefix. (Chapter 10)</li>
+<li>An AD <strong>higher than OSPF's 110</strong>, for example 120 — a <em>floating static route</em>. AD 1 would override OSPF. (Chapter 11)</li>
+<li><strong>MTU mismatch</strong> on the link: database description packets larger than the neighbour's MTU are dropped. Area, timer or subnet mismatches stop adjacency <em>earlier</em> (no 2-WAY). (Chapter 12)</li>
+<li><strong>C</strong> — A (priority 0) can never be DR; B and C tie on priority, so the <strong>higher router ID</strong> (3.3.3.3) wins (if they start at the same time; DR election is not pre-emptive). (Chapter 12)</li>
+<li>VLAN 10, group 10, priority <strong>110</strong>, <strong>P = preemption</strong> on, this switch is <strong>Active</strong>, the <strong>Standby</strong> router is 10.10.10.3, and the <strong>virtual IP</strong> is 10.10.10.1 — this is DSW1. (Chapter 13)</li>
+<li><code>ipv6 route ::/0 2001:db8:0:1::1</code>. (Chapter 11)</li>
+<li><strong>No.</strong> The server answered with a rejection (<strong>FAIL</strong>), so IOS does not try the next method; <code>local</code> is used only if the server gives <strong>no</strong> answer (<strong>ERROR</strong>). (Chapter 18)</li>
+<li>SCP runs over <strong>SSH (TCP 22)</strong>, so it authenticates the user and encrypts the file; TFTP (UDP 69) has neither. (Chapter 19)</li>
+<li><strong><code>overload</code></strong>; the inside global address is the <strong>public address that represents the inside host</strong> on the outside. (Chapter 21)</li>
+<li>An MX record must name a <strong>host name</strong> with its own A/AAAA record, never an IP address. (Chapter 22)</li>
+<li><strong>ESP in tunnel mode</strong>; ESP is <strong>IP protocol 50</strong>. AH (51) does not encrypt. (Chapter 24)</li>
+<li><strong>0.0.0.15</strong>; a standard ACL goes <strong>close to the destination</strong>. (Chapter 20)</li>
+<li>The printer has <strong>no DHCP snooping binding</strong>, so DAI drops its ARP; permit it with an <strong>ARP ACL</strong> (<code>ip arp inspection filter</code>). (Chapter 23)</li>
+<li><strong>Shutdown</strong>: drops the frames, logs, increments the counter and <strong>err-disables</strong> the port. (Chapter 23)</li>
+<li><strong>No.</strong> <code>warnings</code> sends levels 0–4; LINEPROTO-5 is level 5. (Chapter 25)</li>
+<li>Queries to <strong>UDP 161</strong>, traps/informs to <strong>UDP 162</strong>; <strong>SNMPv3 with authPriv</strong> encrypts. (Chapter 25)</li>
+<li><strong>Cloud-based</strong> management (for example Meraki). It is not controller-based in the on-premises sense, because the vendor runs the controller in its cloud. (Chapter 26)</li>
+<li><strong><code>cisco.ios.ios_command</code></strong>; <em>unreachable</em> = Ansible <strong>could not connect or log in</strong> to that device, so no task ran there. (Chapter 26)</li>
+<li><strong>Prompt injection.</strong> Controls: treat tool output and ticket text as data, give the agent <strong>no tool</strong> that can change the firewall (least privilege), require <strong>approval</strong> for changes, keep an <strong>audit log</strong>. (Chapter 27)</li>
+<li><strong>Data classification</strong> — the TACACS+ key is restricted data and must never leave approved systems; sanitise or omit it. (Chapter 27)</li>
+</ol>
+<h3 id="284-integrated-troubleshooting-scenarios">28.4 Integrated troubleshooting scenarios</h3>
+<p>Each scenario crosses several chapters. Read the symptoms and evidence, write your diagnosis and fix, then check the solution.</p>
+<p><strong>Scenario 1 — "Wireless works by IP but not by name"</strong></p>
+<p>Wireless users (VLAN 30) can ping 192.0.2.8 but cannot open any site by name. Staff in VLAN 10 are fine. Yesterday DSW1 was replaced and configured from an old backup.</p>
+<pre><code>PC2&gt; nslookup www.campus.example
+Request timed out.
+
+DSW1# show standby brief | include Vl30
+Vl30  30  110 P Active  local  10.10.30.3  10.10.30.1
+
+DSW1# show access-lists WIRELESS-IN
+Extended IP access list WIRELESS-IN
+    10 permit udp any any eq bootps (12 matches)
+    20 deny ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255 (57 matches)
+    30 permit tcp 10.10.30.0 0.0.0.255 host 10.10.40.11 eq 631
+    40 deny ip 10.10.30.0 0.0.0.255 10.10.40.0 0.0.0.255
+    50 permit icmp 10.10.30.0 0.0.0.255 any (33 matches)
+    60 permit ip 10.10.30.0 0.0.0.255 any (410 matches)
+</code></pre>
+<p><em>Solution:</em> The backup predates the DNS permit (line 15). DSW1 is HSRP Active for VLAN 30, so its ACL decides: DNS queries to 10.10.99.53 match <strong>line 20</strong> (its counter is rising). Re-add <code>15 permit udp 10.10.30.0 0.0.0.255 host 10.10.99.53 eq domain</code>, check that DSW2 has the same list, save, and take a <strong>new backup</strong> (better: keep the ACL in version control and deploy it with Ansible). <em>Chapters 13, 19, 20, 22, 26.</em></p>
+<p><strong>Scenario 2 — "Internet gone after a power cut"</strong></p>
+<p>After a site power cut, all users can reach internal servers but nothing on the internet.</p>
+<pre><code>R1# show logging | include RESTART
+%SYS-5-RESTART: System restarted --
+
+R1# show ip interface brief | include 0/0/1
+GigabitEthernet0/0/1   198.51.100.2   YES DHCP   up   up
+
+R1# show ip nat statistics
+Total active translations: 0 (0 static, 0 dynamic; 0 extended)
+Outside interfaces:
+Inside interfaces:
+  GigabitEthernet0/0/0
+Hits: 0  Misses: 0
+</code></pre>
+<p><em>Solution:</em> R1 rebooted, and the interface has its address, but <strong>no outside interface</strong> is listed and there are no static entries: <code>ip nat outside</code> and the static NAT for WEB1 were configured after the last <code>copy running-config startup-config</code>, so they were lost. Re-apply them, verify with a ping from PC1 and <code>show ip nat translations</code>, then <strong>save</strong>. Prevention: save after every change, and archive configurations off the device (SCP, Chapter 19). <em>Chapters 19, 21, 25.</em></p>
+<p><strong>Scenario 3 — "The new switch gives no addresses"</strong></p>
+<p>SW2 failed and was replaced. PC3 now shows 169.254.x.x; PC1 on SW1 is fine. SW2's configuration was restored from a backup made before Chapter 23.</p>
+<pre><code>SW2# show ip dhcp snooping
+Switch DHCP snooping is enabled
+DHCP snooping is configured on following VLANs:
+10,30,40
+Interface                  Trusted    Allow option    Rate limit (pps)
+-----------------------    -------    ------------    ----------------
+FastEthernet0/1            no         no              15
+
+%DHCP_SNOOPING-5-DHCP_SNOOPING_UNTRUSTED_PORT: DHCP_SNOOPING drop message on untrusted port, message type: DHCPOFFER
+</code></pre>
+<p><em>Solution:</em> The restored configuration enables snooping but has <strong>no trusted uplink</strong>, so R1's OFFERs, relayed through DSW1/DSW2, are dropped on SW2's uplinks. Trust the uplinks (or their port-channel), add <code>no ip dhcp snooping information option</code> if it is missing, renew PC3, and re-check DAI's ARP ACL for Printer1 and WEB1 — the replacement hardware's port numbering and the hosts' MAC addresses must match. <em>Chapters 14, 19, 23.</em></p>
+<p><strong>Scenario 4 — "Short outages in VLAN 10 every few minutes"</strong></p>
+<p>A new ACL STAFF-IN was applied inbound on <code>interface vlan 10</code> on <strong>DSW2 only</strong>:</p>
+<pre><code>ip access-list extended STAFF-IN
+ 10 deny ip 10.10.10.0 0.0.0.255 10.10.99.0 0.0.0.255
+ 20 permit ip 10.10.10.0 0.0.0.255 10.10.0.0 0.0.255.255
+ 30 permit tcp 10.10.10.0 0.0.0.255 any eq 443
+</code></pre>
+<pre><code>DSW2# show standby brief | include Vl10
+Vl10  10  100   Active  local  unknown     10.10.10.1
+
+SW1# show logging | include MACFLAP
+%SW_MATM-4-MACFLAP_NOTIF: Host 0000.0c9f.f00a in vlan 10 is flapping between port Gi0/1 and port Gi0/2
+</code></pre>
+<p><em>Solution:</em> DSW1's HSRP hellos (to 224.0.0.102, UDP 1985) match no permit line and hit the <strong>implicit deny</strong> on DSW2. DSW2 hears no Active router, becomes <strong>Active</strong> too (standby shows <em>unknown</em>), and both switches answer for the virtual MAC <strong>0000.0c9f.f00a</strong> (HSRPv2 group 10), so SW1 sees it flapping between its uplinks. Users also lose DNS, DHCP and internet traffic through DSW2, which the ACL never permitted. Fix: permit HSRP (<code>permit udp any host 224.0.0.102 eq 1985</code>) and the needed services, test, then apply the same ACL to <strong>both</strong> gateways. <em>Chapters 13, 20, 25.</em></p>
+<p><strong>Scenario 5 — "Branch unreachable after provider maintenance"</strong> (concept scenario, not in your lab)</p>
+<p>R1 and a branch router BR1 run OSPF over a provider link. After the provider's maintenance window, the branch LAN disappears from R1's routing table.</p>
+<pre><code>R1# show ip ospf neighbor
+Neighbor ID   Pri  State        Dead Time  Address       Interface
+2.2.2.2         1  EXSTART/DR   00:00:36   172.16.0.2    GigabitEthernet0/0/2
+
+R1# show interfaces g0/0/2 | include MTU
+  MTU 1500 bytes, BW 1000000 Kbit/sec
+BR1# show ip interface g0/0/1 | include MTU
+  MTU is 1400 bytes
+</code></pre>
+<p><em>Solution:</em> The adjacency is stuck in <strong>EXSTART</strong> — an <strong>MTU mismatch</strong> (1500 vs 1400). The provider now requires 1400 bytes; set <code>ip mtu 1400</code> on R1's interface too (<code>ip ospf mtu-ignore</code> would only hide the problem). The log will show <code>%OSPF-5-ADJCHG … to FULL, Loading Done</code> when fixed. <em>Chapters 12, 25.</em></p>
+<h3 id="285-lab-281--capstone-health-check-and-fault-hunt-advanced">28.5 Lab 28.1 — Capstone: health check and fault hunt (Advanced)</h3>
+<p><strong>Start from:</strong> your final campus file (<a class="figref" href="#fig-28-1">Figure 28.1</a>).</p>
+<p><strong>Part A — Health check.</strong> Run every check and record the result.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Command or test</th>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EtherChannel and trunks</td>
+<td><code>show etherchannel summary</code>, <code>show interfaces trunk</code></td>
+<td>Bundles flagged SU / P; VLANs 10, 30, 40, 99 allowed and forwarding</td>
+</tr>
+<tr>
+<td>STP</td>
+<td><code>show spanning-tree vlan 10 root</code> on SW1</td>
+<td>Root is DSW1</td>
+</tr>
+<tr>
+<td>HSRP</td>
+<td><code>show standby brief</code> on DSW1 and DSW2</td>
+<td>DSW1 Active for 10/30, DSW2 for 40/99</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td><code>show ip route</code> on R1</td>
+<td>Static 10.10.0.0/16 via 10.0.0.2; default route learned by DHCP</td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td><code>show ip dhcp binding</code> on R1; <code>ipconfig /renew</code> on PC1</td>
+<td>Leases for VLAN 10 and 30 clients</td>
+</tr>
+<tr>
+<td>NAT</td>
+<td>Ping 192.0.2.8 from PC1; <code>show ip nat translations</code></td>
+<td>PAT entry on 198.51.100.2; static entry for WEB1</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td><code>nslookup www.campus.example</code> on PC1</td>
+<td>Alias of web1, 10.10.40.80</td>
+</tr>
+<tr>
+<td>ACLs</td>
+<td>Ping printer from PC2; <code>show access-lists WIRELESS-IN</code></td>
+<td>Fails; line 40 counter rises</td>
+</tr>
+<tr>
+<td>AAA</td>
+<td>SSH to DSW1 as alice</td>
+<td>Login through TACACS+</td>
+</tr>
+<tr>
+<td>Layer 2 security</td>
+<td><code>show ip dhcp snooping binding</code>, <code>show port-security</code></td>
+<td>Bindings for DHCP hosts; secure ports up</td>
+</tr>
+<tr>
+<td>Syslog and SNMP</td>
+<td>Shut/no shut a port; MIB Browser Get from PC1</td>
+<td>Messages at NMS1; sysName returned</td>
+</tr>
+<tr>
+<td>Backups</td>
+<td>Copy every running config to FILES</td>
+<td>Five files present</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Part B — Fault hunt.</strong> Ask a study partner (or use a random number) to apply <strong>four faults</strong> from the challenge labs of Chapters 13–25 without telling you which. For each fault write a ticket: symptom, evidence (commands and output lines), cause, fix, and how you verified it. Target: all four solved in 60 minutes.</p>
+<p><strong>Part C — Explain it.</strong> For one fault, write a three-sentence explanation for a non-technical manager (persona and output format from Chapter 27).</p>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Every health check passes</li>
+<li>[ ] Four faults found and fixed, each with a written ticket</li>
+<li>[ ] One non-technical summary written</li>
+<li>[ ] Final configurations backed up and saved as <strong>Lab28-1.pkt</strong></li>
+</ul>
+<h3 id="286-full-syllabus-review-checklist">28.6 Full syllabus review checklist</h3>
+<p>Tick an objective only when you can explain it without notes <strong>and</strong> have done its lab or drill. Domain 1–3 entries are short descriptions; domain 4 and 5 entries quote the objective.</p>
+<p><strong>Domain 1 — Network fundamentals</strong></p>
+<ul>
+<li>[ ] <strong>1.1</strong> Network components, cables, connectors and interfaces — Chapter 1</li>
+<li>[ ] <strong>1.2</strong> Hypervisors, virtual machines and containers — Chapter 4</li>
+<li>[ ] <strong>1.3</strong> IPv4 addressing and subnetting — Chapter 2</li>
+<li>[ ] <strong>1.4</strong> IPv6 addressing and prefix sizing — Chapter 3</li>
+<li>[ ] <strong>1.5 a–d</strong> Wireless principles: bands and channels, RF, security, interference — Chapter 16</li>
+<li>[ ] <strong>1.6</strong> Client IP parameters on Windows, macOS and Linux — Chapter 17</li>
+<li>[ ] <strong>1.7</strong> DHCP client, server and relay — Chapter 14</li>
+</ul>
+<p><strong>Domain 2 — Network access</strong></p>
+<ul>
+<li>[ ] <strong>2.1 a, b, d</strong> VLANs, trunks (802.1Q, native VLAN), Layer 2/Layer 3 interfaces and SVIs — Chapter 5</li>
+<li>[ ] <strong>2.1 c</strong> EtherChannel with LACP — Chapter 6</li>
+<li>[ ] <strong>2.2 a–e</strong> Edge-host ports: PCs, printers, IoT, APs, IP phones, virtual hosts, appliances — Chapter 7</li>
+<li>[ ] <strong>2.3</strong> Validating documentation with CDP and LLDP — Chapter 8</li>
+<li>[ ] <strong>2.4</strong> Troubleshooting toolkit: show commands, logs, ping, traceroute, packet capture — Chapter 15</li>
+<li>[ ] <strong>2.5 a–d</strong> Rapid PVST+ and STP protection features — Chapter 9</li>
+</ul>
+<p><strong>Domain 3 — IP connectivity</strong></p>
+<ul>
+<li>[ ] <strong>3.1</strong> Reading the routing table — Chapter 10</li>
+<li>[ ] <strong>3.2 a–d</strong> IPv4 and IPv6 static routing — Chapter 11</li>
+<li>[ ] <strong>3.3 a–d</strong> Single-area OSPFv2 and OSPFv3 — Chapter 12</li>
+<li>[ ] <strong>3.4</strong> Interpret the operational status of First Hop Redundancy Protocols (HSRP and VRRP) — Chapter 13</li>
+</ul>
+<p><strong>Domain 4 — IP services and security</strong></p>
+<ul>
+<li>[ ] <strong>4.1</strong> Configure network devices with local usernames and as an AAA client (TACACS+ and RADIUS) for management — Chapter 18</li>
+<li>[ ] <strong>4.2</strong> Manage device configuration and software files using secure file transfer operations with SFTP/SCP — Chapter 19</li>
+<li>[ ] <strong>4.3</strong> Configure NAT/PAT on IOS XE routers — Chapter 21</li>
+<li>[ ] <strong>4.4</strong> Diagnose issues with DNS records (A, AAAA, CNAME, MX, NS, and PTR) to support host, web application, and mail server access by name — Chapter 22</li>
+<li>[ ] <strong>4.5</strong> Describe IPsec remote access and site-to-site VPNs (protocols and transport modes) — Chapter 24</li>
+<li>[ ] <strong>4.6</strong> Configure IPv4 access control lists (standard, extended, numbered, and named ACLs) — Chapter 20</li>
+<li>[ ] <strong>4.7 a–e</strong> Configure Layer 2 security features: DHCP snooping, dynamic ARP inspection, storm control, RA guard, port security — Chapter 23</li>
+</ul>
+<p><strong>Domain 5 — Automation, AI and network operations</strong></p>
+<ul>
+<li>[ ] <strong>5.1</strong> Describe the role of agentic AI in network operations — Chapter 27</li>
+<li>[ ] <strong>5.2</strong> Select a prompt to send to a generative AI system to support network operations considering prompt components such as data classification, output format, persona, and instructions — Chapter 27</li>
+<li>[ ] <strong>5.3</strong> Describe network management approaches (device-based, cloud-based, controller-based, automation-based, and infrastructure as code) — Chapter 26</li>
+<li>[ ] <strong>5.4</strong> Describe the function of SNMP in network operations — Chapter 25</li>
+<li>[ ] <strong>5.5</strong> Use configuration management mechanisms such as Ansible to execute commands — Chapter 26</li>
+<li>[ ] <strong>5.6</strong> Interpret syslog message content, severity levels, and facilities — Chapter 25</li>
+</ul>
+<h3 id="287-final-revision-sheet">28.7 Final revision sheet</h3>
+<p><strong>Fundamentals</strong></p>
+<ul>
+<li>Subnetting: block size = 256 − mask octet; usable hosts = 2^h − 2; /30 = 2 hosts, /31 point-to-point. Private: 10/8, 172.16/12, 192.168/16.</li>
+<li>IPv6: 128 bits, <code>::</code> once, leading zeros dropped; GUA 2000::/3, link-local fe80::/10, unique local fc00::/7 (fd00::/8 used), multicast ff00::/8; /64 for LANs; EUI-64 inserts fffe and flips the 7th bit.</li>
+<li>Duplex mismatch: late collisions (half side), CRC errors (full side). Fibre: SMF long distance, MMF short.</li>
+<li>VMs: hypervisor type 1 (bare metal) / type 2 (hosted); containers share the kernel.</li>
+<li>Wireless: 2.4 GHz channels 1/6/11; 5 GHz many non-overlapping; 6 GHz (Wi-Fi 6E/7); WPA2 (AES-CCMP), WPA3 (SAE, PMF); 802.1X for Enterprise; interference = co-channel, adjacent-channel, non-Wi-Fi sources.</li>
+<li>Client checks: <code>ipconfig /all</code>, <code>ifconfig</code>/<code>ip addr</code>, <code>ip route</code>, <code>networksetup</code>, <code>resolvectl status</code>; 169.254.x.x = no DHCP.</li>
+<li>DHCP: DORA (Discover, Offer, Request, Ack); relay <code>ip helper-address</code> on the client-facing interface; <code>ip dhcp excluded-address</code>.</li>
+</ul>
+<p><strong>Network access</strong></p>
+<ul>
+<li>Access port <code>switchport mode access</code> + <code>access vlan</code>; trunk <code>switchport mode trunk</code>, native VLAN must match, <code>switchport trunk allowed vlan</code>.</li>
+<li>LACP active/passive (at least one active); PAgP desirable/auto; <code>on</code> = no negotiation. Members must match speed, duplex, VLAN settings.</li>
+<li>STP: lowest bridge ID = root; Rapid PVST+ roles root/designated/alternate/backup; PortFast + BPDU guard on edge ports; root guard on ports that must never lead to the root; loop guard against unidirectional failures.</li>
+<li>CDP (Cisco, on by default) / LLDP (standard, <code>lldp run</code>); verify documentation with <code>show cdp/lldp neighbors detail</code>.</li>
+<li>Toolkit: ping (<code>!</code> reply, <code>.</code> timeout, <code>U</code> unreachable), traceroute (TTL), <code>show interfaces</code> counters, logs, packet captures.</li>
+</ul>
+<p><strong>IP connectivity</strong></p>
+<ul>
+<li>Route choice: longest prefix → lowest AD → lowest metric. AD: connected 0, static 1, eBGP 20, OSPF 110, iBGP 200.</li>
+<li>Static: <code>ip route net mask next-hop|interface [AD]</code>; default <code>0.0.0.0 0.0.0.0</code>; IPv6 <code>ipv6 route ::/0 next-hop</code>; floating static with higher AD.</li>
+<li>OSPF: hello 10 / dead 40 on Ethernet; neighbours need same area, subnet, timers, authentication, MTU (EXSTART if not); DR/BDR by priority then RID; cost = reference bandwidth / interface bandwidth; <code>passive-interface</code>.</li>
+<li>HSRP: virtual IP and MAC (v2 0000.0c9f.fXXX), priority 100 default, preemption off by default, Active/Standby; VRRP: Master/Backup, preemption on by default; <code>show standby brief</code>, <code>show vrrp brief</code>.</li>
+</ul>
+<p><strong>IP services and security</strong></p>
+<ul>
+<li>AAA: <code>aaa new-model</code>, method lists, TACACS+ (TCP 49, encrypts whole body, separate authorisation) vs RADIUS (UDP 1812/1813, encrypts password only); ERROR moves to next method, FAIL stops.</li>
+<li>Files: SCP/SFTP over SSH TCP 22; <code>copy</code>, <code>verify /sha512</code>, <code>boot system</code>, <code>configure replace</code>.</li>
+<li>NAT: inside/outside; static, dynamic pool, PAT <code>overload</code>; <code>show ip nat translations</code>.</li>
+<li>DNS: A, AAAA, CNAME, MX (name, preference), NS, PTR (in-addr.arpa); NXDOMAIN vs SERVFAIL vs timeout.</li>
+<li>IPsec: IKE UDP 500/4500, ESP 50, AH 51; tunnel vs transport; site-to-site vs remote access.</li>
+<li>ACLs: first match, implicit deny, wildcard masks; standard near destination, extended near source; <code>ip access-group</code>, <code>access-class</code>.</li>
+<li>Layer 2 security: snooping (trust uplinks) → DAI (bindings, ARP ACLs) → port security (max, sticky, violation modes) + storm control + RA guard.</li>
+</ul>
+<p><strong>Automation, AI and operations</strong></p>
+<ul>
+<li>Management: device, cloud, controller (northbound REST/JSON, southbound NETCONF/RESTCONF/SSH/SNMP), automation, IaC (Git, review, pipeline).</li>
+<li>Ansible: agentless SSH, inventory, playbook → play → task → module; <code>ios_command</code>, <code>ios_config</code>; recap ok/changed/unreachable/failed.</li>
+<li>SNMP: manager/agent, MIB/OID, Get/GetNext/GetBulk/Set, Trap/Inform, UDP 161/162, v3 authPriv.</li>
+<li>Syslog: <code>%FAC-SEV-MNEMONIC</code>, 0–7 (Every Awesome Cisco Engineer Will Need Ice cream Daily), level includes lower numbers, UDP 514, NTP for time.</li>
+<li>AI: agent = goal + tools + loop; autonomy levels; guardrails; prompt = persona, instructions, data classification, output format; verify output.</li>
+</ul>
+<h3 id="288-command-reference">28.8 Command reference</h3>
+<p><strong>Interfaces, VLANs and Layer 2</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ip interface brief</code></td>
+<td>Interface addresses and up/down state</td>
+</tr>
+<tr>
+<td><code>show interfaces &lt;if&gt;</code></td>
+<td>Speed, duplex, MTU, errors, collisions</td>
+</tr>
+<tr>
+<td><code>show interfaces status [err-disabled]</code></td>
+<td>Access-port overview; err-disabled ports</td>
+</tr>
+<tr>
+<td><code>show vlan brief</code></td>
+<td>VLANs and their access ports</td>
+</tr>
+<tr>
+<td><code>show interfaces trunk</code></td>
+<td>Trunks, native VLAN, allowed and forwarding VLANs</td>
+</tr>
+<tr>
+<td><code>show etherchannel summary</code></td>
+<td>Bundles and member flags (P, D, s)</td>
+</tr>
+<tr>
+<td><code>show spanning-tree [vlan n]</code></td>
+<td>Root, port roles and states</td>
+</tr>
+<tr>
+<td><code>show cdp neighbors detail</code> / <code>show lldp neighbors detail</code></td>
+<td>Neighbours, platforms, addresses, ports</td>
+</tr>
+<tr>
+<td><code>show mac address-table [interface …]</code></td>
+<td>Learned MACs per port and VLAN</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Routing and redundancy</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ip route</code> / <code>show ipv6 route</code></td>
+<td>Routing tables (codes, AD/metric, next hop)</td>
+</tr>
+<tr>
+<td><code>show ip route &lt;address&gt;</code></td>
+<td>Which route a destination uses</td>
+</tr>
+<tr>
+<td><code>show ip ospf neighbor</code> / <code>show ip ospf interface brief</code></td>
+<td>Adjacencies and OSPF interfaces</td>
+</tr>
+<tr>
+<td><code>show ip protocols</code></td>
+<td>Routing processes, networks, passive interfaces, RID</td>
+</tr>
+<tr>
+<td><code>show standby brief</code> / <code>show vrrp brief</code></td>
+<td>FHRP roles, priorities, virtual IPs</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Services</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ip dhcp binding</code> / <code>show ip dhcp pool</code> / <code>show ip dhcp conflict</code></td>
+<td>DHCP server state</td>
+</tr>
+<tr>
+<td><code>show ip nat translations</code> / <code>show ip nat statistics</code></td>
+<td>NAT table and counters</td>
+</tr>
+<tr>
+<td><code>show hosts</code> / <code>nslookup</code> / <code>dig</code></td>
+<td>Name resolution</td>
+</tr>
+<tr>
+<td><code>show logging</code> / <code>terminal monitor</code></td>
+<td>Syslog destinations, buffer, live messages</td>
+</tr>
+<tr>
+<td><code>show snmp</code> / <code>show snmp user</code> / <code>show snmp host</code></td>
+<td>SNMP state</td>
+</tr>
+<tr>
+<td><code>dir flash:</code> / <code>show boot</code> / <code>verify /sha512</code></td>
+<td>Files, boot variables, image integrity</td>
+</tr>
+<tr>
+<td><code>copy running-config scp://user@host/path</code></td>
+<td>Secure configuration backup</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Security</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show access-lists</code> / <code>show ip interface &lt;if&gt;</code></td>
+<td>ACL entries and counters; where applied</td>
+</tr>
+<tr>
+<td><code>show running-config \| section vty</code></td>
+<td><code>access-class</code>, transport, login method</td>
+</tr>
+<tr>
+<td><code>show aaa servers</code> / <code>test aaa group …</code></td>
+<td>AAA server state and tests</td>
+</tr>
+<tr>
+<td><code>show ip ssh</code> / <code>show ssh</code></td>
+<td>SSH version and sessions</td>
+</tr>
+<tr>
+<td><code>show ip dhcp snooping [binding]</code></td>
+<td>Snooping configuration and bindings</td>
+</tr>
+<tr>
+<td><code>show ip arp inspection [statistics]</code></td>
+<td>DAI state and drops</td>
+</tr>
+<tr>
+<td><code>show port-security [interface …]</code></td>
+<td>Port-security state and violations</td>
+</tr>
+<tr>
+<td><code>show storm-control</code> / <code>show ipv6 nd raguard policy</code></td>
+<td>Storm control and RA guard</td>
+</tr>
+<tr>
+<td><code>show crypto isakmp sa</code> / <code>show crypto ipsec sa</code></td>
+<td>IPsec tunnel state</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Automation</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ansible &lt;group&gt; -m cisco.ios.ios_command -a "commands='show clock'"</code></td>
+<td>Ad-hoc command</td>
+</tr>
+<tr>
+<td><code>ansible-playbook play.yml --check --diff</code></td>
+<td>Dry run showing changes</td>
+</tr>
+<tr>
+<td><code>ansible-playbook play.yml --syntax-check</code></td>
+<td>YAML and playbook syntax</td>
+</tr>
+<tr>
+<td><code>ansible-inventory --graph</code></td>
+<td>Inventory groups and hosts</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="289-common-conceptual-mistakes-whole-guide">28.9 Common conceptual mistakes (whole guide)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>"The route with the lowest AD always wins"</td>
+<td>Longest prefix first; AD only between equal prefixes</td>
+</tr>
+<tr>
+<td>2</td>
+<td>"169.254.x.x means the DHCP server is down"</td>
+<td>It means no reply reached the client — check link, VLAN, relay, snooping first</td>
+</tr>
+<tr>
+<td>3</td>
+<td>"LACP passive on both ends forms a channel"</td>
+<td>At least one side must be active</td>
+</tr>
+<tr>
+<td>4</td>
+<td>"PortFast makes STP unnecessary"</td>
+<td>PortFast only speeds edge ports; pair it with BPDU guard</td>
+</tr>
+<tr>
+<td>5</td>
+<td>"Native VLAN mismatch breaks all VLANs"</td>
+<td>Only untagged traffic is affected</td>
+</tr>
+<tr>
+<td>6</td>
+<td>"OSPF neighbours stuck in EXSTART have an area mismatch"</td>
+<td>Area mismatch stops them earlier; EXSTART points to MTU</td>
+</tr>
+<tr>
+<td>7</td>
+<td>"HSRP preempts by default"</td>
+<td>HSRP preemption is off by default; VRRP's is on</td>
+</tr>
+<tr>
+<td>8</td>
+<td>"If TACACS+ rejects a user, the local account is tried"</td>
+<td>Only if the server does not answer (ERROR)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>"<code>copy</code> to running-config restores exactly"</td>
+<td>It merges; use <code>configure replace</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td>"Inside global is the remote server's address"</td>
+<td>It is our host's public address</td>
+</tr>
+<tr>
+<td>11</td>
+<td>"Wildcard masks are subnet masks"</td>
+<td>Inverted: 0 = match, 1 = ignore</td>
+</tr>
+<tr>
+<td>12</td>
+<td>"Standard ACLs go near the source"</td>
+<td>Near the destination</td>
+</tr>
+<tr>
+<td>13</td>
+<td>"An MX record holds an IP address"</td>
+<td>It holds a host name</td>
+</tr>
+<tr>
+<td>14</td>
+<td>"AH encrypts"</td>
+<td>ESP encrypts; AH only authenticates</td>
+</tr>
+<tr>
+<td>15</td>
+<td>"Trust all access ports for DHCP snooping"</td>
+<td>Trust only uplinks towards the server</td>
+</tr>
+<tr>
+<td>16</td>
+<td>"DAI works without snooping"</td>
+<td>It needs bindings or ARP ACLs</td>
+</tr>
+<tr>
+<td>17</td>
+<td>"Severity 7 is the worst"</td>
+<td>0 is the worst</td>
+</tr>
+<tr>
+<td>18</td>
+<td>"SNMP traps are acknowledged"</td>
+<td>Informs are; traps are not</td>
+</tr>
+<tr>
+<td>19</td>
+<td>"Ansible needs an agent on routers"</td>
+<td>It is agentless over SSH</td>
+</tr>
+<tr>
+<td>20</td>
+<td>"An AI agent is just a chatbot"</td>
+<td>It pursues a goal through tools in a loop</td>
+</tr>
+<tr>
+<td>21</td>
+<td>"Paste the full config so the AI has context"</td>
+<td>Send minimal, classified, sanitised data</td>
+</tr>
+<tr>
+<td>22</td>
+<td>"A fluent AI answer is correct"</td>
+<td>Verify against evidence and documentation</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2810-personal-weak-topic-assessment-checklist">28.10 Personal weak-topic assessment checklist</h3>
+<p>After the mixed questions and the capstone lab, rate each area: <strong>3</strong> = confident (correct without notes), <strong>2</strong> = unsure (correct after thinking or with a guess), <strong>1</strong> = weak (wrong). For every 1 or 2, re-read the chapter summary, redo its challenge lab and answer its practice questions again. Re-rate a week later.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Objectives</th>
+<th>Chapters</th>
+<th>Rating (1–3)</th>
+<th>Action and date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cables, interfaces, virtualisation</td>
+<td>1.1, 1.2</td>
+<td>1, 4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IPv4 and IPv6 addressing</td>
+<td>1.3, 1.4</td>
+<td>2, 3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Wireless and client connectivity</td>
+<td>1.5, 1.6</td>
+<td>16, 17</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td>1.7</td>
+<td>14</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VLANs, trunks, EtherChannel</td>
+<td>2.1</td>
+<td>5, 6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Edge hosts, CDP/LLDP</td>
+<td>2.2, 2.3</td>
+<td>7, 8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>STP</td>
+<td>2.5</td>
+<td>9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Troubleshooting toolkit</td>
+<td>2.4</td>
+<td>15</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Routing table and static routes</td>
+<td>3.1, 3.2</td>
+<td>10, 11</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OSPF</td>
+<td>3.3</td>
+<td>12</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HSRP/VRRP</td>
+<td>3.4</td>
+<td>13</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>AAA and file management</td>
+<td>4.1, 4.2</td>
+<td>18, 19</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ACLs</td>
+<td>4.6</td>
+<td>20</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>NAT/PAT</td>
+<td>4.3</td>
+<td>21</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DNS diagnosis</td>
+<td>4.4</td>
+<td>22</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Layer 2 security</td>
+<td>4.7</td>
+<td>23</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IPsec VPNs</td>
+<td>4.5</td>
+<td>24</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Syslog and SNMP</td>
+<td>5.4, 5.6</td>
+<td>25</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Management approaches and Ansible</td>
+<td>5.3, 5.5</td>
+<td>26</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Agentic AI and prompting</td>
+<td>5.1, 5.2</td>
+<td>27</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2811-exam-day-tips">28.11 Exam-day tips</h3>
+<ul>
+<li>Check the current exam details (length, price, question types) on Cisco's certification pages before you book; they can change.</li>
+<li>Cisco exams generally do not let you return to a previous question: answer each one fully before moving on.</li>
+<li>Read the <strong>last line</strong> of a question first (what is asked), then the exhibit. Count the required answers on multiple-response items.</li>
+<li>In output questions, look for the <strong>one line that matters</strong>: a state (EXSTART, err-disabled, Secure-shutdown), a counter, a missing entry.</li>
+<li>For simulations, verify with a <code>show</code> command after every change, and save only when asked.</li>
+<li>Manage time: do not spend more than a few minutes on any single item.</li>
+</ul>
+<h3 id="2812-chapter-28-figure-checklist">28.12 Chapter 28 figure checklist</h3>
+<p>The figure was rendered, embedded beside the text it explains and checked visually after rendering. Its first render had two connectors crossing a label and shortened interface names; both were corrected and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>28.1</td>
+<td>The finished campus lab</td>
+<td>28.1</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as tables and lists:</strong> questions and answers, scenario outputs, health-check table, syllabus checklist, revision sheet, command reference, mistakes list, weak-topic table.</p>
+<h3 id="2813-chapter-28-progress-record">28.13 Chapter 28 progress record</h3>
+<p><strong>Objectives covered:</strong> every objective of the 200-301 v2.0 syllabus, reviewed across domains.</p>
+<p><strong>Guide status:</strong> Chapters 1–28 written, each with objectives, explanations, figures, configurations, verification, troubleshooting, labs, practice questions with answers, a figure checklist and a progress record. Track your own progress in the tracker table in <a href="intro.html#part-04--chapter-plan-and-progress-tracker">Part 1</a> and in 28.10.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-27.html"><small>← Chapter 27</small>AI in network operations: agents and prompts</a><a class="pn next" href="index.html"><small>Finished →</small>Back to home</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#281-how-to-use-this-chapter">28.1 How to use this chapter</a>
+<a href="#282-mixed-domain-revision-questions">28.2 Mixed-domain revision questions</a>
+<a href="#283-answer-key-with-explanations">28.3 Answer key with explanations</a>
+<a href="#284-integrated-troubleshooting-scenarios">28.4 Integrated troubleshooting scenarios</a>
+<a href="#285-lab-281--capstone-health-check-and-fault-hunt-advanced">28.5 Lab 28.1 — Capstone: health check and fault hunt (Advanced)</a>
+<a href="#286-full-syllabus-review-checklist">28.6 Full syllabus review checklist</a>
+<a href="#287-final-revision-sheet">28.7 Final revision sheet</a>
+<a href="#288-command-reference">28.8 Command reference</a>
+<a href="#289-common-conceptual-mistakes-whole-guide">28.9 Common conceptual mistakes (whole guide)</a>
+<a href="#2810-personal-weak-topic-assessment-checklist">28.10 Personal weak-topic assessment checklist</a>
+<a href="#2811-exam-day-tips">28.11 Exam-day tips</a>
+<a href="#2812-chapter-28-figure-checklist">28.12 Chapter 28 figure checklist</a>
+<a href="#2813-chapter-28-progress-record">28.13 Chapter 28 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

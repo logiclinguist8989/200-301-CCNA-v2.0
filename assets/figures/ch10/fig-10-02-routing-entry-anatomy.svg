@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 467" width="1160" height="467" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 10.2 — Anatomy of one routing table entry from R1</title>
+<desc id="d">Read any route left to right: how learned, where to, how trusted, how costly, which neighbor and interface</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="466" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 10.2</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Anatomy of one routing table entry from R1</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Read any route left to right: how learned, where to, how trusted, how costly, which neighbor and interface</text>
+<rect x="40.0" y="120.0" width="1080.0" height="66.0" rx="10" fill="#0f172a" stroke="none" stroke-width="1.5"/>
+<text x="120.0" y="162.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="22" font-weight="600" fill="#e2e8f0" text-anchor="start">O</text>
+<line x1="120.0" y1="174.0" x2="125.4" y2="174.0" stroke="#7357d1" stroke-width="3" stroke-linecap="round"/>
+<line x1="122.7" y1="190.0" x2="122.7" y2="238.0" stroke="#7357d1" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="50.7" y="240.0" width="144.0" height="66.0" rx="10" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="122.7" y="266.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="middle">Source</text>
+<text x="122.7" y="287.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">O = OSPF</text>
+<text x="145.4" y="162.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="22" font-weight="600" fill="#e2e8f0" text-anchor="start">10.10.40.0/24</text>
+<line x1="145.4" y1="174.0" x2="311.6" y2="174.0" stroke="#1d6fd1" stroke-width="3" stroke-linecap="round"/>
+<line x1="228.5" y1="190.0" x2="228.5" y2="318.0" stroke="#1d6fd1" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="156.5" y="320.0" width="144.0" height="66.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="228.5" y="346.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="middle">Destination</text>
+<text x="228.5" y="367.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">prefix / length</text>
+<text x="331.6" y="162.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="22" font-weight="600" fill="#e2e8f0" text-anchor="start">[110/2]</text>
+<line x1="331.6" y1="174.0" x2="417.4" y2="174.0" stroke="#d9861a" stroke-width="3" stroke-linecap="round"/>
+<line x1="374.5" y1="190.0" x2="374.5" y2="238.0" stroke="#d9861a" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="302.5" y="240.0" width="144.0" height="66.0" rx="10" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="374.5" y="266.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="middle">AD / metric</text>
+<text x="374.5" y="287.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">trust 110 · cost 2</text>
+<text x="437.4" y="162.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="22" font-weight="600" fill="#e2e8f0" text-anchor="start">via 10.0.0.2,</text>
+<line x1="437.4" y1="174.0" x2="603.6" y2="174.0" stroke="#1f9d63" stroke-width="3" stroke-linecap="round"/>
+<line x1="520.5" y1="190.0" x2="520.5" y2="318.0" stroke="#1f9d63" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="448.5" y="320.0" width="144.0" height="66.0" rx="10" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="520.5" y="346.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="middle">Next hop</text>
+<text x="520.5" y="367.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">neighbor&#x27;s IP</text>
+<text x="623.6" y="162.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="22" font-weight="600" fill="#e2e8f0" text-anchor="start">00:14:02,</text>
+<line x1="623.6" y1="174.0" x2="736.2" y2="174.0" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+<line x1="679.9" y1="190.0" x2="679.9" y2="238.0" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="607.9" y="240.0" width="144.0" height="66.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="679.9" y="266.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="middle">Age</text>
+<text x="679.9" y="287.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">time since learned</text>
+<text x="756.2" y="162.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="22" font-weight="600" fill="#e2e8f0" text-anchor="start">GigabitEthernet0/0/0</text>
+<line x1="756.2" y1="174.0" x2="1016.2" y2="174.0" stroke="#0f9aa8" stroke-width="3" stroke-linecap="round"/>
+<line x1="886.2" y1="190.0" x2="886.2" y2="318.0" stroke="#0f9aa8" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="814.2" y="320.0" width="144.0" height="66.0" rx="10" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.5"/>
+<text x="886.2" y="346.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="middle">Exit interface</text>
+<text x="886.2" y="367.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">send out here</text>
+<line x1="28" y1="427" x2="1132" y2="427" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="449" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Connected (C) and local (L) routes have no brackets and no next hop — the network is directly attached.</text>
+<text x="1136" y="457" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

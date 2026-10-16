@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 658" width="1160" height="658" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 4.2 — Virtual switching: VM traffic leaves the host as an 802.1Q trunk</title>
+<desc id="d">vNICs sit in port groups; the vSwitch tags frames with the port group&#x27;s VLAN; two uplinks form one LACP bundle</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#94a3b8"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="657" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 4.2</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Virtual switching: VM traffic leaves the host as an 802.1Q trunk</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">vNICs sit in port groups; the vSwitch tags frames with the port group&#x27;s VLAN; two uplinks form one LACP bundle</text>
+<rect x="40.0" y="100.0" width="760.0" height="440.0" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="60.0" y="126.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">ESXi-01 — Type 1 hypervisor host</text>
+<g transform="translate(150.0,180.0) scale(0.8)"><ellipse cx="0" cy="33" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-30" y="-28" width="60" height="42" rx="4" fill="url(#gDark)"/><rect x="-26" y="-24" width="52" height="33" rx="2" fill="url(#gScreen)"/><path d="M-26,-24 L6,-24 L-26,4 Z" fill="#ffffff" opacity="0.12"/><rect x="-5" y="14" width="10" height="9" fill="#475569"/><rect x="-17" y="22" width="34" height="5" rx="2" fill="url(#gDark)"/><rect x="-26" y="28" width="52" height="5" rx="1.5" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.6"/></g>
+<text x="150.0" y="222.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">VM-Web</text>
+<text x="150.0" y="237.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">vNIC · own MAC</text>
+<g transform="translate(390.0,180.0) scale(0.8)"><ellipse cx="0" cy="33" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-30" y="-28" width="60" height="42" rx="4" fill="url(#gDark)"/><rect x="-26" y="-24" width="52" height="33" rx="2" fill="url(#gScreen)"/><path d="M-26,-24 L6,-24 L-26,4 Z" fill="#ffffff" opacity="0.12"/><rect x="-5" y="14" width="10" height="9" fill="#475569"/><rect x="-17" y="22" width="34" height="5" rx="2" fill="url(#gDark)"/><rect x="-26" y="28" width="52" height="5" rx="1.5" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.6"/></g>
+<text x="390.0" y="222.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">VM-DB</text>
+<text x="390.0" y="237.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">vNIC · own MAC</text>
+<g transform="translate(630.0,180.0) scale(0.8)"><ellipse cx="0" cy="33" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-30" y="-28" width="60" height="42" rx="4" fill="url(#gDark)"/><rect x="-26" y="-24" width="52" height="33" rx="2" fill="url(#gScreen)"/><path d="M-26,-24 L6,-24 L-26,4 Z" fill="#ffffff" opacity="0.12"/><rect x="-5" y="14" width="10" height="9" fill="#475569"/><rect x="-17" y="22" width="34" height="5" rx="2" fill="url(#gDark)"/><rect x="-26" y="28" width="52" height="5" rx="1.5" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.6"/></g>
+<text x="630.0" y="222.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">VM-Mgmt</text>
+<text x="630.0" y="237.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="400" fill="#5b6b7f" text-anchor="middle">vNIC · own MAC</text>
+<rect x="70.0" y="268.0" width="440.0" height="52.0" rx="8" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="290.0" y="299.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f3f80" text-anchor="middle">Port group “Staff” — VLAN 10</text>
+<rect x="530.0" y="268.0" width="240.0" height="52.0" rx="8" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="650.0" y="299.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#7a4708" text-anchor="middle">Port group “Mgmt” — VLAN 99</text>
+<line x1="150.0" y1="236.0" x2="150.0" y2="266.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="390.0" y1="236.0" x2="390.0" y2="266.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="630.0" y1="236.0" x2="630.0" y2="266.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="70.0" y="340.0" width="700.0" height="70.0" rx="10" fill="url(#gFront)" stroke="none" stroke-width="1.5"/>
+<text x="420.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">vSwitch (Layer 2 inside the hypervisor)</text>
+<text x="420.0" y="393.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#d6ebfb" text-anchor="middle">adds 802.1Q tag 10 or 99 on the way out · switches VM-to-VM frames locally</text>
+<line x1="290.0" y1="322.0" x2="290.0" y2="338.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="650.0" y1="322.0" x2="650.0" y2="338.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="290.0" y="440.0" width="100.0" height="40.0" rx="6" fill="url(#gDark)" stroke="none" stroke-width="1.5"/>
+<text x="340.0" y="465.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">vmnic0</text>
+<line x1="340.0" y1="410.0" x2="340.0" y2="438.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<rect x="450.0" y="440.0" width="100.0" height="40.0" rx="6" fill="url(#gDark)" stroke="none" stroke-width="1.5"/>
+<text x="500.0" y="465.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">vmnic1</text>
+<line x1="500.0" y1="410.0" x2="500.0" y2="438.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+<path d="M340.0,480.0 L340.0,498.0 Q340.0,506.0 348.0,506.0 L952.0,506.0" fill="none" stroke="#1d6fd1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M500.0,480.0 L500.0,487.0 Q500.0,494.0 507.0,494.0 L952.0,494.0" fill="none" stroke="#1d6fd1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="880" cy="500" rx="12" ry="20" fill="none" stroke="#1d6fd1" stroke-width="2"/>
+<rect x="882.3" y="399.0" width="215.4" height="22.0" rx="11.0" fill="#1d6fd1" stroke="#1d6fd1" stroke-width="1.2"/>
+<text x="990.0" y="414.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">LACP bundle Po1 · 802.1Q trunk</text>
+<text x="990.0" y="434.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0f3f80" text-anchor="middle">allowed VLANs 10, 99</text>
+<g transform="translate(1000.0,500.0) scale(1.0)"><ellipse cx="2" cy="18.5" rx="41.0" ry="6" fill="#0f2540" opacity="0.12"/><polygon points="-39.5,-6.5 -30.5,-15.5 39.5,-15.5 30.5,-6.5" fill="url(#gTop)" stroke="#0b4f8a" stroke-width="0.8"/><polygon points="30.5,-6.5 39.5,-15.5 39.5,6.5 30.5,15.5" fill="url(#gSide)"/><rect x="-39.5" y="-6.5" width="70" height="22" fill="url(#gFront)"/><line x1="-20.0" y1="-14.5" x2="-8.2" y2="-14.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="-4.0,-14.5 -8.2,-11.1 -8.2,-17.9" fill="#ffffff"/><line x1="4.0" y1="-14.5" x2="15.8" y2="-14.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="20.0,-14.5 15.8,-11.1 15.8,-17.9" fill="#ffffff"/><line x1="-4.0" y1="-7.5" x2="-15.8" y2="-7.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="-20.0,-7.5 -15.8,-10.9 -15.8,-4.1" fill="#ffffff"/><line x1="20.0" y1="-7.5" x2="8.2" y2="-7.5" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="4.0,-7.5 8.2,-10.9 8.2,-4.1" fill="#ffffff"/><rect x="-31.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-24.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-17.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-10.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="-3.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="3.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="10.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/><rect x="17.5" y="7.5" width="4.5" height="3.5" rx="0.8" fill="#9fe3b5" opacity="0.9"/></g>
+<text x="1000.0" y="538.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">SW1</text>
+<text x="1000.0" y="554.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">Gi1/0/1–2 → Po1</text>
+<line x1="28" y1="599" x2="1132" y2="599" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="621" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">SW1 must allow every port-group VLAN on the trunk, or VMs in a missing VLAN are cut off.</text>
+<text x="28" y="640" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">SW1&#x27;s MAC table learns VM-Web, VM-DB and VM-Mgmt (OUI 00:50:56 = VMware) all on Po1.</text>
+<text x="1136" y="648" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

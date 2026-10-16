@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 19 — Managing configurations and images with SCP and SFTP · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 19: Managing configurations and images with SCP and SFTP">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head purple">
+  <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
+  <h1><span class="num">Chapter 19</span>Managing configurations and images with SCP and SFTP</h1>
+  <div class="meta"><span>🖼️ 2 figures</span><span>⏱️ ~13 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="19"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.2 Manage device configuration and software files using secure file transfer operations with SFTP/SCP.</strong> You back up and restore configurations, copy software images, check them and boot from them — over encrypted, authenticated transfers.</p>
+<h3 id="191-learning-objectives">19.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Navigate IOS file systems and use the <code>copy</code> command correctly.</li>
+<li>Explain why TFTP and FTP are unsuitable for production and what SCP and SFTP add.</li>
+<li>Configure an IOS device as an SCP server and use it as an SCP and SFTP client.</li>
+<li>Back up, restore and replace configurations safely.</li>
+<li>Upgrade a software image: check space, transfer, verify the hash, set the boot variable, reload.</li>
+<li>Troubleshoot failed transfers.</li>
+</ol>
+<h3 id="192-files-on-an-ios-device">19.2 Files on an IOS device</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>File system</th>
+<th>Holds</th>
+<th>Survives reload?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flash:</code> / <code>bootflash:</code></td>
+<td>Software images, saved files, sometimes the configuration</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>nvram:</code></td>
+<td><code>startup-config</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>system:</code></td>
+<td><code>running-config</code> (in RAM)</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>usbflash0:</code></td>
+<td>USB stick, where present</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code>DSW1# show file systems           ! every file system, size and free space
+DSW1# dir flash:                  ! files, sizes, and bytes free at the bottom
+DSW1# show version | include System image
+System image file is &quot;flash:packages.conf&quot;
+</code></pre>
+<p>The <strong>copy</strong> command always reads <strong>source, then destination</strong>: <code>copy &lt;from&gt; &lt;to&gt;</code>. <code>copy running-config startup-config</code> saves; <code>copy startup-config running-config</code> <strong>merges</strong> the saved file into the running configuration (it does not erase lines that exist only in the running configuration).</p>
+<p>On Catalyst 9000 and other IOS XE platforms the switch usually runs in <strong>install mode</strong>: it boots <code>packages.conf</code>, which points to package files expanded from the <code>.bin</code> image. Older devices run in <strong>bundle mode</strong> and boot the <code>.bin</code> directly. Both appear in <code>show version</code>.</p>
+<h3 id="193-why-not-tftp-or-ftp">19.3 Why not TFTP or FTP?</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Transport</th>
+<th>Authentication</th>
+<th>Encryption</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TFTP</td>
+<td>UDP 69</td>
+<td><strong>None</strong></td>
+<td>None</td>
+<td>Labs, PXE/phone boot only; anyone can read or replace files</td>
+</tr>
+<tr>
+<td>FTP</td>
+<td>TCP 20/21</td>
+<td>Username and password in <strong>clear text</strong></td>
+<td>None</td>
+<td>Avoid on untrusted networks</td>
+</tr>
+<tr>
+<td><strong>SCP</strong></td>
+<td><strong>SSH, TCP 22</strong></td>
+<td>SSH login (local or AAA)</td>
+<td><strong>Yes</strong></td>
+<td>Recommended; IOS can be server <strong>and</strong> client</td>
+</tr>
+<tr>
+<td><strong>SFTP</strong></td>
+<td><strong>SSH, TCP 22</strong></td>
+<td>SSH login</td>
+<td><strong>Yes</strong></td>
+<td>Recommended; IOS XE is an SFTP <strong>client</strong> only</td>
+</tr>
+</tbody>
+</table></div>
+<p>SCP and SFTP both run inside SSH, so they reuse everything from Chapter 18: RSA keys, SSH version 2, local or AAA users.</p>
+<h3 id="194-scp-and-sftp-who-starts-the-transfer">19.4 SCP and SFTP: who starts the transfer?</h3>
+<p>There are two directions to think about (<a class="figref" href="#fig-19-1">Figure 19.1</a>):</p>
+<ul>
+<li><strong>The device is the server</strong> — an administrator's PC connects to the switch and pushes or pulls files. Only <strong>SCP</strong> works this way on IOS XE.</li>
+<li><strong>The device is the client</strong> — the switch connects to a file server (a Linux backup server, for example) with the <code>copy</code> command. Both <strong>SCP</strong> and <strong>SFTP</strong> work this way.</li>
+</ul>
+<figure class="fig" id="fig-19-1"><button class="zoom" aria-label="Enlarge figure 19.1"><img src="assets/figures/ch19/fig-19-01-scp-server-vs-client.svg" alt="Figure 19.1 — SCP with the switch as server (left) and SCP/SFTP with the switch as client (right)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-19-1">Figure 19.1</a> SCP with the switch as server (left) and SCP/SFTP with the switch as client (right)</figcaption></figure>
+
+<p><a class="figref" href="#fig-19-1">Figure 19.1</a> compares the two directions. The arrow shows which side opens the SSH connection; the grey panels hold the commands typed on that side.</p>
+<p><strong>IOS as an SCP server.</strong> SCP needs SSH (Chapter 18), and IOS must be able to check the user's privilege, so AAA <strong>exec authorization</strong> is required:</p>
+<pre><code>DSW1(config)# username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026
+DSW1(config)# aaa new-model
+DSW1(config)# aaa authentication login default local          ! or group &lt;AAA servers&gt; local
+DSW1(config)# aaa authorization exec default local            ! required for SCP
+DSW1(config)# ip scp server enable
+</code></pre>
+<p>From a Linux, macOS or Windows 10/11 PC with OpenSSH:</p>
+<pre><code>$ scp -O cat9k_iosxe.17.12.04.SPA.bin netadmin@10.10.99.2:flash:/cat9k_iosxe.17.12.04.SPA.bin   # push an image
+$ scp -O netadmin@10.10.99.2:flash:/DSW1-2026-10-15.cfg .                                        # pull a saved file
+</code></pre>
+<p>The <code>-O</code> option matters: OpenSSH 9.0 and later use the SFTP protocol inside <code>scp</code> by default, which the IOS XE SCP server does not accept; <code>-O</code> selects the original SCP protocol. To pull the running configuration, save it to flash first (<code>copy running-config flash:DSW1-2026-10-15.cfg</code>).</p>
+<p><strong>IOS as an SCP or SFTP client.</strong> Credentials can go in the URL or be prompted for. Set the source address the server sees with <code>ip ssh source-interface</code>:</p>
+<pre><code>DSW1(config)# ip ssh source-interface Vlan99
+DSW1# copy running-config scp://netadmin@10.10.99.30/backups/DSW1-2026-10-15.cfg
+Address or name of remote host [10.10.99.30]?
+Destination username [netadmin]?
+Destination filename [backups/DSW1-2026-10-15.cfg]?
+Password:
+!
+5124 bytes copied in 1.204 secs (4256 bytes/sec)
+
+DSW1# copy running-config sftp://netadmin@10.10.99.30//backups/DSW1-2026-10-15.cfg
+DSW1# copy scp://netadmin@10.10.99.30/images/cat9k_iosxe.17.12.04.SPA.bin flash:
+</code></pre>
+<p>Note the URL forms: <code>scp://user@host/path</code>, and <code>sftp://user@host//path</code> (the double slash marks an absolute path in Cisco's SFTP examples). Exact prompts vary by release. A password typed into a URL (<code>user:password@host</code>) is visible on screen and in history — let IOS prompt for it instead.</p>
+<p>Sources: <a href="https://www.cisco.com/en/US/docs/ios-xml/ios/sec_usr_ssh/configuration/15-1s/sec-secure-copy.html">Cisco IOS Secure Copy configuration</a>; <a href="https://www.cisco.com/c/en/us/td/docs/Sanity_test/INC9625337/b_1710_sec_9300_cg1/m9_1710_sec_sftp_cg.html">Configuring SSH File Transfer Protocol, Catalyst 9300, IOS XE 17.10</a>.</p>
+<h3 id="195-backing-up-and-restoring-configurations">19.5 Backing up and restoring configurations</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Back up off the device</td>
+<td><code>copy running-config scp://netadmin@10.10.99.30/backups/DSW1-2026-10-15.cfg</code></td>
+<td>Encrypted copy on the backup server</td>
+</tr>
+<tr>
+<td>Keep a local copy</td>
+<td><code>copy running-config flash:DSW1-2026-10-15.cfg</code></td>
+<td>File in flash for quick rollback</td>
+</tr>
+<tr>
+<td>Add lines from a file</td>
+<td><code>copy scp://…/DSW1-snippet.cfg running-config</code></td>
+<td><strong>Merges</strong>: adds and changes lines, deletes nothing</td>
+</tr>
+<tr>
+<td>Return exactly to a saved state</td>
+<td><code>configure replace flash:DSW1-2026-10-15.cfg</code></td>
+<td><strong>Replaces</strong> the running configuration, removing lines not in the file</td>
+</tr>
+<tr>
+<td>Automatic versions</td>
+<td><code>archive</code> → <code>path flash:archive/$h-</code> → <code>write-memory</code></td>
+<td>Saves a numbered copy every time you <code>write memory</code>; list them with <code>show archive</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>The merge-versus-replace difference is a classic trap: restoring a backup with <code>copy … running-config</code> onto a device that has extra, wrong configuration leaves the wrong lines in place.</p>
+<h3 id="196-upgrading-a-software-image">19.6 Upgrading a software image</h3>
+<p><a class="figref" href="#fig-19-2">Figure 19.2</a> shows the full workflow. The steps:</p>
+<figure class="fig" id="fig-19-2"><button class="zoom" aria-label="Enlarge figure 19.2"><img src="assets/figures/ch19/fig-19-02-image-upgrade-workflow.svg" alt="Figure 19.2 — Software image upgrade workflow with hash verification" loading="lazy"></button><figcaption><a class="fignum" href="#fig-19-2">Figure 19.2</a> Software image upgrade workflow with hash verification</figcaption></figure>
+
+<p><a class="figref" href="#fig-19-2">Figure 19.2</a> runs left to right along the top, then back along the middle row. The highlighted hash check is the gate: the red dashed path sends a mismatched file back to be copied again before anything touches the boot settings.</p>
+<ol>
+<li><strong>Choose the image</strong> from Cisco's software download site, matching the exact platform, and record its published <strong>SHA-512</strong> (or MD5) hash.</li>
+<li><strong>Check space:</strong> <code>dir flash:</code> — the bytes free must exceed the image size (install mode needs room to expand it too). Delete old images only after checking which one is running.</li>
+<li><strong>Copy securely:</strong> <code>copy scp://netadmin@10.10.99.30/images/cat9k_iosxe.17.12.04.SPA.bin flash:</code> (or push it from a PC with <code>scp -O</code>).</li>
+<li><strong>Verify integrity:</strong> <code>verify /sha512 flash:cat9k_iosxe.17.12.04.SPA.bin</code> and compare with Cisco's hash. A mismatch means corruption or tampering — delete and copy again.</li>
+<li><strong>Point the device at it:</strong>
+   - Bundle mode: <code>boot system flash:cat9k_iosxe.17.12.04.SPA.bin</code>, then <code>copy running-config startup-config</code>.
+   - Install mode (Catalyst 9000): <code>install add file flash:cat9k_iosxe.17.12.04.SPA.bin activate commit</code> — it expands the packages, updates <code>packages.conf</code> and reloads.</li>
+<li><strong>Back up the configuration</strong> first (19.5), and reload in a maintenance window.</li>
+<li><strong>Confirm</strong> with <code>show version</code> (new version, uptime minutes) and normal operation; keep the old image until you are sure.</li>
+</ol>
+<p>If the device cannot find a valid image at boot it drops to <strong>ROMMON</strong> (<code>rommon 1 &gt;</code>), from where an image is booted manually — a reason to check <code>show boot</code> before every reload.</p>
+<h3 id="197-verifying-and-troubleshooting-transfers">19.7 Verifying and troubleshooting transfers</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use it to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show file systems</code>, <code>dir flash:</code></td>
+<td>Space and files</td>
+</tr>
+<tr>
+<td><code>verify /sha512 flash:&lt;file&gt;</code> (or <code>/md5</code>)</td>
+<td>Image integrity against the published hash</td>
+</tr>
+<tr>
+<td><code>show boot</code> / <code>show bootvar</code></td>
+<td>Which image the next reload will use</td>
+</tr>
+<tr>
+<td><code>show version</code></td>
+<td>Running image and how the device last booted</td>
+</tr>
+<tr>
+<td><code>show ip ssh</code>, <code>show running-config \| include scp</code></td>
+<td>SSH version, SCP server enabled</td>
+</tr>
+<tr>
+<td><code>debug ip scp</code></td>
+<td>Watch an SCP session (briefly)</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scp</code> from a PC: connection closed or protocol error</td>
+<td>OpenSSH 9+ using SFTP mode</td>
+<td><code>scp -O</code></td>
+</tr>
+<tr>
+<td>SCP to the device refused</td>
+<td><code>ip scp server enable</code> missing, SSH not configured</td>
+<td>Configure SSH and enable the SCP server</td>
+</tr>
+<tr>
+<td>"Permission denied" though the password is right</td>
+<td>User below privilege 15, or no <code>aaa authorization exec</code></td>
+<td>Privilege 15 user; add exec authorization</td>
+</tr>
+<tr>
+<td>Copy stops part-way</td>
+<td>Not enough flash</td>
+<td><code>dir flash:</code>; delete unused files</td>
+</tr>
+<tr>
+<td>Hash mismatch</td>
+<td>Corrupted or wrong file</td>
+<td>Copy again; check the filename and platform</td>
+</tr>
+<tr>
+<td>Server never sees the connection</td>
+<td>Routing, ACL blocking TCP 22, wrong source address</td>
+<td><code>ip ssh source-interface</code>; check ACLs (Chapter 20)</td>
+</tr>
+<tr>
+<td>Restored backup, old wrong lines still present</td>
+<td><code>copy</code> merged instead of replacing</td>
+<td><code>configure replace</code></td>
+</tr>
+<tr>
+<td>Device boots to ROMMON after upgrade</td>
+<td>Boot variable points to a deleted or incomplete image</td>
+<td>Boot the image manually, fix <code>boot system</code>, save</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="198-lab-191--file-management-from-packet-tracer-to-real-scp-and-sftp-intermediate">19.8 Lab 19.1 — File management, from Packet Tracer to real SCP and SFTP (Intermediate)</h3>
+<p><strong>Objective:</strong> 4.2. <strong>Packet Tracer limitation:</strong> Packet Tracer's file server offers <strong>TFTP and FTP</strong> only, and most versions do not accept SCP or SFTP in the <code>copy</code> command. Part A therefore practises the IOS file workflow with those protocols (and shows why they are insecure); Part B practises SCP and SFTP for real.</p>
+<p><strong>Part A — Packet Tracer (start from your Lab 18.1 file)</strong></p>
+<ol>
+<li>Add a Server-PT <strong>FILES</strong> at 10.10.99.30/24, gateway 10.10.99.1, cabled to <strong>SW2 Fa0/5</strong> (access VLAN 99). On it, check that <strong>TFTP</strong> and <strong>FTP</strong> are on (Services), and add an FTP user <code>netadmin</code> / <code>Ftp-2026</code> with write permission.</li>
+<li>On DSW1, back up by TFTP and by FTP:</li>
+</ol>
+<pre><code>DSW1# copy running-config tftp:
+Address or name of remote host []? 10.10.99.30
+Destination filename [DSW1-confg]? DSW1-2026-10-15-tftp.cfg
+DSW1# configure terminal
+DSW1(config)# ip ftp username netadmin
+DSW1(config)# ip ftp password Ftp-2026
+DSW1(config)# end
+DSW1# copy running-config ftp:
+Address or name of remote host []? 10.10.99.30
+Destination filename [DSW1-confg]? DSW1-2026-10-15-ftp.cfg
+</code></pre>
+<ol start="3">
+<li><strong>See why FTP is unsafe:</strong> repeat the FTP copy in Simulation mode, filter on FTP and open the packets: the username and password appear readable. TFTP needed no password at all.</li>
+<li><strong>Merge, not replace:</strong> on DSW1 add <code>interface loopback 99</code> → <code>ip address 10.255.99.1 255.255.255.255</code>, then <code>copy tftp: running-config</code> from your backup. The loopback <strong>is still there</strong> — the copy merged. Remove it by hand with <code>no interface loopback 99</code>.</li>
+<li><strong>Files and boot variables on SW1 (2960):</strong> <code>dir flash:</code>, <code>show version | include image</code>, copy a newer 2960 image from the server (<code>copy tftp: flash:</code> — Packet Tracer's server lists the images it holds), then <code>boot system flash:&lt;new image&gt;</code>, <code>copy running-config startup-config</code>, <code>reload</code>, and confirm with <code>show version</code>.</li>
+<li>If your Packet Tracer version accepts <code>ip scp server enable</code> and <code>scp:</code> in <code>copy</code>, repeat step 2 with SCP; otherwise continue with Part B.</li>
+</ol>
+<p><strong>Part B — real SCP and SFTP</strong></p>
+<ol>
+<li>In your <strong>Linux VM</strong> (Lab 4.1) install an SSH server (<code>sudo apt install openssh-server</code> on Ubuntu), create <code>~/backups</code>, and from your host computer:</li>
+</ol>
+<pre><code>scp notes.txt student@&lt;vm-ip&gt;:~/backups/          # copy to the VM
+sftp student@&lt;vm-ip&gt;                              # interactive: ls, put, get, bye
+sha512sum notes.txt                               # compare hashes on both sides
+</code></pre>
+<ol start="2">
+<li><strong>With a real IOS device</strong> — a lab switch or router, or an IOS virtual node in <strong>Cisco Modeling Labs Free</strong> (check Cisco's site for the current free tier) — configure SSH and the SCP server (19.4), then from your computer <code>scp -O</code> a file to <code>flash:</code>, and from the device <code>copy running-config scp://student@&lt;vm-ip&gt;/backups/R1.cfg</code> and the same with <code>sftp://</code>. Verify with <code>dir flash:</code> and <code>verify /sha512</code>.</li>
+</ol>
+<p><strong>Questions after the lab</strong></p>
+<ol>
+<li>Which protocols showed the password on the wire, and which did not?</li>
+<li>Why did the loopback survive the restore in Part A step 4, and which command would have removed it?</li>
+<li>What must you check before <code>reload</code> after changing <code>boot system</code>?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Configuration backed up by TFTP and FTP in Packet Tracer; FTP credentials seen in Simulation</li>
+<li>[ ] Merge behaviour demonstrated and explained</li>
+<li>[ ] SW1 upgraded with a boot variable and confirmed with <code>show version</code></li>
+<li>[ ] SCP and SFTP transfers done with the Linux VM, hashes compared</li>
+<li>[ ] (If available) SCP to and from a real or virtual IOS device</li>
+</ul>
+<h3 id="199-chapter-19-summary-notes-exam-revision">19.9 Chapter 19 summary notes (exam revision)</h3>
+<ul>
+<li><strong>File systems:</strong> <code>flash:</code> (images, files), <code>nvram:</code> (startup-config), <code>system:</code> (running-config). <code>show file systems</code>, <code>dir flash:</code>. <code>copy &lt;source&gt; &lt;destination&gt;</code>.</li>
+<li><strong>TFTP</strong> UDP 69, no authentication; <strong>FTP</strong> TCP 20/21, clear-text credentials; <strong>SCP</strong> and <strong>SFTP</strong> run over <strong>SSH, TCP 22</strong>, authenticated and encrypted.</li>
+<li><strong>IOS SCP server:</strong> SSH + <code>aaa new-model</code> + <code>aaa authentication login …</code> + <strong><code>aaa authorization exec …</code></strong> + privilege 15 user + <code>ip scp server enable</code>. PC side: <code>scp -O file user@device:flash:/file</code> (OpenSSH 9+ needs <code>-O</code>).</li>
+<li><strong>IOS as client:</strong> <code>copy running-config scp://user@host/path</code>, <code>copy running-config sftp://user@host//path</code>, <code>copy scp://… flash:</code>; <code>ip ssh source-interface</code>. IOS XE is an <strong>SFTP client only</strong>.</li>
+<li><strong>Restore:</strong> <code>copy … running-config</code> <strong>merges</strong>; <code>configure replace</code> <strong>replaces</strong>. <code>archive</code> keeps versions.</li>
+<li><strong>Upgrade:</strong> pick image + hash → <code>dir flash:</code> → copy → <strong><code>verify /sha512</code></strong> → <code>boot system</code> (bundle) or <code>install add … activate commit</code> (install mode) → back up → reload → <code>show version</code>. Bad boot variable → ROMMON.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"<code>copy tftp: running-config</code> restores the old configuration exactly"</td>
+<td>It merges; use <code>configure replace</code></td>
+</tr>
+<tr>
+<td>"SCP and SFTP need extra ports opened"</td>
+<td>Both use SSH on TCP 22</td>
+</tr>
+<tr>
+<td>"Any SSH user can SCP files"</td>
+<td>IOS requires exec authorization and normally privilege 15</td>
+</tr>
+<tr>
+<td>"A successful copy means the image is good"</td>
+<td>Verify the hash against Cisco's published value</td>
+</tr>
+<tr>
+<td>"IOS XE can be an SFTP server"</td>
+<td>It is an SFTP client; use SCP to push files to it</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1910-practice-questions--chapter-19">19.10 Practice questions — Chapter 19</h3>
+<p><strong>1. (Recall)</strong> Which file transfer protocols encrypt both credentials and data? (Choose two.)</p>
+<p>A. TFTP  B. FTP  C. SCP  D. SFTP  E. HTTP</p>
+<p><strong>2. (Recall)</strong> Which port do SCP and SFTP use?</p>
+<p><strong>3. (Configuration)</strong> List the commands, beyond SSH and a user account, needed to make an IOS router an SCP server.</p>
+<p><strong>4. (Configuration)</strong> Write the command that backs up the running configuration of R1 to 10.10.99.30, folder backups, file R1.cfg, user netadmin, using SCP.</p>
+<p><strong>5. (Concept)</strong> A restored backup still contains a wrong static route you added after the backup was taken. Why, and how do you avoid it?</p>
+<p><strong>6. (Upgrade)</strong> Put in order: reload; <code>verify /sha512</code>; <code>dir flash:</code>; <code>boot system flash:new.bin</code>; copy the image; <code>copy running-config startup-config</code>.</p>
+<p><strong>7. (Troubleshooting)</strong> <code>scp image.bin admin@10.10.99.2:flash:/image.bin</code> from a new Linux laptop fails immediately with a protocol error, though SSH logins work. What should the user change?</p>
+<p><strong>8. (Troubleshooting)</strong> An SCP copy to the switch says "Permission denied"; the user's SSH login works and lands at <code>&gt;</code>. What is wrong?</p>
+<p><strong>9. (Concept)</strong> Why should you check <code>show boot</code> before reloading after an upgrade?</p>
+<p><strong>10. (Multiple response — choose two)</strong> Which statements about the IOS XE file transfer features are true?</p>
+<p>A. IOS XE can act as an SFTP server  B. IOS XE can act as an SFTP client  C. SCP on IOS needs exec authorization  D. TFTP requires a username  E. FTP encrypts the password</p>
+<p><strong>11. (Output interpretation)</strong> <code>verify /sha512 flash:cat9k_iosxe.17.12.04.SPA.bin</code> prints a hash that differs from the one on Cisco's download page. What do you do?</p>
+<p><strong>12. (Evaluate an AI assistant)</strong> A network assistant suggests: <em>"To save time, use TFTP for nightly configuration backups across the WAN; it is lightweight."</em> Is that good advice?</p>
+<h3 id="1911-answer-key-with-explanations">19.11 Answer key with explanations</h3>
+<ol>
+<li><strong>C and D.</strong> TFTP has no authentication or encryption; FTP and HTTP send credentials in clear text.</li>
+<li><strong>TCP 22</strong>, inside SSH.</li>
+<li><code>aaa new-model</code>, an authentication list (for example <code>aaa authentication login default local</code>), <code>aaa authorization exec default local</code>, and <code>ip scp server enable</code>.</li>
+<li><code>copy running-config scp://netadmin@10.10.99.30/backups/R1.cfg</code> (enter the password when prompted).</li>
+<li>Copying a file into the running configuration <strong>merges</strong> it, so lines not in the file remain. Use <code>configure replace &lt;file&gt;</code> to return exactly to the saved state.</li>
+<li><code>dir flash:</code> → copy the image → <code>verify /sha512</code> → <code>boot system flash:new.bin</code> → <code>copy running-config startup-config</code> → reload.</li>
+<li>Use <code>scp -O</code>: newer OpenSSH uses SFTP inside <code>scp</code>, which the IOS SCP server does not accept.</li>
+<li>The user has privilege 1 (or exec authorization is missing). SCP needs <code>aaa authorization exec</code> and a privilege 15 user.</li>
+<li>To be sure the device will boot the intended, present and verified image; a wrong boot variable leaves it in ROMMON.</li>
+<li><strong>B and C.</strong> IOS XE is an SFTP client only; TFTP has no username; FTP sends the password in clear text.</li>
+<li>Do <strong>not</strong> use it: delete the file, download it again from Cisco, copy it again and re-verify. A mismatch means corruption or tampering.</li>
+<li><strong>No.</strong> TFTP has no authentication or encryption, so the configurations (with password hashes, keys and topology) cross the WAN readable and the server accepts writes from anyone. Use SCP or SFTP.</li>
+</ol>
+<h3 id="1912-chapter-19-figure-checklist">19.12 Chapter 19 figure checklist</h3>
+<p>Both figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-19-2">Figure 19.2</a>'s first render started the "hash differs" path at the wrong box; it was corrected and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19.1</td>
+<td>Switch as SCP server vs SCP/SFTP client</td>
+<td>19.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>19.2</td>
+<td>Image upgrade workflow with hash check</td>
+<td>19.6</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as tables and command output:</strong> file systems, transfer protocols, backup/restore commands, verification and troubleshooting. Sources for the SCP and SFTP details are cited in 19.4.</p>
+<h3 id="1913-chapter-19-progress-record">19.13 Chapter 19 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>4.2</strong> — managing configuration and software files with SCP and SFTP, including backup, restore, image verification and boot settings.</p>
+<p><strong>Next:</strong> Chapter 20 — <strong>4.6 Configure IPv4 access control lists</strong> (standard, extended, numbered and named).</p></article><nav class="prevnext"><a class="pn prev" href="chapter-18.html"><small>← Chapter 18</small>Secure device access: local users, SSH and AAA</a><a class="pn next" href="chapter-20.html"><small>Chapter 20 →</small>IPv4 access control lists</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#191-learning-objectives">19.1 Learning objectives</a>
+<a href="#192-files-on-an-ios-device">19.2 Files on an IOS device</a>
+<a href="#193-why-not-tftp-or-ftp">19.3 Why not TFTP or FTP?</a>
+<a href="#194-scp-and-sftp-who-starts-the-transfer">19.4 SCP and SFTP: who starts the transfer?</a>
+<a href="#195-backing-up-and-restoring-configurations">19.5 Backing up and restoring configurations</a>
+<a href="#196-upgrading-a-software-image">19.6 Upgrading a software image</a>
+<a href="#197-verifying-and-troubleshooting-transfers">19.7 Verifying and troubleshooting transfers</a>
+<a href="#198-lab-191--file-management-from-packet-tracer-to-real-scp-and-sftp-intermediate">19.8 Lab 19.1 — File management, from Packet Tracer to real SCP and SFTP (Intermediate)</a>
+<a href="#199-chapter-19-summary-notes-exam-revision">19.9 Chapter 19 summary notes (exam revision)</a>
+<a href="#1910-practice-questions--chapter-19">19.10 Practice questions — Chapter 19</a>
+<a href="#1911-answer-key-with-explanations">19.11 Answer key with explanations</a>
+<a href="#1912-chapter-19-figure-checklist">19.12 Chapter 19 figure checklist</a>
+<a href="#1913-chapter-19-progress-record">19.13 Chapter 19 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

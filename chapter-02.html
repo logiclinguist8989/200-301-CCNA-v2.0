@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 2 — IPv4 addressing and subnetting · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 2: IPv4 addressing and subnetting">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head blue">
+  <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
+  <h1><span class="num">Chapter 2</span>IPv4 addressing and subnetting</h1>
+  <div class="meta"><span>🖼️ 7 figures</span><span>⏱️ ~23 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="2"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.3 Troubleshoot IPv4 address configuration, assignment, and subnetting (public and private).</strong> Subnetting also underpins 1.7 (DHCP), 3.1–3.3 (routing), 4.3 (NAT) and 4.6 (ACLs), so this is the most reused chapter in the guide.</p>
+<p>The verb is <em>troubleshoot</em>: the exam will show you a host, a mask and a gateway and expect you to spot what is wrong within seconds. Speed comes from understanding first, then practice.</p>
+<h3 id="21-learning-objectives">2.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Convert any octet between binary and decimal without a calculator.</li>
+<li>Split an IPv4 address into network and host portions using a prefix length or mask.</li>
+<li>Calculate the network address, broadcast address, first and last usable host and host count for any prefix.</li>
+<li>Identify private (RFC 1918), public and special-purpose addresses.</li>
+<li>Subnet a block for a required number of subnets or hosts, design a VLSM plan, and summarize contiguous routes.</li>
+<li>Configure and verify IPv4 on Cisco interfaces and on hosts.</li>
+<li>Diagnose wrong masks, wrong gateways, overlapping subnets, duplicate addresses and APIPA addresses.</li>
+</ol>
+<h3 id="22-introduction">2.2 Introduction</h3>
+<p>An IPv4 address works like a postal address: one part names the street (the <strong>network</strong>), the other names the house (the <strong>host</strong>). Routers only care about the street. The <strong>subnet mask</strong> or <strong>prefix length</strong> is what tells every device where the street name ends and the house number begins. Almost every IPv4 fault in the exam is a disagreement about that boundary.</p>
+<h3 id="23-binary-and-decimal-conversion">2.3 Binary and decimal conversion</h3>
+<p>An IPv4 address is 32 bits, written as four 8-bit <strong>octets</strong> in decimal. Each bit position in an octet has a fixed <strong>place value</strong>: 128, 64, 32, 16, 8, 4, 2, 1. Add the place values where the bit is 1.</p>
+<p><strong>Binary → decimal</strong> (<a class="figref" href="#fig-2-1">Figure 2.1</a>): <code>10101100</code> = 128 + 32 + 8 + 4 = <strong>172</strong>.</p>
+<figure class="fig" id="fig-2-1"><button class="zoom" aria-label="Enlarge figure 2.1"><img src="assets/figures/ch02/fig-02-01-octet-place-values.svg" alt="Figure 2.1 — Octet place values: converting 10101100 to 172" loading="lazy"></button><figcaption><a class="fignum" href="#fig-2-1">Figure 2.1</a> Octet place values: converting 10101100 to 172</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-2-1">Figure 2.1</a> the highlighted cells are the 1 bits. Only their place values (128, 32, 8, 4) are added; every 0 bit contributes nothing. The same eight place values are used for every octet of every address.</p>
+<p><strong>Decimal → binary</strong>, by subtraction. Convert 202:</p>
+<ol>
+<li>202 ≥ 128? Yes → bit 1, remainder 74.</li>
+<li>74 ≥ 64? Yes → bit 1, remainder 10.</li>
+<li>10 ≥ 32? No → 0. 10 ≥ 16? No → 0.</li>
+<li>10 ≥ 8? Yes → 1, remainder 2.</li>
+<li>2 ≥ 4? No → 0. 2 ≥ 2? Yes → 1, remainder 0. 0 ≥ 1? No → 0.</li>
+<li>Result: <strong>11001010</strong>.</li>
+</ol>
+<p><strong>The nine mask-octet values to memorise.</strong> A mask is a run of 1s followed by 0s, so each mask octet is the place values added from the left:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Bits set</th>
+<th>Binary</th>
+<th>Decimal</th>
+<th>Block size (256 − value)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>00000000</td>
+<td>0</td>
+<td>256</td>
+</tr>
+<tr>
+<td>1</td>
+<td>10000000</td>
+<td>128</td>
+<td>128</td>
+</tr>
+<tr>
+<td>2</td>
+<td>11000000</td>
+<td>192</td>
+<td>64</td>
+</tr>
+<tr>
+<td>3</td>
+<td>11100000</td>
+<td>224</td>
+<td>32</td>
+</tr>
+<tr>
+<td>4</td>
+<td>11110000</td>
+<td>240</td>
+<td>16</td>
+</tr>
+<tr>
+<td>5</td>
+<td>11111000</td>
+<td>248</td>
+<td>8</td>
+</tr>
+<tr>
+<td>6</td>
+<td>11111100</td>
+<td>252</td>
+<td>4</td>
+</tr>
+<tr>
+<td>7</td>
+<td>11111110</td>
+<td>254</td>
+<td>2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>11111111</td>
+<td>255</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+<p>Any other number in a mask (for example 255.255.255.100) is invalid.</p>
+<h3 id="24-ipv4-address-structure-prefix-length-and-mask">2.4 IPv4 address structure, prefix length and mask</h3>
+<p>A <strong>prefix length</strong> (CIDR notation, for example <code>/26</code>) says how many leading bits are network bits. The <strong>subnet mask</strong> says the same thing in dotted decimal: /26 = 26 ones = <code>255.255.255.192</code>. The remaining bits (32 − 26 = 6) are <strong>host bits</strong>. <a class="figref" href="#fig-2-2">Figure 2.2</a> shows 192.168.10.75/26 bit by bit.</p>
+<figure class="fig" id="fig-2-2"><button class="zoom" aria-label="Enlarge figure 2.2"><img src="assets/figures/ch02/fig-02-02-address-in-binary.svg" alt="Figure 2.2 — 192.168.10.75/26 in binary: network bits, host bits, network and broadcast addresses" loading="lazy"></button><figcaption><a class="fignum" href="#fig-2-2">Figure 2.2</a> 192.168.10.75/26 in binary: network bits, host bits, network and broadcast addresses</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-2-2">Figure 2.2</a> the shaded columns are the 26 network bits; they are identical in the address, the network address and the broadcast address. Only the last 6 host bits change: all 0s gives the network address, all 1s gives the broadcast.</p>
+<p><strong>Three addresses every subnet has:</strong></p>
+<ul>
+<li><strong>Network address</strong> — all host bits 0. Names the subnet; used in routing tables; cannot be given to a host.</li>
+<li><strong>Broadcast address</strong> — all host bits 1. Reaches every host in the subnet; cannot be given to a host.</li>
+<li><strong>Usable hosts</strong> — everything between them. Count = 2^h − 2, where h = number of host bits.</li>
+</ul>
+<p>Two exceptions: a <strong>/31</strong> has two addresses, and both are usable on point-to-point router links (RFC 3021). A <strong>/32</strong> is a single address, used for loopbacks and host routes (Chapter 11).</p>
+<p><strong>Address classes (historical, still used in vocabulary):</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>First octet</th>
+<th>Default mask</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1–126</td>
+<td>/8 (255.0.0.0)</td>
+<td>Large unicast networks</td>
+</tr>
+<tr>
+<td>B</td>
+<td>128–191</td>
+<td>/16 (255.255.0.0)</td>
+<td>Medium unicast networks</td>
+</tr>
+<tr>
+<td>C</td>
+<td>192–223</td>
+<td>/24 (255.255.255.0)</td>
+<td>Small unicast networks</td>
+</tr>
+<tr>
+<td>D</td>
+<td>224–239</td>
+<td>—</td>
+<td>Multicast</td>
+</tr>
+<tr>
+<td>E</td>
+<td>240–255</td>
+<td>—</td>
+<td>Experimental / reserved</td>
+</tr>
+</tbody>
+</table></div>
+<p>Modern networks are <strong>classless</strong>: any prefix length can be used with any address. Classes matter only because IOS and some exam questions still say "classful boundary".</p>
+<h3 id="25-public-private-and-special-purpose-addresses">2.5 Public, private and special-purpose addresses</h3>
+<p><strong>Private addresses (RFC 1918)</strong> can be used freely inside any organisation but are not routed on the Internet. Reaching the Internet from them requires NAT/PAT (Chapter 21).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Range</th>
+<th>Prefix</th>
+<th>Size</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.0.0.0 – 10.255.255.255</td>
+<td>10.0.0.0/8</td>
+<td>16.7 million addresses</td>
+<td>Large enterprises (this guide's labs)</td>
+</tr>
+<tr>
+<td>172.16.0.0 – 172.31.255.255</td>
+<td>172.16.0.0/12</td>
+<td>1 million addresses</td>
+<td>Medium networks, cloud VPCs</td>
+</tr>
+<tr>
+<td>192.168.0.0 – 192.168.255.255</td>
+<td>192.168.0.0/16</td>
+<td>65,536 addresses</td>
+<td>Homes, small offices</td>
+</tr>
+</tbody>
+</table></div>
+<p class="callout common-trap"><strong>Common trap</strong> 172.16.0.0/12 runs only to <strong>172.31</strong>.255.255. An address such as 172.32.1.1 is public.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Special range</th>
+<th>Meaning</th>
+<th>What it tells you when troubleshooting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.0.0.0/8</td>
+<td>"This network"; 0.0.0.0 = any/unspecified</td>
+<td>Source address of a host still asking DHCP for an address</td>
+</tr>
+<tr>
+<td>127.0.0.0/8</td>
+<td>Loopback</td>
+<td><code>ping 127.0.0.1</code> tests the host's own TCP/IP stack only</td>
+</tr>
+<tr>
+<td>169.254.0.0/16</td>
+<td>Link-local / <strong>APIPA</strong></td>
+<td>The host asked DHCP and got no answer</td>
+</tr>
+<tr>
+<td>100.64.0.0/10</td>
+<td>Shared address space (carrier-grade NAT)</td>
+<td>The ISP is NATing you; not RFC 1918</td>
+</tr>
+<tr>
+<td>224.0.0.0/4</td>
+<td>Multicast</td>
+<td>Never a host's own address</td>
+</tr>
+<tr>
+<td>255.255.255.255</td>
+<td>Limited broadcast</td>
+<td>Never forwarded by routers</td>
+</tr>
+<tr>
+<td>192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24</td>
+<td>Documentation</td>
+<td>Used in examples, never in real networks</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Public addresses</strong> are assigned by regional registries (APNIC for Nepal) through ISPs. Every public address must be unique worldwide; a private address needs to be unique only inside your network.</p>
+<h3 id="26-calculating-network-broadcast-and-host-range">2.6 Calculating network, broadcast and host range</h3>
+<p>There are two methods. Learn the binary method so you understand it, then use the block-size method in the exam because it is faster.</p>
+<p><strong>Method 1 — binary AND (always works).</strong> Worked example: 192.168.10.75/26.</p>
+<ol>
+<li>Write the address and mask in binary (<a class="figref" href="#fig-2-2">Figure 2.2</a>).</li>
+<li>AND them bit by bit (1 AND 1 = 1, anything AND 0 = 0). Result: <code>11000000.10101000.00001010.01000000</code> = <strong>192.168.10.64</strong> — the network address.</li>
+<li>Set all 6 host bits to 1: <code>...01111111</code> = <strong>192.168.10.127</strong> — the broadcast.</li>
+<li>First usable host = network + 1 = <strong>192.168.10.65</strong>. Last usable = broadcast − 1 = <strong>192.168.10.126</strong>.</li>
+<li>Hosts = 2^6 − 2 = <strong>62</strong>.</li>
+</ol>
+<p><strong>Method 2 — block size (the fast exam method).</strong></p>
+<ol>
+<li>Find the <strong>interesting octet</strong>: the octet where the mask is neither 255 nor 0. For /26 that is the 4th octet (mask value 192).</li>
+<li><strong>Block size</strong> = 256 − mask value = 256 − 192 = <strong>64</strong>. Subnets in that octet start at multiples of 64: 0, 64, 128, 192.</li>
+<li>Find the multiple at or below the address's value in that octet: 75 → <strong>64</strong>. That is the network address: 192.168.10.<strong>64</strong>.</li>
+<li>The next subnet starts at 64 + 64 = 128, so the broadcast is one less: 192.168.10.<strong>127</strong>.</li>
+<li>Octets to the left copy the address; octets to the right are 0 for the network and 255 for the broadcast.</li>
+</ol>
+<p><a class="figref" href="#fig-2-3">Figure 2.3</a> draws steps 2 and 3 on a number line.</p>
+<figure class="fig" id="fig-2-3"><button class="zoom" aria-label="Enlarge figure 2.3"><img src="assets/figures/ch02/fig-02-03-block-size-number-line.svg" alt="Figure 2.3 — Dividing 192.168.10.0/24 into /26 blocks and locating host .75" loading="lazy"></button><figcaption><a class="fignum" href="#fig-2-3">Figure 2.3</a> Dividing 192.168.10.0/24 into /26 blocks and locating host .75</figcaption></figure>
+
+<p><a class="figref" href="#fig-2-3">Figure 2.3</a> shows the whole fourth octet (0–255) cut into four blocks of 64. The arrow marks host .75; it lands in the highlighted block, so its network is .64 and its broadcast is .127.</p>
+<p><strong>The same method in the 3rd octet:</strong> 172.16.45.200/20.</p>
+<ol>
+<li>/20 → mask 255.255.<strong>240</strong>.0 → interesting octet is the 3rd; block size 256 − 240 = <strong>16</strong>.</li>
+<li>Multiples of 16 in the 3rd octet: 0, 16, 32, <strong>48</strong> ... 45 falls in the block starting at <strong>32</strong>.</li>
+<li>Network: <strong>172.16.32.0</strong>. Next block starts at 172.16.48.0, so broadcast: <strong>172.16.47.255</strong>.</li>
+<li>Usable: 172.16.32.1 to 172.16.47.254. Host bits = 32 − 20 = 12, so 2^12 − 2 = <strong>4094</strong> hosts.</li>
+</ol>
+<p><strong>And in the 2nd octet:</strong> 10.200.77.9/12 → mask 255.<strong>240</strong>.0.0, block 16 in the 2nd octet, 200 falls in the block starting at 192 → network <strong>10.192.0.0</strong>, broadcast <strong>10.207.255.255</strong>, 2^20 − 2 = <strong>1,048,574</strong> hosts.</p>
+<h3 id="27-the-quick-reference-table">2.7 The quick-reference table</h3>
+<p>Write this from memory on your scratch board at the start of the exam. Every row follows from the mask-octet table in 2.3.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Mask</th>
+<th>Block size (octet)</th>
+<th>Usable hosts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/8</td>
+<td>255.0.0.0</td>
+<td>1 (1st)</td>
+<td>16,777,214</td>
+</tr>
+<tr>
+<td>/16</td>
+<td>255.255.0.0</td>
+<td>1 (2nd)</td>
+<td>65,534</td>
+</tr>
+<tr>
+<td>/17</td>
+<td>255.255.128.0</td>
+<td>128 (3rd)</td>
+<td>32,766</td>
+</tr>
+<tr>
+<td>/18</td>
+<td>255.255.192.0</td>
+<td>64 (3rd)</td>
+<td>16,382</td>
+</tr>
+<tr>
+<td>/19</td>
+<td>255.255.224.0</td>
+<td>32 (3rd)</td>
+<td>8,190</td>
+</tr>
+<tr>
+<td>/20</td>
+<td>255.255.240.0</td>
+<td>16 (3rd)</td>
+<td>4,094</td>
+</tr>
+<tr>
+<td>/21</td>
+<td>255.255.248.0</td>
+<td>8 (3rd)</td>
+<td>2,046</td>
+</tr>
+<tr>
+<td>/22</td>
+<td>255.255.252.0</td>
+<td>4 (3rd)</td>
+<td>1,022</td>
+</tr>
+<tr>
+<td>/23</td>
+<td>255.255.254.0</td>
+<td>2 (3rd)</td>
+<td>510</td>
+</tr>
+<tr>
+<td>/24</td>
+<td>255.255.255.0</td>
+<td>1 (3rd) / 256 (4th)</td>
+<td>254</td>
+</tr>
+<tr>
+<td>/25</td>
+<td>255.255.255.128</td>
+<td>128 (4th)</td>
+<td>126</td>
+</tr>
+<tr>
+<td>/26</td>
+<td>255.255.255.192</td>
+<td>64 (4th)</td>
+<td>62</td>
+</tr>
+<tr>
+<td>/27</td>
+<td>255.255.255.224</td>
+<td>32 (4th)</td>
+<td>30</td>
+</tr>
+<tr>
+<td>/28</td>
+<td>255.255.255.240</td>
+<td>16 (4th)</td>
+<td>14</td>
+</tr>
+<tr>
+<td>/29</td>
+<td>255.255.255.248</td>
+<td>8 (4th)</td>
+<td>6</td>
+</tr>
+<tr>
+<td>/30</td>
+<td>255.255.255.252</td>
+<td>4 (4th)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>/31</td>
+<td>255.255.255.254</td>
+<td>2 (4th)</td>
+<td>2 (point-to-point links only)</td>
+</tr>
+<tr>
+<td>/32</td>
+<td>255.255.255.255</td>
+<td>1 (4th)</td>
+<td>1 (loopback, host route)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Exam habit:</strong> when a question gives a host address, first find its network and broadcast. Most wrong options are either outside that range or <em>are</em> the network or broadcast address.</p>
+<p><strong>How subnetting affects connectivity.</strong> A host sends directly (via ARP) to any destination it believes is in its own subnet, and sends everything else to its default gateway. If the host's mask is wrong, it makes the wrong choice: it may ARP for a remote host that will never answer, or send a local packet to the router. That single rule explains most addressing faults in 2.11.</p>
+<h3 id="28-subnetting-a-block-by-number-of-subnets-or-number-of-hosts">2.8 Subnetting a block: by number of subnets or number of hosts</h3>
+<p>Subnetting means <strong>borrowing</strong> host bits to create more, smaller networks. Each borrowed bit doubles the number of subnets and roughly halves the hosts in each.</p>
+<ul>
+<li>Subnets created = 2^s, where s = bits borrowed.</li>
+<li>Hosts per subnet = 2^h − 2, where h = host bits left.</li>
+</ul>
+<p><strong>By number of subnets.</strong> "Split 192.168.50.0/24 into at least 6 subnets."</p>
+<ol>
+<li>Smallest s with 2^s ≥ 6 is s = 3 (8 subnets).</li>
+<li>New prefix = /24 + 3 = <strong>/27</strong> (mask 255.255.255.224); block size 32; hosts 2^5 − 2 = 30.</li>
+<li>Subnets: .0, .32, .64, .96, .128, .160, .192, .224 (each /27).</li>
+<li>Example: the third subnet is 192.168.50.64/27, usable .65–.94, broadcast .95.</li>
+</ol>
+<p><strong>By number of hosts.</strong> "Each subnet needs 500 hosts."</p>
+<ol>
+<li>Smallest h with 2^h − 2 ≥ 500 is h = 9 (510 hosts).</li>
+<li>Prefix = 32 − 9 = <strong>/23</strong> (255.255.254.0).</li>
+</ol>
+<p class="callout exam-tip"><strong>Exam tip</strong> always subtract 2 for hosts but never for subnets. A question asking for "at least 30 hosts" is satisfied by /27 (30), but "at least 31 hosts" needs /26 (62).</p>
+<h3 id="29-vlsm-different-sized-subnets-from-one-block">2.9 VLSM: different-sized subnets from one block</h3>
+<p><strong>Variable Length Subnet Masking (VLSM)</strong> lets each subnet use the prefix that fits its size, instead of making every subnet as big as the largest. Rules:</p>
+<ol>
+<li>List the requirements and sort them <strong>largest first</strong>.</li>
+<li>For each, choose the smallest prefix that fits (hosts + 2 ≤ block).</li>
+<li>Allocate it at the <strong>next free address that is a multiple of its block size</strong>.</li>
+<li>Record the range, then continue with the next requirement.</li>
+</ol>
+<p><strong>Worked example: one /24 for the Kathmandu branch.</strong> You have only 172.16.0.0/24. Requirements: Staff 100 hosts, Wireless 50, Printers/IoT 20, Management 10, two router-to-router links with 2 hosts each.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Subnet</th>
+<th>Hosts needed</th>
+<th>Prefix (usable)</th>
+<th>Network</th>
+<th>Usable range</th>
+<th>Broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Staff, VLAN 10</td>
+<td>100</td>
+<td>/25 (126)</td>
+<td>172.16.0.0</td>
+<td>.1 – .126</td>
+<td>.127</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Wireless, VLAN 30</td>
+<td>50</td>
+<td>/26 (62)</td>
+<td>172.16.0.128</td>
+<td>.129 – .190</td>
+<td>.191</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Printers/IoT, VLAN 40</td>
+<td>20</td>
+<td>/27 (30)</td>
+<td>172.16.0.192</td>
+<td>.193 – .222</td>
+<td>.223</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Management, VLAN 99</td>
+<td>10</td>
+<td>/28 (14)</td>
+<td>172.16.0.224</td>
+<td>.225 – .238</td>
+<td>.239</td>
+</tr>
+<tr>
+<td>5</td>
+<td>R1–R2 link</td>
+<td>2</td>
+<td>/30 (2)</td>
+<td>172.16.0.240</td>
+<td>.241 – .242</td>
+<td>.243</td>
+</tr>
+<tr>
+<td>6</td>
+<td>R1–R3 link</td>
+<td>2</td>
+<td>/30 (2)</td>
+<td>172.16.0.244</td>
+<td>.245 – .246</td>
+<td>.247</td>
+</tr>
+<tr>
+<td>—</td>
+<td>Spare</td>
+<td>—</td>
+<td>/29</td>
+<td>172.16.0.248</td>
+<td>.249 – .254</td>
+<td>.255</td>
+</tr>
+</tbody>
+</table></div>
+<p><a class="figref" href="#fig-2-4">Figure 2.4</a> draws this allocation to scale. Notice that the blocks never overlap and each one starts on a multiple of its own size. Allocating smallest-first often breaks that rule and wastes space.</p>
+<figure class="fig" id="fig-2-4"><button class="zoom" aria-label="Enlarge figure 2.4"><img src="assets/figures/ch02/fig-02-04-vlsm-plan.svg" alt="Figure 2.4 — VLSM plan for 172.16.0.0/24, drawn to scale, with the last /27 enlarged" loading="lazy"></button><figcaption><a class="fignum" href="#fig-2-4">Figure 2.4</a> VLSM plan for 172.16.0.0/24, drawn to scale, with the last /27 enlarged</figcaption></figure>
+
+<p>The top bar of <a class="figref" href="#fig-2-4">Figure 2.4</a> is the whole /24 from .0 to .255; the Staff /25 takes exactly half. The four smallest subnets share the last /27, which is enlarged underneath so their labels are readable. The dashed block is unallocated space for growth.</p>
+<h3 id="210-route-summarization-supporting-skill">2.10 Route summarization (supporting skill)</h3>
+<p>v2.0 does not name summarization as its own objective, but you need it to read routing tables (3.1) and to spot overlapping subnets. A <strong>summary route</strong> advertises several contiguous networks as one larger prefix.</p>
+<p><strong>Method:</strong> write the octet that differs in binary, count the leading bits that are identical in all the networks, and add the bits of the octets before it.</p>
+<p>Example: 10.10.8.0/24, 10.10.9.0/24, 10.10.10.0/24, 10.10.11.0/24.</p>
+<ol>
+<li>The first two octets (16 bits) are identical.</li>
+<li>Third octets 8, 9, 10, 11 in binary: 00001000, 00001001, 00001010, 00001011. The first <strong>6 bits</strong> match (<a class="figref" href="#fig-2-5">Figure 2.5</a>).</li>
+<li>Summary prefix length = 16 + 6 = <strong>/22</strong>. Network = the common bits followed by zeros = <strong>10.10.8.0/22</strong> (mask 255.255.252.0), covering 10.10.8.0 – 10.10.11.255.</li>
+</ol>
+<figure class="fig" id="fig-2-5"><button class="zoom" aria-label="Enlarge figure 2.5"><img src="assets/figures/ch02/fig-02-05-route-summarization.svg" alt="Figure 2.5 — Summarizing 10.10.8.0/24 to 10.10.11.0/24 into 10.10.8.0/22 by comparing third-octet bits" loading="lazy"></button><figcaption><a class="fignum" href="#fig-2-5">Figure 2.5</a> Summarizing 10.10.8.0/24 to 10.10.11.0/24 into 10.10.8.0/22 by comparing third-octet bits</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-2-5">Figure 2.5</a> the shaded third-octet bits are identical in all four networks; only the last two bits change (00, 01, 10, 11). Those two bits are exactly what four /24s need, so 22 bits name the whole group.</p>
+<p><strong>Check:</strong> a /22 is a block of 4 in the third octet, and 8 is a multiple of 4, so the summary is exact. If the networks were 10.10.9.0 to 10.10.12.0, no single /22 would cover them without including extra space.</p>
+<h3 id="211-configuring-and-verifying-ipv4-on-cisco-ios">2.11 Configuring and verifying IPv4 on Cisco IOS</h3>
+<p>A router interface (or a switch SVI, Chapter 5) needs an address and mask, and router interfaces must be enabled.</p>
+<pre><code>R1# configure terminal
+R1(config)# interface gigabitethernet0/0/0
+R1(config-if)# description Staff LAN (VLAN 10)
+R1(config-if)# ip address 172.16.0.1 255.255.255.128
+R1(config-if)# no shutdown
+R1(config-if)# end
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Purpose</th>
+<th>Notes and common mistakes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip address &lt;address&gt; &lt;mask&gt;</code></td>
+<td>Interface config</td>
+<td>Assigns the primary IPv4 address</td>
+<td>IOS takes a dotted mask, not <code>/25</code>. Re-entering replaces the old address</td>
+</tr>
+<tr>
+<td><code>no shutdown</code></td>
+<td>Interface config</td>
+<td>Enables the interface</td>
+<td>Router interfaces are shut by default; switch ports are not</td>
+</tr>
+<tr>
+<td><code>show ip interface brief</code></td>
+<td>Privileged EXEC</td>
+<td>One line per interface: address, status, protocol</td>
+<td>The fastest first check</td>
+</tr>
+<tr>
+<td><code>show ip interface g0/0/0</code></td>
+<td>Privileged EXEC</td>
+<td>Address with prefix, broadcast, ACLs applied</td>
+<td>Shows <code>Internet address is 172.16.0.1/25</code></td>
+</tr>
+<tr>
+<td><code>show running-config interface g0/0/0</code></td>
+<td>Privileged EXEC</td>
+<td>The interface's exact configuration</td>
+<td>Spot typos in the mask</td>
+</tr>
+<tr>
+<td><code>show ip route connected</code></td>
+<td>Privileged EXEC</td>
+<td>Connected (C) and local (L) routes created by addressing</td>
+<td>A missing C route means the interface is down or unaddressed</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What IOS refuses, and why it helps you:</strong></p>
+<pre><code>R1(config)# interface g0/0/1
+R1(config-if)# ip address 172.16.0.64 255.255.255.192
+Bad mask /26 for address 172.16.0.64
+
+R1(config-if)# ip address 172.16.0.100 255.255.255.0
+% 172.16.0.0 overlaps with GigabitEthernet0/0/0
+</code></pre>
+<p>The first is the subnet's network address, so IOS rejects it as a host address. The second overlaps the /25 already on G0/0/0; a router cannot have two interfaces in overlapping subnets. Exact wording varies slightly by IOS version.</p>
+<p><strong>Address assignment methods.</strong> Hosts get IPv4 settings in one of three ways:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How</th>
+<th>When to use</th>
+<th>Clue it was used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Static</td>
+<td>Typed by hand</td>
+<td>Routers, servers, printers, network devices</td>
+<td>Address never changes; risk of typos and duplicates</td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td>Leased from a server (Chapter 14)</td>
+<td>Most PCs, phones, Wi-Fi clients</td>
+<td>Windows <code>ipconfig /all</code> shows "DHCP Enabled: Yes" and a lease time</td>
+</tr>
+<tr>
+<td>APIPA (link-local)</td>
+<td>Self-assigned from 169.254.0.0/16 when DHCP fails</td>
+<td>Never on purpose in enterprise networks</td>
+<td>Address 169.254.x.x, no gateway: a DHCP problem</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Checking a host</strong> (more in Chapter 17): Windows <code>ipconfig /all</code>; Linux <code>ip -4 addr</code> and <code>ip route</code>; macOS <code>ifconfig en0</code> or <code>ipconfig getifaddr en0</code> and <code>netstat -rn</code>.</p>
+<h3 id="212-troubleshooting-ipv4-addressing">2.12 Troubleshooting IPv4 addressing</h3>
+<p>Every host must have four things right: a <strong>unique address</strong>, the <strong>correct mask</strong>, a <strong>gateway inside its own subnet</strong>, and (for names) DNS. Work through them in the order of <a class="figref" href="#fig-2-6">Figure 2.6</a>.</p>
+<figure class="fig" id="fig-2-6"><button class="zoom" aria-label="Enlarge figure 2.6"><img src="assets/figures/ch02/fig-02-06-host-ipv4-troubleshooting.svg" alt="Figure 2.6 — Host IPv4 troubleshooting flowchart: APIPA, mask, gateway, duplicates" loading="lazy"></button><figcaption><a class="fignum" href="#fig-2-6">Figure 2.6</a> Host IPv4 troubleshooting flowchart: APIPA, mask, gateway, duplicates</figcaption></figure>
+
+<p><a class="figref" href="#fig-2-6">Figure 2.6</a> is ordered from the cheapest check to the hardest. A 169.254 address is spotted in one glance; a duplicate address needs logs and ARP tables. The first "yes" names the fault; when all four say "no", addressing is not the problem.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Evidence</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host reaches local hosts, nothing remote</td>
+<td>Wrong or missing default gateway</td>
+<td><code>ipconfig</code> shows gateway outside the subnet or blank</td>
+<td>Set gateway to the router's address in the host's subnet</td>
+</tr>
+<tr>
+<td>Host reaches some local hosts but not others</td>
+<td>Wrong mask on the host</td>
+<td>Mask differs from the plan; host ARPs for addresses that are really remote</td>
+<td>Correct the mask on the host</td>
+</tr>
+<tr>
+<td>Intermittent loss for two devices</td>
+<td>Duplicate IP address</td>
+<td>Router log <code>%IP-4-DUPADDR</code>; Windows "address conflict" warning; ARP entry flips between MACs</td>
+<td>Find both MACs, re-address one</td>
+</tr>
+<tr>
+<td>Host has 169.254.x.x</td>
+<td>DHCP failed</td>
+<td>No lease; no gateway</td>
+<td>Fix link, VLAN, DHCP server or relay (Chapter 14)</td>
+</tr>
+<tr>
+<td>Router refuses an address</td>
+<td>Network/broadcast address, or overlap</td>
+<td><code>Bad mask</code> or <code>overlaps with</code> messages</td>
+<td>Choose a valid host address in a non-overlapping subnet</td>
+</tr>
+<tr>
+<td>Hosts in two VLANs cannot communicate although both are correct</td>
+<td>Router interface down or in the wrong subnet</td>
+<td><code>show ip interface brief</code>, <code>show ip route connected</code></td>
+<td>Fix the gateway interface</td>
+</tr>
+<tr>
+<td>Internet works for some private ranges only</td>
+<td>Public/private mix-up, NAT not matching that range</td>
+<td>Host uses 172.32.x.x thinking it is private</td>
+<td>Use RFC 1918 space and match it in NAT (Chapter 21)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>A worked fault: the asymmetric mask.</strong> PC1 is 172.16.0.10/25 and PC2 is 172.16.0.100 with mask 255.255.255.0 (/24), both in VLAN 10 with gateway 172.16.0.1.</p>
+<ol>
+<li>PC2's /24 makes it think 172.16.0.0–255 is local. When it sends to the printer at 172.16.0.200, it ARPs directly instead of using the gateway.</li>
+<li>The printer is on another segment, so the ARP is never answered and the ping fails.</li>
+<li>PC2 can still reach PC1 and the gateway, so users report "some things work". The fix is the mask, not the router.</li>
+</ol>
+<p class="callout exam-tip"><strong>Exam tip</strong> when a question shows two hosts that "should" talk, calculate each host's subnet <strong>from its own mask</strong>. If either host believes the other is remote, it will use its gateway; if the gateway is not in its own subnet, it fails.</p>
+<h3 id="213-packet-tracer-lab-21--vlsm-addressing-and-ipv4-troubleshooting-beginnerintermediate">2.13 Packet Tracer Lab 2.1 — VLSM addressing and IPv4 troubleshooting (Beginner–Intermediate)</h3>
+<p><strong>Objective:</strong> 1.3. <strong>You will:</strong> implement three subnets from the VLSM plan in 2.9, verify connected routes, then diagnose four planted addressing faults.</p>
+<p><strong>Devices:</strong> 1 × ISR4331 (R1), 3 × 2960-24TT (SW1, SW2, SW3), 2 × PC (PC-Staff, PC-Wireless), 1 × Printer (Printer1). All links copper straight-through. PC-Wireless is a wired PC standing in for Wi-Fi clients until Chapter 16.</p>
+<figure class="fig" id="fig-2-7"><button class="zoom" aria-label="Enlarge figure 2.7"><img src="assets/figures/ch02/fig-02-07-lab-2-1-topology.svg" alt="Figure 2.7 — Lab 2.1 topology: three VLSM subnets on R1's three interfaces" loading="lazy"></button><figcaption><a class="fignum" href="#fig-2-7">Figure 2.7</a> Lab 2.1 topology: three VLSM subnets on R1's three interfaces</figcaption></figure>
+
+<p><a class="figref" href="#fig-2-7">Figure 2.7</a> uses the first three subnets of the VLSM plan in <a class="figref" href="#fig-2-4">Figure 2.4</a>. Each host's gateway is the R1 interface on its own switch, and each address in the figure matches the addressing table below.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Interface</th>
+<th>Connects to</th>
+<th>IPv4 address / prefix</th>
+<th>Default gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>G0/0/0</td>
+<td>SW1 Gi0/1</td>
+<td>172.16.0.1/25 (255.255.255.128)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>G0/0/1</td>
+<td>SW2 Gi0/1</td>
+<td>172.16.0.129/26 (255.255.255.192)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>G0/0/2</td>
+<td>SW3 Gi0/1</td>
+<td>172.16.0.193/27 (255.255.255.224)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PC-Staff</td>
+<td>Fa0</td>
+<td>SW1 Fa0/1</td>
+<td>172.16.0.10/25</td>
+<td>172.16.0.1</td>
+</tr>
+<tr>
+<td>PC-Wireless</td>
+<td>Fa0</td>
+<td>SW2 Fa0/1</td>
+<td>172.16.0.140/26</td>
+<td>172.16.0.129</td>
+</tr>
+<tr>
+<td>Printer1</td>
+<td>Fa0</td>
+<td>SW3 Fa0/1</td>
+<td>172.16.0.200/27</td>
+<td>172.16.0.193</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Step-by-step</strong></p>
+<ol>
+<li>Build the topology exactly as <a class="figref" href="#fig-2-7">Figure 2.7</a> and the table show.</li>
+<li>Apply the basic configuration from Chapter 1 to R1 and the switches (hostname, secrets, console). The switches need nothing else in this lab.</li>
+<li>Configure R1's three interfaces (below).</li>
+<li>Set each end device's address, mask and gateway in <strong>Desktop → IP Configuration</strong> (for the printer, <strong>Config → FastEthernet0</strong>).</li>
+<li>Verify, then test connectivity, then work through the fault scenarios.</li>
+</ol>
+<p><strong>R1 configuration</strong></p>
+<pre><code>enable
+configure terminal
+hostname R1
+interface gigabitethernet0/0/0
+ description Staff LAN 172.16.0.0/25
+ ip address 172.16.0.1 255.255.255.128
+ no shutdown
+interface gigabitethernet0/0/1
+ description Wireless LAN 172.16.0.128/26
+ ip address 172.16.0.129 255.255.255.192
+ no shutdown
+interface gigabitethernet0/0/2
+ description Printers 172.16.0.192/27
+ ip address 172.16.0.193 255.255.255.224
+ no shutdown
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>Verification and expected output</strong></p>
+<pre><code>R1# show ip route connected
+      172.16.0.0/16 is variably subnetted, 6 subnets, 4 masks
+C        172.16.0.0/25 is directly connected, GigabitEthernet0/0/0
+L        172.16.0.1/32 is directly connected, GigabitEthernet0/0/0
+C        172.16.0.128/26 is directly connected, GigabitEthernet0/0/1
+L        172.16.0.129/32 is directly connected, GigabitEthernet0/0/1
+C        172.16.0.192/27 is directly connected, GigabitEthernet0/0/2
+L        172.16.0.193/32 is directly connected, GigabitEthernet0/0/2
+</code></pre>
+<p>Read it as: three <strong>C</strong> (connected) subnets, one per interface, and three <strong>L</strong> (local) /32 routes for R1's own addresses. "Variably subnetted, 4 masks" means /25, /26, /27 and /32 are all in use: VLSM at work.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test</th>
+<th>From</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ping 172.16.0.1</code></td>
+<td>PC-Staff</td>
+<td>Success (own gateway)</td>
+</tr>
+<tr>
+<td><code>ping 172.16.0.140</code></td>
+<td>PC-Staff</td>
+<td>Success, routed by R1</td>
+</tr>
+<tr>
+<td><code>ping 172.16.0.200</code></td>
+<td>PC-Wireless</td>
+<td>Success, routed by R1</td>
+</tr>
+<tr>
+<td><code>tracert 172.16.0.200</code></td>
+<td>PC-Staff</td>
+<td>Two hops: 172.16.0.1, then 172.16.0.200</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Fault scenarios (apply one at a time, diagnose before reading the answer)</strong></p>
+<ol>
+<li>On PC-Staff change the mask to 255.255.255.0. <em>Expected:</em> it still pings 172.16.0.1, but pings to 172.16.0.140 and 172.16.0.200 fail. <em>Why:</em> with /24 it thinks those hosts are local and ARPs for them directly; nobody on SW1 answers. Restore /25.</li>
+<li>On Printer1 set the gateway to 172.16.0.1. <em>Expected:</em> the printer reaches nothing outside its own subnet. <em>Why:</em> 172.16.0.1 is not in 172.16.0.192/27, so the printer cannot even ARP for it. Restore 172.16.0.193.</li>
+<li>On R1 G0/0/1 try <code>ip address 172.16.0.128 255.255.255.192</code>. <em>Expected:</em> IOS rejects it with a "Bad mask" message, because .128 is the subnet's network address. Then try <code>ip address 172.16.0.100 255.255.255.192</code> on G0/0/1. <em>Expected:</em> an "overlaps with GigabitEthernet0/0/0" message, because .100 lies inside the Staff /25. Restore .129/26.</li>
+<li>Set PC-Wireless to 172.16.0.129 (R1's own address). <em>Expected:</em> PC-Wireless shows an address-conflict warning or loses connectivity, and R1 may log <code>%IP-4-DUPADDR</code>. Packet Tracer's reaction to duplicates varies by version, so rely on the ping results and the ARP table (<code>show ip arp</code> on R1). Restore .140.</li>
+</ol>
+<p><strong>Common mistakes:</strong> typing a prefix length (<code>/25</code>) into the router's <code>ip address</code> command; forgetting <code>no shutdown</code> on one of the three router interfaces; setting a host's gateway to an address in another subnet; reusing a router interface address on a PC.</p>
+<p><strong>Questions to answer after the lab</strong></p>
+<ol>
+<li>Why does R1 have an L route for each interface as well as a C route?</li>
+<li>In fault 1, why did the ping to the gateway still succeed?</li>
+<li>How many more /28 subnets could you carve from the spare space in <a class="figref" href="#fig-2-4">Figure 2.4</a>? (Answer: none of /28 size fit cleanly in .248/29, which holds only 8 addresses; it could hold one /29 or two /30s.)</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] All three R1 interfaces up/up with the planned addresses</li>
+<li>[ ] <code>show ip route connected</code> shows 3 C and 3 L routes</li>
+<li>[ ] All end devices ping each other</li>
+<li>[ ] All four fault scenarios reproduced, explained and fixed</li>
+<li>[ ] Configuration saved</li>
+</ul>
+<h3 id="214-chapter-2-summary-notes-exam-revision">2.14 Chapter 2 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Place values:</strong> 128 64 32 16 8 4 2 1. <strong>Mask octets:</strong> 0, 128, 192, 224, 240, 248, 252, 254, 255.</li>
+<li><strong>Block size</strong> = 256 − mask value in the interesting octet. Network = the multiple of the block size at or below the address; broadcast = next network − 1.</li>
+<li><strong>Hosts</strong> = 2^h − 2. <strong>Subnets</strong> = 2^s (no −2). /31 = 2 usable on point-to-point links; /32 = one address.</li>
+<li><strong>RFC 1918:</strong> 10.0.0.0/8, 172.16.0.0/12 (to 172.31.255.255), 192.168.0.0/16. 169.254.0.0/16 = APIPA = DHCP failed. 100.64.0.0/10 is carrier-grade NAT space, not RFC 1918.</li>
+<li><strong>VLSM:</strong> largest first, each block on a multiple of its own size, no overlaps.</li>
+<li><strong>Summarization:</strong> count identical leading bits; the summary network must start on a multiple of its block size.</li>
+<li><strong>IOS:</strong> <code>ip address &lt;ip&gt; &lt;dotted mask&gt;</code> then <code>no shutdown</code>; verify with <code>show ip interface brief</code> and <code>show ip route connected</code>. IOS rejects network addresses ("Bad mask") and overlaps ("overlaps with").</li>
+<li><strong>Host checks in order:</strong> APIPA? → address and mask match the plan? → gateway in the same subnet and pingable? → duplicate address?</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"/27 gives 32 hosts"</td>
+<td>32 addresses, <strong>30</strong> usable hosts</td>
+</tr>
+<tr>
+<td>"172.20.0.0 is public"</td>
+<td>It is inside 172.16.0.0/12, so it is <strong>private</strong></td>
+</tr>
+<tr>
+<td>"A x.x.x.0 address can never be a host"</td>
+<td>In a /22 or larger, addresses like 172.16.22.0 can be valid hosts; only the subnet's own network address is reserved</td>
+</tr>
+<tr>
+<td>"The gateway can be any router address"</td>
+<td>It must be inside the host's own subnet</td>
+</tr>
+<tr>
+<td>"If the PC can ping its gateway, its mask is right"</td>
+<td>A wrong mask can still reach the gateway but break other destinations</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="215-practice-questions--chapter-2">2.15 Practice questions — Chapter 2</h3>
+<p><strong>1. (Calculation)</strong> For 10.45.130.77/19, give the network address, broadcast address, usable range and number of usable hosts.</p>
+<p><strong>2. (Recall)</strong> How many usable host addresses does a /27 provide?</p>
+<p>A. 32  B. 30  C. 62  D. 14</p>
+<p><strong>3. (Multiple choice)</strong> Which address can be assigned to a host in 172.16.20.0/22?</p>
+<p>A. 172.16.20.0  B. 172.16.23.255  C. 172.16.22.0  D. 172.16.24.1</p>
+<p><strong>4. (Multiple response — choose two)</strong> Which addresses are RFC 1918 private?</p>
+<p>A. 172.31.200.1  B. 172.32.1.1  C. 192.169.1.1  D. 192.168.255.254  E. 100.64.0.1</p>
+<p><strong>5. (Design)</strong> You must split 192.168.40.0/24 into at least 10 equal subnets, with as many hosts per subnet as possible. Which prefix do you use and how many hosts does each subnet get?</p>
+<p><strong>6. (Design)</strong> What is the longest prefix (smallest subnet) that supports 500 hosts?</p>
+<p>A. /22  B. /23  C. /24  D. /25</p>
+<p><strong>7. (Troubleshooting)</strong> A PC is configured as 192.168.1.130, mask 255.255.255.128, gateway 192.168.1.1. It can reach local hosts but nothing on other networks. What is wrong?</p>
+<p><strong>8. (Output interpretation)</strong> G0/0/0 on R1 is 10.10.16.1/21. When you enter <code>ip address 10.10.20.1 255.255.255.0</code> on G0/0/1, IOS returns <code>% 10.10.20.0 overlaps with GigabitEthernet0/0/0</code>. Explain why.</p>
+<p><strong>9. (Troubleshooting)</strong> <code>ipconfig</code> on a Windows laptop shows 169.254.33.7, mask 255.255.0.0, and no default gateway. What does this tell you, and what is the next thing to check?</p>
+<p><strong>10. (VLSM)</strong> Using 192.168.100.0/24, allocate largest first for LANs of 60, 28 and 12 hosts and one point-to-point link. Which subnet does the 12-host LAN receive?</p>
+<p>A. 192.168.100.96/28  B. 192.168.100.64/28  C. 192.168.100.112/28  D. 192.168.100.96/29</p>
+<p><strong>11. (Summarization)</strong> What is the most specific single summary for 172.20.32.0/24 through 172.20.39.0/24?</p>
+<p><strong>12. (Concept)</strong> Which prefix provides two usable addresses on a router-to-router link without wasting any?</p>
+<p>A. /29  B. /30  C. /31  D. /32</p>
+<p><strong>13. (Scenario)</strong> In VLAN 10, PC1 is 10.1.1.10/24 and PC2 is 10.1.1.200 with mask 255.255.255.128. Both use gateway 10.1.1.1. Which statement is true?</p>
+<p>A. Both hosts work normally  B. PC2 cannot reach remote networks because its gateway is outside its subnet  C. PC1 cannot reach the gateway  D. PC2 has a duplicate address</p>
+<p><strong>14. (Conversion)</strong> Convert 11011010 to decimal and 240 to binary.</p>
+<p><strong>15. (Evaluate an AI assistant)</strong> A host configured as 10.20.30.64/26 cannot communicate. A network assistant says: <em>"10.20.30.64 is the network address of its /26 subnet; assign 10.20.30.65 or higher instead."</em> Is the recommendation correct?</p>
+<h3 id="216-answer-key-with-explanations">2.16 Answer key with explanations</h3>
+<ol>
+<li>/19 → mask 255.255.<strong>224</strong>.0, block 32 in the 3rd octet. 130 falls in the block starting at 128 (128–159). Network <strong>10.45.128.0</strong>, broadcast <strong>10.45.159.255</strong>, usable <strong>10.45.128.1 – 10.45.159.254</strong>, hosts 2^13 − 2 = <strong>8,190</strong>.</li>
+<li><strong>B.</strong> 32 addresses minus network and broadcast = 30. A counts the reserved addresses; C is /26; D is /28.</li>
+<li><strong>C.</strong> A /22 is a block of 4 in the 3rd octet: 172.16.20.0 – 172.16.23.255. A is the network address, B the broadcast, D is in the next block. 172.16.22.0 sits in the middle of the range, so it is a valid host.</li>
+<li><strong>A and D.</strong> 172.16.0.0/12 runs to 172.31.255.255, so A is private and B is public. C is just outside 192.168.0.0/16. E is shared CGNAT space (RFC 6598), not RFC 1918.</li>
+<li>Borrow 4 bits (2^4 = 16 ≥ 10) → <strong>/28</strong>, mask 255.255.255.240, <strong>14 hosts</strong> per subnet. Borrowing 3 bits would give only 8 subnets.</li>
+<li><strong>B.</strong> /23 has 9 host bits: 2^9 − 2 = 510. /24 offers only 254.</li>
+<li>The host's subnet is 192.168.1.128/25 (.129–.254), but the gateway 192.168.1.1 is in 192.168.1.0/25. <strong>The gateway is outside the host's subnet</strong>, so the host cannot reach it. Fix: use the router address in .128/25 (for example 192.168.1.129), or re-address the host.</li>
+<li>A /21 is a block of 8 in the 3rd octet: 10.10.16.0 – 10.10.23.255. 10.10.20.0/24 lies inside it, so the two interfaces would be in <strong>overlapping subnets</strong>, which IOS forbids.</li>
+<li>It is an <strong>APIPA</strong> address: the laptop asked for DHCP and got no reply. Check physical/Wi-Fi connectivity, the access VLAN, and the DHCP server or relay (<code>ip helper-address</code>, Chapter 14).</li>
+<li><strong>A.</strong> 60 → /26 at .0; 28 → /27 at .64; 12 → /28 at <strong>.96</strong>; the link → /30 at .112. B overlaps the /27; C is free but not the next aligned block in a largest-first plan; D is too small (6 hosts).</li>
+<li><strong>172.20.32.0/21.</strong> Third octets 32–39 share their first 5 bits (00100xxx), so 16 + 5 = 21. Check: a /21 is a block of 8 in the 3rd octet and 32 is a multiple of 8.</li>
+<li><strong>C.</strong> A /31 has two addresses, both usable on point-to-point links (RFC 3021). /30 also gives 2 usable but wastes 2 addresses; /32 is a single address.</li>
+<li><strong>B.</strong> PC2's /25 subnet is 10.1.1.128/25, so its gateway 10.1.1.1 lies outside it and PC2 cannot reach remote networks. PC2 also treats PC1 (10.1.1.10) as remote, so PC2 → PC1 fails too. PC1 (/24) is configured correctly.</li>
+<li>11011010 = 128 + 64 + 16 + 8 + 2 = <strong>218</strong>. 240 = 128 + 64 + 32 + 16 = <strong>11110000</strong>.</li>
+<li><strong>Yes.</strong> A /26 is a block of 64 in the 4th octet, so 10.20.30.64 is the network address of 10.20.30.64/26 and cannot be used by a host. The usable range is .65 – .126. Before applying it, confirm the new address is free and that the gateway is in the same /26.</li>
+</ol>
+<h3 id="217-chapter-2-figure-checklist">2.17 Chapter 2 figure checklist</h3>
+<p>All 7 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-2-7">Figure 2.7</a> had one label crossing a link line on first render; it was moved and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td>Octet place values: 10101100 = 172</td>
+<td>2.3</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>192.168.10.75/26 bit by bit</td>
+<td>2.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>/26 blocks of 192.168.10.0/24 and host .75</td>
+<td>2.6</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>VLSM plan for 172.16.0.0/24, to scale</td>
+<td>2.9</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Summarizing four /24s into a /22</td>
+<td>2.10</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>Host IPv4 troubleshooting flowchart</td>
+<td>2.12</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>2.7</td>
+<td>Lab 2.1 topology</td>
+<td>2.13</td>
+<td>Rendered, embedded, checked after one label fix</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="218-chapter-2-progress-record">2.18 Chapter 2 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>1.3</strong> in full — binary conversion, address structure, masks and prefixes, public/private/special ranges, network/broadcast/host calculations, subnetting by subnets and by hosts, VLSM, summarization (supporting skill), IOS and host configuration, and IPv4 addressing troubleshooting.</p>
+<p><strong>Related objectives that reuse this chapter:</strong> 1.4 IPv6 prefix sizing (Chapter 3), 1.7 DHCP (Chapter 14), 3.1 routing tables (Chapter 10), 4.3 NAT (Chapter 21), 4.6 ACL wildcard masks (Chapter 20).</p>
+<p><strong>Next:</strong> Chapter 3 — objective <strong>1.4 Troubleshoot IPv6 address configuration, assignment and prefix sizing (unicast and modified EUI-64)</strong>.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-01.html"><small>← Chapter 1</small>Networking foundations, cables and interfaces</a><a class="pn next" href="chapter-03.html"><small>Chapter 3 →</small>IPv6 addressing and prefix sizing</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#21-learning-objectives">2.1 Learning objectives</a>
+<a href="#22-introduction">2.2 Introduction</a>
+<a href="#23-binary-and-decimal-conversion">2.3 Binary and decimal conversion</a>
+<a href="#24-ipv4-address-structure-prefix-length-and-mask">2.4 IPv4 address structure, prefix length and mask</a>
+<a href="#25-public-private-and-special-purpose-addresses">2.5 Public, private and special-purpose addresses</a>
+<a href="#26-calculating-network-broadcast-and-host-range">2.6 Calculating network, broadcast and host range</a>
+<a href="#27-the-quick-reference-table">2.7 The quick-reference table</a>
+<a href="#28-subnetting-a-block-by-number-of-subnets-or-number-of-hosts">2.8 Subnetting a block: by number of subnets or number of hosts</a>
+<a href="#29-vlsm-different-sized-subnets-from-one-block">2.9 VLSM: different-sized subnets from one block</a>
+<a href="#210-route-summarization-supporting-skill">2.10 Route summarization (supporting skill)</a>
+<a href="#211-configuring-and-verifying-ipv4-on-cisco-ios">2.11 Configuring and verifying IPv4 on Cisco IOS</a>
+<a href="#212-troubleshooting-ipv4-addressing">2.12 Troubleshooting IPv4 addressing</a>
+<a href="#213-packet-tracer-lab-21--vlsm-addressing-and-ipv4-troubleshooting-beginnerintermediate">2.13 Packet Tracer Lab 2.1 — VLSM addressing and IPv4 troubleshooting (Beginner–Intermediate)</a>
+<a href="#214-chapter-2-summary-notes-exam-revision">2.14 Chapter 2 summary notes (exam revision)</a>
+<a href="#215-practice-questions--chapter-2">2.15 Practice questions — Chapter 2</a>
+<a href="#216-answer-key-with-explanations">2.16 Answer key with explanations</a>
+<a href="#217-chapter-2-figure-checklist">2.17 Chapter 2 figure checklist</a>
+<a href="#218-chapter-2-progress-record">2.18 Chapter 2 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

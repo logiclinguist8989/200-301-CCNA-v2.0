@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 7 — Edge-host ports: VLAN, PoE, port channel and LACP · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 7: Edge-host ports: VLAN, PoE, port channel and LACP">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head green">
+  <div class="eyebrow">Domain 2 · Switching &amp; Network Access</div>
+  <h1><span class="num">Chapter 7</span>Edge-host ports: VLAN, PoE, port channel and LACP</h1>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~22 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="7"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>2.2 Configure Layer 2 switch port attributes for edge-host connectivity (VLAN, PoE, port channel, and LACP)</strong> for <strong>2.2.a</strong> desktops, printers and IoT appliances, <strong>2.2.b</strong> wireless access points (standalone and controller-based), <strong>2.2.c</strong> VoIP phones, <strong>2.2.d</strong> virtualized hosts and <strong>2.2.e</strong> network appliances.</p>
+<p>This objective asks one practical question: <em>a device is plugged into this port — what should the port's configuration be?</em> The answer depends on how many VLANs the device needs, whether it needs power, and whether it uses more than one cable.</p>
+<h3 id="71-learning-objectives">7.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Apply a secure baseline to every edge port.</li>
+<li>Choose the right port profile for each of the five device types in the objective (<a class="figref" href="#fig-7-1">Figure 7.1</a>).</li>
+<li>Configure and verify PoE, including power budgets and inline power states.</li>
+<li>Configure a data VLAN plus a voice VLAN for an IP phone with a PC behind it.</li>
+<li>Configure switch ports for standalone and controller-based access points.</li>
+<li>Configure trunk and LACP edge ports for virtualized hosts and network appliances.</li>
+<li>Troubleshoot edge-port problems from show-command output.</li>
+</ol>
+<h3 id="72-the-edge-port-baseline">7.2 The edge-port baseline</h3>
+<p>An <strong>edge port</strong> connects to an end device rather than another switch. Every edge port in this guide starts from the same baseline; the rest of the chapter only adds to it.</p>
+<pre><code>SW4(config)# interface gigabitethernet1/0/1
+SW4(config-if)# description PC-A Staff
+SW4(config-if)# switchport mode access              ! no DTP, never becomes a trunk
+SW4(config-if)# switchport access vlan 10
+SW4(config-if)# spanning-tree portfast             ! forward immediately (Chapter 9)
+SW4(config-if)# spanning-tree bpduguard enable     ! shut the port if a switch appears (Chapter 9)
+SW4(config-if)# no shutdown
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Baseline item</th>
+<th>Why</th>
+<th>Covered in depth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>description</code></td>
+<td>Documentation; checked against CDP/LLDP</td>
+<td>Chapter 8</td>
+</tr>
+<tr>
+<td><code>switchport mode access</code></td>
+<td>Stops DTP from forming an accidental trunk</td>
+<td>Chapter 5</td>
+</tr>
+<tr>
+<td><code>switchport access vlan</code></td>
+<td>Places the device in the right subnet</td>
+<td>Chapter 5</td>
+</tr>
+<tr>
+<td><code>spanning-tree portfast</code></td>
+<td>Hosts get a link in about a second instead of \~30 s, so DHCP does not time out</td>
+<td>Chapter 9</td>
+</tr>
+<tr>
+<td><code>spanning-tree bpduguard enable</code></td>
+<td>Protects against someone plugging in a switch</td>
+<td>Chapter 9</td>
+</tr>
+<tr>
+<td>Port security, DHCP snooping, storm control</td>
+<td>Limit MACs, stop rogue DHCP, contain floods</td>
+<td>Chapter 23</td>
+</tr>
+<tr>
+<td><code>shutdown</code> on unused ports</td>
+<td>Nothing unknown can connect</td>
+<td>Chapter 5</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Device profiles at a glance</strong> (<a class="figref" href="#fig-7-1">Figure 7.1</a> draws them):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Port mode</th>
+<th>VLANs</th>
+<th>PoE</th>
+<th>Bundle</th>
+<th>Special settings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desktop / laptop</td>
+<td>Access</td>
+<td>Data VLAN</td>
+<td>No</td>
+<td>No</td>
+<td>Baseline only</td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Access</td>
+<td>Printer VLAN</td>
+<td>Sometimes</td>
+<td>No</td>
+<td>Static IP or DHCP reservation</td>
+</tr>
+<tr>
+<td>IoT device / camera</td>
+<td>Access</td>
+<td>Separate IoT VLAN</td>
+<td>Often</td>
+<td>No</td>
+<td>Isolate from users with ACLs</td>
+</tr>
+<tr>
+<td>IP phone (+ PC)</td>
+<td>Access with <strong>voice VLAN</strong></td>
+<td>Data untagged + voice tagged</td>
+<td>Yes</td>
+<td>No</td>
+<td><code>switchport voice vlan</code></td>
+</tr>
+<tr>
+<td>AP, standalone</td>
+<td>Trunk</td>
+<td>Management (native) + one VLAN per SSID</td>
+<td>Yes (PoE+ often)</td>
+<td>Sometimes</td>
+<td>Native VLAN = AP management</td>
+</tr>
+<tr>
+<td>AP, controller-based (local mode)</td>
+<td>Access</td>
+<td>AP management VLAN only</td>
+<td>Yes</td>
+<td>No</td>
+<td>Client traffic tunnelled to the WLC</td>
+</tr>
+<tr>
+<td>Virtualized host</td>
+<td>Trunk</td>
+<td>All VM VLANs</td>
+<td>No</td>
+<td>Often LACP</td>
+<td><code>spanning-tree portfast trunk</code></td>
+</tr>
+<tr>
+<td>Network appliance (firewall, WLC, load balancer)</td>
+<td>Trunk or access</td>
+<td>Inside VLANs</td>
+<td>No</td>
+<td>Often LACP</td>
+<td>Match the appliance's HA design</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="fig" id="fig-7-1"><button class="zoom" aria-label="Enlarge figure 7.1"><img src="assets/figures/ch07/fig-07-01-edge-port-profiles.svg" alt="Figure 7.1 — Edge-device port profiles for objective 2.2.a–e" loading="lazy"></button><figcaption><a class="fignum" href="#fig-7-1">Figure 7.1</a> Edge-device port profiles for objective 2.2.a–e</figcaption></figure>
+
+<p><a class="figref" href="#fig-7-1">Figure 7.1</a> sorts the eight devices by what their port needs. Everything on the left is an access port; on the right the line style shows whether the device needs a trunk or a trunk inside an LACP bundle. The controller-based AP is the exception on the right: its port is a plain access port because client VLANs travel inside the tunnel to the WLC.</p>
+<h3 id="73-desktops-printers-and-iot-appliances-22a">7.3 Desktops, printers and IoT appliances (2.2.a)</h3>
+<p>These devices need one VLAN and an untagged access port: the baseline from 7.2 with the right VLAN.</p>
+<pre><code>SW4(config)# interface gigabitethernet1/0/3
+SW4(config-if)# description Printer1 - 2nd floor
+SW4(config-if)# switchport mode access
+SW4(config-if)# switchport access vlan 40
+SW4(config-if)# spanning-tree portfast
+SW4(config-if)# spanning-tree bpduguard enable
+SW4(config-if)# power inline never                ! printer is mains-powered; no PoE
+</code></pre>
+<p><strong>Design points:</strong></p>
+<ul>
+<li><strong>Printers</strong> usually keep a fixed address (static, or a DHCP reservation) because users and print servers point at it.</li>
+<li><strong>IoT appliances</strong> (cameras, badge readers, sensors, smart TVs) go in their <strong>own VLAN</strong>. They are often poorly secured, so ACLs (Chapter 20) should limit what they can reach. Many are PoE-powered.</li>
+<li><strong>Speed and duplex</strong> stay on auto for all three (Chapter 1).</li>
+<li><strong>Configure groups of identical ports once</strong> with <code>interface range</code>, for example <code>interface range gigabitethernet1/0/5 - 20</code>.</li>
+</ul>
+<h3 id="74-power-over-ethernet-poe">7.4 Power over Ethernet (PoE)</h3>
+<p><strong>PoE</strong> delivers DC power over the same twisted-pair cable as data, so phones, APs, cameras and IoT sensors need no power socket. The switch is the <strong>PSE</strong> (power sourcing equipment); the device is the <strong>PD</strong> (powered device).</p>
+<p><strong>How a PoE port powers a device:</strong></p>
+<ol>
+<li><strong>Detection</strong> — the switch applies a low test voltage and looks for a PD's signature resistance. A PC NIC has none, so it never receives power.</li>
+<li><strong>Classification</strong> — the PD signals a power class (and with LLDP-MED or CDP can negotiate a more exact amount).</li>
+<li><strong>Power-up</strong> — if the switch's remaining <strong>power budget</strong> covers the request, it supplies power; otherwise it denies power and logs it.</li>
+<li><strong>Monitoring</strong> — if the PD is unplugged or draws too much, power is removed.</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Common name</th>
+<th>Power at the switch port</th>
+<th>Typical devices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IEEE 802.3af (Type 1)</td>
+<td>PoE</td>
+<td>15.4 W</td>
+<td>IP phones, basic cameras</td>
+</tr>
+<tr>
+<td>IEEE 802.3at (Type 2)</td>
+<td>PoE+</td>
+<td>30 W</td>
+<td>Most Wi-Fi 5/6 APs, PTZ cameras</td>
+</tr>
+<tr>
+<td>IEEE 802.3bt Type 3</td>
+<td>PoE++ / 4-pair</td>
+<td>60 W</td>
+<td>High-end APs, video phones</td>
+</tr>
+<tr>
+<td>IEEE 802.3bt Type 4</td>
+<td>PoE++</td>
+<td>90 W</td>
+<td>Displays, small switches</td>
+</tr>
+</tbody>
+</table></div>
+<p>The device receives slightly less than the switch sends (cable loss). Cisco's UPOE and UPOE+ are proprietary equivalents at 60 W and 90 W.</p>
+<p><strong>Configuration</strong> (interface mode; most PoE switches default to <code>auto</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>power inline auto</code></td>
+<td>Detect and power any PD up to the port's maximum (default)</td>
+</tr>
+<tr>
+<td><code>power inline auto max 15400</code></td>
+<td>Same, but cap the port at 15.4 W (value in milliwatts)</td>
+</tr>
+<tr>
+<td><code>power inline static max 30000</code></td>
+<td>Reserve 30 W for this port in advance, even before a device connects</td>
+</tr>
+<tr>
+<td><code>power inline never</code></td>
+<td>Disable PoE on the port</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Verification</strong> (example output; columns and values vary by platform):</p>
+<pre><code>SW4# show power inline
+Module   Available     Used     Remaining
+          (Watts)     (Watts)    (Watts)
+------   ---------   --------   ---------
+1           390.0       21.7       368.3
+Interface Admin  Oper       Power   Device              Class Max
+                            (Watts)
+--------- ------ ---------- ------- ------------------- ----- ----
+Gi1/0/1   auto   off        0.0     n/a                 n/a   30.0
+Gi1/0/2   auto   on         6.3     IP Phone 7960       2     30.0
+Gi1/0/3   off    off        0.0     n/a                 n/a   30.0
+Gi1/0/4   auto   on         15.4    AIR-AP              3     30.0
+</code></pre>
+<p>Read it as: the switch has 390 W of PoE budget, 21.7 W is in use; the phone on Gi1/0/2 and the AP on Gi1/0/4 are powered; Gi1/0/1 has a PC (no PD detected, so <code>off</code>); Gi1/0/3 was set to <code>never</code> (Admin <code>off</code>).</p>
+<p><strong>PoE troubleshooting:</strong> a device with no lights on a PoE port means check (1) the port is not <code>never</code>, (2) the switch's remaining budget, (3) the device's class against the port's maximum (an AP needing PoE+ on a PoE-only port may boot with reduced radios or not at all), (4) the cable. A state of <code>faulty</code> or <code>err-disable</code> usually means overcurrent or a bad cable or device.</p>
+<h3 id="75-ip-phones-and-the-voice-vlan-22c">7.5 IP phones and the voice VLAN (2.2.c)</h3>
+<p>Offices save cabling by plugging the PC into the back of the IP phone, so <strong>one switch port serves two devices in two VLANs</strong>: the phone in the voice VLAN and the PC in the data VLAN. Separating voice lets you give it priority (QoS) and keep it away from user traffic.</p>
+<p><strong>How it works (<a class="figref" href="#fig-7-2">Figure 7.2</a>):</strong></p>
+<figure class="fig" id="fig-7-2"><button class="zoom" aria-label="Enlarge figure 7.2"><img src="assets/figures/ch07/fig-07-02-voice-vlan.svg" alt="Figure 7.2 — IP phone and PC sharing one switch port: voice VLAN 20 tagged, data VLAN 10 untagged" loading="lazy"></button><figcaption><a class="fignum" href="#fig-7-2">Figure 7.2</a> IP phone and PC sharing one switch port: voice VLAN 20 tagged, data VLAN 10 untagged</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-7-2">Figure 7.2</a> the dashed arrow is the CDP or LLDP-MED message that tells the phone its voice VLAN. The highlighted link between switch and phone carries both kinds of frame shown in the cards beneath it, and it also carries PoE power. Only untagged data crosses the phone-to-PC link.</p>
+<ol>
+<li>The switch powers the phone with <strong>PoE</strong>.</li>
+<li>The switch tells the phone its voice VLAN using <strong>CDP</strong> (Cisco phones) or <strong>LLDP-MED</strong> (other vendors): "use VLAN 20 for voice".</li>
+<li>The phone contains a small <strong>three-port switch</strong>: one port to the wall, one for the PC, one internal for the phone itself.</li>
+<li>The phone sends its own traffic <strong>tagged with VLAN 20</strong> and <strong>CoS 5</strong> (the 802.1Q PCP field from <a class="figref" href="chapter-05.html#fig-5-2">Figure 5.2</a>).</li>
+<li>The PC's frames pass through the phone <strong>untagged</strong>, and the switch places them in the access VLAN 10.</li>
+<li>The phone gets its IP address by DHCP in the voice subnet (10.10.20.0/24 in this guide).</li>
+</ol>
+<p><strong>Configuration:</strong></p>
+<pre><code>SW4(config)# vlan 20
+SW4(config-vlan)# name VOICE
+SW4(config-vlan)# exit
+SW4(config)# interface gigabitethernet1/0/2
+SW4(config-if)# description IP phone + PC-B
+SW4(config-if)# switchport mode access
+SW4(config-if)# switchport access vlan 10            ! data VLAN for the PC
+SW4(config-if)# switchport voice vlan 20             ! voice VLAN for the phone
+SW4(config-if)# spanning-tree portfast
+SW4(config-if)# spanning-tree bpduguard enable
+SW4(config-if)# power inline auto
+</code></pre>
+<p><strong>Verification:</strong></p>
+<pre><code>SW4# show interfaces gigabitethernet1/0/2 switchport
+Name: Gi1/0/2
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Access Mode VLAN: 10 (STAFF)
+Voice VLAN: 20 (VOICE)
+...
+SW4# show cdp neighbors
+Device ID        Local Intrfce     Holdtme    Capability  Platform     Port ID
+SEP0001C7A1B2C3  Gig 1/0/2         150             H P M  IP Phone    Port 1
+</code></pre>
+<p><strong>Exam points:</strong></p>
+<ul>
+<li>The port is still an <strong>access port</strong> (<code>static access</code>); it is <em>not</em> a trunk and does <strong>not</strong> appear in <code>show interfaces trunk</code>, even though voice frames are tagged.</li>
+<li>The voice VLAN must exist on the switch and be carried on the uplink trunks (<code>allowed vlan add 20</code>).</li>
+<li>Older Cisco documentation called this an "auxiliary VLAN".</li>
+<li>QoS trust settings for voice (for example <code>mls qos trust device cisco-phone</code> on some platforms) are beyond the v2.0 objectives.</li>
+</ul>
+<p><strong>Troubleshooting phones:</strong> phone dark → PoE (7.4); phone gets an address in the data subnet → voice VLAN missing on the port, or CDP/LLDP disabled so the phone never learned VLAN 20; phone works but PC does not → access VLAN wrong; both fail beyond the switch → VLAN 20 or 10 not allowed on the uplink trunk.</p>
+<h3 id="76-wireless-access-points-22b">7.6 Wireless access points (2.2.b)</h3>
+<p>An AP bridges Wi-Fi clients onto the wired network. Each <strong>SSID</strong> (wireless network name) maps to a VLAN — for example <em>Staff-WiFi</em> to VLAN 30 and <em>Guest</em> to VLAN 35. Where that mapping happens decides how the switch port is configured (<a class="figref" href="#fig-7-3">Figure 7.3</a>).</p>
+<figure class="fig" id="fig-7-3"><button class="zoom" aria-label="Enlarge figure 7.3"><img src="assets/figures/ch07/fig-07-03-standalone-vs-lightweight-ap.svg" alt="Figure 7.3 — Standalone AP on a trunk (left) vs controller-based AP on an access port with a CAPWAP tunnel (right)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-7-3">Figure 7.3</a> Standalone AP on a trunk (left) vs controller-based AP on an access port with a CAPWAP tunnel (right)</figcaption></figure>
+
+<p>On the left of <a class="figref" href="#fig-7-3">Figure 7.3</a> the AP itself maps each SSID to a VLAN, so its port must carry all of them as a trunk. On the right the dashed CAPWAP tunnel carries client traffic from the AP across the switched network to the WLC, which maps SSIDs to VLANs on its own trunk; the AP's port needs only VLAN 99.</p>
+<p><strong>Standalone (autonomous) AP.</strong> The AP is configured individually and bridges each SSID straight onto its VLAN. Its switch port must therefore be a <strong>trunk</strong>: the AP's own management address is usually in the <strong>native VLAN</strong> (untagged), and each SSID's VLAN is tagged.</p>
+<pre><code>SW4(config)# interface gigabitethernet1/0/4
+SW4(config-if)# description AP-Lobby (standalone)
+SW4(config-if)# switchport mode trunk
+SW4(config-if)# switchport trunk native vlan 99          ! AP management, untagged
+SW4(config-if)# switchport trunk allowed vlan 30,35,99
+SW4(config-if)# spanning-tree portfast trunk
+SW4(config-if)# power inline auto
+</code></pre>
+<p><strong>Controller-based (lightweight) AP in local mode.</strong> The AP is managed by a <strong>wireless LAN controller (WLC)</strong>. It builds a <strong>CAPWAP</strong> tunnel to the WLC — control on UDP 5246 (encrypted with DTLS) and data on UDP 5247 — and sends every client frame inside that tunnel. The WLC places client traffic on the right VLAN. The AP's switch port therefore needs only the <strong>AP management VLAN</strong>, as an <strong>access</strong> port:</p>
+<pre><code>SW4(config)# interface gigabitethernet1/0/5
+SW4(config-if)# description LAP-1 (controller-based, local mode)
+SW4(config-if)# switchport mode access
+SW4(config-if)# switchport access vlan 99
+SW4(config-if)# spanning-tree portfast
+SW4(config-if)# power inline auto
+</code></pre>
+<p>The <strong>WLC's</strong> own uplink is a <strong>trunk</strong> carrying the client VLANs (30, 35) and its management VLAN, often bundled for redundancy. Older AireOS controllers bundle with static <code>mode on</code> (no LACP), while Catalyst 9800 controllers support LACP — check the platform before choosing the channel mode.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>AP type</th>
+<th>Switch port</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standalone (autonomous)</td>
+<td>Trunk; native = AP management; SSID VLANs tagged</td>
+<td>The AP itself puts each SSID on its VLAN</td>
+</tr>
+<tr>
+<td>Controller-based, local mode</td>
+<td>Access in the AP management VLAN</td>
+<td>Client traffic is tunnelled to the WLC</td>
+</tr>
+<tr>
+<td>Controller-based, FlexConnect (local switching)</td>
+<td>Trunk, like standalone</td>
+<td>The AP switches client traffic locally at a branch</td>
+</tr>
+<tr>
+<td>Cloud-managed (for example Meraki)</td>
+<td>Usually trunk</td>
+<td>Managed from the cloud; traffic is bridged locally</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>How a lightweight AP joins a WLC (step by step):</strong> the AP boots on PoE → gets an IP address by DHCP in VLAN 99 → discovers the WLC (DHCP option 43, DNS name <code>CISCO-CAPWAP-CONTROLLER</code>, or broadcast) → builds the CAPWAP tunnel → downloads its configuration → starts its SSIDs.</p>
+<p><strong>Troubleshooting APs:</strong> AP has no power or reduced radios → PoE class or budget (7.4); standalone AP clients get no address in one SSID → that SSID's VLAN missing from the trunk; lightweight AP never joins → no DHCP or route to the WLC, or UDP 5246/5247 blocked; lightweight AP on a trunk with the wrong native VLAN → it gets an address in the wrong subnet.</p>
+<h3 id="77-virtualized-hosts-22d">7.7 Virtualized hosts (2.2.d)</h3>
+<p>A hypervisor host carries VMs in several VLANs over its uplinks (Chapter 4, <a class="figref" href="chapter-04.html#fig-4-2">Figure 4.2</a>), so its ports are <strong>trunks</strong>, usually <strong>two or more</strong> for redundancy. Whether they form an LACP bundle depends on the host's NIC-teaming mode: bundle only when the host uses LACP.</p>
+<p><strong>Two-uplink host using LACP:</strong></p>
+<pre><code>SW4(config)# interface range gigabitethernet1/0/11 - 12
+SW4(config-if-range)# description ESXi-01 vmnic0-1
+SW4(config-if-range)# switchport mode trunk
+SW4(config-if-range)# switchport trunk native vlan 999
+SW4(config-if-range)# switchport trunk allowed vlan 10,30,99
+SW4(config-if-range)# switchport nonegotiate
+SW4(config-if-range)# channel-group 11 mode active
+SW4(config-if-range)# exit
+SW4(config)# interface port-channel 11
+SW4(config-if)# switchport mode trunk
+SW4(config-if)# switchport trunk native vlan 999
+SW4(config-if)# switchport trunk allowed vlan 10,30,99
+SW4(config-if)# spanning-tree portfast trunk           ! host does not bridge between its NICs
+</code></pre>
+<p><strong>Host using independent teaming (no LACP):</strong> configure both ports as identical trunks <em>without</em> <code>channel-group</code>, each with <code>spanning-tree portfast trunk</code>.</p>
+<p>Newer IOS releases write the PortFast command as <code>spanning-tree portfast edge trunk</code>. Use PortFast on host trunks only when the host does not run STP or bridge between its NICs, which is normal for hypervisors.</p>
+<h3 id="78-network-appliances-22e">7.8 Network appliances (2.2.e)</h3>
+<p><strong>Network appliances</strong> are dedicated devices that provide a service: firewalls, wireless LAN controllers, load balancers, intrusion prevention systems, WAN optimizers. They commonly connect in one of three ways:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Connection</th>
+<th>Switch port</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One interface per network</td>
+<td>Access ports in different VLANs</td>
+<td>Small firewall: inside port in VLAN 10, DMZ port in VLAN 50</td>
+</tr>
+<tr>
+<td>Subinterfaces on one link</td>
+<td>Trunk</td>
+<td>Firewall "router-on-a-stick" for several inside VLANs</td>
+</tr>
+<tr>
+<td>Bundled for capacity and redundancy</td>
+<td>Trunk inside an LACP port-channel</td>
+<td>Data-centre firewall or WLC with two or four uplinks</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code>SW4(config)# interface range gigabitethernet1/0/21 - 22
+SW4(config-if-range)# description FW1 inside, Po21 members
+SW4(config-if-range)# switchport mode trunk
+SW4(config-if-range)# switchport trunk allowed vlan 10,30,40,99
+SW4(config-if-range)# channel-group 21 mode active
+</code></pre>
+<p><strong>Design notes:</strong> appliances are often deployed in <strong>high-availability pairs</strong>; each unit connects to the switches the same way, and the pair shares a virtual IP. Appliances in transparent (bridging) mode can create Layer 2 loops, so do not enable PortFast or BPDU filtering on them without following the vendor's design.</p>
+<h3 id="79-verifying-edge-ports">7.9 Verifying edge ports</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use it to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show interfaces status</code></td>
+<td>Each port's VLAN (or <code>trunk</code>), speed, duplex, link state</td>
+</tr>
+<tr>
+<td><code>show interfaces &lt;int&gt; switchport</code></td>
+<td>Access VLAN, <strong>voice VLAN</strong>, mode, native and allowed VLANs</td>
+</tr>
+<tr>
+<td><code>show power inline</code></td>
+<td>PoE budget and per-port power state, class and device</td>
+</tr>
+<tr>
+<td><code>show cdp neighbors detail</code> / <code>show lldp neighbors detail</code></td>
+<td>Which device is really connected (phone, AP, host), its IP and platform</td>
+</tr>
+<tr>
+<td><code>show interfaces trunk</code></td>
+<td>Trunks to APs, hosts and appliances (phone ports are <strong>not</strong> listed)</td>
+</tr>
+<tr>
+<td><code>show etherchannel summary</code></td>
+<td>Host and appliance bundles with members (P)</td>
+</tr>
+<tr>
+<td><code>show mac address-table interface &lt;int&gt;</code></td>
+<td>Phone and PC MACs in VLAN 20 and 10 on one port; many VM MACs on a host trunk</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="710-troubleshooting-edge-ports">7.10 Troubleshooting edge ports</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP phone dark</td>
+<td>PoE disabled (<code>never</code>), budget exhausted, or class too high for the port</td>
+<td><code>power inline auto</code>; check <code>show power inline</code></td>
+</tr>
+<tr>
+<td>Phone gets a data-VLAN address</td>
+<td>No <code>switchport voice vlan</code>, or CDP/LLDP disabled</td>
+<td>Add the voice VLAN; enable CDP or LLDP</td>
+</tr>
+<tr>
+<td>PC behind phone has no network</td>
+<td>Wrong access VLAN, or data VLAN not on the uplink trunk</td>
+<td>Correct <code>switchport access vlan</code>; <code>allowed vlan add</code></td>
+</tr>
+<tr>
+<td>Standalone AP: one SSID's clients get no address</td>
+<td>That VLAN missing from the AP trunk</td>
+<td>Add it to the allowed list</td>
+</tr>
+<tr>
+<td>Lightweight AP never joins the WLC</td>
+<td>AP VLAN has no DHCP or no route to the WLC; CAPWAP blocked</td>
+<td>Fix DHCP/routing; permit UDP 5246–5247</td>
+</tr>
+<tr>
+<td>AP boots with reduced radios</td>
+<td>PoE class higher than the port supplies</td>
+<td>Use a PoE+ (or higher) port; raise the port maximum</td>
+</tr>
+<tr>
+<td>Host VMs flap or lose connectivity</td>
+<td>Teaming mode and switch bundling disagree</td>
+<td>Match LACP on both sides, or remove <code>channel-group</code></td>
+</tr>
+<tr>
+<td>Port err-disabled after connecting a device</td>
+<td>BPDU guard saw a switch (or an appliance in bridge mode)</td>
+<td>Remove the switch or redesign; bounce the port (Chapter 9)</td>
+</tr>
+<tr>
+<td>Printer unreachable from users</td>
+<td>Printer in its own VLAN but no inter-VLAN routing or an ACL blocks it</td>
+<td>Check gateway SVI and ACLs</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="711-packet-tracer-lab-71--a-poe-access-switch-for-every-edge-device-intermediate">7.11 Packet Tracer Lab 7.1 — A PoE access switch for every edge device (Intermediate)</h3>
+<p><strong>Objectives:</strong> 2.2.a–e. <strong>You will:</strong> configure edge ports for a desktop, an IP phone with a PC behind it, a printer, an access point with a wireless laptop, and (configuration only) a virtualized host bundle; then verify VLANs, the voice VLAN, PoE and CDP. This is a new file; it does not change Lab 6.1.</p>
+<p><strong>Devices:</strong> 1 × Catalyst 3650-24PS (SW4, add an AC power supply), 2 × PC (PC-A, PC-B), 1 × IP Phone 7960, 1 × Printer, 1 × AccessPoint-PT, 1 × Laptop with a wireless NIC.</p>
+<figure class="fig" id="fig-7-4"><button class="zoom" aria-label="Enlarge figure 7.4"><img src="assets/figures/ch07/fig-07-04-lab-7-1-topology.svg" alt="Figure 7.4 — Lab 7.1 topology: one PoE switch with five edge-device profiles" loading="lazy"></button><figcaption><a class="fignum" href="#fig-7-4">Figure 7.4</a> Lab 7.1 topology: one PoE switch with five edge-device profiles</figcaption></figure>
+
+<p><a class="figref" href="#fig-7-4">Figure 7.4</a> places every device in its own column, with its switch port and VLAN on the second line. PC-B and the laptop do not connect to SW4 directly: PC-B reaches it through the phone, and the laptop through the AP.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Device</th>
+<th>Profile</th>
+<th>Addressing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gi1/0/1</td>
+<td>PC-A</td>
+<td>Access VLAN 10</td>
+<td>DHCP from SW4</td>
+</tr>
+<tr>
+<td>Gi1/0/2</td>
+<td>IP phone, PC-B on the phone's PC port</td>
+<td>Access VLAN 10 + voice VLAN 20, PoE</td>
+<td>Phone: DHCP in 10.10.20.0/24; PC-B: DHCP in 10.10.10.0/24</td>
+</tr>
+<tr>
+<td>Gi1/0/3</td>
+<td>Printer1</td>
+<td>Access VLAN 40, PoE off</td>
+<td>Static 10.10.40.21/24, gw 10.10.40.1</td>
+</tr>
+<tr>
+<td>Gi1/0/4</td>
+<td>AccessPoint-PT (SSID Staff-WiFi)</td>
+<td>Access VLAN 30 (see PT note)</td>
+<td>Laptop: DHCP in 10.10.30.0/24</td>
+</tr>
+<tr>
+<td>Gi1/0/11–12</td>
+<td>ESXi-01 (no device; configuration practice)</td>
+<td>Trunk in LACP Po11</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>PT notes:</strong> Packet Tracer's AccessPoint-PT bridges a single SSID and does not tag VLANs, so it is connected as an access port in VLAN 30; the trunk configuration for a multi-SSID standalone AP in 7.6 is practised on paper. The IP phone will receive an address but will not register for calls (that needs a call-control server, which is beyond the CCNA). If the phone does not power on from the switch, add its power adapter in the Physical tab and note that your version does not simulate PoE. <code>show power inline</code> is available only in some Packet Tracer versions.</p>
+<p><strong>SW4 configuration</strong></p>
+<pre><code>enable
+configure terminal
+hostname SW4
+ip routing
+vlan 10
+ name STAFF
+vlan 20
+ name VOICE
+vlan 30
+ name WIRELESS
+vlan 40
+ name PRINTERS
+vlan 99
+ name MGMT
+vlan 999
+ name NATIVE
+exit
+interface vlan 10
+ ip address 10.10.10.1 255.255.255.0
+ no shutdown
+interface vlan 20
+ ip address 10.10.20.1 255.255.255.0
+ no shutdown
+interface vlan 30
+ ip address 10.10.30.1 255.255.255.0
+ no shutdown
+interface vlan 40
+ ip address 10.10.40.1 255.255.255.0
+ no shutdown
+exit
+! DHCP server (explained in Chapter 14)
+ip dhcp excluded-address 10.10.10.1 10.10.10.10
+ip dhcp excluded-address 10.10.20.1 10.10.20.10
+ip dhcp excluded-address 10.10.30.1 10.10.30.10
+ip dhcp pool STAFF
+ network 10.10.10.0 255.255.255.0
+ default-router 10.10.10.1
+ip dhcp pool VOICE
+ network 10.10.20.0 255.255.255.0
+ default-router 10.10.20.1
+ip dhcp pool WIRELESS
+ network 10.10.30.0 255.255.255.0
+ default-router 10.10.30.1
+exit
+! Edge ports
+interface gigabitethernet1/0/1
+ description PC-A Staff
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+interface gigabitethernet1/0/2
+ description IP phone + PC-B
+ switchport mode access
+ switchport access vlan 10
+ switchport voice vlan 20
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+interface gigabitethernet1/0/3
+ description Printer1
+ switchport mode access
+ switchport access vlan 40
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ power inline never
+interface gigabitethernet1/0/4
+ description AP Staff-WiFi
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+interface range gigabitethernet1/0/11 - 12
+ description ESXi-01 vmnic0-1
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,99
+ channel-group 11 mode active
+interface port-channel 11
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,99
+ spanning-tree portfast trunk
+end
+copy running-config startup-config
+</code></pre>
+<p>If <code>switchport mode trunk</code> is rejected, add <code>switchport trunk encapsulation dot1q</code> first. If your version does not offer the DHCP server on the 3650, give the PCs static addresses and skip the phone's address test.</p>
+<p><strong>Device settings:</strong> connect PC-B to the phone's PC ("Switch") port; set PC-A, PC-B and the laptop to DHCP; set the AP's SSID to <strong>Staff-WiFi</strong> and configure the same SSID on the laptop's wireless NIC.</p>
+<p><strong>Verification and expected results</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Command / action</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port profiles</td>
+<td><code>show interfaces status</code></td>
+<td>Gi1/0/1 and 1/0/2 in VLAN 10, Gi1/0/3 in 40, Gi1/0/4 in 30; Gi1/0/11–12 notconnect</td>
+</tr>
+<tr>
+<td>Voice VLAN</td>
+<td><code>show interfaces gi1/0/2 switchport</code></td>
+<td>Access Mode VLAN 10, Voice VLAN 20</td>
+</tr>
+<tr>
+<td>Phone detected</td>
+<td><code>show cdp neighbors</code></td>
+<td>The phone listed on Gi1/0/2</td>
+</tr>
+<tr>
+<td>Addresses</td>
+<td><code>show ip dhcp binding</code></td>
+<td>Leases in 10.10.10.0, 10.10.20.0 and 10.10.30.0</td>
+</tr>
+<tr>
+<td>Two VLANs on one port</td>
+<td><code>show mac address-table interface gi1/0/2</code></td>
+<td>Phone's MAC in VLAN 20 and PC-B's MAC in VLAN 10</td>
+</tr>
+<tr>
+<td>Phone ports are not trunks</td>
+<td><code>show interfaces trunk</code></td>
+<td>Only Po11 (if anything); Gi1/0/2 absent</td>
+</tr>
+<tr>
+<td>PoE (if supported)</td>
+<td><code>show power inline</code></td>
+<td>Gi1/0/2 on; Gi1/0/3 admin off</td>
+</tr>
+<tr>
+<td>Connectivity</td>
+<td>Laptop <code>ping 10.10.40.21</code></td>
+<td>Success, routed by SW4 between VLAN 30 and 40</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Break-fix exercises</strong></p>
+<ol>
+<li>Remove <code>switchport voice vlan 20</code> from Gi1/0/2 and renew the phone's address. <em>Expected:</em> the phone gets an address in 10.10.10.0/24. Restore the voice VLAN.</li>
+<li>Change Gi1/0/4 to <code>switchport access vlan 40</code>. <em>Expected:</em> the laptop receives no DHCP address (no pool for VLAN 40). Restore VLAN 30.</li>
+<li>Connect a second switch to Gi1/0/1. <em>Expected:</em> BPDU guard err-disables the port (Chapter 9). Remove it and bounce the port.</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Every edge port matches its profile in the table</li>
+<li>[ ] Phone and PC-B share Gi1/0/2 in VLANs 20 and 10</li>
+<li>[ ] Laptop associated to Staff-WiFi and reached the printer</li>
+<li>[ ] Host bundle Po11 configured (and shown down, with no device)</li>
+<li>[ ] All three break-fix exercises explained</li>
+</ul>
+<h3 id="712-chapter-7-summary-notes-exam-revision">7.12 Chapter 7 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Every edge port:</strong> description, <code>switchport mode access</code> (or trunk where needed), correct VLAN, <code>spanning-tree portfast</code>, <code>spanning-tree bpduguard enable</code>, unused ports shut.</li>
+<li><strong>Desktops, printers, IoT (2.2.a):</strong> access ports; IoT in its own VLAN; printers static or reserved.</li>
+<li><strong>PoE:</strong> PSE (switch) powers PD; detection → classification → power if budget allows. 802.3af 15.4 W, 802.3at (PoE+) 30 W, 802.3bt 60/90 W. <code>power inline auto | never | static</code>; verify with <code>show power inline</code>.</li>
+<li><strong>IP phone (2.2.c):</strong> <code>switchport access vlan 10</code> + <code>switchport voice vlan 20</code>; phone learns VLAN via CDP/LLDP-MED; voice tagged (CoS 5), PC untagged; port stays <strong>access</strong> and is not in <code>show interfaces trunk</code>.</li>
+<li><strong>APs (2.2.b):</strong> standalone → <strong>trunk</strong> (native = AP management, SSID VLANs tagged); controller-based local mode → <strong>access</strong> in the AP VLAN, CAPWAP (UDP 5246/5247) to the WLC; FlexConnect local switching → trunk. WLC uplink = trunk.</li>
+<li><strong>Virtualized hosts (2.2.d):</strong> trunk with all VM VLANs; LACP bundle only if the host's teaming uses LACP; <code>spanning-tree portfast trunk</code>.</li>
+<li><strong>Appliances (2.2.e):</strong> access per interface, a trunk, or a trunk inside an LACP bundle; often in HA pairs.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"A port with a voice VLAN is a trunk"</td>
+<td>It is an access port with a voice VLAN</td>
+</tr>
+<tr>
+<td>"Every AP needs a trunk"</td>
+<td>Controller-based local-mode APs use an access port</td>
+</tr>
+<tr>
+<td>"PoE will power any device"</td>
+<td>Only detected PDs, and only within the switch's budget and the port's maximum</td>
+</tr>
+<tr>
+<td>"Always bundle a server's two NICs"</td>
+<td>Bundle only when the host's teaming uses LACP</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="713-practice-questions--chapter-7">7.13 Practice questions — Chapter 7</h3>
+<p><strong>1. (Configuration)</strong> Gi1/0/7 connects to an IP phone with a PC behind it. Data is VLAN 10 and voice is VLAN 20. Which two interface commands are essential besides <code>switchport mode access</code>?</p>
+<p><strong>2. (Concept)</strong> Does Gi1/0/7 from question 1 appear in <code>show interfaces trunk</code>? Why or why not?</p>
+<p><strong>3. (Concept)</strong> How do the phone's frames and the PC's frames differ on the link between the switch and the phone?</p>
+<p><strong>4. (Recall)</strong> Which standard is PoE+ and how much power can the switch port supply?</p>
+<p>A. 802.3af, 15.4 W  B. 802.3at, 30 W  C. 802.3bt, 60 W  D. 802.3ad, 30 W</p>
+<p><strong>5. (Output interpretation)</strong> <code>show power inline</code> shows <code>Gi1/0/1  auto  off  0.0  n/a</code>. A PC is connected and working. Is there a fault?</p>
+<p><strong>6. (Design)</strong> A standalone AP broadcasts Staff-WiFi (VLAN 30) and Guest (VLAN 35); its management address is in VLAN 99. How should its switch port be configured?</p>
+<p><strong>7. (Design)</strong> A lightweight AP in local mode is managed by a WLC. Which switch-port configuration is typical, and why?</p>
+<p><strong>8. (Recall)</strong> Which UDP ports does CAPWAP use?</p>
+<p>A. 67 and 68  B. 161 and 162  C. 5246 and 5247  D. 4789 and 4790</p>
+<p><strong>9. (Multiple response — choose two)</strong> Which protocols can tell an IP phone its voice VLAN?</p>
+<p>A. CDP  B. DTP  C. LLDP-MED  D. VTP  E. STP</p>
+<p><strong>10. (Troubleshooting)</strong> A new IP phone receives an address in 10.10.10.0/24 (the data subnet) instead of 10.10.20.0/24. What is the most likely cause?</p>
+<p><strong>11. (Troubleshooting)</strong> A new Wi-Fi 6 AP boots but only one radio comes up. The port is on an older switch. What should you check first?</p>
+<p><strong>12. (Configuration)</strong> A hypervisor host uses LACP teaming on two NICs connected to Gi1/0/11–12 and carries VLANs 10, 30 and 99. Outline the switch configuration.</p>
+<p><strong>13. (Design)</strong> Where should a building's IP security cameras be placed, and what else should protect them?</p>
+<p><strong>14. (Evaluate an AI assistant)</strong> On a standalone AP's trunk port, Guest clients (VLAN 35) get no address while Staff clients work. A network assistant recommends: <em>"Change the AP port to <code>switchport access vlan 35</code>."</em> Is this a good fix?</p>
+<h3 id="714-answer-key-with-explanations">7.14 Answer key with explanations</h3>
+<ol>
+<li><code>switchport access vlan 10</code> and <code>switchport voice vlan 20</code>. (PortFast, BPDU guard and PoE <code>auto</code> are also normal.)</li>
+<li><strong>No.</strong> The port is an access port with a voice VLAN (operational mode <code>static access</code>), so it is not listed as a trunk even though the phone's frames are tagged.</li>
+<li>The phone tags its voice frames with <strong>VLAN 20 and CoS 5</strong>; the PC's frames are <strong>untagged</strong> and placed in access VLAN 10.</li>
+<li><strong>B.</strong> 802.3af is the original 15.4 W PoE; 802.3bt is the higher-power standard; 802.3ad is link aggregation (LACP), not PoE.</li>
+<li><strong>No.</strong> <code>off</code> with no device class means no powered device was detected — a PC does not request PoE. Admin <code>auto</code> means the port would power a PD if one were connected.</li>
+<li>As a <strong>trunk</strong>: native VLAN 99 (AP management, untagged) and allowed VLANs 30, 35 and 99, with <code>spanning-tree portfast trunk</code> and PoE.</li>
+<li>An <strong>access port in the AP management VLAN</strong>. Client traffic is carried inside the CAPWAP tunnel to the WLC, which maps SSIDs to VLANs, so the AP's port does not need the client VLANs.</li>
+<li><strong>C.</strong> 5246 is CAPWAP control, 5247 is data. 67/68 are DHCP, 161/162 SNMP, 4789 is VXLAN.</li>
+<li><strong>A and C.</strong> CDP (Cisco phones) and LLDP-MED (multi-vendor) advertise the voice VLAN. DTP negotiates trunks; VTP shares VLAN lists; STP prevents loops.</li>
+<li>The port has <strong>no <code>switchport voice vlan 20</code></strong>, or CDP/LLDP is disabled, so the phone never learns its voice VLAN and requests an address untagged in the data VLAN.</li>
+<li><strong>PoE</strong>: the AP probably needs PoE+ (30 W) or more, but the port supplies only 802.3af (15.4 W) or the switch's budget is short. Check <code>show power inline</code>.</li>
+<li><code>interface range gi1/0/11 - 12</code> → <code>switchport mode trunk</code>, <code>switchport trunk allowed vlan 10,30,99</code> (plus native VLAN) → <code>channel-group 11 mode active</code>; then on <code>interface port-channel 11</code> repeat the trunk settings and add <code>spanning-tree portfast trunk</code>.</li>
+<li>In a <strong>separate IoT/camera VLAN</strong>, usually PoE-powered, with <strong>ACLs</strong> (Chapter 20) allowing only the video recorder and management systems to reach them.</li>
+<li><strong>No.</strong> An access port in VLAN 35 would carry only Guest traffic and break Staff-WiFi and the AP's management. The likely fault is VLAN 35 missing from the trunk's allowed list (or not created); fix it with <code>switchport trunk allowed vlan add 35</code>.</li>
+</ol>
+<h3 id="715-chapter-7-figure-checklist">7.15 Chapter 7 figure checklist</h3>
+<p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-7-3">Figure 7.3</a> had a tunnel line crossing two labels on first render; it was rerouted and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7.1</td>
+<td>Edge-device port profiles for 2.2.a–e</td>
+<td>7.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>7.2</td>
+<td>IP phone and PC sharing one port</td>
+<td>7.5</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>7.3</td>
+<td>Standalone vs controller-based AP ports</td>
+<td>7.6</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>7.4</td>
+<td>Lab 7.1 topology</td>
+<td>7.11</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as annotated command output instead of a drawing:</strong> <code>show power inline</code>, <code>show interfaces switchport</code> with a voice VLAN, and <code>show cdp neighbors</code>. PoE standards are a table because they are values to look up, not a process.</p>
+<h3 id="716-chapter-7-progress-record">7.16 Chapter 7 progress record</h3>
+<p><strong>Objectives completed:</strong> <strong>2.2</strong> and <strong>2.2.a–e</strong> — edge-port baseline, desktops, printers, IoT, PoE, IP phones and voice VLANs, standalone and controller-based APs, virtualized hosts and network appliances.</p>
+<p><strong>Related objectives that reuse this chapter:</strong> 2.3 validating documentation with CDP/LLDP (Chapter 8), 2.5.c–d PortFast and BPDU guard (Chapter 9), 1.5 wireless principles (Chapter 16), 4.7 Layer 2 security on edge ports (Chapter 23).</p>
+<p><strong>Next:</strong> Chapter 8 — <strong>2.3 Validate the accuracy of network documentation using CDP and LLDP</strong>.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-06.html"><small>← Chapter 6</small>EtherChannel with LACP</a><a class="pn next" href="chapter-08.html"><small>Chapter 8 →</small>Validating network documentation with CDP and LLDP</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#71-learning-objectives">7.1 Learning objectives</a>
+<a href="#72-the-edge-port-baseline">7.2 The edge-port baseline</a>
+<a href="#73-desktops-printers-and-iot-appliances-22a">7.3 Desktops, printers and IoT appliances (2.2.a)</a>
+<a href="#74-power-over-ethernet-poe">7.4 Power over Ethernet (PoE)</a>
+<a href="#75-ip-phones-and-the-voice-vlan-22c">7.5 IP phones and the voice VLAN (2.2.c)</a>
+<a href="#76-wireless-access-points-22b">7.6 Wireless access points (2.2.b)</a>
+<a href="#77-virtualized-hosts-22d">7.7 Virtualized hosts (2.2.d)</a>
+<a href="#78-network-appliances-22e">7.8 Network appliances (2.2.e)</a>
+<a href="#79-verifying-edge-ports">7.9 Verifying edge ports</a>
+<a href="#710-troubleshooting-edge-ports">7.10 Troubleshooting edge ports</a>
+<a href="#711-packet-tracer-lab-71--a-poe-access-switch-for-every-edge-device-intermediate">7.11 Packet Tracer Lab 7.1 — A PoE access switch for every edge device (Intermediate)</a>
+<a href="#712-chapter-7-summary-notes-exam-revision">7.12 Chapter 7 summary notes (exam revision)</a>
+<a href="#713-practice-questions--chapter-7">7.13 Practice questions — Chapter 7</a>
+<a href="#714-answer-key-with-explanations">7.14 Answer key with explanations</a>
+<a href="#715-chapter-7-figure-checklist">7.15 Chapter 7 figure checklist</a>
+<a href="#716-chapter-7-progress-record">7.16 Chapter 7 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

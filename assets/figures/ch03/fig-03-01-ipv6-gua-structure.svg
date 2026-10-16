@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 420" width="1160" height="420" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 3.1 — Structure of a global unicast address in a /64</title>
+<desc id="d">2001:db8:acad:10:250:79ff:fe66:6801/64 — eight hextets of 16 bits</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="419" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 3.1</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Structure of a global unicast address in a /64</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">2001:db8:acad:10:250:79ff:fe66:6801/64 — eight hextets of 16 bits</text>
+<rect x="50.0" y="150.0" width="122.0" height="60.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="111.0" y="187.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#0f3f80" text-anchor="middle">2001</text>
+<text x="176.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#5b6b7f" text-anchor="middle">:</text>
+<text x="111.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="500" fill="#94a3b8" text-anchor="middle">0–15</text>
+<rect x="180.0" y="150.0" width="122.0" height="60.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="241.0" y="187.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#0f3f80" text-anchor="middle">0db8</text>
+<text x="306.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#5b6b7f" text-anchor="middle">:</text>
+<text x="241.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="500" fill="#94a3b8" text-anchor="middle">16–31</text>
+<rect x="310.0" y="150.0" width="122.0" height="60.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="371.0" y="187.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#0f3f80" text-anchor="middle">acad</text>
+<text x="436.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#5b6b7f" text-anchor="middle">:</text>
+<text x="371.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="500" fill="#94a3b8" text-anchor="middle">32–47</text>
+<rect x="440.0" y="150.0" width="122.0" height="60.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="501.0" y="187.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#7a4708" text-anchor="middle">0010</text>
+<text x="566.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#5b6b7f" text-anchor="middle">:</text>
+<text x="501.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="500" fill="#94a3b8" text-anchor="middle">48–63</text>
+<rect x="570.0" y="150.0" width="122.0" height="60.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="631.0" y="187.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#0f5a37" text-anchor="middle">0250</text>
+<text x="696.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#5b6b7f" text-anchor="middle">:</text>
+<text x="631.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="500" fill="#94a3b8" text-anchor="middle">64–79</text>
+<rect x="700.0" y="150.0" width="122.0" height="60.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="761.0" y="187.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#0f5a37" text-anchor="middle">79ff</text>
+<text x="826.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#5b6b7f" text-anchor="middle">:</text>
+<text x="761.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="500" fill="#94a3b8" text-anchor="middle">80–95</text>
+<rect x="830.0" y="150.0" width="122.0" height="60.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="891.0" y="187.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#0f5a37" text-anchor="middle">fe66</text>
+<text x="956.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#5b6b7f" text-anchor="middle">:</text>
+<text x="891.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="500" fill="#94a3b8" text-anchor="middle">96–111</text>
+<rect x="960.0" y="150.0" width="122.0" height="60.0" rx="4" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="1021.0" y="187.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#0f5a37" text-anchor="middle">6801</text>
+<text x="1021.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="500" fill="#94a3b8" text-anchor="middle">112–127</text>
+<path d="M50,224 L50,232 L432,232 L432,224" fill="none" stroke="#1d6fd1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="241.0" y="250.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#1d6fd1" text-anchor="middle">Global routing prefix · 48 bits · from the ISP / registry</text>
+<path d="M440,224 L440,232 L562,232 L562,224" fill="none" stroke="#d9861a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="501.0" y="250.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#d9861a" text-anchor="middle">Subnet ID · 16</text>
+<path d="M570,224 L570,232 L1082,232 L1082,224" fill="none" stroke="#1f9d63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="826.0" y="250.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#1f9d63" text-anchor="middle">Interface ID · 64 bits · SLAAC / EUI-64 / random / static</text>
+<path d="M50,292 L50,300 L562,300 L562,292" fill="none" stroke="#0f2540" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="306.0" y="318.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f2540" text-anchor="middle">Prefix /64 — one per LAN or VLAN</text>
+<text x="520.0" y="120.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#d9861a" text-anchor="middle">you design this</text>
+<line x1="28" y1="380" x2="1132" y2="380" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="402" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">The provider assigns the /48; you design the 16-bit subnet ID (here VLAN 10); the host forms the 64-bit interface ID (EUI-64 in Figure 3.2).</text>
+<text x="1136" y="410" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

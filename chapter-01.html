@@ -1,0 +1,1430 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 1 — Networking foundations, cables and interfaces · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 1: Networking foundations, cables and interfaces">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch active" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head blue">
+  <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
+  <h1><span class="num">Chapter 1</span>Networking foundations, cables and interfaces</h1>
+  <div class="meta"><span>🖼️ 10 figures</span><span>⏱️ ~35 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="1"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objectives covered:</strong> prerequisite knowledge for the whole exam, then <strong>1.1 Diagnose interface and cable (copper and fiber) issues</strong> — collisions, errors, mismatched duplex, speed, distance, interface, signal levels, pinout and cable types.</p>
+<p>Part A gives you the mental model every later chapter uses: layers, encapsulation, Ethernet frames, how switches and routers decide, and how to drive the Cisco IOS command line. Part B applies it to objective 1.1.</p>
+<h3 id="1a1-learning-objectives">1A.1 Learning objectives</h3>
+<p>After Part A you can:</p>
+<ol>
+<li>Name the OSI and TCP/IP layers, their data units and the devices that work at each.</li>
+<li>Describe step by step how data is encapsulated on the sender and decapsulated on the receiver.</li>
+<li>Read an Ethernet frame and a MAC address, and explain unicast, broadcast and multicast.</li>
+<li>Explain how a switch learns MAC addresses and forwards frames, and how a router forwards packets.</li>
+<li>Explain collision domains and broadcast domains.</li>
+<li>Move between IOS modes and apply a basic, secure starting configuration.</li>
+</ol>
+<h3 id="1a2-introduction-what-a-network-actually-does">1A.2 Introduction: what a network actually does</h3>
+<p>A network moves data from one program on one device to another program on another device. When you open a website on your laptop in Birgunj, your browser hands a request to your laptop's network software. That software wraps the request in addressing information, turns it into electrical signals or radio waves, and sends it to the next device. Every device on the path reads only the information it needs, then passes the data on.</p>
+<p>Networking models exist so that this job is split into layers. Each layer solves one problem and trusts the layers below it. Cable makers do not need to know about web browsers, and browser developers do not need to know about cables.</p>
+<h3 id="1a3-the-osi-and-tcpip-models">1A.3 The OSI and TCP/IP models</h3>
+<p>The <strong>OSI model</strong> has seven layers and is used to <em>talk about</em> problems ("it's a Layer 1 issue"). The <strong>TCP/IP model</strong> is the one the Internet actually runs on. You need to map between them quickly.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>OSI layer</th>
+<th>TCP/IP layer</th>
+<th>Data unit (PDU)</th>
+<th>What it does</th>
+<th>Examples</th>
+<th>Devices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7 Application</td>
+<td>Application</td>
+<td>Data</td>
+<td>Network services for programs</td>
+<td>HTTP, HTTPS, DNS, DHCP, SSH, SNMP</td>
+<td>Hosts, servers</td>
+</tr>
+<tr>
+<td>6 Presentation</td>
+<td>Application</td>
+<td>Data</td>
+<td>Formatting, encryption, compression</td>
+<td>TLS, JPEG, ASCII</td>
+<td>Hosts</td>
+</tr>
+<tr>
+<td>5 Session</td>
+<td>Application</td>
+<td>Data</td>
+<td>Opening and closing conversations</td>
+<td>Session setup in apps</td>
+<td>Hosts</td>
+</tr>
+<tr>
+<td>4 Transport</td>
+<td>Transport</td>
+<td>Segment (TCP) / datagram (UDP)</td>
+<td>Process-to-process delivery using port numbers</td>
+<td>TCP, UDP</td>
+<td>Hosts, firewalls</td>
+</tr>
+<tr>
+<td>3 Network</td>
+<td>Internet</td>
+<td>Packet</td>
+<td>Logical addressing and routing between networks</td>
+<td>IPv4, IPv6, ICMP, OSPF</td>
+<td>Routers, Layer 3 switches</td>
+</tr>
+<tr>
+<td>2 Data Link</td>
+<td>Link (Network Access)</td>
+<td>Frame</td>
+<td>Delivery on one local link using MAC addresses</td>
+<td>Ethernet, 802.11 Wi-Fi</td>
+<td>Switches, access points</td>
+</tr>
+<tr>
+<td>1 Physical</td>
+<td>Link (Network Access)</td>
+<td>Bits</td>
+<td>Signals on copper, fiber or radio</td>
+<td>UTP, fiber, RF</td>
+<td>Cables, transceivers, hubs</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Memory aid (Layer 7 down to 1):</strong> <em>All People Seem To Need Data Processing.</em></p>
+<p class="callout exam-tip"><strong>Exam tip</strong> when the exam says "Layer 2 problem", think MAC addresses, VLANs, trunks, STP. "Layer 3 problem" means IP addressing, subnet masks, default gateways, routing.</p>
+<h3 id="1a4-how-encapsulation-works">1A.4 How encapsulation works</h3>
+<p>Encapsulation means each layer adds its own header (and Ethernet also adds a trailer) in front of the data it receives from the layer above. Decapsulation is the reverse on the receiving side. <a class="figref" href="#fig-1-1">Figure 1.1</a> shows PC1 sending a web request; <a class="figref" href="#fig-1-2">Figure 1.2</a> then follows the frame across the switch and the router.</p>
+<figure class="fig" id="fig-1-1"><button class="zoom" aria-label="Enlarge figure 1.1"><img src="assets/figures/ch01/fig-01-01-encapsulation.svg" alt="Figure 1.1 — Encapsulation: each TCP/IP layer adds its header to the data on the way down" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-1">Figure 1.1</a> Encapsulation: each TCP/IP layer adds its header to the data on the way down</figcaption></figure>
+
+<p>The data block (highlighted) never changes on the way down; each layer only adds its header, and Data Link also adds the FCS trailer. The receiver reads the same picture bottom to top, removing one header per layer.</p>
+<p><strong>Sending (PC1 → web server at 203.0.113.80):</strong></p>
+<ol>
+<li>The browser creates an HTTP request (Application data).</li>
+<li>Transport adds a TCP header: source port 50123 (random, chosen by PC1), destination port 443 (HTTPS). The result is a <strong>segment</strong>.</li>
+<li>Network adds an IPv4 header: source 10.10.10.11, destination 203.0.113.80. The result is a <strong>packet</strong>.</li>
+<li>Data Link adds an Ethernet header and trailer. The destination MAC is <strong>the default gateway's MAC</strong> (R1), not the web server's, because the server is on another network. The result is a <strong>frame</strong>.</li>
+<li>Physical turns the frame into bits on the wire.</li>
+</ol>
+<p><strong>Receiving (R1, the router):</strong></p>
+<ol>
+<li>R1 receives bits, rebuilds the frame and checks the FCS (error check). A bad FCS means the frame is dropped and the <em>CRC</em> counter rises — this is why cable faults show up as CRC errors.</li>
+<li>R1 sees its own MAC as destination, removes the Ethernet header, and reads the IP destination.</li>
+<li>R1 looks up 203.0.113.80 in its routing table, then builds a <strong>new</strong> Ethernet frame for the next link. The IP addresses stay the same end to end; the MAC addresses change at every hop (unless NAT is used, Chapter 21).</li>
+</ol>
+<figure class="fig" id="fig-1-2"><button class="zoom" aria-label="Enlarge figure 1.2"><img src="assets/figures/ch01/fig-01-02-hop-by-hop-forwarding.svg" alt="Figure 1.2 — Hop-by-hop forwarding: MAC addresses are rewritten by R1, IP addresses are not" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-2">Figure 1.2</a> Hop-by-hop forwarding: MAC addresses are rewritten by R1, IP addresses are not</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-1-2">Figure 1.2</a> the arrows show the direction of travel. SW1 forwards the frame unchanged because it only reads the destination MAC. R1 strips the old Ethernet header and builds a new one for the next link, while the IP header keeps the same source and destination.</p>
+<h3 id="1a5-network-devices-and-where-they-sit">1A.5 Network devices and where they sit</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Layer</th>
+<th>What it decides with</th>
+<th>Key fact for the exam</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hub (legacy)</td>
+<td>1</td>
+<td>Nothing — repeats bits out all ports</td>
+<td>One collision domain, half duplex only</td>
+</tr>
+<tr>
+<td>Switch</td>
+<td>2</td>
+<td>Destination MAC + MAC address table</td>
+<td>Each port is its own collision domain; one VLAN = one broadcast domain</td>
+</tr>
+<tr>
+<td>Router</td>
+<td>3</td>
+<td>Destination IP + routing table</td>
+<td>Each interface is its own broadcast domain; does not forward broadcasts</td>
+</tr>
+<tr>
+<td>Layer 3 switch</td>
+<td>2 and 3</td>
+<td>MAC table and routing table</td>
+<td>Routes between VLANs with SVIs or routed ports (Chapter 5)</td>
+</tr>
+<tr>
+<td>Wireless access point (AP)</td>
+<td>2</td>
+<td>Bridges Wi-Fi frames to Ethernet</td>
+<td>Standalone (autonomous) or controller-based (Chapter 7)</td>
+</tr>
+<tr>
+<td>Wireless LAN controller (WLC)</td>
+<td>Management</td>
+<td>Central configuration of many APs</td>
+<td>Controller-based architecture (Chapters 7, 26)</td>
+</tr>
+<tr>
+<td>Firewall / IPS</td>
+<td>3–7</td>
+<td>Security policy, session state</td>
+<td>Network appliance at edge (Chapter 7)</td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td>All</td>
+<td>—</td>
+<td>PC, phone, printer, IoT sensor, server, VM</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Topologies you will see in diagrams (background, not a named v2.0 objective):</strong> a <em>SOHO</em> network is one router-switch-AP box at home. A <em>two-tier (collapsed core)</em> campus has access switches connecting to a pair of distribution/core switches. A <em>three-tier</em> campus adds a separate core layer. A <em>spine-leaf</em> data centre connects every leaf switch to every spine switch.</p>
+<h3 id="1a6-ethernet-frames-and-mac-addresses">1A.6 Ethernet frames and MAC addresses</h3>
+<p>A <strong>MAC address</strong> is 48 bits, written as 12 hexadecimal digits, for example <code>0050.7966.6801</code> (Cisco style) or <code>00-50-79-66-68-01</code> (Windows style). The first 24 bits are the <strong>OUI</strong> (Organizationally Unique Identifier), which identifies the manufacturer; the last 24 bits are assigned by that manufacturer.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Destination MAC</th>
+<th>Who receives it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unicast</td>
+<td>One device's MAC</td>
+<td>That device only</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td><code>FFFF.FFFF.FFFF</code></td>
+<td>Every device in the VLAN (e.g. ARP requests, DHCP Discover)</td>
+</tr>
+<tr>
+<td>Multicast</td>
+<td>Starts <code>0100.5E</code> (IPv4) or <code>3333</code> (IPv6)</td>
+<td>Devices that joined that group (e.g. OSPF hellos)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ethernet II frame layout (sizes in bytes)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Size</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preamble + SFD</td>
+<td>7 + 1</td>
+<td>Synchronises the receiver's clock; not counted in frame size</td>
+</tr>
+<tr>
+<td>Destination MAC</td>
+<td>6</td>
+<td>Where the frame goes on this link</td>
+</tr>
+<tr>
+<td>Source MAC</td>
+<td>6</td>
+<td>Who sent it on this link</td>
+</tr>
+<tr>
+<td>802.1Q tag (only on trunks)</td>
+<td>4</td>
+<td>VLAN ID and priority (Chapter 5)</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>2</td>
+<td>Payload protocol: <code>0x0800</code> IPv4, <code>0x86DD</code> IPv6, <code>0x0806</code> ARP</td>
+</tr>
+<tr>
+<td>Payload</td>
+<td>46–1500</td>
+<td>The packet; 1500 bytes is the standard MTU</td>
+</tr>
+<tr>
+<td>FCS</td>
+<td>4</td>
+<td>CRC checksum; a mismatch = corrupted frame, dropped</td>
+</tr>
+</tbody>
+</table></div>
+<p>A normal Ethernet frame is therefore <strong>64 to 1518 bytes</strong> (1522 with an 802.1Q tag). Frames smaller than 64 bytes are <strong>runts</strong>; frames larger than the maximum are <strong>giants</strong>. Both counters appear in <code>show interfaces</code> and matter for objective 1.1.</p>
+<figure class="fig" id="fig-1-3"><button class="zoom" aria-label="Enlarge figure 1.3"><img src="assets/figures/ch01/fig-01-03-ethernet-frame.svg" alt="Figure 1.3 — Ethernet II frame layout with field sizes and purposes (fields not drawn to scale)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-3">Figure 1.3</a> Ethernet II frame layout with field sizes and purposes (fields not drawn to scale)</figcaption></figure>
+
+<p><a class="figref" href="#fig-1-3">Figure 1.3</a> shows the same fields as the table above, in transmission order from left to right. The highlighted payload is the IP packet from <a class="figref" href="#fig-1-1">Figure 1.1</a>; everything from Destination MAC to FCS counts toward the 64–1518-byte frame size.</p>
+<h3 id="1a7-how-a-switch-forwards-frames">1A.7 How a switch forwards frames</h3>
+<p>A switch builds its <strong>MAC address table</strong> by watching source addresses.</p>
+<ol>
+<li><strong>Learn:</strong> a frame arrives on Fa0/1 from <code>0050.7966.6801</code>. The switch records "this MAC is on Fa0/1, VLAN 1" (entries age out after 300 seconds by default).</li>
+<li><strong>Forward:</strong> if the destination MAC is in the table, the frame goes out only that port.</li>
+<li><strong>Flood:</strong> if the destination is unknown, broadcast or (by default) multicast, the frame goes out every port in the same VLAN except the one it came in.</li>
+<li><strong>Filter:</strong> if the destination is on the same port it arrived on, the frame is dropped.</li>
+</ol>
+<figure class="fig" id="fig-1-4"><button class="zoom" aria-label="Enlarge figure 1.4"><img src="assets/figures/ch01/fig-01-04-switch-forwarding-logic.svg" alt="Figure 1.4 — Switch frame-forwarding logic: learn, then flood, filter or forward" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-4">Figure 1.4</a> Switch frame-forwarding logic: learn, then flood, filter or forward</figcaption></figure>
+
+<p><a class="figref" href="#fig-1-4">Figure 1.4</a> runs once for every frame. Learning always uses the <strong>source</strong> address; the forwarding choice always uses the <strong>destination</strong> address. Unknown multicast is flooded like a broadcast by default.</p>
+<pre><code>SW1# show mac address-table dynamic
+          Mac Address Table
+-------------------------------------------
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+   1    0050.7966.6801    DYNAMIC     Fa0/1
+   1    0050.7966.6802    DYNAMIC     Gi0/1
+</code></pre>
+<p>Read it as: PC1's MAC lives behind Fa0/1; the second MAC is reached through the uplink Gi0/1, so that host is on another switch.</p>
+<p><strong>Collision domain vs broadcast domain.</strong> A <em>collision domain</em> is the set of devices whose transmissions can collide; on a modern switch with full-duplex ports each port is its own, and collisions should be zero. A <em>broadcast domain</em> is the set of devices that receive each other's broadcasts; one VLAN is one broadcast domain, and routers stop broadcasts.</p>
+<p><strong>ARP in one paragraph.</strong> Before PC1 can send to 10.10.10.1 it needs that IP's MAC address. PC1 broadcasts an ARP Request ("who has 10.10.10.1?"); R1 replies by unicast with its MAC; PC1 caches it (<code>arp -a</code> on Windows shows the cache). If a host's gateway or mask is wrong, ARP is often where the fault first appears.</p>
+<h3 id="1a8-tcp-udp-and-port-numbers-background-you-will-keep-using">1A.8 TCP, UDP and port numbers (background you will keep using)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connection</td>
+<td>Three-way handshake (SYN, SYN-ACK, ACK)</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td>Acknowledgements, retransmission, ordering</td>
+<td>None — the application handles loss</td>
+</tr>
+<tr>
+<td>Use when</td>
+<td>Data must arrive complete</td>
+<td>Speed matters more than perfection</td>
+</tr>
+<tr>
+<td>Examples (port)</td>
+<td>SSH 22, Telnet 23, SMTP 25, HTTP 80, HTTPS 443, BGP 179</td>
+<td>DNS 53 (also TCP), DHCP 67/68, TFTP 69, SNMP 161/162, syslog 514, NTP 123</td>
+</tr>
+</tbody>
+</table></div>
+<p>You will need these port numbers for ACLs (Chapter 20).</p>
+<h3 id="1a9-cisco-ios-command-line-essentials">1A.9 Cisco IOS command line essentials</h3>
+<p>Every Cisco device you configure in this guide uses the same mode hierarchy. Moving between modes is the first skill to make automatic.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Prompt</th>
+<th>How to enter</th>
+<th>How to leave</th>
+<th>What you do there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User EXEC</td>
+<td><code>R1&gt;</code></td>
+<td>Log in</td>
+<td><code>exit</code></td>
+<td>Limited <code>show</code>, <code>ping</code></td>
+</tr>
+<tr>
+<td>Privileged EXEC</td>
+<td><code>R1#</code></td>
+<td><code>enable</code></td>
+<td><code>disable</code></td>
+<td>All <code>show</code>, <code>copy</code>, <code>reload</code>, <code>debug</code>, <code>clear</code></td>
+</tr>
+<tr>
+<td>Global configuration</td>
+<td><code>R1(config)#</code></td>
+<td><code>configure terminal</code></td>
+<td><code>end</code> or Ctrl+Z (to <code>#</code>), <code>exit</code> (one level up)</td>
+<td>Device-wide settings</td>
+</tr>
+<tr>
+<td>Interface</td>
+<td><code>R1(config-if)#</code></td>
+<td><code>interface g0/0/0</code></td>
+<td><code>exit</code></td>
+<td>IP addresses, speed, duplex, shutdown</td>
+</tr>
+<tr>
+<td>Line</td>
+<td><code>R1(config-line)#</code></td>
+<td><code>line console 0</code> or <code>line vty 0 4</code></td>
+<td><code>exit</code></td>
+<td>Console/remote login rules</td>
+</tr>
+<tr>
+<td>Router</td>
+<td><code>R1(config-router)#</code></td>
+<td><code>router ospf 1</code></td>
+<td><code>exit</code></td>
+<td>Routing protocol settings</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="fig" id="fig-1-5"><button class="zoom" aria-label="Enlarge figure 1.5"><img src="assets/figures/ch01/fig-01-05-ios-modes.svg" alt="Figure 1.5 — Cisco IOS mode hierarchy and the commands that move between modes" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-5">Figure 1.5</a> Cisco IOS mode hierarchy and the commands that move between modes</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-1-5">Figure 1.5</a> each arrow is labelled with the command that moves you down a level. The three sub-modes on the bottom row are all entered from global configuration, so you always pass through <code>R1#</code> and <code>R1(config)#</code> first.</p>
+<p><strong>Helpers you should use every day:</strong> <code>?</code> lists what can come next; Tab completes a keyword; <code>do show ...</code> runs a show command from any config mode; the up arrow recalls history; <code>show running-config | include hostname</code> filters output (<code>| section</code>, <code>| begin</code> also work).</p>
+<p><strong>Two configurations live on every device.</strong> The <em>running-config</em> is in RAM and is what the device is doing now. The <em>startup-config</em> is in NVRAM and is loaded at boot. Changes take effect immediately but are lost on reload unless you save.</p>
+<p><strong>A basic starting configuration (switch or router)</strong></p>
+<pre><code>Switch&gt; enable
+Switch# configure terminal
+Switch(config)# hostname SW1
+SW1(config)# enable secret Ccna@Lab2026        ! hashed privileged password
+SW1(config)# no ip domain-lookup               ! stops typos being treated as hostnames
+SW1(config)# banner motd # Authorized access only #
+SW1(config)# line console 0
+SW1(config-line)# password Console@2026
+SW1(config-line)# login
+SW1(config-line)# logging synchronous          ! log messages stop breaking your typing
+SW1(config-line)# exec-timeout 10 0            ! log out after 10 idle minutes
+SW1(config-line)# exit
+SW1(config)# service password-encryption       ! weakly hides plain-text passwords in the config
+SW1(config)# end
+SW1# copy running-config startup-config        ! or: write memory
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Purpose</th>
+<th>Common mistake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable secret &lt;pw&gt;</code></td>
+<td>Global config</td>
+<td>Protects privileged mode with a hashed password</td>
+<td>Using <code>enable password</code> (stored weakly) — if both exist, <code>secret</code> wins</td>
+</tr>
+<tr>
+<td><code>line console 0</code> + <code>password</code> + <code>login</code></td>
+<td>Line config</td>
+<td>Requires a password on the console</td>
+<td>Forgetting <code>login</code>, so the password is never asked</td>
+</tr>
+<tr>
+<td><code>service password-encryption</code></td>
+<td>Global config</td>
+<td>Applies weak type 7 obfuscation to plain passwords</td>
+<td>Believing it is real security; type 7 is easily reversed</td>
+</tr>
+<tr>
+<td><code>copy running-config startup-config</code></td>
+<td>Privileged EXEC</td>
+<td>Saves the config</td>
+<td>Typing it in config mode without <code>do</code></td>
+</tr>
+</tbody>
+</table></div>
+<p class="callout security-note"><strong>Security note</strong> remote management will use SSH, never Telnet, because Telnet sends passwords in clear text. SSH, local usernames and AAA are configured in Chapter 18.</p>
+<h3 id="1a10-part-a-quick-check">1A.10 Part A quick check</h3>
+<ul>
+<li>Which address changes at every router hop, MAC or IP? <em>MAC; the IP addresses stay the same unless NAT is in use.</em></li>
+<li>A switch receives a frame for an unknown unicast MAC. What does it do? <em>Floods it out all ports in that VLAN except the incoming one.</em></li>
+<li>Which mode do you need for <code>show running-config</code>? <em>Privileged EXEC (<code>#</code>).</em></li>
+</ul>
+<h2 id="chapter-1-part-b--objective-11-diagnose-interface-and-cable-issues">Chapter 1, Part B — Objective 1.1: Diagnose interface and cable issues</h2>
+<p>Most "the network is down" tickets start at Layer 1, and the exam expects you to name the cause from interface status and counters. The rule of thumb: <strong>status tells you whether the link exists; counters tell you how healthy it is.</strong></p>
+<h3 id="1b1-learning-objectives">1B.1 Learning objectives</h3>
+<p>After Part B you can:</p>
+<ol>
+<li>Choose the correct copper or fiber cable, connector and standard for a link, and state its distance limit.</li>
+<li>Explain T568A/T568B pinouts and when straight-through, crossover and rollover cables are used, including auto-MDIX.</li>
+<li>Distinguish multimode and single-mode fiber and read optical signal levels in dBm.</li>
+<li>Interpret every interface status combination and the main error counters.</li>
+<li>Diagnose duplex mismatch, speed mismatch, over-length cables, wrong cable types and bad optics from evidence.</li>
+<li>Configure speed and duplex correctly and verify the result.</li>
+</ol>
+<h3 id="1b2-introduction">1B.2 Introduction</h3>
+<p>A cable fault rarely looks like a cable fault. A duplex mismatch keeps the link up but makes file transfers crawl. A cable that is 130 m long may come up but show CRC errors all day. A fiber patch lead with swapped strands shows no light at all. Your job is to collect evidence — status, counters, logs, optical readings — and match it to a cause.</p>
+<h3 id="1b3-copper-cabling-categories-standards-and-distance">1B.3 Copper cabling: categories, standards and distance</h3>
+<p>Ethernet over copper uses <strong>UTP (unshielded twisted pair)</strong>: four twisted pairs in one jacket, ending in <strong>RJ-45</strong> connectors. Twisting cancels electromagnetic interference (EMI); untwisting too much at the connector causes crosstalk and errors. <strong>STP/FTP</strong> (shielded) cable is used near heavy EMI such as motors.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Standard (common name)</th>
+<th>IEEE</th>
+<th>Speed</th>
+<th>Minimum cable</th>
+<th>Max distance</th>
+<th>Pairs used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10BASE-T (Ethernet)</td>
+<td>802.3i</td>
+<td>10 Mb/s</td>
+<td>Cat3</td>
+<td>100 m</td>
+<td>2 (pins 1,2 and 3,6)</td>
+</tr>
+<tr>
+<td>100BASE-TX (Fast Ethernet)</td>
+<td>802.3u</td>
+<td>100 Mb/s</td>
+<td>Cat5</td>
+<td>100 m</td>
+<td>2 (pins 1,2 and 3,6)</td>
+</tr>
+<tr>
+<td>1000BASE-T (Gigabit Ethernet)</td>
+<td>802.3ab</td>
+<td>1 Gb/s</td>
+<td>Cat5e</td>
+<td>100 m</td>
+<td>All 4 pairs, both directions</td>
+</tr>
+<tr>
+<td>10GBASE-T</td>
+<td>802.3an</td>
+<td>10 Gb/s</td>
+<td>Cat6a (Cat6 up to 55 m)</td>
+<td>100 m</td>
+<td>All 4 pairs</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The 100 m rule</strong> covers the whole channel: typically 90 m of permanent cable plus patch leads. Beyond it, signals weaken and pick up noise, so you see CRC and input errors, a link that flaps up and down, or a link that only negotiates at a lower speed.</p>
+<h3 id="1b4-pinouts-t568a-t568b-straight-through-crossover-rollover">1B.4 Pinouts: T568A, T568B, straight-through, crossover, rollover</h3>
+<p>The two wiring standards differ only by swapping the green and orange pairs.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pin</th>
+<th>T568A</th>
+<th>T568B</th>
+<th>10/100 role on a PC/router (MDI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>White/green</td>
+<td>White/orange</td>
+<td>Transmit +</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Green</td>
+<td>Orange</td>
+<td>Transmit −</td>
+</tr>
+<tr>
+<td>3</td>
+<td>White/orange</td>
+<td>White/green</td>
+<td>Receive +</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Blue</td>
+<td>Blue</td>
+<td>(used by 1000BASE-T)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>White/blue</td>
+<td>White/blue</td>
+<td>(used by 1000BASE-T)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Orange</td>
+<td>Green</td>
+<td>Receive −</td>
+</tr>
+<tr>
+<td>7</td>
+<td>White/brown</td>
+<td>White/brown</td>
+<td>(used by 1000BASE-T)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Brown</td>
+<td>Brown</td>
+<td>(used by 1000BASE-T)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Why cable type matters.</strong> PCs, routers, servers, firewalls and APs are <strong>MDI</strong> devices: they transmit on pins 1,2 and receive on 3,6. Switches (and hubs) are <strong>MDI-X</strong>: they do the opposite. Transmit must meet receive.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Cable</th>
+<th>Wiring</th>
+<th>Use between</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Straight-through</td>
+<td>Same standard both ends (B–B)</td>
+<td>Unlike devices (MDI ↔ MDI-X)</td>
+<td>PC–switch, router–switch, AP–switch</td>
+</tr>
+<tr>
+<td>Crossover</td>
+<td>A one end, B the other</td>
+<td>Like devices (MDI ↔ MDI, MDI-X ↔ MDI-X)</td>
+<td>Switch–switch, PC–PC, router–router, PC–router</td>
+</tr>
+<tr>
+<td>Rollover (console)</td>
+<td>Pins reversed 1↔8</td>
+<td>PC serial/USB to device console port</td>
+<td>Initial setup, password recovery</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="fig" id="fig-1-6"><button class="zoom" aria-label="Enlarge figure 1.6"><img src="assets/figures/ch01/fig-01-06-straight-vs-crossover.svg" alt="Figure 1.6 — Straight-through and crossover pin mapping for 10/100 Ethernet (MDI vs MDI-X)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-6">Figure 1.6</a> Straight-through and crossover pin mapping for 10/100 Ethernet (MDI vs MDI-X)</figcaption></figure>
+
+<p><a class="figref" href="#fig-1-6">Figure 1.6</a>, left: a PC sends on pins 1 and 2 and the switch listens on 1 and 2, so the wires run straight. Right: two switches both listen on 1 and 2, so the cable must cross each side's 3/6 transmit pair over to the other side's 1/2 receive pair.</p>
+<p><strong>Auto-MDIX</strong> lets a port detect the wrong cable and swap its own transmit and receive pairs. Most current Cisco switches enable it by default (<code>mdix auto</code>); on many models it only works when speed and duplex are both set to <code>auto</code>. Gigabit 1000BASE-T ports handle pair swapping as part of the standard. So on real modern gear a "wrong" cable often still works — but the exam still expects you to know the correct cable, and <strong>Packet Tracer often does not apply auto-MDIX</strong>, so the link stays red.</p>
+<h3 id="1b5-fiber-optic-cabling">1B.5 Fiber optic cabling</h3>
+<p>Fiber carries light, so it is immune to EMI, can run much further than copper, and is used for uplinks between floors and buildings. A fiber link uses <strong>two strands</strong>: one to transmit, one to receive. Tx on one end must connect to Rx on the other.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Multimode fiber (MMF)</th>
+<th>Single-mode fiber (SMF)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core diameter</td>
+<td>50 or 62.5 µm (cladding 125 µm)</td>
+<td>About 9 µm (cladding 125 µm)</td>
+</tr>
+<tr>
+<td>Light source</td>
+<td>LED or VCSEL laser</td>
+<td>Laser</td>
+</tr>
+<tr>
+<td>Light paths</td>
+<td>Many modes bounce through the core</td>
+<td>One mode, straight path</td>
+</tr>
+<tr>
+<td>Typical distance</td>
+<td>Hundreds of metres</td>
+<td>Kilometres (10 km and beyond)</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Cheaper optics</td>
+<td>More expensive optics</td>
+</tr>
+<tr>
+<td>Jacket colour (convention)</td>
+<td>Orange (OM1/OM2), aqua (OM3/OM4)</td>
+<td>Yellow</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="fig" id="fig-1-7"><button class="zoom" aria-label="Enlarge figure 1.7"><img src="assets/figures/ch01/fig-01-07-multimode-vs-singlemode.svg" alt="Figure 1.7 — Multimode vs single-mode fiber: core size, light source and light paths" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-7">Figure 1.7</a> Multimode vs single-mode fiber: core size, light source and light paths</figcaption></figure>
+
+<p><a class="figref" href="#fig-1-7">Figure 1.7</a> shows why reach differs. In the wide multimode core, light takes several zig-zag paths of different lengths, so a pulse spreads out over distance. The narrow single-mode core allows only one path, so the pulse stays sharp for kilometres.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Fiber</th>
+<th>Typical reach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000BASE-SX</td>
+<td>MMF</td>
+<td>About 220–550 m depending on fiber grade</td>
+</tr>
+<tr>
+<td>1000BASE-LX/LH</td>
+<td>SMF (also MMF with conditioning)</td>
+<td>5–10 km depending on optic</td>
+</tr>
+<tr>
+<td>10GBASE-SR</td>
+<td>MMF</td>
+<td>About 300 m on OM3, 400 m on OM4</td>
+</tr>
+<tr>
+<td>10GBASE-LR</td>
+<td>SMF</td>
+<td>10 km</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reach figures vary by optic model; always check the transceiver data sheet. Fiber ports usually take a pluggable <strong>transceiver</strong>: <strong>SFP</strong> (1 Gb/s), <strong>SFP+</strong> (10 Gb/s), <strong>QSFP</strong> (40/100 Gb/s). Common connectors are <strong>LC</strong> (small, duplex, the usual one on SFPs) and <strong>SC</strong> (larger, square, push-pull).</p>
+<p><strong>A mismatched optic is a cable-type fault.</strong> An SX optic on one end and an LX optic on the other, or an SR optic plugged into single-mode fiber, gives no link or a very weak signal.</p>
+<h3 id="1b6-signal-levels-reading-optical-power-in-dbm">1B.6 Signal levels: reading optical power in dBm</h3>
+<p>Optical power is measured in <strong>dBm</strong> (decibels relative to 1 milliwatt). 0 dBm = 1 mW. Every 3 dB lower roughly halves the power, so −3 dBm ≈ 0.5 mW and −10 dBm = 0.1 mW. More negative means weaker. Signal levels are the "signal levels" in objective 1.1.</p>
+<p>Transceivers with <strong>DOM</strong> (digital optical monitoring) report their readings:</p>
+<pre><code>SW1# show interfaces transceiver
+                                          Optical   Optical
+           Temperature  Voltage  Current  Tx Power  Rx Power
+Port       (Celsius)    (Volts)  (mA)     (dBm)     (dBm)
+---------  -----------  -------  -------  --------  --------
+Gi1/1/1      33.1        3.29     6.2      -5.1      -6.8
+Gi1/1/2      34.0        3.28     6.0      -5.3     -24.9 --
+</code></pre>
+<ul>
+<li><strong>Gi1/1/1</strong> is healthy: received power (−6.8 dBm) is close to what the far end transmits, so little light is being lost.</li>
+<li><strong>Gi1/1/2</strong> shows <code>--</code>, meaning Rx power is <strong>below the low-alarm threshold</strong>. Suspects, in order: dirty or damaged connector, a tight bend or crushed fiber, wrong fiber type, too long a run, a faulty far-end optic.</li>
+<li><strong>Rx too high</strong> (marked <code>++</code>) happens when a long-range optic is used on a short single-mode run; the receiver is overloaded. The fix is an <strong>attenuator</strong> or a shorter-reach optic.</li>
+<li>No light at all on both ends: check that <strong>Tx and Rx are not swapped</strong> (or not both connected Tx-to-Tx).</li>
+</ul>
+<p><code>show interfaces transceiver detail</code> prints the alarm and warning thresholds for each optic. Output format varies by platform, and not every optic supports DOM. <strong>PT note:</strong> Packet Tracer does not simulate optical power; learn this from the output above.</p>
+<h3 id="1b7-interface-status-the-first-command-to-run">1B.7 Interface status: the first command to run</h3>
+<p>Start with a summary of every interface.</p>
+<pre><code>R1# show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   10.10.10.1      YES manual up                    up
+GigabitEthernet0/0/1   10.0.0.1        YES manual up                    down
+GigabitEthernet0/0/2   unassigned      YES unset  administratively down down
+
+SW1# show interfaces status
+Port      Name          Status       Vlan       Duplex  Speed Type
+Fa0/1     PC1           connected    1          a-full  a-100 10/100BaseTX
+Fa0/2                   notconnect   1            auto   auto 10/100BaseTX
+Fa0/3     Printer       err-disabled 1            auto   auto 10/100BaseTX
+Gi0/1     Uplink-SW2    connected    trunk        full   1000 10/100/1000BaseTX
+</code></pre>
+<p>The first word (<strong>Status</strong>) is Layer 1; the second (<strong>Protocol</strong>) is Layer 2. In <code>show interfaces status</code>, <code>a-full</code> and <code>a-100</code> mean the value was <strong>auto-negotiated</strong>; <code>full</code> and <code>1000</code> without <code>a-</code> mean they were <strong>hard-coded</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Status / Protocol</th>
+<th>Meaning</th>
+<th>Likely causes</th>
+<th>First fix to try</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>up / up</td>
+<td>Working at Layers 1 and 2</td>
+<td>—</td>
+<td>Look at counters if users still complain</td>
+</tr>
+<tr>
+<td>administratively down / down</td>
+<td>Someone typed <code>shutdown</code></td>
+<td>Interface disabled (router interfaces are shut by default)</td>
+<td><code>no shutdown</code></td>
+</tr>
+<tr>
+<td>down / down (switch: <code>notconnect</code>)</td>
+<td>No usable signal</td>
+<td>Unplugged or broken cable, far end shut down, wrong cable type, speed mismatch, fiber Tx/Rx swapped, bad or wrong transceiver</td>
+<td>Check both ends, cable, optic, speed settings</td>
+</tr>
+<tr>
+<td>up / down</td>
+<td>Signal present, Layer 2 failing</td>
+<td>Encapsulation mismatch on serial links, keepalive problem, mismatched trunk settings on some platforms</td>
+<td>Compare Layer 2 settings on both ends</td>
+</tr>
+<tr>
+<td>err-disabled</td>
+<td>Switch shut the port for a protection reason</td>
+<td>Port security violation, BPDU guard, link flapping, UDLD</td>
+<td>Find the cause in <code>show logging</code>, fix it, then <code>shutdown</code> / <code>no shutdown</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1b8-speed-and-duplex-autonegotiation-and-mismatches">1B.8 Speed and duplex: autonegotiation and mismatches</h3>
+<p><strong>Duplex</strong> is whether a link can send and receive at the same time. <strong>Full duplex</strong> can; collisions are impossible. <strong>Half duplex</strong> cannot; the device must listen first (CSMA/CD) and collisions are normal. Modern switched networks should be full duplex everywhere.</p>
+<p><strong>Autonegotiation (IEEE 802.3u/802.3ab)</strong> lets both ends agree the best common speed and duplex. Problems start when only one side negotiates. What the negotiating side does if the other side is hard-coded:</p>
+<ol>
+<li><strong>Speed:</strong> it can still detect the speed from the electrical signal, so speed is usually correct.</li>
+<li><strong>Duplex:</strong> it cannot detect duplex, so it falls back to a default: <strong>half duplex at 10 or 100 Mb/s, full duplex at 1000 Mb/s</strong>.</li>
+</ol>
+<p>That is how a <strong>duplex mismatch</strong> is born: R1 is hard-coded to <code>speed 100</code> and <code>duplex full</code>; SW1 is left on auto, senses 100 Mb/s and falls back to half duplex.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Fault</th>
+<th>Link status</th>
+<th>Evidence on the full-duplex side</th>
+<th>Evidence on the half-duplex side</th>
+<th>Users notice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duplex mismatch</td>
+<td>up/up</td>
+<td>CRC errors, runts, input errors</td>
+<td><strong>Late collisions</strong>, collisions</td>
+<td>Slow, worse under load; pings may look fine</td>
+</tr>
+<tr>
+<td>Speed mismatch (both hard-coded differently)</td>
+<td>down/down (notconnect)</td>
+<td>—</td>
+<td>—</td>
+<td>No connectivity at all</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="fig" id="fig-1-8"><button class="zoom" aria-label="Enlarge figure 1.8"><img src="assets/figures/ch01/fig-01-08-duplex-mismatch.svg" alt="Figure 1.8 — Duplex mismatch: how it forms and the evidence on each side of the link" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-8">Figure 1.8</a> Duplex mismatch: how it forms and the evidence on each side of the link</figcaption></figure>
+
+<p><a class="figref" href="#fig-1-8">Figure 1.8</a> uses the same SW1–SW2 link as Lab 1.2. The highlighted SW2 port is where the problem is born: it negotiates, cannot learn the duplex, and falls back to half. Each side then records a different kind of error, so always compare counters on <strong>both</strong> ends.</p>
+<p>CDP also warns you about duplex mismatches:</p>
+<pre><code>%CDP-4-DUPLEX_MISMATCH: duplex mismatch discovered on GigabitEthernet0/1 (not full duplex), with SW2 GigabitEthernet0/1 (full duplex).
+</code></pre>
+<p><strong>Configuring speed and duplex</strong> (interface configuration mode):</p>
+<pre><code>SW1(config)# interface gigabitethernet0/1
+SW1(config-if)# description Uplink to SW2 Gi0/1
+SW1(config-if)# speed 1000            ! options: 10 | 100 | 1000 | auto (platform-dependent)
+SW1(config-if)# duplex full           ! options: half | full | auto
+SW1(config-if)# end
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Purpose</th>
+<th>Common mistake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>speed {10\|100\|1000\|auto}</code></td>
+<td>Interface config</td>
+<td>Sets or negotiates speed</td>
+<td>Hard-coding one end only</td>
+</tr>
+<tr>
+<td><code>duplex {half\|full\|auto}</code></td>
+<td>Interface config</td>
+<td>Sets or negotiates duplex</td>
+<td>Same — set both ends identically, or leave both on <code>auto</code></td>
+</tr>
+<tr>
+<td><code>mdix auto</code></td>
+<td>Interface config</td>
+<td>Enables auto-MDIX (switches)</td>
+<td>Expecting it to work after hard-coding speed/duplex on some models</td>
+</tr>
+<tr>
+<td><code>description &lt;text&gt;</code></td>
+<td>Interface config</td>
+<td>Documents the link</td>
+<td>Leaving it blank; descriptions speed up troubleshooting and help with CDP/LLDP validation (Chapter 8)</td>
+</tr>
+</tbody>
+</table></div>
+<p class="callout best-practice"><strong>Best practice</strong> leave both ends on <code>auto</code>, or set <strong>both</strong> ends to the same speed and duplex. Never mix.</p>
+<h3 id="1b9-reading-show-interfaces-counters">1B.9 Reading <code>show interfaces</code> counters</h3>
+<p><code>show interfaces</code> is the most detailed Layer 1/2 command. Annotated example from a link with a duplex problem:</p>
+<pre><code>SW2# show interfaces gigabitethernet0/1
+GigabitEthernet0/1 is up, line protocol is up (connected)          &lt;- status
+  Hardware is Gigabit Ethernet, address is 0001.4392.6c01
+  Description: Uplink to SW1 Gi0/1
+  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec,
+  Half-duplex, 100Mb/s, media type is 10/100/1000BaseTX              &lt;- half at 100: suspicious
+  5 minute input rate 812000 bits/sec, 140 packets/sec
+     1843921 packets input, 1270032011 bytes, 0 no buffer
+     Received 5124 broadcasts (4980 multicasts)
+     0 runts, 0 giants, 0 throttles
+     12 input errors, 12 CRC, 0 frame, 0 overrun, 0 ignored
+     1764502 packets output, 1103948122 bytes, 0 underruns
+     0 output errors, 2381 collisions, 9 interface resets
+     37 late collision, 0 deferred                                    &lt;- mismatch signature
+     0 output buffer failures, 0 output buffers swapped out
+</code></pre>
+<p>This side has fallen back to half duplex and is counting collisions. On the far end (hard-coded full) you would see CRC errors and runts climbing. The 37 late collisions on this half-duplex side are the classic duplex-mismatch signature.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>What it counts</th>
+<th>Usual cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runts</td>
+<td>Frames &lt; 64 bytes</td>
+<td>Duplex mismatch (collision fragments), faulty NIC</td>
+</tr>
+<tr>
+<td>Giants</td>
+<td>Frames &gt; maximum size</td>
+<td>MTU mismatch, faulty NIC (note: trunks and jumbo frames change the limit)</td>
+</tr>
+<tr>
+<td>Input errors</td>
+<td>Total of runts, giants, CRC, frame, overrun, ignored</td>
+<td>Look at which component is rising</td>
+</tr>
+<tr>
+<td>CRC</td>
+<td>Frames whose FCS check failed</td>
+<td>Bad or over-length cable, EMI, dirty fiber, duplex mismatch</td>
+</tr>
+<tr>
+<td>Frame</td>
+<td>Frames not ending on a byte boundary</td>
+<td>Usually same causes as CRC</td>
+</tr>
+<tr>
+<td>Overrun / ignored</td>
+<td>Receiver could not keep up</td>
+<td>Traffic burst, hardware buffer limit</td>
+</tr>
+<tr>
+<td>Output errors</td>
+<td>Frames that failed to send</td>
+<td>Often collisions on half-duplex links</td>
+</tr>
+<tr>
+<td>Collisions</td>
+<td>Collisions while sending</td>
+<td>Normal only on half duplex; should be 0 on full duplex</td>
+</tr>
+<tr>
+<td>Late collisions</td>
+<td>Collisions after the first 64 bytes</td>
+<td><strong>Duplex mismatch</strong> (classic) or cable longer than allowed</td>
+</tr>
+<tr>
+<td>Interface resets</td>
+<td>Interface restarted</td>
+<td>Flapping link, keepalive problems, bad cable</td>
+</tr>
+<tr>
+<td>Output drops</td>
+<td>Queue full, frames discarded</td>
+<td>Congestion, speed mismatch between ingress and egress (not a cable fault)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Counters are cumulative since boot or the last clear. To see whether a problem is <strong>current</strong>, clear and re-check:</p>
+<pre><code>SW2# clear counters gigabitethernet0/1
+Clear &quot;show interface&quot; counters on this interface [confirm]
+SW2# show interfaces gigabitethernet0/1 | include CRC|collision
+SW2# show interfaces counters errors          ! switches: per-port error summary
+</code></pre>
+<h3 id="1b10-a-systematic-diagnostic-procedure">1B.10 A systematic diagnostic procedure</h3>
+<p>Use the same order every time, from Layer 1 upward. <a class="figref" href="#fig-1-9">Figure 1.9</a>, after this list, draws the same logic as a flowchart.</p>
+<ol>
+<li><strong>Check status</strong> with <code>show ip interface brief</code> or <code>show interfaces status</code>. Check <strong>both ends</strong> of the link.</li>
+<li><strong>Administratively down?</strong> Enter <code>no shutdown</code>.</li>
+<li><strong>err-disabled?</strong> Read <code>show logging</code> and <code>show interfaces status err-disabled</code> for the reason, fix it, then bounce the port with <code>shutdown</code> / <code>no shutdown</code>.</li>
+<li><strong>down/down or notconnect?</strong> Check physically: cable seated, link lights, correct cable type (straight vs crossover in labs), cable length, far end enabled, matching speed settings, correct and matching transceivers, fiber Tx/Rx orientation, Rx light level.</li>
+<li><strong>up/up but slow or dropping?</strong> Compare speed and duplex on both ends. Look at CRC, runts, collisions, late collisions. Clear counters and watch which ones rise.</li>
+<li><strong>Counters clean but still failing?</strong> The fault is above Layer 1: VLAN, trunk, IP address, mask, gateway or routing — later chapters cover each.</li>
+<li><strong>Document</strong> the fix and add an interface <code>description</code>.</li>
+</ol>
+<figure class="fig" id="fig-1-9"><button class="zoom" aria-label="Enlarge figure 1.9"><img src="assets/figures/ch01/fig-01-09-interface-troubleshooting.svg" alt="Figure 1.9 — Interface troubleshooting flowchart: status first, then counters, on both ends" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-9">Figure 1.9</a> Interface troubleshooting flowchart: status first, then counters, on both ends</figcaption></figure>
+
+<p>Work down the left column; the first "yes" tells you what to fix. Only when every check says "no" do you move up to the Layer 2 and Layer 3 checks in later chapters.</p>
+<h3 id="1b11-real-world-scenarios">1B.11 Real-world scenarios</h3>
+<ul>
+<li><strong>Office printer "randomly offline":</strong> the printer NIC is hard-coded 100/full; the switch port is on auto and fell back to 100/half. CDP is not running on the printer, so no log message appears. <code>show interfaces status</code> shows <code>a-half a-100</code>. Fix: set the printer to auto, or hard-code the switch port to match.</li>
+<li><strong>New building uplink is dead:</strong> two switches are joined by MMF but one end has a 1000BASE-LX optic meant for SMF. Both ends show <code>notconnect</code>; DOM on one end reports Rx below threshold. Fix: matching SX optics on both ends.</li>
+<li><strong>CRC errors on one floor only:</strong> cable runs pass beside a lift motor. CRC counters climb steadily, collisions are zero, duplex is correct. Fix: reroute or use shielded cable.</li>
+</ul>
+<h3 id="1b12-exam-focused-revision">1B.12 Exam-focused revision</h3>
+<ul>
+<li>Straight-through for unlike devices, crossover for like devices, rollover for the console. Auto-MDIX can hide the mistake on real gear.</li>
+<li>Copper UTP: 100 m. MMF: hundreds of metres. SMF: kilometres. SMF core ≈ 9 µm; MMF core 50/62.5 µm.</li>
+<li>dBm: more negative = weaker. Low Rx = dirty connector, bend, length, wrong fiber. High Rx on short SMF = needs an attenuator.</li>
+<li>Duplex mismatch: link <strong>up</strong>, slow. Full side: CRC/runts. Half side: late collisions.</li>
+<li>Speed mismatch (both hard-coded): link <strong>down</strong>.</li>
+<li>Autonegotiation fallback: 10/100 → half; 1000 → full.</li>
+<li>Collisions on a full-duplex link should be zero; any late collision is a red flag.</li>
+<li><code>administratively down</code> = <code>shutdown</code>; <code>err-disabled</code> = a protection feature shut the port.</li>
+</ul>
+<h3 id="1c-packet-tracer-labs-for-chapter-1">1C Packet Tracer labs for Chapter 1</h3>
+<p>Three labs, from beginner to intermediate. Build Lab 1.1 once and keep the file; Lab 1.2 reuses it, and Chapter 2 extends it.</p>
+<h4 id="lab-11--cabling-console-access-and-interface-status-beginner">Lab 1.1 — Cabling, console access and interface status (Beginner)</h4>
+<p><strong>Objective:</strong> 1.1 (cable types, pinout, interface status). <strong>You will:</strong> choose the right cable for each link, log in through the console, apply a basic configuration and read interface status.</p>
+<p><strong>Devices:</strong> 1 × ISR4331 router (R1), 2 × 2960-24TT switches (SW1, SW2), 2 × PC (PC1, PC2), 1 × Laptop (Admin).</p>
+<figure class="fig" id="fig-1-10"><button class="zoom" aria-label="Enlarge figure 1.10"><img src="assets/figures/ch01/fig-01-10-lab-1-1-topology.svg" alt="Figure 1.10 — Lab 1.1 topology with interfaces, cable types and IPv4 addresses" loading="lazy"></button><figcaption><a class="fignum" href="#fig-1-10">Figure 1.10</a> Lab 1.1 topology with interfaces, cable types and IPv4 addresses</figcaption></figure>
+
+<p><a class="figref" href="#fig-1-10">Figure 1.10</a> matches the connection and addressing tables below exactly. The text version that follows is for copying into your lab notes.</p>
+<pre><code>                        R1 (ISR4331)
+                        G0/0/0  10.10.10.1/24
+                          |
+                          | copper straight-through
+                          |
+                        Gi0/2
+ PC1 ---straight--- Fa0/1 SW1 Gi0/1 ===crossover=== Gi0/1 SW2 Fa0/1 ---straight--- PC2
+ 10.10.10.11/24                                                       10.10.10.12/24
+
+ Admin laptop RS-232 ~~~ console (rollover) cable ~~~ SW1 Console
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Link</th>
+<th>From</th>
+<th>To</th>
+<th>Cable</th>
+<th>Why this cable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>PC1 Fa0</td>
+<td>SW1 Fa0/1</td>
+<td>Copper straight-through</td>
+<td>Unlike devices (MDI ↔ MDI-X)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PC2 Fa0</td>
+<td>SW2 Fa0/1</td>
+<td>Copper straight-through</td>
+<td>Unlike devices</td>
+</tr>
+<tr>
+<td>3</td>
+<td>R1 G0/0/0</td>
+<td>SW1 Gi0/2</td>
+<td>Copper straight-through</td>
+<td>Unlike devices</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SW1 Gi0/1</td>
+<td>SW2 Gi0/1</td>
+<td>Copper crossover</td>
+<td>Like devices (MDI-X ↔ MDI-X)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Admin RS-232</td>
+<td>SW1 Console</td>
+<td>Console (rollover)</td>
+<td>Out-of-band management</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Interface</th>
+<th>IPv4 address</th>
+<th>Mask</th>
+<th>Default gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>G0/0/0</td>
+<td>10.10.10.1</td>
+<td>255.255.255.0</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PC1</td>
+<td>Fa0</td>
+<td>10.10.10.11</td>
+<td>255.255.255.0</td>
+<td>10.10.10.1</td>
+</tr>
+<tr>
+<td>PC2</td>
+<td>Fa0</td>
+<td>10.10.10.12</td>
+<td>255.255.255.0</td>
+<td>10.10.10.1</td>
+</tr>
+</tbody>
+</table></div>
+<p>All hosts are in one subnet and VLAN 1 for now; Chapter 5 moves them into VLAN 10.</p>
+<p><strong>Step-by-step</strong></p>
+<ol>
+<li>Place the devices and cable them exactly as in the table. Do not use the lightning-bolt "automatic" cable; choosing the cable yourself is the point.</li>
+<li>On the Admin laptop open <strong>Desktop → Terminal</strong>, keep 9600 bits/s, 8 data bits, no parity, 1 stop bit, and click OK. You now have SW1's console.</li>
+<li>Configure SW1 through the console, then SW2 and R1 from their CLI tabs, using the configurations below.</li>
+<li>On PC1 and PC2 open <strong>Desktop → IP Configuration</strong> and enter the addresses from the table.</li>
+<li>Wait for the link lights to turn green (switch ports take up to about 30 seconds while spanning tree runs; Chapter 9 explains why).</li>
+<li>Run the verification commands and the connectivity tests.</li>
+</ol>
+<p><strong>SW1</strong></p>
+<pre><code>enable
+configure terminal
+hostname SW1
+enable secret Ccna@Lab2026
+no ip domain-lookup
+banner motd # Authorized access only #
+line console 0
+ password Console@2026
+ login
+ logging synchronous
+ exec-timeout 10 0
+ exit
+service password-encryption
+interface fastethernet0/1
+ description PC1
+interface gigabitethernet0/1
+ description Uplink to SW2 Gi0/1
+interface gigabitethernet0/2
+ description Link to R1 G0/0/0
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>SW2</strong> — the same as SW1 with <code>hostname SW2</code>, and these descriptions:</p>
+<pre><code>interface fastethernet0/1
+ description PC2
+interface gigabitethernet0/1
+ description Uplink to SW1 Gi0/1
+</code></pre>
+<p><strong>R1</strong></p>
+<pre><code>enable
+configure terminal
+hostname R1
+enable secret Ccna@Lab2026
+no ip domain-lookup
+line console 0
+ password Console@2026
+ login
+ logging synchronous
+ exit
+service password-encryption
+interface gigabitethernet0/0/0
+ description LAN to SW1 Gi0/2
+ ip address 10.10.10.1 255.255.255.0
+ no shutdown
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>Verification and expected results</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Run on</th>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ip interface brief</code></td>
+<td>R1</td>
+<td>G0/0/0 <code>10.10.10.1 ... up up</code>; G0/0/1 and G0/0/2 <code>administratively down down</code> (router interfaces start shut)</td>
+</tr>
+<tr>
+<td><code>show interfaces status</code></td>
+<td>SW1</td>
+<td>Fa0/1, Gi0/1, Gi0/2 <code>connected</code>; unused ports <code>notconnect</code></td>
+</tr>
+<tr>
+<td><code>show interfaces gigabitethernet0/1</code></td>
+<td>SW1</td>
+<td><code>up, line protocol is up</code>, <code>Full-duplex, 1000Mb/s</code>, zero CRC, zero collisions</td>
+</tr>
+<tr>
+<td><code>show mac address-table</code></td>
+<td>SW1</td>
+<td>PC1's MAC on Fa0/1; PC2's MAC and R1's MAC learned after the pings below</td>
+</tr>
+<tr>
+<td><code>show cdp neighbors</code></td>
+<td>SW1</td>
+<td>SW2 on Gi0/1 and R1 on Gi0/2 (a preview of Chapter 8)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Connectivity tests:</strong> from PC1, <code>ping 10.10.10.12</code> (PC2) and <code>ping 10.10.10.1</code> (R1). The first ping may lose one reply while ARP resolves the MAC address; that is normal.</p>
+<p><strong>Troubleshooting scenarios (break it, then fix it)</strong></p>
+<ol>
+<li>Replace the SW1–SW2 crossover with a straight-through cable. <em>Expected:</em> link stays red; both ends show <code>notconnect</code>. On many real Cisco switches auto-MDIX would bring it up, but Packet Tracer usually does not. Put the crossover back.</li>
+<li>On R1 enter <code>interface g0/0/0</code> then <code>shutdown</code>. <em>Expected:</em> <code>show ip interface brief</code> shows <code>administratively down down</code>; PC1 cannot ping 10.10.10.1. Fix with <code>no shutdown</code>.</li>
+<li>On SW2 shut down Gi0/1. <em>Expected:</em> SW2 shows the port <code>disabled</code> in <code>show interfaces status</code>; SW1 shows <code>notconnect</code>. This teaches you to <strong>always check both ends</strong>.</li>
+</ol>
+<p><strong>Common mistakes:</strong> using the automatic cable tool; forgetting <code>no shutdown</code> on the router; typing an IP address on a switch port (Layer 2 ports have no IP address); forgetting to save.</p>
+<p><strong>Questions to answer after the lab</strong></p>
+<ol>
+<li>Why did PC1-to-SW1 need a straight-through cable but SW1-to-SW2 a crossover?</li>
+<li>What is the difference between <code>administratively down</code> and <code>down</code>?</li>
+<li>In <code>show interfaces status</code>, what does <code>a-full</code> tell you that <code>full</code> does not?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Every link uses the correct cable type, chosen by hand</li>
+<li>[ ] Console login asks for a password</li>
+<li>[ ] All interfaces in use are up/up or <code>connected</code></li>
+<li>[ ] PC1 pings PC2 and R1</li>
+<li>[ ] All three break-fix scenarios reproduced and fixed</li>
+<li>[ ] Configurations saved</li>
+</ul>
+<h4 id="lab-12--speed-and-duplex-mismatch-beginnerintermediate">Lab 1.2 — Speed and duplex mismatch (Beginner–Intermediate)</h4>
+<p><strong>Objective:</strong> 1.1 (duplex, speed, collisions, errors). Uses the Lab 1.1 topology; only the SW1–SW2 link changes.</p>
+<p><strong>Part 1 — Baseline.</strong> On both switches run <code>show interfaces status</code>. Gi0/1 should show <code>a-full a-1000</code>: both ends negotiated.</p>
+<p><strong>Part 2 — Create a duplex mismatch.</strong></p>
+<pre><code>SW1(config)# interface gigabitethernet0/1
+SW1(config-if)# speed 100
+SW1(config-if)# duplex full
+! SW2 Gi0/1 stays on auto
+</code></pre>
+<p><em>Expected:</em> the link comes back up. SW2 detects 100 Mb/s but cannot learn the duplex, so <code>show interfaces status</code> on SW2 shows <code>a-half a-100</code>. Within a minute CDP should log <code>%CDP-4-DUPLEX_MISMATCH</code> on the console. Pings between PC1 and PC2 still succeed — exactly why duplex mismatches go unnoticed. <strong>PT note:</strong> Packet Tracer reproduces the status and the CDP message but does not model real collision and CRC counters reliably; use the annotated output in 1B.9 for those.</p>
+<p><strong>Part 3 — Fix it two ways.</strong> Either set SW2 Gi0/1 to <code>speed 100</code> and <code>duplex full</code> (both hard-coded, matching), or return SW1 to <code>speed auto</code> and <code>duplex auto</code> (both negotiating). Verify <code>full</code> on both ends.</p>
+<p><strong>Part 4 — Create a speed mismatch.</strong> Set SW1 Gi0/1 <code>speed 100</code> and SW2 Gi0/1 <code>speed 10</code>, both hard-coded. <em>Expected:</em> the link goes down on both ends (<code>notconnect</code>). Restore both to auto.</p>
+<p><strong>Part 5 — Broken-configuration challenge.</strong> Load this onto a fresh copy of Lab 1.1 and do not read it again until you have diagnosed the fault from show commands only. Ticket: <em>"Users on SW2 say file copies to the server on SW1 are very slow."</em></p>
+<pre><code>! SW1
+interface gigabitethernet0/1
+ speed 100
+ duplex full
+! SW2
+interface gigabitethernet0/1
+ speed 100
+ duplex half
+</code></pre>
+<p><em>Answer (hide until done):</em> both ends run at 100 Mb/s, so the link is up, but SW1 is full duplex and SW2 is half duplex — a duplex mismatch caused by inconsistent hard-coding. Evidence: <code>show interfaces status</code> (<code>full</code> vs <code>half</code>), CDP mismatch log. Fix: set both to <code>duplex full</code>, or both to auto.</p>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Produced and identified a duplex mismatch from status and logs</li>
+<li>[ ] Fixed it both ways</li>
+<li>[ ] Produced and fixed a speed mismatch</li>
+<li>[ ] Solved the Part 5 ticket without reading the configuration</li>
+</ul>
+<h4 id="lab-13--building-a-fiber-uplink-intermediate-partly-conceptual">Lab 1.3 — Building a fiber uplink (Intermediate, partly conceptual)</h4>
+<p><strong>Objective:</strong> 1.1 (cable types, fiber). Packet Tracer can build fiber links but <strong>cannot simulate optical power, dirty connectors or bends</strong>.</p>
+<ol>
+<li>Add two Catalyst 3650-24PS switches. Power each off, insert an SFP module (for example GLC-LH-SMD) into port Gi1/1/1, and power on. If your Packet Tracer version does not offer that module, use two generic <strong>Switch-PT</strong> devices with a <strong>PT-SWITCH-NM-1FGE</strong> fiber module instead.</li>
+<li>Connect the fiber ports with the <strong>Fiber</strong> cable. Copper cables will not attach to fiber ports, which is itself a lesson: the media must match the port.</li>
+<li>Run <code>show interfaces gi1/1/1</code> and note the media type line, then <code>show interfaces status</code>.</li>
+<li>Conceptual part: answer practice questions 8 and 9 below, which use real DOM output.</li>
+</ol>
+<h3 id="1d-practice-questions--chapter-1">1D Practice questions — Chapter 1</h3>
+<p><strong>1. (Multiple choice)</strong> A router's G0/0/0 must connect to a switch port that does not support auto-MDIX. Which cable is correct?</p>
+<p>A. Crossover  B. Straight-through  C. Rollover  D. Serial DCE</p>
+<p><strong>2. (Output interpretation)</strong></p>
+<pre><code>SW3# show interfaces status | include Gi0/1
+Gi0/1   Uplink-SW4   notconnect   1   auto   auto   10/100/1000BaseTX
+</code></pre>
+<p>SW4's Gi0/1 shows the same. The cable was just installed between the two switches, neither supports auto-MDIX, and both ports are configured <code>no shutdown</code>. What is the most likely cause?</p>
+<p>A. Duplex mismatch  B. A straight-through cable was used  C. VLAN mismatch  D. STP is blocking the port</p>
+<p><strong>3. (Troubleshooting)</strong> SW1 Gi0/1 shows <code>Full-duplex, 100Mb/s</code>. SW2 Gi0/1 shows <code>Half-duplex, 100Mb/s</code> and its late-collision counter is rising. Users report slow transfers, but pings work. What is the problem, which side was probably hard-coded, and how do you fix it?</p>
+<p><strong>4. (Multiple response — choose two)</strong> Which statements about a full-duplex Ethernet link are true?</p>
+<p>A. Collisions cannot occur  B. CSMA/CD is used before every transmission  C. Both ends can send and receive at the same time  D. Late collisions are normal under heavy load  E. It requires a hub</p>
+<p><strong>5. (Output interpretation)</strong> <code>show ip interface brief</code> shows <code>GigabitEthernet0/0/1  unassigned  YES unset  administratively down  down</code>. What does this mean and what command fixes it?</p>
+<p><strong>6. (Concept)</strong> A switch port is set to auto. The connected device is hard-coded to 100 Mb/s, full duplex, with autonegotiation disabled. What speed and duplex will the switch port use?</p>
+<p>A. 100/full  B. 100/half  C. 1000/full  D. 10/half</p>
+<p><strong>7. (Scenario)</strong> Two buildings on a campus are 2 km apart. Which fiber type and optic family would you choose for a 1 Gb/s link?</p>
+<p>A. Multimode with 1000BASE-SX  B. Single-mode with 1000BASE-LX/LH  C. Cat6a with 10GBASE-T  D. Multimode with 10GBASE-SR</p>
+<p><strong>8. (Multiple response — choose two)</strong> DOM output for Gi1/1/2: Tx −5.0 dBm, Rx −27.0 dBm <code>--</code>. The far end's Tx is normal. Which are likely causes?</p>
+<p>A. Dirty or damaged connector  B. Duplex mismatch  C. Fiber bent too tightly or crushed  D. Wrong VLAN on the port  E. STP root guard</p>
+<p><strong>9. (Calculation)</strong> The far end transmits at −3 dBm and you receive −9 dBm. How many dB were lost, and roughly what fraction of the transmitted power arrived?</p>
+<p><strong>10. (Concept)</strong> A serial interface shows <code>up, line protocol is down</code>. Which explanation fits best?</p>
+<p>A. The cable is unplugged  B. The interface is shut down  C. Layer 1 works but a Layer 2 setting (such as encapsulation) does not match  D. The IP address is in the wrong subnet</p>
+<p><strong>11. (Troubleshooting)</strong> A port shows full duplex at both ends, zero collisions, and a steadily rising CRC counter. The cable run measures 130 m. What is the most likely cause?</p>
+<p><strong>12. (Recall)</strong> Which counter in <code>show interfaces</code> records frames smaller than 64 bytes?</p>
+<p>A. Giants  B. Runts  C. Overrun  D. Ignored</p>
+<p><strong>13. (Scenario)</strong> A port shows <code>err-disabled</code> after someone plugged in an unknown device. Which sequence restores it correctly?</p>
+<p>A. <code>no shutdown</code> only  B. Reload the switch  C. Read the log to find the cause, remove the cause, then <code>shutdown</code> followed by <code>no shutdown</code>  D. Change the port's speed to 10</p>
+<p><strong>14. (Recall)</strong> On a 100BASE-TX link, which pins does a PC use to transmit?</p>
+<p>A. 1 and 2  B. 3 and 6  C. 4 and 5  D. 7 and 8</p>
+<p><strong>15. (Evaluate an AI assistant)</strong> A network assistant reviews <code>show interfaces</code> for Gi0/5 (full duplex, 1 Gb/s, CRC errors rising, zero collisions) and recommends: <em>"Set duplex half on both sides to eliminate the errors."</em> Is this a good recommendation?</p>
+<h3 id="1e-answer-key-with-explanations">1E Answer key with explanations</h3>
+<ol>
+<li><strong>B.</strong> Router (MDI) to switch (MDI-X) are unlike devices, so straight-through. A crossover is for like devices; rollover is for the console; serial DCE is a WAN cable.</li>
+<li><strong>B.</strong> Two switches are like devices and need a crossover when auto-MDIX is absent. A duplex mismatch (A) leaves the link up. VLAN (C) and STP (D) problems happen above Layer 1 on a link that is already up.</li>
+<li><strong>Duplex mismatch.</strong> SW1 was probably hard-coded to 100/full; SW2 stayed on auto, detected 100 Mb/s, could not learn duplex and fell back to half. Late collisions on the half side are the signature. Fix: make both ends match — both auto, or both 100/full.</li>
+<li><strong>A and C.</strong> Full duplex has separate transmit and receive paths, so there are no collisions and no need for CSMA/CD (B is wrong). Late collisions (D) indicate a fault. Hubs (E) are half duplex only.</li>
+<li>Someone entered <code>shutdown</code> (and router interfaces start shut); there is also no IP address yet. Fix with <code>interface g0/0/1</code>, <code>no shutdown</code>, and an <code>ip address</code> if the interface is needed.</li>
+<li><strong>B.</strong> Speed is sensed from the signal (100), but duplex cannot be learned, so the switch falls back to half duplex at 100 Mb/s — a duplex mismatch.</li>
+<li><strong>B.</strong> 2 km is beyond multimode reach for 1000BASE-SX (hundreds of metres); single-mode with LX/LH optics covers 5–10 km. Cat6a copper (C) is limited to 100 m. 10GBASE-SR (D) is multimode and also short reach.</li>
+<li><strong>A and C.</strong> Very low Rx with a normal far-end Tx means light is lost on the path: dirty connectors and bends are the most common causes. Duplex, VLAN and STP are not optical problems.</li>
+<li><strong>6 dB lost</strong> (−3 − (−9) = 6). Every 3 dB halves the power, so 6 dB is half of half: <strong>about one quarter</strong> of the power arrived (exactly 10^−0.6 ≈ 0.25).</li>
+<li><strong>C.</strong> Up/down means Layer 1 is fine but Layer 2 is failing, classically an encapsulation mismatch (HDLC on one end, PPP on the other). An unplugged cable (A) gives down/down; <code>shutdown</code> (B) gives administratively down; IP subnet errors (D) do not change line protocol status.</li>
+<li><strong>The cable exceeds the 100 m limit</strong>, so the signal is weak and corrupted, which shows up as CRC errors. Duplex is not the cause because both ends are full and collisions are zero.</li>
+<li><strong>B.</strong> Runts are under 64 bytes; giants are over the maximum frame size; overrun and ignored count frames the receiver could not handle in time.</li>
+<li><strong>C.</strong> err-disabled ports stay down until the cause is removed and the port is bounced. <code>no shutdown</code> alone (A) brings the port up only to be disabled again if the cause remains. Reloading (B) is disruptive and does not fix the cause.</li>
+<li><strong>A.</strong> MDI devices (PCs, routers) transmit on pins 1 and 2 and receive on 3 and 6; switches do the opposite.</li>
+<li><strong>No.</strong> Half duplex on a 1 Gb/s link would introduce collisions and is not even supported by most gigabit copper ports. With full duplex at both ends and zero collisions, rising CRC errors point to the physical path: test or replace the cable, check its length and route away from EMI, and confirm both ends are configured the same. Always check an assistant's recommendation against the evidence before applying it.</li>
+</ol>
+<h3 id="1f-chapter-1-progress-record">1F Chapter 1 progress record</h3>
+<p><strong>Objectives completed in this chapter:</strong> foundations (OSI/TCP-IP, encapsulation, Ethernet, switching logic, IOS basics) and <strong>1.1</strong> in full: collisions, errors, duplex, speed, distance, interface status, signal levels, pinouts and cable types for copper and fiber.</p>
+<p><strong>Related objectives that build on this chapter later:</strong> 2.3 CDP/LLDP (Chapter 8, including the duplex-mismatch message), 2.5.d BPDU guard and 4.7.e port security (Chapters 9 and 23, the usual err-disabled causes), 2.4 show logs and packet capture (Chapter 15).</p>
+<p><strong>Next:</strong> Chapter 2 — objective <strong>1.3 Troubleshoot IPv4 address configuration, assignment and subnetting (public and private)</strong>, the dedicated subnetting chapter.</p>
+<h3 id="1g-chapter-1-figure-checklist">1G Chapter 1 figure checklist</h3>
+<p>All 10 figures in Chapter 1 were created as rendered diagrams, embedded next to the text they support, and checked visually after rendering. None had to fall back to Mermaid or ASCII.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Encapsulation through the TCP/IP layers</td>
+<td>1A.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Hop-by-hop forwarding: MAC rewritten, IP unchanged</td>
+<td>1A.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Ethernet II frame layout</td>
+<td>1A.6</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Switch learn / flood / filter / forward logic</td>
+<td>1A.7</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>IOS mode hierarchy</td>
+<td>1A.9</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>Straight-through vs crossover pin mapping</td>
+<td>1B.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>Multimode vs single-mode fiber</td>
+<td>1B.5</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>Duplex mismatch evidence on each side</td>
+<td>1B.8</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>Interface troubleshooting flowchart</td>
+<td>1B.10</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>1.10</td>
+<td>Lab 1.1 topology</td>
+<td>1C, Lab 1.1</td>
+<td>Rendered, embedded, checked (a text version is also kept for lab notes)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Not drawn, on purpose:</strong> the DOM transceiver output (1B.6) and <code>show interfaces</code> counters (1B.9) are shown as annotated real command output instead, because that is the form you will meet in the exam and on devices.</p></article><nav class="prevnext"><a class="pn prev" href="intro.html"><small>← Start here</small>Part 0</a><a class="pn next" href="chapter-02.html"><small>Chapter 2 →</small>IPv4 addressing and subnetting</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#1a1-learning-objectives">1A.1 Learning objectives</a>
+<a href="#1a2-introduction-what-a-network-actually-does">1A.2 Introduction: what a network actually does</a>
+<a href="#1a3-the-osi-and-tcpip-models">1A.3 The OSI and TCP/IP models</a>
+<a href="#1a4-how-encapsulation-works">1A.4 How encapsulation works</a>
+<a href="#1a5-network-devices-and-where-they-sit">1A.5 Network devices and where they sit</a>
+<a href="#1a6-ethernet-frames-and-mac-addresses">1A.6 Ethernet frames and MAC addresses</a>
+<a href="#1a7-how-a-switch-forwards-frames">1A.7 How a switch forwards frames</a>
+<a href="#1a8-tcp-udp-and-port-numbers-background-you-will-keep-using">1A.8 TCP, UDP and port numbers (background you will keep using)</a>
+<a href="#1a9-cisco-ios-command-line-essentials">1A.9 Cisco IOS command line essentials</a>
+<a href="#1a10-part-a-quick-check">1A.10 Part A quick check</a>
+<a href="#1b1-learning-objectives">1B.1 Learning objectives</a>
+<a href="#1b2-introduction">1B.2 Introduction</a>
+<a href="#1b3-copper-cabling-categories-standards-and-distance">1B.3 Copper cabling: categories, standards and distance</a>
+<a href="#1b4-pinouts-t568a-t568b-straight-through-crossover-rollover">1B.4 Pinouts: T568A, T568B, straight-through, crossover, rollover</a>
+<a href="#1b5-fiber-optic-cabling">1B.5 Fiber optic cabling</a>
+<a href="#1b6-signal-levels-reading-optical-power-in-dbm">1B.6 Signal levels: reading optical power in dBm</a>
+<a href="#1b7-interface-status-the-first-command-to-run">1B.7 Interface status: the first command to run</a>
+<a href="#1b8-speed-and-duplex-autonegotiation-and-mismatches">1B.8 Speed and duplex: autonegotiation and mismatches</a>
+<a href="#1b9-reading-show-interfaces-counters">1B.9 Reading show interfaces counters</a>
+<a href="#1b10-a-systematic-diagnostic-procedure">1B.10 A systematic diagnostic procedure</a>
+<a href="#1b11-real-world-scenarios">1B.11 Real-world scenarios</a>
+<a href="#1b12-exam-focused-revision">1B.12 Exam-focused revision</a>
+<a href="#1c-packet-tracer-labs-for-chapter-1">1C Packet Tracer labs for Chapter 1</a>
+<a href="#1d-practice-questions--chapter-1">1D Practice questions — Chapter 1</a>
+<a href="#1e-answer-key-with-explanations">1E Answer key with explanations</a>
+<a href="#1f-chapter-1-progress-record">1F Chapter 1 progress record</a>
+<a href="#1g-chapter-1-figure-checklist">1G Chapter 1 figure checklist</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

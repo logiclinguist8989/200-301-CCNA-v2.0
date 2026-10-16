@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 25 — Syslog and SNMP · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 25: Syslog and SNMP">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch active" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head red">
+  <div class="eyebrow">Domain 5 · AI, Operations &amp; Management</div>
+  <h1><span class="num">Chapter 25</span>Syslog and SNMP</h1>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~15 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="25"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objectives covered:</strong> <strong>5.6 Interpret syslog message content, severity levels, and facilities</strong> and <strong>5.4 Describe the function of SNMP in network operations.</strong> Syslog tells you <em>what happened</em>; SNMP lets a management system <em>ask how things are</em> and be told when something changes.</p>
+<h3 id="251-learning-objectives">25.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Break an IOS syslog message into its parts and explain each.</li>
+<li>List the eight severity levels in order and predict which messages a logging level sends.</li>
+<li>Distinguish the IOS facility in a message from the syslog facility used by servers.</li>
+<li>Configure logging to the console, buffer, terminal sessions and a syslog server, with useful timestamps.</li>
+<li>Interpret common messages and reconstruct an incident from a log.</li>
+<li>Describe SNMP: managers, agents, MIBs, OIDs, operations, ports and versions.</li>
+</ol>
+<h3 id="252-anatomy-of-a-syslog-message">25.2 Anatomy of a syslog message</h3>
+<p>Cisco devices report events as <strong>syslog messages</strong>. Every IOS message follows the same pattern (<a class="figref" href="#fig-25-1">Figure 25.1</a>):</p>
+<pre><code>seq-no: timestamp: %FACILITY-SEVERITY-MNEMONIC: description
+</code></pre>
+<figure class="fig" id="fig-25-1"><button class="zoom" aria-label="Enlarge figure 25.1"><img src="assets/figures/ch25/fig-25-01-syslog-anatomy.svg" alt="Figure 25.1 — Anatomy of an IOS syslog message" loading="lazy"></button><figcaption><a class="fignum" href="#fig-25-1">Figure 25.1</a> Anatomy of an IOS syslog message</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-25-1">Figure 25.1</a> each colour in the message matches one line of the key below it. The part between <code>%</code> and the second colon — <strong>SYS-5-CONFIG_I</strong> — is what you search for in documentation and filters.</p>
+<p><strong>Two meanings of "facility":</strong></p>
+<ul>
+<li>In the message, the <strong>facility</strong> is the <strong>IOS component</strong> that produced it: <code>LINK</code> (physical interface), <code>LINEPROTO</code> (line protocol), <code>SYS</code> (system), <code>OSPF</code>, <code>SEC_LOGIN</code>, <code>PORT_SECURITY</code>, <code>SPANTREE</code>, <code>HSRP</code>, <code>DHCP_SNOOPING</code> and many more.</li>
+<li>In the <strong>syslog protocol</strong>, every message also carries a numeric <strong>facility code</strong> that tells the server which source category it belongs to, so the server can sort it into a file. Network devices normally use <strong>local0–local7</strong>; Cisco devices send <strong>local7</strong> by default. Change it with <code>logging facility local5</code> when the server should file, for example, switches and routers separately.</li>
+</ul>
+<h3 id="253-severity-levels">25.3 Severity levels</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Keyword</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>emergencies</td>
+<td>System unusable</td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td>alerts</td>
+<td>Immediate action needed</td>
+<td>Temperature or power alarms</td>
+</tr>
+<tr>
+<td>2</td>
+<td>critical</td>
+<td>Critical condition</td>
+<td><code>%PORT_SECURITY-2-PSECURE_VIOLATION</code>, <code>%SPANTREE-2-BLOCK_BPDUGUARD</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>errors</td>
+<td>Error condition</td>
+<td><code>%LINK-3-UPDOWN</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>warnings</td>
+<td>Warning condition</td>
+<td><code>%SEC_LOGIN-4-LOGIN_FAILED</code>, <code>%CDP-4-NATIVE_VLAN_MISMATCH</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>notifications</td>
+<td>Normal but significant</td>
+<td><code>%LINEPROTO-5-UPDOWN</code>, <code>%SYS-5-CONFIG_I</code>, <code>%OSPF-5-ADJCHG</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>informational</td>
+<td>Informational</td>
+<td><code>%SEC-6-IPACCESSLOGP</code> (ACL log), <code>%DHCPD-6-ADDRESS_ASSIGN</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>debugging</td>
+<td>Debug output</td>
+<td>Output of <code>debug</code> commands</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lower number = more severe.</strong> When you configure a level, the device sends <strong>that level and every more severe level</strong> (<a class="figref" href="#fig-25-2">Figure 25.2</a>). <code>logging trap warnings</code> sends levels 0–4; <code>logging console notifications</code> shows 0–5.</p>
+<figure class="fig" id="fig-25-2"><button class="zoom" aria-label="Enlarge figure 25.2"><img src="assets/figures/ch25/fig-25-02-syslog-severity-threshold.svg" alt="Figure 25.2 — Syslog severity levels and the logging threshold" loading="lazy"></button><figcaption><a class="fignum" href="#fig-25-2">Figure 25.2</a> Syslog severity levels and the logging threshold</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-25-2">Figure 25.2</a> the bracket shows what <code>logging trap informational</code> sends: everything from 0 to 6. Debug output (7) stays on the device unless you raise the level.</p>
+<h3 id="254-where-messages-go-and-timestamps">25.4 Where messages go, and timestamps</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Destination</th>
+<th>Command</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Console</td>
+<td><code>logging console &lt;level&gt;</code></td>
+<td>debugging (7)</td>
+<td>Slow serial line; a busy console can slow the device</td>
+</tr>
+<tr>
+<td>VTY sessions (SSH)</td>
+<td><code>logging monitor &lt;level&gt;</code> + <strong><code>terminal monitor</code></strong> in the session</td>
+<td>debugging (7)</td>
+<td>Without <code>terminal monitor</code> an SSH user sees no messages</td>
+</tr>
+<tr>
+<td>Local buffer (RAM)</td>
+<td><code>logging buffered [size] [level]</code></td>
+<td>Varies by platform</td>
+<td><code>show logging</code> displays it; lost at reload</td>
+</tr>
+<tr>
+<td>Syslog server</td>
+<td><code>logging host 10.10.99.40</code> + <code>logging trap &lt;level&gt;</code></td>
+<td>informational (6)</td>
+<td><strong>UDP 514</strong>; survives reloads, searchable, central</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code>R1(config)# service timestamps log datetime msec localtime show-timezone
+R1(config)# service sequence-numbers
+R1(config)# logging buffered 16384 informational
+R1(config)# logging host 10.10.99.40
+R1(config)# logging trap informational
+R1(config)# logging source-interface GigabitEthernet0/0/0
+R1(config)# line console 0
+R1(config-line)# logging synchronous
+</code></pre>
+<ul>
+<li><strong>Timestamps</strong> are only useful if clocks agree: synchronise every device with <strong>NTP</strong> (<code>ntp server &lt;address&gt;</code>). A <code>*</code> in front of the time, or a time since boot (<code>1d02h:</code>), means the clock is not synchronised or <code>datetime</code> is not configured.</li>
+<li><code>logging source-interface</code> fixes the source address the server sees, so it can identify the device.</li>
+<li><code>logging synchronous</code> reprints the command you were typing after a message interrupts it.</li>
+</ul>
+<h3 id="255-interpreting-common-messages">25.5 Interpreting common messages</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Message</th>
+<th>What it tells you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%LINK-3-UPDOWN: Interface Gi0/0/1, changed state to down</code></td>
+<td>Physical layer down: cable, optic, far end shut or failed</td>
+</tr>
+<tr>
+<td><code>%LINEPROTO-5-UPDOWN: Line protocol on Interface Gi0/0/1, changed state to down</code></td>
+<td>Data link down; follows LINK-3 or appears alone for keepalive/encapsulation problems</td>
+</tr>
+<tr>
+<td><code>%SYS-5-CONFIG_I: Configured from console by netadmin on vty0 (10.10.99.21)</code></td>
+<td>Someone left configuration mode: who, how and from where</td>
+</tr>
+<tr>
+<td><code>%OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on Gi0/0/0 from FULL to DOWN, Neighbor Down: Dead timer expired</code></td>
+<td>OSPF neighbour lost (Chapter 12) — hellos stopped arriving</td>
+</tr>
+<tr>
+<td><code>%HSRP-5-STATECHANGE: Vlan10 Grp 10 state Standby -&gt; Active</code></td>
+<td>This switch took over as gateway (Chapter 13)</td>
+</tr>
+<tr>
+<td><code>%SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: admin] [Source: 10.10.30.11]</code></td>
+<td>Failed login — possibly password guessing</td>
+</tr>
+<tr>
+<td><code>%PORT_SECURITY-2-PSECURE_VIOLATION</code> / <code>%PM-4-ERR_DISABLE</code></td>
+<td>Unknown device on a secured port; port err-disabled (Chapter 23)</td>
+</tr>
+<tr>
+<td><code>%SPANTREE-2-BLOCK_BPDUGUARD</code></td>
+<td>BPDU received on a PortFast port with BPDU guard (Chapter 9)</td>
+</tr>
+<tr>
+<td><code>%SW_MATM-4-MACFLAP_NOTIF: Host 0060.2f11.0001 in vlan 10 is flapping between port Fa0/1 and port Gi0/1</code></td>
+<td>Same MAC seen on two ports: possible loop or moved host</td>
+</tr>
+<tr>
+<td><code>%CDP-4-NATIVE_VLAN_MISMATCH</code></td>
+<td>Trunk ends disagree on the native VLAN (Chapter 5)</td>
+</tr>
+<tr>
+<td><code>%SEC-6-IPACCESSLOGP: list WIRELESS-IN denied tcp 10.10.30.12(51234) -&gt; 10.10.99.2(22), 1 packet</code></td>
+<td>An ACL line with <code>log</code> matched (Chapter 20)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Reading a sequence:</strong> messages close together in time tell a story. A LINK-3 down, then LINEPROTO-5 down, then OSPF-5 ADJCHG to DOWN and HSRP-5 STATECHANGE seconds later describe one failure and its consequences — fix the first event, not the last.</p>
+<h3 id="256-snmp-what-it-does">25.6 SNMP: what it does</h3>
+<p>The <strong>Simple Network Management Protocol</strong> lets a central <strong>SNMP manager</strong> (a network management system, NMS) read and change information on many devices and receive alerts from them (<a class="figref" href="#fig-25-3">Figure 25.3</a>).</p>
+<ul>
+<li><strong>Agent:</strong> software on each device that answers the manager and sends notifications.</li>
+<li><strong>MIB (Management Information Base):</strong> the structured collection of values an agent exposes — host name, interface counters, CPU load, routing tables.</li>
+<li><strong>OID (object identifier):</strong> the numeric address of one value in the MIB tree, for example <code>1.3.6.1.2.1.1.5.0</code> (sysName) or <code>1.3.6.1.2.1.2.2.1.10</code> (ifInOctets, bytes received per interface).</li>
+</ul>
+<figure class="fig" id="fig-25-3"><button class="zoom" aria-label="Enlarge figure 25.3"><img src="assets/figures/ch25/fig-25-03-snmp-manager-agent.svg" alt="Figure 25.3 — SNMP manager, agent, operations and ports" loading="lazy"></button><figcaption><a class="fignum" href="#fig-25-3">Figure 25.3</a> SNMP manager, agent, operations and ports</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-25-3">Figure 25.3</a> the two upper arrows are <strong>polling</strong>: the manager asks and the agent answers. The amber arrow is a <strong>notification</strong> that the agent sends on its own when an event occurs.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Direction</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get</strong></td>
+<td>Manager → agent</td>
+<td>Read one value</td>
+</tr>
+<tr>
+<td><strong>GetNext</strong></td>
+<td>Manager → agent</td>
+<td>Read the next value in the tree (used to walk tables)</td>
+</tr>
+<tr>
+<td><strong>GetBulk</strong> (v2c, v3)</td>
+<td>Manager → agent</td>
+<td>Read many values at once</td>
+</tr>
+<tr>
+<td><strong>Set</strong></td>
+<td>Manager → agent</td>
+<td>Change a value (needs write access)</td>
+</tr>
+<tr>
+<td><strong>Response</strong></td>
+<td>Agent → manager</td>
+<td>Answer to the above</td>
+</tr>
+<tr>
+<td><strong>Trap</strong></td>
+<td>Agent → manager</td>
+<td>Unacknowledged event notification</td>
+</tr>
+<tr>
+<td><strong>Inform</strong> (v2c, v3)</td>
+<td>Agent → manager</td>
+<td>Acknowledged notification (resent until confirmed)</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Security</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SNMPv1</td>
+<td>Community string, clear text</td>
+<td>Obsolete</td>
+</tr>
+<tr>
+<td>SNMPv2c</td>
+<td>Community string, clear text; RO or RW</td>
+<td>Adds GetBulk and Inform; still common inside management networks</td>
+</tr>
+<tr>
+<td><strong>SNMPv3</strong></td>
+<td>Users and groups; <strong>noAuthNoPriv</strong>, <strong>authNoPriv</strong> (authentication, e.g. SHA) or <strong>authPriv</strong> (authentication + encryption, e.g. AES)</td>
+<td>The secure choice</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Typical uses in operations:</strong> graphs of interface utilisation and errors (polling counters every few minutes), CPU/memory alarms, device inventory, and immediate alerts through traps (link down, power supply failed, HSRP state change). Many organisations now add <strong>streaming telemetry</strong> and APIs (Chapter 26) for faster, richer data, but SNMP remains the most widely supported monitoring protocol.</p>
+<p><strong>IOS configuration (for recognition):</strong></p>
+<pre><code>R1(config)# ip access-list standard SNMP-MGR
+R1(config-std-nacl)# permit host 10.10.99.40
+R1(config-std-nacl)# exit
+R1(config)# snmp-server community C4mpus-RO ro SNMP-MGR
+R1(config)# snmp-server location Campus core, rack 1
+R1(config)# snmp-server contact noc@campus.example
+R1(config)# snmp-server group NMS-GROUP v3 priv access SNMP-MGR
+R1(config)# snmp-server user nms-user NMS-GROUP v3 auth sha Auth-Pass-2026 priv aes 128 Priv-Pass-2026
+R1(config)# snmp-server host 10.10.99.40 version 3 priv nms-user
+R1(config)# snmp-server enable traps
+</code></pre>
+<p>The <code>community … ro SNMP-MGR</code> line allows read-only v2c access only from the manager; the v3 lines create an authPriv user and send traps to the manager. Verify with <code>show snmp</code>, <code>show snmp community</code>, <code>show snmp user</code>, <code>show snmp group</code> and <code>show snmp host</code>.</p>
+<h3 id="257-verification-and-troubleshooting">25.7 Verification and troubleshooting</h3>
+<pre><code>R1# show logging
+Syslog logging: enabled (0 messages dropped, 0 flushes, 0 overruns)
+    Console logging: level debugging, 45 messages logged
+    Monitor logging: level debugging, 0 messages logged
+    Buffer logging:  level informational, 45 messages logged
+    Trap logging: level informational, 47 message lines logged
+        Logging to 10.10.99.40  (udp port 514, link up),
+              47 message lines logged
+
+Log Buffer (16384 bytes):
+000231: Oct 15 2026 10:02:11.481 UTC: %LINK-3-UPDOWN: Interface GigabitEthernet0/0/1, changed state to down
+</code></pre>
+<p><strong>Reading it:</strong> the header shows each destination and its level; <strong>Trap logging</strong> is the syslog-server destination, with the server address, UDP port and whether the path is up. Below it is the local buffer, newest messages at the bottom.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show logging</code></td>
+<td>Destinations, levels, counters and the buffer</td>
+</tr>
+<tr>
+<td><code>show logging \| include LINK\|LINEPROTO</code></td>
+<td>Filter the buffer for one facility</td>
+</tr>
+<tr>
+<td><code>terminal monitor</code> / <code>terminal no monitor</code></td>
+<td>See (or stop seeing) messages in an SSH session</td>
+</tr>
+<tr>
+<td><code>clear logging</code></td>
+<td>Empty the local buffer</td>
+</tr>
+<tr>
+<td><code>show snmp</code></td>
+<td>SNMP packets in/out, errors such as <em>bad community names</em></td>
+</tr>
+<tr>
+<td><code>show snmp community</code> / <code>show snmp user</code> / <code>show snmp group</code> / <code>show snmp host</code></td>
+<td>v2c communities, v3 users and groups, trap receivers</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Syslog server receives nothing</td>
+<td><code>logging host</code> missing, server service off, UDP 514 blocked, no route back from the device's source address</td>
+<td><code>show logging</code> (Trap logging section); <code>logging source-interface</code>; check ACLs</td>
+</tr>
+<tr>
+<td>Server gets some messages but not interface "line protocol" changes</td>
+<td><code>logging trap</code> set below notifications (for example <code>errors</code>)</td>
+<td>Raise to <code>notifications</code> or <code>informational</code></td>
+</tr>
+<tr>
+<td>Timestamps wrong or show uptime</td>
+<td>No <code>service timestamps … datetime</code>, or clock not synchronised</td>
+<td><code>service timestamps log datetime msec</code>; configure NTP</td>
+</tr>
+<tr>
+<td>SSH user sees no messages</td>
+<td><code>terminal monitor</code> not entered (per session)</td>
+<td><code>terminal monitor</code></td>
+</tr>
+<tr>
+<td>Console flooded, typing interrupted</td>
+<td>Console at debugging level during an event storm</td>
+<td><code>logging console warnings</code>; <code>logging synchronous</code></td>
+</tr>
+<tr>
+<td>SNMP manager times out</td>
+<td>Wrong community/v3 credentials, version mismatch, ACL on the community, UDP 161 blocked</td>
+<td><code>show snmp</code> (bad community counter); match version and credentials; check ACL</td>
+</tr>
+<tr>
+<td>Set operations fail</td>
+<td>Community is read-only (RO) or v3 group has no write view</td>
+<td>Use an RW community or a v3 group with a write view — only if writes are really needed</td>
+</tr>
+<tr>
+<td>No traps arrive</td>
+<td><code>snmp-server host</code> or <code>snmp-server enable traps</code> missing, UDP 162 blocked</td>
+<td><code>show snmp host</code>; enable traps; permit UDP 162</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="258-lab-251--a-syslog-server-and-an-snmp-query-intermediate">25.8 Lab 25.1 — A syslog server and an SNMP query (Intermediate)</h3>
+<p><strong>Objectives:</strong> 5.6, 5.4. <strong>Start from:</strong> your Lab 23.1 file. <strong>Packet Tracer support:</strong> Server-PT has a <strong>SYSLOG</strong> service that lists received messages, and PCs have a <strong>MIB Browser</strong> (Desktop tab) that speaks SNMPv1/v2c. SNMPv3 users are not fully supported in Packet Tracer; configure them on a real device or a Cisco Modeling Labs node if you want to practise them.</p>
+<p><strong>Step 1 — Add the management server.</strong> Server-PT <strong>NMS1</strong>: 10.10.99.40/24, gateway 10.10.99.1, on <strong>SW2 Fa0/7</strong> (<code>switchport mode access</code>, <code>switchport access vlan 99</code>). In <em>Services</em>, turn <strong>SYSLOG</strong> on.</p>
+<p><strong>Step 2 — Send logs from every device.</strong> On R1, DSW1, DSW2, SW1 and SW2:</p>
+<pre><code>R1(config)# service timestamps log datetime msec
+R1(config)# service sequence-numbers
+R1(config)# logging host 10.10.99.40
+R1(config)# logging trap informational
+R1(config)# logging buffered 16384 informational
+R1(config)# line console 0
+R1(config-line)# logging synchronous
+</code></pre>
+<p>(Set the clocks first with <code>clock set 10:00:00 15 Oct 2026</code> in privileged mode, or the timestamps start from 1993.)</p>
+<p><strong>Step 3 — Generate and read events.</strong> On DSW2, shut and re-enable its link to SW2; on SW1 enter and leave configuration mode; from PC2, try <code>ssh -l admin 10.0.0.1</code> with a wrong password. Open NMS1's SYSLOG list and, for at least five messages, write down the <strong>facility, severity, mnemonic</strong> and what happened.</p>
+<p><strong>Step 4 — Change the threshold.</strong> On DSW2, <code>logging trap warnings</code>, then repeat the shut/no shut. Which messages still reach NMS1 and which disappear? (LINK-3 still arrives; LINEPROTO-5 and SYS-5 do not.) Restore <code>logging trap informational</code>.</p>
+<p><strong>Step 5 — SNMP read-only access on R1:</strong></p>
+<pre><code>R1(config)# ip access-list standard SNMP-MGR
+R1(config-std-nacl)# permit host 10.10.99.40
+R1(config-std-nacl)# permit host 10.10.10.11
+R1(config-std-nacl)# exit
+R1(config)# snmp-server community C4mpus-RO ro SNMP-MGR
+R1(config)# snmp-server location Campus core, rack 1
+R1(config)# snmp-server contact noc@campus.example
+</code></pre>
+<p><strong>Step 6 — Query with the MIB Browser.</strong> On PC1, open <em>Desktop → MIB Browser → Advanced</em>: address 10.0.0.1, read community C4mpus-RO, version v2. Get <strong>sysName</strong>, <strong>sysUpTime</strong>, <strong>sysLocation</strong> and walk the <strong>ifTable</strong> (GetNext). Then try a <strong>Set</strong> of sysContact: it fails, because the community is read-only. Repeat the Get from PC3: it times out, because the ACL permits only NMS1 and PC1. On R1, <code>show snmp</code> shows the requests and the <em>bad community</em> or ACL drops.</p>
+<p><strong>Questions after the lab</strong></p>
+<ol>
+<li>In Step 4, why did LINK-3-UPDOWN still arrive when LINEPROTO-5-UPDOWN did not?</li>
+<li>Which message identified the user who changed SW1's configuration, and which part of it told you where they connected from?</li>
+<li>Why should production networks use SNMPv3 with authPriv instead of a v2c community?</li>
+<li>Which UDP ports did the syslog messages and the MIB Browser queries use?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] NMS1 receives messages from all five devices with real timestamps</li>
+<li>[ ] Five messages decoded into facility, severity, mnemonic and meaning</li>
+<li>[ ] Threshold change observed and explained</li>
+<li>[ ] SNMP Get and GetNext succeed from PC1; Set fails with a read-only community; PC3 refused</li>
+<li>[ ] Saved as <strong>Lab25-1.pkt</strong></li>
+</ul>
+<h3 id="259-lab-252--reading-a-real-incident-advanced">25.9 Lab 25.2 — Reading a real incident (Advanced)</h3>
+<p>This is a paper exercise — the skill the exam tests most directly. Read the log from R1 and answer the questions.</p>
+<pre><code>000231: Oct 15 2026 10:02:11.481 UTC: %LINK-3-UPDOWN: Interface GigabitEthernet0/0/1, changed state to down
+000232: Oct 15 2026 10:02:12.482 UTC: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to down
+000233: Oct 15 2026 10:02:40.902 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: admin] [Source: 10.10.30.11] [localport: 22] [Reason: Login Authentication Failed]
+000234: Oct 15 2026 10:03:05.117 UTC: %SYS-5-CONFIG_I: Configured from console by netadmin on vty0 (10.10.99.21)
+000235: Oct 15 2026 10:03:06.250 UTC: %LINK-3-UPDOWN: Interface GigabitEthernet0/0/1, changed state to up
+000236: Oct 15 2026 10:03:07.251 UTC: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
+</code></pre>
+<ol>
+<li>Which interface failed, for how long, and what did users notice? (Gi0/0/1 is R1's link to the ISP.)</li>
+<li>What is the most severe message in the excerpt, and what is its level number?</li>
+<li>Which messages would a server with <code>logging trap warnings</code> have received?</li>
+<li>Who changed the configuration, from which address, and through which access method?</li>
+<li>Is anything in the log a security concern? What would you do about it?</li>
+</ol>
+<p><strong>Solutions:</strong> (1) Gi0/0/1 went down at 10:02:11 and came back at 10:03:06 — about 55 seconds; the campus lost internet access (PAT uses this interface). (2) <code>LINK-3-UPDOWN</code>, level <strong>3 (errors)</strong>. (3) Levels 0–4: messages 231, 233 and 235 (LINK-3 and SEC_LOGIN-4); not the LINEPROTO-5 or SYS-5 lines. (4) <strong>netadmin</strong>, from <strong>10.10.99.21</strong> over a VTY line (SSH), 54 seconds after the outage began — possibly the fix, which you would confirm with the configuration archive. (5) Yes: a failed SSH login as <strong>admin</strong> from <strong>10.10.30.11</strong>, a wireless (VLAN 30) client. R1's VTY lines have no <code>access-class</code> yet; apply MGMT-ONLY (Chapter 20) to R1 too, and check who uses that address.</p>
+<h3 id="2510-chapter-25-summary-notes-exam-revision">25.10 Chapter 25 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Format:</strong> <code>seq: timestamp: %FACILITY-SEVERITY-MNEMONIC: description</code>.</li>
+<li><strong>Facility:</strong> in the message = IOS component (LINK, LINEPROTO, SYS, OSPF …); in syslog transport = local0–7 (Cisco default <strong>local7</strong>, <code>logging facility</code>).</li>
+<li><strong>Severities:</strong> 0 emergencies, 1 alerts, 2 critical, 3 errors, 4 warnings, 5 notifications, 6 informational, 7 debugging. A level includes all <strong>lower numbers</strong>.</li>
+<li><strong>Destinations:</strong> console (default 7), monitor + <code>terminal monitor</code>, buffer (<code>show logging</code>), server (<code>logging host</code>, <code>logging trap</code>, default 6, <strong>UDP 514</strong>).</li>
+<li><strong>Timestamps:</strong> <code>service timestamps log datetime msec</code>; NTP for accurate times; <code>service sequence-numbers</code>.</li>
+<li><strong>SNMP:</strong> manager ↔ agent; MIB, OID; Get/GetNext/GetBulk/Set → <strong>UDP 161</strong>; Trap/Inform → <strong>UDP 162</strong>; v1/v2c communities (clear text), <strong>v3</strong> users with authPriv.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Severity 7 is the most serious"</td>
+<td>0 is the most serious; 7 is debugging</td>
+</tr>
+<tr>
+<td>"<code>logging trap warnings</code> also sends notifications"</td>
+<td>It sends 0–4 only</td>
+</tr>
+<tr>
+<td>"The facility in %LINK-3-UPDOWN is local7"</td>
+<td>LINK is the IOS facility; local7 is the syslog transport facility</td>
+</tr>
+<tr>
+<td>"SSH users see log messages automatically"</td>
+<td>Only after <code>terminal monitor</code></td>
+</tr>
+<tr>
+<td>"SNMP traps are acknowledged"</td>
+<td>Traps are not; informs are</td>
+</tr>
+<tr>
+<td>"SNMPv2c is secure because it needs a community string"</td>
+<td>The community travels in clear text; use v3 authPriv</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2511-practice-questions--chapter-25">25.11 Practice questions — Chapter 25</h3>
+<p><strong>1. (Recall)</strong> List the syslog severity levels from 0 to 7 with their keywords.</p>
+<p><strong>2. (Interpretation)</strong> Identify the facility, severity and mnemonic in <code>%OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on Gi0/0/0 from FULL to DOWN, Neighbor Down: Dead timer expired</code>, and say what happened.</p>
+<p><strong>3. (Interpretation)</strong> A message reads <code>*Mar  1 00:14:52.311: %LINK-3-UPDOWN: …</code>. What do the asterisk and the date suggest?</p>
+<p><strong>4. (Concept)</strong> With <code>logging trap notifications</code>, which of these reach the server: <code>%SEC-6-IPACCESSLOGP</code>, <code>%LINEPROTO-5-UPDOWN</code>, <code>%PORT_SECURITY-2-PSECURE_VIOLATION</code>, debug output?</p>
+<p><strong>5. (Configuration)</strong> Send informational and more severe messages to 10.10.99.40 with millisecond timestamps.</p>
+<p><strong>6. (Concept)</strong> What is the difference between the facility shown in an IOS message and the facility set by <code>logging facility local5</code>?</p>
+<p><strong>7. (Troubleshooting)</strong> An engineer connected by SSH runs <code>debug ip ospf adj</code> but sees nothing. Why?</p>
+<p><strong>8. (Recall)</strong> Which SNMP operations does a manager use to read a whole interface table efficiently in SNMPv2c?</p>
+<p><strong>9. (Concept)</strong> Compare a trap with an inform.</p>
+<p><strong>10. (Concept)</strong> What do the three SNMPv3 security levels provide?</p>
+<p><strong>11. (Multiple response — choose two)</strong> Which statements about SNMP are true?</p>
+<p>A. Agents listen on UDP 161  B. Traps are sent to UDP 514  C. An OID identifies one object in the MIB  D. SNMPv2c encrypts the community string  E. A Set needs read-only access</p>
+<p><strong>12. (Evaluate an AI assistant)</strong> You paste the Lab 25.2 log into an AI assistant and it replies: <em>"The router rebooted at 10:02 because of a severity 3 error; replace the router."</em> Evaluate the answer.</p>
+<h3 id="2512-answer-key-with-explanations">25.12 Answer key with explanations</h3>
+<ol>
+<li><strong>0 emergencies, 1 alerts, 2 critical, 3 errors, 4 warnings, 5 notifications, 6 informational, 7 debugging.</strong></li>
+<li>Facility <strong>OSPF</strong>, severity <strong>5 (notifications)</strong>, mnemonic <strong>ADJCHG</strong>. The OSPF neighbour 2.2.2.2 on Gi0/0/0 went from FULL to DOWN because no hellos arrived within the dead interval.</li>
+<li>The <code>*</code> means the clock is <strong>not synchronised</strong> (no NTP); a date like Mar 1 00:14 usually means the clock was never set and counts from the default after boot. Timestamps cannot be trusted for correlation.</li>
+<li><code>%LINEPROTO-5-UPDOWN</code> (5) and <code>%PORT_SECURITY-2-PSECURE_VIOLATION</code> (2). Not the ACL log (6) or debug output (7).</li>
+<li><code>service timestamps log datetime msec</code>, <code>logging host 10.10.99.40</code>, <code>logging trap informational</code>.</li>
+<li>The message facility (e.g. LINK, OSPF) names the <strong>IOS component</strong>. <code>logging facility local5</code> sets the <strong>syslog protocol facility</strong> that the server uses to sort messages from this device.</li>
+<li>Messages go to VTY sessions only after <strong><code>terminal monitor</code></strong> (and <code>logging monitor</code> must allow level 7).</li>
+<li><strong>GetBulk</strong> (or repeated <strong>GetNext</strong>), which walk the table.</li>
+<li>Both are agent-to-manager notifications on UDP 162. A <strong>trap</strong> is not acknowledged; an <strong>inform</strong> is acknowledged and resent until the manager confirms it.</li>
+<li><strong>noAuthNoPriv:</strong> username only. <strong>authNoPriv:</strong> messages authenticated (e.g. SHA), not encrypted. <strong>authPriv:</strong> authenticated and encrypted (e.g. AES).</li>
+<li><strong>A and C.</strong> Traps go to UDP 162; v2c sends the community in clear text; Set needs write access.</li>
+<li><strong>Wrong.</strong> Nothing in the log shows a reboot (that would be <code>%SYS-5-RESTART</code>, and sequence numbers would restart). Only Gi0/0/1 went down for about 55 seconds and came back after a configuration change. A severity 3 message is an interface event, not a hardware fault. Investigate the link and the change before replacing anything.</li>
+</ol>
+<h3 id="2513-chapter-25-figure-checklist">25.13 Chapter 25 figure checklist</h3>
+<p>All three figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-25-2">Figure 25.2</a>'s first version did not compile (an id on a text element holding tspans); it was corrected before publishing and then checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25.1</td>
+<td>Anatomy of an IOS syslog message</td>
+<td>25.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>25.2</td>
+<td>Severity levels and the logging threshold</td>
+<td>25.3</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>25.3</td>
+<td>SNMP manager, agent, operations and ports</td>
+<td>25.6</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as tables and command output:</strong> severities, destinations, common messages, SNMP operations and versions, <code>show logging</code>, troubleshooting.</p>
+<h3 id="2514-chapter-25-progress-record">25.14 Chapter 25 progress record</h3>
+<p><strong>Objectives completed:</strong> <strong>5.6</strong> (syslog content, severity levels, facilities) and <strong>5.4</strong> (function of SNMP).</p>
+<p><strong>Lab state after this chapter:</strong> NMS1 (10.10.99.40, SW2 Fa0/7) collects syslog from all devices; R1 answers read-only SNMP from NMS1 and PC1.</p>
+<p><strong>Next:</strong> Chapter 26 — <strong>5.3 Describe network management approaches</strong> and <strong>5.5 Use configuration management mechanisms such as Ansible to execute commands</strong>.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-24.html"><small>← Chapter 24</small>IPsec site-to-site and remote-access VPNs</a><a class="pn next" href="chapter-26.html"><small>Chapter 26 →</small>Network management approaches and Ansible</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#251-learning-objectives">25.1 Learning objectives</a>
+<a href="#252-anatomy-of-a-syslog-message">25.2 Anatomy of a syslog message</a>
+<a href="#253-severity-levels">25.3 Severity levels</a>
+<a href="#254-where-messages-go-and-timestamps">25.4 Where messages go, and timestamps</a>
+<a href="#255-interpreting-common-messages">25.5 Interpreting common messages</a>
+<a href="#256-snmp-what-it-does">25.6 SNMP: what it does</a>
+<a href="#257-verification-and-troubleshooting">25.7 Verification and troubleshooting</a>
+<a href="#258-lab-251--a-syslog-server-and-an-snmp-query-intermediate">25.8 Lab 25.1 — A syslog server and an SNMP query (Intermediate)</a>
+<a href="#259-lab-252--reading-a-real-incident-advanced">25.9 Lab 25.2 — Reading a real incident (Advanced)</a>
+<a href="#2510-chapter-25-summary-notes-exam-revision">25.10 Chapter 25 summary notes (exam revision)</a>
+<a href="#2511-practice-questions--chapter-25">25.11 Practice questions — Chapter 25</a>
+<a href="#2512-answer-key-with-explanations">25.12 Answer key with explanations</a>
+<a href="#2513-chapter-25-figure-checklist">25.13 Chapter 25 figure checklist</a>
+<a href="#2514-chapter-25-progress-record">25.14 Chapter 25 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

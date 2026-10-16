@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 456" width="1160" height="456" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 13.2 — HSRP failover timeline with default timers</title>
+<desc id="d">Hello 3 s, hold 10 s — hosts have no gateway from the failure until DSW2&#x27;s hold timer expires</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#0f2540"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="455" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 13.2</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">HSRP failover timeline with default timers</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Hello 3 s, hold 10 s — hosts have no gateway from the failure until DSW2&#x27;s hold timer expires</text>
+<text x="40.0" y="160.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">DSW1</text>
+<text x="40.0" y="240.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">DSW2</text>
+<rect x="120.0" y="140.0" width="192.0" height="32.0" rx="4" fill="#1f9d63" stroke="none" stroke-width="1.5"/>
+<text x="216.0" y="161.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Active</text>
+<rect x="312.0" y="140.0" width="768.0" height="32.0" rx="4" fill="#fde8e8" stroke="#d64040" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="696.0" y="161.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#8a1c1c" text-anchor="middle">failed — no Hellos</text>
+<rect x="120.0" y="220.0" width="832.0" height="32.0" rx="4" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="536.0" y="241.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#5b6b7f" text-anchor="middle">Standby — counting the hold timer from the last Hello</text>
+<rect x="952.0" y="220.0" width="128.0" height="32.0" rx="4" fill="#1f9d63" stroke="none" stroke-width="1.5"/>
+<text x="1016.0" y="241.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Active</text>
+<line x1="120.0" y1="130.0" x2="120.0" y2="260.0" stroke="#0f9aa8" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3 3"/>
+<text x="120.0" y="124.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#0f9aa8" text-anchor="middle">Hello</text>
+<line x1="312.0" y1="130.0" x2="312.0" y2="260.0" stroke="#0f9aa8" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3 3"/>
+<text x="312.0" y="124.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#0f9aa8" text-anchor="middle">Hello</text>
+<rect x="312.0" y="290.0" width="640.0" height="34.0" rx="6" fill="#d64040" stroke="none" stroke-width="1.5"/>
+<text x="632.0" y="312.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" xml:space="preserve">hosts have no working gateway  ≈ 10 s (hold time)</text>
+<line x1="120.0" y1="350.0" x2="1080.0" y2="350.0" stroke="#0f2540" stroke-width="1.5" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="120.0" y1="346.0" x2="120.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="120.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">0s</text>
+<line x1="184.0" y1="346.0" x2="184.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="184.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">1s</text>
+<line x1="248.0" y1="346.0" x2="248.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="248.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">2s</text>
+<line x1="312.0" y1="346.0" x2="312.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="312.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">3s</text>
+<line x1="376.0" y1="346.0" x2="376.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="376.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">4s</text>
+<line x1="440.0" y1="346.0" x2="440.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="440.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">5s</text>
+<line x1="504.0" y1="346.0" x2="504.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="504.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">6s</text>
+<line x1="568.0" y1="346.0" x2="568.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="568.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">7s</text>
+<line x1="632.0" y1="346.0" x2="632.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="632.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">8s</text>
+<line x1="696.0" y1="346.0" x2="696.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="696.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">9s</text>
+<line x1="760.0" y1="346.0" x2="760.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="760.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">10s</text>
+<line x1="824.0" y1="346.0" x2="824.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="824.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">11s</text>
+<line x1="888.0" y1="346.0" x2="888.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="888.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">12s</text>
+<line x1="952.0" y1="346.0" x2="952.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="952.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">13s</text>
+<line x1="1016.0" y1="346.0" x2="1016.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="1016.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">14s</text>
+<line x1="1080.0" y1="346.0" x2="1080.0" y2="354.0" stroke="#0f2540" stroke-width="1" stroke-linecap="round"/>
+<text x="1080.0" y="372.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">15s</text>
+<rect x="245.8" y="93.2" width="132.3" height="21.5" rx="10.75" fill="#fde8e8" stroke="#d64040" stroke-width="1.2"/>
+<text x="312.0" y="108.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#8a1c1c" text-anchor="middle">DSW1 fails (t = 3 s)</text>
+<rect x="859.3" y="189.2" width="185.5" height="21.5" rx="10.75" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="952.0" y="204.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0f5a37" text-anchor="middle">hold expires → gratuitous ARP</text>
+<line x1="28" y1="416" x2="1132" y2="416" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="438" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Faster timers (standby 10 timers 1 3) shrink the gap at the cost of more Hellos. VRRP defaults: advert 1 s, down ≈ 3 s.</text>
+<text x="1136" y="446" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

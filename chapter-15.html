@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 15 — The troubleshooting toolkit · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 15: The troubleshooting toolkit">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head green">
+  <div class="eyebrow">Domain 2 · Switching &amp; Network Access</div>
+  <h1><span class="num">Chapter 15</span>The troubleshooting toolkit</h1>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~20 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="15"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>2.4 Troubleshoot basic Layer 2/Layer 3 connectivity and device operations using show commands (including show logs), ping, extended ping, trace route, and packet capture output.</strong> This chapter gathers the tools you have used one at a time since Chapter 1 into one method, and adds extended ping, traceroute in depth and reading packet captures.</p>
+<h3 id="151-learning-objectives">15.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Follow a structured troubleshooting method instead of guessing.</li>
+<li>Choose the right <code>show</code> command for each layer and for device health.</li>
+<li>Read IOS log messages and know which ones matter.</li>
+<li>Interpret ping and extended ping results, including every IOS result symbol.</li>
+<li>Explain how traceroute works and read its output, including timeouts and loops.</li>
+<li>Read packet capture output for ARP, ICMP, TCP and DHCP.</li>
+<li>Work a realistic trouble ticket from symptom to fix.</li>
+</ol>
+<h3 id="152-a-troubleshooting-method">15.2 A troubleshooting method</h3>
+<p>Random changes create new faults and hide the original one. Use the same steps every time:</p>
+<ol>
+<li><strong>Define the problem precisely.</strong> Who is affected, what fails (all traffic, one application, one destination), since when, what changed.</li>
+<li><strong>Gather facts</strong> with show commands, logs, ping and traceroute — before touching the configuration.</li>
+<li><strong>Compare with the baseline</strong>: documentation (Chapter 8), saved configurations, how it worked yesterday.</li>
+<li><strong>Form a hypothesis</strong> that explains <em>all</em> the symptoms.</li>
+<li><strong>Change one thing</strong>, and record what you changed.</li>
+<li><strong>Verify</strong> the fix from the user's point of view; if it did not work, undo the change.</li>
+<li><strong>Document</strong> the cause and the fix.</li>
+</ol>
+<p><strong>Approaches to narrowing it down:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>How</th>
+<th>Best when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bottom-up</td>
+<td>Physical → data link → network → transport → application</td>
+<td>Hardware or cabling suspected; new installations</td>
+</tr>
+<tr>
+<td>Top-down</td>
+<td>Application first, then down the stack</td>
+<td>One application fails, everything else works</td>
+</tr>
+<tr>
+<td>Divide and conquer</td>
+<td>Start at Layer 3 with ping; success → look higher, failure → look lower</td>
+<td>Most general problems — the usual CCNA choice</td>
+</tr>
+<tr>
+<td>Follow the path</td>
+<td>Check each device hop by hop from source to destination (and back)</td>
+<td>Multi-hop routing faults</td>
+</tr>
+<tr>
+<td>Compare</td>
+<td>Diff a working device or configuration against the broken one</td>
+<td>Many similar devices (access switches, branches)</td>
+</tr>
+</tbody>
+</table></div>
+<p><a class="figref" href="#fig-15-1">Figure 15.1</a> maps the layered checks to the commands that answer them.</p>
+<figure class="fig" id="fig-15-1"><button class="zoom" aria-label="Enlarge figure 15.1"><img src="assets/figures/ch15/fig-15-01-divide-and-conquer.svg" alt="Figure 15.1 — Divide-and-conquer troubleshooting: the question and the commands at each layer" loading="lazy"></button><figcaption><a class="fignum" href="#fig-15-1">Figure 15.1</a> Divide-and-conquer troubleshooting: the question and the commands at each layer</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-15-1">Figure 15.1</a> each band is a layer: its question on the left, the commands that answer it on the right. The highlighted Network band is where divide and conquer starts.</p>
+<h3 id="153-show-commands-for-connectivity-and-device-operations">15.3 Show commands for connectivity and device operations</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Layer / area</th>
+<th>Command</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device health</td>
+<td><code>show version</code></td>
+<td>IOS version, uptime, <strong>last reload reason</strong>, memory, configuration register, licence</td>
+</tr>
+<tr>
+<td>Device health</td>
+<td><code>show processes cpu sorted</code> / <code>show processes cpu history</code></td>
+<td>Sustained high CPU (a loop or broadcast storm, a process stuck)</td>
+</tr>
+<tr>
+<td>Device health</td>
+<td><code>show environment</code> / <code>show inventory</code></td>
+<td>Power supplies, fans, temperature; modules and serial numbers (platform-dependent)</td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td><code>show running-config</code>, <code>show startup-config</code></td>
+<td>Differences mean unsaved changes</td>
+</tr>
+<tr>
+<td>Physical / data link</td>
+<td><code>show ip interface brief</code>, <code>show interfaces status</code>, <code>show interfaces &lt;int&gt;</code></td>
+<td>up/down, err-disabled, speed/duplex, errors (Chapter 1)</td>
+</tr>
+<tr>
+<td>Data link</td>
+<td><code>show vlan brief</code>, <code>show interfaces trunk</code>, <code>show interfaces switchport</code></td>
+<td>Port in the right VLAN; trunk carrying it (Chapter 5)</td>
+</tr>
+<tr>
+<td>Data link</td>
+<td><code>show mac address-table [address \| interface \| vlan]</code></td>
+<td>Which port a host is really on</td>
+</tr>
+<tr>
+<td>Data link</td>
+<td><code>show spanning-tree [vlan]</code>, <code>show etherchannel summary</code>, <code>show cdp neighbors</code></td>
+<td>Blocking ports, bundles, neighbors (Chapters 6, 8, 9)</td>
+</tr>
+<tr>
+<td>Network</td>
+<td><code>show ip arp</code> / <code>show arp</code></td>
+<td>IP-to-MAC mapping; <code>Incomplete</code> = no ARP reply</td>
+</tr>
+<tr>
+<td>Network</td>
+<td><code>show ip route [address]</code>, <code>show ip protocols</code>, <code>show ip ospf neighbor</code></td>
+<td>Route present, next hop, protocol health (Chapters 10–12)</td>
+</tr>
+<tr>
+<td>Network</td>
+<td><code>show standby brief</code>, <code>show ip dhcp binding</code></td>
+<td>Gateway redundancy and DHCP (Chapters 13–14)</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><code>show logging</code></td>
+<td>Events with times (15.4)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Filter long output</strong> with a pipe, available on every show command: <code>| include &lt;text&gt;</code>, <code>| exclude &lt;text&gt;</code>, <code>| begin &lt;text&gt;</code>, <code>| section &lt;text&gt;</code>. Example: <code>show running-config | section interface Vlan10</code>, or <code>show logging | include LINEPROTO</code>.</p>
+<pre><code>DSW1# show version | include uptime|Last reload|Version
+Cisco IOS XE Software, Version 16.03.02
+DSW1 uptime is 2 weeks, 3 days, 4 hours, 12 minutes
+Last reload reason: power-on
+</code></pre>
+<p>An uptime of a few minutes on a device nobody restarted, or a reload reason such as a crash, is a clue in itself. (Version strings vary by platform.)</p>
+<h3 id="154-reading-logs-with-show-logging">15.4 Reading logs with <code>show logging</code></h3>
+<p>IOS records events — interfaces going up or down, neighbors forming, errors — as <strong>log messages</strong>. On the console you see them as they happen; remotely (SSH) you see them only after <code>terminal monitor</code>; and <code>show logging</code> lists those kept in the <strong>logging buffer</strong> in RAM.</p>
+<pre><code>DSW1# show logging
+Syslog logging: enabled (0 messages dropped, 0 flushes, 0 overruns)
+    Console logging: level debugging, 212 messages logged
+    Buffer logging:  level informational, 188 messages logged
+Log Buffer (16384 bytes):
+*Oct 15 10:02:13.457: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/2, changed state to down
+*Oct 15 10:02:14.461: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to down
+*Oct 15 10:02:14.470: %EC-5-UNBUNDLE: Interface Gi1/0/2 left the port-channel Port-channel2
+*Oct 15 10:05:40.112: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.10.99.50)
+</code></pre>
+<p>Every message has the same structure (Chapter 25 covers syslog servers and severities in full):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Timestamp</td>
+<td><code>*Oct 15 10:02:13.457</code></td>
+<td>When; <code>*</code> means the clock is not synchronised (NTP)</td>
+</tr>
+<tr>
+<td>Facility</td>
+<td><code>LINEPROTO</code></td>
+<td>The part of IOS that raised it</td>
+</tr>
+<tr>
+<td>Severity</td>
+<td><code>5</code></td>
+<td>0 (emergency) to 7 (debugging); lower is more serious</td>
+</tr>
+<tr>
+<td>Mnemonic</td>
+<td><code>UPDOWN</code></td>
+<td>Short code for the event</td>
+</tr>
+<tr>
+<td>Description</td>
+<td><code>Line protocol on Interface …</code></td>
+<td>Human-readable detail</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Messages worth recognising:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Message</th>
+<th>Points to</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%LINK-3-UPDOWN</code> / <code>%LINEPROTO-5-UPDOWN</code></td>
+<td>Physical link / line protocol changed state</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>%CDP-4-DUPLEX_MISMATCH</code></td>
+<td>Duplex mismatch with the neighbor</td>
+<td>1, 8</td>
+</tr>
+<tr>
+<td><code>%CDP-4-NATIVE_VLAN_MISMATCH</code></td>
+<td>Native VLAN differs on a trunk</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>%PM-4-ERR_DISABLE</code></td>
+<td>Port err-disabled (BPDU guard, port security, channel misconfiguration)</td>
+<td>6, 9, 23</td>
+</tr>
+<tr>
+<td><code>%SPANTREE-2-BLOCK_BPDUGUARD</code>, <code>%SPANTREE-2-ROOTGUARD_BLOCK</code></td>
+<td>STP protection acted</td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>%SW_MATM-4-MACFLAP_NOTIF</code></td>
+<td>A MAC address moving between ports: likely a loop</td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>%IP-4-DUPADDR</code></td>
+<td>Duplicate IP address on the segment</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>%OSPF-5-ADJCHG</code></td>
+<td>OSPF neighbor state changed</td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>%HSRP-5-STATECHANGE</code></td>
+<td>HSRP role changed</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>%SYS-5-CONFIG_I</code></td>
+<td>Someone changed the configuration — and who</td>
+<td>18</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Useful logging settings</strong> (global configuration): <code>service timestamps log datetime msec</code> (real dates in messages), <code>logging buffered 16384 informational</code> (bigger buffer), and on the console line <code>logging synchronous</code> (messages no longer interrupt your typing).</p>
+<h3 id="155-ping">15.5 Ping</h3>
+<p><code>ping</code> sends <strong>ICMP Echo Request</strong> (type 8) messages and waits for <strong>Echo Reply</strong> (type 0). A reply proves the whole path works <strong>in both directions</strong> at Layer 3.</p>
+<pre><code>DSW1# ping 10.10.40.11
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.40.11, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/1/2 ms
+</code></pre>
+<p>The first <code>.</code> is normal: the router was waiting for an <strong>ARP</strong> reply before it could send the first packet.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>IOS symbol</th>
+<th>Meaning</th>
+<th>Usual cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!</code></td>
+<td>Echo Reply received</td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Timed out</td>
+<td>No route on the way <strong>or the way back</strong>, a filter dropping silently, host down, ARP pending (first packet)</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>ICMP Destination Unreachable received</td>
+<td>A router on the path has no route, or an ACL rejected it</td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td>Source quench</td>
+<td>Congestion (rare today)</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>Could not fragment</td>
+<td>Packet too big with DF set: an MTU problem</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>Unknown packet type received</td>
+<td>Unexpected ICMP reply</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>Packet lifetime exceeded</td>
+<td>TTL expired: a routing loop</td>
+</tr>
+</tbody>
+</table></div>
+<p>Windows prints <code>Reply from …</code>, <code>Request timed out.</code>, or <code>Reply from 10.0.0.1: Destination host unreachable.</code> — the last one comes from a router, not the target, and tells you which router gave up.</p>
+<h3 id="156-extended-ping">15.6 Extended ping</h3>
+<p>A plain ping from a router uses the <strong>exit interface's address</strong> as the source. That hides return-path problems: the far end may know how to reach the link subnet but not your LANs (Chapter 11). <strong>Extended ping</strong> lets you choose the source, size, count and other options.</p>
+<p><strong>Interactive form</strong> (privileged EXEC, type <code>ping</code> with no address):</p>
+<pre><code>DSW2# ping
+Protocol [ip]:
+Target IP address: 10.10.40.11
+Repeat count [5]: 20
+Datagram size [100]: 1500
+Timeout in seconds [2]:
+Extended commands [n]: y
+Source address or interface: vlan 10
+Type of service [0]:
+Set DF bit in IP header? [no]: yes
+Validate reply data? [no]:
+Data pattern [0x0000ABCD]:
+Loose, Strict, Record, Timestamp, Verbose[none]:
+Sweep range of sizes [n]:
+Sending 20, 1500-byte ICMP Echos to 10.10.40.11, timeout is 2 seconds:
+Packet sent with a source address of 10.10.10.3
+Packet sent with the DF bit set
+!!!!!!!!!!!!!!!!!!!!
+Success rate is 100 percent (20/20), round-trip min/avg/max = 1/2/4 ms
+</code></pre>
+<p><strong>One-line form</strong> (same result): <code>ping 10.10.40.11 source vlan 10 repeat 20 size 1500 df-bit</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Why you would change it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Source address or interface</strong></td>
+<td>Test the return route to a specific LAN — the most important option</td>
+</tr>
+<tr>
+<td>Repeat count</td>
+<td>Catch intermittent loss (100 or 1000 pings)</td>
+</tr>
+<tr>
+<td>Datagram size + <strong>DF bit</strong></td>
+<td>Find MTU problems: large DF packets fail with <code>M</code> while small ones succeed</td>
+</tr>
+<tr>
+<td>Sweep range of sizes</td>
+<td>Find the exact largest size that passes</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>Slow links (satellite, congested WAN)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Reading a pair of results.</strong> From DSW2, <code>ping 10.10.40.11</code> succeeds but <code>ping 10.10.40.11 source vlan 10</code> fails: the printer can reach DSW2's VLAN 40 address (same subnet) but cannot answer a VLAN 10 address — so its <strong>default gateway</strong> is wrong or missing. Lab 15.1 uses exactly this test.</p>
+<h3 id="157-traceroute">15.7 Traceroute</h3>
+<p>Ping says <em>whether</em> a destination answers; <strong>traceroute</strong> shows <em>the path</em> and where it stops. It relies on the TTL field (<a class="figref" href="#fig-15-2">Figure 15.2</a>):</p>
+<figure class="fig" id="fig-15-2"><button class="zoom" aria-label="Enlarge figure 15.2"><img src="assets/figures/ch15/fig-15-02-traceroute-ttl.svg" alt="Figure 15.2 — How traceroute discovers each hop with rising TTL values" loading="lazy"></button><figcaption><a class="fignum" href="#fig-15-2">Figure 15.2</a> How traceroute discovers each hop with rising TTL values</figcaption></figure>
+
+<p><a class="figref" href="#fig-15-2">Figure 15.2</a> runs top to bottom in time. Each probe travels one router further than the last before its TTL runs out, and the router where it dies reveals itself in the reply.</p>
+<ol>
+<li>The source sends probes with <strong>TTL 1</strong>. The first router decrements TTL to 0, drops the probe and returns <strong>ICMP Time Exceeded</strong> from its own address — that is hop 1.</li>
+<li>Probes with <strong>TTL 2</strong> reach the second router, which returns Time Exceeded — hop 2.</li>
+<li>TTL keeps rising until a probe reaches the <strong>destination</strong>, which answers differently (ICMP Port Unreachable for UDP probes, Echo Reply for ICMP probes) and the trace ends.</li>
+<li>Each hop is normally probed <strong>three</strong> times, so you see three round-trip times per line.</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Implementation</th>
+<th>Probe type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cisco IOS <code>traceroute</code></td>
+<td>UDP to high ports (starting at 33434)</td>
+</tr>
+<tr>
+<td>Linux / macOS <code>traceroute</code></td>
+<td>UDP by default (<code>-I</code> for ICMP)</td>
+</tr>
+<tr>
+<td>Windows <code>tracert</code></td>
+<td>ICMP Echo Request</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code>C:\&gt; tracert 192.0.2.8
+Tracing route to 192.0.2.8 over a maximum of 30 hops
+  1     1 ms    &lt;1 ms    &lt;1 ms  10.10.10.2
+  2     1 ms     1 ms     1 ms  10.0.0.1
+  3     2 ms     1 ms     1 ms  192.0.2.8
+Trace complete.
+</code></pre>
+<p>Note hop 1: the <strong>real</strong> address of DSW1 (10.10.10.2), not the HSRP virtual IP — the Active router answers from its own interface address.</p>
+<pre><code>DSW1# traceroute 10.20.20.1
+Type escape sequence to abort.
+Tracing the route to 10.20.20.1
+  1 10.0.0.1 1 msec 1 msec 0 msec
+  2 198.51.100.1 1 msec 1 msec 1 msec
+  3 198.51.100.2 2 msec 1 msec 1 msec
+  4 198.51.100.1 2 msec 2 msec 1 msec
+  5 198.51.100.2 2 msec 2 msec 2 msec
+  ...
+</code></pre>
+<p>The same two addresses alternating is a <strong>routing loop</strong>: R1 sends 10.20.20.0/24 to the ISP by its default route, and the ISP sends it back by its 10.0.0.0/8 route. Neither has a specific route, so the packet bounces until TTL expires.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Traceroute shows</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>No reply within the timeout for that probe</td>
+</tr>
+<tr>
+<td><code>* * *</code> from some hop onward</td>
+<td>The path stops there: the next router has no route, a filter drops probes, or replies cannot get back</td>
+</tr>
+<tr>
+<td><code>!H</code> / <code>!N</code> / <code>!P</code></td>
+<td>Host / network / protocol unreachable returned</td>
+</tr>
+<tr>
+<td><code>!A</code></td>
+<td>Administratively prohibited — an ACL rejected it (Chapter 20)</td>
+</tr>
+<tr>
+<td>Repeating addresses</td>
+<td>Routing loop</td>
+</tr>
+<tr>
+<td>Final hop never reached, but ping works</td>
+<td>Probes (UDP high ports) filtered while ICMP Echo is allowed</td>
+</tr>
+</tbody>
+</table></div>
+<p>Traceroute shows the <strong>forward</strong> path only. The return path may differ (asymmetric routing), so a stop at hop <em>n</em> can also mean hop <em>n</em> cannot route its Time Exceeded <strong>back</strong> to you.</p>
+<h3 id="158-packet-capture-output">15.8 Packet capture output</h3>
+<p>When show commands disagree with what users report, a <strong>packet capture</strong> shows exactly what is on the wire. You must be able to read capture output; <a class="figref" href="#fig-15-3">Figure 15.3</a> walks through one.</p>
+<p><strong>Ways to capture:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wireshark / tcpdump on a host</td>
+<td>Capture on the PC's own NIC</td>
+<td>Sees only that host's traffic (and broadcasts)</td>
+</tr>
+<tr>
+<td><strong>SPAN</strong> (port mirroring) on a switch</td>
+<td><code>monitor session 1 source interface gi1/0/5 both</code> + <code>monitor session 1 destination interface gi1/0/24</code> (global configuration)</td>
+<td>Copies a port's or VLAN's traffic to a port where a capture PC listens</td>
+</tr>
+<tr>
+<td>IOS XE <strong>Embedded Packet Capture</strong></td>
+<td><code>monitor capture CAP interface g0/0/0 both match any</code> → <code>monitor capture CAP start</code> → <code>show monitor capture CAP buffer brief</code> (privileged EXEC)</td>
+<td>Captures on the router itself; syntax varies by release</td>
+</tr>
+<tr>
+<td>Packet Tracer <strong>Simulation mode</strong></td>
+<td>Event List, filter by protocol, click a packet to see each layer</td>
+<td>Packet Tracer's stand-in for a capture</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code>No. Time      Source          Destination     Protocol Info
+1   0.000000  0050.7966.6801  Broadcast       ARP      Who has 10.10.10.1? Tell 10.10.10.11
+2   0.000412  0000.0c9f.f00a  0050.7966.6801  ARP      10.10.10.1 is at 0000.0c9f.f00a
+3   0.000530  10.10.10.11     192.0.2.8       ICMP     Echo (ping) request id=0x0001, seq=1, ttl=128
+4   0.002110  192.0.2.8       10.10.10.11     ICMP     Echo (ping) reply   id=0x0001, seq=1, ttl=253
+5   5.101000  10.10.10.11     10.10.40.11     TCP      49812 → 9100 [SYN] Seq=0
+6   5.102300  10.10.40.11     10.10.10.11     TCP      9100 → 49812 [RST, ACK] Seq=1 Ack=1
+7   9.800000  10.10.10.11     10.10.40.11     TCP      49813 → 631 [SYN] Seq=0
+8   9.801100  10.10.40.11     10.10.10.11     TCP      631 → 49813 [SYN, ACK] Seq=0 Ack=1
+9   9.801300  10.10.10.11     10.10.40.11     TCP      49813 → 631 [ACK] Seq=1 Ack=1
+</code></pre>
+<p>(Wireshark shows MAC addresses with vendor names such as <code>Cisco_9f:f0:0a</code>; the layout here is simplified.)</p>
+<figure class="fig" id="fig-15-3"><button class="zoom" aria-label="Enlarge figure 15.3"><img src="assets/figures/ch15/fig-15-03-reading-a-capture.svg" alt="Figure 15.3 — Reading the capture above: four conversations and what each proves" loading="lazy"></button><figcaption><a class="fignum" href="#fig-15-3">Figure 15.3</a> Reading the capture above: four conversations and what each proves</figcaption></figure>
+
+<p><a class="figref" href="#fig-15-3">Figure 15.3</a> groups the nine frames into conversations, each with its verdict. The amber pair is the one that matters for a "cannot print" ticket: the network works, the printer's raw-print service on port 9100 does not.</p>
+<p><strong>Patterns to recognise:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>You see</th>
+<th>It means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ARP request, no reply</td>
+<td>Target not on this subnet/VLAN, down, or wrong VLAN</td>
+</tr>
+<tr>
+<td>ARP reply with 0000.0c9f.fXXX / 0000.0c07.acXX</td>
+<td>The gateway is an HSRP virtual IP (Chapter 13)</td>
+</tr>
+<tr>
+<td>Echo request, no reply</td>
+<td>Path or return path broken, or ICMP filtered</td>
+</tr>
+<tr>
+<td>TTL in a reply lower than expected</td>
+<td>Count the hops: 255 → 253 means two routers decremented it</td>
+</tr>
+<tr>
+<td>TCP SYN → <strong>RST</strong></td>
+<td>Host reachable, but <strong>nothing listens</strong> on that port: an application issue, not a network one</td>
+</tr>
+<tr>
+<td>TCP SYN repeated, no answer</td>
+<td>Filtered (ACL, firewall) or no route back</td>
+</tr>
+<tr>
+<td>SYN, SYN-ACK, ACK</td>
+<td>Connection established (three-way handshake)</td>
+</tr>
+<tr>
+<td>DHCP Discover repeated, no Offer</td>
+<td>DHCP problem (Chapter 14)</td>
+</tr>
+<tr>
+<td>Many identical broadcasts per second</td>
+<td>Broadcast storm: a loop (Chapter 9)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="159-which-tool-finds-which-fault">15.9 Which tool finds which fault</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Fault</th>
+<th>First symptom</th>
+<th>Tool that proves it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cable unplugged / bad</td>
+<td><code>down/down</code></td>
+<td><code>show ip interface brief</code>, <code>show interfaces status</code></td>
+</tr>
+<tr>
+<td>Port err-disabled</td>
+<td><code>err-disabled</code> status</td>
+<td><code>show interfaces status err-disabled</code>, <code>show logging</code></td>
+</tr>
+<tr>
+<td>Host in the wrong VLAN</td>
+<td>Wrong subnet from DHCP, or no address</td>
+<td><code>show vlan brief</code>, <code>show mac address-table address &lt;mac&gt;</code></td>
+</tr>
+<tr>
+<td>VLAN missing on a trunk</td>
+<td>Hosts in one VLAN cannot cross switches</td>
+<td><code>show interfaces trunk</code> (allowed / forwarding lists)</td>
+</tr>
+<tr>
+<td>Host's gateway wrong</td>
+<td>Same-subnet pings work, other subnets fail</td>
+<td><code>ipconfig /all</code>; <strong>extended ping</strong> from the far side</td>
+</tr>
+<tr>
+<td>Route missing on the return path</td>
+<td>Ping from the router works, from the LAN fails</td>
+<td><strong>Extended ping</strong> with <code>source</code>; <code>show ip route</code> on each hop</td>
+</tr>
+<tr>
+<td>Routing loop</td>
+<td><code>&amp;</code> / TTL expired; traceroute repeats hops</td>
+<td><strong>traceroute</strong>, <code>show ip route &lt;dest&gt;</code></td>
+</tr>
+<tr>
+<td>ACL blocking</td>
+<td><code>U</code> or <code>!A</code>, or silence for one protocol only</td>
+<td><code>show access-lists</code> counters (Chapter 20), capture</td>
+</tr>
+<tr>
+<td>Application not listening</td>
+<td>Ping works, TCP gets RST</td>
+<td><strong>Packet capture</strong></td>
+</tr>
+<tr>
+<td>Loop / broadcast storm</td>
+<td>High CPU, MAC flapping</td>
+<td><code>show processes cpu sorted</code>, <code>show logging</code> (<code>MACFLAP</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1510-packet-tracer-lab-151--four-trouble-tickets-advanced">15.10 Packet Tracer Lab 15.1 — Four trouble tickets (Advanced)</h3>
+<p><strong>Objective:</strong> 2.4. <strong>Start from:</strong> your Lab 14.1 file (<a class="figref" href="chapter-14.html#fig-14-4">Figure 14.4</a>). <strong>Host ports</strong> (from earlier labs): PC1 SW1 Fa0/1, PC2 SW1 Fa0/2, PC3 SW2 Fa0/1, Printer1 SW2 Fa0/2.</p>
+<p>Ask a classmate to apply the faults below without telling you which ticket each belongs to, or apply them yourself, close the file, and come back the next day. Then work each ticket with the method in 15.2 and record: symptom, the commands you ran, the evidence, the cause, the fix and the verification.</p>
+<pre><code>! Fault set for Lab 15.1 (instructor or classmate only)
+! SW2
+interface fastethernet0/1
+ switchport access vlan 30
+! Printer1 (Desktop &gt; IP Configuration): default gateway 10.10.40.254
+! R1
+no ip route 10.10.0.0 255.255.0.0 10.0.0.2
+ip route 10.10.0.0 255.255.255.0 10.0.0.2
+! SW1: no shutdown Fa0/3, then cable a spare 2960 switch to it
+</code></pre>
+<p><strong>The tickets, as users report them</strong></p>
+<ol>
+<li><em>"PC3 has a strange address and cannot reach the file server in VLAN 10."</em></li>
+<li><em>"Nobody in Staff can print, but the printer's own screen says its network is fine."</em></li>
+<li><em>"Since this morning nobody reaches the Internet, and new PCs get no address at all."</em></li>
+<li><em>"The network port in the meeting room is dead."</em></li>
+</ol>
+<p><strong>Simulation-mode capture task:</strong> before fixing ticket 2, switch to Simulation, filter on ARP and ICMP, and ping Printer1 from PC1. Open the Echo Request at Printer1 and then Printer1's outgoing frame: note which MAC address Printer1 tries to resolve (its gateway, 10.10.40.254, which nothing owns).</p>
+<p><strong>Answer key (hide until done)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ticket</th>
+<th>Evidence</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>PC3 <code>ipconfig</code> shows 10.10.30.x; SW2 <code>show vlan brief</code> lists Fa0/1 in VLAN 30</td>
+<td>Access VLAN wrong</td>
+<td><code>switchport access vlan 10</code>, then renew PC3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>From DSW2: <code>ping 10.10.40.11</code> succeeds, <code>ping 10.10.40.11 source vlan 10</code> fails; Printer1 settings show gateway .254</td>
+<td>Printer's default gateway wrong, so it cannot answer other subnets</td>
+<td>Gateway 10.10.40.1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>PC1 <code>tracert 192.0.2.8</code> stops after hop 1 (<code>* * *</code> from hop 2); R1 <code>show ip route 10.10.10.11</code> matches only the default route to the ISP; DHCP renewals fail because R1's Offers to giaddr 10.10.10.2 also follow that default</td>
+<td>R1 lost its route back to most campus subnets (/24 covers only 10.10.0.0–10.10.0.255)</td>
+<td>Restore <code>ip route 10.10.0.0 255.255.0.0 10.0.0.2</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>SW1 <code>show logging</code>: <code>%SPANTREE-2-BLOCK_BPDUGUARD</code> and <code>%PM-4-ERR_DISABLE</code> on Fa0/3; <code>show interfaces status</code> shows err-disabled</td>
+<td>BPDU guard (Lab 9.1) stopped a user's switch</td>
+<td>Remove the switch, <code>shutdown</code> / <code>no shutdown</code> Fa0/3</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ticket 3 is the instructive one: the forward path works (hop 1 answers), so the clue is <strong>which device cannot route back</strong>. Extended ping from R1 sourced from 10.0.0.1 to 10.10.10.11 fails the same way.</p>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Each ticket documented with symptom, commands, evidence, cause, fix, verification</li>
+<li>[ ] Extended ping used to prove ticket 2 without touching the printer first</li>
+<li>[ ] Traceroute used to locate ticket 3</li>
+<li>[ ] Logs used to explain ticket 4</li>
+<li>[ ] Simulation-mode capture shows the printer ARPing for the wrong gateway</li>
+</ul>
+<h3 id="1511-lab-152--tool-drills-intermediate">15.11 Lab 15.2 — Tool drills (Intermediate)</h3>
+<p>On the repaired Lab 14.1 network:</p>
+<ol>
+<li><strong>Ping symbols.</strong> From PC1, <code>ping 10.10.77.1</code> (an address that exists nowhere). Explain the result. <em>(DSW1 sends it to R1, R1 to the ISP by its default route, and the ISP back to R1 by its 10.0.0.0/8 route: a loop, so PC1 reports</em> <code>TTL expired in transit</code><em>; IOS would show</em> <code>&amp;</code><em>.)</em></li>
+<li><strong>Traceroute a loop.</strong> From DSW1, <code>traceroute 10.10.77.1</code>, and identify the two addresses that repeat.</li>
+<li><strong>Return path.</strong> From DSW2, run <code>ping 192.0.2.8</code>, then <code>ping 192.0.2.8 source loopback0</code>. Predict each result first from R1's routing table: R1 can return traffic only to campus addresses it has routes for (10.10.0.0/16 from Lab 5.1, plus whatever you added in Lab 10.1). If the loopback-sourced ping fails, add one summary route on R1, <code>ip route 10.0.0.0 255.0.0.0 10.0.0.2</code>, test again, and explain why R1's connected 10.0.0.0/30 still wins for its own link (longest match, Chapter 10).</li>
+<li><strong>Logs.</strong> On SW2, <code>shutdown</code> then <code>no shutdown</code> Fa0/24, then <code>show logging | include UPDOWN</code> and read the four messages (link and line protocol, down then up).</li>
+<li><strong>Device health.</strong> On DSW1, read <code>show version</code> and record the uptime, IOS version and last reload reason.</li>
+</ol>
+<h3 id="1512-chapter-15-summary-notes-exam-revision">15.12 Chapter 15 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Method:</strong> define → gather facts → compare with baseline → hypothesis → change one thing → verify → document. <strong>Divide and conquer</strong> starts with ping at Layer 3.</li>
+<li><strong>Device health:</strong> <code>show version</code> (uptime, reload reason, image), <code>show processes cpu sorted</code>, <code>show environment</code>. Filter with <code>| include</code>, <code>| section</code>, <code>| begin</code>, <code>| exclude</code>.</li>
+<li><strong>Logs:</strong> <code>show logging</code>; format <code>timestamp %FACILITY-SEVERITY-MNEMONIC: text</code>; <code>terminal monitor</code> for SSH sessions. Know UPDOWN, ERR_DISABLE, BPDUGUARD, MACFLAP, DUPADDR, ADJCHG, STATECHANGE, CONFIG_I.</li>
+<li><strong>Ping symbols:</strong> <code>!</code> reply, <code>.</code> timeout, <code>U</code> unreachable, <code>Q</code> source quench, <code>M</code> cannot fragment, <code>?</code> unknown, <code>&amp;</code> TTL exceeded. First <code>.</code> = ARP.</li>
+<li><strong>Extended ping:</strong> choose <strong>source</strong>, repeat, size, DF bit, sweep. One line: <code>ping &lt;dst&gt; source &lt;int|ip&gt; repeat &lt;n&gt; size &lt;n&gt; df-bit</code>. Proves return routes and MTU.</li>
+<li><strong>Traceroute:</strong> TTL 1, 2, 3…; Time Exceeded names each hop; IOS/Linux use UDP high ports, Windows ICMP. <code>*</code> = timeout; repeating hops = loop; <code>!A</code> = ACL; forward path only.</li>
+<li><strong>Captures:</strong> SPAN, Embedded Packet Capture, Wireshark, Packet Tracer Simulation. SYN→RST = nothing listening; SYN with no reply = filtered or no route back.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"A successful ping from the router proves users can reach it"</td>
+<td>It used the router's link address; test with <code>source</code> the users' subnet</td>
+</tr>
+<tr>
+<td>"The first <code>.</code> in a ping means packet loss"</td>
+<td>Usually the ARP wait</td>
+</tr>
+<tr>
+<td>"Traceroute shows the return path"</td>
+<td>It shows the forward path only</td>
+</tr>
+<tr>
+<td>"<code>* * *</code> means that router is down"</td>
+<td>It may simply not reply to probes, or its replies cannot return</td>
+</tr>
+<tr>
+<td>"A TCP RST means the network is broken"</td>
+<td>The SYN arrived; the host refused the port</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1513-practice-questions--chapter-15">15.13 Practice questions — Chapter 15</h3>
+<p><strong>1. (Ping symbols)</strong> A ping from a router prints <code>UUUUU</code>. What does that mean?</p>
+<p><strong>2. (Ping symbols)</strong> Which symbol shows a packet too large to forward with DF set?</p>
+<p>A. <code>!</code>  B. <code>.</code>  C. <code>M</code>  D. <code>&amp;</code></p>
+<p><strong>3. (Extended ping)</strong> Why use <code>ping 10.10.40.11 source vlan 10</code> on DSW2 instead of a plain ping?</p>
+<p><strong>4. (Traceroute)</strong> Explain how traceroute learns the address of hop 2.</p>
+<p><strong>5. (Traceroute output)</strong> A traceroute shows hops 1 and 2, then <code>* * *</code> until the limit. Give two possible causes.</p>
+<p><strong>6. (Traceroute output)</strong> A traceroute alternates between 198.51.100.1 and 198.51.100.2. What is happening?</p>
+<p><strong>7. (Logs)</strong> Interpret <code>%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to down</code> — facility, severity and meaning.</p>
+<p><strong>8. (Logs)</strong> You are connected by SSH and see no log messages while you shut an interface. Why, and how do you fix it?</p>
+<p><strong>9. (Capture)</strong> A capture shows <code>10.10.10.11 → 10.10.40.11 TCP [SYN]</code> three times, one second apart, with no reply. What does this suggest?</p>
+<p><strong>10. (Capture)</strong> The same SYN is answered by <code>[RST, ACK]</code>. What does that tell you?</p>
+<p><strong>11. (Device health)</strong> Which command shows how long a switch has been running and why it last restarted?</p>
+<p><strong>12. (Multiple response — choose two)</strong> Which approaches suit a problem where one web application fails but email and file sharing work?</p>
+<p>A. Top-down  B. Bottom-up starting at the cable  C. Compare with a working client  D. Replace the switch  E. Reload the router</p>
+<p><strong>13. (Filtering output)</strong> Write a command that shows only the running-configuration section for interface Vlan10.</p>
+<p><strong>14. (Evaluate an AI assistant)</strong> A user cannot reach a server. A network assistant reports: <em>"Ping from the core router to the server succeeds, so the network is fine and the problem must be the server."</em> What is missing from that conclusion?</p>
+<h3 id="1514-answer-key-with-explanations">15.14 Answer key with explanations</h3>
+<ol>
+<li>Each probe was answered by an <strong>ICMP Destination Unreachable</strong>: a router on the path has no route to the destination (or an ACL rejects it).</li>
+<li><strong>C.</strong> <code>M</code> = could not fragment. <code>!</code> success, <code>.</code> timeout, <code>&amp;</code> TTL exceeded.</li>
+<li>A plain ping uses DSW2's VLAN 40 address, which the printer can answer as a neighbor. Sourcing from VLAN 10 tests whether the printer can return traffic to <strong>another subnet</strong> — which depends on its default gateway (and on the routes back).</li>
+<li>It sends probes with <strong>TTL 2</strong>. Hop 1 decrements to 1 and forwards; hop 2 decrements to 0, drops the probe and returns ICMP <strong>Time Exceeded</strong> from its own address.</li>
+<li>The next router has no route onward; a firewall or ACL drops the probes or the ICMP replies; the next router cannot route its replies back to the source. (Also: devices configured not to send Time Exceeded.)</li>
+<li>A <strong>routing loop</strong>: each router points to the other for that destination, and the probe bounces until TTL expires.</li>
+<li>Facility <strong>LINEPROTO</strong>, severity <strong>5</strong> (notification). Layer 2 line protocol on Gi1/0/2 went down — check the cable, the far end, or keepalive problems.</li>
+<li>Log messages go to the console by default; a VTY session needs <code>terminal monitor</code> (privileged EXEC).</li>
+<li>The SYN gets no answer: it is <strong>filtered</strong> (ACL or firewall) or lost on the way, or the server's reply has <strong>no route back</strong>. The host may also be down.</li>
+<li>The network delivered the SYN and the host replied: the host is <strong>reachable but nothing is listening</strong> on that port (service stopped, wrong port).</li>
+<li><code>show version</code> (uptime and last reload reason).</li>
+<li><strong>A and C.</strong> Lower layers clearly work for other applications, so start at the application; comparing with a working client isolates client-specific settings. D and E are random changes.</li>
+<li><code>show running-config | section interface Vlan10</code>.</li>
+<li>The ping came from the <strong>router's own address</strong>, not from the user's subnet, so it proves neither the user's path nor the <strong>return route</strong> to the user's subnet, nor that the application port is reachable. Test from (or sourced from) the user's subnet, then check the port with a capture or a TCP test.</li>
+</ol>
+<h3 id="1515-chapter-15-figure-checklist">15.15 Chapter 15 figure checklist</h3>
+<p>All 3 figures were rendered, embedded beside the text they explain, and checked visually after rendering. None needed a drawing fix; one caption was corrected to match a figure's colour.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15.1</td>
+<td>Divide-and-conquer checks and commands by layer</td>
+<td>15.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>15.2</td>
+<td>How traceroute discovers each hop</td>
+<td>15.7</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>15.3</td>
+<td>Reading a packet capture</td>
+<td>15.8</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lab 15.1 reuses <a class="figref" href="chapter-14.html#fig-14-4">Figure 14.4</a></strong> as its topology. <strong>Shown as annotated command output instead of a drawing:</strong> <code>show logging</code>, ping, extended ping, traceroute and capture listings.</p>
+<h3 id="1516-chapter-15-progress-record">15.16 Chapter 15 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>2.4</strong> — troubleshooting Layer 2/Layer 3 connectivity and device operations with show commands and logs, ping, extended ping, traceroute and packet capture output. <strong>Domain 2 (Switching and Network Access) is now complete:</strong> 2.1–2.5.</p>
+<p><strong>Related objectives that reuse this chapter:</strong> 1.6 client troubleshooting (Chapter 17), 5.6 syslog (Chapter 25), and every later lab.</p>
+<p><strong>Next:</strong> Chapter 16 — <strong>1.5 Describe wireless principles</strong>: band and channel selection, RF characteristics, security protocols, causes of interference.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-14.html"><small>← Chapter 14</small>DHCPv4 client, server and relay</a><a class="pn next" href="chapter-16.html"><small>Chapter 16 →</small>Wireless principles</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#151-learning-objectives">15.1 Learning objectives</a>
+<a href="#152-a-troubleshooting-method">15.2 A troubleshooting method</a>
+<a href="#153-show-commands-for-connectivity-and-device-operations">15.3 Show commands for connectivity and device operations</a>
+<a href="#154-reading-logs-with-show-logging">15.4 Reading logs with show logging</a>
+<a href="#155-ping">15.5 Ping</a>
+<a href="#156-extended-ping">15.6 Extended ping</a>
+<a href="#157-traceroute">15.7 Traceroute</a>
+<a href="#158-packet-capture-output">15.8 Packet capture output</a>
+<a href="#159-which-tool-finds-which-fault">15.9 Which tool finds which fault</a>
+<a href="#1510-packet-tracer-lab-151--four-trouble-tickets-advanced">15.10 Packet Tracer Lab 15.1 — Four trouble tickets (Advanced)</a>
+<a href="#1511-lab-152--tool-drills-intermediate">15.11 Lab 15.2 — Tool drills (Intermediate)</a>
+<a href="#1512-chapter-15-summary-notes-exam-revision">15.12 Chapter 15 summary notes (exam revision)</a>
+<a href="#1513-practice-questions--chapter-15">15.13 Practice questions — Chapter 15</a>
+<a href="#1514-answer-key-with-explanations">15.14 Answer key with explanations</a>
+<a href="#1515-chapter-15-figure-checklist">15.15 Chapter 15 figure checklist</a>
+<a href="#1516-chapter-15-progress-record">15.16 Chapter 15 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

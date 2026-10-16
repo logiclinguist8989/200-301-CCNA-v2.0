@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 520" width="1160" height="520" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 19.2 — Software image upgrade workflow with hash verification</title>
+<desc id="d">Left to right along the top, then back along the middle row — the hash check is the gate</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#94a3b8"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d64040"/></marker>
+<marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="519" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 19.2</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Software image upgrade workflow with hash verification</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Left to right along the top, then back along the middle row — the hash check is the gate</text>
+<rect x="40.0" y="110.0" width="240.0" height="96.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="62.0" cy="134.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="62.0" y="138.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+<text x="82.0" y="139.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0f2540" text-anchor="start">Choose image</text>
+<text x="58.0" y="168.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">exact platform;</text>
+<text x="58.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">record SHA-512</text>
+<line x1="282.0" y1="158.0" x2="318.0" y2="158.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="320.0" y="110.0" width="240.0" height="96.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="342.0" cy="134.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="342.0" y="138.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+<text x="362.0" y="139.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0f2540" text-anchor="start">Check space</text>
+<text x="338.0" y="168.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">dir flash:</text>
+<text x="338.0" y="186.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">bytes free &gt; size</text>
+<line x1="562.0" y1="158.0" x2="598.0" y2="158.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="600.0" y="110.0" width="240.0" height="96.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="622.0" cy="134.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="622.0" y="138.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+<text x="642.0" y="139.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0f2540" text-anchor="start">Copy securely</text>
+<text x="618.0" y="168.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">copy scp://… flash:</text>
+<polygon points="980,103.0 1105.0,158 980,213.0 855.0,158" fill="#fdf1df" stroke="#d9861a" stroke-width="1.8" filter="url(#shadow)"/>
+<text x="980.0" y="154.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#7a4708" text-anchor="middle" xml:space="preserve">4  verify /sha512</text>
+<text x="980.0" y="170.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#7a4708" text-anchor="middle">matches Cisco&#x27;s hash?</text>
+<line x1="842.0" y1="158.0" x2="852.0" y2="158.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<path d="M920,190 C880,240 720,250 700,210" fill="none" stroke="#d64040" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#m1)"/>
+<text x="780.0" y="262.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#d64040" text-anchor="middle">mismatch → delete, copy again</text>
+<line x1="980.0" y1="213.0" x2="980.0" y2="288.0" stroke="#1f9d63" stroke-width="2.2" stroke-linecap="round" marker-end="url(#m2)"/>
+<text x="992.0" y="254.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#1f9d63" text-anchor="start">match</text>
+<rect x="860.0" y="292.0" width="260.0" height="96.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="882.0" cy="316.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="882.0" y="320.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">5</text>
+<text x="902.0" y="321.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0f2540" text-anchor="start">Point boot to it</text>
+<text x="878.0" y="350.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">boot system … or</text>
+<text x="878.0" y="368.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">install add … activate</text>
+<line x1="858.0" y1="340.0" x2="824.0" y2="340.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="560.0" y="292.0" width="260.0" height="96.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="582.0" cy="316.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="582.0" y="320.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">6</text>
+<text x="602.0" y="321.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0f2540" text-anchor="start">Back up config</text>
+<text x="578.0" y="350.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">copy run scp://…</text>
+<text x="578.0" y="368.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">maintenance window</text>
+<line x1="558.0" y1="340.0" x2="524.0" y2="340.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="260.0" y="292.0" width="260.0" height="96.0" rx="10" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="282.0" cy="316.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="282.0" y="320.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">7</text>
+<text x="302.0" y="321.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0f2540" text-anchor="start">Reload + confirm</text>
+<text x="278.0" y="350.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">show version</text>
+<text x="278.0" y="368.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">keep old image</text>
+<line x1="28" y1="461" x2="1132" y2="461" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="483" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">No valid image at boot drops the device to ROMMON (rommon 1 &gt;) — always check show boot before reloading.</text>
+<text x="28" y="502" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Install mode (Catalyst 9000): install add file flash:&lt;image&gt;.bin activate commit · Bundle mode: boot system flash:&lt;image&gt;.bin</text>
+<text x="1136" y="510" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 20 — IPv4 access control lists · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 20: IPv4 access control lists">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head purple">
+  <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
+  <h1><span class="num">Chapter 20</span>IPv4 access control lists</h1>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~20 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="20"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.6 Configure IPv4 access control lists (standard, extended, numbered, and named ACLs).</strong> ACLs are the basic packet filter on every Cisco router and Layer 3 switch, and they reappear in NAT (Chapter 21) and management security.</p>
+<h3 id="201-learning-objectives">20.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Explain how an ACL is processed: top-down, first match, implicit deny.</li>
+<li>Calculate and interpret wildcard masks, including <code>host</code> and <code>any</code>.</li>
+<li>Configure standard and extended ACLs, numbered and named, and choose where to apply them.</li>
+<li>Edit named ACLs with sequence numbers.</li>
+<li>Restrict VTY access with <code>access-class</code>.</li>
+<li>Verify ACLs with counters and troubleshoot common mistakes.</li>
+</ol>
+<h3 id="202-how-an-acl-works">20.2 How an ACL works</h3>
+<p>An <strong>access control list</strong> is an ordered list of <strong>access control entries (ACEs)</strong>, each a <code>permit</code> or <code>deny</code> with matching conditions. When a packet meets an interface with an ACL (<a class="figref" href="#fig-20-1">Figure 20.1</a>):</p>
+<ol>
+<li>The router compares the packet with the <strong>first</strong> ACE.</li>
+<li>If it matches, the router applies that ACE's action — permit or deny — and <strong>stops</strong>. Later lines are never checked.</li>
+<li>If it does not match, the router tries the next ACE.</li>
+<li>If no ACE matches, the packet hits the <strong>implicit <code>deny any</code></strong> at the end, which is invisible in the configuration.</li>
+</ol>
+<figure class="fig" id="fig-20-1"><button class="zoom" aria-label="Enlarge figure 20.1"><img src="assets/figures/ch20/fig-20-01-acl-processing.svg" alt="Figure 20.1 — ACL processing: top-down, first match, implicit deny" loading="lazy"></button><figcaption><a class="fignum" href="#fig-20-1">Figure 20.1</a> ACL processing: top-down, first match, implicit deny</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-20-1">Figure 20.1</a> a packet walks down the list until a line matches, then leaves to the right with that line's action. The dashed red box is the implicit deny that catches everything else.</p>
+<p><strong>Consequences:</strong></p>
+<ul>
+<li><strong>Order matters.</strong> Put specific entries before general ones: <code>deny host 10.10.30.25</code> after <code>permit 10.10.30.0 0.0.0.255</code> never matches.</li>
+<li>An ACL with only <code>deny</code> lines blocks <strong>everything</strong>; it needs at least one <code>permit</code>.</li>
+<li><strong>One ACL per interface, per direction, per protocol</strong> (one IPv4 inbound, one IPv4 outbound).</li>
+<li><strong>Inbound</strong> ACLs filter packets arriving on the interface, before routing. <strong>Outbound</strong> ACLs filter packets leaving it, after routing.</li>
+<li>An outbound ACL does <strong>not</strong> filter packets the router itself creates (for example its own pings or routing updates).</li>
+<li>Applying an ACL name that has no entries yet permits everything; once the first entry exists, the implicit deny takes effect.</li>
+</ul>
+<h3 id="203-wildcard-masks">20.3 Wildcard masks</h3>
+<p>ACLs match addresses with a <strong>wildcard mask</strong>: a 32-bit pattern where <strong>0 = this bit must match</strong> and <strong>1 = ignore this bit</strong> (<a class="figref" href="#fig-20-2">Figure 20.2</a>). It looks like an inverted subnet mask.</p>
+<figure class="fig" id="fig-20-2"><button class="zoom" aria-label="Enlarge figure 20.2"><img src="assets/figures/ch20/fig-20-02-wildcard-matching.svg" alt="Figure 20.2 — Matching two addresses against 10.10.30.0 0.0.0.255" loading="lazy"></button><figcaption><a class="fignum" href="#fig-20-2">Figure 20.2</a> Matching two addresses against 10.10.30.0 0.0.0.255</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-20-2">Figure 20.2</a> the highlighted wildcard octets are the ones that must match. 10.10.30.25 agrees in all three, so it matches; 10.10.40.11 differs in the third octet (red), so it does not.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Match</th>
+<th>Address + wildcard</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One host 10.10.40.11</td>
+<td>10.10.40.11 0.0.0.0</td>
+<td><code>host 10.10.40.11</code></td>
+</tr>
+<tr>
+<td>Subnet 10.10.30.0/24</td>
+<td>10.10.30.0 0.0.0.255</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Subnet 10.0.0.4/30</td>
+<td>10.0.0.4 0.0.0.3</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Campus 10.10.0.0/16</td>
+<td>10.10.0.0 0.0.255.255</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Every address</td>
+<td>0.0.0.0 255.255.255.255</td>
+<td><code>any</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Quick method:</strong> wildcard = 255.255.255.255 − subnet mask. For a /26 (255.255.255.192): 255 − 192 = 63 → <strong>0.0.0.63</strong>. For a /20 (255.255.240.0): <strong>0.0.15.255</strong>.</p>
+<p>Wildcards need not match subnet boundaries. <code>10.10.1.0 0.0.254.255</code> matches every <strong>odd</strong> third octet (10.10.1.x, 10.10.3.x …) because the lowest bit of the third octet must be 1 while the other bits there are ignored. You will rarely configure this, but you may be asked to interpret it.</p>
+<h3 id="204-standard-and-extended-numbered-and-named">20.4 Standard and extended, numbered and named</h3>
+<p>IOS has two ACL <strong>types</strong> and two ways to <strong>identify</strong> them. Any combination is allowed.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Standard</th>
+<th>Extended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matches on</td>
+<td><strong>Source IP address only</strong></td>
+<td>Protocol, source and destination address, source and destination port, and more</td>
+</tr>
+<tr>
+<td>Numbered ranges</td>
+<td><strong>1–99</strong> and <strong>1300–1999</strong></td>
+<td><strong>100–199</strong> and <strong>2000–2699</strong></td>
+</tr>
+<tr>
+<td>Named form</td>
+<td><code>ip access-list standard NAME</code></td>
+<td><code>ip access-list extended NAME</code></td>
+</tr>
+<tr>
+<td>Typical place</td>
+<td>Close to the <strong>destination</strong></td>
+<td>Close to the <strong>source</strong></td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>VTY access (<code>access-class</code>), NAT (Chapter 21), SNMP, simple filters</td>
+<td>Traffic policy between subnets and to services</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Numbered standard ACL</strong> — each line is a global command that starts with the number:</p>
+<pre><code>R1(config)# access-list 10 remark Management sources
+R1(config)# access-list 10 permit 10.10.99.0 0.0.0.255
+R1(config)# access-list 10 permit host 10.10.10.11
+</code></pre>
+<p>In a standard ACL an address with no wildcard means a single host, so <code>access-list 10 permit 10.10.10.11</code> is the same as <code>permit host 10.10.10.11</code>.</p>
+<p><strong>Numbered extended ACL:</strong></p>
+<pre><code>R1(config)# access-list 110 permit tcp 10.10.30.0 0.0.0.255 any eq 443
+R1(config)# access-list 110 deny ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255
+R1(config)# access-list 110 permit ip any any
+</code></pre>
+<p><strong>Named ACL</strong> — the name is self-documenting, and you enter a sub-mode where each line gets a <strong>sequence number</strong> (10, 20, 30 … unless you type your own):</p>
+<pre><code>DSW1(config)# ip access-list extended WIRELESS-IN
+DSW1(config-ext-nacl)# remark Wireless users: no management, printer by IPP only
+DSW1(config-ext-nacl)# 10 permit udp any any eq bootps
+DSW1(config-ext-nacl)# 20 deny ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255
+DSW1(config-ext-nacl)# 30 permit tcp 10.10.30.0 0.0.0.255 host 10.10.40.11 eq 631
+DSW1(config-ext-nacl)# 40 deny ip 10.10.30.0 0.0.0.255 10.10.40.0 0.0.0.255
+DSW1(config-ext-nacl)# 50 permit icmp 10.10.30.0 0.0.0.255 any
+DSW1(config-ext-nacl)# 60 permit ip 10.10.30.0 0.0.0.255 any
+</code></pre>
+<p>Names are case-sensitive: <code>wireless-in</code> and <code>WIRELESS-IN</code> are two different ACLs.</p>
+<h3 id="205-extended-ace-syntax-protocols-and-ports">20.5 Extended ACE syntax, protocols and ports</h3>
+<pre><code>{permit | deny} protocol  source source-wildcard [operator port]  destination dest-wildcard [operator port]  [established] [log]
+</code></pre>
+<ul>
+<li><strong>protocol:</strong> <code>ip</code> (any IPv4 packet), <code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>ospf</code>, <code>gre</code>, <code>esp</code>, or an IP protocol number.</li>
+<li><strong>operator:</strong> <code>eq</code> (equal), <code>neq</code> (not equal), <code>lt</code>, <code>gt</code>, <code>range 20 21</code>. Only <code>tcp</code> and <code>udp</code> lines can have ports.</li>
+<li><strong>Position matters:</strong> a port written after the <strong>source</strong> is a <strong>source port</strong>; after the <strong>destination</strong> it is a <strong>destination port</strong>. <code>permit tcp any eq 80 any</code> matches traffic <em>from</em> web servers, not <em>to</em> them.</li>
+<li><code>established</code> matches TCP segments with ACK or RST set (return traffic of a session started from the other side).</li>
+<li><code>log</code> sends a syslog message when the line matches (Chapter 25).</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Protocol and port</th>
+<th>IOS keyword</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FTP</td>
+<td>TCP 20, 21</td>
+<td><code>ftp-data</code>, <code>ftp</code></td>
+</tr>
+<tr>
+<td>SSH / SCP / SFTP</td>
+<td>TCP 22</td>
+<td>— (use <code>22</code>)</td>
+</tr>
+<tr>
+<td>Telnet</td>
+<td>TCP 23</td>
+<td><code>telnet</code></td>
+</tr>
+<tr>
+<td>SMTP</td>
+<td>TCP 25</td>
+<td><code>smtp</code></td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>UDP 53 (and TCP 53)</td>
+<td><code>domain</code></td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td>UDP 67 server, UDP 68 client</td>
+<td><code>bootps</code>, <code>bootpc</code></td>
+</tr>
+<tr>
+<td>TFTP</td>
+<td>UDP 69</td>
+<td><code>tftp</code></td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td>TCP 80</td>
+<td><code>www</code></td>
+</tr>
+<tr>
+<td>NTP</td>
+<td>UDP 123</td>
+<td><code>ntp</code></td>
+</tr>
+<tr>
+<td>SNMP</td>
+<td>UDP 161, 162 (traps)</td>
+<td><code>snmp</code>, <code>snmptrap</code></td>
+</tr>
+<tr>
+<td>HTTPS</td>
+<td>TCP 443</td>
+<td><code>443</code></td>
+</tr>
+<tr>
+<td>Syslog</td>
+<td>UDP 514</td>
+<td><code>syslog</code></td>
+</tr>
+<tr>
+<td>IPP printing</td>
+<td>TCP 631</td>
+<td><code>631</code></td>
+</tr>
+<tr>
+<td>ICMP (ping)</td>
+<td>IP protocol 1, no ports</td>
+<td><code>icmp</code> (<code>echo</code>, <code>echo-reply</code> as types)</td>
+</tr>
+<tr>
+<td>OSPF</td>
+<td>IP protocol 89, no ports</td>
+<td><code>ospf</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>IOS shows a keyword in <code>show access-lists</code> even if you typed the number (for example <code>eq 80</code> appears as <code>eq www</code>).</p>
+<h3 id="206-where-to-place-an-acl-and-how-to-apply-it">20.6 Where to place an ACL and how to apply it</h3>
+<p><strong>Placement rules:</strong></p>
+<ul>
+<li><strong>Extended ACL — close to the source.</strong> It can match exactly the unwanted traffic, so drop it before it crosses the network.</li>
+<li><strong>Standard ACL — close to the destination.</strong> It only sees the source; placed near the source it would block that source from <em>every</em> destination.</li>
+<li>Pick the <strong>direction</strong> from the router's point of view: <strong>in</strong> = arriving on that interface, <strong>out</strong> = leaving it.</li>
+</ul>
+<p><strong>Applying to an interface</strong> (one IPv4 ACL per interface per direction):</p>
+<pre><code>DSW1(config)# interface vlan 30
+DSW1(config-if)# ip access-group WIRELESS-IN in
+</code></pre>
+<p>On a Layer 3 switch an ACL on an SVI filters traffic <strong>routed</strong> into or out of that VLAN. Traffic between two hosts in the same VLAN is switched and never passes the SVI ACL.</p>
+<p>An ACL that does not exist yet can be applied without error; it permits everything until its first line is created. <code>no ip access-group WIRELESS-IN in</code> removes it from the interface; <code>no ip access-list extended WIRELESS-IN</code> deletes the list itself.</p>
+<h3 id="207-editing-acls-with-sequence-numbers">20.7 Editing ACLs with sequence numbers</h3>
+<p>Named ACLs (and numbered ACLs entered with <code>ip access-list standard 10</code> or <code>ip access-list extended 110</code>) can be edited line by line:</p>
+<pre><code>DSW1(config)# ip access-list extended WIRELESS-IN
+DSW1(config-ext-nacl)# 15 permit udp 10.10.30.0 0.0.0.255 host 10.10.99.53 eq domain
+DSW1(config-ext-nacl)# no 50
+DSW1(config-ext-nacl)# exit
+DSW1(config)# ip access-list resequence WIRELESS-IN 10 10
+</code></pre>
+<ul>
+<li>Line <strong>15</strong> is inserted <strong>between 10 and 20</strong>, so DNS to the future server (Chapter 22) is permitted before line 20 denies VLAN 99.</li>
+<li><code>no 50</code> removes only that line.</li>
+<li><code>resequence</code> renumbers to 10, 20, 30 … so you have gaps for later inserts.</li>
+</ul>
+<p><strong>Trap:</strong> in global mode, <code>no access-list 110 deny ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255</code> deletes the <strong>whole ACL 110</strong>, not one line. If the ACL is applied to an interface, the interface then has no filter at all. Edit numbered ACLs through <code>ip access-list extended 110</code> instead.</p>
+<h3 id="208-protecting-vty-lines-with-access-class">20.8 Protecting VTY lines with access-class</h3>
+<p>An ACL on an interface filters traffic <strong>through</strong> the device; it is awkward for filtering management access <strong>to</strong> the device, which can arrive on any of its addresses. <code>access-class</code> applies a (normally standard) ACL to the <strong>VTY lines</strong>, so it covers SSH to every IP address of the device:</p>
+<pre><code>DSW1(config)# ip access-list standard MGMT-ONLY
+DSW1(config-std-nacl)# 10 permit 10.10.99.0 0.0.0.255
+DSW1(config-std-nacl)# 20 permit host 10.10.10.11
+DSW1(config-std-nacl)# exit
+DSW1(config)# line vty 0 15
+DSW1(config-line)# access-class MGMT-ONLY in
+</code></pre>
+<ul>
+<li><code>access-class … in</code> filters <strong>incoming</strong> SSH/Telnet sessions by source address. (<code>access-class … out</code> filters sessions started <em>from</em> the device, which is rarely used.)</li>
+<li>A refused connection is closed immediately; the user sees "connection refused" before any login prompt.</li>
+<li><strong>Do not lock yourself out:</strong> check that the address you are connected from is permitted before you apply it, and keep console access.</li>
+</ul>
+<h3 id="209-verification-and-troubleshooting">20.9 Verification and troubleshooting</h3>
+<p>The output below is the original six-line ACL from 20.4, before the edits shown in 20.7.</p>
+<pre><code>DSW1# show access-lists WIRELESS-IN
+Extended IP access list WIRELESS-IN
+    10 permit udp any any eq bootps (4 matches)
+    20 deny ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255 (3 matches)
+    30 permit tcp 10.10.30.0 0.0.0.255 host 10.10.40.11 eq 631
+    40 deny ip 10.10.30.0 0.0.0.255 10.10.40.0 0.0.0.255 (4 matches)
+    50 permit icmp 10.10.30.0 0.0.0.255 any (8 matches)
+    60 permit ip 10.10.30.0 0.0.0.255 any (112 matches)
+
+DSW1# show ip interface vlan 30 | include access list
+  Outgoing access list is not set
+  Inbound  access list is WIRELESS-IN
+</code></pre>
+<p><strong>Reading it:</strong> the <strong>match counters</strong> show which line each packet stopped at. Line 30 has no matches yet (nobody has printed); line 40 has 4 (the pings to the printer you tested). Counters for the implicit deny are not shown — packets that match no line are dropped silently. To count them, add your own last line <code>deny ip any any log</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show access-lists [name]</code></td>
+<td>All IPv4 (and IPv6) ACLs with sequence numbers and match counters</td>
+</tr>
+<tr>
+<td><code>show ip access-lists [name]</code></td>
+<td>IPv4 ACLs only</td>
+</tr>
+<tr>
+<td><code>show ip interface &lt;if&gt;</code></td>
+<td>Which ACL is applied, and in which direction</td>
+</tr>
+<tr>
+<td><code>show running-config \| section vty</code></td>
+<td><code>access-class</code> on the VTY lines</td>
+</tr>
+<tr>
+<td><code>clear access-list counters [name]</code></td>
+<td>Reset counters before a test</td>
+</tr>
+<tr>
+<td><code>log</code> keyword on an ACE</td>
+<td>Syslog such as <code>%SEC-6-IPACCESSLOGP: list WIRELESS-IN denied tcp 10.10.30.12(51234) -&gt; 10.10.99.2(22), 1 packet</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Troubleshooting method:</strong> (1) confirm the ACL is applied to the right interface in the right direction; (2) clear the counters; (3) send the test traffic; (4) see which line's counter rises; (5) if none rises, the packet hit the implicit deny or never reached this interface.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Everything from the subnet blocked</td>
+<td>Only <code>deny</code> lines; implicit deny catches the rest</td>
+<td>Add the needed <code>permit</code> lines (often <code>permit ip any any</code> last)</td>
+</tr>
+<tr>
+<td>A deny line never matches</td>
+<td>A broader <code>permit</code> above it matches first</td>
+<td>Move the specific line above the general one (sequence numbers)</td>
+</tr>
+<tr>
+<td>ACL has no effect at all</td>
+<td>Not applied, applied to the wrong interface, or wrong direction</td>
+<td><code>show ip interface</code>; apply <code>in</code>/<code>out</code> correctly</td>
+</tr>
+<tr>
+<td>Hosts lose their DHCP lease after the ACL is applied</td>
+<td>No permit for UDP 67 before a deny</td>
+<td><code>permit udp any any eq bootps</code> near the top</td>
+</tr>
+<tr>
+<td>Too much is blocked; output shows a different address</td>
+<td>Wrong wildcard; IOS stored the address with the wildcard applied (for example 10.10.40.0 0.0.255.255 shows as 10.10.0.0 0.0.255.255)</td>
+<td>Recalculate the wildcard</td>
+</tr>
+<tr>
+<td>Web works one way only, or replies blocked</td>
+<td>Port written on the wrong side (source vs destination)</td>
+<td>Put the port after the destination for traffic to a server</td>
+</tr>
+<tr>
+<td>Policy disappears after a gateway failover</td>
+<td>ACL configured on only one HSRP/VRRP router</td>
+<td>Apply the same ACL on every router that can be the gateway</td>
+</tr>
+<tr>
+<td>Whole numbered ACL vanished</td>
+<td><code>no access-list &lt;n&gt; …</code> in global mode deleted all of it</td>
+<td>Re-create; edit numbered ACLs in <code>ip access-list</code> mode</td>
+</tr>
+<tr>
+<td>Locked out of SSH</td>
+<td><code>access-class</code> does not permit your source</td>
+<td>Console in and correct the ACL</td>
+</tr>
+<tr>
+<td>Routing neighbours drop after an ACL is applied</td>
+<td>Routing protocol packets hit the implicit deny</td>
+<td>Permit them (for example <code>permit ospf any any</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2010-lab-201--campus-security-policy-with-acls-intermediate">20.10 Lab 20.1 — Campus security policy with ACLs (Intermediate)</h3>
+<p><strong>Objective:</strong> 4.6. <strong>Start from:</strong> your Lab 19.1 file (campus with R1, DSW1/DSW2 running HSRP, SW1/SW2, PC1, PC2, PC3, Printer1, AAA-1, FILES, ISP). Any recent Packet Tracer accepts <code>ip access-group</code> on a 3650 SVI and <code>access-class</code> on VTY lines.</p>
+<p><strong>Policy to implement (<a class="figref" href="#fig-20-3">Figure 20.3</a>):</strong></p>
+<ol>
+<li>Wireless users (VLAN 30) must not reach the management VLAN 99 at all.</li>
+<li>Wireless users may reach Printer1 only for IPP printing (TCP 631); everything else to VLAN 40 is denied.</li>
+<li>Wireless users keep DHCP, ping and everything else (including the internet).</li>
+<li>Only VLAN 99 and the admin PC (PC1) may SSH to the switches.</li>
+</ol>
+<figure class="fig" id="fig-20-3"><button class="zoom" aria-label="Enlarge figure 20.3"><img src="assets/figures/ch20/fig-20-03-lab-20-1-policy.svg" alt="Figure 20.3 — Lab 20.1 policy: WIRELESS-IN on VLAN 30 and MGMT-ONLY on the VTY lines" loading="lazy"></button><figcaption><a class="fignum" href="#fig-20-3">Figure 20.3</a> Lab 20.1 policy: WIRELESS-IN on VLAN 30 and MGMT-ONLY on the VTY lines</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-20-3">Figure 20.3</a> the coloured borders give each destination's result: green permitted, amber limited to one service, red denied. The tinted band at the bottom is the second ACL, which guards the switches themselves.</p>
+<p><strong>Step 1 — Check the starting point.</strong> From PC2 (VLAN 30): <code>ipconfig</code> (note the address), <code>ping 10.10.40.11</code>, <code>ping 192.0.2.8</code>, and from the Desktop SSH client <code>ssh -l netadmin 10.10.99.2</code>. All should work now. On PC1 run <code>ipconfig</code> and note its address; the steps below assume <strong>10.10.10.11</strong> — use yours if it differs.</p>
+<p><strong>Step 2 — WIRELESS-IN on DSW1 and DSW2.</strong> Enter the same ACL on both switches (they share the VLAN 30 gateway through HSRP, so either may be routing the traffic):</p>
+<pre><code>DSW1(config)# ip access-list extended WIRELESS-IN
+DSW1(config-ext-nacl)# remark Wireless users: DHCP, no management, printer by IPP only
+DSW1(config-ext-nacl)# 10 permit udp any any eq bootps
+DSW1(config-ext-nacl)# 20 deny ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255
+DSW1(config-ext-nacl)# 30 permit tcp 10.10.30.0 0.0.0.255 host 10.10.40.11 eq 631
+DSW1(config-ext-nacl)# 40 deny ip 10.10.30.0 0.0.0.255 10.10.40.0 0.0.0.255
+DSW1(config-ext-nacl)# 50 permit icmp 10.10.30.0 0.0.0.255 any
+DSW1(config-ext-nacl)# 60 permit ip 10.10.30.0 0.0.0.255 any
+DSW1(config-ext-nacl)# exit
+DSW1(config)# interface vlan 30
+DSW1(config-if)# ip access-group WIRELESS-IN in
+</code></pre>
+<p>Repeat on DSW2. <strong>Why each line:</strong> line 10 keeps DHCP working — a client's Discover has source 0.0.0.0, which the later lines would not match. Line 60 also matches the <strong>HSRP hellos</strong> that DSW2 (10.10.30.3) sends into VLAN 30 towards 224.0.0.102, so HSRP keeps running; without it, both switches would become Active. Line 50 is technically covered by line 60, but it gives ping its own counter for this lab.</p>
+<p><strong>Step 3 — MGMT-ONLY on the VTY lines</strong> of DSW1, DSW2, SW1 and SW2:</p>
+<pre><code>SW1(config)# ip access-list standard MGMT-ONLY
+SW1(config-std-nacl)# 10 permit 10.10.99.0 0.0.0.255
+SW1(config-std-nacl)# 20 permit host 10.10.10.11
+SW1(config-std-nacl)# exit
+SW1(config)# line vty 0 15
+SW1(config-line)# access-class MGMT-ONLY in
+</code></pre>
+<p><strong>Step 4 — Test from PC2</strong> (clear the counters first with <code>clear access-list counters</code> on DSW1):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test from PC2</th>
+<th>Expected</th>
+<th>Line that decides</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ping 10.10.40.11</code> (printer)</td>
+<td>Fails</td>
+<td>40</td>
+</tr>
+<tr>
+<td><code>ping 192.0.2.8</code> (ISP)</td>
+<td>Works</td>
+<td>50</td>
+</tr>
+<tr>
+<td><code>ssh -l netadmin 10.10.99.2</code></td>
+<td>Fails (no login prompt)</td>
+<td>20</td>
+</tr>
+<tr>
+<td><code>ssh -l netadmin 10.10.30.2</code> (DSW1's own VLAN 30 address)</td>
+<td>Connection refused</td>
+<td>Passes WIRELESS-IN line 60, then MGMT-ONLY refuses it</td>
+</tr>
+<tr>
+<td><code>ipconfig /release</code> then <code>ipconfig /renew</code></td>
+<td>New lease</td>
+<td>10</td>
+</tr>
+</tbody>
+</table></div>
+<p>Then run <code>show access-lists</code> on DSW1 and match each counter to a test. (Packet Tracer has no IPP client, so line 30 stays at zero; that is expected.)</p>
+<p><strong>Step 5 — Test management access.</strong> From PC1 <code>ssh -l netadmin 10.10.99.2</code> works; from PC3 (also VLAN 10, different address) it is refused. Explain why the result differs for two PCs in the same VLAN.</p>
+<p><strong>Step 6 — Edit with sequence numbers.</strong> Chapter 22 adds a DNS server at 10.10.99.53. Prepare for it on both DSW1 and DSW2 without retyping the list:</p>
+<pre><code>DSW1(config)# ip access-list extended WIRELESS-IN
+DSW1(config-ext-nacl)# 15 permit udp 10.10.30.0 0.0.0.255 host 10.10.99.53 eq domain
+DSW1(config-ext-nacl)# end
+DSW1# show access-lists WIRELESS-IN
+</code></pre>
+<p>Confirm that 15 sits between 10 and 20, then <code>ip access-list resequence WIRELESS-IN 10 10</code> and look again.</p>
+<p><strong>Step 7 — Failover test.</strong> On DSW1, <code>interface vlan 30</code> → <code>shutdown</code>. DSW2 becomes HSRP Active for VLAN 30. Repeat the printer ping from PC2: it must still fail (the ACL on DSW2 now decides). <code>no shutdown</code> afterwards.</p>
+<p><strong>Questions after the lab</strong></p>
+<ol>
+<li>Why must line 10 come before line 20 even though DHCP goes to 10.0.0.1, not to VLAN 99?</li>
+<li>Which line matched the HSRP hellos, and what would happen without it?</li>
+<li>Why is MGMT-ONLY a standard ACL, and why is it applied with <code>access-class</code> rather than on an interface?</li>
+<li>Would placing WIRELESS-IN <strong>outbound</strong> on <code>interface vlan 99</code> achieve rule 1? What would it miss?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] WIRELESS-IN applied inbound on VLAN 30 on both DSW1 and DSW2</li>
+<li>[ ] Printer ping blocked, internet ping working, DHCP renew working</li>
+<li>[ ] SSH to management addresses blocked from PC2; allowed from PC1 only</li>
+<li>[ ] Counters read and matched to each test</li>
+<li>[ ] Line 15 inserted and the ACL resequenced</li>
+<li>[ ] Policy still enforced after HSRP failover</li>
+<li>[ ] Saved as <strong>Lab20-1.pkt</strong></li>
+</ul>
+<h3 id="2011-lab-202--troubleshooting-challenge-advanced">20.11 Lab 20.2 — Troubleshooting challenge (Advanced)</h3>
+<p><strong>Start from:</strong> your finished Lab 20.1 file. Introduce <strong>one</strong> fault at a time (or ask a study partner to), describe the symptom from PC2, find the cause using only <code>show</code> commands, fix it, and restore before the next.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Fault to introduce</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><code>no ip access-group WIRELESS-IN in</code>, then <code>ip access-group WIRELESS-IN out</code></td>
+<td>DSW1 <code>interface vlan 30</code></td>
+</tr>
+<tr>
+<td>B</td>
+<td><code>ip access-list extended WIRELESS-IN</code> → <code>no 10</code></td>
+<td>DSW1 and DSW2</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Replace line 40 with <code>40 deny ip 10.10.30.0 0.0.0.255 10.10.40.0 0.0.255.255</code></td>
+<td>DSW1</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Remove WIRELESS-IN from DSW2 only, then shut DSW1's <code>interface vlan 30</code></td>
+<td>DSW2, DSW1</td>
+</tr>
+</tbody>
+</table></div>
+<p>For each fault, write down: (1) what PC2 can and cannot do, (2) the command that revealed the cause, (3) the fix.</p>
+<p><strong>Solutions</strong></p>
+<ul>
+<li><strong>A — wrong direction.</strong> Outbound on VLAN 30, the list now checks packets <strong>towards</strong> PC2. Their sources are not in 10.10.30.0/24 and DHCP replies go to port 68, so only the implicit deny matches: PC2 loses everything routed (and cannot renew its lease). A ping to the gateway 10.10.30.1 still works, because traffic the switch itself sends is not filtered by an outbound ACL. <code>show ip interface vlan 30</code> shows <code>Outgoing access list is WIRELESS-IN</code>. Fix: apply it <code>in</code>.</li>
+<li><strong>B — DHCP permit removed.</strong> Existing leases keep working until renewal; <code>ipconfig /renew</code> then fails and PC2 ends up with a 169.254.x.x address. <code>show access-lists</code> shows no line 10. Fix: <code>10 permit udp any any eq bootps</code>.</li>
+<li><strong>C — wildcard typo.</strong> <code>show access-lists</code> displays <code>deny ip 10.10.30.0 0.0.0.255 10.10.0.0 0.0.255.255</code>: IOS applied the wildcard and line 40 now blocks <strong>all</strong> of 10.10.0.0/16 — PC2 cannot reach PC1 or PC3 any more. Fix: <code>0.0.0.255</code>.</li>
+<li><strong>D — ACL on one gateway only.</strong> While DSW1 is Active everything looks correct; after the failover PC2 can ping the printer and VLAN 99 hosts such as AAA-1 (10.10.99.20); SSH to the switches is still refused by MGMT-ONLY. <code>show standby brief</code> on DSW2 shows Active, and <code>show ip interface vlan 30</code> on DSW2 shows no inbound ACL. Fix: apply the same ACL on both HSRP routers.</li>
+</ul>
+<h3 id="2012-chapter-20-summary-notes-exam-revision">20.12 Chapter 20 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Processing:</strong> top-down, <strong>first match wins</strong>, then stop; <strong>implicit <code>deny any</code></strong> at the end; one ACL per interface, per direction, per protocol.</li>
+<li><strong>Wildcard:</strong> 0 = must match, 1 = ignore; wildcard = 255.255.255.255 − mask; <code>host</code> = 0.0.0.0, <code>any</code> = 0.0.0.0 255.255.255.255.</li>
+<li><strong>Standard</strong> (1–99, 1300–1999): source only, place <strong>near the destination</strong>. <strong>Extended</strong> (100–199, 2000–2699): protocol, source, destination, ports, place <strong>near the source</strong>.</li>
+<li><strong>Named:</strong> <code>ip access-list {standard | extended} NAME</code>, sequence numbers, insert (<code>15 …</code>), delete (<code>no 15</code>), <code>ip access-list resequence</code>.</li>
+<li><strong>Apply:</strong> <code>ip access-group NAME {in | out}</code> on the interface or SVI; <code>access-class NAME in</code> under <code>line vty</code>.</li>
+<li><strong>Ports:</strong> after the source = source port, after the destination = destination port. SSH 22, Telnet 23, DNS 53, DHCP 67/68, HTTP 80, HTTPS 443, SNMP 161, syslog 514.</li>
+<li><strong>Verify:</strong> <code>show access-lists</code> (counters), <code>show ip interface</code> (direction), <code>clear access-list counters</code>, <code>log</code> keyword.</li>
+<li>Outbound ACLs do not filter traffic the device itself originates. With HSRP/VRRP, apply the same ACL on every possible gateway.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"An ACL with only deny lines blocks just those hosts"</td>
+<td>The implicit deny blocks everything else too</td>
+</tr>
+<tr>
+<td>"Wildcard masks are the same as subnet masks"</td>
+<td>They are inverted: 0 = match, 1 = ignore</td>
+</tr>
+<tr>
+<td>"Put standard ACLs close to the source"</td>
+<td>Near the destination, or they block the source from everywhere</td>
+</tr>
+<tr>
+<td>"<code>no access-list 110 …</code> removes one line"</td>
+<td>It deletes all of ACL 110</td>
+</tr>
+<tr>
+<td>"An inbound SVI ACL also filters traffic inside the VLAN"</td>
+<td>Only routed traffic passes the SVI</td>
+</tr>
+<tr>
+<td>"<code>permit tcp any eq 80 any</code> allows web browsing to servers"</td>
+<td>That matches source port 80 (replies from servers)</td>
+</tr>
+<tr>
+<td>"Filtering SSH means putting an ACL on every interface"</td>
+<td><code>access-class</code> on the VTY lines covers every address of the device</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2013-practice-questions--chapter-20">20.13 Practice questions — Chapter 20</h3>
+<p><strong>1. (Recall)</strong> Which number ranges identify standard and extended IPv4 ACLs?</p>
+<p><strong>2. (Wildcard calculation)</strong> Write the address and wildcard that match the subnet 10.10.30.32/27.</p>
+<p><strong>3. (Wildcard calculation)</strong> Write the address and wildcard that match 172.16.32.0/20.</p>
+<p><strong>4. (Wildcard interpretation)</strong> Which range of addresses does <code>192.168.8.0 0.0.7.255</code> match?</p>
+<p><strong>5. (Wildcard interpretation)</strong> Does <code>10.10.1.0 0.0.254.255</code> match 10.10.4.7? Does it match 10.10.7.200? Explain.</p>
+<p><strong>6. (Configuration)</strong> Write a named extended ACL <strong>STAFF-WEB</strong> line that permits HTTPS from 10.10.10.0/24 to the server 10.10.40.50, and the command that applies the ACL inbound on <code>interface vlan 10</code>.</p>
+<p><strong>7. (Order)</strong> An ACL reads <code>10 permit 10.10.30.0 0.0.0.255</code> and <code>20 deny host 10.10.30.25</code>. What happens to a packet from 10.10.30.25, and how do you fix the ACL without retyping it?</p>
+<p><strong>8. (Placement)</strong> You must stop the 10.10.30.0/24 subnet from reaching the server VLAN 40 using a <strong>standard</strong> ACL. Where do you apply it and in which direction?</p>
+<p><strong>9. (Output interpretation)</strong></p>
+<pre><code>DSW2# show access-lists WIRELESS-IN
+Extended IP access list WIRELESS-IN
+    10 permit udp any any eq bootps (2 matches)
+    20 deny ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255 (15 matches)
+    30 permit tcp 10.10.30.0 0.0.0.255 host 10.10.40.11 eq 631
+    40 deny ip 10.10.30.0 0.0.0.255 10.10.40.0 0.0.0.255
+    60 permit ip 10.10.30.0 0.0.0.255 any (240 matches)
+</code></pre>
+<p>A wireless user says ping to 10.10.99.20 fails and ping to 192.0.2.8 works. Which lines explain both results, and what is missing compared with Lab 20.1?</p>
+<p><strong>10. (Troubleshooting)</strong> An engineer creates <code>ip access-list extended NO-SSH</code> with the single line <code>deny tcp any host 10.10.99.2 eq 22</code> and applies it inbound on VLAN 10. All VLAN 10 users lose every routed service. Why, and what is the fix?</p>
+<p><strong>11. (Troubleshooting)</strong> To remove one line, an engineer types <code>no access-list 110 deny ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255</code>. Now VLAN 30 users reach everything. What happened?</p>
+<p><strong>12. (Syntax)</strong> What is wrong with <code>permit tcp 10.10.30.0 0.0.0.255 eq 443 any</code> if the goal is to let wireless users browse HTTPS sites?</p>
+<p><strong>13. (Multiple response — choose two)</strong> Which statements about <code>access-class</code> are true?</p>
+<p>A. It is applied under <code>line vty</code>  B. It filters traffic routed through the device  C. It filters SSH/Telnet sessions by source address  D. It requires an extended ACL  E. It replaces SSH authentication</p>
+<p><strong>14. (Evaluate an AI assistant)</strong> An AI assistant proposes: <em>"To stop wireless users reaching the management VLAN, create <code>access-list 10 deny 10.10.30.0 0.0.0.255</code> and <code>access-list 10 permit any</code>, and apply it inbound on <code>interface vlan 30</code>."</em> Is this correct?</p>
+<h3 id="2014-answer-key-with-explanations">20.14 Answer key with explanations</h3>
+<ol>
+<li><strong>Standard:</strong> 1–99 and 1300–1999. <strong>Extended:</strong> 100–199 and 2000–2699.</li>
+<li><strong>10.10.30.32 0.0.0.31</strong> — /27 mask 255.255.255.224; 255 − 224 = 31.</li>
+<li><strong>172.16.32.0 0.0.15.255</strong> — /20 mask 255.255.240.0; 255 − 240 = 15.</li>
+<li><strong>192.168.8.0 to 192.168.15.255</strong> — the low 3 bits of the third octet are ignored, so 8 + 0–7.</li>
+<li>The third octet's lowest bit must be 1 (odd); all others are ignored. <strong>10.10.4.7: no</strong> (4 is even). <strong>10.10.7.200: yes</strong> (7 is odd; the fourth octet is ignored).</li>
+<li><code>ip access-list extended STAFF-WEB</code> → <code>permit tcp 10.10.10.0 0.0.0.255 host 10.10.40.50 eq 443</code>; then <code>interface vlan 10</code> → <code>ip access-group STAFF-WEB in</code>. (Add further permits as needed, because of the implicit deny.)</li>
+<li>It is <strong>permitted</strong> by line 10, which matches first; line 20 never matches. Insert <code>5 deny host 10.10.30.25</code> (or delete 20 and re-add it with a lower number).</li>
+<li>Close to the destination: <strong>outbound on <code>interface vlan 40</code></strong> (<code>ip access-list standard …</code> with <code>deny 10.10.30.0 0.0.0.255</code> and <code>permit any</code>, then <code>ip access-group … out</code>). Placed inbound on VLAN 30 it would block that subnet from everything.</li>
+<li>Line <strong>20</strong> denies 10.10.99.20; line <strong>60</strong> permits 192.0.2.8. Line <strong>50</strong> (<code>permit icmp</code>) is missing, so pings are counted under 60 — the result is the same, but you lose the separate ICMP counter. Compare with DSW1 so both HSRP routers match.</li>
+<li>The ACL has only a deny line, so every other packet hits the <strong>implicit deny</strong>. Add <code>permit ip any any</code> after the deny (and check DHCP still works).</li>
+<li>In global mode, <code>no access-list 110 …</code> deletes the <strong>whole</strong> ACL 110. The interface still references 110, but an applied ACL that does not exist permits everything. Re-create it, and edit numbered ACLs via <code>ip access-list extended 110</code> → <code>no &lt;seq&gt;</code>.</li>
+<li>Port 443 is written after the <strong>source</strong>, so it matches packets <strong>from</strong> source port 443. Users browse <strong>to</strong> port 443: <code>permit tcp 10.10.30.0 0.0.0.255 any eq 443</code>.</li>
+<li><strong>A and C.</strong> It works on VTY lines and filters sessions by source address; a standard ACL is usual, and SSH authentication still applies.</li>
+<li><strong>No.</strong> A standard ACL matches only the source. Applied inbound on VLAN 30, it would drop <strong>all</strong> routed traffic from wireless users (internet, printer, DHCP renewals), not just traffic to VLAN 99. Use an extended ACL near the source (as in Lab 20.1), or a standard ACL outbound on <code>interface vlan 99</code>.</li>
+</ol>
+<h3 id="2015-chapter-20-figure-checklist">20.15 Chapter 20 figure checklist</h3>
+<p>All three figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-20-1">Figure 20.1</a>'s footnote was cut off at the right edge in the first render; it was split into two lines and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.1</td>
+<td>ACL processing: first match, implicit deny</td>
+<td>20.2</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>20.2</td>
+<td>Wildcard mask matching</td>
+<td>20.3</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>20.3</td>
+<td>Lab 20.1 policy</td>
+<td>20.10</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as tables and command output:</strong> ACL types and ranges, port numbers, placement, editing, verification and troubleshooting.</p>
+<h3 id="2016-chapter-20-progress-record">20.16 Chapter 20 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>4.6</strong> — standard, extended, numbered and named IPv4 ACLs, wildcard masks, placement, editing, VTY protection, verification and troubleshooting.</p>
+<p><strong>Next:</strong> Chapter 21 — <strong>4.3 Configure NAT/PAT on IOS XE routers</strong>.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-19.html"><small>← Chapter 19</small>Managing configurations and images with SCP and SFTP</a><a class="pn next" href="chapter-21.html"><small>Chapter 21 →</small>NAT and PAT on IOS XE routers</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#201-learning-objectives">20.1 Learning objectives</a>
+<a href="#202-how-an-acl-works">20.2 How an ACL works</a>
+<a href="#203-wildcard-masks">20.3 Wildcard masks</a>
+<a href="#204-standard-and-extended-numbered-and-named">20.4 Standard and extended, numbered and named</a>
+<a href="#205-extended-ace-syntax-protocols-and-ports">20.5 Extended ACE syntax, protocols and ports</a>
+<a href="#206-where-to-place-an-acl-and-how-to-apply-it">20.6 Where to place an ACL and how to apply it</a>
+<a href="#207-editing-acls-with-sequence-numbers">20.7 Editing ACLs with sequence numbers</a>
+<a href="#208-protecting-vty-lines-with-access-class">20.8 Protecting VTY lines with access-class</a>
+<a href="#209-verification-and-troubleshooting">20.9 Verification and troubleshooting</a>
+<a href="#2010-lab-201--campus-security-policy-with-acls-intermediate">20.10 Lab 20.1 — Campus security policy with ACLs (Intermediate)</a>
+<a href="#2011-lab-202--troubleshooting-challenge-advanced">20.11 Lab 20.2 — Troubleshooting challenge (Advanced)</a>
+<a href="#2012-chapter-20-summary-notes-exam-revision">20.12 Chapter 20 summary notes (exam revision)</a>
+<a href="#2013-practice-questions--chapter-20">20.13 Practice questions — Chapter 20</a>
+<a href="#2014-answer-key-with-explanations">20.14 Answer key with explanations</a>
+<a href="#2015-chapter-20-figure-checklist">20.15 Chapter 20 figure checklist</a>
+<a href="#2016-chapter-20-progress-record">20.16 Chapter 20 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

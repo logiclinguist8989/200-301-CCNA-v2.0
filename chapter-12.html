@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 12 — Single-area OSPFv2 and OSPFv3 · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 12: Single-area OSPFv2 and OSPFv3">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head amber">
+  <div class="eyebrow">Domain 3 · IP Routing</div>
+  <h1><span class="num">Chapter 12</span>Single-area OSPFv2 and OSPFv3</h1>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~17 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="12"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>3.3 Configure single-area OSPFv2 for IPv4 and OSPFv3 for IPv6</strong> — <strong>3.3.a</strong> neighbor adjacencies (excluding authentication), <strong>3.3.b</strong> point-to-point, <strong>3.3.c</strong> broadcast (DR/BDR selection), <strong>3.3.d</strong> router ID. OSPF is the only dynamic routing protocol named in v2.0, so expect configuration, <code>show</code> output and troubleshooting questions.</p>
+<h3 id="121-learning-objectives">12.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Explain how a link-state protocol builds its routing table and why OSPF uses areas.</li>
+<li>Describe OSPF packets, neighbor states and the conditions for an adjacency.</li>
+<li>Predict the router ID and the DR/BDR on a broadcast network.</li>
+<li>Configure OSPFv2 with <code>network</code> statements or per interface, passive interfaces, cost, priority, network type and a default route.</li>
+<li>Configure OSPFv3 for IPv6.</li>
+<li>Read <code>show ip ospf neighbor</code>, <code>show ip ospf interface</code> and <code>show ip route ospf</code>, and troubleshoot adjacencies that do not form.</li>
+</ol>
+<h3 id="122-introduction-why-a-routing-protocol">12.2 Introduction: why a routing protocol</h3>
+<p>Static routes do not scale and cannot react to failures beyond the next hop (Chapter 11). A <strong>dynamic routing protocol</strong> lets routers tell each other which networks they can reach and recalculate automatically when something changes. <strong>OSPF (Open Shortest Path First)</strong> is an open-standard <strong>link-state</strong> protocol: every router learns the full map of its area, then each runs the <strong>SPF (Dijkstra)</strong> algorithm to compute the best (lowest-cost) path to every network.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>OSPF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type</td>
+<td>Link-state, interior gateway protocol</td>
+</tr>
+<tr>
+<td>Versions</td>
+<td>OSPFv2 for IPv4; OSPFv3 for IPv6</td>
+</tr>
+<tr>
+<td>Administrative distance</td>
+<td>110</td>
+</tr>
+<tr>
+<td>Metric</td>
+<td><strong>Cost</strong> = reference bandwidth ÷ interface bandwidth</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>IP protocol <strong>89</strong></td>
+</tr>
+<tr>
+<td>Multicast</td>
+<td><strong>224.0.0.5</strong> all OSPF routers, <strong>224.0.0.6</strong> DR/BDR (IPv6: FF02::5, FF02::6)</td>
+</tr>
+<tr>
+<td>Hello / dead timers</td>
+<td>10 s / 40 s on broadcast and point-to-point networks</td>
+</tr>
+<tr>
+<td>Areas</td>
+<td>Area 0 is the backbone; <strong>v2.0 tests single-area OSPF (everything in area 0)</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="123-how-ospf-works-internally">12.3 How OSPF works internally</h3>
+<ol>
+<li><strong>Discover neighbors</strong> with Hello packets on every OSPF-enabled interface.</li>
+<li><strong>Form adjacencies</strong> and exchange the link-state database (LSDB).</li>
+<li>Each router floods <strong>LSAs</strong> (link-state advertisements) describing its links; all routers in the area end up with an <strong>identical LSDB</strong>.</li>
+<li>Each router runs <strong>SPF</strong> with itself as the root and installs the best paths as <code>O</code> routes.</li>
+<li>When a link changes, only the affected LSA is flooded and SPF reruns — fast convergence without periodic full updates.</li>
+</ol>
+<p><strong>The five OSPF packet types:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Hello</td>
+<td>Discover and keep neighbors; carry the parameters that must match</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DBD (Database Description)</td>
+<td>Summary list of the LSAs in the sender's database</td>
+</tr>
+<tr>
+<td>3</td>
+<td>LSR (Link-State Request)</td>
+<td>Ask for LSAs you are missing</td>
+</tr>
+<tr>
+<td>4</td>
+<td>LSU (Link-State Update)</td>
+<td>Carry full LSAs</td>
+</tr>
+<tr>
+<td>5</td>
+<td>LSAck</td>
+<td>Acknowledge LSUs</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="124-neighbor-states-and-adjacencies-33a">12.4 Neighbor states and adjacencies (3.3.a)</h3>
+<p><a class="figref" href="#fig-12-1">Figure 12.1</a> shows the states two routers pass through.</p>
+<figure class="fig" id="fig-12-1"><button class="zoom" aria-label="Enlarge figure 12.1"><img src="assets/figures/ch12/fig-12-01-ospf-neighbor-states.svg" alt="Figure 12.1 — OSPF neighbor states and the packets that move two routers from Down to Full" loading="lazy"></button><figcaption><a class="fignum" href="#fig-12-1">Figure 12.1</a> OSPF neighbor states and the packets that move two routers from Down to Full</figcaption></figure>
+
+<p>Read <a class="figref" href="#fig-12-1">Figure 12.1</a> top to bottom: the arrows are packets, the left column is the state they cause. A pair reaches <strong>FULL</strong> only after both databases match.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>Meaning</th>
+<th>Stuck here usually means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Down</td>
+<td>No Hellos received</td>
+<td>Link down, OSPF not enabled on the interface, passive interface, ACL blocking 224.0.0.5</td>
+</tr>
+<tr>
+<td>Init</td>
+<td>Hello received, but my RID is not in it</td>
+<td>One-way communication; Hellos not reaching the other side</td>
+</tr>
+<tr>
+<td>2-Way</td>
+<td>Each sees itself in the other's Hello</td>
+<td><strong>Normal</strong> between two DROthers; otherwise DR/BDR election issue</td>
+</tr>
+<tr>
+<td>ExStart / Exchange</td>
+<td>Negotiating and exchanging DBDs</td>
+<td><strong>MTU mismatch</strong></td>
+</tr>
+<tr>
+<td>Loading</td>
+<td>Requesting missing LSAs</td>
+<td>Corrupt or lost LSUs (rare)</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>Synchronized</td>
+<td>Healthy</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What must match for two routers to become neighbors</strong> (the Hello packet carries these):</p>
+<ol>
+<li><strong>Area ID</strong> (both interfaces in area 0).</li>
+<li><strong>Subnet and mask</strong> on the shared link.</li>
+<li><strong>Hello and dead intervals</strong>.</li>
+<li><strong>Authentication</strong> settings (excluded from the objective, but they must match).</li>
+<li><strong>Stub area flag</strong> (not relevant in a single backbone area).</li>
+<li><strong>Unique router IDs</strong> — two routers with the same RID will not form a proper adjacency.</li>
+<li><strong>MTU</strong> — a mismatch lets them reach ExStart/Exchange but not Full.</li>
+<li>The interface must <strong>not be passive</strong>.</li>
+</ol>
+<h3 id="125-router-id-33d">12.5 Router ID (3.3.d)</h3>
+<p>Every OSPF router needs a 32-bit <strong>router ID (RID)</strong>, written like an IPv4 address. It is chosen once, when the OSPF process starts, in this order:</p>
+<ol>
+<li>The <code>router-id</code> command (best practice: set it).</li>
+<li>Otherwise the <strong>highest IPv4 address on an up loopback</strong> interface.</li>
+<li>Otherwise the <strong>highest IPv4 address on an up physical</strong> interface.</li>
+</ol>
+<p>Changing the RID later requires <code>clear ip ospf process</code> (or a reload) to take effect. OSPFv3 uses the same 32-bit RID; on a router with no IPv4 addresses you <strong>must</strong> configure <code>router-id</code> manually.</p>
+<h3 id="126-network-types-broadcast-and-point-to-point-33b-33c">12.6 Network types: broadcast and point-to-point (3.3.b, 3.3.c)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Network type</th>
+<th>Default on</th>
+<th>DR/BDR?</th>
+<th>Neighbors reach FULL with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Broadcast</strong></td>
+<td>Ethernet</td>
+<td>Yes</td>
+<td>The DR and the BDR only</td>
+</tr>
+<tr>
+<td><strong>Point-to-point</strong></td>
+<td>Serial (HDLC/PPP); configurable on Ethernet</td>
+<td>No</td>
+<td>The single neighbor</td>
+</tr>
+</tbody>
+</table></div>
+<p>On a link with only two routers (a /30 or /31 between them) a DR is pointless. Setting <code>ip ospf network point-to-point</code> on both ends skips the election and the wait, so the adjacency forms faster. Both ends must use the same network type; mismatched types can form an adjacency yet produce missing routes.</p>
+<h3 id="127-dr-and-bdr-election-33c">12.7 DR and BDR election (3.3.c)</h3>
+<p>On a broadcast network every router would otherwise need a full adjacency with every other router — n(n−1)/2 of them. Instead one <strong>Designated Router (DR)</strong> and a <strong>Backup DR (BDR)</strong> are elected, and everyone else (<strong>DROther</strong>) forms FULL adjacencies only with those two (<a class="figref" href="#fig-12-2">Figure 12.2</a>).</p>
+<figure class="fig" id="fig-12-2"><button class="zoom" aria-label="Enlarge figure 12.2"><img src="assets/figures/ch12/fig-12-02-dr-bdr-election.svg" alt="Figure 12.2 — DR/BDR election on a broadcast LAN: FULL and 2-WAY adjacencies" loading="lazy"></button><figcaption><a class="fignum" href="#fig-12-2">Figure 12.2</a> DR/BDR election on a broadcast LAN: FULL and 2-WAY adjacencies</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-12-2">Figure 12.2</a> the blue lines are FULL adjacencies; the dashed line between the two DROthers is 2-WAY, which is correct and expected.</p>
+<p><strong>Election rules:</strong></p>
+<ol>
+<li>Highest <strong>interface OSPF priority</strong> wins (0–255, default <strong>1</strong>; <code>ip ospf priority &lt;n&gt;</code>).</li>
+<li>Tie: highest <strong>router ID</strong>.</li>
+<li>Priority <strong>0</strong> = never DR or BDR.</li>
+<li><strong>No preemption</strong>: a better router that joins later does not take over until the DR fails or the OSPF process is reset on the segment. When the DR fails, the BDR becomes DR and a new BDR is elected.</li>
+</ol>
+<p>The election happens per segment (per interface), so a router can be DR on one LAN and DROther on another.</p>
+<h3 id="128-ospf-cost-and-the-metric">12.8 OSPF cost and the metric</h3>
+<p><strong>Cost = reference bandwidth ÷ interface bandwidth</strong>, with a default reference of <strong>100 Mb/s</strong>. Costs below 1 are rounded up to 1, so FastEthernet, Gigabit and 10-Gigabit links all cost <strong>1</strong> by default — OSPF cannot tell them apart. Fix it on <strong>every</strong> router with the same value:</p>
+<pre><code>R1(config-router)# auto-cost reference-bandwidth 10000      ! in Mb/s: now 10G = 1, 1G = 10, 100M = 100
+</code></pre>
+<p>You can also set a cost directly on an interface: <code>ip ospf cost 20</code>. The route's metric is the sum of the outgoing interface costs along the path, from the router to the destination.</p>
+<h3 id="129-configuring-ospfv2">12.9 Configuring OSPFv2</h3>
+<p><strong>Method 1 — <code>network</code> statements</strong> in router configuration mode. Each statement uses a <strong>wildcard mask</strong> (the inverse of a subnet mask: 0 = must match, 1 = ignore) to select interfaces; matching interfaces join the area.</p>
+<pre><code>R1(config)# router ospf 1                                  ! process ID: local only, need not match
+R1(config-router)# router-id 1.1.1.1
+R1(config-router)# auto-cost reference-bandwidth 10000
+R1(config-router)# network 10.0.123.0 0.0.0.255 area 0     ! the LAN
+R1(config-router)# network 10.0.12.0 0.0.0.3 area 0        ! the /30 point-to-point link
+R1(config-router)# network 10.10.10.0 0.0.0.255 area 0     ! the loopback LAN
+R1(config-router)# passive-interface loopback10            ! advertise it, but send no Hellos
+R1(config-router)# default-information originate always    ! advertise a default route into OSPF
+</code></pre>
+<p><strong>Method 2 — per interface</strong> (clearer, and the only method in OSPFv3):</p>
+<pre><code>R1(config)# interface gigabitethernet0/0/0
+R1(config-if)# ip ospf 1 area 0
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Purpose / notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>router ospf &lt;pid&gt;</code></td>
+<td>Global</td>
+<td>Starts OSPF process; the process ID is locally significant</td>
+</tr>
+<tr>
+<td><code>router-id &lt;a.b.c.d&gt;</code></td>
+<td>Router</td>
+<td>Sets the RID; needs <code>clear ip ospf process</code> if OSPF already runs</td>
+</tr>
+<tr>
+<td><code>network &lt;addr&gt; &lt;wildcard&gt; area &lt;id&gt;</code></td>
+<td>Router</td>
+<td>Enables OSPF on matching interfaces. <code>network 10.0.123.1 0.0.0.0 area 0</code> matches exactly one interface</td>
+</tr>
+<tr>
+<td><code>ip ospf &lt;pid&gt; area &lt;id&gt;</code></td>
+<td>Interface</td>
+<td>Enables OSPF on this interface</td>
+</tr>
+<tr>
+<td><code>passive-interface &lt;int&gt;</code> / <code>passive-interface default</code></td>
+<td>Router</td>
+<td>No Hellos (no neighbors) on that interface, but its network is still advertised. Use on LAN and loopback interfaces with no routers</td>
+</tr>
+<tr>
+<td><code>ip ospf network point-to-point</code></td>
+<td>Interface</td>
+<td>Point-to-point type: no DR/BDR (3.3.b). On a loopback it advertises the real mask instead of /32</td>
+</tr>
+<tr>
+<td><code>ip ospf priority &lt;0-255&gt;</code></td>
+<td>Interface</td>
+<td>DR election priority (3.3.c)</td>
+</tr>
+<tr>
+<td><code>ip ospf cost &lt;n&gt;</code></td>
+<td>Interface</td>
+<td>Override the computed cost</td>
+</tr>
+<tr>
+<td><code>ip ospf hello-interval</code> / <code>dead-interval</code></td>
+<td>Interface</td>
+<td>Timers; must match neighbors</td>
+</tr>
+<tr>
+<td><code>auto-cost reference-bandwidth &lt;Mb/s&gt;</code></td>
+<td>Router</td>
+<td>Same value on every router</td>
+</tr>
+<tr>
+<td><code>default-information originate [always]</code></td>
+<td>Router</td>
+<td>Advertise a default route; <code>always</code> even if this router has no default itself</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Loopbacks and /32.</strong> OSPF advertises a loopback as a /32 host route regardless of its mask. To advertise Lo10 as 10.10.10.0/24 (as if it were a LAN), add <code>ip ospf network point-to-point</code> on the loopback.</p>
+<h3 id="1210-configuring-ospfv3-for-ipv6">12.10 Configuring OSPFv3 for IPv6</h3>
+<p>OSPFv3 works the same way (same states, DR/BDR rules, cost and AD) but is enabled per interface, forms neighbors over <strong>link-local</strong> addresses, and needs IPv6 routing on:</p>
+<pre><code>R1(config)# ipv6 unicast-routing
+R1(config)# ipv6 router ospf 1
+R1(config-rtr)# router-id 1.1.1.1                         ! mandatory if the router has no IPv4 address
+R1(config-rtr)# auto-cost reference-bandwidth 10000
+R1(config-rtr)# passive-interface loopback10
+R1(config-rtr)# exit
+R1(config)# interface gigabitethernet0/0/0
+R1(config-if)# ipv6 ospf 1 area 0
+R1(config-if)# interface gigabitethernet0/0/1
+R1(config-if)# ipv6 ospf 1 area 0
+R1(config-if)# ipv6 ospf network point-to-point
+</code></pre>
+<p>Newer IOS XE releases also offer the address-family syntax (<code>router ospfv3 1</code>, <code>address-family ipv6 unicast</code>, interface <code>ospfv3 1 ipv6 area 0</code>); both produce the same result. OSPFv2 and OSPFv3 are <strong>separate processes</strong> with separate neighbor tables and separate DR elections.</p>
+<h3 id="1211-verification">12.11 Verification</h3>
+<pre><code>R1# show ip ospf neighbor
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           0   FULL/  -        00:00:36    10.0.12.2       GigabitEthernet0/0/1
+2.2.2.2          50   FULL/BDR        00:00:33    10.0.123.2      GigabitEthernet0/0/0
+3.3.3.3         100   FULL/DR         00:00:39    10.0.123.3      GigabitEthernet0/0/0
+</code></pre>
+<p>Read it as: R1 has <strong>two</strong> adjacencies with R2 (one per link) and one with R3. On the point-to-point link the role is <code>-</code> (no DR) and priority shows 0. On the LAN, R3 is DR and R2 BDR; R1 itself is DROther (shown in the next command).</p>
+<pre><code>R1# show ip ospf interface brief
+Interface    PID   Area     IP Address/Mask    Cost  State Nbrs F/C
+Lo10         1     0        10.10.10.1/24      1     P2P   0/0
+Gi0/0/1      1     0        10.0.12.1/30       10    P2P   1/1
+Gi0/0/0      1     0        10.0.123.1/24      10    DROTH 2/2
+
+R1# show ip route ospf
+O     10.20.20.0/24 [110/11] via 10.0.12.2, 00:05:10, GigabitEthernet0/0/1
+                    [110/11] via 10.0.123.2, 00:05:10, GigabitEthernet0/0/0
+O     10.30.30.0/24 [110/11] via 10.0.123.3, 00:05:10, GigabitEthernet0/0/0
+</code></pre>
+<p>The cost of 11 is 10 (1 Gb/s link with reference 10000) + 1 (the remote loopback). R1 has two equal-cost paths to R2's LAN, so both are installed.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ip ospf neighbor</code></td>
+<td>Neighbor RID, priority, state/role, dead timer, address, interface</td>
+</tr>
+<tr>
+<td><code>show ip ospf interface [int]</code></td>
+<td>Area, cost, network type, DR/BDR, Hello/dead timers, priority, neighbor count</td>
+</tr>
+<tr>
+<td><code>show ip ospf interface brief</code></td>
+<td>One line per OSPF interface</td>
+</tr>
+<tr>
+<td><code>show ip protocols</code></td>
+<td>RID, networks configured, passive interfaces, reference bandwidth, routing sources</td>
+</tr>
+<tr>
+<td><code>show ip ospf</code></td>
+<td>RID, SPF statistics, reference bandwidth</td>
+</tr>
+<tr>
+<td><code>show ip route ospf</code></td>
+<td>Installed O routes</td>
+</tr>
+<tr>
+<td><code>show ipv6 ospf neighbor</code>, <code>show ipv6 ospf interface brief</code>, <code>show ipv6 route ospf</code></td>
+<td>The OSPFv3 equivalents</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1212-troubleshooting-ospf">12.12 Troubleshooting OSPF</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Evidence / fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No neighbor at all</td>
+<td>Interface not in OSPF (wrong <code>network</code> wildcard), passive interface, area mismatch, subnet mismatch, ACL blocking 224.0.0.5</td>
+<td><code>show ip ospf interface brief</code> (interface missing?), <code>show ip protocols</code> (passive?)</td>
+</tr>
+<tr>
+<td>Neighbor never appears; timers differ</td>
+<td>Hello/dead mismatch</td>
+<td><code>show ip ospf interface</code> on both ends; match them</td>
+</tr>
+<tr>
+<td>Stuck in ExStart/Exchange</td>
+<td>MTU mismatch</td>
+<td>Match <code>ip mtu</code> on both ends</td>
+</tr>
+<tr>
+<td><code>%OSPF-4-DUP_RTRID_NBR</code></td>
+<td>Two routers with the same RID</td>
+<td>Set unique <code>router-id</code>; <code>clear ip ospf process</code></td>
+</tr>
+<tr>
+<td>Two routers show only 2-WAY</td>
+<td>Both are DROthers on a broadcast LAN</td>
+<td>Normal</td>
+</tr>
+<tr>
+<td>Unexpected DR</td>
+<td>Elections are not preemptive; priorities changed after the election</td>
+<td><code>clear ip ospf process</code> on the segment after setting priorities</td>
+</tr>
+<tr>
+<td>Routes for a loopback show as /32</td>
+<td>Loopback network type</td>
+<td><code>ip ospf network point-to-point</code> on the loopback</td>
+</tr>
+<tr>
+<td>Slow path chosen over a fast one</td>
+<td>Reference bandwidth left at 100 (all fast links cost 1) or different on routers</td>
+<td>Same <code>auto-cost reference-bandwidth</code> everywhere</td>
+</tr>
+<tr>
+<td>Adjacency up, but routes odd on a two-router link</td>
+<td>Network type mismatch (one end broadcast, one point-to-point)</td>
+<td>Make both ends the same</td>
+</tr>
+<tr>
+<td>No default route learned</td>
+<td><code>default-information originate</code> missing (or no default without <code>always</code>)</td>
+<td>Add it on the edge router</td>
+</tr>
+<tr>
+<td>OSPFv3 will not start</td>
+<td>No router ID on an IPv6-only router, or <code>ipv6 unicast-routing</code> missing</td>
+<td>Configure both</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Order of checks:</strong> interface up and addressed → interface in OSPF and not passive → Hello parameters match (area, subnet, timers) → unique RID → MTU → routes and costs.</p>
+<h3 id="1213-packet-tracer-lab-121--single-area-ospfv2-and-ospfv3-intermediateadvanced">12.13 Packet Tracer Lab 12.1 — Single-area OSPFv2 and OSPFv3 (Intermediate–Advanced)</h3>
+<p><strong>Objectives:</strong> 3.3.a–d. <strong>New file.</strong> <strong>Devices:</strong> 3 × ISR4331 (R1, R2, R3), 1 × 2960 (SW-LAN). Each router's G0/0/0 connects to SW-LAN (straight-through); R1 G0/0/1 connects to R2 G0/0/1 (crossover).</p>
+<figure class="fig" id="fig-12-3"><button class="zoom" aria-label="Enlarge figure 12.3"><img src="assets/figures/ch12/fig-12-03-lab-12-1-topology.svg" alt="Figure 12.3 — Lab 12.1 topology: broadcast LAN with DR/BDR and a point-to-point link" loading="lazy"></button><figcaption><a class="fignum" href="#fig-12-3">Figure 12.3</a> Lab 12.1 topology: broadcast LAN with DR/BDR and a point-to-point link</figcaption></figure>
+
+<p><a class="figref" href="#fig-12-3">Figure 12.3</a> shows the two network types side by side: the LAN needs a DR election, the R1–R2 link does not. Loopbacks stand in for each router's user LAN.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Router</th>
+<th>G0/0/0 (LAN)</th>
+<th>G0/0/1 (p2p)</th>
+<th>Loopback LAN</th>
+<th>RID / LAN priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>10.0.123.1/24, 2001:db8:acad:123::1/64</td>
+<td>10.0.12.1/30, 2001:db8:acad:12::1/64</td>
+<td>Lo10 10.10.10.1/24, 2001:db8:acad:10::1/64</td>
+<td>1.1.1.1 / 1</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>10.0.123.2/24, 2001:db8:acad:123::2/64</td>
+<td>10.0.12.2/30, 2001:db8:acad:12::2/64</td>
+<td>Lo20 10.20.20.1/24, 2001:db8:acad:20::1/64</td>
+<td>2.2.2.2 / 50</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>10.0.123.3/24, 2001:db8:acad:123::3/64</td>
+<td>—</td>
+<td>Lo30 10.30.30.1/24, 2001:db8:acad:30::1/64</td>
+<td>3.3.3.3 / 100</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>R1</strong></p>
+<pre><code>enable
+configure terminal
+hostname R1
+ipv6 unicast-routing
+interface gigabitethernet0/0/0
+ ip address 10.0.123.1 255.255.255.0
+ ipv6 address 2001:db8:acad:123::1/64
+ ipv6 ospf 1 area 0
+ no shutdown
+interface gigabitethernet0/0/1
+ ip address 10.0.12.1 255.255.255.252
+ ipv6 address 2001:db8:acad:12::1/64
+ ip ospf network point-to-point
+ ipv6 ospf network point-to-point
+ ipv6 ospf 1 area 0
+ no shutdown
+interface loopback10
+ ip address 10.10.10.1 255.255.255.0
+ ipv6 address 2001:db8:acad:10::1/64
+ ip ospf network point-to-point
+ ipv6 ospf network point-to-point
+ ipv6 ospf 1 area 0
+exit
+router ospf 1
+ router-id 1.1.1.1
+ auto-cost reference-bandwidth 10000
+ network 10.0.123.0 0.0.0.255 area 0
+ network 10.0.12.0 0.0.0.3 area 0
+ network 10.10.10.0 0.0.0.255 area 0
+ passive-interface loopback10
+ default-information originate always
+exit
+ipv6 router ospf 1
+ router-id 1.1.1.1
+ auto-cost reference-bandwidth 10000
+ passive-interface loopback10
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>R2</strong> — the same pattern with its own addresses, RID 2.2.2.2, Lo20, <strong>no</strong> <code>default-information originate</code>, and on G0/0/0:</p>
+<pre><code>interface gigabitethernet0/0/0
+ ip ospf priority 50
+ ipv6 ospf priority 50
+</code></pre>
+<p><strong>R3</strong> — RID 3.3.3.3, only G0/0/0 and Lo30, and <code>ip ospf priority 100</code> / <code>ipv6 ospf priority 100</code> on G0/0/0.</p>
+<p><strong>Because the DR election is not preemptive</strong>, the router that boots first may become DR. After all three are configured, run <code>clear ip ospf process</code> and <code>clear ipv6 ospf process</code> (answer <code>yes</code>) on all three routers so the priorities decide.</p>
+<p><strong>Verification and expected results</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Command (device)</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Neighbors</td>
+<td><code>show ip ospf neighbor</code> (R1)</td>
+<td>R2 FULL/- on G0/0/1; R2 FULL/BDR and R3 FULL/DR on G0/0/0</td>
+</tr>
+<tr>
+<td>Interface roles</td>
+<td><code>show ip ospf interface brief</code> (R1, R2, R3)</td>
+<td>R1 DROTH, R2 BDR, R3 DR on the LAN; P2P on R1/R2 G0/0/1</td>
+</tr>
+<tr>
+<td>RIDs and passive</td>
+<td><code>show ip protocols</code> (R1)</td>
+<td>Router ID 1.1.1.1; Lo10 passive; three networks</td>
+</tr>
+<tr>
+<td>Routes</td>
+<td><code>show ip route ospf</code> (R3)</td>
+<td>O 10.10.10.0/24 and 10.20.20.0/24 [110/11]; O 10.0.12.0/30 [110/20] via both R1 and R2; <strong>O*E2 0.0.0.0/0</strong> via 10.0.123.1</td>
+</tr>
+<tr>
+<td>IPv6 neighbors</td>
+<td><code>show ipv6 ospf neighbor</code> (R1)</td>
+<td>Same roles; neighbors identified by RID, reached over link-local addresses</td>
+</tr>
+<tr>
+<td>IPv6 routes</td>
+<td><code>show ipv6 route ospf</code> (R3)</td>
+<td>O 2001:DB8:ACAD:10::/64 and :20::/64 via FE80:: next hops</td>
+</tr>
+<tr>
+<td>End to end</td>
+<td><code>ping 10.10.10.1 source 10.30.30.1</code> and <code>ping 2001:db8:acad:10::1 source 2001:db8:acad:30::1</code> (R3)</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Experiments</strong></p>
+<ol>
+<li><strong>Timer mismatch:</strong> on R3 G0/0/0 enter <code>ip ospf hello-interval 5</code>. Within 40 s R1 and R2 drop R3 (dead timers no longer match). Remove the command.</li>
+<li><strong>Point-to-point failover:</strong> shut R1 G0/0/1. R1's route to 10.20.20.0/24 drops to a single path via the LAN. Restore it.</li>
+<li><strong>Non-preemption:</strong> set <code>ip ospf priority 255</code> on R1 G0/0/0. Nothing changes until you clear the OSPF process on all three routers; then R1 becomes DR. Set it back and clear again.</li>
+<li><strong>Passive mistake:</strong> on R2 enter <code>router ospf 1</code> then <code>passive-interface gigabitethernet0/0/0</code>. R2 loses both LAN neighbors but still advertises 10.0.123.0/24. Remove it.</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] OSPFv2 and OSPFv3 neighbors FULL with the expected roles</li>
+<li>[ ] R3 is DR and R2 BDR on both protocols</li>
+<li>[ ] Default route O*E2 learned on R2 and R3</li>
+<li>[ ] Loopback LANs advertised as /24 and /64, not /32 and /128</li>
+<li>[ ] All four experiments reproduced and explained</li>
+</ul>
+<h3 id="1214-lab-122--ospf-challenge">12.14 Lab 12.2 — OSPF challenge</h3>
+<p>On a copy of Lab 12.1 apply: on R2 <code>router ospf 1</code> → <code>no network 10.0.123.0 0.0.0.255 area 0</code> → <code>network 10.0.123.0 0.0.0.255 area 1</code>; on R3 <code>router ospf 1</code> → <code>router-id 1.1.1.1</code> and <code>clear ip ospf process</code>; on R1 <code>router ospf 1</code> → <code>passive-interface gigabitethernet0/0/1</code>; on R2 <code>router ospf 1</code> → <code>no auto-cost reference-bandwidth 10000</code>. Diagnose with show commands and logs only.</p>
+<p><strong>Answer key (hide until done):</strong> (1) <strong>Area mismatch</strong> on R2's LAN interface: no LAN adjacencies for R2; <code>show ip ospf interface</code> shows area 1. (2) <strong>Duplicate router ID</strong> between R1 and R3: <code>%OSPF-4-DUP_RTRID_NBR</code> messages, unstable adjacencies. (3) <strong>Passive</strong> point-to-point interface: the R1–R2 link loses its adjacency, though 10.0.12.0/30 is still advertised. (4) <strong>Reference bandwidth mismatch</strong>: adjacencies stay up, but R2 calculates all gigabit links as cost 1 while the others use 10, so paths and metrics differ between routers.</p>
+<h3 id="1215-chapter-12-summary-notes-exam-revision">12.15 Chapter 12 summary notes (exam revision)</h3>
+<ul>
+<li>OSPF: link-state, AD 110, metric cost = reference bandwidth (default 100 Mb/s) ÷ interface bandwidth; protocol 89; 224.0.0.5 / 224.0.0.6 (FF02::5 / FF02::6).</li>
+<li>Packets: Hello, DBD, LSR, LSU, LSAck. States: Down, Init, 2-Way, ExStart, Exchange, Loading, Full.</li>
+<li>Neighbors need matching area, subnet/mask, Hello/dead, authentication, stub flag, MTU (for Full); unique RIDs; non-passive interfaces.</li>
+<li><strong>RID:</strong> <code>router-id</code> → highest loopback IP → highest active interface IP; change needs <code>clear ip ospf process</code>.</li>
+<li><strong>Broadcast:</strong> DR/BDR by highest priority (default 1, 0 = never), then highest RID, <strong>non-preemptive</strong>; DROthers FULL with DR/BDR, 2-WAY with each other. <strong>Point-to-point:</strong> no DR.</li>
+<li>Config: <code>router ospf 1</code>, <code>network ... wildcard area 0</code> or <code>ip ospf 1 area 0</code>, <code>passive-interface</code>, <code>auto-cost reference-bandwidth</code>, <code>default-information originate</code>. OSPFv3: <code>ipv6 router ospf 1</code>, <code>router-id</code>, interface <code>ipv6 ospf 1 area 0</code>.</li>
+<li>Verify: <code>show ip ospf neighbor</code>, <code>show ip ospf interface [brief]</code>, <code>show ip protocols</code>, <code>show ip route ospf</code> (and <code>ipv6</code> versions).</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Process IDs must match between neighbors"</td>
+<td>They are local; areas must match</td>
+</tr>
+<tr>
+<td>"2-WAY means the adjacency failed"</td>
+<td>Between DROthers it is the correct final state</td>
+</tr>
+<tr>
+<td>"Raising a priority immediately makes that router DR"</td>
+<td>No preemption; reset the process</td>
+</tr>
+<tr>
+<td>"Passive interfaces are not advertised"</td>
+<td>They are advertised; they just send no Hellos</td>
+</tr>
+<tr>
+<td>"1 G and 10 G links have different OSPF costs by default"</td>
+<td>Both cost 1 until the reference bandwidth is raised</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1216-practice-questions--chapter-12">12.16 Practice questions — Chapter 12</h3>
+<p><strong>1. (RID)</strong> A router has no <code>router-id</code> command, Loopback0 10.255.0.9, Loopback1 10.255.0.4, and G0/0/0 192.168.1.1. What is its RID?</p>
+<p><strong>2. (DR election)</strong> Four routers on a LAN: R1 priority 1 RID 4.4.4.4; R2 priority 1 RID 2.2.2.2; R3 priority 10 RID 1.1.1.1; R4 priority 0 RID 9.9.9.9. All start together. Which is DR and which BDR?</p>
+<p><strong>3. (States)</strong> Two routers are stuck in EXSTART. What is the most likely cause?</p>
+<p>A. Area mismatch  B. MTU mismatch  C. Hello timer mismatch  D. Passive interface</p>
+<p><strong>4. (Output interpretation)</strong> <code>show ip ospf neighbor</code> on a DROther lists another DROther as <code>2WAY/DROTHER</code>. Is anything wrong?</p>
+<p><strong>5. (Configuration)</strong> Write one <code>network</code> statement that enables OSPF area 0 on only the interface with address 172.16.5.1.</p>
+<p><strong>6. (Cost)</strong> With the default reference bandwidth, what is the OSPF cost of a 1 Gb/s interface and of a 10 Gb/s interface? What problem does this cause?</p>
+<p><strong>7. (Multiple response — choose two)</strong> Which must match for two OSPF routers to become neighbors?</p>
+<p>A. Process ID  B. Area ID  C. Hello and dead intervals  D. Router ID  E. Interface description</p>
+<p><strong>8. (Network type)</strong> What changes when you configure <code>ip ospf network point-to-point</code> on both ends of a /30 Ethernet link?</p>
+<p><strong>9. (Passive)</strong> What does <code>passive-interface gigabitethernet0/0/2</code> do to that interface?</p>
+<p><strong>10. (Routing table)</strong> R3 shows <code>O*E2 0.0.0.0/0 [110/1] via 10.0.123.1</code>. What configured it, and on which router?</p>
+<p><strong>11. (OSPFv3)</strong> An IPv6-only router refuses to start OSPFv3. What is missing?</p>
+<p><strong>12. (Troubleshooting)</strong> R2 sees R1 as a neighbor on the LAN but R3 does not, and <code>show ip ospf interface</code> on R3 shows Hello 5, Dead 20. What is wrong?</p>
+<p><strong>13. (Loopbacks)</strong> Other routers see <code>10.10.10.1/32</code> instead of <code>10.10.10.0/24</code> for R1's Loopback10. Why, and how is it fixed?</p>
+<p><strong>14. (Evaluate an AI assistant)</strong> A network assistant reviews <code>show ip ospf neighbor</code> showing two neighbors in <code>2WAY/DROTHER</code> and one <code>FULL/DR</code> and recommends: <em>"Change all OSPF priorities to 1 so every router reaches FULL."</em> Is that right?</p>
+<h3 id="1217-answer-key-with-explanations">12.17 Answer key with explanations</h3>
+<ol>
+<li><strong>10.255.0.9</strong> — the highest loopback address wins over any physical interface, even a numerically larger one.</li>
+<li><strong>DR R3</strong> (highest priority 10). <strong>BDR R1</strong> (priority 1 tie with R2, broken by higher RID 4.4.4.4 over 2.2.2.2). R4 (priority 0) can never be DR or BDR.</li>
+<li><strong>B.</strong> Mismatched MTU stops the DBD exchange. Area or Hello mismatches prevent the neighbor from appearing at all.</li>
+<li><strong>No.</strong> DROthers on a broadcast segment remain 2-WAY with each other and are FULL only with the DR and BDR.</li>
+<li><code>network 172.16.5.1 0.0.0.0 area 0</code>.</li>
+<li>Both are <strong>1</strong> (100 ÷ 1000 and 100 ÷ 10000 round up to 1), so OSPF cannot prefer the faster link. Fix with the same <code>auto-cost reference-bandwidth</code> on all routers.</li>
+<li><strong>B and C.</strong> Process IDs are local; RIDs must be <strong>different</strong>, not the same; descriptions are irrelevant.</li>
+<li>No DR/BDR election takes place, the adjacency forms faster, and <code>show ip ospf neighbor</code> shows <code>FULL/ -</code> instead of DR/BDR roles.</li>
+<li>It stops sending and processing Hellos there (no neighbors can form), but the interface's network is <strong>still advertised</strong> into OSPF.</li>
+<li><code>default-information originate</code> (here with <code>always</code>) on <strong>R1</strong>, the router at 10.0.123.1. It appears as an external type 2 route with metric 1.</li>
+<li>A manual <strong><code>router-id</code></strong> (no IPv4 address exists to choose one from), and <code>ipv6 unicast-routing</code> must be enabled.</li>
+<li><strong>Hello/dead timer mismatch</strong>: R3 uses 5/20 while R1 uses the default 10/40, so R3 never becomes a neighbor of R1 (or of R2, which also uses the defaults). Make the timers identical on every router on the LAN.</li>
+<li>OSPF advertises loopbacks as <strong>/32 host routes</strong> by default. Add <code>ip ospf network point-to-point</code> on Loopback10 so the configured /24 is advertised.</li>
+<li><strong>No.</strong> 2-WAY between DROthers is normal and efficient; forcing everyone to the same priority changes nothing about that (a DR and BDR are still elected) and could move the DR to a weaker router. No change is needed.</li>
+</ol>
+<h3 id="1218-chapter-12-figure-checklist">12.18 Chapter 12 figure checklist</h3>
+<p>All 3 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-12-2">Figure 12.2</a> (a label on the LAN line) and <a class="figref" href="#fig-12-3">Figure 12.3</a> (an overlapping label, a clipped footnote and an overfull box) were corrected and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12.1</td>
+<td>Neighbor states from Down to Full</td>
+<td>12.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>12.2</td>
+<td>DR/BDR election and FULL vs 2-WAY</td>
+<td>12.7</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>12.3</td>
+<td>Lab 12.1 topology</td>
+<td>12.13</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as annotated command output instead of a drawing:</strong> <code>show ip ospf neighbor</code>, <code>show ip ospf interface brief</code>, <code>show ip route ospf</code>.</p>
+<h3 id="1219-chapter-12-progress-record">12.19 Chapter 12 progress record</h3>
+<p><strong>Objectives completed:</strong> <strong>3.3</strong> and <strong>3.3.a–d</strong> — OSPFv2 and OSPFv3 adjacencies, point-to-point and broadcast networks, DR/BDR election, router ID, configuration, verification and troubleshooting.</p>
+<p><strong>Next:</strong> Chapter 13 — <strong>3.4 First hop redundancy protocols</strong> (HSRP, VRRP).</p></article><nav class="prevnext"><a class="pn prev" href="chapter-11.html"><small>← Chapter 11</small>IPv4 and IPv6 static routing</a><a class="pn next" href="chapter-13.html"><small>Chapter 13 →</small>First hop redundancy protocols</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#121-learning-objectives">12.1 Learning objectives</a>
+<a href="#122-introduction-why-a-routing-protocol">12.2 Introduction: why a routing protocol</a>
+<a href="#123-how-ospf-works-internally">12.3 How OSPF works internally</a>
+<a href="#124-neighbor-states-and-adjacencies-33a">12.4 Neighbor states and adjacencies (3.3.a)</a>
+<a href="#125-router-id-33d">12.5 Router ID (3.3.d)</a>
+<a href="#126-network-types-broadcast-and-point-to-point-33b-33c">12.6 Network types: broadcast and point-to-point (3.3.b, 3.3.c)</a>
+<a href="#127-dr-and-bdr-election-33c">12.7 DR and BDR election (3.3.c)</a>
+<a href="#128-ospf-cost-and-the-metric">12.8 OSPF cost and the metric</a>
+<a href="#129-configuring-ospfv2">12.9 Configuring OSPFv2</a>
+<a href="#1210-configuring-ospfv3-for-ipv6">12.10 Configuring OSPFv3 for IPv6</a>
+<a href="#1211-verification">12.11 Verification</a>
+<a href="#1212-troubleshooting-ospf">12.12 Troubleshooting OSPF</a>
+<a href="#1213-packet-tracer-lab-121--single-area-ospfv2-and-ospfv3-intermediateadvanced">12.13 Packet Tracer Lab 12.1 — Single-area OSPFv2 and OSPFv3 (Intermediate–Advanced)</a>
+<a href="#1214-lab-122--ospf-challenge">12.14 Lab 12.2 — OSPF challenge</a>
+<a href="#1215-chapter-12-summary-notes-exam-revision">12.15 Chapter 12 summary notes (exam revision)</a>
+<a href="#1216-practice-questions--chapter-12">12.16 Practice questions — Chapter 12</a>
+<a href="#1217-answer-key-with-explanations">12.17 Answer key with explanations</a>
+<a href="#1218-chapter-12-figure-checklist">12.18 Chapter 12 figure checklist</a>
+<a href="#1219-chapter-12-progress-record">12.19 Chapter 12 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

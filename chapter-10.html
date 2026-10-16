@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 10 — Interpreting the routing table · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 10: Interpreting the routing table">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch active" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head amber">
+  <div class="eyebrow">Domain 3 · IP Routing</div>
+  <h1><span class="num">Chapter 10</span>Interpreting the routing table</h1>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~17 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="10"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>3.1 Interpret a routing table to identify the next hop for a packet</strong> (routing protocol, prefix/mask, administrative distance, metric, and default route). This is Domain 3's foundation: static routing (Chapter 11), OSPF (Chapter 12) and FHRP (Chapter 13) all end up as lines in this table.</p>
+<h3 id="101-learning-objectives">10.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Describe step by step how a router forwards a packet.</li>
+<li>Read every field of an IPv4 and IPv6 routing table entry.</li>
+<li>Apply the three route-selection rules in the right order: longest prefix match, administrative distance, metric.</li>
+<li>Explain the gateway of last resort and the default route.</li>
+<li>Find the next hop and exit interface for any destination from <code>show ip route</code> output.</li>
+</ol>
+<h3 id="102-how-a-router-forwards-a-packet">10.2 How a router forwards a packet</h3>
+<p>A router makes the same decision for every packet, independently (<a class="figref" href="#fig-10-1">Figure 10.1</a>):</p>
+<figure class="fig" id="fig-10-1"><button class="zoom" aria-label="Enlarge figure 10.1"><img src="assets/figures/ch10/fig-10-01-router-forwarding-process.svg" alt="Figure 10.1 — The router's per-packet forwarding process" loading="lazy"></button><figcaption><a class="fignum" href="#fig-10-1">Figure 10.1</a> The router's per-packet forwarding process</figcaption></figure>
+
+<p><a class="figref" href="#fig-10-1">Figure 10.1</a> follows one packet from arrival to departure. The two red boxes are the only routing reasons to drop it: the TTL ran out, or no route matched. Everything this chapter teaches happens in steps 3 to 5.</p>
+<ol>
+<li><strong>Receive the frame.</strong> Check the FCS; accept it only if the destination MAC is the router's own interface MAC (or broadcast/multicast it listens to).</li>
+<li><strong>De-encapsulate</strong> to the IP packet and <strong>decrement the TTL</strong>. If TTL reaches 0, drop it and send an ICMP Time Exceeded back to the source (this is how traceroute works).</li>
+<li><strong>Look up the destination IP</strong> in the routing table and choose the <strong>longest matching prefix</strong> (10.4).</li>
+<li><strong>No match and no default route?</strong> Drop the packet and send ICMP Destination Unreachable.</li>
+<li><strong>Match found:</strong> read the <strong>next-hop address</strong> and/or <strong>exit interface</strong>. If the next hop is not directly connected, look it up again (a <em>recursive</em> lookup).</li>
+<li><strong>Resolve the next hop's MAC</strong> with ARP (IPv4) or ND (IPv6). If the destination is on a directly connected network, ARP for the destination itself.</li>
+<li><strong>Re-encapsulate</strong> in a new frame for the exit interface (new source and destination MAC, new FCS) and send it.</li>
+</ol>
+<p>The routing table (the <strong>RIB</strong>) is built by the control plane from connected interfaces, static routes and routing protocols. For speed, the forwarding plane uses a copy optimized for lookups (Cisco Express Forwarding, CEF), but its decisions follow the same table.</p>
+<h3 id="103-anatomy-of-show-ip-route">10.3 Anatomy of <code>show ip route</code></h3>
+<p>This example is R1, the edge router of the campus, once OSPF (Chapter 12) runs inside the campus and R1 has a default route to an ISP. R1's G0/0/1 connects to the ISP on 198.51.100.0/30.</p>
+<pre><code>R1# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, * - candidate default, + - replicated route ...
+
+Gateway of last resort is 198.51.100.1 to network 0.0.0.0
+
+S*    0.0.0.0/0 [1/0] via 198.51.100.1
+      10.0.0.0/8 is variably subnetted, 9 subnets, 4 masks
+C        10.0.0.0/30 is directly connected, GigabitEthernet0/0/0
+L        10.0.0.1/32 is directly connected, GigabitEthernet0/0/0
+O        10.0.0.4/30 [110/2] via 10.0.0.2, 00:14:02, GigabitEthernet0/0/0
+S        10.10.0.0/16 [1/0] via 10.0.0.2
+O        10.10.10.0/24 [110/2] via 10.0.0.2, 00:14:02, GigabitEthernet0/0/0
+O        10.10.30.0/24 [110/2] via 10.0.0.2, 00:14:02, GigabitEthernet0/0/0
+O        10.10.40.0/24 [110/2] via 10.0.0.2, 00:14:02, GigabitEthernet0/0/0
+O        10.10.99.0/24 [110/2] via 10.0.0.2, 00:14:02, GigabitEthernet0/0/0
+O        10.255.0.2/32 [110/3] via 10.0.0.2, 00:14:02, GigabitEthernet0/0/0
+      198.51.100.0/24 is variably subnetted, 2 subnets, 2 masks
+C        198.51.100.0/30 is directly connected, GigabitEthernet0/0/1
+L        198.51.100.2/32 is directly connected, GigabitEthernet0/0/1
+</code></pre>
+<p><strong>Reading it, block by block:</strong></p>
+<ul>
+<li><strong>Codes legend</strong> — the first column of every route tells you its source. The ones to know: <strong>C</strong> connected network, <strong>L</strong> local (the router's own address, /32 or /128), <strong>S</strong> static, <strong>S*</strong> static default (candidate default), <strong>O</strong> OSPF intra-area, <strong>O IA</strong> OSPF inter-area, <strong>O E1/E2</strong> OSPF external, <strong>D</strong> EIGRP, <strong>D EX</strong> EIGRP external, <strong>R</strong> RIP, <strong>B</strong> BGP.</li>
+<li><strong>Gateway of last resort</strong> — the default route's next hop, used when nothing more specific matches. "Gateway of last resort is not set" means unmatched packets are dropped.</li>
+<li><strong>Header lines</strong> such as <code>10.0.0.0/8 is variably subnetted, 9 subnets, 4 masks</code> are <strong>not routes</strong>. They group the entries that fall inside the classful network 10.0.0.0/8 and say how many different masks are in use. A packet to 10.200.1.1 does <strong>not</strong> match "10.0.0.0/8" here.</li>
+<li><strong>Route lines</strong> (<a class="figref" href="#fig-10-2">Figure 10.2</a> dissects one): code, destination prefix and length, <strong>[administrative distance/metric]</strong>, <strong>via</strong> next-hop address, age, exit interface.</li>
+<li><strong>Connected and local routes</strong> have no brackets and no next hop: the network is directly attached.</li>
+</ul>
+<figure class="fig" id="fig-10-2"><button class="zoom" aria-label="Enlarge figure 10.2"><img src="assets/figures/ch10/fig-10-02-routing-entry-anatomy.svg" alt="Figure 10.2 — Anatomy of one routing table entry from R1" loading="lazy"></button><figcaption><a class="fignum" href="#fig-10-2">Figure 10.2</a> Anatomy of one routing table entry from R1</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-10-2">Figure 10.2</a> each underlined part of the route line has a leader down to its meaning. Read any route the same way, left to right: how it was learned, where it goes, how trusted and how costly it is, and which neighbor and interface to use.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code</td>
+<td>O</td>
+<td>How the route was learned</td>
+</tr>
+<tr>
+<td>Prefix / length</td>
+<td>10.10.40.0/24</td>
+<td>Destination network and mask</td>
+</tr>
+<tr>
+<td>Administrative distance</td>
+<td>110</td>
+<td>How trustworthy the source is; lower wins between sources</td>
+</tr>
+<tr>
+<td>Metric</td>
+<td>2</td>
+<td>Cost within that protocol; lower wins between routes from the same protocol</td>
+</tr>
+<tr>
+<td>Next hop</td>
+<td>via 10.0.0.2</td>
+<td>The next router's address on a connected subnet</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>00:14:02</td>
+<td>Time since learned (dynamic routes only)</td>
+</tr>
+<tr>
+<td>Exit interface</td>
+<td>GigabitEthernet0/0/0</td>
+<td>Where the packet leaves this router</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Administrative distance values to memorise (Cisco defaults):</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>AD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connected</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Static</td>
+<td>1</td>
+</tr>
+<tr>
+<td>eBGP</td>
+<td>20</td>
+</tr>
+<tr>
+<td>EIGRP (internal)</td>
+<td>90</td>
+</tr>
+<tr>
+<td>OSPF</td>
+<td>110</td>
+</tr>
+<tr>
+<td>IS-IS</td>
+<td>115</td>
+</tr>
+<tr>
+<td>RIP</td>
+<td>120</td>
+</tr>
+<tr>
+<td>EIGRP external</td>
+<td>170</td>
+</tr>
+<tr>
+<td>iBGP</td>
+<td>200</td>
+</tr>
+<tr>
+<td>Default route learned from DHCP</td>
+<td>254</td>
+</tr>
+<tr>
+<td>Unknown / unusable</td>
+<td>255 (never installed)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Metrics are protocol-specific</strong> and cannot be compared between protocols: OSPF uses <strong>cost</strong> (based on bandwidth), RIP uses <strong>hop count</strong>, EIGRP a <strong>composite</strong> of bandwidth and delay. That is exactly why AD exists.</p>
+<h3 id="104-the-three-decisions-and-their-order">10.4 The three decisions, and their order</h3>
+<p>Three different rules are often confused. They answer different questions, at different times (<a class="figref" href="#fig-10-3">Figure 10.3</a>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Question it answers</th>
+<th>When</th>
+<th>Compares</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Administrative distance</strong></td>
+<td>Several sources offer the <strong>same prefix</strong>; which one goes into the table?</td>
+<td>When building the table</td>
+<td>Lowest AD</td>
+</tr>
+<tr>
+<td><strong>Metric</strong></td>
+<td>One protocol has several paths to the <strong>same prefix</strong>; which go in?</td>
+<td>When building the table</td>
+<td>Lowest metric; equal metrics all go in (ECMP)</td>
+</tr>
+<tr>
+<td><strong>Longest prefix match</strong></td>
+<td>A packet arrives; which installed route does it use?</td>
+<td>Every packet</td>
+<td>Most specific (longest) prefix that contains the destination</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The trap:</strong> AD and metric never compete across <em>different</em> prefixes. A static route to 10.10.0.0/16 (AD 1) does <strong>not</strong> beat an OSPF route to 10.10.40.0/24 (AD 110) for traffic to 10.10.40.25. Both are installed, because they are different prefixes, and the packet uses the /24 because it is longer.</p>
+<figure class="fig" id="fig-10-3"><button class="zoom" aria-label="Enlarge figure 10.3"><img src="assets/figures/ch10/fig-10-03-route-selection.svg" alt="Figure 10.3 — Route selection: AD and metric when building the table, longest match when forwarding" loading="lazy"></button><figcaption><a class="fignum" href="#fig-10-3">Figure 10.3</a> Route selection: AD and metric when building the table, longest match when forwarding</figcaption></figure>
+
+<p>Read <a class="figref" href="#fig-10-3">Figure 10.3</a> as two separate jobs. The left column runs whenever routing information changes and decides which routes are installed for each prefix. The right column runs for every packet and only ever looks at installed routes, choosing by prefix length alone.</p>
+<h3 id="105-longest-prefix-match">10.5 Longest prefix match</h3>
+<p>A route <strong>contains</strong> a destination if the destination's first <em>n</em> bits equal the route's first <em>n</em> bits, where <em>n</em> is the prefix length. Among all routes that contain the destination, the router uses the one with the <strong>largest n</strong>.</p>
+<p><strong>Worked example on R1's table — destination 10.10.40.25</strong> (<a class="figref" href="#fig-10-4">Figure 10.4</a>):</p>
+<figure class="fig" id="fig-10-4"><button class="zoom" aria-label="Enlarge figure 10.4"><img src="assets/figures/ch10/fig-10-04-longest-prefix-match.svg" alt="Figure 10.4 — Longest prefix match for 10.10.40.25 against five of R1's routes" loading="lazy"></button><figcaption><a class="fignum" href="#fig-10-4">Figure 10.4</a> Longest prefix match for 10.10.40.25 against five of R1's routes</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-10-4">Figure 10.4</a> the three filled bars are routes that contain 10.10.40.25; the highlighted one is longest, so it wins. The /30 is longer still but does not contain the address, so length alone is never enough: the route must match first.</p>
+<ol>
+<li>0.0.0.0/0 contains everything (0 bits to compare).</li>
+<li>10.10.0.0/16: the first 16 bits (10.10) match. Contains it.</li>
+<li>10.10.40.0/24: the first 24 bits (10.10.40) match. Contains it.</li>
+<li>10.10.30.0/24: the third octet differs (30 ≠ 40). Does <strong>not</strong> contain it.</li>
+<li>10.0.0.4/30: covers only 10.0.0.4–10.0.0.7. Does not contain it.</li>
+<li>The longest containing prefix is <strong>10.10.40.0/24 → next hop 10.0.0.2, exit G0/0/0</strong>.</li>
+</ol>
+<p><strong>Quick method:</strong> for each candidate, apply the candidate's mask to the destination (Chapter 2 block-size method) and see whether you get the candidate's network address. 10.10.40.25 with /24 → 10.10.40.0 ✓; with /16 → 10.10.0.0 ✓; the longer one wins.</p>
+<h3 id="106-administrative-distance-and-metric-in-action">10.6 Administrative distance and metric in action</h3>
+<p><strong>AD decides between sources.</strong> If R1 also had <code>ip route 10.10.40.0 255.255.255.0 10.0.0.2</code>, the static route (AD 1) would replace the OSPF route (AD 110) for that same /24 in the table; the OSPF route stays in the OSPF database as a backup. If the static route were configured with AD 130 (a <strong>floating static</strong>, Chapter 11), OSPF would stay installed and the static would appear only if OSPF lost the route.</p>
+<p><strong>Metric decides within one protocol.</strong> If OSPF knew two paths to 10.20.0.0/24 with costs 3 and 5, only cost 3 is installed. With two paths of equal cost, <strong>both</strong> are installed and traffic is shared (equal-cost multipath, ECMP):</p>
+<pre><code>O        10.20.0.0/24 [110/3] via 10.0.0.6, 00:02:11, Port-channel3
+                      [110/3] via 10.0.0.10, 00:02:11, GigabitEthernet1/0/24
+</code></pre>
+<p>OSPF installs up to four equal-cost paths by default (<code>maximum-paths</code> changes it).</p>
+<h3 id="107-default-routes-and-the-gateway-of-last-resort">10.7 Default routes and the gateway of last resort</h3>
+<p>A <strong>default route</strong> is a route to <strong>0.0.0.0/0</strong> (IPv4) or <strong>::/0</strong> (IPv6). It contains every address but is the <strong>least specific</strong> possible, so it is used only when nothing longer matches. Typical use: the edge router points the default at the ISP, and internal routers learn or point a default toward the edge.</p>
+<ul>
+<li>Configured statically: <code>ip route 0.0.0.0 0.0.0.0 198.51.100.1</code> (shows as <code>S*</code>).</li>
+<li>Learned from a routing protocol (for example <code>O*E2</code> from OSPF's <code>default-information originate</code>, Chapter 12).</li>
+<li>Learned from DHCP on an Internet-facing interface (AD 254).</li>
+</ul>
+<p><code>Gateway of last resort is 198.51.100.1 to network 0.0.0.0</code> confirms which default is active. If it says <strong>not set</strong>, packets with no matching route are dropped with ICMP Unreachable.</p>
+<h3 id="108-reading-an-ipv6-routing-table">10.8 Reading an IPv6 routing table</h3>
+<p>The same rules apply to IPv6; only the layout differs. Each route takes two lines, and connected and local routes show <code>[0/0]</code>.</p>
+<pre><code>R1# show ipv6 route
+IPv6 Routing Table - default - 8 entries
+Codes: C - Connected, L - Local, S - Static, U - Per-user Static route
+       O - OSPF Intra, OI - OSPF Inter, OE1 - OSPF ext 1, OE2 - OSPF ext 2
+       ND - ND Default, NDp - ND Prefix ...
+S   ::/0 [1/0]
+     via 2001:DB8:FFFF::1
+C   2001:DB8:ACAD:10::/64 [0/0]
+     via GigabitEthernet0/0/0, directly connected
+L   2001:DB8:ACAD:10::1/128 [0/0]
+     via GigabitEthernet0/0/0, receive
+O   2001:DB8:ACAD:40::/64 [110/2]
+     via FE80::2, GigabitEthernet0/0/1
+C   2001:DB8:FFFF::/64 [0/0]
+     via GigabitEthernet0/0/2, directly connected
+L   2001:DB8:FFFF::2/128 [0/0]
+     via GigabitEthernet0/0/2, receive
+L   FF00::/8 [0/0]
+     via Null0, receive
+</code></pre>
+<p><strong>Differences to notice:</strong> local routes are /128; OSPFv3 and many routing protocols use the neighbor's <strong>link-local</strong> address (FE80::2) as the next hop, so the exit interface is always shown with it; <code>FF00::/8</code> via Null0 is the router's internal multicast entry; <code>::/0</code> is the default route; <code>ND</code> marks a default learned from a Router Advertisement.</p>
+<h3 id="109-special-cases-you-must-recognise">10.9 Special cases you must recognise</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>S 10.50.0.0/16 is directly connected, GigabitEthernet0/0/1</code></td>
+<td>A static route with only an <strong>exit interface</strong> (no next-hop IP). Fine on point-to-point links; on Ethernet the router must ARP for every destination (Chapter 11)</td>
+</tr>
+<tr>
+<td><code>S 10.60.0.0/16 [1/0] via 10.0.0.2</code> with no interface</td>
+<td>A next-hop-only static: the router performs a <strong>recursive lookup</strong> for 10.0.0.2 to find the exit interface</td>
+</tr>
+<tr>
+<td>Two or more <code>via</code> lines under one prefix</td>
+<td>Equal-cost load sharing (ECMP)</td>
+</tr>
+<tr>
+<td><code>O*E2 0.0.0.0/0</code></td>
+<td>A default route advertised into OSPF (external type 2)</td>
+</tr>
+<tr>
+<td><code>D EX</code>, <code>O E2</code>, <code>O IA</code></td>
+<td>External EIGRP, external OSPF, OSPF inter-area routes</td>
+</tr>
+<tr>
+<td><code>[110/2]</code> on a static route line</td>
+<td>Impossible: static routes show <code>[1/0]</code> unless their AD was changed (for example <code>[130/0]</code> for a floating static)</td>
+</tr>
+<tr>
+<td><code>Gateway of last resort is not set</code></td>
+<td>No default route; unmatched destinations are dropped</td>
+</tr>
+<tr>
+<td>A /32 <code>L</code> route</td>
+<td>The router's own interface address; packets to it are received, not forwarded</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1010-worked-lookups-on-r1s-table-103">10.10 Worked lookups on R1's table (10.3)</h3>
+<p>For each destination, find every route that contains it and take the longest.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Destination</th>
+<th>Containing routes</th>
+<th>Longest</th>
+<th>Next hop / exit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.10.40.25</td>
+<td>/0, 10.10.0.0/16, 10.10.40.0/24</td>
+<td>10.10.40.0/24 (O)</td>
+<td>10.0.0.2, G0/0/0</td>
+</tr>
+<tr>
+<td>10.10.77.9</td>
+<td>/0, 10.10.0.0/16</td>
+<td>10.10.0.0/16 (S)</td>
+<td>10.0.0.2, G0/0/0 (recursive via 10.0.0.0/30)</td>
+</tr>
+<tr>
+<td>10.0.0.6</td>
+<td>/0, 10.0.0.4/30</td>
+<td>10.0.0.4/30 (O)</td>
+<td>10.0.0.2, G0/0/0</td>
+</tr>
+<tr>
+<td>10.0.0.2</td>
+<td>/0, 10.0.0.0/30</td>
+<td>10.0.0.0/30 (C)</td>
+<td>Directly connected, G0/0/0 (ARP for 10.0.0.2)</td>
+</tr>
+<tr>
+<td>10.200.1.1</td>
+<td>/0 only</td>
+<td>0.0.0.0/0 (S*)</td>
+<td>198.51.100.1, G0/0/1 — the "10.0.0.0/8 is variably subnetted" line is a header, not a route</td>
+</tr>
+<tr>
+<td>8.8.8.8</td>
+<td>/0 only</td>
+<td>0.0.0.0/0 (S*)</td>
+<td>198.51.100.1, G0/0/1</td>
+</tr>
+<tr>
+<td>198.51.100.2</td>
+<td>/0, 198.51.100.0/30, 198.51.100.2/32</td>
+<td>198.51.100.2/32 (L)</td>
+<td>Received by R1 itself</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Exam habit:</strong> write the destination in the same octet style as each candidate and check the octets covered by the mask. Do not stop at the first match you see; scan the whole table for a longer one.</p>
+<h3 id="1011-packet-tracer-lab-101--reading-the-campus-routing-tables-intermediate">10.11 Packet Tracer Lab 10.1 — Reading the campus routing tables (Intermediate)</h3>
+<p><strong>Objective:</strong> 3.1. <strong>Start from:</strong> your Lab 9.1 file (topology in <a class="figref" href="chapter-09.html#fig-9-5">Figure 9.5</a>; routed links from <a class="figref" href="chapter-05.html#fig-5-6">Figures 5.6</a> and 6.4). No new devices. <strong>You will:</strong> predict, read and explain the routing tables of R1, DSW1 and DSW2, find next hops for given destinations, and prove a longest-match decision.</p>
+<p><strong>Part 1 — Predict before you look.</strong> Using the configurations from Labs 5.1 and 6.1, write down every route you expect on each router. Then compare with the outputs below (your timers and order may differ slightly).</p>
+<pre><code>DSW1# show ip route
+Gateway of last resort is 10.0.0.1 to network 0.0.0.0
+
+S*    0.0.0.0/0 [1/0] via 10.0.0.1
+      10.0.0.0/8 is variably subnetted, 13 subnets, 3 masks
+C        10.0.0.0/30 is directly connected, GigabitEthernet1/0/24
+L        10.0.0.2/32 is directly connected, GigabitEthernet1/0/24
+C        10.0.0.4/30 is directly connected, Port-channel3
+L        10.0.0.5/32 is directly connected, Port-channel3
+C        10.10.10.0/24 is directly connected, Vlan10
+L        10.10.10.1/32 is directly connected, Vlan10
+C        10.10.30.0/24 is directly connected, Vlan30
+L        10.10.30.1/32 is directly connected, Vlan30
+C        10.10.40.0/24 is directly connected, Vlan40
+L        10.10.40.1/32 is directly connected, Vlan40
+C        10.10.99.0/24 is directly connected, Vlan99
+L        10.10.99.1/32 is directly connected, Vlan99
+S        10.255.0.2/32 [1/0] via 10.0.0.6
+
+R1# show ip route
+Gateway of last resort is not set
+
+      10.0.0.0/8 is variably subnetted, 3 subnets, 3 masks
+C        10.0.0.0/30 is directly connected, GigabitEthernet0/0/0
+L        10.0.0.1/32 is directly connected, GigabitEthernet0/0/0
+S        10.10.0.0/16 [1/0] via 10.0.0.2
+      203.0.113.0/32 is subnetted, 1 subnets
+C        203.0.113.1 is directly connected, Loopback0
+
+DSW2# show ip route
+Gateway of last resort is 10.0.0.5 to network 0.0.0.0
+
+S*    0.0.0.0/0 [1/0] via 10.0.0.5
+      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+C        10.0.0.4/30 is directly connected, Port-channel3
+L        10.0.0.6/32 is directly connected, Port-channel3
+C        10.255.0.2/32 is directly connected, Loopback0
+</code></pre>
+<p><strong>Part 2 — Questions on the outputs</strong></p>
+<ol>
+<li>How many routes on DSW1 are connected, local and static? Why does every SVI produce both a C and an L route?</li>
+<li>Which DSW1 route would a packet to 10.255.0.2 use, and what is its AD and metric?</li>
+<li><strong>Ping 10.255.0.2 from R1.</strong> It fails. Use R1's table to explain why, even though PC1 can reach it. (Hint: does 10.10.0.0/16 contain 10.255.0.2? Is there a default?)</li>
+<li>Add a fix on R1 without touching any other device, and verify with <code>show ip route</code> and a ping. (One answer: <code>ip route 10.255.0.0 255.255.0.0 10.0.0.2</code>; another: a default route to 10.0.0.2.)</li>
+<li>On DSW2, which route does a packet to 10.10.40.11 use? Why does the response come back successfully?</li>
+</ol>
+<p><strong>Part 3 — Prove longest match.</strong> On R1 add <code>ip route 10.10.40.0 255.255.255.0 10.0.0.2</code>. <code>show ip route</code> now lists both S 10.10.0.0/16 and S 10.10.40.0/24. Run <code>show ip route 10.10.40.11</code> and <code>show ip route 10.10.30.11</code>: each command prints which entry is used. Remove the /24 afterwards.</p>
+<p><strong>Part 4 — Watch TTL in Simulation mode.</strong> Switch Packet Tracer to Simulation, send a ping from PC1 to 203.0.113.1, and open the packet at each hop: the TTL drops by one at DSW1 (an SVI hop) and is received by R1. The Ethernet source and destination MACs change at DSW1; the IP addresses do not.</p>
+<p><strong>Answers (hide until done):</strong> (1) Six connected, six local (one pair per routed interface, Po3 and SVI), one static and one static default; the C route is the subnet, the L route is the router's own /32 on it. (2) S 10.255.0.2/32, AD 1, metric 0, next hop 10.0.0.6. (3) R1 has no route containing 10.255.0.2 and no gateway of last resort, so it drops the packet; PC1 works because DSW1 has the static /32. (5) DSW2 uses its default route 0.0.0.0/0 via 10.0.0.5 (DSW1), which has a connected route to VLAN 40.</p>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Predicted tables written before viewing the real ones</li>
+<li>[ ] All Part 2 questions answered and R1's missing route fixed</li>
+<li>[ ] <code>show ip route &lt;address&gt;</code> used to prove a longest-match decision</li>
+<li>[ ] TTL and MAC changes observed in Simulation mode</li>
+</ul>
+<h3 id="1012-chapter-10-summary-notes-exam-revision">10.12 Chapter 10 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Per packet:</strong> check frame → decrement TTL (0 = drop, ICMP Time Exceeded) → longest-prefix lookup → no route and no default = drop, ICMP Unreachable → ARP/ND for next hop → new frame.</li>
+<li><strong>Route line:</strong> code, prefix/length, <strong>[AD/metric]</strong>, via next hop, age, exit interface. C and L lines have no brackets; L = the router's own /32 (or /128).</li>
+<li><strong>Codes:</strong> C, L, S, S* (static default), O, O IA, O E1/E2, D, D EX, R, B. "is variably subnetted" lines are headers, not routes.</li>
+<li><strong>AD:</strong> connected 0, static 1, eBGP 20, EIGRP 90, OSPF 110, IS-IS 115, RIP 120, EIGRP external 170, iBGP 200, DHCP default 254, 255 never used.</li>
+<li><strong>Order of rules:</strong> AD (same prefix, different sources) and metric (same prefix, same protocol) decide what is <strong>installed</strong>; <strong>longest prefix match</strong> decides what each packet <strong>uses</strong>. AD never compares different prefixes.</li>
+<li><strong>Equal metrics</strong> → several <code>via</code> lines (ECMP).</li>
+<li><strong>Default route</strong> 0.0.0.0/0 or ::/0; shown as the gateway of last resort; "not set" = no default.</li>
+<li><strong>IPv6:</strong> two-line entries, /128 local routes, link-local next hops with an exit interface.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"The static route wins because its AD is lower"</td>
+<td>Only if it is the <strong>same prefix</strong>; otherwise the longer prefix wins</td>
+</tr>
+<tr>
+<td>"10.0.0.0/8 is variably subnetted means there is a /8 route"</td>
+<td>It is a header grouping subnets, not a route</td>
+</tr>
+<tr>
+<td>"The first matching line is used"</td>
+<td>The longest matching line is used, wherever it is in the table</td>
+</tr>
+<tr>
+<td>"Metric 30 from OSPF is worse than metric 2 from RIP"</td>
+<td>Metrics from different protocols cannot be compared; AD decides</td>
+</tr>
+<tr>
+<td>"[1/0] means metric 1"</td>
+<td>1 is the AD, 0 the metric</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1013-practice-questions--chapter-10">10.13 Practice questions — Chapter 10</h3>
+<p>Questions 1–5 use this table from router RX:</p>
+<pre><code>Gateway of last resort is 192.0.2.1 to network 0.0.0.0
+
+S*    0.0.0.0/0 [1/0] via 192.0.2.1
+      172.16.0.0/16 is variably subnetted, 4 subnets, 3 masks
+O        172.16.0.0/20 [110/20] via 10.1.1.2, 00:05:12, GigabitEthernet0/1
+O        172.16.4.0/22 [110/30] via 10.1.1.6, 00:05:12, GigabitEthernet0/2
+S        172.16.5.0/24 [1/0] via 10.1.1.10
+C        172.16.8.0/24 is directly connected, GigabitEthernet0/3
+</code></pre>
+<p><strong>1.</strong> What is the next hop for a packet to 172.16.5.9?</p>
+<p><strong>2.</strong> What is the next hop for 172.16.6.200?</p>
+<p><strong>3.</strong> What is the next hop for 172.16.12.1?</p>
+<p><strong>4.</strong> What is the next hop for 172.16.20.1?</p>
+<p><strong>5.</strong> How does RX deliver a packet to 172.16.8.77?</p>
+<p><strong>6. (Recall)</strong> In <code>[110/30]</code>, which number is the administrative distance and which is the metric?</p>
+<p><strong>7. (AD)</strong> OSPF and RIP both offer 10.50.0.0/16. Which route is installed?</p>
+<p>A. RIP, because hop count is simpler  B. OSPF, because AD 110 is lower than 120  C. Both, load-shared  D. Whichever was learned first</p>
+<p><strong>8. (AD)</strong> EIGRP (internal) and OSPF both offer 10.60.0.0/24. Which is installed and why?</p>
+<p><strong>9. (Output interpretation)</strong> What does <code>Gateway of last resort is not set</code> mean for a packet to 8.8.8.8 if no other route matches?</p>
+<p><strong>10. (Output interpretation)</strong> A prefix shows two <code>via</code> lines with identical <code>[110/3]</code>. What does that mean?</p>
+<p><strong>11. (Multiple response — choose two)</strong> Which statements about administrative distance are true?</p>
+<p>A. Lower AD is preferred  B. AD compares routes to different prefixes  C. A route with AD 255 is never installed  D. AD is the same as the metric  E. Connected routes have AD 1</p>
+<p><strong>12. (IPv6)</strong> An IPv6 route reads <code>O 2001:DB8:ACAD:40::/64 [110/2] via FE80::2, GigabitEthernet0/0/1</code>. Why is the exit interface always shown with this next hop?</p>
+<p><strong>13. (Concept)</strong> OSPF installs 10.70.0.0/24. An administrator adds <code>ip route 10.70.0.0 255.255.255.0 10.9.9.9 130</code>. Which route is in the table now?</p>
+<p><strong>14. (Evaluate an AI assistant)</strong> Looking at RX's table, a network assistant says: <em>"Traffic to 172.16.5.9 uses the OSPF route 172.16.4.0/22 because dynamic routes are preferred over static ones."</em> Is that correct?</p>
+<h3 id="1014-answer-key-with-explanations">10.14 Answer key with explanations</h3>
+<ol>
+<li><strong>10.1.1.10.</strong> 172.16.5.9 is contained by /20 (0–15), /22 (4–7) and /24 (5); the static /24 is longest. Its next hop 10.1.1.10 is then resolved recursively.</li>
+<li><strong>10.1.1.6 via Gi0/2.</strong> The third octet 6 falls in 172.16.4.0/22 (4–7) and in /20; it is not in 5.0/24. The /22 is longest.</li>
+<li><strong>10.1.1.2 via Gi0/1.</strong> 12 is inside 172.16.0.0/20 (third octets 0–15) but not in the /22 or /24 blocks.</li>
+<li><strong>192.0.2.1 (default route).</strong> 20 is outside 0–15, so no 172.16 route contains it. The 172.16.0.0/16 header is not a route.</li>
+<li><strong>Directly</strong> out Gi0/3: 172.16.8.0/24 (C) is longer than the /20 that also contains it. RX ARPs for 172.16.8.77 itself.</li>
+<li><strong>110 is the AD, 30 is the metric</strong> (OSPF cost).</li>
+<li><strong>B.</strong> Same prefix, different sources: lower AD wins. Metrics of different protocols are never compared.</li>
+<li><strong>EIGRP (AD 90)</strong> beats OSPF (AD 110) for the same prefix.</li>
+<li>There is <strong>no default route</strong>, so the packet is dropped and an ICMP Destination Unreachable is returned.</li>
+<li><strong>Equal-cost multipath</strong>: two paths with the same metric are both installed, and traffic is shared between the next hops.</li>
+<li><strong>A and C.</strong> AD compares sources offering the same prefix (B is wrong); it is not the metric (D); connected routes have AD 0 (E).</li>
+<li>Link-local addresses are valid only on one link, and every link uses FE80::/10, so FE80::2 is ambiguous without naming the interface it is on.</li>
+<li><strong>The OSPF route stays installed</strong> (AD 110 &lt; 130). The static route is a <strong>floating static</strong>: it appears only if OSPF loses 10.70.0.0/24.</li>
+<li><strong>No.</strong> Longest prefix match comes first: the static 172.16.5.0/24 is more specific than the /22, so it is used. (Static routes also have a lower AD than OSPF, but AD is irrelevant here because the prefixes differ.)</li>
+</ol>
+<h3 id="1015-chapter-10-figure-checklist">10.15 Chapter 10 figure checklist</h3>
+<p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-10-2">Figure 10.2</a> failed validation on first publish (a nested text element) and was corrected before it was checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.1</td>
+<td>The router's per-packet forwarding process</td>
+<td>10.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>10.2</td>
+<td>Anatomy of one routing table entry</td>
+<td>10.3</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>10.3</td>
+<td>Route selection: AD and metric vs longest match</td>
+<td>10.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>10.4</td>
+<td>Longest prefix match for 10.10.40.25</td>
+<td>10.5</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as annotated command output instead of a drawing:</strong> full <code>show ip route</code> and <code>show ipv6 route</code> outputs (10.3, 10.8, Lab 10.1). Lab 10.1 reuses <a class="figref" href="chapter-09.html#fig-9-5">Figure 9.5</a> as its topology.</p>
+<h3 id="1016-chapter-10-progress-record">10.16 Chapter 10 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>3.1</strong> — routing table interpretation: codes, prefix/mask, administrative distance, metric, default route, next hop, longest prefix match, IPv4 and IPv6.</p>
+<p><strong>Next:</strong> Chapter 11 — <strong>3.2 Troubleshoot IPv4 and IPv6 static routing</strong>: default, network, host and floating static routes.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-09.html"><small>← Chapter 9</small>Rapid PVST+ and STP protection</a><a class="pn next" href="chapter-11.html"><small>Chapter 11 →</small>IPv4 and IPv6 static routing</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#101-learning-objectives">10.1 Learning objectives</a>
+<a href="#102-how-a-router-forwards-a-packet">10.2 How a router forwards a packet</a>
+<a href="#103-anatomy-of-show-ip-route">10.3 Anatomy of show ip route</a>
+<a href="#104-the-three-decisions-and-their-order">10.4 The three decisions, and their order</a>
+<a href="#105-longest-prefix-match">10.5 Longest prefix match</a>
+<a href="#106-administrative-distance-and-metric-in-action">10.6 Administrative distance and metric in action</a>
+<a href="#107-default-routes-and-the-gateway-of-last-resort">10.7 Default routes and the gateway of last resort</a>
+<a href="#108-reading-an-ipv6-routing-table">10.8 Reading an IPv6 routing table</a>
+<a href="#109-special-cases-you-must-recognise">10.9 Special cases you must recognise</a>
+<a href="#1010-worked-lookups-on-r1s-table-103">10.10 Worked lookups on R1&#x27;s table (10.3)</a>
+<a href="#1011-packet-tracer-lab-101--reading-the-campus-routing-tables-intermediate">10.11 Packet Tracer Lab 10.1 — Reading the campus routing tables (Intermediate)</a>
+<a href="#1012-chapter-10-summary-notes-exam-revision">10.12 Chapter 10 summary notes (exam revision)</a>
+<a href="#1013-practice-questions--chapter-10">10.13 Practice questions — Chapter 10</a>
+<a href="#1014-answer-key-with-explanations">10.14 Answer key with explanations</a>
+<a href="#1015-chapter-10-figure-checklist">10.15 Chapter 10 figure checklist</a>
+<a href="#1016-chapter-10-progress-record">10.16 Chapter 10 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

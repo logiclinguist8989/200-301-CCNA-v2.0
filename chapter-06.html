@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 6 — EtherChannel with LACP · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 6: EtherChannel with LACP">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head green">
+  <div class="eyebrow">Domain 2 · Switching &amp; Network Access</div>
+  <h1><span class="num">Chapter 6</span>EtherChannel with LACP</h1>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~17 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="6"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>2.1.c Configure Layer 2/Layer 3 LACP port-channel/EtherChannel</strong> (switch-to-switch and switch-to-router connectivity, objective 2.1). LACP bundles for servers and virtualized hosts (2.2) reuse this chapter in Chapter 7.</p>
+<h3 id="61-learning-objectives">6.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Explain why parallel links need EtherChannel, and how a port-channel interface works.</li>
+<li>Describe per-flow load balancing and fast failover.</li>
+<li>Compare LACP, PAgP and static mode, and predict which mode pairs form a bundle.</li>
+<li>List the settings that must match on every member link.</li>
+<li>Configure and verify Layer 2 (trunk) and Layer 3 (routed) EtherChannels with LACP.</li>
+<li>Troubleshoot suspended, stand-alone and err-disabled members.</li>
+</ol>
+<h3 id="62-introduction-two-cables-are-not-automatically-twice-the-bandwidth">6.2 Introduction: two cables are not automatically twice the bandwidth</h3>
+<p>In Lab 5.1, SW1 has one 1 Gb/s uplink to DSW1. If you add a second cable for more bandwidth and redundancy, <strong>Spanning Tree Protocol</strong> (Chapter 9) sees a loop and <strong>blocks</strong> one of the links (<a class="figref" href="#fig-6-1">Figure 6.1</a>, left). You pay for two links but use one. <strong>EtherChannel</strong> bundles up to eight parallel physical links into one <strong>logical</strong> link called a <strong>port-channel</strong> (Po). STP, the MAC table and routing all see a single interface, so every member forwards traffic (<a class="figref" href="#fig-6-1">Figure 6.1</a>, right). If a member fails, traffic shifts to the survivors in well under a second without any STP recalculation.</p>
+<figure class="fig" id="fig-6-1"><button class="zoom" aria-label="Enlarge figure 6.1"><img src="assets/figures/ch06/fig-06-01-stp-vs-etherchannel.svg" alt="Figure 6.1 — Two parallel links with STP (left) vs the same links bundled as EtherChannel Po1 (right)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-6-1">Figure 6.1</a> Two parallel links with STP (left) vs the same links bundled as EtherChannel Po1 (right)</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-6-1">Figure 6.1</a> the cabling is identical on both sides; only the configuration differs. On the left, STP must block the red dashed link to prevent a loop. On the right, the ellipse marks the bundle: STP treats Po1 as one port, so both highlighted links carry traffic.</p>
+<h3 id="63-how-etherchannel-works">6.3 How EtherChannel works</h3>
+<ol>
+<li>You add physical ports to a <strong>channel group</strong> with <code>channel-group &lt;n&gt; mode &lt;mode&gt;</code>.</li>
+<li>The switch creates <strong>interface port-channel \<n></strong>, the logical interface you configure and monitor.</li>
+<li>A negotiation protocol (LACP or PAgP) checks that the far end agrees and that the members are compatible.</li>
+<li>Compatible members become <strong>bundled</strong>; the port-channel comes up.</li>
+<li>Each frame is assigned to one member by a <strong>hash</strong> of its addresses (6.4), so one conversation always uses one link.</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EtherChannel</td>
+<td>Cisco's name for link aggregation</td>
+</tr>
+<tr>
+<td>Port-channel (Po)</td>
+<td>The logical interface representing the bundle</td>
+</tr>
+<tr>
+<td>Member (bundled) port</td>
+<td>A physical interface inside the bundle</td>
+</tr>
+<tr>
+<td>Channel group</td>
+<td>The number that ties members to their port-channel (Po1 = group 1)</td>
+</tr>
+<tr>
+<td>LACP</td>
+<td>Link Aggregation Control Protocol, IEEE 802.3ad (now 802.1AX), open standard</td>
+</tr>
+<tr>
+<td>PAgP</td>
+<td>Port Aggregation Protocol, Cisco proprietary (recognise it; v2.0 names only LACP)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="64-load-balancing-per-flow-not-per-packet">6.4 Load balancing: per flow, not per packet</h3>
+<p>EtherChannel does <strong>not</strong> split one transfer across all links. The switch runs a <strong>hash</strong> on fields of each frame — source and/or destination MAC, IP address or port — and the result picks one member. Every frame of the same flow produces the same hash, so it always uses the same link and arrives in order (<a class="figref" href="#fig-6-2">Figure 6.2</a>).</p>
+<figure class="fig" id="fig-6-2"><button class="zoom" aria-label="Enlarge figure 6.2"><img src="assets/figures/ch06/fig-06-02-per-flow-load-balancing.svg" alt="Figure 6.2 — Per-flow load balancing across the two members of Po1" loading="lazy"></button><figcaption><a class="fignum" href="#fig-6-2">Figure 6.2</a> Per-flow load balancing across the two members of Po1</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-6-2">Figure 6.2</a> the highlighted flows hash to member Gi0/1 and the grey flows to Gi0/2. Which flow lands on which link depends on the hash result, not on the order the flows started.</p>
+<ul>
+<li>One large file copy between two hosts is limited to <strong>one member's speed</strong> (1 Gb/s on a 2 × 1 Gb/s bundle).</li>
+<li>Many flows between many hosts spread across all members.</li>
+<li>If traffic is uneven, choose a hash with more variety. Between Layer 3 devices, <code>src-dst-ip</code> usually spreads better than <code>src-mac</code> (all routed frames share the router's MAC).</li>
+</ul>
+<pre><code>DSW1(config)# port-channel load-balance src-dst-ip      ! global; applies to all bundles
+DSW1# show etherchannel load-balance
+EtherChannel Load-Balancing Configuration:
+        src-dst-ip
+</code></pre>
+<p>The default method and the available options vary by platform. Each end chooses its own method independently; they do not have to match.</p>
+<h3 id="65-negotiation-lacp-pagp-or-static">6.5 Negotiation: LACP, PAgP or static</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Protocol</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td>LACP</td>
+<td>Sends LACP packets and starts negotiation</td>
+</tr>
+<tr>
+<td><code>passive</code></td>
+<td>LACP</td>
+<td>Answers LACP but never starts it</td>
+</tr>
+<tr>
+<td><code>desirable</code></td>
+<td>PAgP</td>
+<td>Sends PAgP and starts negotiation</td>
+</tr>
+<tr>
+<td><code>auto</code></td>
+<td>PAgP</td>
+<td>Answers PAgP but never starts it</td>
+</tr>
+<tr>
+<td><code>on</code></td>
+<td>None</td>
+<td>Bundles unconditionally, no negotiation</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Which pairs form a bundle?</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Side A \ Side B</th>
+<th>active</th>
+<th>passive</th>
+<th>on</th>
+<th>desirable / auto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>active</strong></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No (different protocols)</td>
+</tr>
+<tr>
+<td><strong>passive</strong></td>
+<td>Yes</td>
+<td><strong>No</strong> — both wait</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>on</strong></td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table></div>
+<p>The same logic applies to PAgP: desirable + desirable or desirable + auto bundle; auto + auto does not.</p>
+<p class="callout best-practice"><strong>Best practice</strong> use LACP <code>active</code> on both ends. It is an open standard (works with servers, hypervisors and other vendors), detects mis-cabling, and removes a member that stops talking LACP. Avoid <code>on</code>: if one end bundles and the other does not, you can create a forwarding loop.</p>
+<p><strong>LACP details worth knowing:</strong> LACP can manage up to <strong>16</strong> links per bundle, of which <strong>8</strong> are active and up to 8 are hot-standby. Each side has a <strong>system priority</strong> (lower wins and decides which links are active) and each port a <strong>port priority</strong>; defaults are 32768.</p>
+<h3 id="66-member-requirements">6.6 Member requirements</h3>
+<p>All members of one EtherChannel must match <strong>each other</strong> and the <strong>far end</strong>, or they are <strong>suspended</strong> from the bundle:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Must match</th>
+<th>Example of a mismatch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speed and duplex</td>
+<td>One member hard-coded 100 Mb/s</td>
+</tr>
+<tr>
+<td>Switchport type</td>
+<td>One member Layer 2, another <code>no switchport</code></td>
+</tr>
+<tr>
+<td>Switchport mode</td>
+<td>One member access, another trunk</td>
+</tr>
+<tr>
+<td>Access VLAN (access bundles)</td>
+<td>VLAN 10 on one port, VLAN 30 on another</td>
+</tr>
+<tr>
+<td>Trunk native VLAN and allowed VLAN list (trunk bundles)</td>
+<td>Allowed 10,30 on one member, 10,30,40 on another</td>
+</tr>
+<tr>
+<td>Same channel-group number and compatible mode</td>
+<td>Gi1/0/1 in group 1, Gi1/0/3 in group 2</td>
+</tr>
+</tbody>
+</table></div>
+<p>The channel-group <strong>number</strong> is local: Po1 on DSW1 may connect to Po5 on SW1. Matching numbers is simply good documentation.</p>
+<h3 id="67-configuring-a-layer-2-etherchannel-trunk">6.7 Configuring a Layer 2 EtherChannel (trunk)</h3>
+<p><a class="figref" href="#fig-6-3">Figure 6.3</a> (left) shows the result. Configure the <strong>same</strong> on both switches.</p>
+<figure class="fig" id="fig-6-3"><button class="zoom" aria-label="Enlarge figure 6.3"><img src="assets/figures/ch06/fig-06-03-l2-vs-l3-etherchannel.svg" alt="Figure 6.3 — Layer 2 trunk EtherChannel (Po1) vs Layer 3 routed EtherChannel (Po3)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-6-3">Figure 6.3</a> Layer 2 trunk EtherChannel (Po1) vs Layer 3 routed EtherChannel (Po3)</figcaption></figure>
+
+<p>Both panels of <a class="figref" href="#fig-6-3">Figure 6.3</a> bundle two members with LACP; the difference is what the port-channel is. Po1 on the left is a trunk configured with switchport commands; Po3 on the right is a routed interface with an IP address at each end. Both appear again in Lab 6.1.</p>
+<pre><code>DSW1(config)# interface range gigabitethernet1/0/1 , gigabitethernet1/0/3
+DSW1(config-if-range)# description Po1 members to SW1
+DSW1(config-if-range)# switchport mode trunk
+DSW1(config-if-range)# switchport trunk native vlan 999
+DSW1(config-if-range)# switchport trunk allowed vlan 10,30,40,99
+DSW1(config-if-range)# channel-group 1 mode active       ! creates Po1 and starts LACP
+Creating a port-channel interface Port-channel 1
+DSW1(config-if-range)# exit
+DSW1(config)# interface port-channel 1
+DSW1(config-if)# description Po1 to SW1
+DSW1(config-if)# switchport mode trunk
+DSW1(config-if)# switchport trunk native vlan 999
+DSW1(config-if)# switchport trunk allowed vlan 10,30,40,99
+</code></pre>
+<p><strong>Order and inheritance.</strong> Configure the members identically first, then add <code>channel-group</code>. After the bundle exists, make Layer 2 changes on <strong>interface port-channel 1</strong>; IOS copies them to every member, which keeps members consistent. Changing one member directly is the usual way to get it suspended.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>channel-group &lt;n&gt; mode active</code></td>
+<td>Interface (member)</td>
+<td>Adds the port to group n using LACP active; creates Po n if needed</td>
+</tr>
+<tr>
+<td><code>channel-group &lt;n&gt; mode passive</code></td>
+<td>Interface (member)</td>
+<td>LACP, waits for the other side</td>
+</tr>
+<tr>
+<td><code>channel-group &lt;n&gt; mode on</code></td>
+<td>Interface (member)</td>
+<td>Static bundle, no LACP (avoid)</td>
+</tr>
+<tr>
+<td><code>interface port-channel &lt;n&gt;</code></td>
+<td>Global config</td>
+<td>Configures the logical interface</td>
+</tr>
+<tr>
+<td><code>port-channel load-balance &lt;method&gt;</code></td>
+<td>Global config</td>
+<td>Sets the hash method</td>
+</tr>
+<tr>
+<td><code>lacp system-priority &lt;n&gt;</code> / <code>lacp port-priority &lt;n&gt;</code></td>
+<td>Global / interface</td>
+<td>Influence which links are active when more than 8</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="68-configuring-a-layer-3-etherchannel-routed">6.8 Configuring a Layer 3 EtherChannel (routed)</h3>
+<p>Between two Layer 3 switches (or a Layer 3 switch and a router) the bundle can be a routed link with one IP address (<a class="figref" href="#fig-6-3">Figure 6.3</a>, right). The members must be routed ports <strong>before</strong> they join the group, so the port-channel is created as Layer 3.</p>
+<pre><code>DSW1(config)# interface range gigabitethernet1/0/21 - 22
+DSW1(config-if-range)# description Po3 members to DSW2
+DSW1(config-if-range)# no switchport                       ! first: make members Layer 3
+DSW1(config-if-range)# channel-group 3 mode active
+DSW1(config-if-range)# exit
+DSW1(config)# interface port-channel 3
+DSW1(config-if)# no switchport                             ! confirm the bundle is Layer 3
+DSW1(config-if)# ip address 10.0.0.5 255.255.255.252
+DSW1(config-if)# no shutdown
+</code></pre>
+<p>DSW2 is the mirror image with 10.0.0.6/30. The IP address goes on <strong>interface port-channel 3</strong>, never on the members.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Layer 2 EtherChannel</th>
+<th>Layer 3 EtherChannel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Members</td>
+<td>Switchports (access or trunk)</td>
+<td>Routed ports (<code>no switchport</code>)</td>
+</tr>
+<tr>
+<td>Addressing</td>
+<td>None; carries VLANs</td>
+<td>One IP address on the port-channel</td>
+</tr>
+<tr>
+<td>STP</td>
+<td>Runs on the port-channel</td>
+<td>Not involved</td>
+</tr>
+<tr>
+<td>Shown in summary as</td>
+<td><code>Po1(SU)</code> — S = Layer 2</td>
+<td><code>Po3(RU)</code> — R = Layer 3</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Access to distribution trunks; server/hypervisor bundles</td>
+<td>Distribution to core; switch to router; routed campus</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="69-verifying-etherchannel">6.9 Verifying EtherChannel</h3>
+<p><code>show etherchannel summary</code> is the one command to memorise:</p>
+<pre><code>DSW1# show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+...
+Number of channel-groups in use: 3
+Number of aggregators:           3
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------
+1      Po1(SU)         LACP      Gi1/0/1(P)   Gi1/0/3(P)
+2      Po2(SU)         LACP      Gi1/0/2(P)   Gi1/0/4(P)
+3      Po3(RU)         LACP      Gi1/0/21(P)  Gi1/0/22(P)
+</code></pre>
+<p>Read each line left to right: <strong>Po1(SU)</strong> = Layer 2 and in use; <strong>Po3(RU)</strong> = Layer 3 and in use; <strong>(P)</strong> after a member = bundled and forwarding. Healthy bundles show only P members.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Flag on a member</th>
+<th>Meaning</th>
+<th>Usual cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P</td>
+<td>Bundled</td>
+<td>Healthy</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Stand-alone: up but not bundled</td>
+<td>Far end not running LACP (or both passive); forwards as a normal port</td>
+</tr>
+<tr>
+<td>s</td>
+<td>Suspended</td>
+<td>Member settings differ from the others (VLANs, speed, mode)</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Down</td>
+<td>Cable, far end shut down</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Hot-standby</td>
+<td>More than 8 members; LACP holds the extras in reserve</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use it to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show etherchannel summary</code></td>
+<td>Bundle and member state, protocol, Layer 2 vs Layer 3</td>
+</tr>
+<tr>
+<td><code>show etherchannel port-channel</code></td>
+<td>Members, LACP state, how long each has been bundled</td>
+</tr>
+<tr>
+<td><code>show interfaces port-channel 1</code></td>
+<td>Combined bandwidth (BW 2000000 Kbit/sec for 2 × 1 Gb/s), counters</td>
+</tr>
+<tr>
+<td><code>show lacp neighbor</code></td>
+<td>The far end's system ID and port numbers — proves which switch you are bundled with</td>
+</tr>
+<tr>
+<td><code>show interfaces trunk</code></td>
+<td>Po1 (not its members) listed as the trunk</td>
+</tr>
+<tr>
+<td><code>show spanning-tree vlan 10</code></td>
+<td>Po1 appears as one STP port</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="610-troubleshooting-etherchannel">6.10 Troubleshooting EtherChannel</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Members show <strong>I</strong> (stand-alone); no Po up</td>
+<td>LACP on one side only, both sides <code>passive</code>, or PAgP on one side and LACP on the other</td>
+<td>Use <code>active</code> on at least one side (best: both) with the same protocol</td>
+</tr>
+<tr>
+<td>One member shows <strong>s</strong> (suspended)</td>
+<td>Its configuration differs (allowed VLANs, native VLAN, access VLAN, speed, duplex)</td>
+<td>Make members identical; configure on the port-channel interface</td>
+</tr>
+<tr>
+<td>Ports go <strong>err-disabled</strong>, log shows <code>%PM-4-ERR_DISABLE: channel-misconfig</code></td>
+<td>One side <code>on</code>, the other not bundling (EtherChannel misconfiguration guard)</td>
+<td>Use LACP on both sides; then <code>shutdown</code> / <code>no shutdown</code> the members</td>
+</tr>
+<tr>
+<td>Bundle forms but one member stays D</td>
+<td>Physical fault on that link (Chapter 1)</td>
+<td>Check cabling and counters</td>
+</tr>
+<tr>
+<td>Layer 3 Po has no IP / shows Layer 2 (S)</td>
+<td><code>no switchport</code> not applied before <code>channel-group</code></td>
+<td>Remove members, set <code>no switchport</code> on members and Po, re-add</td>
+</tr>
+<tr>
+<td>Bundle with the wrong switch</td>
+<td>Members cabled to two different devices</td>
+<td><code>show lacp neighbor</code>; correct the cabling</td>
+</tr>
+<tr>
+<td>One link saturated, the other idle</td>
+<td>Hash method suits the traffic poorly</td>
+<td>Change <code>port-channel load-balance</code> (for example to src-dst-ip)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Order for troubleshooting:</strong> physical state of each member → same protocol and compatible modes → identical member configuration → correct neighbor → load-balance method.</p>
+<h3 id="611-packet-tracer-lab-61--lacp-bundles-on-the-campus-intermediate">6.11 Packet Tracer Lab 6.1 — LACP bundles on the campus (Intermediate)</h3>
+<p><strong>Objective:</strong> 2.1.c. <strong>You will:</strong> turn each single trunk from Lab 5.1 into a two-member Layer 2 LACP bundle, add a second distribution switch (DSW2) over a Layer 3 LACP bundle, and test failover. <strong>Start from:</strong> your saved Lab 5.1 file.</p>
+<p><strong>New devices and cables:</strong> 1 × Catalyst 3650-24PS (DSW2, add a power supply), and four extra copper crossover cables.</p>
+<figure class="fig" id="fig-6-4"><button class="zoom" aria-label="Enlarge figure 6.4"><img src="assets/figures/ch06/fig-06-04-lab-6-1-topology.svg" alt="Figure 6.4 — Lab 6.1 topology: Po1 and Po2 Layer 2 trunks, Po3 Layer 3 bundle to DSW2" loading="lazy"></button><figcaption><a class="fignum" href="#fig-6-4">Figure 6.4</a> Lab 6.1 topology: Po1 and Po2 Layer 2 trunks, Po3 Layer 3 bundle to DSW2</figcaption></figure>
+
+<p><a class="figref" href="#fig-6-4">Figure 6.4</a> is <a class="figref" href="chapter-05.html#fig-5-6">Figure 5.6</a> with each access uplink doubled and a new distribution switch. Every highlighted pair is one port-channel; the member interfaces are listed beside each bundle and in the table below.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>DSW1 members</th>
+<th>Far-end members</th>
+<th>Type</th>
+<th>Addressing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Po1</td>
+<td>Gi1/0/1, Gi1/0/3</td>
+<td>SW1 Gi0/1, Gi0/2</td>
+<td>Layer 2 trunk, LACP active</td>
+<td>native 999; allowed 10,30,40,99</td>
+</tr>
+<tr>
+<td>Po2</td>
+<td>Gi1/0/2, Gi1/0/4</td>
+<td>SW2 Gi0/1, Gi0/2</td>
+<td>Layer 2 trunk, LACP active</td>
+<td>native 999; allowed 10,30,40,99</td>
+</tr>
+<tr>
+<td>Po3</td>
+<td>Gi1/0/21, Gi1/0/22</td>
+<td>DSW2 Gi1/0/21, Gi1/0/22</td>
+<td>Layer 3 routed, LACP active</td>
+<td>DSW1 10.0.0.5/30, DSW2 10.0.0.6/30</td>
+</tr>
+<tr>
+<td>—</td>
+<td>—</td>
+<td>DSW2 Loopback0</td>
+<td>Test address</td>
+<td>10.255.0.2/32</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>DSW1 additions</strong></p>
+<pre><code>configure terminal
+port-channel load-balance src-dst-ip
+interface range gigabitethernet1/0/1 , gigabitethernet1/0/3
+ description Po1 members to SW1
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,40,99
+ switchport nonegotiate
+ channel-group 1 mode active
+interface range gigabitethernet1/0/2 , gigabitethernet1/0/4
+ description Po2 members to SW2
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,40,99
+ switchport nonegotiate
+ channel-group 2 mode active
+interface port-channel 1
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,40,99
+interface port-channel 2
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,40,99
+interface range gigabitethernet1/0/21 - 22
+ description Po3 members to DSW2
+ no switchport
+ channel-group 3 mode active
+interface port-channel 3
+ no switchport
+ ip address 10.0.0.5 255.255.255.252
+ no shutdown
+exit
+ip route 10.255.0.2 255.255.255.255 10.0.0.6
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>SW1 additions</strong> (SW2 is the same with <code>channel-group 2</code> and <code>interface port-channel 2</code>)</p>
+<pre><code>configure terminal
+interface range gigabitethernet0/1 - 2
+ description Po1 members to DSW1
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,40,99
+ switchport nonegotiate
+ channel-group 1 mode active
+ no shutdown                     ! Gi0/2 was shut in Lab 5.1
+interface port-channel 1
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,40,99
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>DSW2</strong></p>
+<pre><code>enable
+configure terminal
+hostname DSW2
+ip routing
+interface range gigabitethernet1/0/21 - 22
+ description Po3 members to DSW1
+ no switchport
+ channel-group 3 mode active
+interface port-channel 3
+ no switchport
+ ip address 10.0.0.6 255.255.255.252
+ no shutdown
+interface loopback0
+ ip address 10.255.0.2 255.255.255.255
+exit
+ip route 0.0.0.0 0.0.0.0 10.0.0.5
+end
+copy running-config startup-config
+</code></pre>
+<p class="callout pt-note"><strong>PT note</strong> Packet Tracer supports LACP and Layer 2 port-channels on 2960 and 3650 switches. Layer 3 port-channels on the 3650 work in recent versions; if yours rejects <code>no switchport</code> on the port-channel, build Po3 as a Layer 2 bundle in a new VLAN with SVIs instead, and note the difference.</p>
+<p><strong>Verification and expected results</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Command (device)</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bundles</td>
+<td><code>show etherchannel summary</code> (DSW1)</td>
+<td>Po1(SU), Po2(SU), Po3(RU), all members (P)</td>
+</tr>
+<tr>
+<td>Bundle speed</td>
+<td><code>show interfaces port-channel 1</code> (DSW1)</td>
+<td>BW 2000000 Kbit/sec</td>
+</tr>
+<tr>
+<td>Neighbor</td>
+<td><code>show lacp neighbor</code> (SW1)</td>
+<td>DSW1's ports Gi1/0/1 and Gi1/0/3 as partners</td>
+</tr>
+<tr>
+<td>Trunk</td>
+<td><code>show interfaces trunk</code> (SW1)</td>
+<td>Po1 trunking; Gi0/1 and Gi0/2 not listed separately</td>
+</tr>
+<tr>
+<td>Routed bundle</td>
+<td><code>show ip route</code> (DSW1)</td>
+<td>C 10.0.0.4/30 via Port-channel3; S 10.255.0.2/32</td>
+</tr>
+<tr>
+<td>End to end</td>
+<td>PC1 <code>ping 10.255.0.2</code></td>
+<td>Success through Po1 and Po3</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Failover test:</strong> start a long ping from PC1 to Printer1 (<code>ping -t 10.10.40.11</code> if your Packet Tracer accepts <code>-t</code>; otherwise repeat pings). Shut down DSW1 Gi1/0/2. Expect at most one lost reply, <code>show etherchannel summary</code> showing Gi1/0/2(D), and Po2 still (SU). Restore with <code>no shutdown</code>.</p>
+<h3 id="612-lab-62--broken-etherchannel-challenge">6.12 Lab 6.2 — Broken EtherChannel challenge</h3>
+<p>Apply to a copy of Lab 6.1, then fix using show commands only.</p>
+<pre><code>! SW2 and DSW1: Po2 members on both switches
+interface range gigabitethernet0/1 - 2        ! (Gi1/0/2 , Gi1/0/4 on DSW1)
+ channel-group 2 mode passive
+! SW1
+interface gigabitethernet0/2
+ switchport trunk allowed vlan 10,30
+! DSW2
+interface range gigabitethernet1/0/21 - 22
+ channel-group 3 mode on
+</code></pre>
+<p><strong>Answer key (hide until done)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Fault</th>
+<th>Evidence</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Both ends of Po2 passive</td>
+<td>Members show (I) stand-alone; Po2 down</td>
+<td><code>channel-group 2 mode active</code> on at least one side</td>
+</tr>
+<tr>
+<td>SW1 Gi0/2 allowed list differs</td>
+<td>Gi0/2 shows (s) suspended; Po1 runs on one member</td>
+<td>Reapply the allowed list on interface port-channel 1</td>
+</tr>
+<tr>
+<td>DSW2 members <code>on</code>, DSW1 members LACP active</td>
+<td>Po3 never forms; possible err-disabled members</td>
+<td><code>channel-group 3 mode active</code> on DSW2, then bounce the members</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Po1, Po2 and Po3 bundled with all members (P)</li>
+<li>[ ] PC1 reaches DSW2's loopback</li>
+<li>[ ] Failover test shows at most one lost reply</li>
+<li>[ ] All three Lab 6.2 faults found and fixed</li>
+<li>[ ] File saved for Chapters 7–9</li>
+</ul>
+<h3 id="613-chapter-6-summary-notes-exam-revision">6.13 Chapter 6 summary notes (exam revision)</h3>
+<ul>
+<li><strong>EtherChannel</strong> bundles up to 8 active links into one logical <strong>port-channel</strong>; STP, MAC learning and routing see one interface. LACP can hold 8 more in hot-standby (16 total).</li>
+<li><strong>Load balancing is per flow</strong> (hash of MAC/IP/port). One flow never exceeds one member's speed. <code>port-channel load-balance src-dst-ip</code> is a common choice.</li>
+<li><strong>Modes:</strong> LACP <code>active</code>/<code>passive</code>; PAgP <code>desirable</code>/<code>auto</code>; static <code>on</code>. <strong>passive + passive</strong> and <strong>auto + auto</strong> never bundle; protocols cannot mix; <code>on</code> bundles only with <code>on</code>. Best practice: LACP active on both ends.</li>
+<li><strong>Members must match:</strong> speed, duplex, switchport type, mode, access VLAN or native + allowed VLANs.</li>
+<li><strong>Layer 2 Po:</strong> <code>channel-group n mode active</code> on members, then configure <code>interface port-channel n</code> (trunk settings are copied to members).</li>
+<li><strong>Layer 3 Po:</strong> <code>no switchport</code> on members <strong>before</strong> <code>channel-group</code>; IP address on the port-channel.</li>
+<li><strong>Verify:</strong> <code>show etherchannel summary</code> — Po(SU) Layer 2 in use, Po(RU) Layer 3 in use; members (P) bundled, (I) stand-alone, (s) suspended, (D) down.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"A 2 × 1 Gb/s bundle gives one download 2 Gb/s"</td>
+<td>One flow uses one member: 1 Gb/s</td>
+</tr>
+<tr>
+<td>"passive on both ends is the safe choice"</td>
+<td>Neither side starts LACP; no bundle forms</td>
+</tr>
+<tr>
+<td>"Put the IP address on each member of a Layer 3 bundle"</td>
+<td>One IP, on the port-channel interface</td>
+</tr>
+<tr>
+<td>"Channel-group numbers must match on both switches"</td>
+<td>They are local; matching is only good documentation</td>
+</tr>
+<tr>
+<td>"Fix a suspended member by changing that member"</td>
+<td>Configure the port-channel so all members inherit identical settings</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="614-practice-questions--chapter-6">6.14 Practice questions — Chapter 6</h3>
+<p><strong>1. (Modes)</strong> Which LACP combination does <strong>not</strong> form a bundle?</p>
+<p>A. active / active  B. active / passive  C. passive / passive  D. passive / active</p>
+<p><strong>2. (Modes)</strong> One switch uses <code>channel-group 1 mode active</code>, the other <code>channel-group 1 mode desirable</code>. What happens?</p>
+<p><strong>3. (Output interpretation)</strong></p>
+<pre><code>Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------
+2      Po2(SD)         LACP      Gi1/0/2(I)  Gi1/0/4(I)
+</code></pre>
+<p>What does this show, and what is the most likely cause?</p>
+<p><strong>4. (Output interpretation)</strong> <code>show etherchannel summary</code> shows <code>Po1(SU)  LACP  Gi1/0/1(P)  Gi1/0/3(s)</code>. What is wrong with Gi1/0/3?</p>
+<p><strong>5. (Configuration)</strong> Where is the IP address configured on a Layer 3 EtherChannel?</p>
+<p>A. On every member  B. On the first member only  C. On the port-channel interface  D. On an SVI</p>
+<p><strong>6. (Concept)</strong> Two hosts copy one large file across a 2 × 1 Gb/s EtherChannel. What is the most throughput that copy can get?</p>
+<p><strong>7. (Concept)</strong> Why is <code>src-dst-ip</code> usually better than <code>src-mac</code> for a bundle between two Layer 3 devices?</p>
+<p><strong>8. (Recall)</strong> How many links can be <strong>active</strong> in one LACP EtherChannel?</p>
+<p>A. 2  B. 4  C. 8  D. 16</p>
+<p><strong>9. (Multiple response — choose two)</strong> Which settings must match on all members of a trunk EtherChannel?</p>
+<p>A. Interface description  B. Allowed VLAN list  C. Speed and duplex  D. Port number  E. CDP status</p>
+<p><strong>10. (Configuration order)</strong> A technician enters <code>channel-group 3 mode active</code> on Gi1/0/21–22 and then <code>no switchport</code> on the port-channel, but <code>show etherchannel summary</code> still shows Po3(SD) with S. What went wrong?</p>
+<p><strong>11. (Output interpretation)</strong> <code>show interfaces port-channel 1</code> reports <code>BW 2000000 Kbit/sec</code>. What does it tell you?</p>
+<p><strong>12. (Troubleshooting)</strong> Members go err-disabled with <code>%PM-4-ERR_DISABLE: channel-misconfig</code>. What is the likely configuration?</p>
+<p><strong>13. (Evaluate an AI assistant)</strong> Po2's members show (I). A network assistant recommends: <em>"Change both sides to <code>channel-group 2 mode on</code> to force the bundle up."</em> Is this the best fix?</p>
+<h3 id="615-answer-key-with-explanations">6.15 Answer key with explanations</h3>
+<ol>
+<li><strong>C.</strong> Passive only answers LACP; with no active side, nobody starts negotiation.</li>
+<li><strong>No bundle.</strong> LACP and PAgP cannot negotiate with each other. Use the same protocol on both ends (LACP).</li>
+<li>Po2 is Layer 2 and <strong>down</strong>; both members are <strong>stand-alone</strong> (up, but not bundled). The far end is not negotiating LACP — for example both ends are passive, or the far end is not configured for EtherChannel at all.</li>
+<li>Gi1/0/3 is <strong>suspended</strong>: its settings (allowed VLANs, native VLAN, speed or mode) differ from Gi1/0/1. Make it match, ideally by configuring interface port-channel 1.</li>
+<li><strong>C.</strong> Members are routed ports with no address; the bundle has one IP.</li>
+<li><strong>1 Gb/s.</strong> All frames of one flow hash to the same member.</li>
+<li>Frames between two routers all carry the same pair of router MAC addresses, so a MAC-based hash sends everything down one member. IP addresses vary per conversation, so traffic spreads.</li>
+<li><strong>C.</strong> Eight active; LACP can hold up to eight more in hot-standby.</li>
+<li><strong>B and C.</strong> Descriptions, port numbers and CDP do not affect bundling.</li>
+<li>The members were still <strong>Layer 2</strong> when they joined, so Po3 was created as a Layer 2 port-channel. Remove the members from the group, apply <code>no switchport</code> to the members, then re-add them (and confirm <code>no switchport</code> on Po3).</li>
+<li>Two 1 Gb/s members are bundled: the port-channel's bandwidth is their sum (2 Gb/s). It does not mean one flow can reach 2 Gb/s.</li>
+<li>One side is set to <code>on</code> (static) while the other side is not bundling (or uses LACP/PAgP). The EtherChannel misconfiguration guard err-disables the ports to prevent a loop. Use LACP active on both sides, then bounce the ports.</li>
+<li><strong>No.</strong> <code>on</code> hides problems: it skips the checks that LACP performs and can create a loop if the far end is mis-cabled or misconfigured later. The correct fix is <code>mode active</code> on at least one side (best: both), with identical member settings.</li>
+</ol>
+<h3 id="616-chapter-6-figure-checklist">6.16 Chapter 6 figure checklist</h3>
+<p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-6-4">Figure 6.4</a> had labels crossing the bundle links on first render; they were moved and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.1</td>
+<td>STP-blocked parallel links vs EtherChannel</td>
+<td>6.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>6.2</td>
+<td>Per-flow load balancing across Po1</td>
+<td>6.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>6.3</td>
+<td>Layer 2 trunk Po1 vs Layer 3 routed Po3</td>
+<td>6.7</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>6.4</td>
+<td>Lab 6.1 topology</td>
+<td>6.11</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as annotated command output instead of a drawing:</strong> <code>show etherchannel summary</code> and its flags (6.9).</p>
+<h3 id="617-chapter-6-progress-record">6.17 Chapter 6 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>2.1.c</strong> Layer 2/Layer 3 LACP port-channel/EtherChannel. With Chapter 5, <strong>objective 2.1 is now complete</strong> (2.1.a–d).</p>
+<p><strong>Related objectives that reuse this chapter:</strong> 2.2 edge ports with port channels and LACP for virtualized hosts and appliances (Chapter 7), 2.5 Rapid PVST+ seeing port-channels as single ports (Chapter 9).</p>
+<p><strong>Next:</strong> Chapter 7 — <strong>2.2 Configure Layer 2 switch port attributes for edge-host connectivity (VLAN, PoE, port channel and LACP)</strong>: desktops, printers, IoT, access points, IP phones, virtualized hosts and network appliances.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-05.html"><small>← Chapter 5</small>VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</a><a class="pn next" href="chapter-07.html"><small>Chapter 7 →</small>Edge-host ports: VLAN, PoE, port channel and LACP</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#61-learning-objectives">6.1 Learning objectives</a>
+<a href="#62-introduction-two-cables-are-not-automatically-twice-the-bandwidth">6.2 Introduction: two cables are not automatically twice the bandwidth</a>
+<a href="#63-how-etherchannel-works">6.3 How EtherChannel works</a>
+<a href="#64-load-balancing-per-flow-not-per-packet">6.4 Load balancing: per flow, not per packet</a>
+<a href="#65-negotiation-lacp-pagp-or-static">6.5 Negotiation: LACP, PAgP or static</a>
+<a href="#66-member-requirements">6.6 Member requirements</a>
+<a href="#67-configuring-a-layer-2-etherchannel-trunk">6.7 Configuring a Layer 2 EtherChannel (trunk)</a>
+<a href="#68-configuring-a-layer-3-etherchannel-routed">6.8 Configuring a Layer 3 EtherChannel (routed)</a>
+<a href="#69-verifying-etherchannel">6.9 Verifying EtherChannel</a>
+<a href="#610-troubleshooting-etherchannel">6.10 Troubleshooting EtherChannel</a>
+<a href="#611-packet-tracer-lab-61--lacp-bundles-on-the-campus-intermediate">6.11 Packet Tracer Lab 6.1 — LACP bundles on the campus (Intermediate)</a>
+<a href="#612-lab-62--broken-etherchannel-challenge">6.12 Lab 6.2 — Broken EtherChannel challenge</a>
+<a href="#613-chapter-6-summary-notes-exam-revision">6.13 Chapter 6 summary notes (exam revision)</a>
+<a href="#614-practice-questions--chapter-6">6.14 Practice questions — Chapter 6</a>
+<a href="#615-answer-key-with-explanations">6.15 Answer key with explanations</a>
+<a href="#616-chapter-6-figure-checklist">6.16 Chapter 6 figure checklist</a>
+<a href="#617-chapter-6-progress-record">6.17 Chapter 6 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

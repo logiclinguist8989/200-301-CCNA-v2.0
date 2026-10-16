@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 517" width="1160" height="517" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 10.4 — Longest prefix match for 10.10.40.25</title>
+<desc id="d">Bars show how many leading bits each route compares — filled bars contain the address; the longest filled bar wins</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="516" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 10.4</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Longest prefix match for 10.10.40.25</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Bars show how many leading bits each route compares — filled bars contain the address; the longest filled bar wins</text>
+<text x="250.0" y="114.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="middle">0</text>
+<text x="400.0" y="114.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="middle">8</text>
+<text x="550.0" y="114.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="middle">16</text>
+<text x="700.0" y="114.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="middle">24</text>
+<text x="850.0" y="114.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#5b6b7f" text-anchor="middle">32</text>
+<text x="60.0" y="200.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">0.0.0.0/0</text>
+<rect x="250.0" y="176.0" width="600.0" height="36.0" rx="6" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="260.0" y="199.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f3f80" text-anchor="start">/0 matches everything</text>
+<text x="870.0" y="199.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">via 198.51.100.1 (default)</text>
+<text x="60.0" y="256.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">10.10.0.0/16</text>
+<rect x="250.0" y="232.0" width="600.0" height="36.0" rx="6" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<rect x="250.0" y="232.0" width="300.0" height="36.0" rx="6" fill="#1d6fd1" stroke="#1d6fd1" stroke-width="1.6"/>
+<text x="260.0" y="255.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="start">/16</text>
+<text x="870.0" y="255.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="start">via 10.0.0.2</text>
+<text x="60.0" y="312.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">10.10.40.0/24</text>
+<rect x="250.0" y="288.0" width="600.0" height="36.0" rx="6" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<rect x="250.0" y="288.0" width="450.0" height="36.0" rx="6" fill="#1f9d63" stroke="#1f9d63" stroke-width="1.6"/>
+<text x="260.0" y="311.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="start">/24</text>
+<text x="870.0" y="311.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f5a37" text-anchor="start">via 10.0.0.2, G0/0/0 ← WINNER</text>
+<text x="60.0" y="368.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">10.10.30.0/24</text>
+<rect x="250.0" y="344.0" width="600.0" height="36.0" rx="6" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<rect x="250.0" y="344.0" width="450.0" height="36.0" rx="6" fill="#fde8e8" stroke="#d64040" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="260.0" y="367.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#8a1c1c" text-anchor="start">/24</text>
+<text x="870.0" y="367.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#d64040" text-anchor="start">3rd octet 30 ≠ 40</text>
+<text x="60.0" y="424.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#0f2540" text-anchor="start">10.0.0.4/30</text>
+<rect x="250.0" y="400.0" width="600.0" height="36.0" rx="6" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<rect x="250.0" y="400.0" width="562.5" height="36.0" rx="6" fill="#fde8e8" stroke="#d64040" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="260.0" y="423.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#8a1c1c" text-anchor="start">/30</text>
+<text x="870.0" y="423.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#d64040" text-anchor="start">covers only .4 – .7</text>
+<line x1="28" y1="477" x2="1132" y2="477" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="499" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Length alone is never enough: the /30 is longest of all but does not contain 10.10.40.25.</text>
+<text x="1136" y="507" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

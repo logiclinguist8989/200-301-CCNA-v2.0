@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 494" width="1160" height="494" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 23.2 — Dynamic ARP inspection decisions on untrusted ports</title>
+<desc id="d">Sender IP + MAC must match a DHCP snooping binding for that port and VLAN — or an ARP ACL</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="493" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 23.2</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">Dynamic ARP inspection decisions on untrusted ports</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Sender IP + MAC must match a DHCP snooping binding for that port and VLAN — or an ARP ACL</text>
+<text x="50.0" y="120.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#5b6b7f" text-anchor="start">ARP arrives on</text>
+<text x="240.0" y="120.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#5b6b7f" text-anchor="start">Sender IP / MAC</text>
+<text x="570.0" y="120.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#5b6b7f" text-anchor="start">Binding table says</text>
+<text x="910.0" y="120.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#5b6b7f" text-anchor="start">Decision</text>
+<rect x="40.0" y="140.0" width="1080.0" height="74.0" rx="10" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.6"/>
+<text x="50.0" y="184.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="start">Fa0/1 · PC1</text>
+<text x="240.0" y="184.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="start">10.10.10.11 / 0060.2f11.0001</text>
+<text x="570.0" y="184.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#0f5a37" text-anchor="start">10.10.10.11 / 0060.2f11.0001 on Fa0/1 ✓</text>
+<rect x="969.9" y="165.8" width="80.3" height="22.5" rx="11.25" fill="#1f9d63" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="1010.0" y="181.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">FORWARD</text>
+<rect x="40.0" y="230.0" width="1080.0" height="74.0" rx="10" fill="#fde8e8" stroke="#d64040" stroke-width="1.6"/>
+<text x="50.0" y="274.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="start">Fa0/12 · attacker</text>
+<text x="240.0" y="274.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="start">10.10.10.1 / 0090.21aa.0012</text>
+<text x="570.0" y="274.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#8a1c1c" text-anchor="start">Fa0/12 has no binding for the gateway IP</text>
+<rect x="966.7" y="255.8" width="86.6" height="22.5" rx="11.25" fill="#d64040" stroke="#d64040" stroke-width="1.2"/>
+<text x="1010.0" y="271.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">DROP + log</text>
+<rect x="40.0" y="320.0" width="1080.0" height="74.0" rx="10" fill="#fdf1df" stroke="#d9861a" stroke-width="1.6"/>
+<text x="50.0" y="364.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="start">Fa0/2 · Printer1</text>
+<text x="240.0" y="364.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="start">10.10.40.11 / printer MAC</text>
+<text x="570.0" y="364.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#7a4708" text-anchor="start">no binding (static address)</text>
+<rect x="947.7" y="345.8" width="124.5" height="22.5" rx="11.25" fill="#d9861a" stroke="#d9861a" stroke-width="1.2"/>
+<text x="1010.0" y="361.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">ARP ACL permits</text>
+<line x1="28" y1="435" x2="1132" y2="435" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="457" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Trust the uplinks (ip arp inspection trust) or the gateway&#x27;s ARP replies are dropped and the whole VLAN loses its gateway.</text>
+<text x="28" y="476" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Log: %SW_DAI-4-DHCP_SNOOPING_DENY: 1 Invalid ARPs (Res) on Fa0/12, vlan 10.</text>
+<text x="1136" y="484" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

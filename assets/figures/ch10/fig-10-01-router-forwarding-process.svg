@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 591" width="1160" height="591" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 10.1 — The router&#x27;s per-packet forwarding process</title>
+<desc id="d">The same seven steps for every packet — the only routing reasons to drop it are shown in red</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#94a3b8"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d64040"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="590" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 10.1</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">The router&#x27;s per-packet forwarding process</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">The same seven steps for every packet — the only routing reasons to drop it are shown in red</text>
+<rect x="40.0" y="140.0" width="160.0" height="92.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="62.0" cy="164.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="62.0" y="168.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+<text x="80.0" y="169.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">Receive</text>
+<text x="54.0" y="199.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">FCS OK?</text>
+<text x="54.0" y="217.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">Dst MAC = mine?</text>
+<rect x="225.0" y="140.0" width="160.0" height="92.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="247.0" cy="164.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="247.0" y="168.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+<text x="265.0" y="169.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">De-encap</text>
+<text x="239.0" y="199.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">strip frame,</text>
+<text x="239.0" y="217.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">decrement TTL</text>
+<rect x="410.0" y="140.0" width="160.0" height="92.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="432.0" cy="164.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="432.0" y="168.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+<text x="450.0" y="169.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">Look up</text>
+<text x="424.0" y="199.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">dst IP: longest</text>
+<text x="424.0" y="217.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">prefix match</text>
+<rect x="595.0" y="140.0" width="160.0" height="92.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="617.0" cy="164.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="617.0" y="168.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">5</text>
+<text x="635.0" y="169.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">Next hop</text>
+<text x="609.0" y="199.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">+ exit interface</text>
+<text x="609.0" y="217.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">(recursive lookup)</text>
+<rect x="780.0" y="140.0" width="160.0" height="92.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="802.0" cy="164.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="802.0" y="168.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">6</text>
+<text x="820.0" y="169.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">Resolve MAC</text>
+<text x="794.0" y="199.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">ARP (IPv4)</text>
+<text x="794.0" y="217.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">ND (IPv6)</text>
+<rect x="965.0" y="140.0" width="160.0" height="92.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="987.0" cy="164.0" r="12" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="987.0" y="168.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">7</text>
+<text x="1005.0" y="169.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="start">Re-encap</text>
+<text x="979.0" y="199.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">new MACs + FCS,</text>
+<text x="979.0" y="217.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="start">send</text>
+<line x1="202.0" y1="186.0" x2="222.0" y2="186.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="387.0" y1="186.0" x2="407.0" y2="186.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="572.0" y1="186.0" x2="592.0" y2="186.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="757.0" y1="186.0" x2="777.0" y2="186.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="942.0" y1="186.0" x2="962.0" y2="186.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<line x1="305.0" y1="232.0" x2="305.0" y2="330.0" stroke="#d64040" stroke-width="2" stroke-linecap="round" marker-end="url(#m1)"/>
+<text x="315.0" y="290.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#d64040" text-anchor="start">TTL = 0</text>
+<rect x="200.0" y="334.0" width="210.0" height="84.0" rx="10" fill="#fde8e8" stroke="#d64040" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="216.0" y="361.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="start">Drop</text>
+<text x="216.0" y="382.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">ICMP Time Exceeded</text>
+<text x="216.0" y="399.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">(how traceroute works)</text>
+<line x1="490.0" y1="232.0" x2="490.0" y2="330.0" stroke="#d64040" stroke-width="2" stroke-linecap="round" marker-end="url(#m1)"/>
+<text x="500.0" y="290.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#d64040" text-anchor="start" xml:space="preserve">4  no match, no default</text>
+<rect x="430.0" y="334.0" width="220.0" height="84.0" rx="10" fill="#fde8e8" stroke="#d64040" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="446.0" y="361.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="start">Drop</text>
+<text x="446.0" y="382.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">ICMP Destination</text>
+<text x="446.0" y="399.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">Unreachable</text>
+<g transform="translate(900.0,380.0) scale(1.1)"><ellipse cx="0" cy="15.0" rx="36" ry="12" fill="#0f2540" opacity="0.12"/><path d="M-34,-13.0 L-34,13.0 A34,12 0 0 0 34,13.0 L34,-13.0 Z" fill="url(#gRouter)"/><ellipse cx="0" cy="-13.0" rx="34" ry="12" fill="url(#gRouterTop)" stroke="#0b5a9c" stroke-width="1"/><line x1="-24.0" y1="-13.0" x2="-16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="-12.0,-13.0 -16.2,-9.6 -16.2,-16.4" fill="#ffffff"/><line x1="24.0" y1="-13.0" x2="16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="12.0,-13.0 16.2,-16.4 16.2,-9.6" fill="#ffffff"/><line x1="-0.0" y1="-14.0" x2="0.0" y2="-18.8" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-23.0 3.4,-18.8 -3.4,-18.8" fill="#ffffff"/><line x1="-0.0" y1="-12.0" x2="0.0" y2="-7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-3.0 -3.4,-7.2 3.4,-7.2" fill="#ffffff"/><line x1="-28" y1="11.0" x2="28" y2="11.0" stroke="#7cc4f2" stroke-width="0.8" opacity="0.4"/></g>
+<text x="900.0" y="424.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">R1</text>
+<text x="900.0" y="441.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">routing table (RIB) → CEF</text>
+<rect x="40.0" y="470.0" width="110.0" height="40.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="95.0" y="494.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#3e2a85" text-anchor="middle">Eth hdr</text>
+<rect x="150.0" y="470.0" width="200.0" height="40.0" rx="4" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="250.0" y="494.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#7a4708" text-anchor="middle">IP · TTL 64 → 63</text>
+<rect x="350.0" y="470.0" width="140.0" height="40.0" rx="4" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="420.0" y="494.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f3f80" text-anchor="middle">Data</text>
+<rect x="490.0" y="470.0" width="70.0" height="40.0" rx="4" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="525.0" y="494.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#3e2a85" text-anchor="middle">FCS</text>
+<text x="600.0" y="495.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#5b6b7f" text-anchor="start">IP header kept (TTL −1), Ethernet header + FCS rebuilt</text>
+<line x1="28" y1="551" x2="1132" y2="551" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="573" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">The control plane builds the RIB; the forwarding plane (CEF) uses an optimized copy but follows the same table.</text>
+<text x="1136" y="581" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 620" width="1160" height="620" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 14.1 — The DHCP DORA exchange</title>
+<desc id="d">Client UDP 68 ↔ server UDP 67 — the client&#x27;s messages are broadcasts because it has no address yet</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d9861a"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+<marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="619" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 14.1</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">The DHCP DORA exchange</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Client UDP 68 ↔ server UDP 67 — the client&#x27;s messages are broadcasts because it has no address yet</text>
+<g transform="translate(300.0,150.0) scale(0.85)"><ellipse cx="0" cy="33" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-30" y="-28" width="60" height="42" rx="4" fill="url(#gDark)"/><rect x="-26" y="-24" width="52" height="33" rx="2" fill="url(#gScreen)"/><path d="M-26,-24 L6,-24 L-26,4 Z" fill="#ffffff" opacity="0.12"/><rect x="-5" y="14" width="10" height="9" fill="#475569"/><rect x="-17" y="22" width="34" height="5" rx="2" fill="url(#gDark)"/><rect x="-26" y="28" width="52" height="5" rx="1.5" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.6"/></g>
+<text x="300.0" y="194.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="middle">Client</text>
+<text x="300.0" y="210.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">MAC 0050.7966.6801</text>
+<text x="300.0" y="226.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">no address yet</text>
+<g transform="translate(860.0,150.0) scale(0.85)"><ellipse cx="0" cy="35" rx="26" ry="4" fill="#0f2540" opacity="0.12"/><polygon points="-20,-30 -10,-37 28,-37 18,-30" fill="#5d6f86"/><polygon points="18,-30 28,-37 28,27 18,34" fill="#1e293b"/><rect x="-20" y="-30" width="38" height="64" rx="2" fill="url(#gDark)"/><rect x="-15" y="-24" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="-20.5" r="1.6" fill="#4ade80"/><rect x="-15" y="-13" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="-9.5" r="1.6" fill="#4ade80"/><rect x="-15" y="-2" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="1.5" r="1.6" fill="#4ade80"/><rect x="-15" y="9" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="12.5" r="1.6" fill="#4ade80"/><rect x="-15" y="22" width="28" height="6" rx="1" fill="#049fd9" opacity="0.85"/></g>
+<text x="860.0" y="196.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="middle">DHCP server</text>
+<text x="860.0" y="212.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">10.10.10.5</text>
+<line x1="300.0" y1="254.0" x2="300.0" y2="560.0" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+<line x1="860.0" y1="254.0" x2="860.0" y2="560.0" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+<line x1="300.0" y1="280.0" x2="852.0" y2="280.0" stroke="#d9861a" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="580.0" y="272.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#d9861a" text-anchor="middle" xml:space="preserve">D  Discover — “is there a DHCP server?”</text>
+<text x="580.0" y="297.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">0.0.0.0:68 → 255.255.255.255:67 (broadcast)</text>
+<circle cx="274.0" cy="280.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="274.0" y="284.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+<line x1="860.0" y1="349.0" x2="308.0" y2="349.0" stroke="#1d6fd1" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m1)"/>
+<text x="580.0" y="341.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1d6fd1" text-anchor="middle" xml:space="preserve">O  Offer — 10.10.10.11/24, gw, DNS, lease</text>
+<text x="580.0" y="366.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">after a ping check for conflicts</text>
+<circle cx="274.0" cy="349.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="274.0" y="353.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+<line x1="300.0" y1="418.0" x2="852.0" y2="418.0" stroke="#d9861a" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="580.0" y="410.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#d9861a" text-anchor="middle" xml:space="preserve">R  Request — “I take 10.10.10.11”</text>
+<text x="580.0" y="435.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">broadcast, so other servers withdraw their offers</text>
+<circle cx="274.0" cy="418.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="274.0" y="422.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+<line x1="860.0" y1="487.0" x2="308.0" y2="487.0" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m2)"/>
+<text x="580.0" y="479.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f9d63" text-anchor="middle" xml:space="preserve">A  Acknowledgment — lease begins</text>
+<text x="580.0" y="504.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">client now uses 10.10.10.11</text>
+<circle cx="274.0" cy="487.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="274.0" y="491.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+<line x1="28" y1="580" x2="1132" y2="580" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="602" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">The lease starts at the ACK. At 50 % of the lease the client renews by unicast; at 87.5 % it rebinds by broadcast.</text>
+<text x="1136" y="610" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

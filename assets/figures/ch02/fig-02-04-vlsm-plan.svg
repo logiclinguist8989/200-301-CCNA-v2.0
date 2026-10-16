@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 520" width="1160" height="520" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 2.4 — VLSM plan for 172.16.0.0/24, drawn to scale</title>
+<desc id="d">Largest first; each block starts on a multiple of its own size — the last /27 is enlarged below</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="519" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 2.4</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">VLSM plan for 172.16.0.0/24, drawn to scale</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Largest first; each block starts on a multiple of its own size — the last /27 is enlarged below</text>
+<rect x="41.0" y="130.0" width="538.0" height="80.0" rx="6" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5"/>
+<text x="57.0" y="156.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="start">Staff VLAN 10</text>
+<text x="57.0" y="177.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">172.16.0.0/25 · 126 hosts</text>
+<rect x="581.0" y="130.0" width="268.0" height="80.0" rx="6" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.5"/>
+<text x="597.0" y="156.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="start">Wireless VLAN 30</text>
+<text x="597.0" y="177.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">.128/26 · 62 hosts</text>
+<rect x="851.0" y="130.0" width="133.0" height="80.0" rx="6" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5"/>
+<text x="867.0" y="156.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="650" fill="#0f2540" text-anchor="start">Printers/IoT</text>
+<text x="867.0" y="177.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="start">VLAN 40 · .192/27</text>
+<rect x="986.0" y="130.0" width="133.0" height="80.0" rx="6" fill="#efeafd" stroke="#7357d1" stroke-width="1.5"/>
+<text x="1052.5" y="166.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#3e2a85" text-anchor="middle">last /27</text>
+<text x="1052.5" y="184.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" fill="#5b6b7f" text-anchor="middle">.224 – .255</text>
+<text x="40.0" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.0</text>
+<text x="310.0" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.64</text>
+<text x="580.0" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.128</text>
+<text x="850.0" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.192</text>
+<text x="985.0" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.224</text>
+<text x="1120.0" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.255</text>
+<path d="M985.0,238 L40,296" fill="none" stroke="#7357d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/>
+<path d="M1120,238 L1120,296" fill="none" stroke="#7357d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/>
+<rect x="42.0" y="300.0" width="536.0" height="90.0" rx="10" fill="#e0f5f7" stroke="#0f9aa8" stroke-width="1.5"/>
+<text x="310.0" y="327.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="middle">Mgmt VLAN 99</text>
+<text x="310.0" y="348.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">.224/28 · 14 hosts</text>
+<rect x="582.0" y="300.0" width="131.0" height="90.0" rx="10" fill="#fde8e8" stroke="#d64040" stroke-width="1.5"/>
+<text x="647.5" y="327.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="middle">R1–R2</text>
+<text x="647.5" y="348.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">.240/30</text>
+<rect x="717.0" y="300.0" width="131.0" height="90.0" rx="10" fill="#fde8e8" stroke="#d64040" stroke-width="1.5"/>
+<text x="782.5" y="327.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="650" fill="#0f2540" text-anchor="middle">R1–R3</text>
+<text x="782.5" y="348.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" fill="#5b6b7f" text-anchor="middle">.244/30</text>
+<rect x="852.0" y="300.0" width="266.0" height="90.0" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="6 5"/>
+<text x="985.0" y="340.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#5b6b7f" text-anchor="middle">Spare</text>
+<text x="985.0" y="360.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="500" fill="#5b6b7f" text-anchor="middle">.248/29 · unallocated</text>
+<text x="40.0" y="408.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.224</text>
+<text x="580.0" y="408.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.240</text>
+<text x="715.0" y="408.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.244</text>
+<text x="850.0" y="408.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.248</text>
+<text x="1120.0" y="408.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5b6b7f" text-anchor="middle">.255</text>
+<line x1="28" y1="480" x2="1132" y2="480" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="502" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Allocating smallest-first often breaks the alignment rule and wastes space. The dashed /29 is free for growth.</text>
+<text x="1136" y="510" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

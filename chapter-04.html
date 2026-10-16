@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 4 — Hypervisors, virtual machines and containers · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 4: Hypervisors, virtual machines and containers">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head blue">
+  <div class="eyebrow">Domain 1 · Network Infrastructure &amp; Connectivity</div>
+  <h1><span class="num">Chapter 4</span>Hypervisors, virtual machines and containers</h1>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~18 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="4"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>1.2 Describe the role and function of hypervisors, virtual machines, and containers.</strong> The verb is <em>describe</em>: you will not configure a hypervisor in the exam, but you must explain how these technologies work and how they connect to the network. That connection matters for objective 2.2.d (switch ports for virtualized hosts) in Chapter 7.</p>
+<h3 id="41-learning-objectives">4.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Define host, guest, hypervisor, virtual machine, container, image and virtual switch.</li>
+<li>Compare Type 1 and Type 2 hypervisors and name examples of each.</li>
+<li>Explain how VMs reach the physical network through vNICs, virtual switches, port groups and 802.1Q trunks.</li>
+<li>Compare VMs and containers, and describe basic container networking (bridge, NAT, published ports).</li>
+<li>Describe virtual network appliances (NFV) such as virtual routers and firewalls.</li>
+<li>Recognise network problems caused by virtualization and say what to check.</li>
+</ol>
+<h3 id="42-introduction">4.2 Introduction</h3>
+<p>A college lab server in Kathmandu might run a web server, a database, a DHCP server and a monitoring tool. Twenty years ago each would need its own physical machine, mostly sitting idle. <strong>Virtualization</strong> lets one physical server run many isolated workloads at once, each believing it has its own computer. The result is fewer servers, less power, faster deployment and easier recovery.</p>
+<p>For a network engineer, virtualization changes one thing above all: <strong>one switch port may now carry traffic for dozens of machines in several VLANs.</strong></p>
+<h3 id="43-key-terms">4.3 Key terms</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>The physical server (or laptop) that provides CPU, memory, storage and NICs</td>
+</tr>
+<tr>
+<td>Hypervisor</td>
+<td>Software that creates and runs VMs and shares the host's hardware among them (also called a virtual machine monitor)</td>
+</tr>
+<tr>
+<td>Virtual machine (VM)</td>
+<td>A complete software computer: virtual CPU (vCPU), memory, disk and NIC, running its own <strong>guest operating system</strong></td>
+</tr>
+<tr>
+<td>Guest OS</td>
+<td>The OS inside a VM (Windows Server, Ubuntu, Cisco IOS XE in a virtual router)</td>
+</tr>
+<tr>
+<td>Virtual disk</td>
+<td>A file that acts as the VM's hard disk (.vmdk, .vhdx, .qcow2)</td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td>A saved point-in-time state you can roll back to</td>
+</tr>
+<tr>
+<td>Live migration</td>
+<td>Moving a running VM to another host without shutting it down (VMware vMotion, Hyper-V Live Migration)</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>An isolated process (or group) that packages an application and its libraries but <strong>shares the host's OS kernel</strong></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>A read-only template from which VMs or containers are started</td>
+</tr>
+<tr>
+<td>Virtual switch (vSwitch)</td>
+<td>Software switch inside the host that connects VMs to each other and to the physical NICs</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="44-type-1-and-type-2-hypervisors">4.4 Type 1 and Type 2 hypervisors</h3>
+<p><strong>Type 1 (bare-metal)</strong> hypervisors run directly on the server hardware, with no general-purpose OS underneath. They are efficient and secure, and they run data centres. Examples: VMware ESXi, Microsoft Hyper-V, KVM (part of the Linux kernel), Xen.</p>
+<p><strong>Type 2 (hosted)</strong> hypervisors run as an application on top of an ordinary OS. They are convenient for labs and desktops but add a layer of overhead. Examples: Oracle VirtualBox, VMware Workstation, VMware Fusion, Parallels Desktop.</p>
+<p><a class="figref" href="#fig-4-1">Figure 4.1</a> compares the three software stacks, including containers.</p>
+<figure class="fig" id="fig-4-1"><button class="zoom" aria-label="Enlarge figure 4.1"><img src="assets/figures/ch04/fig-04-01-hypervisor-stacks.svg" alt="Figure 4.1 — Software stacks: Type 1 hypervisor, Type 2 hypervisor and containers" loading="lazy"></button><figcaption><a class="fignum" href="#fig-4-1">Figure 4.1</a> Software stacks: Type 1 hypervisor, Type 2 hypervisor and containers</figcaption></figure>
+
+<p>Read each column of <a class="figref" href="#fig-4-1">Figure 4.1</a> from the hardware upward. A Type 1 hypervisor sits directly on the hardware; a Type 2 hypervisor needs a host OS beneath it. Containers drop the guest OS entirely, which is why they start in seconds and use far less memory.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Type 1 (bare-metal)</th>
+<th>Type 2 (hosted)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runs on</td>
+<td>Hardware directly</td>
+<td>A host OS (Windows, macOS, Linux)</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Near native</td>
+<td>Lower; host OS competes for resources</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Production servers, data centres, cloud</td>
+<td>Laptops, training labs, testing</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>ESXi, Hyper-V, KVM, Xen</td>
+<td>VirtualBox, VMware Workstation, Parallels</td>
+</tr>
+<tr>
+<td>Management</td>
+<td>Central tools (vCenter, SCVMM) or web UI</td>
+<td>Desktop application</td>
+</tr>
+</tbody>
+</table></div>
+<p class="callout exam-tip"><strong>Exam tip</strong> "bare-metal" always means Type 1; "runs on top of Windows/macOS" always means Type 2.</p>
+<h3 id="45-how-vms-connect-to-the-network">4.5 How VMs connect to the network</h3>
+<p>A VM has no physical cable. Its traffic travels through three pieces of software and then a physical NIC (<a class="figref" href="#fig-4-2">Figure 4.2</a>):</p>
+<ol>
+<li><strong>vNIC</strong> — the VM's virtual network card. It has its own MAC address, so the physical switch learns many MACs behind one port.</li>
+<li><strong>Virtual switch (vSwitch)</strong> — a Layer 2 switch inside the hypervisor. It forwards frames between VMs on the same host without them ever reaching the physical network, and sends everything else out an uplink. Examples: VMware vSphere Standard and Distributed Switch, Hyper-V Virtual Switch, Linux bridge, Open vSwitch.</li>
+<li><strong>Port group</strong> — a set of vSwitch ports sharing a policy, most importantly a <strong>VLAN ID</strong>. Put a VM's vNIC in the "Staff, VLAN 10" port group and its traffic belongs to VLAN 10.</li>
+<li><strong>Uplinks (physical NICs)</strong> — the host's real NICs, for example vmnic0 and vmnic1. Because VMs in different VLANs share them, the uplinks normally carry an <strong>802.1Q trunk</strong> to the physical switch. Two or more uplinks are often bundled (NIC teaming), which on the switch side may be an <strong>EtherChannel/LACP</strong> port channel.</li>
+</ol>
+<figure class="fig" id="fig-4-2"><button class="zoom" aria-label="Enlarge figure 4.2"><img src="assets/figures/ch04/fig-04-02-virtual-switching.svg" alt="Figure 4.2 — Virtual switching: vNICs, port groups, vSwitch and an LACP trunk to SW1" loading="lazy"></button><figcaption><a class="fignum" href="#fig-4-2">Figure 4.2</a> Virtual switching: vNICs, port groups, vSwitch and an LACP trunk to SW1</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-4-2">Figure 4.2</a> arrows show outbound traffic. Each VM's vNIC sits in a port group, the vSwitch tags frames with that port group's VLAN, and the two highlighted uplinks carry the tagged frames to SW1 as one LACP bundle. SW1 must allow both VLANs on the trunk, or VMs in a missing VLAN are cut off.</p>
+<p><strong>Step by step: VM-Web (VLAN 10) sends a packet to its gateway.</strong></p>
+<ol>
+<li>VM-Web's vNIC sends an untagged frame into the Staff port group.</li>
+<li>The vSwitch knows the port group is VLAN 10, so it adds an 802.1Q tag with VLAN 10 when sending the frame out vmnic0.</li>
+<li>SW1 receives the tagged frame on its trunk and forwards it in VLAN 10 toward the gateway (an SVI or router).</li>
+<li>Replies come back tagged VLAN 10; the vSwitch removes the tag and delivers the frame to VM-Web.</li>
+</ol>
+<p><strong>Recognising virtual MAC addresses.</strong> Hypervisors use their own OUIs, so a MAC table full of them tells you a port connects to a virtualization host:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>OUI (first 3 bytes)</th>
+<th>Usually means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00:50:56</td>
+<td>VMware VM</td>
+</tr>
+<tr>
+<td>00:15:5D</td>
+<td>Hyper-V VM</td>
+</tr>
+<tr>
+<td>08:00:27</td>
+<td>VirtualBox VM</td>
+</tr>
+<tr>
+<td>52:54:00</td>
+<td>KVM/QEMU VM</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code>SW1# show mac address-table interface port-channel1
+          Mac Address Table
+-------------------------------------------
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+  10    0050.56a1.0b01    DYNAMIC     Po1      &lt;- VM-Web
+  10    0050.56a1.0b02    DYNAMIC     Po1      &lt;- VM-DB
+  99    0050.56a1.0b03    DYNAMIC     Po1      &lt;- VM-Mgmt
+</code></pre>
+<p>Three VMs in two VLANs, all learned on one logical port: exactly the picture in <a class="figref" href="#fig-4-2">Figure 4.2</a>.</p>
+<h3 id="46-containers">4.6 Containers</h3>
+<p>A <strong>container</strong> packages one application with exactly the libraries it needs and runs it as an isolated process on a shared OS kernel. The Linux kernel features <strong>namespaces</strong> (each container sees its own processes, network interfaces and file system) and <strong>cgroups</strong> (limits on CPU and memory) provide the isolation.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>Read-only template: the app, its libraries and settings (for example <code>nginx:latest</code>)</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>A running instance of an image</td>
+</tr>
+<tr>
+<td>Registry</td>
+<td>Where images are stored and downloaded (Docker Hub, a private registry)</td>
+</tr>
+<tr>
+<td>Container engine / runtime</td>
+<td>Software that pulls images and runs containers (Docker, containerd, Podman)</td>
+</tr>
+<tr>
+<td>Orchestrator</td>
+<td>Runs many containers across many hosts, restarts failed ones, scales them (Kubernetes)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>How containers are networked (<a class="figref" href="#fig-4-3">Figure 4.3</a>).</strong> By default Docker on Linux:</p>
+<ol>
+<li>Creates a Linux bridge called <strong>docker0</strong>, normally 172.17.0.1/16.</li>
+<li>Gives each container a virtual interface on that bridge and an address such as 172.17.0.2.</li>
+<li>Uses <strong>NAT (masquerading)</strong> on the host so containers can reach outside networks using the host's IP.</li>
+<li>Makes a container reachable from outside only when a port is <strong>published</strong>: <code>-p 8080:80</code> maps the host's port 8080 to the container's port 80.</li>
+</ol>
+<figure class="fig" id="fig-4-3"><button class="zoom" aria-label="Enlarge figure 4.3"><img src="assets/figures/ch04/fig-04-03-docker-networking.svg" alt="Figure 4.3 — Default Docker networking: docker0 bridge, NAT and a published port (-p 8080:80)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-4-3">Figure 4.3</a> Default Docker networking: docker0 bridge, NAT and a published port (-p 8080:80)</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-4-3">Figure 4.3</a> the highlighted arrows trace a request from a laptop on the home LAN to the web container. Nothing outside the host can reach 172.17.0.2 directly; only the published port is exposed. This is the same NAT idea you will configure on routers in Chapter 21.</p>
+<p>Other modes exist: <strong>host</strong> networking (the container uses the host's interfaces directly), <strong>none</strong> (no network), and <strong>overlay</strong> networks that span several hosts in an orchestrated cluster.</p>
+<h3 id="47-vms-vs-containers">4.7 VMs vs containers</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Virtual machine</th>
+<th>Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Includes</td>
+<td>Full guest OS + app</td>
+<td>App + libraries only</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td>Its own</td>
+<td>Shares the host's</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>Gigabytes</td>
+<td>Megabytes</td>
+</tr>
+<tr>
+<td>Start time</td>
+<td>Tens of seconds to minutes</td>
+<td>About a second</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Strong (separate kernels)</td>
+<td>Process-level; weaker if the kernel is compromised</td>
+</tr>
+<tr>
+<td>Run a different OS?</td>
+<td>Yes (Windows VM on a Linux host)</td>
+<td>Must match the host kernel type (Linux containers need a Linux kernel)</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Different OSs, legacy apps, strong separation</td>
+<td>Microservices, fast scaling, CI/CD pipelines</td>
+</tr>
+</tbody>
+</table></div>
+<p>They are not rivals: in practice containers often run <strong>inside VMs</strong>, especially in the cloud.</p>
+<h3 id="48-virtual-network-appliances-nfv">4.8 Virtual network appliances (NFV)</h3>
+<p><strong>Network Functions Virtualization (NFV)</strong> runs network devices as software on standard servers instead of dedicated hardware. Examples from Cisco:</p>
+<ul>
+<li><strong>Catalyst 8000V</strong> — a virtual IOS XE router (successor to the CSR 1000v), common in public clouds and data centres.</li>
+<li><strong>Secure Firewall Threat Defense Virtual (FTDv)</strong> and <strong>ASAv</strong> — virtual firewalls.</li>
+<li><strong>Virtual wireless controllers</strong> — controller software running as a VM (Chapter 7, objective 2.2.b).</li>
+</ul>
+<p>Lab tools use the same idea: <strong>Cisco Modeling Labs (CML)</strong>, GNS3 and EVE-NG run real IOS images as VMs or containers. Packet Tracer is different: it <strong>simulates</strong> device behaviour rather than running real Cisco software, which is why some features are missing (as noted in Part 0.4).</p>
+<p>Some Cisco switches and routers can also host containers themselves (Cisco IOx application hosting), but that is beyond the CCNA objectives.</p>
+<h3 id="49-what-virtualization-means-for-the-network-engineer">4.9 What virtualization means for the network engineer</h3>
+<p>You rarely configure the hypervisor, but you configure the switch ports it plugs into, and you get the ticket when a VM "has no network". Three facts drive everything:</p>
+<ol>
+<li><strong>One port, many MACs and VLANs.</strong> A host port is usually a trunk carrying every VLAN its VMs use.</li>
+<li><strong>VMs move.</strong> Live migration can move a VM to another host at any moment, so every host in a cluster needs the same VLANs on its uplinks.</li>
+<li><strong>The vSwitch and the physical switch must agree</strong> on VLAN IDs, the native VLAN, and how uplinks are bundled.</li>
+</ol>
+<p><strong>A preview of the switch configuration (taught fully in Chapters 5–7):</strong></p>
+<pre><code>SW1(config)# interface range gigabitethernet1/0/1 - 2
+SW1(config-if-range)# description ESXi-01 vmnic0-1
+SW1(config-if-range)# switchport mode trunk
+SW1(config-if-range)# switchport trunk allowed vlan 10,99
+SW1(config-if-range)# switchport nonegotiate
+SW1(config-if-range)# spanning-tree portfast trunk
+SW1(config-if-range)# channel-group 1 mode active      ! only if the host side uses LACP
+</code></pre>
+<p>Notes: newer IOS releases write the PortFast command as <code>spanning-tree portfast edge trunk</code>. Bundle the ports with LACP <strong>only</strong> when the hypervisor's teaming is set to LACP (for example a VMware distributed switch with a LAG); many teaming modes expect two independent trunk ports instead.</p>
+<p><strong>Troubleshooting virtualized hosts</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>What to check</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMs in one VLAN have no network; other VMs on the same host are fine</td>
+<td>VLAN not allowed on the trunk, or not created on the switch</td>
+<td><code>show interfaces trunk</code>, <code>show vlan brief</code></td>
+<td>Add the VLAN to the switch and the allowed list</td>
+</tr>
+<tr>
+<td>A VM sits in the wrong subnet</td>
+<td>Wrong VLAN ID on its port group</td>
+<td>Hypervisor port group settings; <code>show mac address-table address &lt;vm-mac&gt;</code></td>
+<td>Correct the port group VLAN</td>
+</tr>
+<tr>
+<td>Intermittent loss; log shows <code>%SW_MATM-4-MACFLAP_NOTIF</code></td>
+<td>NIC teaming and switch bundling disagree, so VM MACs flap between ports</td>
+<td><code>show logging</code>, <code>show etherchannel summary</code></td>
+<td>Make teaming and switch configuration match (both LACP, or both independent)</td>
+</tr>
+<tr>
+<td>VM loses network after live migration</td>
+<td>Destination host's uplinks lack that VLAN</td>
+<td>Compare trunks on all hosts in the cluster</td>
+<td>Make trunks identical across the cluster</td>
+</tr>
+<tr>
+<td>Two VMs fight over an address after cloning</td>
+<td>Clone kept the same static IP or MAC</td>
+<td><code>show ip arp</code>, duplicate-address warnings</td>
+<td>Regenerate the MAC, re-address the clone</td>
+</tr>
+<tr>
+<td>Native VLAN mismatch messages</td>
+<td>vSwitch untagged traffic and switch native VLAN differ</td>
+<td>CDP log <code>%CDP-4-NATIVE_VLAN_MISMATCH</code></td>
+<td>Align native VLANs (or tag everything)</td>
+</tr>
+<tr>
+<td>Container works from the host, not from the LAN</td>
+<td>Port not published, or host firewall blocks it</td>
+<td><code>docker ps</code> (PORTS column)</td>
+<td>Publish with <code>-p</code>, open the firewall</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="410-hands-on-lab-41--vms-and-containers-on-your-own-laptop-beginner">4.10 Hands-on Lab 4.1 — VMs and containers on your own laptop (Beginner)</h3>
+<p><strong>Objective:</strong> 1.2. <strong>PT note:</strong> Packet Tracer cannot run VMs or containers, so this lab uses free tools on your laptop. It is optional for the exam but makes every concept in this chapter concrete.</p>
+<p><strong>You need:</strong> Oracle VirtualBox (free), an Ubuntu Server ISO, about 20 GB of disk and 2 GB of spare RAM. Your laptop is the host; VirtualBox is a <strong>Type 2</strong> hypervisor.</p>
+<p><a class="figref" href="#fig-4-4">Figure 4.4</a> shows the three VirtualBox network modes you will test.</p>
+<figure class="fig" id="fig-4-4"><button class="zoom" aria-label="Enlarge figure 4.4"><img src="assets/figures/ch04/fig-04-04-virtualbox-network-modes.svg" alt="Figure 4.4 — VirtualBox NAT, Bridged and Host-only modes with example addresses" loading="lazy"></button><figcaption><a class="fignum" href="#fig-4-4">Figure 4.4</a> VirtualBox NAT, Bridged and Host-only modes with example addresses</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-4-4">Figure 4.4</a> the highlighted line is the VM's path. In NAT mode it hides behind the host; in Bridged mode it connects to the home router as if it were a separate PC; in Host-only mode it can reach only the host. The addresses are VirtualBox defaults and a typical home network; yours may differ.</p>
+<p><strong>Part A — Build the VM</strong></p>
+<ol>
+<li>In VirtualBox create a VM: Linux / Ubuntu (64-bit), 2 vCPU, 2048 MB RAM, 20 GB virtual disk.</li>
+<li>Install Ubuntu Server from the ISO, accepting the defaults.</li>
+<li>Log in and run <code>ip link show</code>. The interface (usually <code>enp0s3</code>) has a MAC starting <strong>08:00:27</strong> — the VirtualBox OUI from 4.5.</li>
+</ol>
+<p><strong>Part B — NAT mode (the default)</strong></p>
+<pre><code>$ ip -4 addr show enp0s3
+    inet 10.0.2.15/24 ... dynamic enp0s3
+$ ip route
+default via 10.0.2.2 dev enp0s3 ...
+$ ping -c 2 1.1.1.1          # works if your laptop has Internet
+</code></pre>
+<p>From the laptop, try <code>ping 10.0.2.15</code>: it fails. The VM is hidden behind VirtualBox's NAT, just like a home PC behind a router.</p>
+<p><strong>Part C — Bridged mode</strong></p>
+<ol>
+<li>Power off the VM. In <strong>Settings → Network → Adapter 1</strong> choose <strong>Bridged Adapter</strong> and select the laptop's Wi-Fi or Ethernet card.</li>
+<li>Start the VM and run <code>ip -4 addr show enp0s3</code>. It now has an address from your home router (for example 192.168.1.60).</li>
+<li>From the laptop, <code>ping</code> that address: it succeeds. The VM is a full member of your LAN.</li>
+<li>If it gets no address, some Wi-Fi and campus networks block extra MAC addresses on one connection; use Ethernet or Host-only mode instead.</li>
+</ol>
+<p><strong>Part D — Host-only mode</strong></p>
+<ol>
+<li>In <strong>File → Tools → Network Manager</strong> confirm a host-only network exists (by default 192.168.56.1/24 with DHCP).</li>
+<li>Set Adapter 1 to <strong>Host-only Adapter</strong> and restart the VM. It receives an address such as 192.168.56.101.</li>
+<li>The laptop can ping it, but the VM has no Internet. Add a second adapter in NAT mode if it needs updates.</li>
+</ol>
+<p><strong>Part E — Containers inside the VM</strong> (use Bridged mode so you can browse to it)</p>
+<pre><code>$ sudo apt update &amp;&amp; sudo apt install -y docker.io
+$ sudo docker run -d --name web -p 8080:80 nginx
+$ ip -4 addr show docker0
+    inet 172.17.0.1/16 ... docker0
+$ sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
+172.17.0.2
+$ sudo docker port web
+80/tcp -&gt; 0.0.0.0:8080
+</code></pre>
+<p>Now open <code>http://&lt;VM address&gt;:8080</code> in your laptop's browser: the nginx welcome page appears. You have just reproduced <a class="figref" href="#fig-4-3">Figure 4.3</a> — a container on the docker0 bridge, reachable only through the published port. Your VM is the Docker host.</p>
+<p><strong>Troubleshooting</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bridged VM gets no IP</td>
+<td>Network blocks extra MACs, or wrong host adapter selected</td>
+<td>Choose the correct adapter; use Ethernet or Host-only</td>
+</tr>
+<tr>
+<td><code>permission denied</code> on docker commands</td>
+<td>User is not in the docker group</td>
+<td>Use <code>sudo</code>, or <code>sudo usermod -aG docker $USER</code> and log in again</td>
+</tr>
+<tr>
+<td>Browser cannot reach port 8080</td>
+<td>VM in NAT mode, or container not running</td>
+<td>Use Bridged mode; check <code>sudo docker ps</code></td>
+</tr>
+<tr>
+<td><code>docker run</code> cannot download nginx</td>
+<td>VM has no Internet (Host-only mode)</td>
+<td>Add a NAT adapter or switch to Bridged</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Questions to answer</strong></p>
+<ol>
+<li>Why could the laptop not ping the VM in NAT mode?</li>
+<li>Which mode makes the VM look like a separate physical PC to your home router?</li>
+<li>Which address does the outside world use to reach the nginx container: 172.17.0.2 or the VM's address? Why?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] VM built; VirtualBox OUI 08:00:27 identified</li>
+<li>[ ] NAT, Bridged and Host-only addresses recorded and explained</li>
+<li>[ ] nginx container reached from the laptop through port 8080</li>
+<li>[ ] docker0 bridge address and container address identified</li>
+</ul>
+<h3 id="411-chapter-4-summary-notes-exam-revision">4.11 Chapter 4 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Hypervisor</strong> = software that runs VMs and shares hardware among them. <strong>Type 1</strong> runs on bare metal (ESXi, Hyper-V, KVM, Xen); <strong>Type 2</strong> runs on a host OS (VirtualBox, VMware Workstation, Parallels).</li>
+<li><strong>VM</strong> = full computer in software with its own <strong>guest OS</strong>: strong isolation, gigabytes, slower to start, can run a different OS.</li>
+<li><strong>Container</strong> = app + libraries sharing the <strong>host kernel</strong>: megabytes, starts in about a second, weaker isolation. Image → container; registry stores images; Docker/containerd run them; Kubernetes orchestrates them.</li>
+<li><strong>VM networking:</strong> vNIC (own MAC) → port group (VLAN ID) → vSwitch (adds 802.1Q tag) → physical NIC uplinks → <strong>trunk</strong> (often an LACP bundle) to the physical switch.</li>
+<li><strong>Container networking:</strong> docker0 bridge (172.17.0.0/16 by default), NAT outbound, <strong>published ports</strong> (<code>-p host:container</code>) inbound.</li>
+<li><strong>NFV:</strong> virtual routers and firewalls (Catalyst 8000V, FTDv, ASAv) and virtual WLCs run as VMs.</li>
+<li><strong>Virtual OUIs:</strong> 00:50:56 VMware, 00:15:5D Hyper-V, 08:00:27 VirtualBox, 52:54:00 KVM.</li>
+<li><strong>Network impact:</strong> trunks must allow every VM VLAN on every host in the cluster; teaming and switch bundling must match; clones can duplicate IPs.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Containers are small VMs"</td>
+<td>Containers have no guest OS; they share the host's kernel</td>
+</tr>
+<tr>
+<td>"Type 2 means a second-generation hypervisor"</td>
+<td>Type 2 means hosted on an OS; Type 1 means bare metal</td>
+</tr>
+<tr>
+<td>"A host port should be an access port in the main server VLAN"</td>
+<td>It is usually a trunk carrying every VLAN its VMs use</td>
+</tr>
+<tr>
+<td>"VMs on the same host always talk through the physical switch"</td>
+<td>VMs in the same VLAN on one host talk through the vSwitch without leaving the host</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="412-practice-questions--chapter-4">4.12 Practice questions — Chapter 4</h3>
+<p><strong>1. (Recall)</strong> Which hypervisor is Type 1?</p>
+<p>A. Oracle VirtualBox  B. VMware Workstation  C. VMware ESXi  D. Parallels Desktop</p>
+<p><strong>2. (Concept)</strong> What does every virtual machine have that a container does not?</p>
+<p>A. An IP address  B. Its own guest operating system kernel  C. A MAC address  D. An application</p>
+<p><strong>3. (Multiple response — choose two)</strong> Which are advantages of containers compared with VMs?</p>
+<p>A. Faster start-up  B. Stronger isolation  C. Smaller size  D. Can run a different OS kernel from the host  E. Need no network</p>
+<p><strong>4. (Concept)</strong> What is the role of a virtual switch inside a hypervisor?</p>
+<p><strong>5. (Configuration)</strong> An ESXi host runs VMs in VLANs 10 and 20 through one uplink to SW1 Gi1/0/5. Which switch-port configuration fits?</p>
+<p>A. <code>switchport mode access</code> and <code>switchport access vlan 10</code>  B. <code>switchport mode trunk</code> and <code>switchport trunk allowed vlan 10,20</code>  C. <code>no switchport</code> with an IP address  D. <code>switchport mode access</code> with <code>switchport voice vlan 20</code></p>
+<p><strong>6. (Output interpretation)</strong> <code>show mac address-table interface gi1/0/5</code> lists eight MAC addresses beginning 0050.56, in VLANs 10 and 20. What is most likely connected to Gi1/0/5?</p>
+<p><strong>7. (Troubleshooting)</strong> After a new port group for VLAN 30 is created on an ESXi host, its VMs cannot reach their gateway. VMs in VLANs 10 and 20 work. <code>show interfaces trunk</code> on the switch shows <code>Vlans allowed on trunk: 10,20</code>. What is the fix?</p>
+<p><strong>8. (Troubleshooting)</strong> A VM works on host ESX-A but loses its network every time it is live-migrated to ESX-B. What should you compare first?</p>
+<p><strong>9. (Troubleshooting)</strong> The switch logs <code>%SW_MATM-4-MACFLAP_NOTIF</code> for VM MAC addresses moving between Gi1/0/1 and Gi1/0/2, which connect to the same host. What is the likely cause?</p>
+<p><strong>10. (Container networking)</strong> A Docker container runs nginx on port 80 and was started with <code>-p 8080:80</code> on a host at 192.168.1.50. Which URL does a laptop on the LAN use?</p>
+<p>A. http://172.17.0.2  B. http://172.17.0.2:8080  C. http://192.168.1.50:8080  D. http://192.168.1.50:80</p>
+<p><strong>11. (Lab-based)</strong> A VirtualBox VM shows address 10.0.2.15 and your laptop cannot ping it. Which adapter mode is it using, and which mode would make it reachable from your home LAN?</p>
+<p><strong>12. (NFV)</strong> Which is an example of network functions virtualization?</p>
+<p>A. A Catalyst 9300 switch  B. A Catalyst 8000V router running as a VM in the cloud  C. A Cat6a patch cable  D. A PoE-powered access point</p>
+<p><strong>13. (Evaluate an AI assistant)</strong> A network assistant reviewing a ticket says: <em>"VM-Web in VLAN 10 cannot reach its gateway. Change the ESXi uplink port to <code>switchport mode access</code> and <code>switchport access vlan 10</code>."</em> The same host also runs VM-Mgmt in VLAN 99. Is the advice correct?</p>
+<h3 id="413-answer-key-with-explanations">4.13 Answer key with explanations</h3>
+<ol>
+<li><strong>C.</strong> ESXi runs directly on server hardware. VirtualBox, Workstation and Parallels are Type 2 and run on a host OS.</li>
+<li><strong>B.</strong> Each VM boots its own guest OS kernel; containers share the host's kernel. Both have IP and MAC addresses (A, C) and run applications (D).</li>
+<li><strong>A and C.</strong> No guest OS means containers start quickly and are small. Isolation is weaker than VMs (B), they must use the host's kernel type (D), and they do need networking (E).</li>
+<li>It is a software Layer 2 switch that connects VMs to each other and to the host's physical NICs, places each VM's vNIC in a VLAN (port group), and tags frames with 802.1Q on trunk uplinks.</li>
+<li><strong>B.</strong> VMs in two VLANs share one uplink, so it must be an 802.1Q trunk allowing both. A would carry only VLAN 10; C makes it a routed port; D is for IP phones.</li>
+<li>A <strong>VMware ESXi host</strong>: 00:50:56 is the VMware OUI, and many MACs in several VLANs on one port is the signature of virtual machines behind a trunk.</li>
+<li>Add VLAN 30 to the trunk: <code>switchport trunk allowed vlan add 30</code> (and create VLAN 30 on the switch if it does not exist). Using <code>add</code> keeps 10 and 20; typing <code>allowed vlan 30</code> alone would remove them.</li>
+<li>Compare the <strong>trunk configuration on both hosts' switch ports</strong>, especially the allowed VLAN list. ESX-B's uplinks probably do not carry the VM's VLAN.</li>
+<li>The host's <strong>NIC teaming does not match the switch configuration</strong> — for example the host load-balances across two links while the switch treats them as independent ports (or the reverse). Make both sides agree: an LACP bundle on both, or independent links on both.</li>
+<li><strong>C.</strong> Outside devices reach the container through the host's own address and the published host port 8080. 172.17.0.2 is private to the host's bridge.</li>
+<li>It is in <strong>NAT</strong> mode (10.0.2.15 is VirtualBox's default NAT address), so the LAN cannot start connections to it. <strong>Bridged</strong> mode gives it an address on your home LAN.</li>
+<li><strong>B.</strong> A router running as software on a general-purpose server or cloud is NFV. The others are physical hardware.</li>
+<li><strong>No.</strong> An access port in VLAN 10 would fix VM-Web but cut off VM-Mgmt in VLAN 99. The correct check is whether VLAN 10 is allowed and active on the existing trunk (<code>show interfaces trunk</code>), and whether the VM's port group uses VLAN 10. Always test an assistant's suggestion against everything else using that port.</li>
+</ol>
+<h3 id="414-chapter-4-figure-checklist">4.14 Chapter 4 figure checklist</h3>
+<p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-4-4">Figure 4.4</a> had one path crossing box labels on first render; it was rerouted and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1</td>
+<td>Type 1, Type 2 and container software stacks</td>
+<td>4.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Virtual switching with an LACP trunk to SW1</td>
+<td>4.5</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>Docker bridge, NAT and a published port</td>
+<td>4.6</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>4.4</td>
+<td>VirtualBox NAT, Bridged and Host-only modes</td>
+<td>4.10</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="415-chapter-4-progress-record">4.15 Chapter 4 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>1.2</strong> in full — hypervisor types, VMs, containers, virtual switching, container networking, NFV, and the network impact of virtualization.</p>
+<p><strong>Related objectives that reuse this chapter:</strong> 2.2.d switch ports for virtualized hosts (Chapter 7), 2.1.b trunks and 2.1.c LACP (Chapters 5 and 6), 5.3 cloud and automation-based management (Chapter 26).</p>
+<p><strong>Next:</strong> Chapter 5 — objectives <strong>2.1.a, 2.1.b and 2.1.d</strong>: Layer 2/Layer 3 physical interfaces, 802.1Q trunks and switch virtual interfaces (VLANs and inter-VLAN routing).</p></article><nav class="prevnext"><a class="pn prev" href="chapter-03.html"><small>← Chapter 3</small>IPv6 addressing and prefix sizing</a><a class="pn next" href="chapter-05.html"><small>Chapter 5 →</small>VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#41-learning-objectives">4.1 Learning objectives</a>
+<a href="#42-introduction">4.2 Introduction</a>
+<a href="#43-key-terms">4.3 Key terms</a>
+<a href="#44-type-1-and-type-2-hypervisors">4.4 Type 1 and Type 2 hypervisors</a>
+<a href="#45-how-vms-connect-to-the-network">4.5 How VMs connect to the network</a>
+<a href="#46-containers">4.6 Containers</a>
+<a href="#47-vms-vs-containers">4.7 VMs vs containers</a>
+<a href="#48-virtual-network-appliances-nfv">4.8 Virtual network appliances (NFV)</a>
+<a href="#49-what-virtualization-means-for-the-network-engineer">4.9 What virtualization means for the network engineer</a>
+<a href="#410-hands-on-lab-41--vms-and-containers-on-your-own-laptop-beginner">4.10 Hands-on Lab 4.1 — VMs and containers on your own laptop (Beginner)</a>
+<a href="#411-chapter-4-summary-notes-exam-revision">4.11 Chapter 4 summary notes (exam revision)</a>
+<a href="#412-practice-questions--chapter-4">4.12 Practice questions — Chapter 4</a>
+<a href="#413-answer-key-with-explanations">4.13 Answer key with explanations</a>
+<a href="#414-chapter-4-figure-checklist">4.14 Chapter 4 figure checklist</a>
+<a href="#415-chapter-4-progress-record">4.15 Chapter 4 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

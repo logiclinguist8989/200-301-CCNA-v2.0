@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" width="1100" height="700" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 3.3 — SLAAC: PC1 builds its own address and gateway from R1&#x27;s RA</title>
+<desc id="d">Time runs downward; arrows show who sends each NDP (ICMPv6) message</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d9861a"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+<marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1099" height="699" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1099" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 3.3</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">SLAAC: PC1 builds its own address and gateway from R1&#x27;s RA</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Time runs downward; arrows show who sends each NDP (ICMPv6) message</text>
+<g transform="translate(300.0,150.0) scale(0.85)"><ellipse cx="0" cy="33" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-30" y="-28" width="60" height="42" rx="4" fill="url(#gDark)"/><rect x="-26" y="-24" width="52" height="33" rx="2" fill="url(#gScreen)"/><path d="M-26,-24 L6,-24 L-26,4 Z" fill="#ffffff" opacity="0.12"/><rect x="-5" y="14" width="10" height="9" fill="#475569"/><rect x="-17" y="22" width="34" height="5" rx="2" fill="url(#gDark)"/><rect x="-26" y="28" width="52" height="5" rx="1.5" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.6"/></g>
+<text x="300.0" y="194.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="middle">PC1</text>
+<text x="300.0" y="210.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">Staff VLAN 10</text>
+<g transform="translate(800.0,150.0) scale(0.85)"><ellipse cx="0" cy="15.0" rx="36" ry="12" fill="#0f2540" opacity="0.12"/><path d="M-34,-13.0 L-34,13.0 A34,12 0 0 0 34,13.0 L34,-13.0 Z" fill="url(#gRouter)"/><ellipse cx="0" cy="-13.0" rx="34" ry="12" fill="url(#gRouterTop)" stroke="#0b5a9c" stroke-width="1"/><line x1="-24.0" y1="-13.0" x2="-16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="-12.0,-13.0 -16.2,-9.6 -16.2,-16.4" fill="#ffffff"/><line x1="24.0" y1="-13.0" x2="16.2" y2="-13.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="12.0,-13.0 16.2,-16.4 16.2,-9.6" fill="#ffffff"/><line x1="-0.0" y1="-14.0" x2="0.0" y2="-18.8" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-23.0 3.4,-18.8 -3.4,-18.8" fill="#ffffff"/><line x1="-0.0" y1="-12.0" x2="0.0" y2="-7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><polygon points="0.0,-3.0 -3.4,-7.2 3.4,-7.2" fill="#ffffff"/><line x1="-28" y1="11.0" x2="28" y2="11.0" stroke="#7cc4f2" stroke-width="0.8" opacity="0.4"/></g>
+<text x="800.0" y="187.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="middle">R1</text>
+<text x="800.0" y="203.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">G0/0/0 · fe80::1</text>
+<line x1="300.0" y1="240.0" x2="300.0" y2="620.0" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+<line x1="800.0" y1="240.0" x2="800.0" y2="620.0" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+<rect x="150.0" y="250.0" width="300.0" height="30.0" rx="8" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="300.0" y="270.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="middle">Create link-local fe80::250:79ff:fe66:6801</text>
+<circle cx="128.0" cy="266.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="128.0" y="270.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+<line x1="300.0" y1="316.0" x2="792.0" y2="316.0" stroke="#d9861a" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="7 5" marker-end="url(#m0)"/>
+<text x="550.0" y="308.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#d9861a" text-anchor="middle">NS (DAD) for the link-local address</text>
+<text x="550.0" y="333.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">to solicited-node multicast — no reply = unique</text>
+<line x1="300.0" y1="366.0" x2="792.0" y2="366.0" stroke="#1d6fd1" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m1)"/>
+<text x="550.0" y="358.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1d6fd1" text-anchor="middle">RS — Router Solicitation</text>
+<text x="550.0" y="383.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">to ff02::2 (all routers)</text>
+<circle cx="274.0" cy="366.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="274.0" y="370.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+<line x1="800.0" y1="416.0" x2="308.0" y2="416.0" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m2)"/>
+<text x="550.0" y="408.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f9d63" text-anchor="middle">RA — prefix 2001:db8:acad:10::/64, A=1 M=0 O=0</text>
+<text x="550.0" y="433.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">router lifetime &gt; 0 → fe80::1 is the default gateway</text>
+<circle cx="274.0" cy="416.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="274.0" y="420.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+<rect x="150.0" y="450.0" width="300.0" height="30.0" rx="8" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="300.0" y="470.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="middle">Build 2001:db8:acad:10:250:79ff:fe66:6801</text>
+<circle cx="128.0" cy="466.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="128.0" y="470.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+<line x1="300.0" y1="516.0" x2="792.0" y2="516.0" stroke="#d9861a" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="7 5" marker-end="url(#m0)"/>
+<text x="550.0" y="508.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#d9861a" text-anchor="middle">NS (DAD) for the global address</text>
+<text x="550.0" y="533.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">no NA comes back → address becomes valid</text>
+<circle cx="274.0" cy="516.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="274.0" y="520.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">5</text>
+<rect x="150.0" y="550.0" width="300.0" height="30.0" rx="8" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="300.0" y="570.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="middle">Ready: link-local + global + gateway</text>
+<circle cx="128.0" cy="566.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="128.0" y="570.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">6</text>
+<line x1="28" y1="660" x2="1072" y2="660" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="682" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Steps 1 and 4 happen inside PC1. No DHCP server is involved. The gateway is R1&#x27;s link-local address fe80::1.</text>
+<text x="1076" y="690" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 504" width="1160" height="504" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 18.2 — AAA method list: ERROR moves on, FAIL stops</title>
+<desc id="d">aaa authentication login default group ADMIN-TAC local — tried left to right</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#94a3b8"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+<marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d64040"/></marker>
+<marker id="m3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d9861a"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="503" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 18.2</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">AAA method list: ERROR moves on, FAIL stops</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">aaa authentication login default group ADMIN-TAC local — tried left to right</text>
+<rect x="40.0" y="160.0" width="180.0" height="90.0" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="56.0" y="188.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="650" fill="#0f2540" text-anchor="start">Login</text>
+<text x="56.0" y="210.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">user + password</text>
+<line x1="222.0" y1="205.0" x2="290.0" y2="205.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="294.0" y="150.0" width="260.0" height="110.0" rx="10" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="310.0" y="177.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0f2540" text-anchor="start" xml:space="preserve">1  group ADMIN-TAC</text>
+<text x="310.0" y="199.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">ask the TACACS+ servers</text>
+<text x="310.0" y="217.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">10.10.99.20 (TCP 49)</text>
+<line x1="556.0" y1="180.0" x2="760.0" y2="140.0" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m1)"/>
+<text x="640.0" y="140.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="800" fill="#1f9d63" text-anchor="middle">PASS</text>
+<rect x="764.0" y="104.0" width="340.0" height="70.0" rx="10" fill="#e4f6ec" stroke="#1f9d63" stroke-width="2" filter="url(#shadow)"/>
+<text x="780.0" y="131.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0f2540" text-anchor="start">Access granted</text>
+<text x="780.0" y="153.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">server said accept</text>
+<line x1="556.0" y1="232.0" x2="760.0" y2="272.0" stroke="#d64040" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m2)"/>
+<text x="650.0" y="278.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="800" fill="#d64040" text-anchor="middle">FAIL (reject)</text>
+<rect x="764.0" y="238.0" width="340.0" height="70.0" rx="10" fill="#fde8e8" stroke="#d64040" stroke-width="2" filter="url(#shadow)"/>
+<text x="780.0" y="265.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0f2540" text-anchor="start">Access denied</text>
+<text x="780.0" y="287.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">local database is NOT tried</text>
+<line x1="424.0" y1="262.0" x2="424.0" y2="330.0" stroke="#d9861a" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="7 5" marker-end="url(#m3)"/>
+<text x="436.0" y="302.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="800" fill="#d9861a" text-anchor="start">ERROR — no answer / all servers dead</text>
+<rect x="294.0" y="334.0" width="260.0" height="70.0" rx="10" fill="#fdf1df" stroke="#d9861a" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="310.0" y="361.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0f2540" text-anchor="start" xml:space="preserve">2  local</text>
+<text x="310.0" y="383.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5b6b7f" text-anchor="start">username netadmin secret …</text>
+<line x1="28" y1="445" x2="1132" y2="445" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="467" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Only an unreachable/timed-out server (ERROR) falls back to local accounts. A reject (FAIL) ends the attempt —</text>
+<text x="28" y="486" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">so someone removed from the AAA server cannot get in with an old local password.</text>
+<text x="1136" y="494" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

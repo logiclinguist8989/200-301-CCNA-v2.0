@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Start here · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 study guide and lab manual">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="active" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head teal"><div class="eyebrow">Start here</div><h1><span class="num">Part 0</span>How to use this guide</h1></div><article class="prose"><p>Oct 16, 2026 · @Ayush Hamal</p>
+<h2 id="how-to-use-this-guide">How to use this guide</h2>
+<p>This guide follows the official CCNA 200-301 v2.0 exam topics you uploaded, domain by domain, and every chapter names the objectives it covers. Read Part 0 once, then work through the chapters in order with Packet Tracer open.</p>
+<p><strong>What each chapter contains:</strong> learning objectives, a plain-English introduction, the technical detail, how it works internally, real examples, diagrams, Cisco IOS configuration, verification, troubleshooting, an exam-focused summary, and original practice questions with explained answers.</p>
+<p><strong>Conventions used everywhere</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Convention</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>R1&gt;</code></td>
+<td>User EXEC mode (look only)</td>
+</tr>
+<tr>
+<td><code>R1#</code></td>
+<td>Privileged EXEC mode (show, debug, copy, reload)</td>
+</tr>
+<tr>
+<td><code>R1(config)#</code></td>
+<td>Global configuration mode</td>
+</tr>
+<tr>
+<td><code>R1(config-if)#</code></td>
+<td>Interface configuration mode</td>
+</tr>
+<tr>
+<td><code>R1(config-router)#</code></td>
+<td>Routing protocol configuration mode</td>
+</tr>
+<tr>
+<td><code>R1(config-line)#</code></td>
+<td>Line (console/VTY) configuration mode</td>
+</tr>
+<tr>
+<td><code>!</code> inside a command block</td>
+<td>A comment, not something you type</td>
+</tr>
+<tr>
+<td><strong>Exam tip</strong></td>
+<td>A distinction the exam likes to test</td>
+</tr>
+<tr>
+<td><strong>PT note</strong></td>
+<td>What Packet Tracer can and cannot simulate</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>One addressing plan for the whole guide.</strong> Using the same plan in every chapter means the labs build on each other.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value used in this guide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device names</td>
+<td>R1, R2, R3 (routers), SW1, SW2, DSW1 (switches), PC1, PC2, SRV1</td>
+</tr>
+<tr>
+<td>User VLANs</td>
+<td>VLAN 10 Staff, VLAN 20 Voice, VLAN 30 Wireless, VLAN 40 Printers/IoT</td>
+</tr>
+<tr>
+<td>Management VLAN</td>
+<td>VLAN 99</td>
+</tr>
+<tr>
+<td>Native VLAN on trunks</td>
+<td>VLAN 999 (unused, a security practice)</td>
+</tr>
+<tr>
+<td>IPv4 LAN space</td>
+<td>10.10.VLAN.0/24 (for example, VLAN 10 = 10.10.10.0/24)</td>
+</tr>
+<tr>
+<td>Router-to-router links</td>
+<td>10.0.0.0/30 blocks, or /31 where noted</td>
+</tr>
+<tr>
+<td>IPv6 space</td>
+<td>2001:db8::/32 (the documentation prefix, never routed on the Internet)</td>
+</tr>
+<tr>
+<td>"Public" IPv4 examples</td>
+<td>203.0.113.0/24 and 198.51.100.0/24 (documentation ranges)</td>
+</tr>
+<tr>
+<td>Home network examples</td>
+<td>192.168.1.0/24</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Using older CCNA (v1.x) videos with this guide.</strong> Most of the core material in older videos is still valid: cabling, subnetting, IPv6, VLANs, trunks, EtherChannel, STP, static routing, OSPF, NAT, ACLs, DHCP and port security. Part 0 marks each objective as <em>Same core as v1.1</em>, <em>Deeper in v2.0</em> or <em>New in v2.0</em>, so you know when a video is enough and when you need this guide. Treat old video sections on QoS, NTP, REST/JSON, Puppet/Chef, SDN architecture and WLC GUI configuration as background only, because v2.0 no longer lists them by name.</p>
+<p><strong>Figures.</strong> Every figure is numbered by chapter (<a class="figref" href="chapter-01.html#fig-1-1">Figure 1.1</a>, 1.2 …), captioned, placed beside the text that refers to it, and listed in a figure checklist at the end of its chapter. All figures render in this online guide. <strong>Export note (checked 15 October 2026):</strong> the built-in Export to PDF or Word currently converts some of the larger figures into plain text, so do not rely on it for a printed copy yet; a separate print-ready PDF with every figure embedded as an image can be produced instead.</p>
+<h2 id="part-01--syllabus-analysis-exam-facts-and-domain-structure">Part 0.1 — Syllabus analysis: exam facts and domain structure</h2>
+<p>CCNA 200-301 v2.0 is a 120-minute exam with 5 domains, 29 numbered objectives and 30 lettered sub-objectives; half the weight sits in Domains 1 and 2. Cisco's first testing date for v2.0 is 3 February 2027 (<a href="https://www.ciscopress.com/promotions/new-cisco-certifications-142035">Cisco Press</a>); until then the v1.1 exam is the one being delivered, under the same 200-301 code.</p>
+<p><strong>Facts stated in the official document you uploaded</strong></p>
+<ul>
+<li>Exam title: Implementing and Administering Cisco Solutions (200-301 CCNA) v2.0. Passing it earns the CCNA certification.</li>
+<li>Duration: 120 minutes.</li>
+<li>You may have to <strong>evaluate output and recommendations from agentic AI and digital network assistants</strong> during troubleshooting. This is new and shapes how Domain 5 is taught here.</li>
+<li>The topics are a "general guide"; related topics may appear, and Cisco can change the list without notice.</li>
+<li>The document does <strong>not</strong> state the number of questions, the question types or the passing score. This guide will not invent them. Check Cisco's exam page close to your booking date.</li>
+</ul>
+<p><strong>Domain structure and official weightings</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Official weight</th>
+<th>Objectives</th>
+<th>Sub-objectives</th>
+<th>What dominates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0 Network Infrastructure and Connectivity</td>
+<td>25%</td>
+<td>1.1–1.7 (7)</td>
+<td>1.5.a–d (4)</td>
+<td>Troubleshooting addressing, cabling, clients, DHCP</td>
+</tr>
+<tr>
+<td>2.0 Switching and Network Access</td>
+<td>25%</td>
+<td>2.1–2.5 (5)</td>
+<td>2.1.a–d, 2.2.a–e, 2.5.a–d (13)</td>
+<td>Configuring switches: VLANs, trunks, EtherChannel, STP</td>
+</tr>
+<tr>
+<td>3.0 IP Routing</td>
+<td>20%</td>
+<td>3.1–3.4 (4)</td>
+<td>3.2.a–d, 3.3.a–d (8)</td>
+<td>Routing tables, static routes, OSPFv2/v3</td>
+</tr>
+<tr>
+<td>4.0 Network Services and Security</td>
+<td>20%</td>
+<td>4.1–4.7 (7)</td>
+<td>4.7.a–e (5)</td>
+<td>AAA, NAT, ACLs, DNS, Layer 2 security</td>
+</tr>
+<tr>
+<td>5.0 AI, and Network Operations and Management</td>
+<td>10%</td>
+<td>5.1–5.6 (6)</td>
+<td>none</td>
+<td>AI in operations, management models, SNMP, Ansible, syslog</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What the verbs tell you to do.</strong> Cisco's verb in each objective sets the depth. In v2.0, 16 of the 29 objectives say <em>Configure</em>, <em>Troubleshoot</em> or <em>Diagnose</em>, so hands-on practice is not optional.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Count</th>
+<th>Objectives</th>
+<th>What you must be able to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configure</td>
+<td>8</td>
+<td>2.1, 2.2, 2.5, 3.3, 4.1, 4.3, 4.6, 4.7</td>
+<td>Type correct IOS commands from memory and verify them</td>
+</tr>
+<tr>
+<td>Troubleshoot</td>
+<td>6</td>
+<td>1.3, 1.4, 1.6, 1.7, 2.4, 3.2</td>
+<td>Find and fix a fault from symptoms and command output</td>
+</tr>
+<tr>
+<td>Diagnose</td>
+<td>2</td>
+<td>1.1, 4.4</td>
+<td>Identify the cause of a fault from evidence</td>
+</tr>
+<tr>
+<td>Describe</td>
+<td>6</td>
+<td>1.2, 1.5, 4.5, 5.1, 5.3, 5.4</td>
+<td>Explain what it is, why it exists and how it works</td>
+</tr>
+<tr>
+<td>Interpret</td>
+<td>3</td>
+<td>3.1, 3.4, 5.6</td>
+<td>Read output (routing table, HSRP/VRRP status, syslog) and draw the right conclusion</td>
+</tr>
+<tr>
+<td>Validate</td>
+<td>1</td>
+<td>2.3</td>
+<td>Compare CDP/LLDP output against documentation</td>
+</tr>
+<tr>
+<td>Manage</td>
+<td>1</td>
+<td>4.2</td>
+<td>Move configs and images safely with SFTP/SCP</td>
+</tr>
+<tr>
+<td>Select</td>
+<td>1</td>
+<td>5.2</td>
+<td>Choose the best AI prompt for a network task</td>
+</tr>
+<tr>
+<td>Use</td>
+<td>1</td>
+<td>5.5</td>
+<td>Run commands on devices with Ansible</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Readability check.</strong> All three pages of the uploaded PDF were readable; no objective is missing or cut off. One wording note: objective 5.3 prints "controllerbased" as one word; this guide reads it as "controller-based".</p>
+<p>Sources: the uploaded <em>200-301 CCNA v2.0 Exam Topics</em> PDF; <a href="https://www.ciscopress.com/promotions/new-cisco-certifications-142035">Cisco Press certification updates</a> for the first testing date.</p>
+<h2 id="part-02--complete-coverage-checklist">Part 0.2 — Complete coverage checklist</h2>
+<p>Every one of the 29 objectives and 30 sub-objectives is listed below with the skill it demands, how it compares with v1.1 (the syllabus most older videos follow), and the chapter that covers it. Skill codes: <strong>C</strong> = configure in IOS, <strong>T</strong> = troubleshoot from symptoms, <strong>O</strong> = read command output, <strong>K</strong> = calculation, <strong>D</strong> = diagram/concept, <strong>P</strong> = Packet Tracer lab.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Official objective (short form)</th>
+<th>Skills</th>
+<th>Compared with v1.1</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Diagnose interface and cable issues (copper and fiber): collisions, errors, duplex, speed, distance, interface, signal levels, pinout, cable types</td>
+<td>T, O, D, P</td>
+<td>Deeper: adds distance, signal levels, pinout</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Describe hypervisors, virtual machines and containers</td>
+<td>D</td>
+<td>Same core (VRFs no longer listed)</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Troubleshoot IPv4 address configuration, assignment and subnetting (public and private)</td>
+<td>K, T, C, P</td>
+<td>Deeper: now troubleshoot</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Troubleshoot IPv6 address configuration, assignment and prefix sizing (unicast, modified EUI-64)</td>
+<td>K, T, C, P</td>
+<td>Deeper: now troubleshoot</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>Describe wireless principles</td>
+<td>D</td>
+<td>Same core</td>
+<td>16</td>
+</tr>
+<tr>
+<td>1.5.a</td>
+<td>Band and channel selection</td>
+<td>D, K</td>
+<td>Same core</td>
+<td>16</td>
+</tr>
+<tr>
+<td>1.5.b</td>
+<td>RF characteristics</td>
+<td>D</td>
+<td>Same core</td>
+<td>16</td>
+</tr>
+<tr>
+<td>1.5.c</td>
+<td>Security protocols</td>
+<td>D</td>
+<td>Moved here from v1.1 security domain</td>
+<td>16</td>
+</tr>
+<tr>
+<td>1.5.d</td>
+<td>Cause of interference</td>
+<td>D, T</td>
+<td>Deeper: named explicitly</td>
+<td>16</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>Troubleshoot wired and wireless client connectivity on Windows, macOS, Linux (IP config, reachability, wireless security)</td>
+<td>T, O</td>
+<td>Deeper: was "verify"</td>
+<td>17</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>Troubleshoot DHCPv4 client, server and relay on IOS</td>
+<td>C, T, O, P</td>
+<td>Deeper: server now included</td>
+<td>14</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>Configure switch-to-switch and switch-to-router connectivity</td>
+<td>C, O, P</td>
+<td>Same core</td>
+<td>5, 6</td>
+</tr>
+<tr>
+<td>2.1.a</td>
+<td>Layer 2/Layer 3 physical interfaces</td>
+<td>C, P</td>
+<td>Same core</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2.1.b</td>
+<td>Layer 2 802.1Q trunk interfaces</td>
+<td>C, T, P</td>
+<td>Same core</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2.1.c</td>
+<td>Layer 2/Layer 3 LACP port-channel/EtherChannel</td>
+<td>C, T, P</td>
+<td>Deeper: Layer 3 EtherChannel named</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2.1.d</td>
+<td>Switch virtual interface (SVI)</td>
+<td>C, P</td>
+<td>Deeper: named explicitly</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Configure Layer 2 port attributes for edge hosts (VLAN, PoE, port channel, LACP)</td>
+<td>C, P</td>
+<td>Deeper: per device type</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2.2.a</td>
+<td>Desktop, printer and IoT appliances</td>
+<td>C, P</td>
+<td>Deeper</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2.2.b</td>
+<td>Wireless access points (standalone and controller-based)</td>
+<td>C, D</td>
+<td>Deeper</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2.2.c</td>
+<td>Voice over IP phone</td>
+<td>C, P</td>
+<td>Same core (voice VLAN)</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2.2.d</td>
+<td>Virtualized hosts</td>
+<td>C, D</td>
+<td>New</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2.2.e</td>
+<td>Network appliances</td>
+<td>C, D</td>
+<td>New</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Validate network documentation using CDP and LLDP</td>
+<td>C, O, P</td>
+<td>Same core, new angle (documentation)</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Troubleshoot L2/L3 with show commands (incl. show logs), ping, extended ping, traceroute, packet capture</td>
+<td>T, O, P</td>
+<td>New</td>
+<td>15</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Configure Rapid PVST+</td>
+<td>C, O, P</td>
+<td>Deeper: was "interpret"</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2.5.a</td>
+<td>Root port, root bridge (primary/secondary), other port names</td>
+<td>C, O, D</td>
+<td>Deeper</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2.5.b</td>
+<td>Port states and roles</td>
+<td>O, D</td>
+<td>Same core</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2.5.c</td>
+<td>PortFast</td>
+<td>C, P</td>
+<td>Same core</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2.5.d</td>
+<td>Root guard, loop guard, BPDU guard</td>
+<td>C, T</td>
+<td>Deeper: now configure</td>
+<td>9</td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Interpret a routing table (protocol, prefix/mask, AD, metric, default route)</td>
+<td>O, K</td>
+<td>Same core</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Troubleshoot IPv4 and IPv6 static routing</td>
+<td>C, T, P</td>
+<td>Deeper: now troubleshoot</td>
+<td>11</td>
+</tr>
+<tr>
+<td>3.2.a</td>
+<td>Default route</td>
+<td>C, T</td>
+<td>Same core</td>
+<td>11</td>
+</tr>
+<tr>
+<td>3.2.b</td>
+<td>Network route</td>
+<td>C, T</td>
+<td>Same core</td>
+<td>11</td>
+</tr>
+<tr>
+<td>3.2.c</td>
+<td>Host route</td>
+<td>C, T</td>
+<td>Same core</td>
+<td>11</td>
+</tr>
+<tr>
+<td>3.2.d</td>
+<td>Floating static</td>
+<td>C, T</td>
+<td>Same core</td>
+<td>11</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Configure single-area OSPFv2 (IPv4) and OSPFv3 (IPv6)</td>
+<td>C, O, T, P</td>
+<td>Deeper: OSPFv3 is new</td>
+<td>12</td>
+</tr>
+<tr>
+<td>3.3.a</td>
+<td>Neighbor adjacencies (excluding authentication)</td>
+<td>C, T</td>
+<td>Same core</td>
+<td>12</td>
+</tr>
+<tr>
+<td>3.3.b</td>
+<td>Point-to-point</td>
+<td>C</td>
+<td>Same core</td>
+<td>12</td>
+</tr>
+<tr>
+<td>3.3.c</td>
+<td>Broadcast (DR/BDR selection)</td>
+<td>C, O</td>
+<td>Same core</td>
+<td>12</td>
+</tr>
+<tr>
+<td>3.3.d</td>
+<td>Router ID</td>
+<td>C, O</td>
+<td>Same core</td>
+<td>12</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>Interpret operational status of HSRP and VRRP</td>
+<td>O, D, P</td>
+<td>Deeper: was "describe FHRP"; VRRP named</td>
+<td>13</td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>Configure local usernames and AAA client (TACACS+, RADIUS) for management</td>
+<td>C, P</td>
+<td>Deeper: was "compare AAA"</td>
+<td>18</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Manage configs and software with SFTP/SCP</td>
+<td>C, O</td>
+<td>New (replaces TFTP/FTP)</td>
+<td>19</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>Configure NAT/PAT on IOS XE routers</td>
+<td>C, O, T, P</td>
+<td>Same core, PAT explicit</td>
+<td>21</td>
+</tr>
+<tr>
+<td>4.4</td>
+<td>Diagnose DNS records (A, AAAA, CNAME, MX, NS, PTR)</td>
+<td>T, O</td>
+<td>New depth</td>
+<td>22</td>
+</tr>
+<tr>
+<td>4.5</td>
+<td>Describe IPsec remote access and site-to-site VPNs (protocols, transport modes)</td>
+<td>D</td>
+<td>Deeper: IPsec detail</td>
+<td>24</td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>Configure IPv4 ACLs (standard, extended, numbered, named)</td>
+<td>C, T, P</td>
+<td>Same core</td>
+<td>20</td>
+</tr>
+<tr>
+<td>4.7</td>
+<td>Configure Layer 2 security features</td>
+<td>C, T</td>
+<td>Deeper</td>
+<td>23</td>
+</tr>
+<tr>
+<td>4.7.a</td>
+<td>DHCP snooping</td>
+<td>C, T, P</td>
+<td>Same core</td>
+<td>23</td>
+</tr>
+<tr>
+<td>4.7.b</td>
+<td>Dynamic ARP inspection</td>
+<td>C, T</td>
+<td>Same core</td>
+<td>23</td>
+</tr>
+<tr>
+<td>4.7.c</td>
+<td>Storm control</td>
+<td>C</td>
+<td>New</td>
+<td>23</td>
+</tr>
+<tr>
+<td>4.7.d</td>
+<td>RA guard</td>
+<td>C, D</td>
+<td>New</td>
+<td>23</td>
+</tr>
+<tr>
+<td>4.7.e</td>
+<td>Port security</td>
+<td>C, T, P</td>
+<td>Same core</td>
+<td>23</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td>Describe the role of agentic AI in network operations</td>
+<td>D</td>
+<td>New</td>
+<td>27</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td>Select a prompt for a generative AI system (data classification, output format, persona, instructions)</td>
+<td>D</td>
+<td>New</td>
+<td>27</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td>Describe management approaches (device, cloud, controller, automation, infrastructure as code)</td>
+<td>D</td>
+<td>Deeper: cloud and IaC added</td>
+<td>26</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>Describe the function of SNMP</td>
+<td>D, O</td>
+<td>Same core</td>
+<td>25</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>Use configuration management such as Ansible to execute commands</td>
+<td>C, O</td>
+<td>Deeper: was "recognize"</td>
+<td>26</td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>Interpret syslog content, severity levels and facilities</td>
+<td>O</td>
+<td>Same core (now interpret)</td>
+<td>25</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>v1.1 topics that v2.0 no longer names.</strong> These appear in older videos. They are not listed objectives, but Cisco says related topics may appear, so this guide treats them as background, briefly, where they support a listed objective:</p>
+<ul>
+<li>Network topology architectures (two-tier, three-tier, spine-leaf, SOHO, WAN) and TCP vs UDP — kept as prerequisites in Chapter 1.</li>
+<li>Cisco wireless architectures, AP modes and WLC GUI configuration — touched only where 2.2.b and 1.5 need them.</li>
+<li>NTP — explained briefly in Chapter 25 because syslog timestamps depend on it.</li>
+<li>QoS per-hop behaviour, TFTP/FTP, security program elements, password policy theory — not taught beyond a sentence.</li>
+<li>REST APIs, JSON, Puppet and Chef, SDN planes — REST and JSON are explained only as far as controllers, cloud management and Ansible need them (Chapter 26). You asked for JSON and REST examples; v2.0 does not list them by name, so they are marked as supporting material.</li>
+</ul>
+<p><strong>One cross-cutting requirement.</strong> The exam description says you may need to evaluate output and recommendations from agentic AI and digital network assistants. From Chapter 10 onward, practice sets include an "AI assistant says…" question where you judge whether a suggested fix is correct.</p>
+<h2 id="part-03--prerequisites-practical-skills-and-study-sequence">Part 0.3 — Prerequisites, practical skills and study sequence</h2>
+<p>You need only basic computer skills and binary arithmetic to start; everything else is taught in order, and each phase below ends with a lab you can build in Packet Tracer.</p>
+<p><strong>Prerequisite knowledge (check yourself before Chapter 1)</strong></p>
+<ul>
+<li>[ ] Convert numbers between decimal and binary up to 255 (Chapter 2 revises this, but practise early)</li>
+<li>[ ] Know what a file, a folder, an IP address and a web browser are in everyday terms</li>
+<li>[ ] Open a command prompt on Windows (<code>cmd</code> or PowerShell) and a terminal on Linux</li>
+<li>[ ] Install Cisco Packet Tracer (free with a Cisco Networking Academy account; use the newest version offered)</li>
+<li>[ ] Install Wireshark on your laptop, to see real packets</li>
+<li>[ ] Optional but useful: a Linux virtual machine (for example Ubuntu in VirtualBox) for Chapters 4, 17 and 26</li>
+</ul>
+<p><strong>Practical skills the v2.0 exam expects you to build</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Where you build it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Navigate IOS modes, save configs, use <code>?</code> and Tab completion</td>
+<td>Chapter 1 onward, every lab</td>
+</tr>
+<tr>
+<td>Read <code>show interfaces</code> counters and diagnose cabling, duplex and speed faults</td>
+<td>Chapter 1</td>
+</tr>
+<tr>
+<td>Subnet any IPv4 block in under a minute; plan VLSM</td>
+<td>Chapter 2</td>
+</tr>
+<tr>
+<td>Build an IPv6 address by hand, including modified EUI-64</td>
+<td>Chapter 3</td>
+</tr>
+<tr>
+<td>Configure access ports, trunks, SVIs, routed ports and LACP bundles</td>
+<td>Chapters 5–7</td>
+</tr>
+<tr>
+<td>Compare live CDP/LLDP output to a topology drawing and spot errors</td>
+<td>Chapter 8</td>
+</tr>
+<tr>
+<td>Predict the root bridge and every port role; tune Rapid PVST+</td>
+<td>Chapter 9</td>
+</tr>
+<tr>
+<td>Read a routing table and find the next hop for any destination</td>
+<td>Chapter 10</td>
+</tr>
+<tr>
+<td>Configure and troubleshoot static routes and single-area OSPFv2/v3</td>
+<td>Chapters 11–12</td>
+</tr>
+<tr>
+<td>Read HSRP and VRRP status output</td>
+<td>Chapter 13</td>
+</tr>
+<tr>
+<td>Fix DHCP client, server and relay problems</td>
+<td>Chapter 14</td>
+</tr>
+<tr>
+<td>Use extended ping, traceroute, logs and packet captures methodically</td>
+<td>Chapter 15</td>
+</tr>
+<tr>
+<td>Troubleshoot clients on Windows, macOS and Linux with their own commands</td>
+<td>Chapter 17</td>
+</tr>
+<tr>
+<td>Configure SSH, local users and a TACACS+/RADIUS client; copy files with SCP/SFTP</td>
+<td>Chapters 18–19</td>
+</tr>
+<tr>
+<td>Write and place ACLs; configure NAT and PAT</td>
+<td>Chapters 20–21</td>
+</tr>
+<tr>
+<td>Diagnose DNS record problems with <code>nslookup</code> and <code>dig</code></td>
+<td>Chapter 22</td>
+</tr>
+<tr>
+<td>Configure DHCP snooping, DAI, storm control, RA guard, port security</td>
+<td>Chapter 23</td>
+</tr>
+<tr>
+<td>Read syslog messages and know what SNMP does</td>
+<td>Chapter 25</td>
+</tr>
+<tr>
+<td>Run a simple Ansible playbook against IOS; judge an AI assistant's suggestion</td>
+<td>Chapters 26–27</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Recommended study sequence for a beginner</strong></p>
+<p>The chapters are numbered in the order you should study them, which is not the order of the syllabus. Each phase depends on the one before it.</p>
+<ol>
+<li><strong>Foundations (Chapters 1–4):</strong> how networks move data, cables and interfaces, IPv4 subnetting, IPv6, virtualization. Subnetting gets the most time here; expect to practise it daily for two weeks.</li>
+<li><strong>Switching (Chapters 5–9):</strong> VLANs, trunks, SVIs, EtherChannel, edge ports, CDP/LLDP, Rapid PVST+. You build one campus topology and keep extending it.</li>
+<li><strong>Routing (Chapters 10–13):</strong> routing tables, static routes, OSPFv2/OSPFv3, HSRP/VRRP. The campus now connects to a WAN.</li>
+<li><strong>Services and troubleshooting (Chapters 14–17):</strong> DHCP, the troubleshooting toolkit, wireless principles, client troubleshooting on three operating systems.</li>
+<li><strong>Security (Chapters 18–24):</strong> device access and AAA, secure file transfer, ACLs, NAT/PAT, DNS, Layer 2 security, IPsec VPNs.</li>
+<li><strong>Operations and AI (Chapters 25–27):</strong> syslog, SNMP, management models, Ansible, agentic AI and prompting.</li>
+<li><strong>Final review (Chapter 28):</strong> mixed-domain questions, integrated troubleshooting scenarios, command reference and weak-topic check.</li>
+</ol>
+<p>A realistic pace for a student with classes is one chapter a week for the long chapters (2, 5, 9, 12, 20, 21, 23) and two a week for the short ones, about 18–20 weeks in total. Your first v2.0 exam date can be no earlier than 3 February 2027.</p>
+<h2 id="part-04--chapter-plan-and-progress-tracker">Part 0.4 — Chapter plan and progress tracker</h2>
+<p>The guide has 28 chapters in study order; all 59 objectives and sub-objectives map to exactly one chapter, and Chapter 28 reviews them all. Change the Status column as you go. "Packet Tracer" says how much of the chapter you can practise there; where support is partial or missing, the chapter gives an alternative exercise and names the limitation. Exact Packet Tracer support varies by version, so each chapter states what to check in yours.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ch</th>
+<th>Title</th>
+<th>Objectives</th>
+<th>Packet Tracer</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Networking foundations, cables and interfaces</td>
+<td>Prerequisites + 1.1</td>
+<td>Full (fiber signal levels: concept only)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>2</td>
+<td>IPv4 addressing and subnetting</td>
+<td>1.3</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>3</td>
+<td>IPv6 addressing and prefix sizing</td>
+<td>1.4</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Hypervisors, virtual machines and containers</td>
+<td>1.2</td>
+<td>Concept; optional VirtualBox/Docker exercise</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>5</td>
+<td>VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</td>
+<td>2.1.a, 2.1.b, 2.1.d</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>6</td>
+<td>EtherChannel with LACP (Layer 2 and Layer 3)</td>
+<td>2.1.c</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Edge-host ports: PCs, printers, IoT, APs, IP phones, virtual hosts, appliances</td>
+<td>2.2, 2.2.a–e</td>
+<td>Mostly (PoE detail limited)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Validating documentation with CDP and LLDP</td>
+<td>2.3</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Rapid PVST+ and STP protection features</td>
+<td>2.5, 2.5.a–d</td>
+<td>Mostly (loop guard: verify version)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Reading the routing table</td>
+<td>3.1</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>11</td>
+<td>IPv4 and IPv6 static routing</td>
+<td>3.2, 3.2.a–d</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Single-area OSPFv2 and OSPFv3</td>
+<td>3.3, 3.3.a–d</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>13</td>
+<td>First Hop Redundancy: HSRP and VRRP</td>
+<td>3.4</td>
+<td>HSRP yes; VRRP verify version</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>14</td>
+<td>DHCPv4 client, server and relay</td>
+<td>1.7</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>15</td>
+<td>The troubleshooting toolkit: show, logs, ping, traceroute, packet capture</td>
+<td>2.4</td>
+<td>Mostly (Simulation mode stands in for captures)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Wireless principles: bands, channels, RF, security, interference</td>
+<td>1.5, 1.5.a–d</td>
+<td>Partial (RF behaviour is concept only)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Client connectivity on Windows, macOS and Linux</td>
+<td>1.6</td>
+<td>Partial (use your own PC and a Linux VM)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Secure device access: local users, SSH, AAA with TACACS+/RADIUS</td>
+<td>4.1</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Managing configs and images with SFTP/SCP</td>
+<td>4.2</td>
+<td>Limited (verify version; alternative given)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>20</td>
+<td>IPv4 access control lists</td>
+<td>4.6</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>21</td>
+<td>NAT and PAT on IOS XE routers</td>
+<td>4.3</td>
+<td>Full</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Diagnosing DNS records</td>
+<td>4.4</td>
+<td>Partial (A records; others via nslookup/dig on your PC)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Layer 2 security: DHCP snooping, DAI, storm control, RA guard, port security</td>
+<td>4.7, 4.7.a–e</td>
+<td>Partial (storm control, RA guard: verify version)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>24</td>
+<td>IPsec site-to-site and remote access VPNs</td>
+<td>4.5</td>
+<td>Concept; optional site-to-site lab</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Syslog and SNMP</td>
+<td>5.6, 5.4</td>
+<td>Mostly</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Network management approaches and Ansible</td>
+<td>5.3, 5.5</td>
+<td>None (Linux VM + free Cisco sandbox)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Agentic AI and prompting for network operations</td>
+<td>5.1, 5.2</td>
+<td>None (worked scenarios)</td>
+<td>Ready to study</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Final review: mixed questions, integrated scenarios, command reference, weak-topic check</td>
+<td>All</td>
+<td>Integrated capstone lab</td>
+<td>Ready to study</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>How the parts will arrive.</strong> Chapter 1 is written below. Each later reply adds the next chapter, or two short ones, to this same document, and updates its Status to "Ready to study". The last line of every chapter names the next objective, so nothing is skipped.</p></article><nav class="prevnext"><a class="pn prev" href="index.html"><small>← Home</small>Overview</a><a class="pn next" href="chapter-01.html"><small>Chapter 1 →</small>Networking foundations, cables and interfaces</a></nav></main>
+
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

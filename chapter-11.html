@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 11 — IPv4 and IPv6 static routing · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 11: IPv4 and IPv6 static routing">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head amber">
+  <div class="eyebrow">Domain 3 · IP Routing</div>
+  <h1><span class="num">Chapter 11</span>IPv4 and IPv6 static routing</h1>
+  <div class="meta"><span>🖼️ 4 figures</span><span>⏱️ ~18 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="11"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>3.2 Troubleshoot IPv4 and IPv6 static routing</strong> — <strong>3.2.a</strong> default route, <strong>3.2.b</strong> network route, <strong>3.2.c</strong> host route, <strong>3.2.d</strong> floating static. The verb is <em>troubleshoot</em>: you must configure all four types and also find what is wrong with someone else's.</p>
+<h3 id="111-learning-objectives">11.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Decide when static routes are the right tool.</li>
+<li>Configure IPv4 static routes with a next hop, an exit interface, or both, and explain recursive lookup.</li>
+<li>Configure and recognise default, network, host and floating static routes.</li>
+<li>Configure IPv6 static routes, including link-local next hops.</li>
+<li>Verify static routes and troubleshoot missing, wrong, one-way and never-failing routes.</li>
+</ol>
+<h3 id="112-when-static-routes-make-sense">11.2 When static routes make sense</h3>
+<p>A <strong>static route</strong> is a route you type in by hand. It never changes unless you change it, uses no bandwidth or CPU to maintain, and reveals nothing to neighbors.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use static routes for</th>
+<th>Avoid static routes when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A <strong>stub</strong> network with one way out (a branch, a home router)</td>
+<td>Many routers and paths: every change must be made by hand everywhere</td>
+</tr>
+<tr>
+<td>A <strong>default route</strong> toward the ISP</td>
+<td>Paths must change automatically after a failure far away</td>
+</tr>
+<tr>
+<td>A <strong>backup</strong> path behind a dynamic protocol (floating static)</td>
+<td>The network grows often</td>
+</tr>
+<tr>
+<td>Forcing one specific destination along a chosen path (host route)</td>
+<td>You cannot document and maintain them reliably</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The four types in objective 3.2</strong> all use the same command; they differ only in the destination and the AD (<a class="figref" href="#fig-11-1">Figure 11.1</a>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Destination</th>
+<th>Example</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Default route</strong> (3.2.a)</td>
+<td>0.0.0.0/0 or ::/0</td>
+<td><code>ip route 0.0.0.0 0.0.0.0 198.51.100.1</code></td>
+<td>Anything not otherwise known</td>
+</tr>
+<tr>
+<td><strong>Network route</strong> (3.2.b)</td>
+<td>A subnet or summary</td>
+<td><code>ip route 10.20.20.0 255.255.255.0 10.0.12.2</code></td>
+<td>A whole remote network</td>
+</tr>
+<tr>
+<td><strong>Host route</strong> (3.2.c)</td>
+<td>One address: /32 or /128</td>
+<td><code>ip route 10.20.20.10 255.255.255.255 10.0.21.2</code></td>
+<td>One server, a loopback, a special path for one device</td>
+</tr>
+<tr>
+<td><strong>Floating static</strong> (3.2.d)</td>
+<td>Any prefix, with a <strong>higher AD</strong></td>
+<td><code>ip route 10.20.20.0 255.255.255.0 10.0.21.2 200</code></td>
+<td>Backup that appears only when the preferred route disappears</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="fig" id="fig-11-1"><button class="zoom" aria-label="Enlarge figure 11.1"><img src="assets/figures/ch11/fig-11-01-static-route-types.svg" alt="Figure 11.1 — Default, network, host and floating static routes on R1 (the Lab 11.1 network)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-11-1">Figure 11.1</a> Default, network, host and floating static routes on R1 (the Lab 11.1 network)</figcaption></figure>
+
+<p><a class="figref" href="#fig-11-1">Figure 11.1</a> places all four route types from the table on one network, which you build in Lab 11.1. Each blue arrow is one of R1's static routes, pointing toward the destination it describes; the legend gives the exact route.</p>
+<h3 id="113-ipv4-static-route-syntax">11.3 IPv4 static route syntax</h3>
+<pre><code>ip route &lt;network&gt; &lt;mask&gt; { &lt;next-hop-ip&gt; | &lt;exit-interface&gt; | &lt;exit-interface&gt; &lt;next-hop-ip&gt; } [&lt;AD&gt;] [name &lt;text&gt;] [permanent]
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Common mistake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>network</code></td>
+<td>The destination network (all host bits 0)</td>
+<td>Typing a host address with a subnet mask: IOS rejects it with <code>%Inconsistent address and mask</code></td>
+</tr>
+<tr>
+<td><code>mask</code></td>
+<td>Dotted-decimal mask (not <code>/24</code>)</td>
+<td>Wrong mask covers the wrong range</td>
+</tr>
+<tr>
+<td><code>next-hop-ip</code></td>
+<td>The neighbor's address on a directly connected subnet</td>
+<td>Using the router's own address, or a far-away address that has no route</td>
+</tr>
+<tr>
+<td><code>exit-interface</code></td>
+<td>The local interface to send out of</td>
+<td>Using it alone on Ethernet (see below)</td>
+</tr>
+<tr>
+<td><code>AD</code></td>
+<td>1–255; default 1</td>
+<td>Making a backup lower than the route it should back up</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>A label shown in the configuration</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>permanent</code></td>
+<td>Keeps the route even if the exit interface goes down</td>
+<td>Black-holes traffic during an outage; rarely wanted</td>
+</tr>
+</tbody>
+</table></div>
+<p>All static routes are entered in <strong>global configuration mode</strong> and appear in the running configuration as <code>ip route ...</code> lines.</p>
+<p><strong>Three ways to say where to go (<a class="figref" href="#fig-11-2">Figure 11.2</a>):</strong></p>
+<figure class="fig" id="fig-11-2"><button class="zoom" aria-label="Enlarge figure 11.2"><img src="assets/figures/ch11/fig-11-02-next-hop-vs-exit-interface.svg" alt="Figure 11.2 — Next-hop, exit-interface and fully specified static routes compared" loading="lazy"></button><figcaption><a class="fignum" href="#fig-11-2">Figure 11.2</a> Next-hop, exit-interface and fully specified static routes compared</figcaption></figure>
+
+<p>Each row of <a class="figref" href="#fig-11-2">Figure 11.2</a> shows the command, the routing table line it produces, and what R1 has to ARP for. The dashed red arrow marks the form to avoid on Ethernet; the highlighted row is the safest form.</p>
+<ol>
+<li><strong>Next hop only</strong> — <code>ip route 10.20.20.0 255.255.255.0 10.0.12.2</code>. The router must perform a <strong>recursive lookup</strong>: it looks up 10.0.12.2 in its own table, finds <code>C 10.0.12.0/30 ... GigabitEthernet0/0/1</code>, and uses that interface. Shown as <code>S 10.20.20.0/24 [1/0] via 10.0.12.2</code>.</li>
+<li><strong>Exit interface only</strong> — <code>ip route 10.20.20.0 255.255.255.0 GigabitEthernet0/0/1</code>. Shown as <em>directly connected</em>. On a point-to-point serial link this is fine. On <strong>Ethernet</strong> the router treats every destination as if it were on the wire and ARPs for each one; it works only if the neighbor answers with <strong>proxy ARP</strong>, and it fills the ARP cache. Avoid it on Ethernet.</li>
+<li><strong>Fully specified</strong> — <code>ip route 10.20.20.0 255.255.255.0 GigabitEthernet0/0/1 10.0.12.2</code>. No recursive lookup, and ARP only for the next hop. Recommended on Ethernet, and <strong>required</strong> in IPv6 when the next hop is a link-local address.</li>
+</ol>
+<p><strong>When is a static route installed?</strong> Only when its next hop is reachable (recursion succeeds) or its exit interface is up. If the exit interface goes down, the route is removed (unless <code>permanent</code>). This is what makes a floating static take over (11.5).</p>
+<h3 id="114-default-route-32a">11.4 Default route (3.2.a)</h3>
+<pre><code>R1(config)# ip route 0.0.0.0 0.0.0.0 198.51.100.1          ! HQ edge: everything unknown to the ISP
+R2(config)# ip route 0.0.0.0 0.0.0.0 10.0.12.1             ! branch: everything to HQ
+</code></pre>
+<p>The route appears as <code>S* 0.0.0.0/0 [1/0] via ...</code> and sets the <strong>gateway of last resort</strong>. A stub site such as R2 often needs <strong>only</strong> a default route: every destination it does not own is "somewhere toward HQ".</p>
+<h3 id="115-network-route-32b">11.5 Network route (3.2.b)</h3>
+<p>A network route reaches one remote subnet, or a <strong>summary</strong> of several:</p>
+<pre><code>R1(config)# ip route 10.20.20.0 255.255.255.0 10.0.12.2    ! branch LAN
+ISP(config)# ip route 10.0.0.0 255.0.0.0 198.51.100.2      ! one summary for all of the company
+</code></pre>
+<p>Every network route needs a <strong>matching route back</strong> on the far side. A ping fails if only one direction exists: the echo request arrives but the reply has no route home. That one-way mistake is the most common static-routing fault.</p>
+<h3 id="116-host-route-32c">11.6 Host route (3.2.c)</h3>
+<p>A host route has a /32 mask (IPv4) or /128 (IPv6) and so beats any other route to that address by longest match:</p>
+<pre><code>R1(config)# ip route 10.20.20.10 255.255.255.255 10.0.21.2 ! a branch server
+</code></pre>
+<p>Typical uses: reaching a router's <strong>loopback</strong> for management or as a routing protocol ID, sending one server's traffic over a different path (<a class="figref" href="#fig-11-1">Figure 11.1</a>, route c), or pointing at a single DNS or syslog server. Remember that connected interfaces already create /32 <strong>L</strong> routes for the router's own addresses; host routes you type are <strong>S</strong> routes.</p>
+<h3 id="117-floating-static-route-32d">11.7 Floating static route (3.2.d)</h3>
+<p>A <strong>floating static</strong> is a static route configured with an AD <strong>higher than</strong> the route it backs up. Because the preferred route has a lower AD, the floating route stays out of the routing table — it "floats" above it — until the preferred route disappears (<a class="figref" href="#fig-11-3">Figure 11.3</a>).</p>
+<figure class="fig" id="fig-11-3"><button class="zoom" aria-label="Enlarge figure 11.3"><img src="assets/figures/ch11/fig-11-03-floating-static-failover.svg" alt="Figure 11.3 — Floating static failover on R1: before and after the primary link fails" loading="lazy"></button><figcaption><a class="fignum" href="#fig-11-3">Figure 11.3</a> Floating static failover on R1: before and after the primary link fails</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-11-3">Figure 11.3</a> the blue arrow is the route R1 is actually using. On the left the AD 1 route wins and the AD 200 route exists only in the configuration. On the right the primary interface is down, its route is removed, and the floating route is installed with [200/0].</p>
+<pre><code>R1(config)# ip route 10.20.20.0 255.255.255.0 10.0.12.2          ! primary, AD 1
+R1(config)# ip route 10.20.20.0 255.255.255.0 10.0.21.2 200      ! backup, AD 200
+R2(config)# ip route 0.0.0.0 0.0.0.0 10.0.12.1                   ! primary default
+R2(config)# ip route 0.0.0.0 0.0.0.0 10.0.21.1 200               ! backup default
+</code></pre>
+<p><strong>Choosing the AD:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Backing up</th>
+<th>Floating AD must be higher than</th>
+<th>Typical choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Another static route</td>
+<td>1</td>
+<td>5–254</td>
+</tr>
+<tr>
+<td>An OSPF-learned route</td>
+<td>110</td>
+<td>111–254 (often 120–200)</td>
+</tr>
+<tr>
+<td>An EIGRP-learned route</td>
+<td>90</td>
+<td>91–254</td>
+</tr>
+</tbody>
+</table></div>
+<p>If the floating route's AD is <strong>equal</strong> to the primary's, both are installed and traffic is load-shared; if it is <strong>lower</strong>, the "backup" becomes the primary. Both are classic exam faults.</p>
+<p><strong>What a floating static can and cannot detect.</strong> It takes over when the preferred route is <strong>removed</strong>: the primary static's exit interface went down (link failure detected locally), or the dynamic protocol withdrew the route. A static route <strong>cannot</strong> detect a failure further away — for example the ISP's router behind a working link — so it keeps sending traffic into a dead path. Detecting remote failures needs tracking (IP SLA) or a routing protocol, which are beyond objective 3.2.</p>
+<p><strong>Viewing a floating route.</strong> It does not appear in <code>show ip route</code> while unused. Check the configuration (<code>show running-config | include ip route</code>) and, after a failure, look for its AD in brackets: <code>S 10.20.20.0/24 [200/0] via 10.0.21.2</code>.</p>
+<h3 id="118-ipv6-static-routes">11.8 IPv6 static routes</h3>
+<p>IPv6 static routes follow the same ideas with three differences: the prefix is written with a slash, IPv6 routing must be enabled, and link-local next hops need an interface.</p>
+<pre><code>ipv6 route &lt;prefix&gt;/&lt;length&gt; { &lt;next-hop&gt; | &lt;exit-interface&gt; | &lt;exit-interface&gt; &lt;next-hop&gt; } [&lt;AD&gt;]
+</code></pre>
+<p><strong>The four types on R1 and R2 (Lab 11.1 addressing):</strong></p>
+<pre><code>R1(config)# ipv6 unicast-routing                                             ! required for any IPv6 routing
+R1(config)# ipv6 route ::/0 2001:db8:ffff::1                                 ! (a) default to the ISP
+R1(config)# ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f012::2          ! (b) network route, primary
+R1(config)# ipv6 route 2001:db8:acad:20::10/128 2001:db8:acad:f021::2       ! (c) host route
+R1(config)# ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f021::2 200      ! (d) floating static
+
+R2(config)# ipv6 unicast-routing
+R2(config)# ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1                     ! default via R1's link-local
+R2(config)# ipv6 route ::/0 GigabitEthernet0/0/2 FE80::1 200                 ! floating default
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Next-hop form</th>
+<th>Example</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global unicast next hop</td>
+<td><code>ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f012::2</code></td>
+<td>Recursive lookup, as in IPv4</td>
+</tr>
+<tr>
+<td>Exit interface only</td>
+<td><code>ipv6 route 2001:db8:acad:20::/64 GigabitEthernet0/0/1</code></td>
+<td>Works on point-to-point links; on Ethernet relies on the neighbor answering ND for every destination</td>
+</tr>
+<tr>
+<td>Link-local next hop</td>
+<td><code>ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1</code></td>
+<td><strong>Interface is mandatory</strong> — every link uses FE80::/10. Without it IOS replies <code>% Interface has to be specified for a link-local nexthop</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Using the neighbor's link-local address is common because it does not change if global addressing is renumbered; that is why Lab 3.1 set <code>ipv6 address fe80::1 link-local</code> on R1.</p>
+<pre><code>R1# show ipv6 route static
+S   ::/0 [1/0]
+     via 2001:DB8:FFFF::1
+S   2001:DB8:ACAD:20::/64 [1/0]
+     via 2001:DB8:ACAD:F012::2
+S   2001:DB8:ACAD:20::10/128 [1/0]
+     via 2001:DB8:ACAD:F021::2
+</code></pre>
+<p>The floating route is again invisible until the primary route is removed.</p>
+<h3 id="119-verifying-static-routes">11.9 Verifying static routes</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use it to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ip route static</code> / <code>show ipv6 route static</code></td>
+<td>Which static routes are <strong>installed</strong></td>
+</tr>
+<tr>
+<td><code>show ip route 10.20.20.10</code></td>
+<td>Which entry a specific destination uses, with AD, metric and next hop</td>
+</tr>
+<tr>
+<td><code>show running-config \| include ip route</code></td>
+<td>Every configured static route, including floating ones not installed</td>
+</tr>
+<tr>
+<td><code>show ip interface brief</code></td>
+<td>Whether exit interfaces and next-hop subnets are up</td>
+</tr>
+<tr>
+<td><code>ping 10.20.20.1 source 10.10.10.1</code></td>
+<td>End-to-end reachability <strong>from the LAN address</strong>, which tests the return route too</td>
+</tr>
+<tr>
+<td><code>traceroute 10.20.20.10</code></td>
+<td>Which path (primary or backup) packets actually take</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Why <code>source</code> matters.</strong> A plain <code>ping</code> from R1 uses the exit interface's address (10.0.12.1). That can succeed even when the branch has no route back to the HQ LAN. Pinging from the LAN address (or from a PC) proves both directions. This is an <strong>extended ping</strong>, covered fully in Chapter 15.</p>
+<h3 id="1110-troubleshooting-static-routes">11.10 Troubleshooting static routes</h3>
+<p>Work through these checks in order:</p>
+<ol>
+<li><strong>Is the route configured correctly?</strong> Right network address, right mask, right next hop (<code>show running-config | include ip route</code>).</li>
+<li><strong>Is it installed?</strong> If not, the next hop is unreachable or the exit interface is down, or a lower-AD route to the same prefix already exists.</li>
+<li><strong>Is it the route actually used?</strong> A longer prefix elsewhere (a host route, a more specific network) may win (<code>show ip route &lt;destination&gt;</code>).</li>
+<li><strong>Is there a route back?</strong> Check the return path on every router, from the far end toward the source.</li>
+<li><strong>Does the path work end to end?</strong> <code>ping ... source</code>, <code>traceroute</code>.</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Evidence</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Route missing from the table</td>
+<td>Next hop not on a connected subnet, or exit interface down</td>
+<td><code>show ip route static</code> empty for it; next hop absent from C routes</td>
+<td>Correct the next hop; bring the interface up</td>
+</tr>
+<tr>
+<td>IOS rejects the command</td>
+<td>Host bits set in the network (<code>%Inconsistent address and mask</code>)</td>
+<td>Error at config time</td>
+<td>Use the network address (10.20.20.0, not 10.20.20.1)</td>
+</tr>
+<tr>
+<td>Ping from the router works, from the LAN fails</td>
+<td>No return route on the far router</td>
+<td><code>ping ... source &lt;LAN IP&gt;</code> fails; far router lacks the route</td>
+<td>Add the return route</td>
+</tr>
+<tr>
+<td>Traffic takes the backup link all the time</td>
+<td>Floating AD equal to or lower than the primary, or primary next hop wrong</td>
+<td>Both routes or only the backup installed</td>
+<td>Fix the AD (backup higher) or the primary next hop</td>
+</tr>
+<tr>
+<td>Load sharing that was not intended</td>
+<td>Primary and backup configured with the same AD</td>
+<td>Two <code>via</code> lines</td>
+<td>Raise the backup AD</td>
+</tr>
+<tr>
+<td>Backup never takes over during an ISP outage</td>
+<td>Primary static stays installed because the local link is still up</td>
+<td>Primary route still present; traffic black-holed</td>
+<td>Expected static behaviour; needs tracking or a routing protocol</td>
+</tr>
+<tr>
+<td>One server goes a different way from its subnet</td>
+<td>A host route (/32) overrides the network route</td>
+<td><code>show ip route 10.20.20.10</code> shows the /32</td>
+<td>Intended (<a class="figref" href="#fig-11-1">Figure 11.1</a>, route c) or remove it</td>
+</tr>
+<tr>
+<td>Exit-interface static on Ethernet works inconsistently</td>
+<td>Relies on proxy ARP; ARP table full of remote hosts</td>
+<td><code>show ip arp</code> lists many remote addresses on one interface</td>
+<td>Use a next hop or fully specified route</td>
+</tr>
+<tr>
+<td>IPv6 route rejected</td>
+<td>Link-local next hop without an interface</td>
+<td><code>% Interface has to be specified for a link-local nexthop</code></td>
+<td>Add the exit interface</td>
+</tr>
+<tr>
+<td>IPv6 static routes ignored</td>
+<td><code>ipv6 unicast-routing</code> missing</td>
+<td>No forwarding; no RAs</td>
+<td>Enable it</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1111-packet-tracer-lab-111--default-network-host-and-floating-static-routes-dual-stack-intermediate">11.11 Packet Tracer Lab 11.1 — Default, network, host and floating static routes, dual stack (Intermediate)</h3>
+<p><strong>Objectives:</strong> 3.2.a–d (IPv4 and IPv6). <strong>New file.</strong> <strong>Devices:</strong> 3 × ISR4331 (R1 HQ, R2 Branch, ISP), connected with copper <strong>crossover</strong> cables (router to router). LANs are simulated with loopback interfaces so the lab needs no switches; R2's Lo20 address (10.20.20.1) stands in for the branch server of <a class="figref" href="#fig-11-1">Figure 11.1</a>.</p>
+<figure class="fig" id="fig-11-4"><button class="zoom" aria-label="Enlarge figure 11.4"><img src="assets/figures/ch11/fig-11-04-lab-11-1-topology.svg" alt="Figure 11.4 — Lab 11.1 topology with IPv4 and IPv6 addressing" loading="lazy"></button><figcaption><a class="fignum" href="#fig-11-4">Figure 11.4</a> Lab 11.1 topology with IPv4 and IPv6 addressing</figcaption></figure>
+
+<p><a class="figref" href="#fig-11-4">Figure 11.4</a> is the network of <a class="figref" href="#fig-11-1">Figure 11.1</a> with full addressing. Each link is labelled with its interface, IPv4 /30 and IPv6 /64; the small .1 and .2 numbers show which end has which address, matching the table below.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Interface</th>
+<th>IPv4</th>
+<th>IPv6</th>
+<th>Link-local</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>G0/0/0 (to ISP)</td>
+<td>198.51.100.2/30</td>
+<td>2001:db8:ffff::2/64</td>
+<td>auto</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>G0/0/1 (primary to R2)</td>
+<td>10.0.12.1/30</td>
+<td>2001:db8:acad:f012::1/64</td>
+<td>fe80::1</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>G0/0/2 (backup to R2)</td>
+<td>10.0.21.1/30</td>
+<td>2001:db8:acad:f021::1/64</td>
+<td>fe80::1</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>Loopback10 (HQ LAN)</td>
+<td>10.10.10.1/24</td>
+<td>2001:db8:acad:10::1/64</td>
+<td>—</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>G0/0/1</td>
+<td>10.0.12.2/30</td>
+<td>2001:db8:acad:f012::2/64</td>
+<td>fe80::2</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>G0/0/2</td>
+<td>10.0.21.2/30</td>
+<td>2001:db8:acad:f021::2/64</td>
+<td>fe80::2</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>Loopback20 (Branch LAN)</td>
+<td>10.20.20.1/24</td>
+<td>2001:db8:acad:20::1/64</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ISP</td>
+<td>G0/0/0</td>
+<td>198.51.100.1/30</td>
+<td>2001:db8:ffff::1/64</td>
+<td>auto</td>
+</tr>
+<tr>
+<td>ISP</td>
+<td>Loopback0 (an Internet host)</td>
+<td>203.0.113.8/32</td>
+<td>2001:db8:9999::8/128</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>R1</strong></p>
+<pre><code>enable
+configure terminal
+hostname R1
+ipv6 unicast-routing
+interface gigabitethernet0/0/0
+ ip address 198.51.100.2 255.255.255.252
+ ipv6 address 2001:db8:ffff::2/64
+ no shutdown
+interface gigabitethernet0/0/1
+ description Primary link to R2
+ ip address 10.0.12.1 255.255.255.252
+ ipv6 address 2001:db8:acad:f012::1/64
+ ipv6 address fe80::1 link-local
+ no shutdown
+interface gigabitethernet0/0/2
+ description Backup link to R2
+ ip address 10.0.21.1 255.255.255.252
+ ipv6 address 2001:db8:acad:f021::1/64
+ ipv6 address fe80::1 link-local
+ no shutdown
+interface loopback10
+ ip address 10.10.10.1 255.255.255.0
+ ipv6 address 2001:db8:acad:10::1/64
+exit
+! (a) default
+ip route 0.0.0.0 0.0.0.0 198.51.100.1
+ipv6 route ::/0 2001:db8:ffff::1
+! (b) network route via the primary link
+ip route 10.20.20.0 255.255.255.0 10.0.12.2
+ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f012::2
+! (c) host route via the backup link
+ip route 10.20.20.1 255.255.255.255 10.0.21.2
+ipv6 route 2001:db8:acad:20::1/128 2001:db8:acad:f021::2
+! (d) floating static via the backup link
+ip route 10.20.20.0 255.255.255.0 10.0.21.2 200
+ipv6 route 2001:db8:acad:20::/64 2001:db8:acad:f021::2 200
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>R2</strong></p>
+<pre><code>enable
+configure terminal
+hostname R2
+ipv6 unicast-routing
+interface gigabitethernet0/0/1
+ ip address 10.0.12.2 255.255.255.252
+ ipv6 address 2001:db8:acad:f012::2/64
+ ipv6 address fe80::2 link-local
+ no shutdown
+interface gigabitethernet0/0/2
+ ip address 10.0.21.2 255.255.255.252
+ ipv6 address 2001:db8:acad:f021::2/64
+ ipv6 address fe80::2 link-local
+ no shutdown
+interface loopback20
+ ip address 10.20.20.1 255.255.255.0
+ ipv6 address 2001:db8:acad:20::1/64
+exit
+ip route 0.0.0.0 0.0.0.0 10.0.12.1
+ip route 0.0.0.0 0.0.0.0 10.0.21.1 200
+ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1
+ipv6 route ::/0 GigabitEthernet0/0/2 FE80::1 200
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>ISP</strong> — addresses from the table, plus return routes for the whole company (in real life NAT would hide private addresses; Chapter 21):</p>
+<pre><code>ip route 10.0.0.0 255.0.0.0 198.51.100.2
+ipv6 unicast-routing
+ipv6 route 2001:db8:acad::/48 2001:db8:ffff::2
+</code></pre>
+<p><strong>Verification and expected results</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Command (device)</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Installed routes</td>
+<td><code>show ip route static</code> (R1)</td>
+<td>S* 0.0.0.0/0, S 10.20.20.0/24 [1/0] via 10.0.12.2, S 10.20.20.1/32 via 10.0.21.2 — the floating route absent</td>
+</tr>
+<tr>
+<td>Host route wins</td>
+<td><code>show ip route 10.20.20.1</code> vs <code>show ip route 10.20.20.99</code> (R1)</td>
+<td>/32 via 10.0.21.2 vs /24 via 10.0.12.2</td>
+</tr>
+<tr>
+<td>Both directions</td>
+<td><code>ping 10.10.10.1 source 10.20.20.1</code> (R2)</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>Internet via defaults</td>
+<td><code>ping 203.0.113.8 source 10.20.20.1</code> (R2)</td>
+<td>Success: R2 default → R1 default → ISP, return via the ISP's 10.0.0.0/8</td>
+</tr>
+<tr>
+<td>IPv6</td>
+<td><code>ping 2001:db8:9999::8 source 2001:db8:acad:20::1</code> (R2)</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>Failover</td>
+<td><code>shutdown</code> R1 G0/0/1, then <code>show ip route static</code> on R1 and R2</td>
+<td>R1: S 10.20.20.0/24 <strong>[200/0]</strong> via 10.0.21.2; R2: S* 0.0.0.0/0 <strong>[200/0]</strong> via 10.0.21.1; pings still succeed</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td><code>no shutdown</code> R1 G0/0/1</td>
+<td>AD 1 routes return; floating routes disappear</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] All four route types configured for IPv4 and IPv6</li>
+<li>[ ] Host route proven with <code>show ip route &lt;address&gt;</code></li>
+<li>[ ] Pings succeed from LAN to LAN and LAN to Internet using <code>source</code></li>
+<li>[ ] Failover and recovery observed on both routers</li>
+</ul>
+<h3 id="1112-lab-112--static-routing-challenge">11.12 Lab 11.2 — Static routing challenge</h3>
+<p>Apply to a copy of Lab 11.1 and diagnose with show commands, pings with <code>source</code>, and traceroute only.</p>
+<pre><code>! R1
+no ip route 10.20.20.0 255.255.255.0 10.0.12.2
+ip route 10.20.20.0 255.255.255.0 10.0.12.3
+! R2
+no ip route 0.0.0.0 0.0.0.0 10.0.21.1 200
+ip route 0.0.0.0 0.0.0.0 10.0.21.1
+! ISP
+no ip route 10.0.0.0 255.0.0.0 198.51.100.2
+! R2
+no ipv6 unicast-routing
+</code></pre>
+<p><strong>Answer key (hide until done)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Fault</th>
+<th>Symptom</th>
+<th>Evidence</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1 next hop 10.0.12.3 does not exist</td>
+<td>HQ cannot reach the branch LAN (except 10.20.20.1, which uses the host route)</td>
+<td>Route installed (10.0.12.3 is in a connected subnet) but <code>show ip arp</code> has no entry for it</td>
+<td>Correct next hop 10.0.12.2</td>
+</tr>
+<tr>
+<td>R2 backup default at AD 1</td>
+<td>Traffic load-shared over both links</td>
+<td>Two <code>via</code> lines under S* 0.0.0.0/0</td>
+<td>Restore AD 200</td>
+</tr>
+<tr>
+<td>ISP has no return route</td>
+<td>LAN-to-Internet pings with <code>source</code> fail; R1's own ping to the ISP works</td>
+<td>ISP <code>show ip route</code> lacks 10.0.0.0/8</td>
+<td>Add the return route</td>
+</tr>
+<tr>
+<td>R2 IPv6 routing disabled</td>
+<td>All IPv6 beyond R2's links fails</td>
+<td><code>show running-config</code> lacks <code>ipv6 unicast-routing</code></td>
+<td>Re-enable it</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1113-chapter-11-summary-notes-exam-revision">11.13 Chapter 11 summary notes (exam revision)</h3>
+<ul>
+<li><strong>IPv4:</strong> <code>ip route &lt;network&gt; &lt;mask&gt; {next-hop | exit-int | exit-int next-hop} [AD]</code>. <strong>IPv6:</strong> <code>ipv6 route &lt;prefix/len&gt; ... [AD]</code> with <code>ipv6 unicast-routing</code> enabled.</li>
+<li><strong>Next hop only</strong> = recursive lookup. <strong>Exit interface only</strong> = "directly connected"; on Ethernet relies on proxy ARP — avoid. <strong>Fully specified</strong> = best on Ethernet; <strong>mandatory for IPv6 link-local next hops</strong>.</li>
+<li><strong>Default</strong> 0.0.0.0/0 or ::/0 (S*, gateway of last resort). <strong>Network</strong> route to a subnet or summary. <strong>Host</strong> route /32 or /128 wins by longest match. <strong>Floating</strong> static = higher AD than the route it backs up; installed only when that route is removed.</li>
+<li>Floating AD must exceed: static 1, EIGRP 90, OSPF 110. Equal AD = load sharing; lower = it becomes primary.</li>
+<li>A static route is installed only if its next hop is reachable / exit interface up; it <strong>cannot detect remote failures</strong>.</li>
+<li><strong>Every route needs a return route.</strong> Test with <code>ping &lt;dest&gt; source &lt;LAN-IP&gt;</code> and <code>traceroute</code>.</li>
+<li>Network address must have host bits 0, or IOS says <code>%Inconsistent address and mask</code>.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"A floating static shows in <code>show ip route</code> all the time"</td>
+<td>Only after the preferred route disappears; otherwise check the configuration</td>
+</tr>
+<tr>
+<td>"Backup route AD 1 makes failover faster"</td>
+<td>AD 1 equals the primary: both are installed and traffic is load-shared</td>
+</tr>
+<tr>
+<td>"A ping from the router proves the route works"</td>
+<td>It may use the router's link address; test from the LAN address</td>
+</tr>
+<tr>
+<td>"A static route fails over when the ISP fails"</td>
+<td>Only if the local next hop or interface fails</td>
+</tr>
+<tr>
+<td>"IPv6 link-local next hops work like global ones"</td>
+<td>They need the exit interface specified</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1114-practice-questions--chapter-11">11.14 Practice questions — Chapter 11</h3>
+<p><strong>1. (Configuration)</strong> Write the IPv4 default route that sends everything to 203.0.113.1.</p>
+<p><strong>2. (Configuration)</strong> Write a host route to 192.168.5.20 through next hop 10.1.1.2.</p>
+<p><strong>3. (Floating static)</strong> OSPF already provides a route to 10.40.0.0/16. Which AD makes a static route to the same prefix a floating backup?</p>
+<p>A. 1  B. 100  C. 110  D. 115</p>
+<p><strong>4. (Troubleshooting)</strong> <code>ip route 10.30.0.0 255.255.0.0 10.5.5.5</code> is configured, but the route never appears in <code>show ip route</code>. R1 has no route to 10.5.5.0. Why?</p>
+<p><strong>5. (Troubleshooting)</strong> IOS rejects <code>ip route 172.16.10.5 255.255.255.0 10.1.1.2</code> with <code>%Inconsistent address and mask</code>. Why, and what is the correct command?</p>
+<p><strong>6. (Troubleshooting)</strong> From R1, <code>ping 10.20.20.1</code> succeeds, but <code>ping 10.20.20.1 source 10.10.10.1</code> fails. What is the most likely cause?</p>
+<p><strong>7. (Output interpretation)</strong> R1 shows <code>S 10.20.20.0/24 [200/0] via 10.0.21.2</code>. What does this tell you about the network right now?</p>
+<p><strong>8. (Output interpretation)</strong> R2's default route shows two lines: <code>[1/0] via 10.0.12.1</code> and <code>[1/0] via 10.0.21.1</code>. The second link was meant to be a backup. What went wrong?</p>
+<p><strong>9. (IPv6)</strong> Why does IOS reject <code>ipv6 route ::/0 FE80::1</code>, and how do you fix it?</p>
+<p><strong>10. (Longest match)</strong> R1 has <code>S 10.20.20.0/24 via 10.0.12.2</code> and <code>S 10.20.20.1/32 via 10.0.21.2</code>. Which path do packets to 10.20.20.1 take, and to 10.20.20.50?</p>
+<p><strong>11. (Multiple response — choose two)</strong> What are disadvantages of an exit-interface-only static route on an Ethernet link?</p>
+<p>A. It relies on the neighbor answering proxy ARP  B. It requires a recursive lookup  C. The ARP cache fills with remote destinations  D. It cannot be used for a default route  E. It has a higher AD</p>
+<p><strong>12. (Concept)</strong> R1's primary static default points to the ISP's router across a working link. The ISP's upstream connection fails. A floating default via a second ISP does not take over. Why?</p>
+<p><strong>13. (Configuration)</strong> Write the IPv6 default route on R2 that uses R1's link-local address FE80::1 on G0/0/1.</p>
+<p><strong>14. (Evaluate an AI assistant)</strong> A network assistant suggests: <em>"Configure the backup static route with AD 1 so it takes over instantly when the primary fails."</em> Is this good advice?</p>
+<h3 id="1115-answer-key-with-explanations">11.15 Answer key with explanations</h3>
+<ol>
+<li><code>ip route 0.0.0.0 0.0.0.0 203.0.113.1</code>.</li>
+<li><code>ip route 192.168.5.20 255.255.255.255 10.1.1.2</code>.</li>
+<li><strong>D.</strong> Any AD above 110 makes it float behind OSPF. A and B would replace the OSPF route; C equals it.</li>
+<li>The next hop 10.5.5.5 is <strong>not reachable</strong> (no connected or other route to it), so the recursive lookup fails and the route is not installed.</li>
+<li>The "network" 172.16.10.5 has host bits set for a /24 mask. Use the network address: <code>ip route 172.16.10.0 255.255.255.0 10.1.1.2</code>.</li>
+<li>The far end has <strong>no return route</strong> to 10.10.10.0/24. The plain ping used R1's link address, which R2 can reach as a connected network.</li>
+<li>The <strong>floating static is active</strong>: the preferred AD 1 route to 10.20.20.0/24 has been removed (for example the primary link is down), so traffic uses the backup next hop 10.0.21.2.</li>
+<li>The backup was configured <strong>without a higher AD</strong> (both are AD 1), so both are installed and traffic is load-shared. Reconfigure the backup with AD 200.</li>
+<li>A link-local next hop is ambiguous without an interface (every link uses FE80::/10). Use <code>ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1</code>.</li>
+<li>10.20.20.1 matches the <strong>/32</strong> → via 10.0.21.2 (backup link). 10.20.20.50 matches only the <strong>/24</strong> → via 10.0.12.2 (primary).</li>
+<li><strong>A and C.</strong> No recursive lookup is needed (B is false); it can be used for defaults (D); its AD is still 1 (E).</li>
+<li>The primary static route is still installed because its local next hop is still reachable; static routes cannot see failures beyond the next hop. Tracking (IP SLA) or a routing protocol is needed.</li>
+<li><code>ipv6 route ::/0 GigabitEthernet0/0/1 FE80::1</code>.</li>
+<li><strong>No.</strong> With AD 1 the backup equals the primary, so both are used all the time and traffic is split across both links. A backup needs a <strong>higher</strong> AD; it takes over as soon as the primary route is removed.</li>
+</ol>
+<h3 id="1116-chapter-11-figure-checklist">11.16 Chapter 11 figure checklist</h3>
+<p>All 4 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-11-1">Figure 11.1</a> had a label crossing an arrow on first render; it was moved and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11.1</td>
+<td>Default, network, host and floating static routes on R1</td>
+<td>11.2</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>11.2</td>
+<td>Next-hop, exit-interface and fully specified routes</td>
+<td>11.3</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>11.3</td>
+<td>Floating static failover before and after</td>
+<td>11.7</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>11.4</td>
+<td>Lab 11.1 dual-stack topology</td>
+<td>11.11</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as annotated command output instead of a drawing:</strong> <code>show ip route static</code> and <code>show ipv6 route static</code>; troubleshooting is a checklist and fault table.</p>
+<h3 id="1117-chapter-11-progress-record">11.17 Chapter 11 progress record</h3>
+<p><strong>Objectives completed:</strong> <strong>3.2</strong> and <strong>3.2.a–d</strong> for IPv4 and IPv6: default, network, host and floating static routes, syntax forms, verification and troubleshooting.</p>
+<p><strong>Next:</strong> Chapter 12 — <strong>3.3 Configure single-area OSPFv2 for IPv4 and OSPFv3 for IPv6</strong>: neighbor adjacencies, point-to-point and broadcast networks, DR/BDR election, router ID.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-10.html"><small>← Chapter 10</small>Interpreting the routing table</a><a class="pn next" href="chapter-12.html"><small>Chapter 12 →</small>Single-area OSPFv2 and OSPFv3</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#111-learning-objectives">11.1 Learning objectives</a>
+<a href="#112-when-static-routes-make-sense">11.2 When static routes make sense</a>
+<a href="#113-ipv4-static-route-syntax">11.3 IPv4 static route syntax</a>
+<a href="#114-default-route-32a">11.4 Default route (3.2.a)</a>
+<a href="#115-network-route-32b">11.5 Network route (3.2.b)</a>
+<a href="#116-host-route-32c">11.6 Host route (3.2.c)</a>
+<a href="#117-floating-static-route-32d">11.7 Floating static route (3.2.d)</a>
+<a href="#118-ipv6-static-routes">11.8 IPv6 static routes</a>
+<a href="#119-verifying-static-routes">11.9 Verifying static routes</a>
+<a href="#1110-troubleshooting-static-routes">11.10 Troubleshooting static routes</a>
+<a href="#1111-packet-tracer-lab-111--default-network-host-and-floating-static-routes-dual-stack-intermediate">11.11 Packet Tracer Lab 11.1 — Default, network, host and floating static routes, dual stack (Intermediate)</a>
+<a href="#1112-lab-112--static-routing-challenge">11.12 Lab 11.2 — Static routing challenge</a>
+<a href="#1113-chapter-11-summary-notes-exam-revision">11.13 Chapter 11 summary notes (exam revision)</a>
+<a href="#1114-practice-questions--chapter-11">11.14 Practice questions — Chapter 11</a>
+<a href="#1115-answer-key-with-explanations">11.15 Answer key with explanations</a>
+<a href="#1116-chapter-11-figure-checklist">11.16 Chapter 11 figure checklist</a>
+<a href="#1117-chapter-11-progress-record">11.17 Chapter 11 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

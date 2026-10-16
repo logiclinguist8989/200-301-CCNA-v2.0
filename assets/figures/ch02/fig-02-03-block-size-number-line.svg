@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 408" width="1100" height="408" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 2.3 — /26 cuts the fourth octet into four blocks of 64</title>
+<desc id="d">Block size = 256 − 192 = 64 → host .75 falls in the .64 block</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d64040"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1099" height="407" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1099" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="62.8" height="22" rx="11" fill="#0b3b66"/>
+<text x="59.4" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 2.3</text>
+<text x="102.8" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">/26 cuts the fourth octet into four blocks of 64</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">Block size = 256 − 192 = 64 → host .75 falls in the .64 block</text>
+<rect x="62.0" y="170.0" width="241.0" height="80.0" rx="8" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="182.5" y="204.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">192.168.10.0/26</text>
+<text x="182.5" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="middle">.0 – .63</text>
+<text x="62.0" y="274.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">0</text>
+<rect x="307.0" y="170.0" width="241.0" height="80.0" rx="8" fill="#e7f0fc" stroke="#1d6fd1" stroke-width="2.5"/>
+<text x="427.5" y="204.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700" fill="#0f3f80" text-anchor="middle">192.168.10.64/26</text>
+<text x="427.5" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="middle">.64 – .127</text>
+<text x="307.0" y="274.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">64</text>
+<rect x="552.0" y="170.0" width="241.0" height="80.0" rx="8" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="672.5" y="204.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">192.168.10.128/26</text>
+<text x="672.5" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="middle">.128 – .191</text>
+<text x="552.0" y="274.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">128</text>
+<rect x="797.0" y="170.0" width="241.0" height="80.0" rx="8" fill="#f6f8fb" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="917.5" y="204.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700" fill="#0f2540" text-anchor="middle">192.168.10.192/26</text>
+<text x="917.5" y="228.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="500" fill="#5b6b7f" text-anchor="middle">.192 – .255</text>
+<text x="797.0" y="274.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">192</text>
+<text x="1038.0" y="274.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">255</text>
+<line x1="347.1" y1="130.0" x2="347.1" y2="166.0" stroke="#d64040" stroke-width="2.5" stroke-linecap="round" marker-end="url(#m0)"/>
+<rect x="311.2" y="106.5" width="71.7" height="23.0" rx="11.5" fill="#d64040" stroke="#d64040" stroke-width="1.2"/>
+<text x="347.1" y="122.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">host .75</text>
+<line x1="60.0" y1="286.0" x2="1040.0" y2="286.0" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="300.0" y="305.0" width="90.0" height="22.0" rx="11.0" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="345.0" y="320.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f5a37" text-anchor="middle">network .64</text>
+<rect x="444.2" y="305.0" width="107.8" height="22.0" rx="11.0" fill="#fde8e8" stroke="#d64040" stroke-width="1.2"/>
+<text x="498.1" y="320.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#8a1c1c" text-anchor="middle">broadcast .127</text>
+<line x1="28" y1="368" x2="1072" y2="368" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="390" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Network = the block start (.64). Broadcast = next block start − 1 (.127). Usable hosts .65 – .126.</text>
+<text x="1076" y="398" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

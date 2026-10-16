@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 8 — Validating network documentation with CDP and LLDP · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 8: Validating network documentation with CDP and LLDP">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch active" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head green">
+  <div class="eyebrow">Domain 2 · Switching &amp; Network Access</div>
+  <h1><span class="num">Chapter 8</span>Validating network documentation with CDP and LLDP</h1>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~15 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="8"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>2.3 Validate the accuracy of network documentation using CDP and LLDP.</strong> The verb is <em>validate</em>: the exam gives you a topology drawing or port table plus neighbor output and asks what is wrong.</p>
+<h3 id="81-learning-objectives">8.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Explain what CDP and LLDP are, what they advertise, and which devices they can and cannot see.</li>
+<li>Read <code>show cdp neighbors</code>, <code>show lldp neighbors</code> and their <code>detail</code> versions without mixing up local and remote ports.</li>
+<li>Enable, disable and tune CDP and LLDP globally and per interface.</li>
+<li>Compare CDP with LLDP and explain LLDP-MED.</li>
+<li>Follow a repeatable process to compare documentation against discovered neighbors and correct the right thing.</li>
+<li>Decide where to disable discovery protocols for security.</li>
+</ol>
+<h3 id="82-introduction-documentation-drifts">8.2 Introduction: documentation drifts</h3>
+<p>A network drawing is correct on the day it is made. Then a technician moves a cable to a spare port, a switch is replaced by a different model, a management address changes — and nobody updates the drawing. Months later someone troubleshoots from the wrong picture. <strong>CDP and LLDP</strong> let devices describe their own direct connections, so you can check the documentation against what is really cabled.</p>
+<p>Both are <strong>Layer 2</strong> protocols: a device sends periodic advertisements out each interface, and the directly connected neighbor stores them. Advertisements are <strong>never forwarded</strong>, so a device learns only about its <strong>directly connected</strong> neighbors (<a class="figref" href="#fig-8-1">Figure 8.1</a>). They also work only between devices that run the protocol: switches, routers, IP phones and APs do; most PCs and printers do not.</p>
+<figure class="fig" id="fig-8-1"><button class="zoom" aria-label="Enlarge figure 8.1"><img src="assets/figures/ch08/fig-08-01-discovery-scope.svg" alt="Figure 8.1 — Discovery scope: each device learns only its directly connected CDP/LLDP neighbors" loading="lazy"></button><figcaption><a class="fignum" href="#fig-8-1">Figure 8.1</a> Discovery scope: each device learns only its directly connected CDP/LLDP neighbors</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-8-1">Figure 8.1</a> the arrows are advertisements on each link, in both directions. Because DSW1 does not pass SW1's advertisement on to R1, building a full network map means logging in to each device in turn and following the neighbors hop by hop. PC1 is invisible to both protocols, so end hosts are documented from the MAC address table instead.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>CDP</th>
+<th>LLDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard</td>
+<td>Cisco proprietary</td>
+<td>IEEE 802.1AB, any vendor</td>
+</tr>
+<tr>
+<td>Default on Cisco IOS</td>
+<td>Enabled</td>
+<td>Often disabled (enable with <code>lldp run</code>)</td>
+</tr>
+<tr>
+<td>Advertisement timer</td>
+<td>60 s</td>
+<td>30 s</td>
+</tr>
+<tr>
+<td>Holdtime</td>
+<td>180 s</td>
+<td>120 s</td>
+</tr>
+<tr>
+<td>Destination MAC</td>
+<td>01:00:0C:CC:CC:CC</td>
+<td>01:80:C2:00:00:0E</td>
+</tr>
+<tr>
+<td>Extras</td>
+<td>Native VLAN, duplex, VTP domain, voice VLAN, power</td>
+<td>Extensible TLVs; <strong>LLDP-MED</strong> for phones (voice VLAN, PoE)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="83-cdp-cisco-discovery-protocol">8.3 CDP (Cisco Discovery Protocol)</h3>
+<p>CDP runs on Cisco routers, switches, IP phones and APs, and is <strong>enabled by default</strong> on every interface. CDP version 2 is the default.</p>
+<p><strong>What CDP advertises:</strong> device ID (hostname), management IP address(es), local port the advertisement left from, platform (model), capabilities (router, switch, phone…), software version, and on CDPv2 the <strong>native VLAN</strong>, <strong>duplex</strong>, VTP domain, and for phones the voice VLAN and power request.</p>
+<p><strong><code>show cdp neighbors</code></strong> — one line per neighbor (Lab 6.1, on DSW1):</p>
+<pre><code>DSW1# show cdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone,
+                  D - Remote, C - CVTA, M - Two-port Mac Relay
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform   Port ID
+SW1              Gig 1/0/1         155             S I    WS-C2960-  Gig 0/1
+SW1              Gig 1/0/3         155             S I    WS-C2960-  Gig 0/2
+SW2              Gig 1/0/2         161             S I    WS-C2960-  Gig 0/1
+SW2              Gig 1/0/4         161             S I    WS-C2960-  Gig 0/2
+DSW2             Gig 1/0/21        143           R S I    WS-C3650-  Gig 1/0/21
+DSW2             Gig 1/0/22        143           R S I    WS-C3650-  Gig 1/0/22
+R1               Gig 1/0/24        170           R B S I  ISR4331    Gig 0/0/0
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Belongs to</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device ID</td>
+<td>Neighbor</td>
+<td>Neighbor's hostname</td>
+</tr>
+<tr>
+<td><strong>Local Intrfce</strong></td>
+<td><strong>This device</strong></td>
+<td>My port the neighbor is connected to</td>
+</tr>
+<tr>
+<td>Holdtme</td>
+<td>—</td>
+<td>Seconds left before the entry expires if no new advertisement arrives</td>
+</tr>
+<tr>
+<td>Capability</td>
+<td>Neighbor</td>
+<td>What the neighbor is (R, S, P…)</td>
+</tr>
+<tr>
+<td>Platform</td>
+<td>Neighbor</td>
+<td>Neighbor's model (often truncated)</td>
+</tr>
+<tr>
+<td><strong>Port ID</strong></td>
+<td><strong>Neighbor</strong></td>
+<td>The neighbor's port at the other end of the cable</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The classic exam trap:</strong> "Local Intrfce" is yours; "Port ID" is the neighbor's. Read the line above as: <em>my Gi1/0/24 connects to R1's G0/0/0.</em> Note also that each <strong>member</strong> of an EtherChannel appears separately — CDP runs on physical links, not on the port-channel.</p>
+<p><strong><code>show cdp neighbors detail</code></strong> (or <code>show cdp entry SW1</code>) adds the IP address, full platform, software version, native VLAN and duplex:</p>
+<pre><code>DSW1# show cdp entry SW1
+-------------------------
+Device ID: SW1
+Entry address(es):
+  IP address: 10.10.99.11
+Platform: cisco WS-C2960-24TT-L,  Capabilities: Switch IGMP
+Interface: GigabitEthernet1/0/1,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 151 sec
+
+Version :
+Cisco IOS Software, C2960 Software ...        &lt;- exact version text varies
+
+advertisement version: 2
+Native VLAN: 999
+Duplex: full
+</code></pre>
+<p><strong>Configuration and tuning:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cdp run</code> / <code>no cdp run</code></td>
+<td>Global config</td>
+<td>Enable / disable CDP on the whole device</td>
+</tr>
+<tr>
+<td><code>cdp enable</code> / <code>no cdp enable</code></td>
+<td>Interface config</td>
+<td>Enable / disable CDP on one interface</td>
+</tr>
+<tr>
+<td><code>cdp timer 60</code></td>
+<td>Global config</td>
+<td>Advertisement interval (default 60 s)</td>
+</tr>
+<tr>
+<td><code>cdp holdtime 180</code></td>
+<td>Global config</td>
+<td>How long neighbors keep the entry (default 180 s)</td>
+</tr>
+<tr>
+<td><code>show cdp</code></td>
+<td>Privileged EXEC</td>
+<td>Global status, timer, holdtime, version</td>
+</tr>
+<tr>
+<td><code>show cdp interface</code></td>
+<td>Privileged EXEC</td>
+<td>Which interfaces run CDP</td>
+</tr>
+<tr>
+<td><code>show cdp traffic</code></td>
+<td>Privileged EXEC</td>
+<td>Packets sent and received, errors</td>
+</tr>
+</tbody>
+</table></div>
+<p>CDP also produces two useful log messages you met earlier: <code>%CDP-4-DUPLEX_MISMATCH</code> (Chapter 1) and <code>%CDP-4-NATIVE_VLAN_MISMATCH</code> (Chapter 5). Both are documentation clues too.</p>
+<h3 id="84-lldp-link-layer-discovery-protocol">8.4 LLDP (Link Layer Discovery Protocol)</h3>
+<p>LLDP (IEEE 802.1AB) does the same job as CDP but is <strong>vendor-neutral</strong>, so it discovers non-Cisco switches, servers, firewalls and phones. Information is carried in <strong>TLVs</strong> (type-length-value fields). Mandatory TLVs are chassis ID, port ID and time-to-live; optional ones include system name, system description, system capabilities, port description and management address.</p>
+<p>On many Cisco IOS devices LLDP is <strong>off by default</strong>. Turn it on globally; each interface then both transmits and receives unless you say otherwise:</p>
+<pre><code>DSW1(config)# lldp run                                ! enable globally
+DSW1(config)# interface gigabitethernet1/0/24
+DSW1(config-if)# no lldp transmit                     ! stop sending on this port
+DSW1(config-if)# no lldp receive                      ! stop listening on this port
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lldp run</code> / <code>no lldp run</code></td>
+<td>Global config</td>
+<td>Enable / disable LLDP</td>
+</tr>
+<tr>
+<td><code>lldp transmit</code> / <code>lldp receive</code></td>
+<td>Interface config</td>
+<td>Per-direction control (both on once LLDP runs)</td>
+</tr>
+<tr>
+<td><code>lldp timer 30</code></td>
+<td>Global config</td>
+<td>Advertisement interval (default 30 s)</td>
+</tr>
+<tr>
+<td><code>lldp holdtime 120</code></td>
+<td>Global config</td>
+<td>How long neighbors keep the entry (default 120 s)</td>
+</tr>
+<tr>
+<td><code>lldp reinit 2</code></td>
+<td>Global config</td>
+<td>Delay before LLDP initializes on a port (default 2 s)</td>
+</tr>
+<tr>
+<td><code>show lldp</code></td>
+<td>Privileged EXEC</td>
+<td>Status and timers</td>
+</tr>
+<tr>
+<td><code>show lldp neighbors [detail]</code></td>
+<td>Privileged EXEC</td>
+<td>Neighbor table / full TLVs</td>
+</tr>
+<tr>
+<td><code>show lldp interface</code></td>
+<td>Privileged EXEC</td>
+<td>Per-interface transmit/receive state</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code>DSW1# show lldp neighbors
+Capability codes:
+    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device
+    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other
+
+Device ID           Local Intf     Hold-time  Capability      Port ID
+SW1                 Gi1/0/1        120        B               Gi0/1
+SW2                 Gi1/0/2        120        B               Gi0/1
+R1                  Gi1/0/24       120        R               Gi0/0/0
+...
+Total entries displayed: 7
+</code></pre>
+<p>The same rule applies: <strong>Local Intf</strong> is yours, <strong>Port ID</strong> is the neighbor's. LLDP capability codes differ from CDP's — a switch is <strong>B</strong> (bridge), a phone <strong>T</strong>, an AP <strong>W</strong>.</p>
+<p><strong>LLDP-MED</strong> (Media Endpoint Discovery) extends LLDP for endpoints such as IP phones: the switch advertises the <strong>voice VLAN</strong> and QoS settings in a Network Policy TLV, and the phone reports its <strong>PoE</strong> needs and inventory. It is how non-Cisco phones learn their voice VLAN (Chapter 7).</p>
+<h3 id="85-cdp-or-lldp-and-when-to-turn-them-off">8.5 CDP or LLDP? And when to turn them off</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All-Cisco network</td>
+<td>CDP (already on); LLDP optional</td>
+</tr>
+<tr>
+<td>Mixed vendors, servers, Linux hosts</td>
+<td>LLDP</td>
+</tr>
+<tr>
+<td>Non-Cisco IP phones</td>
+<td>LLDP-MED</td>
+</tr>
+<tr>
+<td>Cisco IP phones</td>
+<td>CDP (or LLDP-MED)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Security.</strong> Advertisements reveal hostnames, models, software versions and management IPs — useful to an attacker planning an exploit. Best practice:</p>
+<ul>
+<li>Disable on ports facing untrusted networks: the Internet edge, ISP links, guest-facing ports (<code>no cdp enable</code>, <code>no lldp transmit</code>).</li>
+<li>Keep them on infrastructure links and on IP phone ports, where the voice VLAN depends on them.</li>
+<li>Some organisations disable CDP globally and use LLDP only where needed.</li>
+</ul>
+<h3 id="86-a-repeatable-validation-process">8.6 A repeatable validation process</h3>
+<p><a class="figref" href="#fig-8-2">Figure 8.2</a> shows the loop. In words:</p>
+<ol>
+<li><strong>Collect the documentation:</strong> topology drawing, port-to-port connection table, IP addressing plan, device inventory (models, software).</li>
+<li><strong>Gather the evidence</strong> on every switch and router: <code>show cdp neighbors detail</code> and/or <code>show lldp neighbors detail</code>, plus <code>show interfaces description</code> and <code>show interfaces status</code>.</li>
+<li><strong>Compare field by field</strong> for every link: neighbor hostname, <strong>local port</strong>, <strong>remote port</strong>, platform/model, management IP, and (CDP) native VLAN and duplex.</li>
+<li><strong>For each mismatch, decide what is wrong.</strong> If the network works and follows the design standard, the <strong>documentation</strong> is wrong: update it. If the documented design is the approved standard (for example a cabling plan), the <strong>network</strong> is wrong: fix it through change control, then re-check.</li>
+<li><strong>Hosts that do not run CDP/LLDP</strong> (PCs, printers): verify with <code>show mac address-table interface &lt;port&gt;</code> and the DHCP or ARP tables.</li>
+<li><strong>Publish</strong> the corrected documentation with the date and who verified it, and update interface <code>description</code>s so the next audit is faster.</li>
+</ol>
+<figure class="fig" id="fig-8-2"><button class="zoom" aria-label="Enlarge figure 8.2"><img src="assets/figures/ch08/fig-08-02-documentation-validation-workflow.svg" alt="Figure 8.2 — Documentation validation workflow with CDP and LLDP" loading="lazy"></button><figcaption><a class="fignum" href="#fig-8-2">Figure 8.2</a> Documentation validation workflow with CDP and LLDP</figcaption></figure>
+
+<p><a class="figref" href="#fig-8-2">Figure 8.2</a> runs once per link. Matching links go straight to the published record; mismatches go either to a documentation fix or, when the network breaks the approved design, to a change that is re-checked from step 2.</p>
+<h3 id="87-worked-example-auditing-dsw1">8.7 Worked example: auditing DSW1</h3>
+<p>The documentation for the Lab 6.1 campus was written months ago. Comparing it with <code>show cdp neighbors detail</code> on DSW1 gives the picture in <a class="figref" href="#fig-8-3">Figure 8.3</a>.</p>
+<figure class="fig" id="fig-8-3"><button class="zoom" aria-label="Enlarge figure 8.3"><img src="assets/figures/ch08/fig-08-03-dsw1-audit.svg" alt="Figure 8.3 — DSW1's documented neighbors (left) vs what CDP discovered (right), mismatches outlined in red" loading="lazy"></button><figcaption><a class="fignum" href="#fig-8-3">Figure 8.3</a> DSW1's documented neighbors (left) vs what CDP discovered (right), mismatches outlined in red</figcaption></figure>
+
+<p><a class="figref" href="#fig-8-3">Figure 8.3</a> lays the same four links side by side. Each box reads "neighbor name / my port to its port / model or address". Only DSW2 matches; the table below records what differs and which side to correct.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>DSW1 port</th>
+<th>Documented neighbor and port</th>
+<th>Discovered by CDP</th>
+<th>Result</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gi1/0/1</td>
+<td>SW1 Gi0/1, mgmt 10.10.99.21</td>
+<td>SW1 Gi0/1, IP 10.10.99.11</td>
+<td>IP differs</td>
+<td>SVI is .11 by design: correct the documentation</td>
+</tr>
+<tr>
+<td>Gi1/0/2</td>
+<td>SW2 Gi0/2, WS-C3650</td>
+<td>SW2 Gi0/1, WS-C2960</td>
+<td>Remote port and model differ</td>
+<td>Model: documentation wrong. Port: check the cabling plan; Lab 6.1 bundles Gi0/1–2, so record both members</td>
+</tr>
+<tr>
+<td>Gi1/0/21</td>
+<td>DSW2 Gi1/0/21, WS-C3650</td>
+<td>DSW2 Gi1/0/21, WS-C3650</td>
+<td>Match</td>
+<td>Mark verified</td>
+</tr>
+<tr>
+<td>Gi1/0/24</td>
+<td>R2 G0/0/0</td>
+<td>R1 G0/0/0</td>
+<td>Hostname differs</td>
+<td>Router was renamed R1: correct the documentation</td>
+</tr>
+</tbody>
+</table></div>
+<p>Three lessons from this audit:</p>
+<ul>
+<li>Read the <strong>Port ID</strong> column for the far end; reading the local column instead is the most common error.</li>
+<li>CDP lists <strong>each EtherChannel member</strong>, so a bundle appears as two lines; the documentation should record every member and the port-channel number.</li>
+<li>A mismatch does not automatically mean the network is wrong. Decide which one matches the approved design.</li>
+</ul>
+<h3 id="88-troubleshooting-cdp-and-lldp">8.8 Troubleshooting CDP and LLDP</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Check / fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Neighbor missing from <code>show cdp neighbors</code></td>
+<td>Link down; CDP disabled globally or on either interface; neighbor is not Cisco</td>
+<td><code>show interfaces status</code>; <code>show cdp interface</code>; use LLDP for non-Cisco devices</td>
+</tr>
+<tr>
+<td>Nothing in <code>show lldp neighbors</code></td>
+<td>LLDP not enabled (<code>lldp run</code>) on one or both sides</td>
+<td><code>show lldp</code>; enable it</td>
+</tr>
+<tr>
+<td>Neighbor appears only one way</td>
+<td>One side has <code>no lldp transmit</code> or <code>no cdp enable</code></td>
+<td><code>show lldp interface</code> / <code>show cdp interface</code> on both ends</td>
+</tr>
+<tr>
+<td>Old neighbor still listed after re-cabling</td>
+<td>Entry has not aged out yet (holdtime 180 s CDP, 120 s LLDP)</td>
+<td>Wait, or <code>clear cdp table</code> / <code>clear lldp table</code></td>
+</tr>
+<tr>
+<td>Router two hops away is not listed</td>
+<td>Expected: advertisements are not forwarded</td>
+<td>Log in to the next device and continue hop by hop</td>
+</tr>
+<tr>
+<td>PCs and printers never appear</td>
+<td>They do not run CDP/LLDP</td>
+<td>Use <code>show mac address-table</code>, ARP and DHCP tables</td>
+</tr>
+<tr>
+<td><code>%CDP-4-NATIVE_VLAN_MISMATCH</code> or <code>%CDP-4-DUPLEX_MISMATCH</code></td>
+<td>Configuration mismatch on the link</td>
+<td>Fix the trunk or duplex settings (Chapters 1 and 5)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="89-packet-tracer-lab-81--documentation-audit-intermediate">8.9 Packet Tracer Lab 8.1 — Documentation audit (Intermediate)</h3>
+<p><strong>Objective:</strong> 2.3. <strong>Start from:</strong> your saved Lab 6.1 file (<a class="figref" href="chapter-06.html#fig-6-4">Figure 6.4</a>). <strong>You will:</strong> enable LLDP, gather CDP and LLDP evidence on every network device, and find the seven errors planted in the documentation below.</p>
+<p><strong>Step 1 — enable LLDP everywhere</strong> (DSW1, DSW2, SW1, SW2, R1):</p>
+<pre><code>configure terminal
+lldp run
+end
+</code></pre>
+<p><strong>Step 2 — gather evidence</strong> on each device: <code>show cdp neighbors detail</code>, <code>show lldp neighbors</code>, <code>show interfaces description</code>. On SW2 also run <code>show mac address-table interface fastethernet0/2</code>. (Packet Tracer supports CDP and LLDP; LLDP details shown may be shorter than on real IOS.)</p>
+<p><strong>Step 3 — audit this documentation.</strong> Mark each row Match or Mismatch, and say which side you would correct.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Device / port</th>
+<th>Documented neighbor</th>
+<th>Documented neighbor port</th>
+<th>Other documented fact</th>
+<th>Your finding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>DSW1 Gi1/0/1</td>
+<td>SW1</td>
+<td>Gi0/1</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>DSW1 Gi1/0/3</td>
+<td>SW1</td>
+<td>Gi0/3</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>DSW1 Gi1/0/2</td>
+<td>SW3</td>
+<td>Gi0/1</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>DSW1 Gi1/0/21</td>
+<td>DSW2</td>
+<td>Gi1/0/22</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>DSW1 Gi1/0/24</td>
+<td>R1</td>
+<td>G0/0/1</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>DSW1 Gi1/0/4</td>
+<td>SW2</td>
+<td>Gi0/2</td>
+<td>SW2 model WS-C3650</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>SW1 (management)</td>
+<td>—</td>
+<td>—</td>
+<td>Vlan99 address 10.10.99.12</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>SW2 Fa0/3</td>
+<td>Printer1</td>
+<td>—</td>
+<td>—</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Step 4 — security change.</strong> On DSW1 enter <code>interface gigabitethernet1/0/24</code> then <code>no cdp enable</code>. After about three minutes (the holdtime), <code>show cdp neighbors</code> on R1 no longer lists DSW1. Explain why this is good practice on links toward untrusted networks, then restore <code>cdp enable</code>.</p>
+<p><strong>Answer key (hide until done)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Result</th>
+<th>Evidence</th>
+<th>Correct value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Match</td>
+<td>CDP: SW1, Port ID Gi0/1</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mismatch</td>
+<td>Port ID Gi0/2</td>
+<td>SW1 Gi0/2 (second Po1 member)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Mismatch</td>
+<td>Device ID SW2</td>
+<td>SW2 Gi0/1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mismatch</td>
+<td>Port ID Gi1/0/21</td>
+<td>DSW2 Gi1/0/21 (Gi1/0/22 pairs with Gi1/0/22)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Mismatch</td>
+<td>Port ID G0/0/0</td>
+<td>R1 G0/0/0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Mismatch (model)</td>
+<td>Platform WS-C2960</td>
+<td>Port is correct; model is 2960</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Mismatch</td>
+<td>CDP entry address 10.10.99.11</td>
+<td>10.10.99.11</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Mismatch</td>
+<td>MAC table: printer's MAC on Fa0/2</td>
+<td>SW2 Fa0/2 (printers do not run CDP, so the MAC table is the evidence)</td>
+</tr>
+</tbody>
+</table></div>
+<p>In every case the network matches the Lab 5.1/6.1 design, so the <strong>documentation</strong> is what you correct.</p>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] LLDP enabled on all five network devices</li>
+<li>[ ] CDP and LLDP neighbor tables collected from each device</li>
+<li>[ ] All seven mismatches found and the correct values recorded</li>
+<li>[ ] CDP disabled and restored on DSW1 Gi1/0/24, with the effect explained</li>
+<li>[ ] Interface descriptions updated to match the corrected documentation</li>
+</ul>
+<h3 id="810-chapter-8-summary-notes-exam-revision">8.10 Chapter 8 summary notes (exam revision)</h3>
+<ul>
+<li><strong>CDP:</strong> Cisco proprietary, on by default, every 60 s, holdtime 180 s; CDPv2 adds native VLAN and duplex. <code>cdp run</code> (global), <code>cdp enable</code> (interface).</li>
+<li><strong>LLDP:</strong> IEEE 802.1AB, often off by default on Cisco IOS (<code>lldp run</code>), every 30 s, holdtime 120 s, reinit 2 s; per-interface <code>lldp transmit</code> / <code>lldp receive</code>. LLDP-MED gives phones their voice VLAN and PoE information.</li>
+<li><strong>Scope:</strong> directly connected neighbors only; advertisements are never forwarded. PCs and printers usually run neither protocol.</li>
+<li><strong>Reading output:</strong> <strong>Local Intrfce / Local Intf = my port; Port ID = the neighbor's port.</strong> Each EtherChannel member is listed separately.</li>
+<li><strong><code>detail</code> / <code>show cdp entry</code></strong> adds management IP, full platform, software version, native VLAN and duplex.</li>
+<li><strong>Validation:</strong> compare hostname, both ports, model, IP (and VLAN/duplex) for every link; correct whichever side breaks the approved design; verify hosts with MAC, ARP and DHCP tables; publish dated documentation.</li>
+<li><strong>Security:</strong> disable on untrusted or Internet-facing ports; keep on infrastructure links and phone ports.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Port ID is my port"</td>
+<td>Port ID is the neighbor's port</td>
+</tr>
+<tr>
+<td>"CDP shows the whole network"</td>
+<td>Only directly connected neighbors</td>
+</tr>
+<tr>
+<td>"LLDP works as soon as it is configured on one side"</td>
+<td>It must run on both ends (transmit on one, receive on the other)</td>
+</tr>
+<tr>
+<td>"A mismatch means the cabling is wrong"</td>
+<td>Often the documentation is wrong; check the approved design</td>
+</tr>
+<tr>
+<td>"CDP can find the printer"</td>
+<td>Printers and PCs rarely run CDP; use the MAC address table</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="811-practice-questions--chapter-8">8.11 Practice questions — Chapter 8</h3>
+<p><strong>1. (Output interpretation)</strong></p>
+<pre><code>Device ID   Local Intrfce   Holdtme   Capability   Platform    Port ID
+CORE-2      Gig 1/0/48      132       R S I        C9300-48P   Gig 1/1/1
+</code></pre>
+<p>The documentation says "DSW1 Gi1/1/1 connects to CORE-2 Gi1/0/48". Is it correct?</p>
+<p><strong>2. (Recall)</strong> Which protocol is the IEEE standard for neighbor discovery?</p>
+<p>A. CDP  B. LLDP  C. DTP  D. VTP</p>
+<p><strong>3. (Configuration)</strong> LLDP neighbors are empty on a Cisco switch connected to a non-Cisco switch that runs LLDP. What is the most likely missing command?</p>
+<p><strong>4. (Concept)</strong> R1 connects to DSW1, which connects to SW1. Will R1's <code>show cdp neighbors</code> list SW1? Why?</p>
+<p><strong>5. (Recall)</strong> What are the default CDP advertisement timer and holdtime?</p>
+<p>A. 30 s / 120 s  B. 60 s / 180 s  C. 10 s / 40 s  D. 2 s / 6 s</p>
+<p><strong>6. (Multiple response — choose two)</strong> Which pieces of information does <code>show cdp neighbors detail</code> provide that <code>show cdp neighbors</code> does not?</p>
+<p>A. Management IP address  B. Device ID  C. Software version  D. Local interface  E. Capability</p>
+<p><strong>7. (Security)</strong> On which interface should CDP be disabled first?</p>
+<p>A. A trunk to another campus switch  B. An IP phone port  C. The router interface facing the ISP  D. An EtherChannel member between distribution switches</p>
+<p><strong>8. (Concept)</strong> What does LLDP-MED add for an IP phone?</p>
+<p><strong>9. (Validation)</strong> CDP shows that DSW1 Gi1/0/2 connects to SW2 Gi0/1, but the documentation says SW2 Gi0/2. The network works and Gi0/1 is in the approved cabling plan. What do you change?</p>
+<p><strong>10. (Validation)</strong> How would you verify the documented port of a printer that does not run CDP or LLDP?</p>
+<p><strong>11. (Troubleshooting)</strong> You re-cable SW1 from DSW1 Gi1/0/1 to Gi1/0/5. For a few minutes <code>show cdp neighbors</code> shows SW1 on both ports. Why?</p>
+<p><strong>12. (Evaluate an AI assistant)</strong> A network assistant analyses <code>show cdp neighbors</code> on DSW1 and reports: <em>"R1 is connected to port G0/0/0 of DSW1."</em> The line reads <code>R1  Gig 1/0/24  ...  ISR4331  Gig 0/0/0</code>. Is the assistant right?</p>
+<h3 id="812-answer-key-with-explanations">8.12 Answer key with explanations</h3>
+<ol>
+<li><strong>No — the ports are swapped.</strong> The local port (DSW1's) is Gi1/0/48 and CORE-2's port is Gi1/1/1. Correct documentation: <em>DSW1 Gi1/0/48 connects to CORE-2 Gi1/1/1.</em></li>
+<li><strong>B.</strong> LLDP is IEEE 802.1AB; CDP is Cisco proprietary; DTP and VTP are not discovery protocols.</li>
+<li><strong><code>lldp run</code></strong> in global configuration. LLDP is often disabled by default on Cisco IOS.</li>
+<li><strong>No.</strong> CDP advertisements are not forwarded, so each device sees only directly connected neighbors. You must log in to DSW1 to see SW1.</li>
+<li><strong>B.</strong> CDP sends every 60 seconds and keeps entries for 180 seconds. A matches LLDP.</li>
+<li><strong>A and C.</strong> The summary already shows device ID, local interface, capability, platform and port ID; the detail view adds addresses, version, native VLAN and duplex.</li>
+<li><strong>C.</strong> Advertising device details to the ISP or the Internet helps attackers and serves no purpose. Phone ports need CDP/LLDP for the voice VLAN; internal infrastructure links benefit from it.</li>
+<li>It lets the switch advertise the <strong>voice VLAN</strong> (and QoS) in a network-policy TLV, and lets the phone report its <strong>PoE</strong> requirements and inventory — the multi-vendor equivalent of what CDP does for Cisco phones.</li>
+<li><strong>The documentation.</strong> The network is working and matches the approved design, so update the port table (and interface descriptions).</li>
+<li>Use <strong><code>show mac address-table interface &lt;port&gt;</code></strong> (and the ARP or DHCP table to match the printer's MAC to its IP), because the printer is invisible to CDP and LLDP.</li>
+<li>The old entry on Gi1/0/1 stays until its <strong>holdtime (180 s)</strong> expires; the new entry on Gi1/0/5 appears immediately. <code>clear cdp table</code> removes it sooner.</li>
+<li><strong>No.</strong> Gig 1/0/24 is <strong>DSW1's</strong> port (Local Intrfce) and Gig 0/0/0 is <strong>R1's</strong> port (Port ID). The correct reading is: DSW1 Gi1/0/24 connects to R1 G0/0/0. Check every assistant summary of neighbor output for this column swap.</li>
+</ol>
+<h3 id="813-chapter-8-figure-checklist">8.13 Chapter 8 figure checklist</h3>
+<p>All 3 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-8-2">Figure 8.2</a>'s first render had two arrows that implied the wrong path through the workflow; they were corrected and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8.1</td>
+<td>Discovery scope: directly connected neighbors only</td>
+<td>8.2</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>8.2</td>
+<td>Documentation validation workflow</td>
+<td>8.6</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>8.3</td>
+<td>Documented vs discovered neighbors of DSW1</td>
+<td>8.7</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as annotated command output instead of a drawing:</strong> <code>show cdp neighbors</code>, <code>show cdp entry</code> and <code>show lldp neighbors</code>. Lab 8.1 reuses <a class="figref" href="chapter-06.html#fig-6-4">Figure 6.4</a> as its topology.</p>
+<h3 id="814-chapter-8-progress-record">8.14 Chapter 8 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>2.3</strong> — CDP and LLDP operation, configuration, output interpretation, documentation validation, and security.</p>
+<p><strong>Related objectives that reuse this chapter:</strong> 2.2.c voice VLAN delivery (Chapter 7), 2.4 troubleshooting with show commands (Chapter 15), 4.7 Layer 2 security (Chapter 23).</p>
+<p><strong>Next:</strong> Chapter 9 — <strong>2.5 Configure Rapid PVST+</strong>: root bridge, port roles and states, PortFast, root guard, loop guard and BPDU guard.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-07.html"><small>← Chapter 7</small>Edge-host ports: VLAN, PoE, port channel and LACP</a><a class="pn next" href="chapter-09.html"><small>Chapter 9 →</small>Rapid PVST+ and STP protection</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#81-learning-objectives">8.1 Learning objectives</a>
+<a href="#82-introduction-documentation-drifts">8.2 Introduction: documentation drifts</a>
+<a href="#83-cdp-cisco-discovery-protocol">8.3 CDP (Cisco Discovery Protocol)</a>
+<a href="#84-lldp-link-layer-discovery-protocol">8.4 LLDP (Link Layer Discovery Protocol)</a>
+<a href="#85-cdp-or-lldp-and-when-to-turn-them-off">8.5 CDP or LLDP? And when to turn them off</a>
+<a href="#86-a-repeatable-validation-process">8.6 A repeatable validation process</a>
+<a href="#87-worked-example-auditing-dsw1">8.7 Worked example: auditing DSW1</a>
+<a href="#88-troubleshooting-cdp-and-lldp">8.8 Troubleshooting CDP and LLDP</a>
+<a href="#89-packet-tracer-lab-81--documentation-audit-intermediate">8.9 Packet Tracer Lab 8.1 — Documentation audit (Intermediate)</a>
+<a href="#810-chapter-8-summary-notes-exam-revision">8.10 Chapter 8 summary notes (exam revision)</a>
+<a href="#811-practice-questions--chapter-8">8.11 Practice questions — Chapter 8</a>
+<a href="#812-answer-key-with-explanations">8.12 Answer key with explanations</a>
+<a href="#813-chapter-8-figure-checklist">8.13 Chapter 8 figure checklist</a>
+<a href="#814-chapter-8-progress-record">8.14 Chapter 8 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 18 — Secure device access: local users, SSH and AAA · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 18: Secure device access: local users, SSH and AAA">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch active" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head purple">
+  <div class="eyebrow">Domain 4 · Network Services &amp; Security</div>
+  <h1><span class="num">Chapter 18</span>Secure device access: local users, SSH and AAA</h1>
+  <div class="meta"><span>🖼️ 3 figures</span><span>⏱️ ~15 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="18"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objective covered:</strong> <strong>4.1 Configure network devices with local usernames and as an AAA client (TACACS+ and RADIUS) for management.</strong> This chapter is about who may log in to a router or switch to manage it, how they prove it, and how that is recorded. Network access for users (802.1X, Chapter 16) uses the same AAA ideas.</p>
+<h3 id="181-learning-objectives">18.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Secure console and remote access with local usernames, strong password hashing and privilege levels.</li>
+<li>Configure SSH version 2 and disable Telnet.</li>
+<li>Explain authentication, authorization and accounting and compare TACACS+ with RADIUS.</li>
+<li>Configure an IOS device as a TACACS+ and RADIUS client with local fallback.</li>
+<li>Explain the difference between a server <em>rejecting</em> a login and a server being <em>unreachable</em>.</li>
+<li>Verify and troubleshoot AAA logins.</li>
+</ol>
+<h3 id="182-local-usernames-privilege-and-password-storage">18.2 Local usernames, privilege and password storage</h3>
+<p>A single shared line password (<code>password cisco</code> under <code>line vty</code>) cannot tell administrators apart and cannot be revoked for one person. <strong>Local usernames</strong> fix that on a small network.</p>
+<pre><code>R1(config)# enable algorithm-type scrypt secret Str0ng-Enable-2026      ! type 9 hash
+R1(config)# username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026
+R1(config)# username helpdesk privilege 1 algorithm-type scrypt secret H3lp-Desk-2026
+R1(config)# security passwords min-length 10
+R1(config)# login block-for 120 attempts 3 within 60       ! slow down password guessing
+R1(config)# service password-encryption                     ! hides any remaining type 0 passwords as type 7
+R1(config)# line console 0
+R1(config-line)# login local
+R1(config-line)# exec-timeout 10 0
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Password type in the configuration</th>
+<th>Meaning</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Plain text</td>
+<td>Never leave it</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Reversible (<code>service password-encryption</code>)</td>
+<td>Only hides text from shoulder-surfers; decodable in seconds</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MD5 hash (<code>secret</code> on older IOS)</td>
+<td>Weak by today's standards</td>
+</tr>
+<tr>
+<td>8</td>
+<td>PBKDF2-SHA-256</td>
+<td>Good</td>
+</tr>
+<tr>
+<td><strong>9</strong></td>
+<td><strong>scrypt</strong></td>
+<td>Best available; <code>algorithm-type scrypt</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Privilege levels:</strong> <strong>1</strong> = user EXEC (<code>&gt;</code>, show commands only), <strong>15</strong> = privileged EXEC (<code>#</code>, everything); levels 2–14 can be customised. A user with <code>privilege 15</code> lands directly in privileged EXEC; a level 1 user must type <code>enable</code> and know the enable secret.</p>
+<h3 id="183-ssh-for-remote-management">18.3 SSH for remote management</h3>
+<p>Telnet sends everything, including passwords, in clear text. <strong>SSH</strong> encrypts the session. Configure SSH version 2 and allow only SSH on the VTY lines:</p>
+<pre><code>R1(config)# hostname R1
+R1(config)# ip domain-name campus.example                  ! needed for the RSA key name
+R1(config)# crypto key generate rsa modulus 2048           ! RSA key pair for SSH
+R1(config)# ip ssh version 2
+R1(config)# ip ssh time-out 60
+R1(config)# ip ssh authentication-retries 3
+R1(config)# line vty 0 15
+R1(config-line)# login local
+R1(config-line)# transport input ssh                       ! no Telnet
+R1(config-line)# exec-timeout 10 0
+</code></pre>
+<p>Verify with <code>show ip ssh</code> (version, timeouts) and <code>show ssh</code> (active sessions); connect from a PC with <code>ssh -l netadmin 10.10.99.2</code> (Windows, Linux, macOS and Packet Tracer). Restrict which subnets may reach the VTY lines with an ACL and <code>access-class</code> (Chapter 20).</p>
+<p>Local accounts do not scale: with 50 switches, a password change means 50 logins, and there is no central record of who did what. That is what AAA solves.</p>
+<h3 id="184-aaa-authentication-authorization-accounting">18.4 AAA: authentication, authorization, accounting</h3>
+<p><strong>AAA</strong> moves user accounts off each device to a central server:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Question</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>Who are you?</td>
+<td>Username and password checked by the server</td>
+</tr>
+<tr>
+<td><strong>Authorization</strong></td>
+<td>What may you do?</td>
+<td>Privilege 15 for network engineers, privilege 1 or a limited command set for help desk</td>
+</tr>
+<tr>
+<td><strong>Accounting</strong></td>
+<td>What did you do, and when?</td>
+<td>Login/logout times and every command entered, sent to the server</td>
+</tr>
+</tbody>
+</table></div>
+<p>The router or switch is the <strong>AAA client</strong> (also called the network access server, NAS); the <strong>AAA server</strong> is typically <strong>Cisco ISE</strong>, or another TACACS+/RADIUS server. Each client and the server share a <strong>secret key</strong> that protects their messages. <a class="figref" href="#fig-18-1">Figure 18.1</a> shows a login.</p>
+<figure class="fig" id="fig-18-1"><button class="zoom" aria-label="Enlarge figure 18.1"><img src="assets/figures/ch18/fig-18-01-aaa-tacacs-login.svg" alt="Figure 18.1 — An administrator's SSH login authenticated, authorized and accounted by a TACACS+ server" loading="lazy"></button><figcaption><a class="fignum" href="#fig-18-1">Figure 18.1</a> An administrator's SSH login authenticated, authorized and accounted by a TACACS+ server</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-18-1">Figure 18.1</a> time runs downward. The two green replies are the server's decisions (who you are, what you may do); the dashed blue arrow is accounting, which keeps running for the whole session.</p>
+<h3 id="185-tacacs-versus-radius">18.5 TACACS+ versus RADIUS</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>TACACS+</strong></th>
+<th><strong>RADIUS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Origin</td>
+<td>Cisco; now documented as RFC 8907</td>
+<td>Open standard (RFC 2865/2866)</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td><strong>TCP 49</strong></td>
+<td><strong>UDP 1812</strong> (authentication), <strong>1813</strong> (accounting); old ports 1645/1646</td>
+</tr>
+<tr>
+<td>Encryption</td>
+<td><strong>Whole payload</strong></td>
+<td><strong>Password only</strong>; the rest is visible</td>
+</tr>
+<tr>
+<td>AAA functions</td>
+<td><strong>Separated</strong> — authentication, authorization and accounting can use different servers</td>
+<td>Authentication and authorization <strong>combined</strong> in one reply</td>
+</tr>
+<tr>
+<td>Per-command authorization</td>
+<td><strong>Yes</strong> — the server can allow or deny each command</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td><strong>Device administration</strong> (who may configure routers and switches)</td>
+<td><strong>Network access</strong> — 802.1X, Wi-Fi, VPN users; also device administration</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Rule of thumb for the exam:</strong> TACACS+ for administrators managing devices; RADIUS for users joining the network. Both are on the syllabus as AAA clients for <strong>management</strong>, and both work for it.</p>
+<p><strong>How the server sets the privilege level.</strong> After a successful login, the server's authorization reply can carry a privilege level (for TACACS+ <code>priv-lvl=15</code>; for RADIUS a Cisco attribute such as <code>shell:priv-lvl=15</code>). The device uses it only if <strong>exec authorization</strong> is configured (18.6); otherwise users arrive at privilege 1.</p>
+<h3 id="186-configuring-ios-as-an-aaa-client">18.6 Configuring IOS as an AAA client</h3>
+<p><strong>Step 0 — protect yourself from lock-out.</strong> <code>aaa new-model</code> immediately changes how logins work. Before entering it, create a local privilege 15 user, keep a console session open, and save the configuration only after testing.</p>
+<p><strong>TACACS+ (current IOS XE syntax)</strong></p>
+<pre><code>DSW1(config)# username netadmin privilege 15 algorithm-type scrypt secret N3t-Admin-2026   ! local fallback account
+DSW1(config)# aaa new-model
+DSW1(config)# tacacs server ISE-TAC
+DSW1(config-server-tacacs)# address ipv4 10.10.99.20
+DSW1(config-server-tacacs)# key T4cacs-Sh4red-Key
+DSW1(config-server-tacacs)# exit
+DSW1(config)# aaa group server tacacs+ ADMIN-TAC
+DSW1(config-sg-tacacs+)# server name ISE-TAC
+DSW1(config-sg-tacacs+)# ip tacacs source-interface Vlan99      ! requests always come from 10.10.99.2
+DSW1(config-sg-tacacs+)# exit
+DSW1(config)# aaa authentication login VTY-AUTH group ADMIN-TAC local
+DSW1(config)# aaa authorization exec VTY-AUTH group ADMIN-TAC local if-authenticated
+DSW1(config)# aaa accounting exec default start-stop group ADMIN-TAC
+DSW1(config)# aaa accounting commands 15 default start-stop group ADMIN-TAC
+DSW1(config)# aaa authentication login CONSOLE local               ! console never depends on the network
+DSW1(config)# line vty 0 15
+DSW1(config-line)# login authentication VTY-AUTH
+DSW1(config-line)# authorization exec VTY-AUTH
+DSW1(config-line)# transport input ssh
+DSW1(config-line)# line console 0
+DSW1(config-line)# login authentication CONSOLE
+</code></pre>
+<p><strong>RADIUS (current IOS XE syntax)</strong></p>
+<pre><code>SW1(config)# aaa new-model
+SW1(config)# radius server ISE-RAD
+SW1(config-radius-server)# address ipv4 10.10.99.20 auth-port 1812 acct-port 1813
+SW1(config-radius-server)# key R4dius-Sh4red-Key
+SW1(config-radius-server)# exit
+SW1(config)# aaa group server radius ADMIN-RAD
+SW1(config-sg-radius)# server name ISE-RAD
+SW1(config-sg-radius)# exit
+SW1(config)# aaa authentication login default group ADMIN-RAD local
+SW1(config)# aaa authorization exec default group ADMIN-RAD local if-authenticated
+SW1(config)# aaa accounting exec default start-stop group ADMIN-RAD
+</code></pre>
+<p>The list named <strong><code>default</code></strong> applies to every line that has no named list; a <strong>named list</strong> (VTY-AUTH) applies only where you reference it. <strong>Older syntax</strong>, still accepted by many releases and used by Packet Tracer: <code>tacacs-server host 10.10.99.20 key T4cacs-Sh4red-Key</code> and <code>radius-server host 10.10.99.20 key R4dius-Sh4red-Key</code>, with <code>group tacacs+</code> / <code>group radius</code> in the method lists.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aaa new-model</code></td>
+<td>Global</td>
+<td>Turns on AAA; method lists now control logins</td>
+</tr>
+<tr>
+<td><code>tacacs server &lt;name&gt;</code> / <code>radius server &lt;name&gt;</code> + <code>address</code>, <code>key</code></td>
+<td>Global → server</td>
+<td>Defines a server and its shared key</td>
+</tr>
+<tr>
+<td><code>aaa group server tacacs+ \| radius &lt;name&gt;</code></td>
+<td>Global</td>
+<td>Groups servers; failover to the next server in the group</td>
+</tr>
+<tr>
+<td><code>aaa authentication login &lt;list&gt; &lt;method1&gt; &lt;method2&gt; …</code></td>
+<td>Global</td>
+<td>Who may log in, and in which order to ask</td>
+</tr>
+<tr>
+<td><code>aaa authorization exec &lt;list&gt; …</code></td>
+<td>Global</td>
+<td>Fetches the privilege level for the session</td>
+</tr>
+<tr>
+<td><code>aaa accounting exec \| commands &lt;level&gt; &lt;list&gt; start-stop …</code></td>
+<td>Global</td>
+<td>Records sessions and commands</td>
+</tr>
+<tr>
+<td><code>login authentication &lt;list&gt;</code> / <code>authorization exec &lt;list&gt;</code></td>
+<td>Line</td>
+<td>Applies named lists to console or VTY</td>
+</tr>
+<tr>
+<td><code>ip tacacs source-interface</code> / <code>ip radius source-interface</code></td>
+<td>Group or global</td>
+<td>Fixes the source address the server sees</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="187-method-lists-error-versus-failure">18.7 Method lists: error versus failure</h3>
+<p>A method list is tried <strong>left to right</strong> (<a class="figref" href="#fig-18-2">Figure 18.2</a>). The next method is used <strong>only if the current one gives no answer</strong> — server unreachable, timed out, or not configured (<strong>ERROR</strong>). If the server answers <strong>"reject"</strong> (<strong>FAIL</strong>), the login is refused and IOS does <strong>not</strong> try the local database.</p>
+<p>So <code>group ADMIN-TAC local</code> means: "use TACACS+; only if every TACACS+ server is unreachable, use the local accounts". This is deliberate — a person removed from the AAA server must not get in with an old local password.</p>
+<figure class="fig" id="fig-18-2"><button class="zoom" aria-label="Enlarge figure 18.2"><img src="assets/figures/ch18/fig-18-02-aaa-method-list.svg" alt="Figure 18.2 — AAA method list: ERROR moves to the next method, FAIL stops the login" loading="lazy"></button><figcaption><a class="fignum" href="#fig-18-2">Figure 18.2</a> AAA method list: ERROR moves to the next method, FAIL stops the login</figcaption></figure>
+
+<p><a class="figref" href="#fig-18-2">Figure 18.2</a> reads from the login on the left. Only the amber ERROR path leads down to the local database; a red FAIL from the server ends the attempt.</p>
+<h3 id="188-verifying-and-troubleshooting-aaa">18.8 Verifying and troubleshooting AAA</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use it to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show running-config \| section aaa\|tacacs\|radius</code></td>
+<td>Method lists, servers, keys (keys appear encrypted)</td>
+</tr>
+<tr>
+<td><code>show aaa servers</code></td>
+<td>Each server's state (UP/DEAD), requests, responses, timeouts</td>
+</tr>
+<tr>
+<td><code>show tacacs</code> / <code>show radius statistics</code></td>
+<td>Per-protocol counters</td>
+</tr>
+<tr>
+<td><code>test aaa group ADMIN-TAC netadmin &lt;password&gt; legacy</code></td>
+<td>Test a login against the server without logging out</td>
+</tr>
+<tr>
+<td><code>show users</code> / <code>who</code></td>
+<td>Who is logged in, from where, on which line</td>
+</tr>
+<tr>
+<td><code>debug aaa authentication</code>, <code>debug tacacs</code>, <code>debug radius</code></td>
+<td>Watch the exchange (briefly)</td>
+</tr>
+<tr>
+<td>Server logs (ISE live logs)</td>
+<td>The server's reason for a reject: bad password, unknown device, wrong secret</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Locked out right after <code>aaa new-model</code></td>
+<td>No local user, or method list pointing at an unreachable server with no fallback</td>
+<td>Console access; create the local user first next time</td>
+</tr>
+<tr>
+<td>Every login fails, server log shows "invalid shared secret" or no record</td>
+<td>Key differs, or the device is not added as a client on the server</td>
+<td>Match keys; add the device's <strong>source IP</strong> as a client</td>
+</tr>
+<tr>
+<td>Server marked DEAD, logins use local</td>
+<td>No route to the server, ACL blocking TCP 49 / UDP 1812, wrong source interface</td>
+<td>Ping the server sourced from the AAA source interface; fix routing or ACLs</td>
+</tr>
+<tr>
+<td>Valid user rejected, local account not tried</td>
+<td>Server answered reject (FAIL); fallback applies only to ERROR</td>
+<td>Fix the user on the server</td>
+</tr>
+<tr>
+<td>Login works but lands at <code>&gt;</code> (privilege 1)</td>
+<td>No <code>aaa authorization exec</code>, or server not returning priv-lvl 15</td>
+<td>Configure exec authorization; set the shell profile on the server</td>
+</tr>
+<tr>
+<td>Console also asks the server</td>
+<td><code>default</code> list applies to the console</td>
+<td>Separate named list <code>CONSOLE</code> with <code>local</code></td>
+</tr>
+<tr>
+<td>No accounting records</td>
+<td>Accounting not configured, or wrong port 1813/1646 on RADIUS</td>
+<td>Configure accounting; match ports</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="189-packet-tracer-lab-181--ssh-with-tacacs-and-radius-and-local-fallback-intermediateadvanced">18.9 Packet Tracer Lab 18.1 — SSH with TACACS+ and RADIUS, and local fallback (Intermediate–Advanced)</h3>
+<p><strong>Objective:</strong> 4.1. <strong>Start from:</strong> your Lab 14.1 file. <strong>You will:</strong> add an AAA server in the management VLAN, make DSW1 a TACACS+ client and SW1 a RADIUS client for SSH logins, keep local accounts as fallback, and prove the ERROR-versus-FAIL rule.</p>
+<p><strong>New device:</strong> 1 × Server-PT (AAA-1) cabled to <strong>SW1 Fa0/5</strong>.</p>
+<figure class="fig" id="fig-18-3"><button class="zoom" aria-label="Enlarge figure 18.3"><img src="assets/figures/ch18/fig-18-03-lab-18-1-topology.svg" alt="Figure 18.3 — Lab 18.1: AAA-1 in VLAN 99 serving DSW1 (TACACS+) and SW1 (RADIUS)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-18-3">Figure 18.3</a> Lab 18.1: AAA-1 in VLAN 99 serving DSW1 (TACACS+) and SW1 (RADIUS)</figcaption></figure>
+
+<p><a class="figref" href="#fig-18-3">Figure 18.3</a> shows only the devices this lab touches; the rest of the campus (<a class="figref" href="chapter-14.html#fig-14-4">Figure 14.4</a>) is unchanged. The two dashed arrows are the two AAA protocols, each from its client to the same server.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AAA-1</td>
+<td>10.10.99.20/24, gateway 10.10.99.1 (VLAN 99 virtual IP)</td>
+</tr>
+<tr>
+<td>SW1 Fa0/5</td>
+<td><code>switchport mode access</code>, <code>switchport access vlan 99</code></td>
+</tr>
+<tr>
+<td>AAA clients on the server</td>
+<td>DSW1 10.10.99.2, TACACS, key <code>T4cacs-Sh4red-Key</code>; SW1 10.10.99.11, RADIUS, key <code>R4dius-Sh4red-Key</code></td>
+</tr>
+<tr>
+<td>Server user</td>
+<td><code>alice</code> / <code>Al1ce-2026</code></td>
+</tr>
+<tr>
+<td>Local fallback user (on DSW1 and SW1)</td>
+<td><code>netadmin</code> / <code>N3t-Admin-2026</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>AAA-1:</strong> Desktop → IP Configuration (static address above); Services → <strong>AAA</strong> → On; add the two clients (Client Name, Client IP, Secret, Server Type) and user <em>alice</em>.</p>
+<p><strong>DSW1 — TACACS+ client</strong> (Packet Tracer uses the older server syntax; <code>algorithm-type scrypt</code> may be unavailable, so plain <code>secret</code> is used)</p>
+<pre><code>configure terminal
+enable secret En4ble-2026
+username netadmin privilege 15 secret N3t-Admin-2026
+ip domain-name campus.example
+crypto key generate rsa
+! answer 2048 when asked for the modulus
+ip ssh version 2
+aaa new-model
+tacacs-server host 10.10.99.20 key T4cacs-Sh4red-Key
+aaa authentication login VTY-AUTH group tacacs+ local
+aaa authentication login CONSOLE local
+line vty 0 15
+ login authentication VTY-AUTH
+ transport input ssh
+line console 0
+ login authentication CONSOLE
+end
+</code></pre>
+<p><strong>SW1 — RADIUS client</strong></p>
+<pre><code>configure terminal
+enable secret En4ble-2026
+username netadmin privilege 15 secret N3t-Admin-2026
+ip domain-name campus.example
+crypto key generate rsa
+ip ssh version 2
+aaa new-model
+radius-server host 10.10.99.20 key R4dius-Sh4red-Key
+aaa authentication login default group radius local
+line vty 0 15
+ transport input ssh
+end
+</code></pre>
+<p>(SW1's VTY lines use the <code>default</code> list automatically; so does its console — acceptable here because of the local fallback, but in production give the console its own local list as on DSW1.) Test every login <strong>before</strong> <code>copy running-config startup-config</code>.</p>
+<p class="callout pt-note"><strong>PT note</strong> Packet Tracer's AAA server cannot send a privilege level, so server users arrive at <code>&gt;</code> and use <code>enable</code> with the enable secret. Real servers (ISE) return privilege 15 with exec authorization (18.6).</p>
+<p><strong>Tests and expected results</strong> (from PC1's Command Prompt)</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Command</th>
+<th>Expected</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>ssh -l alice 10.10.99.2</code></td>
+<td>Logged in (<code>DSW1&gt;</code>)</td>
+<td>TACACS+ PASS</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>ssh -l netadmin 10.10.99.2</code></td>
+<td><strong>Refused</strong></td>
+<td>Server answers reject (FAIL): local not tried</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>ssh -l alice 10.10.99.11</code></td>
+<td>Logged in on SW1</td>
+<td>RADIUS PASS</td>
+</tr>
+<tr>
+<td>4</td>
+<td>On SW1 <code>shutdown</code> Fa0/5, then <code>ssh -l netadmin 10.10.99.2</code></td>
+<td>Logged in after a delay</td>
+<td>Server unreachable (ERROR): local used</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Same, <code>ssh -l alice 10.10.99.2</code></td>
+<td>Refused</td>
+<td>alice exists only on the server</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Restore Fa0/5; on DSW1 change the key to <code>Wrong-Key</code></td>
+<td>alice refused; netadmin often allowed</td>
+<td>An unusable reply is usually treated as an error, so a key mismatch can look like a dead server</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>telnet 10.10.99.2</code> from PC1</td>
+<td>Refused</td>
+<td><code>transport input ssh</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Restore the correct key, then save on both switches.</p>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] SSH version 2 on DSW1 and SW1; Telnet refused</li>
+<li>[ ] alice logs in through TACACS+ (DSW1) and RADIUS (SW1)</li>
+<li>[ ] Test 2 refused, test 4 allowed — and you can explain why</li>
+<li>[ ] Console on DSW1 uses local accounts only</li>
+<li>[ ] Configurations saved after testing</li>
+</ul>
+<h3 id="1810-chapter-18-summary-notes-exam-revision">18.10 Chapter 18 summary notes (exam revision)</h3>
+<ul>
+<li><strong>Local accounts:</strong> <code>username &lt;name&gt; privilege 15 algorithm-type scrypt secret &lt;pw&gt;</code> (type 9); <code>enable algorithm-type scrypt secret</code>; type 7 is reversible; <code>login local</code> on lines; <code>login block-for</code>; <code>exec-timeout</code>.</li>
+<li><strong>SSH:</strong> hostname + <code>ip domain-name</code> + <code>crypto key generate rsa modulus 2048</code> + <code>ip ssh version 2</code> + <code>transport input ssh</code> + <code>login local</code> (or an AAA list).</li>
+<li><strong>AAA:</strong> Authentication (who), Authorization (what), Accounting (record). Device = AAA client; server = ISE or similar; shared key per client.</li>
+<li><strong>TACACS+:</strong> TCP 49, encrypts all, separates A/A/A, per-command authorization — device administration. <strong>RADIUS:</strong> UDP 1812/1813 (1645/1646), encrypts the password only, combines authentication and authorization — network access.</li>
+<li><strong>Config:</strong> <code>aaa new-model</code>; <code>tacacs server</code>/<code>radius server</code> + <code>address</code> + <code>key</code>; <code>aaa group server</code>; <code>aaa authentication login &lt;list&gt; group &lt;grp&gt; local</code>; <code>aaa authorization exec</code>; <code>aaa accounting exec|commands</code>; <code>login authentication &lt;list&gt;</code> on lines. Older syntax: <code>tacacs-server host … key …</code>.</li>
+<li><strong>Method lists:</strong> left to right; next method only on <strong>ERROR</strong> (no answer), never on <strong>FAIL</strong> (reject).</li>
+<li><strong>Verify:</strong> <code>show aaa servers</code>, <code>test aaa group …</code>, <code>show users</code>, <code>debug aaa authentication</code>, server logs.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"<code>local</code> after the server is used when the password is wrong on the server"</td>
+<td>Only when the server does not answer</td>
+</tr>
+<tr>
+<td>"RADIUS encrypts the whole packet"</td>
+<td>Only the password; TACACS+ encrypts the payload</td>
+</tr>
+<tr>
+<td>"<code>service password-encryption</code> makes passwords safe"</td>
+<td>Type 7 is reversible; use <code>secret</code> with scrypt</td>
+</tr>
+<tr>
+<td>"<code>aaa new-model</code> changes nothing until lists are written"</td>
+<td>It applies default login behaviour immediately</td>
+</tr>
+<tr>
+<td>"The server identifies the device by hostname"</td>
+<td>By the source IP of the request plus the shared key</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="1811-practice-questions--chapter-18">18.11 Practice questions — Chapter 18</h3>
+<p><strong>1. (Recall)</strong> Which protocol and port does TACACS+ use?</p>
+<p>A. UDP 49  B. TCP 49  C. UDP 1812  D. TCP 1812</p>
+<p><strong>2. (Compare)</strong> Give two differences between TACACS+ and RADIUS.</p>
+<p><strong>3. (Configuration)</strong> Write the minimum commands to allow only SSH version 2 on VTY lines 0–15 with local logins, given hostname R1 and domain campus.example.</p>
+<p><strong>4. (Concept)</strong> <code>aaa authentication login default group tacacs+ local</code> is configured. The TACACS+ server rejects user <em>bob</em>, who also exists locally. Does bob get in?</p>
+<p><strong>5. (Concept)</strong> In the same configuration, the TACACS+ server is powered off. Can <em>netadmin</em> (local only) log in?</p>
+<p><strong>6. (Password types)</strong> A configuration line reads <code>username ops password 7 0822455D0A16</code>. What does this tell you about its security?</p>
+<p><strong>7. (Troubleshooting)</strong> All server logins fail; the server log shows the requests arriving from 10.0.0.2 but the device is registered on the server as 10.10.99.2. What is the fix?</p>
+<p><strong>8. (Troubleshooting)</strong> Administrators authenticate through RADIUS but land at the <code>&gt;</code> prompt. What is missing?</p>
+<p><strong>9. (Multiple response — choose two)</strong> Which are true of RADIUS?</p>
+<p>A. Uses UDP  B. Encrypts the entire payload  C. Commonly used for 802.1X  D. Provides per-command authorization  E. Cisco proprietary</p>
+<p><strong>10. (Design)</strong> Why should the console line use a separate method list with only <code>local</code>?</p>
+<p><strong>11. (Accounting)</strong> Which command records every privileged-level command an administrator types?</p>
+<p><strong>12. (Recall)</strong> What does <code>login block-for 120 attempts 3 within 60</code> do?</p>
+<p><strong>13. (Evaluate an AI assistant)</strong> A network assistant proposes: <em>"To be safe, configure <code>aaa authentication login default local group tacacs+</code> so you can always log in locally."</em> What is wrong with this?</p>
+<h3 id="1812-answer-key-with-explanations">18.12 Answer key with explanations</h3>
+<ol>
+<li><strong>B.</strong> TACACS+ uses TCP 49. UDP 1812 is RADIUS authentication.</li>
+<li>Any two: TCP vs UDP; whole payload encrypted vs password only; separate vs combined authentication/authorization; per-command authorization (TACACS+ only); Cisco-originated vs open standard; typical use device admin vs network access.</li>
+<li><code>ip domain-name campus.example</code> → <code>crypto key generate rsa modulus 2048</code> → <code>ip ssh version 2</code> → <code>username …</code> → <code>line vty 0 15</code> → <code>login local</code> → <code>transport input ssh</code>.</li>
+<li><strong>No.</strong> A reject is a FAIL; the local method is used only on ERROR (no answer).</li>
+<li><strong>Yes</strong> (after the timeout). The server gives no answer, an ERROR, so IOS moves to the local database.</li>
+<li>It is a <strong>type 7</strong> password: reversible, offering almost no protection. Replace it with <code>username ops algorithm-type scrypt secret …</code>.</li>
+<li>Either register 10.0.0.2 as the client on the server, or (better) fix the source with <code>ip tacacs source-interface Vlan99</code> / <code>ip radius source-interface Vlan99</code> so requests come from 10.10.99.2.</li>
+<li><code>aaa authorization exec …</code> on the device (and a privilege-15 shell profile on the server).</li>
+<li><strong>A and C.</strong> RADIUS encrypts only the password, has no per-command authorization, and is an open standard.</li>
+<li>So that console access never depends on the network or a server: it is the way back in when AAA or routing is broken.</li>
+<li><code>aaa accounting commands 15 default start-stop group &lt;tacacs-group&gt;</code> (command accounting is a TACACS+ feature).</li>
+<li>After 3 failed logins within 60 seconds, all logins are blocked for 120 seconds (quiet mode), slowing password-guessing attacks.</li>
+<li>With <code>local</code> first, IOS checks local accounts and only asks TACACS+ if the local database gives no answer — so centralised control and per-user revocation are lost, and stale local passwords stay valid. Put the server group first and <code>local</code> last as a fallback.</li>
+</ol>
+<h3 id="1813-chapter-18-figure-checklist">18.13 Chapter 18 figure checklist</h3>
+<p>All 3 figures were rendered, embedded beside the text they explain, and checked visually after rendering. <a class="figref" href="#fig-18-2">Figure 18.2</a>'s first render sent the reject arrow into the ERROR box; it was rerouted to FAIL and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18.1</td>
+<td>SSH login through TACACS+: AAA steps</td>
+<td>18.4</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>18.2</td>
+<td>Method list: ERROR vs FAIL</td>
+<td>18.7</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>18.3</td>
+<td>Lab 18.1 topology</td>
+<td>18.9</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as tables:</strong> password types, TACACS+ versus RADIUS, AAA commands, verification and troubleshooting.</p>
+<h3 id="1814-chapter-18-progress-record">18.14 Chapter 18 progress record</h3>
+<p><strong>Objective completed:</strong> <strong>4.1</strong> — local usernames, SSH, and IOS as a TACACS+ and RADIUS AAA client for management.</p>
+<p><strong>Related objectives that reuse this chapter:</strong> 4.2 SCP/SFTP authentication (Chapter 19), 4.6 VTY <code>access-class</code> (Chapter 20), 5.5 Ansible SSH access (Chapter 26).</p>
+<p><strong>Next:</strong> Chapter 19 — <strong>4.2 Manage device configuration and software files using secure file transfer operations with SFTP/SCP</strong>.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-17.html"><small>← Chapter 17</small>Client connectivity on Windows, macOS and Linux</a><a class="pn next" href="chapter-19.html"><small>Chapter 19 →</small>Managing configurations and images with SCP and SFTP</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#181-learning-objectives">18.1 Learning objectives</a>
+<a href="#182-local-usernames-privilege-and-password-storage">18.2 Local usernames, privilege and password storage</a>
+<a href="#183-ssh-for-remote-management">18.3 SSH for remote management</a>
+<a href="#184-aaa-authentication-authorization-accounting">18.4 AAA: authentication, authorization, accounting</a>
+<a href="#185-tacacs-versus-radius">18.5 TACACS+ versus RADIUS</a>
+<a href="#186-configuring-ios-as-an-aaa-client">18.6 Configuring IOS as an AAA client</a>
+<a href="#187-method-lists-error-versus-failure">18.7 Method lists: error versus failure</a>
+<a href="#188-verifying-and-troubleshooting-aaa">18.8 Verifying and troubleshooting AAA</a>
+<a href="#189-packet-tracer-lab-181--ssh-with-tacacs-and-radius-and-local-fallback-intermediateadvanced">18.9 Packet Tracer Lab 18.1 — SSH with TACACS+ and RADIUS, and local fallback (Intermediate–Advanced)</a>
+<a href="#1810-chapter-18-summary-notes-exam-revision">18.10 Chapter 18 summary notes (exam revision)</a>
+<a href="#1811-practice-questions--chapter-18">18.11 Practice questions — Chapter 18</a>
+<a href="#1812-answer-key-with-explanations">18.12 Answer key with explanations</a>
+<a href="#1813-chapter-18-figure-checklist">18.13 Chapter 18 figure checklist</a>
+<a href="#1814-chapter-18-progress-record">18.14 Chapter 18 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>

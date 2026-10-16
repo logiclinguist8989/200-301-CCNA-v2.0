@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 720" width="1160" height="720" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 18.1 — An SSH login authenticated, authorized and accounted by TACACS+</title>
+<desc id="d">The switch is the AAA client (NAS); the server holds the accounts — TACACS+ uses TCP 49 and encrypts the whole body</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#8796a8"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+<marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+<marker id="m3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#7357d1"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="719" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 18.1</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">An SSH login authenticated, authorized and accounted by TACACS+</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">The switch is the AAA client (NAS); the server holds the accounts — TACACS+ uses TCP 49 and encrypts the whole body</text>
+<g transform="translate(200.0,150.0) scale(0.85)"><ellipse cx="0" cy="22" rx="36" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-26" y="-24" width="52" height="36" rx="3" fill="url(#gDark)"/><rect x="-22" y="-20" width="44" height="28" rx="1.5" fill="url(#gScreen)"/><path d="M-32,13 L32,13 L36,20 L-36,20 Z" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.8"/><rect x="-8" y="15" width="16" height="2.5" rx="1" fill="#94a3b8"/></g>
+<text x="200.0" y="184.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="middle">Administrator</text>
+<text x="200.0" y="200.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">ssh -l alice 10.10.99.2</text>
+<g transform="translate(580.0,150.0) scale(0.85)"><ellipse cx="2" cy="28.5" rx="31.0" ry="6" fill="#0f2540" opacity="0.12"/><polygon points="-30.5,-14.5 -19.5,-25.5 30.5,-25.5 19.5,-14.5" fill="url(#gTop)" stroke="#0b4f8a" stroke-width="0.8"/><polygon points="19.5,-14.5 30.5,-25.5 30.5,14.5 19.5,25.5" fill="url(#gSide)"/><rect x="-30.5" y="-14.5" width="50" height="40" fill="url(#gFront)"/><line x1="-16.0" y1="-20.0" x2="-8.2" y2="-20.0" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="-4.0,-20.0 -8.2,-16.6 -8.2,-23.4" fill="#ffffff"/><line x1="16.0" y1="-20.0" x2="8.2" y2="-20.0" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round"/><polygon points="4.0,-20.0 8.2,-23.4 8.2,-16.6" fill="#ffffff"/><line x1="-0.0" y1="-20.0" x2="-0.0" y2="-23.8" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"/><polygon points="0.0,-28.0 3.4,-23.8 -3.4,-23.8" fill="#ffffff"/><line x1="-0.0" y1="-20.0" x2="-0.0" y2="-16.2" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"/><polygon points="0.0,-12.0 -3.4,-16.2 3.4,-16.2" fill="#ffffff"/><line x1="-21.0" y1="-0.5" x2="-12.2" y2="-0.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/><polygon points="-8.0,-0.5 -12.2,2.9 -12.2,-3.9" fill="#ffffff"/><line x1="-3.0" y1="-0.5" x2="5.8" y2="-0.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/><polygon points="10.0,-0.5 5.8,2.9 5.8,-3.9" fill="#ffffff"/><line x1="-8.0" y1="11.5" x2="-16.8" y2="11.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/><polygon points="-21.0,11.5 -16.8,8.1 -16.8,14.9" fill="#ffffff"/><line x1="10.0" y1="11.5" x2="1.2" y2="11.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/><polygon points="-3.0,11.5 1.2,8.1 1.2,14.9" fill="#ffffff"/></g>
+<text x="580.0" y="191.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="middle">DSW1 (AAA client)</text>
+<text x="580.0" y="207.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">10.10.99.2</text>
+<g transform="translate(960.0,150.0) scale(0.85)"><ellipse cx="0" cy="35" rx="26" ry="4" fill="#0f2540" opacity="0.12"/><polygon points="-20,-30 -10,-37 28,-37 18,-30" fill="#5d6f86"/><polygon points="18,-30 28,-37 28,27 18,34" fill="#1e293b"/><rect x="-20" y="-30" width="38" height="64" rx="2" fill="url(#gDark)"/><rect x="-15" y="-24" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="-20.5" r="1.6" fill="#4ade80"/><rect x="-15" y="-13" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="-9.5" r="1.6" fill="#4ade80"/><rect x="-15" y="-2" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="1.5" r="1.6" fill="#4ade80"/><rect x="-15" y="9" width="28" height="7" rx="1.5" fill="#475569"/><circle cx="8" cy="12.5" r="1.6" fill="#4ade80"/><rect x="-15" y="22" width="28" height="6" rx="1" fill="#049fd9" opacity="0.85"/></g>
+<text x="960.0" y="196.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#0f2540" text-anchor="middle">AAA-1 (TACACS+)</text>
+<text x="960.0" y="212.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">10.10.99.20 · Cisco ISE</text>
+<line x1="200.0" y1="240.0" x2="200.0" y2="640.0" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+<line x1="580.0" y1="240.0" x2="580.0" y2="640.0" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+<line x1="960.0" y1="240.0" x2="960.0" y2="640.0" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+<line x1="200.0" y1="266.0" x2="572.0" y2="266.0" stroke="#8796a8" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="390.0" y="258.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#8796a8" text-anchor="middle">SSH session opens — username / password</text>
+<circle cx="174.0" cy="266.0" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="174.0" y="270.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+<line x1="580.0" y1="318.9" x2="952.0" y2="318.9" stroke="#1d6fd1" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m1)"/>
+<text x="770.0" y="310.9" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1d6fd1" text-anchor="middle">Authentication START (alice, password)</text>
+<text x="770.0" y="335.9" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">TCP 49 · shared key</text>
+<circle cx="554.0" cy="318.9" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="554.0" y="322.8" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+<line x1="960.0" y1="371.7" x2="588.0" y2="371.7" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m2)"/>
+<text x="770.0" y="363.7" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f9d63" text-anchor="middle">Authentication PASS</text>
+<line x1="580.0" y1="424.6" x2="952.0" y2="424.6" stroke="#7357d1" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m3)"/>
+<text x="770.0" y="416.6" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#7357d1" text-anchor="middle">Authorization REQUEST (exec shell)</text>
+<circle cx="554.0" cy="424.6" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="554.0" y="428.5" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+<line x1="960.0" y1="477.4" x2="588.0" y2="477.4" stroke="#1f9d63" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m2)"/>
+<text x="770.0" y="469.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f9d63" text-anchor="middle">Authorization PASS — priv-lvl 15</text>
+<line x1="580.0" y1="530.3" x2="208.0" y2="530.3" stroke="#8796a8" stroke-width="2.4" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="390.0" y="522.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#8796a8" text-anchor="middle" xml:space="preserve">DSW1#  prompt</text>
+<line x1="580.0" y1="583.1" x2="952.0" y2="583.1" stroke="#1d6fd1" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="7 5" marker-end="url(#m1)"/>
+<text x="770.0" y="575.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1d6fd1" text-anchor="middle">Accounting START … commands … STOP</text>
+<text x="770.0" y="600.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">for the whole session</text>
+<circle cx="554.0" cy="583.1" r="11" fill="#0b3b66" stroke="#ffffff" stroke-width="2"/>
+<text x="554.0" y="587.1" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+<line x1="28" y1="661" x2="1132" y2="661" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="683" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">RADIUS (UDP 1812/1813) combines authentication and authorization and encrypts only the password.</text>
+<text x="28" y="702" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">TACACS+ separates the three A&#x27;s, so per-command authorization is possible.</text>
+<text x="1136" y="710" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

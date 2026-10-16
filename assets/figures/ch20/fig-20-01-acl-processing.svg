@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 604" width="1160" height="604" role="img" aria-labelledby="t d" xml:space="preserve" style="white-space:pre">
+<title id="t">Figure 20.1 — ACL processing: top-down, first match, implicit deny</title>
+<desc id="d">A packet walks down the list until one line matches, then leaves with that line&#x27;s action — later lines are never read</desc>
+<defs>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f2540" flood-opacity="0.10"/></filter>
+<linearGradient id="gRouter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a8fd8"/><stop offset="1" stop-color="#0b5a9c"/></linearGradient>
+<linearGradient id="gRouterTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4f2"/><stop offset="1" stop-color="#3a9be0"/></linearGradient>
+<linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fcc"/><stop offset="1" stop-color="#0b4f8a"/></linearGradient>
+<linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#46a6e6"/></linearGradient>
+<linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b4f8a"/><stop offset="1" stop-color="#083a66"/></linearGradient>
+<linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4ef"/><stop offset="1" stop-color="#0b6fb8"/></linearGradient>
+<linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#c9d3df"/></linearGradient>
+<linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a5e"/><stop offset="1" stop-color="#1e293b"/></linearGradient>
+<linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe7f5"/></linearGradient>
+<linearGradient id="gFire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2574c"/><stop offset="1" stop-color="#a8261d"/></linearGradient>
+<linearGradient id="gHeader" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b3b66"/><stop offset="1" stop-color="#049fd9"/></linearGradient>
+<marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#94a3b8"/></marker>
+<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#d64040"/></marker>
+<marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1f9d63"/></marker>
+<marker id="m3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#1d6fd1"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1159" height="603" rx="14" fill="#ffffff" stroke="#dbe3ec"/>
+<rect x="0.5" y="0.5" width="1159" height="6" rx="3" fill="url(#gHeader)"/>
+<rect x="28" y="24" width="70.2" height="22" rx="11" fill="#0b3b66"/>
+<text x="63.1" y="39" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.6">FIG 20.1</text>
+<text x="110.2" y="41" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f2540">ACL processing: top-down, first match, implicit deny</text>
+<text x="28" y="70" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#5b6b7f">A packet walks down the list until one line matches, then leaves with that line&#x27;s action — later lines are never read</text>
+<g transform="translate(110.0,170.0) scale(0.8)"><ellipse cx="0" cy="33" rx="30" ry="4" fill="#0f2540" opacity="0.10"/><rect x="-30" y="-28" width="60" height="42" rx="4" fill="url(#gDark)"/><rect x="-26" y="-24" width="52" height="33" rx="2" fill="url(#gScreen)"/><path d="M-26,-24 L6,-24 L-26,4 Z" fill="#ffffff" opacity="0.12"/><rect x="-5" y="14" width="10" height="9" fill="#475569"/><rect x="-17" y="22" width="34" height="5" rx="2" fill="url(#gDark)"/><rect x="-26" y="28" width="52" height="5" rx="1.5" fill="url(#gMetal)" stroke="#94a3b8" stroke-width="0.6"/></g>
+<text x="110.0" y="212.2" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f2540" text-anchor="middle">Packet</text>
+<text x="110.0" y="228.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">10.10.30.25 → 10.10.40.11</text>
+<text x="110.0" y="244.4" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5b6b7f" text-anchor="middle">TCP 631</text>
+<rect x="260.0" y="120.0" width="620.0" height="60.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+<text x="280.0" y="156.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#5b6b7f" text-anchor="start">10</text>
+<text x="320.0" y="156.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">deny   ip 10.10.30.0 0.0.0.255 10.10.99.0 0.0.0.255</text>
+<line x1="570.0" y1="182.0" x2="570.0" y2="200.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="582.0" y="196.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="600" fill="#5b6b7f" text-anchor="start">no match</text>
+<line x1="882.0" y1="150.0" x2="960.0" y2="150.0" stroke="#d64040" stroke-width="2" stroke-linecap="round" marker-end="url(#m1)"/>
+<rect x="1014.7" y="139.0" width="50.6" height="22.0" rx="11.0" fill="#fde8e8" stroke="#d64040" stroke-width="1.2"/>
+<text x="1040.0" y="154.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#8a1c1c" text-anchor="middle">DENY</text>
+<rect x="260.0" y="202.0" width="620.0" height="60.0" rx="8" fill="#e4f6ec" stroke="#1f9d63" stroke-width="2"/>
+<text x="280.0" y="238.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#5b6b7f" text-anchor="start">20</text>
+<text x="320.0" y="238.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="start">permit tcp 10.10.30.0 0.0.0.255 host 10.10.40.11 eq 631</text>
+<line x1="570.0" y1="264.0" x2="570.0" y2="282.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="582.0" y="278.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="600" fill="#5b6b7f" text-anchor="start">no match</text>
+<line x1="882.0" y1="232.0" x2="960.0" y2="232.0" stroke="#1f9d63" stroke-width="2" stroke-linecap="round" marker-end="url(#m2)"/>
+<rect x="1005.2" y="221.0" width="69.6" height="22.0" rx="11.0" fill="#1f9d63" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="1040.0" y="236.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">PERMIT</text>
+<rect x="260.0" y="284.0" width="620.0" height="60.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+<text x="280.0" y="320.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#5b6b7f" text-anchor="start">30</text>
+<text x="320.0" y="320.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="start" xml:space="preserve">deny   ip 10.10.30.0 0.0.0.255 10.10.40.0 0.0.0.255</text>
+<line x1="570.0" y1="346.0" x2="570.0" y2="364.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="582.0" y="360.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="600" fill="#5b6b7f" text-anchor="start">no match</text>
+<line x1="882.0" y1="314.0" x2="960.0" y2="314.0" stroke="#d64040" stroke-width="2" stroke-linecap="round" marker-end="url(#m1)"/>
+<rect x="1014.7" y="303.0" width="50.6" height="22.0" rx="11.0" fill="#fde8e8" stroke="#d64040" stroke-width="1.2"/>
+<text x="1040.0" y="318.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#8a1c1c" text-anchor="middle">DENY</text>
+<rect x="260.0" y="366.0" width="620.0" height="60.0" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+<text x="280.0" y="402.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" fill="#5b6b7f" text-anchor="start">40</text>
+<text x="320.0" y="402.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="600" fill="#0f2540" text-anchor="start">permit ip any any</text>
+<line x1="570.0" y1="428.0" x2="570.0" y2="446.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" marker-end="url(#m0)"/>
+<text x="582.0" y="442.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="600" fill="#5b6b7f" text-anchor="start">no match</text>
+<line x1="882.0" y1="396.0" x2="960.0" y2="396.0" stroke="#1f9d63" stroke-width="2" stroke-linecap="round" marker-end="url(#m2)"/>
+<rect x="1005.2" y="385.0" width="69.6" height="22.0" rx="11.0" fill="#e4f6ec" stroke="#1f9d63" stroke-width="1.2"/>
+<text x="1040.0" y="400.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#0f5a37" text-anchor="middle">PERMIT</text>
+<rect x="260.0" y="448.0" width="620.0" height="56.0" rx="8" fill="#fde8e8" stroke="#d64040" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="280.0" y="482.0" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#8a1c1c" text-anchor="start" xml:space="preserve">(implicit)   deny ip any any — invisible, always last</text>
+<line x1="882.0" y1="476.0" x2="960.0" y2="476.0" stroke="#d64040" stroke-width="2" stroke-linecap="round" marker-end="url(#m1)"/>
+<rect x="1014.7" y="465.0" width="50.6" height="22.0" rx="11.0" fill="#fde8e8" stroke="#d64040" stroke-width="1.2"/>
+<text x="1040.0" y="480.3" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#8a1c1c" text-anchor="middle">DENY</text>
+<path d="M150,190 C200,190 220,150 256,150" fill="none" stroke="#1d6fd1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#m3)"/>
+<text x="1040.0" y="262.0" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#0f5a37" text-anchor="middle">first match → stop</text>
+<line x1="28" y1="545" x2="1132" y2="545" stroke="#e5eaf0" stroke-width="1"/>
+<text x="28" y="567" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">Order matters: put specific lines before general ones. One ACL per interface, per direction, per protocol.</text>
+<text x="28" y="586" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#5b6b7f">An ACL with only deny lines blocks everything — it needs at least one permit.</text>
+<text x="1136" y="594" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#b6c2d0" text-anchor="end">CCNA 200-301 v2.0 Study Guide</text>
+</svg>

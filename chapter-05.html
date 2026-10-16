@@ -1,0 +1,1186 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 5 — VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs · CCNA 200-301 v2.0 Study Guide</title>
+<meta name="description" content="CCNA 200-301 v2.0 — Chapter 5: VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs">
+<link rel="icon" href="assets/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site/style.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<header class="topbar">
+  <button class="menu" aria-label="Open chapter menu">☰</button>
+  <a class="brand" href="index.html"><span class="logo">CCNA</span><span>200-301 v2.0 Study Guide</span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search the guide…  ( / )" autocomplete="off" aria-label="Search the guide"><div id="results" role="listbox"></div></div>
+  <button class="theme" aria-label="Toggle dark mode">◐</button>
+  <a class="gh" href="https://github.com/logiclinguist8989/200-301-CCNA-v2.0" aria-label="Source on GitHub">GitHub</a>
+</header>
+<aside class="sidebar"><div class="progress"><div class="bar"><i></i></div><span></span></div><nav><a class="nav-home" href="index.html">🏠 Home</a>
+<a class="" href="intro.html">📘 Start here · Part 0</a>
+<div class="nav-group blue"><span>Domain 1 · Network Infrastructure &amp; Connectivity</span>
+<a class="ch" href="chapter-01.html" data-ch="1"><span class="chn">1</span><span class="cht">Networking foundations, cables and interfaces</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-02.html" data-ch="2"><span class="chn">2</span><span class="cht">IPv4 addressing and subnetting</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-03.html" data-ch="3"><span class="chn">3</span><span class="cht">IPv6 addressing and prefix sizing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-04.html" data-ch="4"><span class="chn">4</span><span class="cht">Hypervisors, virtual machines and containers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-14.html" data-ch="14"><span class="chn">14</span><span class="cht">DHCPv4 client, server and relay</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-16.html" data-ch="16"><span class="chn">16</span><span class="cht">Wireless principles</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-17.html" data-ch="17"><span class="chn">17</span><span class="cht">Client connectivity on Windows, macOS and Linux</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group green"><span>Domain 2 · Switching &amp; Network Access</span>
+<a class="ch active" href="chapter-05.html" data-ch="5"><span class="chn">5</span><span class="cht">VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-06.html" data-ch="6"><span class="chn">6</span><span class="cht">EtherChannel with LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-07.html" data-ch="7"><span class="chn">7</span><span class="cht">Edge-host ports: VLAN, PoE, port channel and LACP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-08.html" data-ch="8"><span class="chn">8</span><span class="cht">Validating network documentation with CDP and LLDP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-09.html" data-ch="9"><span class="chn">9</span><span class="cht">Rapid PVST+ and STP protection</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-15.html" data-ch="15"><span class="chn">15</span><span class="cht">The troubleshooting toolkit</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group amber"><span>Domain 3 · IP Routing</span>
+<a class="ch" href="chapter-10.html" data-ch="10"><span class="chn">10</span><span class="cht">Interpreting the routing table</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-11.html" data-ch="11"><span class="chn">11</span><span class="cht">IPv4 and IPv6 static routing</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-12.html" data-ch="12"><span class="chn">12</span><span class="cht">Single-area OSPFv2 and OSPFv3</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-13.html" data-ch="13"><span class="chn">13</span><span class="cht">First hop redundancy protocols</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group purple"><span>Domain 4 · Network Services &amp; Security</span>
+<a class="ch" href="chapter-18.html" data-ch="18"><span class="chn">18</span><span class="cht">Secure device access: local users, SSH and AAA</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-19.html" data-ch="19"><span class="chn">19</span><span class="cht">Managing configurations and images with SCP and SFTP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-20.html" data-ch="20"><span class="chn">20</span><span class="cht">IPv4 access control lists</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-21.html" data-ch="21"><span class="chn">21</span><span class="cht">NAT and PAT on IOS XE routers</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-22.html" data-ch="22"><span class="chn">22</span><span class="cht">Diagnosing DNS records</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-23.html" data-ch="23"><span class="chn">23</span><span class="cht">Layer 2 security features</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-24.html" data-ch="24"><span class="chn">24</span><span class="cht">IPsec site-to-site and remote-access VPNs</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group red"><span>Domain 5 · AI, Operations &amp; Management</span>
+<a class="ch" href="chapter-25.html" data-ch="25"><span class="chn">25</span><span class="cht">Syslog and SNMP</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-26.html" data-ch="26"><span class="chn">26</span><span class="cht">Network management approaches and Ansible</span><span class="done" aria-hidden="true">✓</span></a>
+<a class="ch" href="chapter-27.html" data-ch="27"><span class="chn">27</span><span class="cht">AI in network operations: agents and prompts</span><span class="done" aria-hidden="true">✓</span></a>
+</div>
+<div class="nav-group teal"><span>Final Review</span>
+<a class="ch" href="chapter-28.html" data-ch="28"><span class="chn">28</span><span class="cht">Final review</span><span class="done" aria-hidden="true">✓</span></a>
+</div></nav></aside>
+<main class="content"><div class="chapter-head green">
+  <div class="eyebrow">Domain 2 · Switching &amp; Network Access</div>
+  <h1><span class="num">Chapter 5</span>VLANs, trunks, Layer 2/Layer 3 interfaces and SVIs</h1>
+  <div class="meta"><span>🖼️ 6 figures</span><span>⏱️ ~25 min read</span>
+  <label class="mark"><input type="checkbox" data-ch="5"> Mark chapter as done</label></div>
+</div><article class="prose"><p><strong>Objectives covered:</strong> <strong>2.1 Configure network infrastructure connectivity (switch-to-switch and switch-to-router)</strong>, specifically <strong>2.1.a Layer 2/Layer 3 physical interfaces</strong>, <strong>2.1.b Layer 2 802.1Q trunk interfaces</strong> and <strong>2.1.d Switch virtual interface (SVI)</strong>. 2.1.c (EtherChannel) follows in Chapter 6.</p>
+<p>This is the first big <em>configure</em> chapter. Every later switching topic — EtherChannel, edge ports, STP, Layer 2 security — sits on top of the VLANs and trunks you build here.</p>
+<h3 id="51-learning-objectives">5.1 Learning objectives</h3>
+<p>After this chapter you can:</p>
+<ol>
+<li>Explain why VLANs exist and how they split one switch into several broadcast domains.</li>
+<li>Create VLANs and assign Layer 2 access ports.</li>
+<li>Configure and verify 802.1Q trunks, including the native VLAN and the allowed VLAN list, and predict DTP results.</li>
+<li>Convert a switch port into a Layer 3 routed port.</li>
+<li>Configure SVIs for management and for inter-VLAN routing on a multilayer switch, and configure router-on-a-stick.</li>
+<li>Troubleshoot VLAN, trunk and SVI problems from show-command output.</li>
+</ol>
+<h3 id="52-introduction">5.2 Introduction</h3>
+<p>Without VLANs, every device on a switch shares one broadcast domain. In a 300-user college building, every ARP request and DHCP Discover reaches every PC, printer and phone; a guest laptop sits on the same network as the accounts office. <strong>VLANs (virtual LANs)</strong> let you group ports logically — Staff, Wireless, Printers, Management — regardless of which switch they are on, and keep each group's broadcasts and traffic separate. Moving traffic <strong>between</strong> VLANs then requires a router or Layer 3 switch, which is where security policy can be applied.</p>
+<h3 id="53-vlan-concepts">5.3 VLAN concepts</h3>
+<p><strong>A VLAN is a broadcast domain</strong> (<a class="figref" href="#fig-5-1">Figure 5.1</a>). A switch forwards a frame only to ports in the same VLAN. Each VLAN normally maps to one IP subnet; this guide uses 10.10.<strong>VLAN</strong>.0/24.</p>
+<figure class="fig" id="fig-5-1"><button class="zoom" aria-label="Enlarge figure 5.1"><img src="assets/figures/ch05/fig-05-01-vlans-broadcast-domains.svg" alt="Figure 5.1 — Three VLANs on one switch: a broadcast stays inside its own VLAN" loading="lazy"></button><figcaption><a class="fignum" href="#fig-5-1">Figure 5.1</a> Three VLANs on one switch: a broadcast stays inside its own VLAN</figcaption></figure>
+
+<p>In <a class="figref" href="#fig-5-1">Figure 5.1</a> the dashed boxes are VLAN memberships, not separate hardware. The arrows trace PC1's broadcast: SW1 floods it only to PC2, the one other port in VLAN 10. PC3, PC4 and the printer never see it, even though they are on the same switch.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>VLAN range</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Default VLAN: every port starts in it; cannot be deleted. Also the default native VLAN</td>
+</tr>
+<tr>
+<td>2–1001</td>
+<td>Normal range: user VLANs</td>
+</tr>
+<tr>
+<td>1002–1005</td>
+<td>Reserved for legacy Token Ring and FDDI; cannot be deleted</td>
+</tr>
+<tr>
+<td>1006–4094</td>
+<td>Extended range (needs VTP transparent mode or VTPv3 on older switches)</td>
+</tr>
+<tr>
+<td>0 and 4095</td>
+<td>Reserved, never used</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Benefits:</strong> smaller broadcast domains, security separation (a firewall or ACL controls inter-VLAN traffic), logical grouping across buildings, and easier management (move a user by changing one port).</p>
+<p><strong>Best practices used in this guide:</strong></p>
+<ul>
+<li>Do not put users in VLAN 1. Use a dedicated <strong>management VLAN</strong> (99).</li>
+<li>Use an unused VLAN as the trunk <strong>native VLAN</strong> (999), not VLAN 1.</li>
+<li>Shut down unused ports and put them in an unused "parking" VLAN.</li>
+<li>Allow only the VLANs you need on each trunk.</li>
+</ul>
+<p><strong>About VTP.</strong> VLAN Trunking Protocol can copy VLAN lists between switches, but it is not a v2.0 objective and a mistake can delete VLANs network-wide. This guide creates VLANs on each switch by hand (VTP transparent or off).</p>
+<h3 id="54-creating-vlans-and-layer-2-access-ports-21a">5.4 Creating VLANs and Layer 2 access ports (2.1.a)</h3>
+<p>A <strong>Layer 2 interface</strong> (a <em>switchport</em>) forwards frames by MAC address within a VLAN. An <strong>access port</strong> belongs to exactly one data VLAN and sends and receives <strong>untagged</strong> frames; it connects end devices.</p>
+<p><strong>Step 1 — create and name the VLANs</strong> (global configuration, then VLAN configuration mode):</p>
+<pre><code>SW1(config)# vlan 10
+SW1(config-vlan)# name STAFF
+SW1(config-vlan)# vlan 30
+SW1(config-vlan)# name WIRELESS
+SW1(config-vlan)# vlan 40
+SW1(config-vlan)# name PRINTERS
+SW1(config-vlan)# vlan 99
+SW1(config-vlan)# name MGMT
+SW1(config-vlan)# vlan 999
+SW1(config-vlan)# name NATIVE
+SW1(config-vlan)# exit
+</code></pre>
+<p><strong>Step 2 — make the port an access port and assign the VLAN:</strong></p>
+<pre><code>SW1(config)# interface fastethernet0/1
+SW1(config-if)# description PC1 - Staff
+SW1(config-if)# switchport mode access
+SW1(config-if)# switchport access vlan 10
+SW1(config-if)# exit
+SW1(config)# interface range fastethernet0/3 - 24
+SW1(config-if-range)# shutdown                      ! unused ports off
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Purpose</th>
+<th>Notes and common mistakes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vlan &lt;id&gt;</code></td>
+<td>Global config</td>
+<td>Creates the VLAN and enters VLAN config mode</td>
+<td>Assigning a port to a VLAN that does not exist creates it automatically on most switches, but naming it is still good practice</td>
+</tr>
+<tr>
+<td><code>name &lt;text&gt;</code></td>
+<td>VLAN config</td>
+<td>Names the VLAN</td>
+<td>Names are local labels; they do not need to match between switches (but should)</td>
+</tr>
+<tr>
+<td><code>switchport mode access</code></td>
+<td>Interface config</td>
+<td>Forces access mode and disables trunk negotiation (DTP)</td>
+<td>Leaving the default dynamic mode can accidentally form a trunk</td>
+</tr>
+<tr>
+<td><code>switchport access vlan &lt;id&gt;</code></td>
+<td>Interface config</td>
+<td>Puts the port in that VLAN</td>
+<td>Applies only while the port is in access mode</td>
+</tr>
+<tr>
+<td><code>interface range fa0/3 - 24</code></td>
+<td>Global config</td>
+<td>Configures many ports at once</td>
+<td>Spaces around the hyphen are required on some IOS versions</td>
+</tr>
+<tr>
+<td><code>no vlan &lt;id&gt;</code></td>
+<td>Global config</td>
+<td>Deletes a VLAN</td>
+<td>Ports assigned to it stay assigned but become <strong>inactive</strong> and pass no traffic until the VLAN is recreated</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Verification:</strong></p>
+<pre><code>SW1# show vlan brief
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- ------------------------------
+1    default                          active    Fa0/3, Fa0/4, Fa0/5, Fa0/6 ...
+10   STAFF                            active    Fa0/1
+30   WIRELESS                         active    Fa0/2
+40   PRINTERS                         active
+99   MGMT                             active
+999  NATIVE                           active
+1002 fddi-default                     act/unsup
+...
+</code></pre>
+<p class="callout exam-tip"><strong>Exam tip</strong> trunk ports do <strong>not</strong> appear in <code>show vlan brief</code>; only access ports are listed. A port "missing" from every VLAN is probably a trunk.</p>
+<pre><code>SW1# show interfaces fastethernet0/1 switchport
+Name: Fa0/1
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Access Mode VLAN: 10 (STAFF)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+...
+</code></pre>
+<p><code>Administrative Mode</code> is what you configured; <code>Operational Mode</code> is what the port is actually doing. When they differ, negotiation (DTP) or an error is involved.</p>
+<h3 id="55-8021q-trunks-21b">5.5 802.1Q trunks (2.1.b)</h3>
+<p>When VLAN 10 exists on two switches, the link between them must carry VLAN 10 — and VLAN 30, 40 and 99 too. Rather than one cable per VLAN, a <strong>trunk</strong> carries many VLANs over one link by <strong>tagging</strong> each frame with its VLAN ID. IEEE <strong>802.1Q</strong> is the standard (Cisco's old ISL is obsolete).</p>
+<p><strong>The 802.1Q tag (<a class="figref" href="#fig-5-2">Figure 5.2</a>).</strong> The sending switch inserts 4 bytes between the source MAC and the Type field:</p>
+<figure class="fig" id="fig-5-2"><button class="zoom" aria-label="Enlarge figure 5.2"><img src="assets/figures/ch05/fig-05-02-dot1q-tag.svg" alt="Figure 5.2 — 802.1Q tag position in the Ethernet frame and its four fields" loading="lazy"></button><figcaption><a class="fignum" href="#fig-5-2">Figure 5.2</a> 802.1Q tag position in the Ethernet frame and its four fields</figcaption></figure>
+
+<p><a class="figref" href="#fig-5-2">Figure 5.2</a> zooms into the highlighted tag from <a class="figref" href="chapter-01.html#fig-1-3">Figure 1.3</a>'s frame. The 12-bit VID is what tells the receiving switch which VLAN the frame belongs to; the 3-bit PCP is reused for voice priority in Chapter 7.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Size</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TPID</td>
+<td>16 bits</td>
+<td>Always 0x8100: "this frame is tagged"</td>
+</tr>
+<tr>
+<td>PCP</td>
+<td>3 bits</td>
+<td>Priority (Class of Service) 0–7; IP phones use 5 for voice</td>
+</tr>
+<tr>
+<td>DEI</td>
+<td>1 bit</td>
+<td>Drop eligible indicator (formerly CFI)</td>
+</tr>
+<tr>
+<td>VID</td>
+<td>12 bits</td>
+<td>VLAN ID: 1–4094 usable</td>
+</tr>
+</tbody>
+</table></div>
+<p>Because the frame changes, the switch recalculates the FCS. The maximum frame size grows from 1518 to 1522 bytes.</p>
+<p><strong>How a frame crosses a trunk (<a class="figref" href="#fig-5-3">Figure 5.3</a>):</strong></p>
+<ol>
+<li>PC1 sends an ordinary, untagged frame into its access port on SW1 (VLAN 10).</li>
+<li>SW1 decides the destination is reachable through the trunk Gi0/1 and inserts an 802.1Q tag with VID 10.</li>
+<li>SW2 receives the tagged frame, reads VID 10, and forwards it only to VLAN 10 ports.</li>
+<li>SW2 removes the tag before sending the frame out the access port to PC3, which never sees a tag.</li>
+</ol>
+<figure class="fig" id="fig-5-3"><button class="zoom" aria-label="Enlarge figure 5.3"><img src="assets/figures/ch05/fig-05-03-frame-across-trunk.svg" alt="Figure 5.3 — A VLAN 10 frame crossing an 802.1Q trunk between SW1 and SW2" loading="lazy"></button><figcaption><a class="fignum" href="#fig-5-3">Figure 5.3</a> A VLAN 10 frame crossing an 802.1Q trunk between SW1 and SW2</figcaption></figure>
+
+<p><a class="figref" href="#fig-5-3">Figure 5.3</a> matches the four steps above. Arrows show the direction of travel; the thick highlighted link is the trunk. The tag exists only on the trunk, which is why end devices on access ports never need to know VLANs exist.</p>
+<p><strong>The native VLAN.</strong> Frames in the trunk's <strong>native VLAN</strong> cross the link <strong>untagged</strong>, and untagged frames received on a trunk are placed in the native VLAN. The default is VLAN 1. Both ends must use the same native VLAN; otherwise traffic leaks between VLANs and CDP reports <code>%CDP-4-NATIVE_VLAN_MISMATCH</code>. Best practice: set it to an unused VLAN (999) on both ends.</p>
+<p><strong>Configuring a trunk:</strong></p>
+<pre><code>SW1(config)# interface gigabitethernet0/1
+SW1(config-if)# description Trunk to DSW1 Gi1/0/1
+SW1(config-if)# switchport trunk encapsulation dot1q    ! only on switches that also support ISL
+SW1(config-if)# switchport mode trunk
+SW1(config-if)# switchport trunk native vlan 999
+SW1(config-if)# switchport trunk allowed vlan 10,30,40,99
+SW1(config-if)# switchport nonegotiate                   ! stop sending DTP
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+<th>Notes and common mistakes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>switchport trunk encapsulation dot1q</code></td>
+<td>Chooses 802.1Q</td>
+<td>Needed only on platforms that support ISL (for example Catalyst 3560); if <code>switchport mode trunk</code> is rejected with "encapsulation is Auto", add this first. Catalyst 2960 and many newer switches support only 802.1Q and do not have the command</td>
+</tr>
+<tr>
+<td><code>switchport mode trunk</code></td>
+<td>Forces trunking</td>
+<td>Both ends should be configured as trunks</td>
+</tr>
+<tr>
+<td><code>switchport trunk native vlan 999</code></td>
+<td>Sets the untagged VLAN</td>
+<td>Must match on both ends</td>
+</tr>
+<tr>
+<td><code>switchport trunk allowed vlan 10,30,40,99</code></td>
+<td>Replaces the allowed list</td>
+<td>Typing <code>allowed vlan 50</code> later <strong>replaces</strong> the list with only 50</td>
+</tr>
+<tr>
+<td><code>switchport trunk allowed vlan add 50</code></td>
+<td>Adds one VLAN to the list</td>
+<td>The safe way to add; also <code>remove 50</code>, <code>except 50</code>, <code>all</code>, <code>none</code></td>
+</tr>
+<tr>
+<td><code>switchport nonegotiate</code></td>
+<td>Disables DTP frames</td>
+<td>Use on manually configured trunks and access ports</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>DTP (Dynamic Trunking Protocol).</strong> A Cisco-proprietary protocol that lets ports negotiate trunking. Its modes and the result for each pair:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Side A \ Side B</th>
+<th>access</th>
+<th>trunk</th>
+<th>dynamic desirable</th>
+<th>dynamic auto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>access</strong></td>
+<td>Access</td>
+<td>Mismatch (do not do this)</td>
+<td>Access</td>
+<td>Access</td>
+</tr>
+<tr>
+<td><strong>trunk</strong></td>
+<td>Mismatch</td>
+<td>Trunk</td>
+<td>Trunk</td>
+<td>Trunk</td>
+</tr>
+<tr>
+<td><strong>dynamic desirable</strong></td>
+<td>Access</td>
+<td>Trunk</td>
+<td>Trunk</td>
+<td>Trunk</td>
+</tr>
+<tr>
+<td><strong>dynamic auto</strong></td>
+<td>Access</td>
+<td>Trunk</td>
+<td>Trunk</td>
+<td><strong>Access</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>The classic exam trap: two ports left at <strong>dynamic auto</strong> (a common default) both wait to be asked and never form a trunk. Best practice is to hard-code <code>switchport mode trunk</code> or <code>switchport mode access</code> and disable DTP, because an attacker's PC can otherwise negotiate a trunk (VLAN hopping).</p>
+<h3 id="56-layer-3-routed-ports-on-a-switch-21a">5.6 Layer 3 routed ports on a switch (2.1.a)</h3>
+<p>A <strong>multilayer (Layer 3) switch</strong> such as a Catalyst 3650 or 9300 can also route. Any physical port can be turned into a <strong>routed port</strong>: it stops being a switchport, belongs to no VLAN, and takes an IP address like a router interface. Routed ports are used for switch-to-router and switch-to-switch links in routed campus designs.</p>
+<pre><code>DSW1(config)# ip routing                              ! enable IPv4 routing on the switch
+DSW1(config)# interface gigabitethernet1/0/24
+DSW1(config-if)# description Routed link to R1 G0/0/0
+DSW1(config-if)# no switchport                        ! Layer 2 -&gt; Layer 3
+DSW1(config-if)# ip address 10.0.0.2 255.255.255.252
+DSW1(config-if)# no shutdown
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Layer 2 switchport</th>
+<th>Layer 3 routed port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command</td>
+<td><code>switchport</code> (default on Catalyst switches)</td>
+<td><code>no switchport</code></td>
+</tr>
+<tr>
+<td>Belongs to</td>
+<td>A VLAN (access) or many VLANs (trunk)</td>
+<td>No VLAN</td>
+</tr>
+<tr>
+<td>Addressing</td>
+<td>None on the port</td>
+<td>IP address on the port</td>
+</tr>
+<tr>
+<td>Typical link</td>
+<td>To end devices, to other switches</td>
+<td>To a router, or between Layer 3 switches</td>
+</tr>
+<tr>
+<td>Spanning tree</td>
+<td>Participates</td>
+<td>Does not run STP on that port</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong><code>ip routing</code> is off by default on many Layer 3 switches.</strong> Without it, SVIs and routed ports still get addresses, but the switch will not route between them — a very common lab fault.</p>
+<h3 id="57-switch-virtual-interfaces-and-inter-vlan-routing-21d">5.7 Switch virtual interfaces and inter-VLAN routing (2.1.d)</h3>
+<p>A <strong>switch virtual interface (SVI)</strong> is a logical Layer 3 interface for a VLAN: <code>interface vlan 10</code>. It gives the switch an IP address <em>inside</em> that VLAN. SVIs have two uses.</p>
+<p><strong>1. Management SVI on a Layer 2 switch.</strong> An access switch needs one IP address so you can reach it with SSH, SNMP and syslog:</p>
+<pre><code>SW1(config)# interface vlan 99
+SW1(config-if)# description Management
+SW1(config-if)# ip address 10.10.99.11 255.255.255.0
+SW1(config-if)# no shutdown
+SW1(config-if)# exit
+SW1(config)# ip default-gateway 10.10.99.1          ! a Layer 2 switch is a host: it needs a gateway
+</code></pre>
+<p><strong>2. Gateway SVIs on a multilayer switch (inter-VLAN routing).</strong> Each VLAN's SVI is the default gateway for that VLAN, and the switch routes between SVIs internally:</p>
+<pre><code>DSW1(config)# ip routing
+DSW1(config)# interface vlan 10
+DSW1(config-if)# ip address 10.10.10.1 255.255.255.0
+DSW1(config-if)# no shutdown
+DSW1(config-if)# interface vlan 30
+DSW1(config-if)# ip address 10.10.30.1 255.255.255.0
+DSW1(config-if)# no shutdown
+</code></pre>
+<p><strong>When is an SVI up/up?</strong> All of these must be true:</p>
+<ol>
+<li>The VLAN exists in the switch's VLAN database and is active.</li>
+<li>At least one port in that VLAN (an access port, or a trunk allowing it) is up and in the STP forwarding state.</li>
+<li>The SVI is not administratively shut down (<code>no shutdown</code>; SVIs start shut on many switches).</li>
+</ol>
+<p>This "autostate" behaviour is why an SVI shows <code>up/down</code> when its VLAN has no active ports.</p>
+<p><strong>Comparing inter-VLAN routing methods (<a class="figref" href="#fig-5-4">Figure 5.4</a>).</strong></p>
+<figure class="fig" id="fig-5-4"><button class="zoom" aria-label="Enlarge figure 5.4"><img src="assets/figures/ch05/fig-05-04-inter-vlan-routing.svg" alt="Figure 5.4 — Inter-VLAN routing: router-on-a-stick (left) vs multilayer switch SVIs (right)" loading="lazy"></button><figcaption><a class="fignum" href="#fig-5-4">Figure 5.4</a> Inter-VLAN routing: router-on-a-stick (left) vs multilayer switch SVIs (right)</figcaption></figure>
+
+<p>The highlighted arrows in <a class="figref" href="#fig-5-4">Figure 5.4</a> trace a packet from a VLAN 10 host to a VLAN 30 host. On the left it travels up the trunk to R1 in VLAN 10 and comes back down the same trunk in VLAN 30. On the right it is routed between the two SVIs inside DSW1 and never leaves the switch.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Router-on-a-stick</td>
+<td>One router interface, one 802.1Q subinterface per VLAN, trunk to the switch</td>
+<td>Cheap; works with a Layer 2 switch</td>
+<td>Single link carries traffic twice (hairpin); router CPU and link become bottlenecks</td>
+</tr>
+<tr>
+<td>Multilayer switch SVIs</td>
+<td>One SVI per VLAN, <code>ip routing</code></td>
+<td>Hardware speed, scales, no extra link</td>
+<td>Needs a Layer 3 switch</td>
+</tr>
+<tr>
+<td>Separate router interface per VLAN (legacy)</td>
+<td>One physical router port per VLAN, access links</td>
+<td>Simple</td>
+<td>Wastes ports; does not scale</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Router-on-a-stick configuration</strong> (the switch side is a normal trunk):</p>
+<pre><code>R1(config)# interface gigabitethernet0/0/1
+R1(config-if)# no shutdown                          ! enable the physical interface
+R1(config-if)# interface gigabitethernet0/0/1.10
+R1(config-subif)# description Gateway VLAN 10
+R1(config-subif)# encapsulation dot1Q 10
+R1(config-subif)# ip address 10.10.10.1 255.255.255.0
+R1(config-subif)# interface gigabitethernet0/0/1.30
+R1(config-subif)# encapsulation dot1Q 30
+R1(config-subif)# ip address 10.10.30.1 255.255.255.0
+R1(config-subif)# interface gigabitethernet0/0/1.999
+R1(config-subif)# encapsulation dot1Q 999 native   ! match the switch's native VLAN
+</code></pre>
+<p>The subinterface number (.10) is only a label; the <strong><code>encapsulation dot1Q 10</code></strong> command is what ties it to VLAN 10. Making them match is good practice.</p>
+<p><strong>Packet walk: PC1 (VLAN 10) to PC2 (VLAN 30) through DSW1 SVIs.</strong></p>
+<ol>
+<li>PC1 sees 10.10.30.11 is in another subnet, so it ARPs for its gateway 10.10.10.1 and sends the frame to the VLAN 10 SVI's MAC.</li>
+<li>The frame arrives on DSW1 in VLAN 10 (tagged on the trunk from SW1, or untagged on an access port).</li>
+<li>DSW1 routes the packet: destination 10.10.30.0/24 is connected via <code>Vlan30</code>.</li>
+<li>DSW1 ARPs for PC2 in VLAN 30 if needed, builds a new frame, and sends it out the VLAN 30 port or trunk.</li>
+<li>PC2 receives it from the SVI's MAC as the source. The IP addresses never changed; the MAC addresses did (Chapter 1, <a class="figref" href="chapter-01.html#fig-1-2">Figure 1.2</a>).</li>
+</ol>
+<h3 id="58-verifying-vlans-trunks-and-svis">5.8 Verifying VLANs, trunks and SVIs</h3>
+<pre><code>DSW1# show interfaces trunk
+
+Port        Mode         Encapsulation  Status        Native vlan
+Gi1/0/1     on           802.1q         trunking      999
+Gi1/0/2     on           802.1q         trunking      999
+
+Port        Vlans allowed on trunk
+Gi1/0/1     10,30,40,99
+Gi1/0/2     10,30,40,99
+
+Port        Vlans allowed and active in management domain
+Gi1/0/1     10,30,40,99
+Gi1/0/2     10,30,40,99
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi1/0/1     10,30,40,99
+Gi1/0/2     10,30,40,99
+</code></pre>
+<p>Read the four blocks in order: (1) is it trunking, with which native VLAN; (2) which VLANs are <strong>allowed</strong>; (3) which of those <strong>exist and are active</strong> on this switch; (4) which are actually <strong>forwarding</strong> (not blocked by STP). A VLAN that is allowed but missing from block 3 has not been created on this switch.</p>
+<pre><code>DSW1# show ip interface brief | include Vlan|1/0/24
+Vlan10                 10.10.10.1      YES manual up                    up
+Vlan30                 10.10.30.1      YES manual up                    up
+Vlan40                 10.10.40.1      YES manual up                    up
+Vlan99                 10.10.99.1      YES manual up                    up
+GigabitEthernet1/0/24  10.0.0.2        YES manual up                    up
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use it to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show vlan brief</code></td>
+<td>VLANs exist, names, access-port membership (trunks not listed)</td>
+</tr>
+<tr>
+<td><code>show interfaces &lt;int&gt; switchport</code></td>
+<td>Administrative vs operational mode, access VLAN, native VLAN, allowed VLANs</td>
+</tr>
+<tr>
+<td><code>show interfaces trunk</code></td>
+<td>Trunk status, native VLAN, allowed/active/forwarding VLANs</td>
+</tr>
+<tr>
+<td><code>show interfaces status</code></td>
+<td>Port VLAN column (<code>trunk</code> or a VLAN number), link status</td>
+</tr>
+<tr>
+<td><code>show ip interface brief</code></td>
+<td>SVIs and routed ports: address and up/up</td>
+</tr>
+<tr>
+<td><code>show ip route connected</code></td>
+<td>One C route per SVI/routed port subnet (needs <code>ip routing</code>)</td>
+</tr>
+<tr>
+<td><code>show mac address-table vlan 10</code></td>
+<td>Which MACs were learned in VLAN 10 and on which ports</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="59-troubleshooting-vlans-trunks-and-svis">5.9 Troubleshooting VLANs, trunks and SVIs</h3>
+<p>Work from the host outward, as in <a class="figref" href="#fig-5-5">Figure 5.5</a>.</p>
+<figure class="fig" id="fig-5-5"><button class="zoom" aria-label="Enlarge figure 5.5"><img src="assets/figures/ch05/fig-05-05-vlan-troubleshooting.svg" alt="Figure 5.5 — VLAN, trunk and gateway troubleshooting flowchart" loading="lazy"></button><figcaption><a class="fignum" href="#fig-5-5">Figure 5.5</a> VLAN, trunk and gateway troubleshooting flowchart</figcaption></figure>
+
+<p><a class="figref" href="#fig-5-5">Figure 5.5</a> assumes the host's IP settings are already correct (<a class="figref" href="chapter-02.html#fig-2-6">Figure 2.6</a>). Each check moves one hop further from the host: its own port, the VLAN database, the trunks between switches, and finally the Layer 3 gateway.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Evidence</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host cannot reach anyone, link is up</td>
+<td>Port in the wrong VLAN</td>
+<td><code>show vlan brief</code> / <code>show interfaces switchport</code></td>
+<td><code>switchport access vlan &lt;correct&gt;</code></td>
+</tr>
+<tr>
+<td>Hosts in a VLAN lost connectivity after a change</td>
+<td>VLAN deleted, ports now inactive</td>
+<td><code>show interfaces switchport</code> shows "Inactive"</td>
+<td>Recreate the VLAN</td>
+</tr>
+<tr>
+<td>Same-VLAN hosts on two switches cannot talk</td>
+<td>VLAN not allowed or not created on one side, or the link is not trunking</td>
+<td><code>show interfaces trunk</code></td>
+<td>Add the VLAN with <code>allowed vlan add</code>; create it; hard-code <code>mode trunk</code></td>
+</tr>
+<tr>
+<td>Link between switches is an access link</td>
+<td>Both ends dynamic auto, or one end access</td>
+<td><code>show interfaces switchport</code>: operational mode static access</td>
+<td>Set <code>switchport mode trunk</code> on both ends</td>
+</tr>
+<tr>
+<td><code>%CDP-4-NATIVE_VLAN_MISMATCH</code> and odd leaks</td>
+<td>Native VLAN differs per end</td>
+<td><code>show interfaces trunk</code> on both switches</td>
+<td>Same <code>native vlan</code> on both ends</td>
+</tr>
+<tr>
+<td>SVI is up/down</td>
+<td>VLAN missing, no active port in the VLAN, or not allowed on any trunk</td>
+<td><code>show vlan brief</code>, <code>show interfaces trunk</code></td>
+<td>Create the VLAN, connect/enable a port, allow it on the uplink</td>
+</tr>
+<tr>
+<td>Hosts reach their gateway but not other VLANs</td>
+<td><code>ip routing</code> missing on the multilayer switch</td>
+<td><code>show ip route</code> returns "routing not enabled" or no C routes</td>
+<td><code>ip routing</code></td>
+</tr>
+<tr>
+<td>Router-on-a-stick: one VLAN fails</td>
+<td>Wrong <code>encapsulation dot1Q</code> number, missing subinterface IP, or VLAN not allowed on the switch trunk</td>
+<td><code>show ip interface brief</code>, <code>show running-config interface g0/0/1.30</code></td>
+<td>Correct the VLAN ID or trunk</td>
+</tr>
+<tr>
+<td>Management SVI unreachable from other subnets</td>
+<td>No <code>ip default-gateway</code> on the Layer 2 switch</td>
+<td><code>show running-config \| include default-gateway</code></td>
+<td>Add the gateway</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="510-packet-tracer-lab-51--campus-vlans-trunks-svis-and-a-routed-uplink-intermediate">5.10 Packet Tracer Lab 5.1 — Campus VLANs, trunks, SVIs and a routed uplink (Intermediate)</h3>
+<p><strong>Objectives:</strong> 2.1.a, 2.1.b, 2.1.d. <strong>You will:</strong> build four VLANs across two access switches, trunk them to a multilayer switch, route between them with SVIs, and connect to a router over a Layer 3 routed port. This topology is reused in Chapters 6–9.</p>
+<p><strong>Devices:</strong> 1 × ISR4331 (R1), 1 × Catalyst 3650-24PS (DSW1), 2 × 2960-24TT (SW1, SW2), 3 × PC, 1 × Printer. <strong>PT note:</strong> a new 3650-24PS in Packet Tracer has no power supply; open its Physical tab, drag in an AC power module and power it on before configuring.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Interface</th>
+<th>Connects to</th>
+<th>Mode</th>
+<th>Address / VLAN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>G0/0/0</td>
+<td>DSW1 Gi1/0/24</td>
+<td>Routed</td>
+<td>10.0.0.1/30</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>Loopback0</td>
+<td>—</td>
+<td>Simulated Internet host</td>
+<td>203.0.113.1/32</td>
+</tr>
+<tr>
+<td>DSW1</td>
+<td>Gi1/0/24</td>
+<td>R1 G0/0/0</td>
+<td>Routed port</td>
+<td>10.0.0.2/30</td>
+</tr>
+<tr>
+<td>DSW1</td>
+<td>Gi1/0/1</td>
+<td>SW1 Gi0/1</td>
+<td>Trunk</td>
+<td>native 999; allowed 10,30,40,99</td>
+</tr>
+<tr>
+<td>DSW1</td>
+<td>Gi1/0/2</td>
+<td>SW2 Gi0/1</td>
+<td>Trunk</td>
+<td>native 999; allowed 10,30,40,99</td>
+</tr>
+<tr>
+<td>DSW1</td>
+<td>Vlan10 / 30 / 40 / 99</td>
+<td>—</td>
+<td>SVIs</td>
+<td>10.10.10.1 / 10.10.30.1 / 10.10.40.1 / 10.10.99.1 (/24)</td>
+</tr>
+<tr>
+<td>SW1</td>
+<td>Fa0/1</td>
+<td>PC1</td>
+<td>Access VLAN 10</td>
+<td>PC1 10.10.10.11/24, gw .1</td>
+</tr>
+<tr>
+<td>SW1</td>
+<td>Fa0/2</td>
+<td>PC2</td>
+<td>Access VLAN 30</td>
+<td>PC2 10.10.30.11/24, gw .1</td>
+</tr>
+<tr>
+<td>SW1</td>
+<td>Vlan99</td>
+<td>—</td>
+<td>Management SVI</td>
+<td>10.10.99.11/24, gw 10.10.99.1</td>
+</tr>
+<tr>
+<td>SW2</td>
+<td>Fa0/1</td>
+<td>PC3</td>
+<td>Access VLAN 10</td>
+<td>PC3 10.10.10.12/24, gw .1</td>
+</tr>
+<tr>
+<td>SW2</td>
+<td>Fa0/2</td>
+<td>Printer1</td>
+<td>Access VLAN 40</td>
+<td>Printer1 10.10.40.11/24, gw .1</td>
+</tr>
+<tr>
+<td>SW2</td>
+<td>Vlan99</td>
+<td>—</td>
+<td>Management SVI</td>
+<td>10.10.99.12/24, gw 10.10.99.1</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cabling follows Chapter 1: copper straight-through from switches to PCs, the printer and R1, and copper crossover between switches (if a switch-to-switch link stays red, check the cable type first).</p>
+<figure class="fig" id="fig-5-6"><button class="zoom" aria-label="Enlarge figure 5.6"><img src="assets/figures/ch05/fig-05-06-lab-5-1-topology.svg" alt="Figure 5.6 — Lab 5.1 topology: VLANs, trunks, SVIs and the routed uplink" loading="lazy"></button><figcaption><a class="fignum" href="#fig-5-6">Figure 5.6</a> Lab 5.1 topology: VLANs, trunks, SVIs and the routed uplink</figcaption></figure>
+
+<p><a class="figref" href="#fig-5-6">Figure 5.6</a> matches the table above. The two highlighted links are trunks; every other link is either an access port or the Layer 3 routed link between DSW1 and R1. PC1 and PC3 share VLAN 10 across both trunks, while every other pair of hosts must be routed by DSW1.</p>
+<p><strong>DSW1</strong></p>
+<pre><code>enable
+configure terminal
+hostname DSW1
+ip routing
+vlan 10
+ name STAFF
+vlan 30
+ name WIRELESS
+vlan 40
+ name PRINTERS
+vlan 99
+ name MGMT
+vlan 999
+ name NATIVE
+exit
+interface range gigabitethernet1/0/1 - 2
+ description Trunks to access switches
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,40,99
+ switchport nonegotiate
+interface gigabitethernet1/0/24
+ description Routed link to R1 G0/0/0
+ no switchport
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+interface vlan 10
+ ip address 10.10.10.1 255.255.255.0
+ no shutdown
+interface vlan 30
+ ip address 10.10.30.1 255.255.255.0
+ no shutdown
+interface vlan 40
+ ip address 10.10.40.1 255.255.255.0
+ no shutdown
+interface vlan 99
+ ip address 10.10.99.1 255.255.255.0
+ no shutdown
+exit
+ip route 0.0.0.0 0.0.0.0 10.0.0.1      ! default route to R1 (Chapter 11)
+end
+copy running-config startup-config
+</code></pre>
+<p>If IOS rejects <code>switchport mode trunk</code> with an "encapsulation is Auto" message, enter <code>switchport trunk encapsulation dot1q</code> first.</p>
+<p><strong>SW1</strong> (SW2 is identical except for the hostname, the port descriptions, Fa0/2 in VLAN 40, and management address 10.10.99.12)</p>
+<pre><code>enable
+configure terminal
+hostname SW1
+vlan 10
+ name STAFF
+vlan 30
+ name WIRELESS
+vlan 40
+ name PRINTERS
+vlan 99
+ name MGMT
+vlan 999
+ name NATIVE
+exit
+interface gigabitethernet0/1
+ description Trunk to DSW1 Gi1/0/1
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30,40,99
+ switchport nonegotiate
+interface fastethernet0/1
+ description PC1 - Staff
+ switchport mode access
+ switchport access vlan 10
+interface fastethernet0/2
+ description PC2 - Wireless
+ switchport mode access
+ switchport access vlan 30
+interface range fastethernet0/3 - 24 , gigabitethernet0/2
+ shutdown
+interface vlan 99
+ ip address 10.10.99.11 255.255.255.0
+ no shutdown
+exit
+ip default-gateway 10.10.99.1
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>R1</strong></p>
+<pre><code>enable
+configure terminal
+hostname R1
+interface gigabitethernet0/0/0
+ description Routed link to DSW1 Gi1/0/24
+ ip address 10.0.0.1 255.255.255.252
+ no shutdown
+interface loopback0
+ description Simulated Internet host
+ ip address 203.0.113.1 255.255.255.255
+exit
+ip route 10.10.0.0 255.255.0.0 10.0.0.2   ! return route to the campus (Chapter 11)
+end
+copy running-config startup-config
+</code></pre>
+<p><strong>Verification and expected results</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Command (device)</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trunks</td>
+<td><code>show interfaces trunk</code> (DSW1, SW1, SW2)</td>
+<td>Gi ports trunking, native 999, VLANs 10,30,40,99 allowed and forwarding</td>
+</tr>
+<tr>
+<td>Access ports</td>
+<td><code>show vlan brief</code> (SW1, SW2)</td>
+<td>Fa0/1 and Fa0/2 in the correct VLANs; trunks not listed</td>
+</tr>
+<tr>
+<td>SVIs and routed port</td>
+<td><code>show ip interface brief</code> (DSW1)</td>
+<td>Vlan10/30/40/99 and Gi1/0/24 up/up</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td><code>show ip route</code> (DSW1)</td>
+<td>Four C routes for the VLANs, C 10.0.0.0/30, and S* 0.0.0.0/0 via 10.0.0.1</td>
+</tr>
+<tr>
+<td>Same VLAN across switches</td>
+<td>PC1 <code>ping 10.10.10.12</code></td>
+<td>Success (via both trunks, no routing)</td>
+</tr>
+<tr>
+<td>Inter-VLAN</td>
+<td>PC1 <code>ping 10.10.30.11</code> and <code>ping 10.10.40.11</code></td>
+<td>Success, routed by DSW1</td>
+</tr>
+<tr>
+<td>Routed uplink</td>
+<td>PC1 <code>ping 203.0.113.1</code></td>
+<td>Success via DSW1 and R1</td>
+</tr>
+<tr>
+<td>Management</td>
+<td>PC1 <code>ping 10.10.99.11</code> and <code>10.10.99.12</code></td>
+<td>Success</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Questions to answer</strong></p>
+<ol>
+<li>Why do SW1 and SW2 need an <code>ip default-gateway</code> but DSW1 does not?</li>
+<li>What would happen if SW2's trunk were left with native VLAN 1 while DSW1 uses 999?</li>
+<li>PC1 pinging PC3 does not go through any SVI. Why not?</li>
+</ol>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Four VLANs and the native VLAN created on all three switches</li>
+<li>[ ] Both trunks up with native 999 and the allowed list</li>
+<li>[ ] Four SVIs and the routed port up/up; <code>ip routing</code> on</li>
+<li>[ ] All eight connectivity tests pass</li>
+<li>[ ] Configurations saved; file kept for Chapters 6–9</li>
+</ul>
+<h3 id="511-packet-tracer-lab-52--router-on-a-stick-beginnerintermediate">5.11 Packet Tracer Lab 5.2 — Router-on-a-stick (Beginner–Intermediate)</h3>
+<p><strong>Objectives:</strong> 2.1.b, plus inter-VLAN routing with a router. <strong>Topology:</strong> the left panel of <a class="figref" href="#fig-5-4">Figure 5.4</a>, built in a new file.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Interface</th>
+<th>Connects to</th>
+<th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R2 (ISR4331)</td>
+<td>G0/0/1</td>
+<td>SW3 Gi0/1</td>
+<td>Subinterfaces .10 (10.10.10.1/24), .30 (10.10.30.1/24), .999 native</td>
+</tr>
+<tr>
+<td>SW3 (2960-24TT)</td>
+<td>Gi0/1</td>
+<td>R2 G0/0/1</td>
+<td>Trunk, native 999, allowed 10,30</td>
+</tr>
+<tr>
+<td>SW3</td>
+<td>Fa0/1</td>
+<td>PC1</td>
+<td>Access VLAN 10; PC1 10.10.10.11/24, gw 10.10.10.1</td>
+</tr>
+<tr>
+<td>SW3</td>
+<td>Fa0/2</td>
+<td>PC2</td>
+<td>Access VLAN 30; PC2 10.10.30.11/24, gw 10.10.30.1</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>SW3</strong></p>
+<pre><code>hostname SW3
+vlan 10
+ name STAFF
+vlan 30
+ name WIRELESS
+vlan 999
+ name NATIVE
+interface gigabitethernet0/1
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,30
+interface fastethernet0/1
+ switchport mode access
+ switchport access vlan 10
+interface fastethernet0/2
+ switchport mode access
+ switchport access vlan 30
+</code></pre>
+<p><strong>R2</strong> — use the router-on-a-stick block from 5.7, with hostname R2.</p>
+<p><strong>Verify:</strong> <code>show ip interface brief</code> on R2 lists G0/0/1, G0/0/1.10 and G0/0/1.30 up/up; <code>show interfaces trunk</code> on SW3 shows Gi0/1 trunking; PC1 can ping PC2. Run <code>tracert 10.10.30.11</code> from PC1: the first hop is 10.10.10.1, proving the packet went up to R2 and back down the same link.</p>
+<p><strong>Break it:</strong> change <code>encapsulation dot1Q 30</code> to <code>encapsulation dot1Q 3</code> on G0/0/1.30. PC2 can no longer reach its gateway, although every interface is still up/up. <em>Lesson:</em> the subinterface number is a label; the encapsulation VLAN is what matters.</p>
+<h3 id="512-lab-53--broken-configuration-challenge-intermediate">5.12 Lab 5.3 — Broken-configuration challenge (Intermediate)</h3>
+<p>Load Lab 5.1, then apply these five changes on a copy without reading the answers. Each one produces a different symptom.</p>
+<pre><code>! DSW1
+no ip routing
+interface gigabitethernet1/0/2
+ switchport trunk allowed vlan 10,30,99
+interface vlan 30
+ shutdown
+! SW1
+interface gigabitethernet0/1
+ switchport trunk native vlan 1
+! SW2
+interface fastethernet0/2
+ switchport access vlan 4
+</code></pre>
+<p><strong>Ticket:</strong> <em>"Staff can reach each other but nothing else works. The printer is unreachable. Wireless users are offline."</em> Use only show commands and pings to find every fault.</p>
+<p><strong>Answer key (hide until done)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Fault</th>
+<th>Symptom</th>
+<th>Found with</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>no ip routing</code> on DSW1</td>
+<td>No inter-VLAN traffic; hosts still ping their own gateway</td>
+<td><code>show ip route</code> (no routing table)</td>
+<td><code>ip routing</code></td>
+</tr>
+<tr>
+<td>VLAN 40 removed from the DSW1–SW2 trunk</td>
+<td>Printer cannot reach its gateway</td>
+<td><code>show interfaces trunk</code> on DSW1</td>
+<td><code>switchport trunk allowed vlan add 40</code></td>
+</tr>
+<tr>
+<td>Vlan30 SVI shut down</td>
+<td>Wireless hosts cannot reach their gateway</td>
+<td><code>show ip interface brief</code> (administratively down)</td>
+<td><code>no shutdown</code></td>
+</tr>
+<tr>
+<td>Native VLAN 1 on SW1, 999 on DSW1</td>
+<td><code>%CDP-4-NATIVE_VLAN_MISMATCH</code> messages</td>
+<td><code>show interfaces trunk</code> on both ends</td>
+<td><code>switchport trunk native vlan 999</code></td>
+</tr>
+<tr>
+<td>Printer port in VLAN 4 (typo for 40)</td>
+<td>Printer isolated even after the trunk fix; VLAN 4 created automatically</td>
+<td><code>show vlan brief</code> on SW2</td>
+<td><code>switchport access vlan 40</code>; <code>no vlan 4</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Completion checklist</strong></p>
+<ul>
+<li>[ ] Lab 5.2 built and inter-VLAN ping proven with tracert</li>
+<li>[ ] Lab 5.2 encapsulation fault reproduced and explained</li>
+<li>[ ] All five Lab 5.3 faults found using show commands only</li>
+<li>[ ] Lab 5.1 restored and saved</li>
+</ul>
+<h3 id="513-chapter-5-summary-notes-exam-revision">5.13 Chapter 5 summary notes (exam revision)</h3>
+<ul>
+<li><strong>VLAN = broadcast domain = (usually) one subnet.</strong> Ranges: 1 default; 2–1001 normal; 1002–1005 reserved; 1006–4094 extended.</li>
+<li><strong>Access port:</strong> <code>switchport mode access</code>, <code>switchport access vlan &lt;id&gt;</code>; untagged; one VLAN. Deleting a VLAN leaves its ports <strong>inactive</strong>.</li>
+<li><strong>Trunk:</strong> <code>switchport mode trunk</code> (+ <code>switchport trunk encapsulation dot1q</code> on ISL-capable switches), <code>native vlan</code>, <code>allowed vlan</code> — use <strong><code>add</code></strong> to append. 802.1Q tag = 4 bytes: TPID 0x8100, PCP 3 bits, DEI 1 bit, <strong>VID 12 bits</strong>.</li>
+<li><strong>Native VLAN:</strong> untagged on the trunk; must match both ends; default VLAN 1; best practice an unused VLAN.</li>
+<li><strong>DTP:</strong> auto + auto = access; desirable + auto/desirable/trunk = trunk. Hard-code modes and use <code>switchport nonegotiate</code>.</li>
+<li><strong><code>show vlan brief</code> lists access ports only; trunks appear in <code>show interfaces trunk</code></strong> (allowed → active → forwarding).</li>
+<li><strong>Routed port:</strong> <code>no switchport</code> + <code>ip address</code>; no VLAN, no STP. <strong>Multilayer switches need <code>ip routing</code>.</strong></li>
+<li><strong>SVI:</strong> <code>interface vlan &lt;id&gt;</code>; up/up only if the VLAN exists, has an active forwarding port, and the SVI is <code>no shutdown</code>. Layer 2 switches need <code>ip default-gateway</code> for their management SVI.</li>
+<li><strong>Router-on-a-stick:</strong> subinterface + <code>encapsulation dot1Q &lt;vlan&gt;</code> (+ <code>native</code> for the native VLAN); the physical interface must be <code>no shutdown</code>.</li>
+</ul>
+<p><strong>Common conceptual mistakes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Correct idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"<code>allowed vlan 50</code> adds VLAN 50"</td>
+<td>It <strong>replaces</strong> the list; use <code>allowed vlan add 50</code></td>
+</tr>
+<tr>
+<td>"A trunk port is missing from <code>show vlan brief</code>, so it is broken"</td>
+<td>Trunks are never listed there</td>
+</tr>
+<tr>
+<td>"The subinterface number sets the VLAN"</td>
+<td><code>encapsulation dot1Q &lt;id&gt;</code> sets it</td>
+</tr>
+<tr>
+<td>"An SVI with an IP is always up"</td>
+<td>It needs an active, forwarding port in its VLAN</td>
+</tr>
+<tr>
+<td>"A Layer 3 switch routes by default"</td>
+<td>Many need <code>ip routing</code> first</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="514-practice-questions--chapter-5">5.14 Practice questions — Chapter 5</h3>
+<p><strong>1. (Recall)</strong> What is the default native VLAN on a Cisco 802.1Q trunk?</p>
+<p><strong>2. (DTP)</strong> Two connected switch ports are both left in <code>dynamic auto</code> mode. What is the result?</p>
+<p>A. Trunk  B. Access link  C. err-disabled  D. EtherChannel</p>
+<p><strong>3. (Output interpretation)</strong></p>
+<pre><code>Port        Vlans allowed on trunk
+Gi0/1       10,20,99
+Port        Vlans allowed and active in management domain
+Gi0/1       10,99
+</code></pre>
+<p>Hosts in VLAN 20 cannot reach the other switch. What is the most likely cause?</p>
+<p><strong>4. (Configuration)</strong> Gi0/1 is a trunk allowing VLANs 10 and 30. Which command adds VLAN 50 without removing the others?</p>
+<p>A. <code>switchport trunk allowed vlan 50</code>  B. <code>switchport trunk allowed vlan add 50</code>  C. <code>switchport access vlan 50</code>  D. <code>vlan 50 trunk</code></p>
+<p><strong>5. (Recall)</strong> Which ports are listed by <code>show vlan brief</code>?</p>
+<p>A. Access ports only  B. Trunk ports only  C. Both  D. Routed ports</p>
+<p><strong>6. (Troubleshooting)</strong> <code>interface vlan 40</code> shows <code>up/down</code>. VLAN 40 exists. What is the most likely reason?</p>
+<p><strong>7. (Troubleshooting)</strong> On a multilayer switch with SVIs for VLANs 10 and 30, hosts can ping their own gateway but not hosts in the other VLAN. What is missing?</p>
+<p><strong>8. (Configuration)</strong> Write the router-on-a-stick configuration on R1 G0/0/1 for VLAN 30 with gateway 10.10.30.1/24.</p>
+<p><strong>9. (Multiple response — choose two)</strong> Which fields are part of the 802.1Q tag?</p>
+<p>A. TPID  B. TTL  C. VID  D. Checksum  E. Source port</p>
+<p><strong>10. (Troubleshooting)</strong> SW1's management SVI (VLAN 99, 10.10.99.11) answers pings from hosts in VLAN 99 but not from VLAN 10. What is missing on SW1?</p>
+<p><strong>11. (Log interpretation)</strong> What does <code>%CDP-4-NATIVE_VLAN_MISMATCH</code> tell you, and why does it matter?</p>
+<p><strong>12. (Configuration)</strong> Which command turns a Catalyst switch port into a Layer 3 routed port?</p>
+<p>A. <code>ip routing</code>  B. <code>no switchport</code>  C. <code>switchport mode routed</code>  D. <code>interface vlan 1</code></p>
+<p><strong>13. (Recall)</strong> VLAN 1500 belongs to which range?</p>
+<p>A. Normal  B. Reserved  C. Extended  D. Invalid</p>
+<p><strong>14. (Scenario)</strong> An administrator deletes VLAN 30 by mistake. What happens to the access ports that were in VLAN 30?</p>
+<p><strong>15. (Evaluate an AI assistant)</strong> A trunk allows VLANs 10, 30 and 99, and the printer VLAN 40 is missing. A network assistant suggests: <em>"Run <code>switchport trunk allowed vlan 40</code> on the trunk."</em> Is this safe?</p>
+<h3 id="515-answer-key-with-explanations">5.15 Answer key with explanations</h3>
+<ol>
+<li><strong>VLAN 1.</strong> Best practice is to change it to an unused VLAN on both ends.</li>
+<li><strong>B.</strong> Both sides wait for the other to start negotiating, so no trunk forms and the link runs as an access link.</li>
+<li>VLAN 20 is <strong>allowed but not active</strong>: it has not been created on this switch (or is suspended). Create it with <code>vlan 20</code>.</li>
+<li><strong>B.</strong> A replaces the list with only VLAN 50, cutting off 10 and 30. C and D are not trunk commands.</li>
+<li><strong>A.</strong> Trunks are shown by <code>show interfaces trunk</code>; routed ports belong to no VLAN.</li>
+<li>No port in VLAN 40 is <strong>up and forwarding</strong> (no access port connected, or VLAN 40 not allowed or forwarding on any trunk), so autostate keeps the SVI's line protocol down.</li>
+<li><strong><code>ip routing</code>.</strong> Each SVI works as a gateway, but without IP routing the switch will not forward packets between them.</li>
+<li><code>interface g0/0/1</code> → <code>no shutdown</code>; <code>interface g0/0/1.30</code> → <code>encapsulation dot1Q 30</code> → <code>ip address 10.10.30.1 255.255.255.0</code>. The switch port facing R1 must be a trunk allowing VLAN 30.</li>
+<li><strong>A and C.</strong> TPID (0x8100) and VID are tag fields; PCP and DEI are the others. TTL and checksum belong to IP; source port belongs to TCP/UDP.</li>
+<li><strong><code>ip default-gateway 10.10.99.1</code>.</strong> A Layer 2 switch is like a host: without a gateway it can answer only devices in its own subnet.</li>
+<li>The two ends of a trunk use different native VLANs. Untagged frames from one VLAN arrive in a different VLAN on the other side, causing leaks and broken connectivity. Set the same native VLAN on both ends.</li>
+<li><strong>B.</strong> <code>ip routing</code> enables routing globally; A alone does not change a port. C does not exist; D creates an SVI.</li>
+<li><strong>C.</strong> 1006–4094 is the extended range.</li>
+<li>The ports keep their <code>switchport access vlan 30</code> setting but become <strong>inactive</strong> and pass no traffic until VLAN 30 is recreated.</li>
+<li><strong>No.</strong> Without <code>add</code>, the command replaces the allowed list with only VLAN 40 and cuts off VLANs 10, 30 and 99. The safe command is <code>switchport trunk allowed vlan add 40</code>. Always check whether a suggested command replaces or appends.</li>
+</ol>
+<h3 id="516-chapter-5-figure-checklist">5.16 Chapter 5 figure checklist</h3>
+<p>All 6 figures were rendered, embedded beside the text they explain, and checked visually after rendering. Three needed small fixes on first render (<a class="figref" href="#fig-5-3">Figure 5.3</a> oversized arrowhead, <a class="figref" href="#fig-5-4">Figure 5.4</a> crowded labels, <a class="figref" href="#fig-5-6">Figure 5.6</a> port labels crossing lines); each was corrected and re-checked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Title</th>
+<th>Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1</td>
+<td>Three VLANs on one switch: a broadcast stays in its VLAN</td>
+<td>5.3</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td>802.1Q tag position and fields</td>
+<td>5.5</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td>A VLAN 10 frame crossing a trunk</td>
+<td>5.5</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>Router-on-a-stick vs multilayer switch SVIs</td>
+<td>5.7</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>VLAN, trunk and gateway troubleshooting flowchart</td>
+<td>5.9</td>
+<td>Rendered, embedded, checked</td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>Lab 5.1 topology</td>
+<td>5.10</td>
+<td>Rendered, embedded, checked after one fix</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shown as annotated command output instead of a drawing:</strong> <code>show vlan brief</code>, <code>show interfaces switchport</code>, <code>show interfaces trunk</code> and <code>show ip interface brief</code>. Lab 5.2 reuses <a class="figref" href="#fig-5-4">Figure 5.4</a> (left panel) as its topology.</p>
+<h3 id="517-chapter-5-progress-record">5.17 Chapter 5 progress record</h3>
+<p><strong>Objectives completed:</strong> <strong>2.1.a</strong> Layer 2/Layer 3 physical interfaces, <strong>2.1.b</strong> 802.1Q trunks, <strong>2.1.d</strong> SVIs, plus VLAN fundamentals and inter-VLAN routing.</p>
+<p><strong>Remaining in objective 2.1:</strong> <strong>2.1.c</strong> Layer 2/Layer 3 LACP port-channel/EtherChannel (Chapter 6).</p>
+<p><strong>Next:</strong> Chapter 6 — <strong>2.1.c EtherChannel with LACP</strong>, built on the Lab 5.1 topology.</p></article><nav class="prevnext"><a class="pn prev" href="chapter-04.html"><small>← Chapter 4</small>Hypervisors, virtual machines and containers</a><a class="pn next" href="chapter-06.html"><small>Chapter 6 →</small>EtherChannel with LACP</a></nav></main>
+<aside class="toc"><div class="toc-title">On this page</div><a href="#51-learning-objectives">5.1 Learning objectives</a>
+<a href="#52-introduction">5.2 Introduction</a>
+<a href="#53-vlan-concepts">5.3 VLAN concepts</a>
+<a href="#54-creating-vlans-and-layer-2-access-ports-21a">5.4 Creating VLANs and Layer 2 access ports (2.1.a)</a>
+<a href="#55-8021q-trunks-21b">5.5 802.1Q trunks (2.1.b)</a>
+<a href="#56-layer-3-routed-ports-on-a-switch-21a">5.6 Layer 3 routed ports on a switch (2.1.a)</a>
+<a href="#57-switch-virtual-interfaces-and-inter-vlan-routing-21d">5.7 Switch virtual interfaces and inter-VLAN routing (2.1.d)</a>
+<a href="#58-verifying-vlans-trunks-and-svis">5.8 Verifying VLANs, trunks and SVIs</a>
+<a href="#59-troubleshooting-vlans-trunks-and-svis">5.9 Troubleshooting VLANs, trunks and SVIs</a>
+<a href="#510-packet-tracer-lab-51--campus-vlans-trunks-svis-and-a-routed-uplink-intermediate">5.10 Packet Tracer Lab 5.1 — Campus VLANs, trunks, SVIs and a routed uplink (Intermediate)</a>
+<a href="#511-packet-tracer-lab-52--router-on-a-stick-beginnerintermediate">5.11 Packet Tracer Lab 5.2 — Router-on-a-stick (Beginner–Intermediate)</a>
+<a href="#512-lab-53--broken-configuration-challenge-intermediate">5.12 Lab 5.3 — Broken-configuration challenge (Intermediate)</a>
+<a href="#513-chapter-5-summary-notes-exam-revision">5.13 Chapter 5 summary notes (exam revision)</a>
+<a href="#514-practice-questions--chapter-5">5.14 Practice questions — Chapter 5</a>
+<a href="#515-answer-key-with-explanations">5.15 Answer key with explanations</a>
+<a href="#516-chapter-5-figure-checklist">5.16 Chapter 5 figure checklist</a>
+<a href="#517-chapter-5-progress-record">5.17 Chapter 5 progress record</a></aside>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">✕</button></div>
+<script src="assets/site/app.js"></script>
+</body></html>
