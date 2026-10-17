@@ -4,6 +4,7 @@
 Usage:
     python3 tools/question_bank.py            # validate every chapter file and print a summary
     python3 tools/question_bank.py --json     # print the parsed bank as JSON
+    python3 tools/question_bank.py question-bank/ch05.md   # validate one file
 
 The file format is described in question-bank/README.md. The study website imports parse_bank()
 from this module, so the Markdown files are the single source of truth.
@@ -124,6 +125,18 @@ def parse_bank(bank_dir=BANK):
 
 
 def main():
+    files = [a for a in sys.argv[1:] if a.endswith(".md")]
+    if files:
+        for f in files:
+            try:
+                q, t = parse_file(Path(f))
+            except BankError as e:
+                sys.exit(f"question bank: {e}")
+            kinds = {}
+            for x in q:
+                kinds[x["type"]] = kinds.get(x["type"], 0) + 1
+            print(f"{Path(f).name}: OK — {len(q)} questions, {len(t)} testlet(s); " + ", ".join(f"{k} {v}" for k, v in sorted(kinds.items())))
+        return
     try:
         questions, testlets = parse_bank()
     except BankError as e:
